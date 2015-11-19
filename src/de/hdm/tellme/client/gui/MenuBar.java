@@ -25,7 +25,7 @@ public class MenuBar {
 		logo.setWidth("70px");
 		// image.setUrl('http://127.0.0.1:8888/images/accounts.png');
 		
-		// Kommentar nachtragen
+		// Kommentar nachtragen 
 		menuBarPanel.addStyleName("menuBarPanel");
 		nachrichtBtn.addStyleName("nachrichtBtn");
 		unterhaltungBtn.addStyleName("unterhaltungBtn");
