@@ -16,6 +16,16 @@
     <url-pattern>/tellme/editorservice</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+    <servlet-name>LoginService</servlet-name>
+    <servlet-class>de.hdm.tellme.server.LoginServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>LoginService</servlet-name>
+    <url-pattern>/tellme/loginservice</url-pattern>
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>TellMe.html</welcome-file>
