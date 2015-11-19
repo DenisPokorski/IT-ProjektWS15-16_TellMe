@@ -13,7 +13,7 @@ public class MenuBar {
 	// Kommentar nachtragen
 	private HorizontalPanel menuBarPanel = new HorizontalPanel(); 
 	private Button nachrichtBtn = new Button(); 
-	private Button unterhatlungBtn = new Button(); 
+	private Button unterhaltungBtn = new Button(); 
 	private Button aboverwaltungBtn = new Button(); 
 	private Button profilBtn = new Button(); 
 	private Image logo = new Image();
@@ -28,14 +28,14 @@ public class MenuBar {
 		// Kommentar nachtragen
 		menuBarPanel.addStyleName("menuBarPanel");
 		nachrichtBtn.addStyleName("nachrichtBtn");
-		unterhatlungBtn.addStyleName("unterhatlungBtn");
+		unterhaltungBtn.addStyleName("unterhaltungBtn");
 		aboverwaltungBtn.addStyleName("aboverwaltungBtn");
 		profilBtn.addStyleName("profilBtn");
 		logo.addStyleName("logo");
 	
 		// Kommentar nachtragen
 		menuBarPanel.add(nachrichtBtn);
-		menuBarPanel.add(unterhatlungBtn);
+		menuBarPanel.add(unterhaltungBtn);
 		menuBarPanel.add(aboverwaltungBtn);
 		menuBarPanel.add(profilBtn);
 		

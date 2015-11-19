@@ -32,3 +32,45 @@ h1 {
 #closeButton {
   margin: 15px 6px 6px;
 }
+/** 
+*
+*Styleschablone für Layoutbausteine
+*/
+
+#wrap {
+  /*Todo vervollständigen*/
+}
+#header {
+  /*Todo vervollständigen*/
+}
+#content {
+  /*Todo vervollständigen*/
+}
+#footer {
+  /*Todo vervollständigen*/
+}
+
+
+/** 
+*
+*Styleschablone für css-Klassen
+*/
+
+.nachrichtBtn {
+	/*Todo vervollständigen*/
+}
+.unterhaltungBtn {
+	/*Todo vervollständigen*/
+}
+.aboverwaltungBtn {
+	/*Todo vervollständigen*/
+}
+.profilBtn {
+	/*Todo vervollständigen*/
+}
+
+		
+
+
+
+
