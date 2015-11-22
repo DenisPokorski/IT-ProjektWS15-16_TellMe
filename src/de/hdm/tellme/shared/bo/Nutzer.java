@@ -6,24 +6,24 @@ public class Nutzer extends BusinessObject {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int Nachname;
-	private int Vorname;
+	private String Nachname;
+	private String Vorname;
 	private String GoogleId;
 	private String Mailadresse;
 
-	public int getNachname() {
+	public String getNachname() {
 		return Nachname;
 	}
 
-	public void setNachname(int nachname) {
+	public void setNachname(String nachname) {
 		Nachname = nachname;
 	}
 
-	public int getVorname() {
+	public String getVorname() {
 		return Vorname;
 	}
 
-	public void setVorname(int vorname) {
+	public void setVorname(String vorname) {
 		Vorname = vorname;
 	}
 
