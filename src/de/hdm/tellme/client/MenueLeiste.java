@@ -1,4 +1,4 @@
-package de.hdm.tellme.client.gui;
+package de.hdm.tellme.client;
 
  
  
@@ -8,7 +8,7 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
 
  
-public class MenuBar {
+public class MenueLeiste {
 
 	// Kommentar nachtragen
 	private HorizontalPanel menuBarPanel = new HorizontalPanel(); 
@@ -40,7 +40,7 @@ public class MenuBar {
 		menuBarPanel.add(profilBtn);
 		
 		// Kommentar nachtragen
-		RootPanel.get().add(menuBarPanel);
+		RootPanel.get("oben").add(menuBarPanel);
 		
 	}
 
