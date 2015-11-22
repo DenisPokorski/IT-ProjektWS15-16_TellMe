@@ -52,15 +52,19 @@ public class TellMe implements EntryPoint {
 
 		//Kommentar nachtragen(TODO)
 		ueberschrift1.addStyleName("ueberschrift1"); 
-		ueberschrift1.addStyleName("untertitel"); 
-		ueberschrift1.addStyleName("ueberschrift2"); 
-		ueberschrift1.addStyleName("vornameTextBox");
-		ueberschrift1.addStyleName("nachnameTextBox");
-
-		ueberschrift1.addStyleName("emailTextBox"); 
-		ueberschrift1.addStyleName("aenderungenSpeichernButton"); 
-		ueberschrift1.addStyleName("profilAbmeldenButton"); 
-		ueberschrift1.addStyleName("profilloeschenButton"); 
+		untertitel.addStyleName("untertitel"); 
+		ueberschrift2.addStyleName("ueberschrift2"); 
+		
+		bezeichnungVornameTextBox.addStyleName("bezeichnungVornameTextBox");
+		vornameTextBox.addStyleName("vornameTextBox");
+		bezeichnungNachnameTextBox.addStyleName("bezeichnungNachnameTextBox");
+		nachnameTextBox.addStyleName("nachnameTextBox");
+		bezeichnungEmailTextBox.addStyleName("bezeichnungEmailTextBox");
+		emailTextBox.addStyleName("emailTextBox"); 
+		
+		aenderungenSpeichernButton.addStyleName("aenderungenSpeichernButton"); 
+		profilAbmeldenButton.addStyleName("profilAbmeldenButton"); 
+		profilloeschenButton.addStyleName("profilloeschenButton"); 
 
 		
 		//Kommentar nachtragen(TODO)
