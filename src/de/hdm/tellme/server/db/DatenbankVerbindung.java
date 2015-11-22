@@ -1,27 +1,33 @@
 package de.hdm.tellme.server.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import com.google.appengine.api.rdbms.AppEngineDriver;
+import java.sql.*;
 
 public class DatenbankVerbindung {
-	private static boolean UseLocalConnection = true;
-	private static Connection getNewConnection() {
-		
-		
-		Connection con = null;
-		try {
-			if (UseLocalConnection) {
-				con = DriverManager.getConnection("jdbc:mysql://feltrin-immobilien.de:3306/db_tellme", "tellme", "M22azd0!");
 
-			} else {
-				con = DriverManager.getConnection("jdbc:google:rdbms://xx:xx/xx", "root", "");
+	private static Connection con = null;
+
+	public static Connection connection() {
+
+		if (con == null) {
+
+			try {
+				DriverManager.registerDriver(new AppEngineDriver());
+
+				con = DriverManager.getConnection(
+						"jdbc:mysql://feltrin-immobilien.de:3306/db_tellme",
+						"tellme", "M22azd0!");
+
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return con;
 
-}
+			catch (SQLException e1) {
+				con = null;
+
+				e1.printStackTrace();
+			}
+		}
+
+		return con;
+	}
+
 }
