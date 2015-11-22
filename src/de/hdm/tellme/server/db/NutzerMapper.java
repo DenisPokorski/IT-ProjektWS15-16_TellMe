@@ -1,10 +1,9 @@
 package de.hdm.tellme.server.db;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import com.google.cloud.sql.jdbc.ResultSet;
 
 import de.hdm.tellme.server.db.DatenbankVerbindung;
 import de.hdm.tellme.shared.bo.Nutzer;
@@ -72,14 +71,14 @@ public class NutzerMapper {
 
 	}
 
-	public Nutzer suchenNutzerIdMitMailadresse(Nutzer n) {
+	public Nutzer suchenNutzerIdMitMailadresse(String eMailAdress) {
 		Connection con = DatenbankVerbindung.connection();
 		Nutzer na = new Nutzer();
 		try {
 			Statement state = con.createStatement();
 			ResultSet rs = state
 					.executeQuery("SELECT * FROM Nutzer WHERE Mailadresse='"
-							+ n.getMailadresse() + "';");
+							+ eMailAdress + "';");
 
 			while (rs.next()) {
 
@@ -90,10 +89,11 @@ public class NutzerMapper {
 			}
 			rs.close();
 			state.close();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return na;
 	}
 
 	public Nutzer suchenNutzerMitId(Nutzer n) {
@@ -117,6 +117,7 @@ public class NutzerMapper {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return na;
 	}
 
 }
