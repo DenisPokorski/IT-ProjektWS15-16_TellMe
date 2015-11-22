@@ -54,3 +54,4 @@ war/WEB-INF/classes/
 .svn/
 /.settings
 /.gwt
+war/tellme/tellme.nocache.js
