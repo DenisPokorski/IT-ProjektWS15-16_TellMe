@@ -24,7 +24,7 @@ public class NutzerBearbeiten extends VerticalPanel {
 	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
 	private Label ueberschrift1 = new Label("Mein Profil");
 	private Label untertitel = new Label(
-			"Hier siehst du dein Profil und kannst es bearbeiten, l�schen und dich abmelden.");
+			"Hier siehst du dein Profil und kannst es bearbeiten, löschen und dich abmelden.");
 	private Label ueberschrift2 = new Label("Profil bearbeiten");
 
 	private LoginInfo loginInfo;
@@ -42,15 +42,15 @@ public class NutzerBearbeiten extends VerticalPanel {
 	private TextBox vornameTextBox = new TextBox();
 	private Label bezeichnungNachnameTextBox = new Label("Nachname");
 	private TextBox nachnameTextBox = new TextBox();
-	private Label bezeichnungEmailTextBox = new Label("Emailadresse");
+	private Label bezeichnungEmailTextBox = new Label("E-Mailadresse");
 	private TextBox emailTextBox = new TextBox();
 	private Nutzer n = new Nutzer();
 	// Kommentar nachtragen(TODO)
 	private HorizontalPanel ButtonPanel = new HorizontalPanel();
 	private Button aenderungenSpeichernButton = new Button(
-			"�nderungen speichern");
+			"Änderungen speichern");
 
-	private Button profilloeschenButton = new Button("Profil l�schen");
+	private Button profilloeschenButton = new Button("Profil löschen");
 
 	public Nutzer getNutzerVonMailAdresse(String eMailAdress) {
 
@@ -164,7 +164,7 @@ public class NutzerBearbeiten extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				if (vornameTextBox.getValue().isEmpty()
 						|| nachnameTextBox.getValue().isEmpty()) {
-					Window.alert("Bitte alle Felder bef�llen");
+					Window.alert("Bitte alle Felder befüllen");
 				} else {
 					Nutzer na = new Nutzer();
 					na.setId(n.getId());
@@ -184,7 +184,7 @@ public class NutzerBearbeiten extends VerticalPanel {
 			@Override
 			public void onClick(ClickEvent event) {
 				nutzerLoeschen(n);
-				Window.alert("Profil gel�scht");
+				Window.alert("Profil gelöscht");
 				RootPanel.get("content").clear();
 
 			}
