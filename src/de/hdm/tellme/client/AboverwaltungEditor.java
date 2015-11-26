@@ -16,8 +16,9 @@ import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 /*
+ * Diese Klasse stellt die Aboverwaltung für den Editor dar.
  * @author: Alex Homann
- * Version: 1.0
+ * @version: 1.1
  * nicht fertiggestellt
  * 
  */
