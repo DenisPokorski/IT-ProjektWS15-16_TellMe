@@ -49,10 +49,6 @@ public class AboverwaltungEditor extends VerticalPanel {
 				//Einfügen der Dropdown-Liste um einen Nutzer auszuwählen, den man auswählen möchte.
 				private Label nutzerText1= new Label("Nutzer auswählen: ");
 				
-				private Label nutzerText2= new Label("Nutzer auswählen: ");
-				
-				
-				
 				private ListBox dropDownNutzerNichtAbonniert = new ListBox();
 				/*
 				
@@ -71,6 +67,8 @@ public class AboverwaltungEditor extends VerticalPanel {
 				
 				private Label untertitelNutzerAboLoeschen = new Label (
 						"Hier kannst du die Nutzer auswählen, für die du dein Abo löschen möchtest");
+				
+				private Label nutzerText2= new Label("Nutzer auswählen: ");
 
 				private ListBox dropDownNutzerAbonniert = new ListBox();
 				/*
@@ -131,7 +129,7 @@ public class AboverwaltungEditor extends VerticalPanel {
 				private Button hashtagNichtAbonnieren = new Button("Hashtagabo löschen");
 				
 					
-	public void onLoad(){
+	public void onLoad(){  //Aufbau der Seite
 		
 		/*
 		 * Buttons und Labels werden den jeweiligen Panels zugeordnet.
@@ -171,13 +169,15 @@ public class AboverwaltungEditor extends VerticalPanel {
 						hashtagAboPanel1.add(dropDownHashtagsNichtAbonniert);
 						hashtagAboPanel1.add(hashtagAbonnieren);
 						
-						//Nutzerabo löschen
+						//Hashtagabo löschen
 						hashtagAboPanel.add(hashtagAboPanel2);
 						hashtagAboPanel2.add(untertitelHashtagAboLoeschen);
 						hashtagAboPanel2.add(hashtagText2);
 						//Dropdownliste&Button
 						hashtagAboPanel2.add(dropDownHashtagsAbonniert);
 						hashtagAboPanel2.add(hashtagNichtAbonnieren);
+						
+						
 		RootPanel.get("content").add(aboPanel);
 		
 		
