@@ -5,12 +5,9 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import de.hdm.tellme.shared.LoginInfo;
+ import de.hdm.tellme.shared.LoginInfo;
 
 /**
- * Klasse mit Eigenschaften und Diensten, die für alle Client-seitigen Klassen
- * relevant sind.
  * 
  * @author Zimmermann
  * @version 1.0

@@ -10,12 +10,13 @@ import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.LoginService;
 import de.hdm.tellme.shared.bo.Nutzer;
 
-@SuppressWarnings("serial")
 public class LoginServiceImpl extends RemoteServiceServlet implements
 		LoginService {
-	private NutzerMapper nMapper = null;
+	public LoginServiceImpl() throws IllegalArgumentException {
 
-	private static final long serialVersionUID = -1682217411238580183L;
+	}
+
+	private static final long serialVersionUID = -1L;
 
 	@Override
 	public LoginInfo getNutzerInfo(String uri) {
@@ -25,6 +26,7 @@ public class LoginServiceImpl extends RemoteServiceServlet implements
 		LoginInfo loginInfo = new LoginInfo();
 
 		if (nutzer != null) {
+			NutzerMapper nMapper = NutzerMapper.nutzermapper();
 
 			loginInfo.setLoggedIn(true);
 			loginInfo.setEmailAddress(nutzer.getEmail());
@@ -32,13 +34,17 @@ public class LoginServiceImpl extends RemoteServiceServlet implements
 
 			Nutzer n = nMapper.suchenNutzerIdMitMailadresse(loginInfo
 					.getEmailAddress());
-			if (n != null) {
+
+			if (n.getMailadresse() != null) {
 				loginInfo.setUser(n);
 			}
 
 			else {
 				Nutzer na = new Nutzer();
 				na.setMailadresse(loginInfo.getEmailAddress());
+				na.setVorname("undefined");
+				na.setNachname("undefined");
+
 				nMapper.anlegen(na);
 				loginInfo.setUser(na);
 			}

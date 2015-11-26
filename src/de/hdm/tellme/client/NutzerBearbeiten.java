@@ -33,10 +33,7 @@ public class NutzerBearbeiten extends VerticalPanel {
 		this.loginInfo = loginInfo;
 	}
 
-	public LoginInfo getLoginInfo() {
-		return loginInfo;
-	}
-
+	
 	// Kommentar nachtragen(TODO)
 	private Label bezeichnungVornameTextBox = new Label("Vorname");
 	private TextBox vornameTextBox = new TextBox();
@@ -52,35 +49,7 @@ public class NutzerBearbeiten extends VerticalPanel {
 
 	private Button profilloeschenButton = new Button("Profil löschen");
 
-	public Nutzer getNutzerVonMailAdresse(String eMailAdress) {
-
-		asyncObj.getNutzerVonMailadresse(eMailAdress,
-				new AsyncCallback<Nutzer>() {
-
-					@Override
-					public void onFailure(Throwable caught) {
-						// TODO Auto-generated method stub
-
-					}
-
-					@Override
-					public void onSuccess(Nutzer result) {
-
-						n.setId(result.getId());
-						n.setVorname(result.getVorname());
-						n.setNachname(result.getNachname());
-						n.setMailadresse(result.getMailadresse());
-
-						vornameTextBox.setText(n.getVorname());
-						nachnameTextBox.setText(n.getNachname());
-						emailTextBox.setText(n.getMailadresse());
-
-					}
-
-				});
-		return n;
-
-	}
+	
 
 	public void nutzerBearbeiten(Nutzer n) {
 		asyncObj.nutzerAktualisieren(n, new AsyncCallback<Void>() {
@@ -93,15 +62,16 @@ public class NutzerBearbeiten extends VerticalPanel {
 
 			@Override
 			public void onSuccess(Void result) {
-				// TODO Auto-generated method stub
+				Window.alert("Profil erfolgreich editiert.");
+				RootPanel.get("content").clear();
 
 			}
 		});
 
 	}
 
-	public void nutzerLoeschen(Nutzer n) {
-		asyncObj.nutzerLoeschen(n, new AsyncCallback<Void>() {
+	public void nutzerLoeschen() {
+		asyncObj.nutzerLoeschen(loginInfo.getUser(), new AsyncCallback<Void>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -111,16 +81,19 @@ public class NutzerBearbeiten extends VerticalPanel {
 
 			@Override
 			public void onSuccess(Void result) {
-				// TODO Auto-generated method stub
+				Window.alert("Profil gelöscht");
+				Window.Location.assign(loginInfo.getLogoutUrl());
+				RootPanel.get("content").clear();
 
 			}
 		});
 	}
 
 	public void onLoad() {
-		String test = "dfeltrin.hdm@gmail.com";
-		getNutzerVonMailAdresse(test);
-
+		vornameTextBox.setText(loginInfo.getUser().getVorname());
+		nachnameTextBox.setText(loginInfo.getUser().getNachname());
+		emailTextBox.setText(loginInfo.getUser().getMailadresse());
+		
 		// Kommentar nachtragen(TODO)
 		profilPanel.add(ueberschrift1);
 		profilPanel.add(untertitel);
@@ -164,16 +137,15 @@ public class NutzerBearbeiten extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				if (vornameTextBox.getValue().isEmpty()
 						|| nachnameTextBox.getValue().isEmpty()) {
-					Window.alert("Bitte alle Felder befüllen");
+					Window.alert("Bitte alle Felder befÃ¼llen");
 				} else {
-					Nutzer na = new Nutzer();
-					na.setId(n.getId());
-					na.setMailadresse(emailTextBox.getText());
-					na.setVorname(vornameTextBox.getText());
-					na.setNachname(nachnameTextBox.getText());
-					nutzerBearbeiten(na);
-					Window.alert("Profil erfolgreich editiert.");
-					RootPanel.get("content").clear();
+					
+					n.setId(loginInfo.getUser().getId());
+					n.setMailadresse(emailTextBox.getText());
+					n.setVorname(vornameTextBox.getText());
+					n.setNachname(nachnameTextBox.getText());
+					nutzerBearbeiten(n);
+					
 
 				}
 
@@ -183,9 +155,8 @@ public class NutzerBearbeiten extends VerticalPanel {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				nutzerLoeschen(n);
-				Window.alert("Profil gelöscht");
-				RootPanel.get("content").clear();
+				nutzerLoeschen();
+				
 
 			}
 		});
