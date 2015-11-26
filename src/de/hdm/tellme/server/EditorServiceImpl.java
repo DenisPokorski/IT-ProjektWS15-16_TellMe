@@ -21,7 +21,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 	public void nutzerAnlegen(Nutzer na) {
 		Nutzer n = new Nutzer();
-		n.setGoogleId(na.getGoogleId());
 		n.setVorname(na.getVorname());
 		n.setNachname(na.getNachname());
 		n.setMailadresse(na.getMailadresse());
