@@ -10,13 +10,19 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import de.hdm.tellme.client.gui.report.ReportNachLogin;
 =======
+=======
+>>>>>>> origin/master
 import com.google.gwt.user.client.ui.Widget;
 
 import de.hdm.tellme.shared.LoginService;
 import de.hdm.tellme.shared.LoginServiceAsync;
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 import de.hdm.tellme.shared.LoginInfo;
 
@@ -30,6 +36,7 @@ public class TellMe implements EntryPoint {
 	public void ladeMenuBarEditor() {
 
 		// Startseite anzeigen
+<<<<<<< HEAD
 		MenuBarEditor menuBar = new MenuBarEditor();
 		menuBar.setLoginInfo(loginInfo);
 		RootPanel.get("header").clear();
@@ -39,6 +46,8 @@ public class TellMe implements EntryPoint {
 	public void ladeReportGui(){
 		 
 		//Startseite anzeigen
+=======
+>>>>>>> origin/master
 		MenuBarEditor menuBar = new MenuBarEditor();
 		menuBar.setLoginInfo(loginInfo);
 		RootPanel.get("header").clear();
@@ -58,13 +67,25 @@ public class TellMe implements EntryPoint {
 		return loginPanel;
 	}
 
+	public Widget loadLogin() {
+		signInLink.setHref(loginInfo.getLoginUrl());
+		loginPanel.add(new Label("Bitte anmelden"));
+		loginPanel.add(signInLink);
+
+		RootPanel.get("header").add(loginPanel);
+		return loginPanel;
+	}
+
 	@Override
 	public void onModuleLoad() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		//ladeMenuBarEditor();
 		//ladeNachrichten();
 		ladeReportGui();
 =======
+=======
+>>>>>>> origin/master
 
 		loginService.getNutzerInfo(
 				com.google.gwt.core.client.GWT.getHostPageBaseURL(),
@@ -91,6 +112,9 @@ public class TellMe implements EntryPoint {
 					}
 				});
 
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 	}
 }
