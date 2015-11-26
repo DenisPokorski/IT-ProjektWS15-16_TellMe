@@ -1,5 +1,12 @@
 package de.hdm.tellme.client;
-
+/**
+ *Klasse die Nachrichten erstellt und versendet. 
+ * 
+ * @author thuering
+ * @version 1.0
+ * @since 26.11.2015
+ * 
+ */
 import java.util.Vector;
 
 import com.google.gwt.core.shared.GWT;

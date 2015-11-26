@@ -1,5 +1,12 @@
 package de.hdm.tellme.client;
-
+/**
+ *Klasse mit Übersicht aller Nachrichten bzw. Unterhaltungen. 
+ * 
+ * @author thuering
+ * @version 1.0
+ * @since 26.11.2015
+ * 
+ */
 import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.cellview.client.CellList;
