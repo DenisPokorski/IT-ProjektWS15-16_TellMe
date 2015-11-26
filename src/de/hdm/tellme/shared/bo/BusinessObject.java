@@ -11,7 +11,7 @@ public class BusinessObject implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int id = 0;
-	private Boolean sichtbarkeit;
+	private int sichtbarkeit;
 	private Timestamp erstellungsDatum;
 
 	/**
@@ -31,14 +31,14 @@ public class BusinessObject implements Serializable {
 	/**
 	 * Auslesen der Sichtbarkeit
 	 */
-	public Boolean getSichtbarkeit() {
+	public int getSichtbarkeit() {
 		return sichtbarkeit;
 	}
 
 	/**
 	 * Setzen der Sichtbarkeit
 	 */
-	public void setSichtbarkeit(Boolean sichtbarkeit) {
+	public void setSichtbarkeit(int sichtbarkeit) {
 		this.sichtbarkeit = sichtbarkeit;
 	}
 

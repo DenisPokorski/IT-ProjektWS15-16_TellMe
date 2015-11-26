@@ -1,6 +1,6 @@
 package de.hdm.tellme.shared.bo;
 
-public abstract class Abonnemet {
+public abstract class Abonnement {
 
 	protected Nutzer AbonnementErsteller;
 
