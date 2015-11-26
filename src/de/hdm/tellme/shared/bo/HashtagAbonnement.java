@@ -1,6 +1,6 @@
 package de.hdm.tellme.shared.bo;
 
-public class HashtagAbonnement {
+public class HashtagAbonnement extends Abonnement {
 	
 	private Hashtag aboHashtag;
 

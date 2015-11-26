@@ -1,6 +1,6 @@
 package de.hdm.tellme.shared.bo;
 
-public class NutzerAbonnement {
+public class NutzerAbonnement extends Abonnement {
 	
 	private Nutzer aboNutzer;
 
