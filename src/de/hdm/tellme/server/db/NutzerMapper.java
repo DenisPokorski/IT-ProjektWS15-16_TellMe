@@ -63,7 +63,7 @@ public class NutzerMapper {
 			Statement state = con.createStatement();
 
 			state.executeUpdate("UPDATE Nutzer SET Sichtbarkeit = '" + 0
-					+ "WHERE Id = '" + n.getId() + "';");
+					+ "' WHERE Id = '" + n.getId() + "';");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -72,6 +72,7 @@ public class NutzerMapper {
 	}
 
 	public Nutzer suchenNutzerIdMitMailadresse(String eMailAdress) {
+		
 		Connection con = DatenbankVerbindung.connection();
 		Nutzer na = new Nutzer();
 		try {
@@ -87,8 +88,7 @@ public class NutzerMapper {
 				na.setNachname(rs.getString("Nachname"));
 				na.setMailadresse(rs.getString("Mailadresse"));
 			}
-			rs.close();
-			state.close();
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -9,6 +9,14 @@ import de.hdm.tellme.shared.bo.*;
 @SuppressWarnings("serial")
 public class EditorServiceImpl extends RemoteServiceServlet implements
 		EditorService {
+	public EditorServiceImpl() throws IllegalArgumentException {
+
+	}
+
+	public void init() throws IllegalArgumentException {
+		this.nMapper = NutzerMapper.nutzermapper();
+	}
+
 	private NutzerMapper nMapper = null;
 
 	public void nutzerAnlegen(Nutzer na) {
@@ -22,19 +30,12 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 	}
 
-	public void nutzerAktualisieren(Nutzer na) {
-		Nutzer n = new Nutzer();
-		n.setGoogleId(na.getGoogleId());
-		n.setVorname(na.getVorname());
-		n.setNachname(na.getNachname());
-		n.setMailadresse(na.getMailadresse());
+	public void nutzerAktualisieren(Nutzer n) {
 
 		nMapper.aktualisieren(n);
 	}
 
-	public void nutzerLoeschen(Nutzer na) {
-		Nutzer n = new Nutzer();
-		n.setId(na.getId());
+	public void nutzerLoeschen(Nutzer n) {
 
 		nMapper.entfernen(n);
 	}
@@ -47,6 +48,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	}
 
 	public Nutzer getNutzerVonMailadresse(String eMailAdress) {
+		init();
 		Nutzer n = new Nutzer();
 		n = nMapper.suchenNutzerIdMitMailadresse(eMailAdress);
 		return n;
