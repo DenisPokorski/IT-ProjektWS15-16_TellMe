@@ -8,7 +8,6 @@ public class Nutzer extends BusinessObject {
 	private static final long serialVersionUID = 1L;
 	private String Nachname;
 	private String Vorname;
-	private String GoogleId;
 	private String Mailadresse;
 
 	public String getNachname() {
@@ -35,12 +34,6 @@ public class Nutzer extends BusinessObject {
 		Mailadresse = mailadresse;
 	}
 
-	public String getGoogleId() {
-		return GoogleId;
-	}
 
-	public void setGoogleId(String googleId) {
-		GoogleId = googleId;
-	}
 
 }

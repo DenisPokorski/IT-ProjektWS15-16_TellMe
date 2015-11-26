@@ -89,8 +89,9 @@ public class NutzerMapper {
 		try {
 			Statement state = con.createStatement();
 
-			String sqlquery = "UPDATE Nutzer SET Sichtbarkeit = '" + 0
-					+ "' WHERE Id = '" + n.getId() + "';";
+			String sqlquery = "DELETE FROM Nutzer WHERE Id='" + n.getId()
+					 + "';";
+					
 			state.executeUpdate(sqlquery);
 
 		} catch (Exception e) {
