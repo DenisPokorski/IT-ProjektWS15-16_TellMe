@@ -38,13 +38,13 @@ public class NutzerMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "INSERT INTO Nutzer (Vorname, Nachname, Mailadresse, Sichtbarkeit) VALUES ("
+			String sqlquery = "INSERT INTO Nutzer (Vorname, Nachname, Mailadresse) VALUES ("
 					+ "'"
 					+ n.getVorname()
 					+ "','"
 					+ n.getNachname()
 					+ "','"
-					+ n.getMailadresse() + "','" + n.getSichtbarkeit() + "') ;";
+					+ n.getMailadresse() + "') ;";
 			state.executeUpdate(sqlquery);
 
 		} catch (Exception e) {
