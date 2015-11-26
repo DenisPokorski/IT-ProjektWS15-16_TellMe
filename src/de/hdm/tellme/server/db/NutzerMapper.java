@@ -8,6 +8,9 @@ import java.sql.Statement;
 import de.hdm.tellme.server.db.DatenbankVerbindung;
 import de.hdm.tellme.shared.bo.Nutzer;
 
+	/** Mapper-Klasse, die Nutzer-Objekte in der Datenbank abbildet. Diese enthält Methoden zum
+	 * Anlegen, Aktualisieren, Entfernen und Suchen von Objekten.*/
+
 public class NutzerMapper {
 	private static NutzerMapper nutzerMapper = null;
 
@@ -15,13 +18,22 @@ public class NutzerMapper {
 
 	}
 
+	/**Todo */
+	
 	public static NutzerMapper nutzermapper() {
 		if (nutzerMapper == null) {
 			nutzerMapper = new NutzerMapper();
 		}
 		return nutzerMapper;
 	}
-
+	
+	/** Die Methode anlegen stellt eine Verbindung zur Datenbank her. Dazu wird die Methode "connection()" aus der Klasse DatenbankVerbindung
+	 * dem Objekt con übergeben.  Im Anschluss wird im "try-Block" ein Statement erstellt. 
+	 * Nun legen wir einen neuen String an, der das SQL-Statement mit dynamischen Nutzerdaten beinhaltet. Jetzt wird über die Methode "state.executeUpdate(sqlquery);"
+	 * ausgeführt und der SQL String an die Datenbank übergeben. Sollte der "try-Block" Fehler aufweisen, wird der "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
+	 * ausgeführt. 
+	 */
+	
 	public void anlegen(Nutzer n) {
 		Connection con = DatenbankVerbindung.connection();
 		try {
@@ -39,16 +51,24 @@ public class NutzerMapper {
 			e.printStackTrace();
 		}
 	}
+	
+	/** Die Methode aktualisieren stellt eine Verbindung zur Datenbank her. Dazu wird die Methode "connection()" aus der Klasse DatenbankVerbindung
+	 * dem Objekt con übergeben.  Im Anschluss wird im "try-Block" ein Statement erstellt. 
+	 * Nun legen wir einen neuen String an, der das SQL-Statement mit dynamischen Nutzerdaten beinhaltet. Jetzt wird über die Methode "state.executeUpdate(sqlquery);"
+	 * ausgeführt und der SQL String an die Datenbank übergeben. Sollte der "try-Block" Fehler aufweisen, wird der "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
+	 * ausgeführt. 
+	 */
 
 	public void aktualisieren(Nutzer n) {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
 
-			state.executeUpdate("UPDATE Nutzer SET Vorname = '"
+			String sqlquery = "UPDATE Nutzer SET Vorname = '"
 					+ n.getVorname() + "', Nachname= '" + n.getNachname()
 					+ "', " + "Mailadresse= '" + n.getMailadresse() + "' "
-					+ "WHERE Id = '" + n.getId() + "';");
+					+ "WHERE Id = '" + n.getId() + "';";
+			state.executeUpdate(sqlquery);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -56,20 +76,36 @@ public class NutzerMapper {
 		}
 
 	}
+	
+	/** Die Methode entfernen stellt eine Verbindung zur Datenbank her. Dazu wird die Methode "connection()" aus der Klasse DatenbankVerbindung
+	 * dem Objekt con übergeben.  Im Anschluss wird im "try-Block" ein Statement erstellt. 
+	 * Nun legen wir einen neuen String an, der das SQL-Statement mit dynamischen Nutzerdaten beinhaltet. Jetzt wird über die Methode "state.executeUpdate(sqlquery);"
+	 * ausgeführt und der SQL String an die Datenbank übergeben. Sollte der "try-Block" Fehler aufweisen, wird der "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
+	 * ausgeführt. 
+	 */
 
 	public void entfernen(Nutzer n) {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
 
-			state.executeUpdate("UPDATE Nutzer SET Sichtbarkeit = '" + 0
-					+ "' WHERE Id = '" + n.getId() + "';");
+			String sqlquery = "UPDATE Nutzer SET Sichtbarkeit = '" + 0
+					+ "' WHERE Id = '" + n.getId() + "';";
+			state.executeUpdate(sqlquery);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
+	
+	/** Die Methode suchenNutzerIdMitMailadresse stellt eine Verbindung zur Datenbank her. Dazu wird die Methode "connection()" aus der Klasse DatenbankVerbindung
+	 * dem Objekt con übergeben. Anschließend wird ein neues Objekt von dem Typ Nutzer erstellt (na). Im Anschluss wird im "try-Block" ein Statement erstellt.
+	 * Nun legen wir über ResultSet fest, dass der Nutzer über die Mailadresse gesucht werden soll. Danach wird für jeder Eintrag in das Objekt na geschrieben. 
+	 * Jetzt wird über die Methode "state.executeUpdate(sqlquery);" ausgeführt und der SQL String an die Datenbank übergeben. 
+	 * Sollte der "try-Block" Fehler aufweisen, wird der "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
+	 * ausgeführt. Über "return" wird der Nutzer mit allen Attributen ausgegeben. 
+	 */
 
 	public Nutzer suchenNutzerIdMitMailadresse(String eMailAdress) {
 		
@@ -95,6 +131,14 @@ public class NutzerMapper {
 		}
 		return na;
 	}
+	
+	/** Die Methode suchenNutzerMitId stellt eine Verbindung zur Datenbank her. Dazu wird die Methode "connection()" aus der Klasse DatenbankVerbindung
+	 * dem Objekt con übergeben. Anschließend wird ein neues Objekt von dem Typ Nutzer erstellt (na). Im Anschluss wird im "try-Block" ein Statement erstellt.
+	 * Nun legen wir über ResultSet fest, dass der Nutzer über die Id gesucht werden soll. Danach wird für jeder Eintrag in das Objekt na geschrieben. 
+	 * Jetzt wird über die Methode "state.executeUpdate(sqlquery);" ausgeführt und der SQL String an die Datenbank übergeben. 
+	 * Sollte der "try-Block" Fehler aufweisen, wird der "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
+	 * ausgeführt. Über "return" wird der Nutzer mit allen Attributen ausgegeben. 
+	 */
 
 	public Nutzer suchenNutzerMitId(Nutzer n) {
 
