@@ -14,7 +14,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	}
 
 	public void init() throws IllegalArgumentException {
-		this.nMapper = NutzerMapper.nutzermapper();
+		this.nMapper = NutzerMapper.nutzerMapper();
 	}
 
 	private NutzerMapper nMapper = null;

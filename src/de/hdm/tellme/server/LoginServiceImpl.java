@@ -26,7 +26,7 @@ public class LoginServiceImpl extends RemoteServiceServlet implements
 		LoginInfo loginInfo = new LoginInfo();
 
 		if (nutzer != null) {
-			NutzerMapper nMapper = NutzerMapper.nutzermapper();
+			NutzerMapper nMapper = NutzerMapper.nutzerMapper();
 
 			loginInfo.setLoggedIn(true);
 			loginInfo.setEmailAddress(nutzer.getEmail());
