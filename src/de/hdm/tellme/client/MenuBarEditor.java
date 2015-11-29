@@ -73,6 +73,9 @@ public class MenuBarEditor extends HorizontalPanel{
 			@Override 
 			public void execute() {
 				RootPanel.get("content").clear();
+				AboverwaltungEditor aBE = new AboverwaltungEditor();
+				aBE.setLoginInfo(loginInfo);
+				RootPanel.get("content").add(aBE); //Leiste wird oben gesetzt
 			}
 		});
 		
