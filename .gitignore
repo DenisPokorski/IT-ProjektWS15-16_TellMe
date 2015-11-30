@@ -54,3 +54,5 @@ war/WEB-INF/classes/
 .svn/
 /.settings
 /.gwt
+
+.DS_Store
