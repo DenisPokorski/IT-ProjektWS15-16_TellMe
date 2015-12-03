@@ -4,6 +4,7 @@ package de.hdm.tellme.client;
 import java.util.Vector;
 
 import com.google.gwt.core.shared.GWT;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -13,8 +14,10 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
+import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.bo.Nutzer;
-
+import de.hdm.tellme.server.db.NutzerAbonnementMapper;
+ 
 /*
  * Diese Klasse stellt die Aboverwaltung für den Editor dar.
  * @author: Alex Homann
@@ -24,6 +27,12 @@ import de.hdm.tellme.shared.bo.Nutzer;
  */
  
 public class AboverwaltungEditor extends VerticalPanel {
+	
+ 	private LoginInfo loginInfo;
+
+	public void setLoginInfo(LoginInfo loginInfo) {
+		this.loginInfo = loginInfo;
+	}
 	
 	//Vertical Panel für den gesamten AboverwaltungsEditor
 	
@@ -51,15 +60,33 @@ public class AboverwaltungEditor extends VerticalPanel {
 				private Label nutzerText1= new Label("Nutzer auswählen: ");
 				
 				private ListBox dropDownNutzerNichtAbonniert = new ListBox();
-				/*
 				
-				Vector<Nutzer>  NutzerListe = new Vector<Nutzer>;
-				
-				
-				N = Nutzer.getVorname() + Nutzer.getNachname();//FEHLT API zur Implementierung dieser DropDownListe
-				for (int i= 0; i < Nutzer.length; i++){
-					dropBoxNutzer.addItem(Vector[i]);
-				}*/
+		/*		// DropDownListe mit Nutzern, die noch nicht abonniert sind
+				  private void ladeAlleNichtAbonnierteNutzer() {
+					  dropDownNutzerNichtAbonniert.addItem(" ");
+					  
+					int userId = get 
+				    asyncObj.ladeAlleNichtAbonnierteNutzer(int userId, new AsyncCallback <Vector<Nutzer>>(){ //Brauch hier noch die Mapper-Klasse
+				    	
+				      @Override
+				      public void onFailure(Throwable caught) {
+				        // TODO Auto-generated method stub
+
+				      }
+
+				      @Override
+				      public void onSuccess(Vector<Nutzer> result) {
+				        for (int i = 0; i < result.size(); i++) {
+				        	dropDownNutzerNichtAbonniert.addItem(" - " + result.get(i).getId() + " : "
+				              + result.get(i).getVorname() 
+				              +" "
+				              + result.get(i).getNachname());
+				        }
+				      }
+				    }
+				    );
+				    }
+*/
 				
 				private Button nutzerAbonnieren = new Button("Nutzerabo hinzufügen");
 				

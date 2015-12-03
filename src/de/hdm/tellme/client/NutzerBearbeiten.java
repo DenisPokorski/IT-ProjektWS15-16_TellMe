@@ -1,5 +1,6 @@
 package de.hdm.tellme.client;
 
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -11,30 +12,31 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.sun.java.swing.plaf.windows.resources.windows;
 
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.bo.Nutzer;
 
+/**
+ * Klasse zum Nutzer bearbeiten und löschen mit den zugehörigen Async-Methoden
+ * und der GUI
+ * 
+ * 
+ * @author Feltrin
+ * @version 1.0
+ * @since 27.11.2015
+ * 
+ */
+
 public class NutzerBearbeiten extends VerticalPanel {
 
-	// Kommentar nachtragen(TODO)
-	private VerticalPanel profilPanel = new VerticalPanel();
-	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
-	private Label ueberschrift1 = new Label("Mein Profil");
-	private Label untertitel = new Label(
-			"Hier siehst du dein Profil und kannst es bearbeiten, löschen und dich abmelden.");
-	private Label ueberschrift2 = new Label("Profil bearbeiten");
+	/*
+	 * Deklarationen der einzelnen Widgets wie beispielsweise den Panels,
+	 * Textboxen und Buttons, RPC-Klasse und Überschriften.
+	 */
 
-	private LoginInfo loginInfo;
-
-	public void setLoginInfo(LoginInfo loginInfo) {
-		this.loginInfo = loginInfo;
-	}
-
-	
-	// Kommentar nachtragen(TODO)
 	private Label bezeichnungVornameTextBox = new Label("Vorname");
 	private TextBox vornameTextBox = new TextBox();
 	private Label bezeichnungNachnameTextBox = new Label("Nachname");
@@ -42,15 +44,32 @@ public class NutzerBearbeiten extends VerticalPanel {
 	private Label bezeichnungEmailTextBox = new Label("E-Mailadresse");
 	private TextBox emailTextBox = new TextBox();
 	private Nutzer n = new Nutzer();
-	// Kommentar nachtragen(TODO)
+
 	private HorizontalPanel ButtonPanel = new HorizontalPanel();
 	private Button aenderungenSpeichernButton = new Button(
 			"Änderungen speichern");
 
 	private Button profilloeschenButton = new Button("Profil löschen");
+	private VerticalPanel profilPanel = new VerticalPanel();
+	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
+	private Label ueberschrift1 = new Label("Mein Profil");
+	private Label untertitel = new Label(
+			"Hier siehst du dein Profil und kannst es bearbeiten, löschen und dich abmelden.");
+	private Label ueberschrift2 = new Label("Profil bearbeiten");
+	/*
+	 * Empfangen und setzen des loginInfos Objekts
+	 */
+	private LoginInfo loginInfo;
 
-	
+	public void setLoginInfo(LoginInfo loginInfo) {
+		this.loginInfo = loginInfo;
+	}
 
+	/*
+	 * Die Methode des AsyncCallbacks, um die Daten zum Nutzer bearbeiten an die
+	 * Datenbank zu senden. Nach erfolgreicher Ausführung kommt eine
+	 * Bildschirmmeldung.
+	 */
 	public void nutzerBearbeiten(Nutzer n) {
 		asyncObj.nutzerAktualisieren(n, new AsyncCallback<Void>() {
 
@@ -70,6 +89,13 @@ public class NutzerBearbeiten extends VerticalPanel {
 
 	}
 
+	/*
+	 * Die Methode des AsyncCallbacks, die die erforderlichen Daten um sein
+	 * eigenes Profil zu löschen, an die Datenbank zu senden. Nach erfolgreicher
+	 * Ausführung kommt eine Bildschirmmeldung und der Benutzer wird ausgeloggt.
+	 * Hier wird die id, die im loginInfo-Nutzerobjekt hinterlegt ist, zum
+	 * löschen genutzt.
+	 */
 	public void nutzerLoeschen() {
 		asyncObj.nutzerLoeschen(loginInfo.getUser(), new AsyncCallback<Void>() {
 
@@ -82,6 +108,7 @@ public class NutzerBearbeiten extends VerticalPanel {
 			@Override
 			public void onSuccess(Void result) {
 				Window.alert("Profil gelöscht");
+				Window.alert(loginInfo.getLogoutUrl());
 				Window.Location.assign(loginInfo.getLogoutUrl());
 				RootPanel.get("content").clear();
 
@@ -89,12 +116,18 @@ public class NutzerBearbeiten extends VerticalPanel {
 		});
 	}
 
+	/*
+	 * Die onLoad Methode wird ausgeführt, wenn ein neues Objekt der Klasse
+	 * "NutzerBearbeiten" erstellt wird. Es werden in den Textboxen die Daten
+	 * des eingeloggten Nutzers gesetzt. Des Weiteren werden die Widgets den
+	 * Paneln zugeordnet. In diesem Bereich werden den Widgets zusätzlich
+	 * CSS-Styles zugeordnet.
+	 */
 	public void onLoad() {
 		vornameTextBox.setText(loginInfo.getUser().getVorname());
 		nachnameTextBox.setText(loginInfo.getUser().getNachname());
 		emailTextBox.setText(loginInfo.getUser().getMailadresse());
-		
-		// Kommentar nachtragen(TODO)
+
 		profilPanel.add(ueberschrift1);
 		profilPanel.add(untertitel);
 		profilPanel.add(ueberschrift2);
@@ -111,7 +144,6 @@ public class NutzerBearbeiten extends VerticalPanel {
 
 		ButtonPanel.add(profilloeschenButton);
 
-		// Kommentar nachtragen(TODO)
 		ueberschrift1.addStyleName("ueberschrift1");
 		untertitel.addStyleName("untertitel");
 		ueberschrift2.addStyleName("ueberschrift2");
@@ -127,36 +159,44 @@ public class NutzerBearbeiten extends VerticalPanel {
 
 		profilloeschenButton.addStyleName("profilloeschenButton");
 
-		// Kommentar nachtragen(TODO)
 		RootPanel.get("content").clear();
 		RootPanel.get("content").add(profilPanel);
 		RootPanel.get("content").add(ButtonPanel);
+		/*
+		 * Der ClickHandler des Speichern-Buttons. Zuerst wird eine if-Abfrage
+		 * durchgeführt, ob die Textboxen Vorname und Nachname befüllt sind.
+		 * Danach wird das Objekt n des Typ Nutzers mit den Daten aus der
+		 * TextBox befüllt. Danach wird das Objekt n an die Methode
+		 * nutzerBearbeiten übergeben.
+		 */
 		aenderungenSpeichernButton.addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
 				if (vornameTextBox.getValue().isEmpty()
 						|| nachnameTextBox.getValue().isEmpty()) {
-					Window.alert("Bitte alle Felder befÃ¼llen");
+					Window.alert("Bitte alle Felder befüllen");
 				} else {
-					
+
 					n.setId(loginInfo.getUser().getId());
 					n.setMailadresse(emailTextBox.getText());
 					n.setVorname(vornameTextBox.getText());
 					n.setNachname(nachnameTextBox.getText());
 					nutzerBearbeiten(n);
-					
 
 				}
 
 			}
 		});
+		/*
+		 * Der ClickHandler für den Profil-löschen Button. Es wird die Methode
+		 * nutzerLoeschen ausgeführt.
+		 */
 		profilloeschenButton.addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
 				nutzerLoeschen();
-				
 
 			}
 		});
