@@ -1,11 +1,15 @@
 package de.hdm.tellme.client.gui.report;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
+import com.sun.java.swing.plaf.windows.resources.windows;
 
 
 /**
@@ -43,5 +47,16 @@ public class Report1 {
 		reportPanel1_right.add(bisDateBox);
 		reportPanel1_right.add(nutzerAbosAnzeigen);
 		reportPanel.add(reportPanel1);
+		
+		nutzerAbosAnzeigen.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				Window.alert("test");
+				
+			}
+		});
 	}
+
+ 
 }
