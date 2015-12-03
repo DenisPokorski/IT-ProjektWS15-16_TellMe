@@ -8,15 +8,14 @@ import de.hdm.tellme.shared.bo.HashtagAbonnement;
 
 /**
  * Mapper-Klasse, die HashtagAbonnement-Objekte in der Datenbank abbildet. Diese
- * enthält Methoden zum Anlegen, Aktualisieren, Entfernen und Suchen von
+ * enthï¿½lt Methoden zum Anlegen, Aktualisieren, Entfernen und Suchen von
  * Objekten.
  * 
  * @author Nicole Reum
  */
 
 public class HashtagAbonnementMapper {
-<<<<<<< HEAD
-	
+ 	
 	private static HashtagAbonnementMapper hastagAbonnementMapper = null; 
 	
 //	protected HashtagAbonnementMapper () {
@@ -40,8 +39,7 @@ public class HashtagAbonnementMapper {
 //	}
 //	
 }
-=======
-
+ 
 	private static HashtagAbonnementMapper hashtagAbonnementMapper = null;
 
 	protected HashtagAbonnementMapper() {
@@ -49,8 +47,8 @@ public class HashtagAbonnementMapper {
 	}
 
 	/**
-	 * Die statische Methode wird über HashtagAbonnementMapper
-	 * hashtagAbonnementMapper () aufgerufen. Diese überprüft, dass nur eine
+	 * Die statische Methode wird ï¿½ber HashtagAbonnementMapper
+	 * hashtagAbonnementMapper () aufgerufen. Diese ï¿½berprï¿½ft, dass nur eine
 	 * Instanz von HashtagAbonnementMapper besteht.
 	 */
 
