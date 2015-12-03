@@ -1,7 +1,6 @@
 package de.hdm.tellme.server.db;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.Statement;
 import de.hdm.tellme.shared.bo.Nachricht;
 
@@ -46,5 +45,14 @@ public class NachrichtMapper {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void aktualisieren(Nachricht n) {
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			String sqlquery = "UPDATE Nachricht " + "SET Nutzer= "'" + n.getNutzerId()
+			          + "'" " + "WHERE id=" + n.getNutzerId();
+		
 	}
 }

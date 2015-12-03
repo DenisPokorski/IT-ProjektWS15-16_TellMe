@@ -56,8 +56,8 @@ public class HashtagAbonnementMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 		Statement state = con.createStatement();
-		String sqlquery = "DELETE FROM NutzerHashtag (NutzerId, HashtagId) VALUES ("
-				+ "'" + h.getAbonnementErsteller().getId() + "'" + h.getHashtag().getHashtagId() + "');";
+		String sqlquery = "DELETE FROM NutzerHashtag (NutzerId, HashtagId) WHERE Id='" + h
+				+ "';";
 			state.executeUpdate(sqlquery);
 		}
 		catch (Exception e){
