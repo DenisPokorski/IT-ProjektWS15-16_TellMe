@@ -16,6 +16,7 @@ import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.bo.Nutzer;
+import de.hdm.tellme.server.db.NutzerAbonnementMapper;
  
 /*
  * Diese Klasse stellt die Aboverwaltung für den Editor dar.
@@ -60,11 +61,12 @@ public class AboverwaltungEditor extends VerticalPanel {
 				
 				private ListBox dropDownNutzerNichtAbonniert = new ListBox();
 				
-				// DropDownListe mit Nutzern, die noch nicht abonniert sind
+		/*		// DropDownListe mit Nutzern, die noch nicht abonniert sind
 				  private void ladeAlleNichtAbonnierteNutzer() {
 					  dropDownNutzerNichtAbonniert.addItem(" ");
 					  
-				    asyncObj.ladeAlleNichtAbonnierteNutzer(new AsyncCallback <Vector<Nutzer>>(){ //Brauch hier noch die Mapper-Klasse
+					int userId = get 
+				    asyncObj.ladeAlleNichtAbonnierteNutzer(int userId, new AsyncCallback <Vector<Nutzer>>(){ //Brauch hier noch die Mapper-Klasse
 				    	
 				      @Override
 				      public void onFailure(Throwable caught) {
@@ -84,7 +86,7 @@ public class AboverwaltungEditor extends VerticalPanel {
 				    }
 				    );
 				    }
-
+*/
 				
 				private Button nutzerAbonnieren = new Button("Nutzerabo hinzufügen");
 				
