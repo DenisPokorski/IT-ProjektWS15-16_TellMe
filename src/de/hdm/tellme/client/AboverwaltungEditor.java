@@ -16,6 +16,7 @@ import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.bo.Nutzer;
+import de.hdm.tellme.server.db.NutzerAbonnementMapper;
  
 /*
  * Diese Klasse stellt die Aboverwaltung für den Editor dar.
@@ -57,35 +58,14 @@ public class AboverwaltungEditor extends VerticalPanel {
 				
 				//Einfügen der Dropdown-Liste um einen Nutzer auszuwählen, den man auswählen möchte.
 				private Label nutzerText1= new Label("Nutzer auswählen: ");
+
+				//Dropdown hinzufügen
+				private ListBox dropDownNutzerLoeschenAbonniert = new ListBox();
 				
 				private ListBox dropDownNutzerNichtAbonniert = new ListBox();
+ 
 				
-				// DropDownListe mit Nutzern, die noch nicht abonniert sind
-				  private void ladeAlleNichtAbonnierteNutzer() {
-					  dropDownNutzerNichtAbonniert.addItem(" ");
-					  
-				    asyncObj.ladeAlleNichtAbonnierteNutzer(new AsyncCallback <Vector<Nutzer>>(){ //Brauch hier noch die Mapper-Klasse
-				    	
-				      @Override
-				      public void onFailure(Throwable caught) {
-				        // TODO Auto-generated method stub
-
-				      }
-
-				      @Override
-				      public void onSuccess(Vector<Nutzer> result) {
-				        for (int i = 0; i < result.size(); i++) {
-				        	dropDownNutzerNichtAbonniert.addItem(" - " + result.get(i).getId() + " : "
-				              + result.get(i).getVorname() 
-				              +" "
-				              + result.get(i).getNachname());
-				        }
-				      }
-				    }
-				    );
-				    }
-
-				
+				// Button hinzufügen
 				private Button nutzerAbonnieren = new Button("Nutzerabo hinzufügen");
 				
 				//Nutzerabo löschen
@@ -154,12 +134,38 @@ public class AboverwaltungEditor extends VerticalPanel {
 				}*/
 				private Button hashtagNichtAbonnieren = new Button("Hashtagabo löschen");
 				
+			
+				private ListBox loadListBoxAbonnierteNutzer(){
+					NutzerAbo na = new NutzerAbo();
+					Vector<Nutzer> abonnierteNutzerListe = na.getZuAbonnieredeNutzerListe();
 					
+						for (int i= 0; i < abonnierteNutzerListe.size(); i++){
+							dropDownNutzerAbonniert.addItem(abonnierteNutzerListe.get(i).getVorname() +"  "+ abonnierteNutzerListe.get(i).getNachname());
+						}
+						
+					return dropDownHashtagsAbonniert;
+				}
+				
+				private ListBox loadListBoxAbonnierteLoeschenNutzer(){
+					NutzerAbo na = new NutzerAbo();
+					Vector<Nutzer> abonnierteNutzerLoeschenListe = na.getZuAbonnieredeNutzerListe();
+					
+						for (int i= 0; i < abonnierteNutzerLoeschenListe.size(); i++){
+							dropDownNutzerAbonniert.addItem(abonnierteNutzerLoeschenListe.get(i).getVorname() +"  "+ abonnierteNutzerLoeschenListe.get(i).getNachname());
+						}
+						
+					return dropDownHashtagsAbonniert;
+				}
+				
+				
 	public void onLoad(){  //Aufbau der Seite
 		
 		/*
 		 * Buttons und Labels werden den jeweiligen Panels zugeordnet.
 		 */
+
+		
+		
 		aboPanel.add(ueberschrift1);//Überschrift für AboPanel
 			aboPanel.add(untertitel);//Untertitel für AboPanel
 			aboPanel.add(ueberschriftNutzerAbo);
@@ -172,7 +178,7 @@ public class AboverwaltungEditor extends VerticalPanel {
 						nutzerAboPanel1.add(untertitelNutzerAbonnieren);
 						nutzerAboPanel1.add(nutzerText1);
 						//Dropdownliste&Button 
-						nutzerAboPanel1.add(dropDownNutzerNichtAbonniert);
+						nutzerAboPanel1.add(dropDownNutzerLoeschenAbonniert);
 						nutzerAboPanel1.add(nutzerAbonnieren);
 						
 						//Nutzerabo löschen
