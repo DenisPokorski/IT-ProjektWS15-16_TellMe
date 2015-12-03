@@ -13,6 +13,8 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 
+import de.hdm.tellme.server.report.Report1Generator;
+
 
 /**
  * 
@@ -81,7 +83,6 @@ public class Report1 {
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				
 				
 				
 			}
