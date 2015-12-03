@@ -23,5 +23,11 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 		return null;
 	}
 
+	@Override
+	public Vector<Nutzer> report2GenerierenListe() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
