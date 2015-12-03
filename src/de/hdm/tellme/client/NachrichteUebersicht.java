@@ -1,6 +1,6 @@
 package de.hdm.tellme.client;
 /**
- *Klasse mit Übersicht aller Nachrichten bzw. Unterhaltungen. 
+ *Klasse mit ï¿½bersicht aller Nachrichten bzw. Unterhaltungen. 
  * 
  * @author thuering
  * @version 1.0
@@ -37,28 +37,28 @@ public class NachrichteUebersicht extends VerticalPanel {
 	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
 		
 	
-	//Überschrift und Beschreibung einfügen
-	private Label nachrichtenUebersicht = new Label("Nachrichtenübersicht"); 
-	private Label beschreibung = new Label("Hier kannst du deine öffentlichen und privaten"
+	//ï¿½berschrift und Beschreibung einfï¿½gen
+	private Label nachrichtenUebersicht = new Label("Nachrichtenï¿½bersicht"); 
+	private Label beschreibung = new Label("Hier kannst du deine ï¿½ffentlichen und privaten"
 			+ "Nachrichten sehen. Durch einen Klick auf eine Unterhaltung oder eine Nachricht im linken Feld "
-			+ "öffnen sich die einzelnen Nachrichten im rechten Feld. Durch Anklicken des Stifts kann eine "
+			+ "ï¿½ffnen sich die einzelnen Nachrichten im rechten Feld. Durch Anklicken des Stifts kann eine "
 			+ "Nachricht bearbeitet werden. Durch Anklicken des x kann im rechten Feld eine einzelen Nachricht "
-			+ "gelöscht werden. Beim Klicken des x im linken Feld werden Kommunikationsverläufe gelöscht.");
+			+ "gelï¿½scht werden. Beim Klicken des x im linken Feld werden Kommunikationsverlï¿½ufe gelï¿½scht.");
 	
 
-	 private static final Nachricht<String> Nachrichten = Arrays.asList(Nachricht);
+	// private static final Nachricht<String> Nachrichten = Arrays.asList(Nachricht);
 
 	 
 	//Jedes GWT Widget implementiert diese Methode, welche zeigt was passiert wenn eine Widget-Instanz zur Anzeige gebracht wird.
 	 	public void onLoad(){
 	 		
 	 		
-		    // Erstellt eine Celllist, die alle Nachrichten enthält
+		    // Erstellt eine Celllist, die alle Nachrichten enthï¿½lt
 		    CellList<String> nachrichtenListe = new CellList<String>(null);
 		    nachrichtenListe.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
 
 		    
-		    // Das Objekt wird ausgewählt
+		    // Das Objekt wird ausgewï¿½hlt
 		    final SingleSelectionModel<String> selectionModel = new SingleSelectionModel<String>();
 		    nachrichtenListe.setSelectionModel(selectionModel);
 		    selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
@@ -71,8 +71,8 @@ public class NachrichteUebersicht extends VerticalPanel {
 		    });
 
 		
-		    // Die Daten werden dem Widget hinzugefügt
-		    nachrichtenListe.setRowData(0, nachrichtenListe);
+		    // Die Daten werden dem Widget hinzugefï¿½gt
+		 //   nachrichtenListe.setRowData(0, nachrichtenListe);
 
 		  
 	
