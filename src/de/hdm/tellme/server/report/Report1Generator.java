@@ -18,8 +18,21 @@ public class Report1Generator {
 	
 	public Vector<Nachricht> report1Generieren() {
 		Vector<Nachricht> report1GenererierenListe = new Vector<Nachricht>();
-		return report1GenererierenListe;
+		
+		
+		asyncObj.report1GenerierenListe(Nutzer, new AsyncCallback < Vector<Nachricht>>()
+		{
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+			}
 
+			@Override
+			public void onSuccess(Vector<Nachricht> result) {
+ 				result = report1Generieren();
+			}
+			});
+			return report1GenererierenListe;
 
 	}
 	

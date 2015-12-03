@@ -84,7 +84,10 @@ public class Report1 {
 			@Override
 			public void onClick(ClickEvent event) {
 				
+				new Report1Generator report = new Report1Generator;
+				report.report1Generieren();
 				
+
 			}
 		});
 	}
