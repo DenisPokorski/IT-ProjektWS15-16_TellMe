@@ -1,14 +1,4 @@
 package de.hdm.tellme.client;
-/**
- *Klasse die Nachrichten erstellt und versendet. 
- * 
- * @author thuering
- * @version 1.0
- * @since 26.11.2015
- * 
- */
-import java.util.Vector;
-
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -20,90 +10,98 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
-import de.hdm.tellme.shared.bo.Nutzer;
+
+/*
+ * @author: DenisPokorski
+ * datum: 6.12.15 
+ * version: 1.2
+ */
 
 public class NachrichtenSenden extends VerticalPanel {
 	
 	
 	//Panels werden erstellt
-	private VerticalPanel nachrichtenPanel = new VerticalPanel();
-	private HorizontalPanel empfaengerPanel = new HorizontalPanel();
-	
-	
+	private VerticalPanel mainPanel = new VerticalPanel();
+		//Ãœberschrift und Beschreibung einfÃ¼gen
+		private Label ueberschrift1 = new Label("Nachrichtenverwaltung");
+		private Label untertitel = new Label(
+				"Hier kannst du deine Nachrichten eingeben, verÃ¤ndern und lÃ¶schen. Wenn du keinen EmpfÃ¤nger auswÃ¤hlst, dann wird deine Nachricht Ã¶ffentlich gepostet");
+		//Horizontal Panel zum AuswÃ¤hlen der EmpfÃ¤nger 
+			private HorizontalPanel empfaengerPanel = new HorizontalPanel();
+				//Label fÃ¼r EmpfÃ¤nger auswÃ¤hlen wird erstellt
+				private Label empfaengerAuswaehlen = new Label("EmpfÃ¤nger auswÃ¤hlen:");
+				//DropDownListe zum AuswÃ¤hlen der EmpfÃ¤nger
+				//Vorerst nur ein EmpfÃ¤nger, hier mÃ¼ssen wir noch schauen wie wir es mit mehreren Nutzern machen
+				private ListBox dropDownNutzer = new ListBox();
+				//Button zum HinzufÃ¼gen der Nutzer
+				private Button nutzerHinzufuegenButton = new Button("Nutzer hinzufÃ¼gen");
+			//VerticalPanel fÃ¼r die Textbox 
+			private VerticalPanel textBoxPanel = new VerticalPanel();
+				//TextBox wird erstellt, in dem Nachricht eingetragen wird 
+				private TextBox nachrichtErstellen = new TextBox();
+			//HorizontalPanel zum HinzufÃ¼gen von Hashtags wird erstellt
+			private HorizontalPanel hashtagPanel = new HorizontalPanel();
+				//Label zum EinfÃ¼gen von Hashtags
+				private Label hashtagHinzufuegen = new Label("Hashtag hinzufÃ¼gen: ");
+				//DropDownListe zum AuswÃ¤hlen von Hashtag
+				private ListBox dropDownHashtag = new ListBox();
+				//Button zum HinzufÃ¼gen des Hashtags
+				private Button hashtagHinzufuegenButton = new Button("Hashtag hinzufÃ¼gen");
+			//HorizontalPanel zum Senden und zum Abbrechen des Sendens
+			private HorizontalPanel buttonPanel = new HorizontalPanel();
+				//Button zum Senden
+				private Button sendenButton = new Button("Senden");
+				//Button zum Abbrechen --> Alles wir geleert, Seite bleibt aber offen
+				private Button abbrechenButton = new Button("Abbrechen");
+				
 	//RPC Methode, die auf Client in einer bestimmten Runtime ausgefÃ¼hrt wird um Daten mit dem Server auszutauschen
-	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
-	
-	
-	//Überschrift und Beschreibung einfügen
-	private Label ueberschrift1 = new Label("Nachrichtenverwaltung");
-	private Label untertitel = new Label(
-			"Hier kannst du deine Nachrichten eingeben, verändern und löschen.");
-	
-	
-	//Label für Empfänger auswählen wird erstellt
-	private Label empfaengerAuswaehlen = new Label("Empfänger auswählen");
-	
-	
-	//Dropdown Liste einfügen, in der man den Empfänger auswählen kann
-	private Label nachrichtenText= new Label("Nutzer auswählen: ");
-	final ListBox dropBoxNutzer = new ListBox(false);
-	/*
-	Vector<Nutzer>  NutzerListe = new Vector<Nutzer>;
-	N = Nutzer.getVorname() + Nutzer.getNachname();
-	for (int i= 0; i < Nutzer.length; i++){
-		dropBoxNutzer.addItem(Vector[i]);
-	}*/
-	
-	
-	//TextBox wird erstellt, in dem Nachricht eingetragen wird 
-	private TextBox nachrichtErstellen = new TextBox();
-	
-		
-	//Label für Hashtag wird erstellt 
-	private Label hashtagHinzufuegen = new Label("Hashtag hinzufügen");
-	
-	
-	//Drop Down Liste, um ein Hashtag auszuwählen
-	final ListBox dropBoxHashtag = new ListBox(false);
-	/*Vector<Hashtag>  HashtagListe = new Vector<Hashtag>;
-	N = Hashtag.getSchlagwort();
-	for (int i= 0; i < Hashtag.length; i++){
-		dropBoxHashtag.addItem(Vector[i]);
-	*/
-	
-	
-	//Button wird erstellt, um Änderungen zu speichern 
-	private Button nachrichtSenden = new Button("Nachricht senden"); 
-	
+		private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
 	
 	//Jedes GWT Widget implementiert diese Methode, welche zeigt was passiert wenn eine Widget-Instanz zur Anzeige gebracht wird.
  	public void onLoad(){
  		
  		
  		//Buttons und Labels werden den Panels zugeordnet 
- 		nachrichtenPanel.add(empfaengerPanel);
- 		nachrichtenPanel.add(ueberschrift1);
- 		nachrichtenPanel.add(untertitel);
- 		empfaengerPanel.add(empfaengerAuswaehlen);
- 		empfaengerPanel.add(nachrichtenText);
- 		empfaengerPanel.add(hashtagHinzufuegen);
- 		nachrichtenPanel.add(nachrichtErstellen);
-		nachrichtenPanel.add(nachrichtSenden);
+ 		mainPanel.add(ueberschrift1);
+ 		mainPanel.add(untertitel);
+ 		mainPanel.add(empfaengerPanel);
+ 			empfaengerPanel.add(empfaengerAuswaehlen);
+ 			empfaengerPanel.add(dropDownNutzer);
+ 			empfaengerPanel.add(nutzerHinzufuegenButton);
+ 		mainPanel.add(textBoxPanel);
+ 			textBoxPanel.add(nachrichtErstellen);
+ 		mainPanel.add(hashtagPanel);
+ 			hashtagPanel.add(hashtagHinzufuegen);
+ 			hashtagPanel.add(dropDownHashtag);
+ 			hashtagPanel.add(hashtagHinzufuegenButton);
+ 		mainPanel.add(buttonPanel);
+ 			buttonPanel.add(sendenButton);
+ 			buttonPanel.add(abbrechenButton);
+ 			
+ 			
+ 			
 	
 		
 		//Panels werden dem RootPanel zugeordnet 
 		RootPanel.get("content").clear();
-		RootPanel.get("content").add(nachrichtenPanel);
+		RootPanel.get("content").add(mainPanel);
 		RootPanel.get("content").add(empfaengerPanel);
+		RootPanel.get("content").add(textBoxPanel);
+		RootPanel.get("content").add(hashtagPanel);
+		RootPanel.get("content").add(buttonPanel);
 		
 	
 		ueberschrift1.addStyleName("ueberschrift1");
 		untertitel.addStyleName("untertitel");
-		empfaengerAuswaehlen.addStyleName("empfaengerAuswählen");
-		nachrichtenText.addStyleName("nachrichtenText");
-		hashtagHinzufuegen.addStyleName("hashtagHinzufuegen");
+		empfaengerAuswaehlen.addStyleName("empfaengerAuswÃ¤hlen");
+		dropDownNutzer.addStyleName("dropDownNutzer");
+		nutzerHinzufuegenButton.addStyleName("nutzerHinzufuegenButton");
 		nachrichtErstellen.addStyleName("nachrichtErstellen");
-		nachrichtSenden.addStyleName("nachrichtSenden"); 
+		hashtagHinzufuegen.addStyleName("hashtagHinzufuegen");
+		dropDownHashtag.addStyleName("dropDownHashtag");
+		hashtagHinzufuegenButton.addStyleName("hashtagHinzufuegenButton");
+		sendenButton.addStyleName("sendenButton");
+		abbrechenButton.addStyleName("abbrechenButton");
 
 	}
 	
