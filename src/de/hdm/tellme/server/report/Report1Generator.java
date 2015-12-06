@@ -16,12 +16,11 @@ public class Report1Generator {
 	private final ReportServiceAsync asyncObj = GWT.create(ReportService.class);
 	
 	
-	public Vector<Nachricht> report1Generieren() {
-		Vector<Nachricht> report1GenererierenListe = new Vector<Nachricht>();
+	//public Vector<Nachricht> report1Generieren() {
+	//	Vector<Nachricht> report1GenererierenListe = new Vector<Nachricht>();
 		
 		
-		asyncObj.report1GenerierenListe(Nutzer, new AsyncCallback < Vector<Nachricht>>()
-		{
+		/*asyncObj.report1GenerierenListe(Nutzer, new AsyncCallback < Vector<Nachricht>>()	{
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO Auto-generated method stub
@@ -34,7 +33,7 @@ public class Report1Generator {
 			});
 			return report1GenererierenListe;
 
-	}
+	}*/
 	
-
+	//}
 }
