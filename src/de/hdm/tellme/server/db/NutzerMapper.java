@@ -80,7 +80,7 @@ public class NutzerMapper {
 	
 	/** Die Methode entfernen stellt eine Verbindung zur Datenbank her. Dazu wird die Methode "connection()" aus der Klasse DatenbankVerbindung
 	 * dem Objekt con übergeben.  Im Anschluss wird im "try-Block" ein Statement erstellt. 
-	 * Nun legen wir einen neuen String an, der das SQL-Statement mit dynamischen Nutzerdaten beinhaltet. Jetzt wird über die Methode "state.executeUpdate(sqlquery);"
+	 * Nun legen wir einen neuen String an, der das SQL-Statement mit dynamischen Nutzerdaten beinhaltet (Id). Jetzt wird über die Methode "state.executeUpdate(sqlquery);"
 	 * ausgeführt und der SQL String an die Datenbank übergeben. Sollte der "try-Block" Fehler aufweisen, wird der "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
 	 * ausgeführt. 
 	 */
