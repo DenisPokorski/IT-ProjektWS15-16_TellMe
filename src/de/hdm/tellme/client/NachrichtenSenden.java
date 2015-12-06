@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
+import de.hdm.tellme.shared.LoginInfo;
 
 /*
  * @author: DenisPokorski
@@ -19,6 +20,11 @@ import de.hdm.tellme.shared.EditorServiceAsync;
 
 public class NachrichtenSenden extends VerticalPanel {
 	
+	private LoginInfo loginInfo;
+	
+	public void setLoginInfo(LoginInfo loginInfo) {
+		  this.loginInfo = loginInfo;
+		 }
 	
 	//Panels werden erstellt
 	private VerticalPanel mainPanel = new VerticalPanel();
