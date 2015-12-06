@@ -10,9 +10,9 @@ import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.bo.*;
 
 @SuppressWarnings("serial")
-public class EditorServiceImpl extends RemoteServiceServlet implements
+public class ReportServiceImpl extends RemoteServiceServlet implements
 		EditorService {
-	public EditorServiceImpl() throws IllegalArgumentException {
+	public ReportServiceImpl() throws IllegalArgumentException {
 
 	}
 
