@@ -7,23 +7,33 @@ package de.hdm.tellme.client;
  * @since 26.11.2015
  * 
  */
+import java.util.ArrayList;
+
+/*
+ * Diese KLasse stellt die Übersicht aller Nachrichten bzw. Unterhaltungen dar. 
+ * @author: Dana Thüring 
+ * @version: 1.0
+ * 
+ * 
+ */
+
+
+
+
 import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSelectionPolicy;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.core.java.util.Arrays;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
-
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
-import de.hdm.tellme.shared.bo.Nachricht;
+
 
 public class NachrichteUebersicht extends VerticalPanel {
 
@@ -43,16 +53,31 @@ public class NachrichteUebersicht extends VerticalPanel {
 			+ "Nachrichten sehen. Durch einen Klick auf eine Unterhaltung oder eine Nachricht im linken Feld "
 			+ "ï¿½ffnen sich die einzelnen Nachrichten im rechten Feld. Durch Anklicken des Stifts kann eine "
 			+ "Nachricht bearbeitet werden. Durch Anklicken des x kann im rechten Feld eine einzelen Nachricht "
+<<<<<<< HEAD
 			+ "gelï¿½scht werden. Beim Klicken des x im linken Feld werden Kommunikationsverlï¿½ufe gelï¿½scht.");
 	
 
 	// private static final Nachricht<String> Nachrichten = Arrays.asList(Nachricht);
+=======
+			+ "gelöscht werden. Beim Klicken des x im linken Feld werden Kommunikationsverläufe gelöscht.");
+	private Button neueNachricht = new Button("Neue Nachricht erstellen"); 
+	private Button nachrichtAuswaehlen = new Button();
+	
+	 //Es wird eine Zelle  erstellt, um die Nachrichten darzustellen 
+	  TextCell textCell = new TextCell();
+	  
+	  
+	//die liste der Nachrichten, um sie anzuzeigen
+	//warum final?
+	 private static final ArrayList<String> Nachrichten = new ArrayList<String>();
+>>>>>>> refs/remotes/origin/Dana-Thuering
 
 	 
 	//Jedes GWT Widget implementiert diese Methode, welche zeigt was passiert wenn eine Widget-Instanz zur Anzeige gebracht wird.
 	 	public void onLoad(){
 	 		
 	 		
+<<<<<<< HEAD
 		    // Erstellt eine Celllist, die alle Nachrichten enthï¿½lt
 		    CellList<String> nachrichtenListe = new CellList<String>(null);
 		    nachrichtenListe.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
@@ -73,14 +98,39 @@ public class NachrichteUebersicht extends VerticalPanel {
 		
 		    // Die Daten werden dem Widget hinzugefï¿½gt
 		 //   nachrichtenListe.setRowData(0, nachrichtenListe);
+=======
+	 		
 
-		  
-	
- 		
- 		
+	 			    // Es wird eine cellliste erstellt
+	 			    CellList<String> nachrichtenListe = new CellList<String>(textCell);
+	 			    nachrichtenListe.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
+>>>>>>> refs/remotes/origin/Dana-Thuering
+
+	 			    // Selection modeler wird hinzugefügt, um die Auswahl zu benutzen
+	 			    final SingleSelectionModel<String> selectionModel = new SingleSelectionModel<String>();
+	 			    nachrichtenListe.setSelectionModel(selectionModel);
+	 			    selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+	 			    
+	 			    public void onSelectionChange(SelectionChangeEvent event) {
+	 			        String selected = selectionModel.getSelectedObject();
+	 			        if (selected != null) {
+	 			        	//Hier kommt die Methode rein, die dafür sorgt, dass die Details  der Unterhaltung angezeeigt wird 
+	 			          
+	 			        }
+	 			      }
+	 			    });
+	 			    // Die Daten werden ins Wdget gepusht 
+	 			    nachrichtenListe.setRowData(0, Nachrichten);
+
+	 			   
+
+	 			
+		
+	 				
  	//Buttons und Labels werden den Panels zugeordnet 
 	uebersicht1Panel.add(uebersicht2Panel);
  	uebersicht1Panel.add(nachrichtenUebersicht);
+ 	uebersicht1Panel.add(neueNachricht); 
 	uebersicht1Panel.add(beschreibung);
 	uebersicht1Panel.add(nachrichtenListe);
 	
@@ -89,11 +139,14 @@ public class NachrichteUebersicht extends VerticalPanel {
 	RootPanel.get("content").clear();
 	RootPanel.get("content").add(uebersicht1Panel);
 	RootPanel.get("content").add(uebersicht2Panel);
+	RootPanel.get("content").add(nachrichtenListe);
 
 
 	nachrichtenUebersicht.addStyleName("nachrichtenUebersicht"); 
 	beschreibung.addStyleName("beschreibung"); 
+	 	}
 	
  	}
+	 	
 
-}
+

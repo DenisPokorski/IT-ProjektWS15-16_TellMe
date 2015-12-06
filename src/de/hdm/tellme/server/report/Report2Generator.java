@@ -7,33 +7,37 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import de.hdm.tellme.shared.ReportService;
 import de.hdm.tellme.shared.ReportServiceAsync;
-import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
+import de.hdm.tellme.shared.bo.NutzerAbonnement;
 
-
-
-public class Report1Generator {
+public class Report2Generator {
 	private final ReportServiceAsync asyncObj = GWT.create(ReportService.class);
+	private Nutzer n = new Nutzer(); 
 	
-	
-	//public Vector<Nachricht> report1Generieren() {
-	//	Vector<Nachricht> report1GenererierenListe = new Vector<Nachricht>();
-		
-		
-		/*asyncObj.report1GenerierenListe(Nutzer, new AsyncCallback < Vector<Nachricht>>()	{
+	public Vector<Nutzer> report2Generieren() {
+		  Vector<Nutzer> report2GenerierenListe = new Vector<Nutzer>();
+
+		  asyncObj.report2GenerierenListe(n, new AsyncCallback < Vector<Nutzer>>() {
+
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO Auto-generated method stub
+				
 			}
 
 			@Override
-			public void onSuccess(Vector<Nachricht> result) {
- 				result = report1Generieren();
+			public void onSuccess(Vector<Nutzer> result) {
+				// TODO Auto-generated method stub
+				
 			}
-			});
-			return report1GenererierenListe;
+		 
 
-	}*/
+		  
+		   });
+		  return report2GenerierenListe;
+		  
 	
-	//}
 }
+}
+
+ 
