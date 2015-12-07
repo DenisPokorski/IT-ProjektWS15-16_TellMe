@@ -8,86 +8,60 @@ import de.hdm.tellme.shared.bo.HashtagAbonnement;
 
 /**
  * Mapper-Klasse, die HashtagAbonnement-Objekte in der Datenbank abbildet. Diese
- * enthï¿½lt Methoden zum Anlegen, Aktualisieren, Entfernen und Suchen von
+ * enthält Methoden zum Anlegen, Aktualisieren, Entfernen und Suchen von
  * Objekten.
  * 
  * @author Nicole Reum
  */
 
-//public class HashtagAbonnementMapper {
-//<<<<<<< HEAD
-//	
-//	private static HashtagAbonnementMapper hastagAbonnementMapper = null; 
-//	
-////	protected HashtagAbonnementMapper () {
-////		
-////	}
-////
-////	public static HashtagAbonnementMapper hashtagAbonnementMapper() {
-////		if (hashtagAbonnementMapper == null) {
-////			hashtagAbonnementMapper = new HashtagAbonnementMapper();
-////	}
-////	return hashtagAbonnementMapper;
-////	}
-////	
-////	public void anlegen (HashtagAbonnementMapper h) {
-////		Connection con = DatenbankVerbindung.connection();
-////		try {
-////			Statement state = con.createStatement();
-////			String sqlquery ("INSERT INTO Hashtag ("") VALUES ( )
-////		}
-////		
-////	}
-////	
-//}
-// 
-//	private static HashtagAbonnementMapper hashtagAbonnementMapper = null;
-//
-//	protected HashtagAbonnementMapper() {
-//
-//	}
-//
-//	/**
-//	 * Die statische Methode wird ï¿½ber HashtagAbonnementMapper
-//	 * hashtagAbonnementMapper () aufgerufen. Diese ï¿½berprï¿½ft, dass nur eine
-//	 * Instanz von HashtagAbonnementMapper besteht.
-//	 */
-//
-//	public static HashtagAbonnementMapper hashtagAbonnementMapper() {
-//		if (hashtagAbonnementMapper == null) {
-//			hashtagAbonnementMapper = new HashtagAbonnementMapper();
-//
-//		}
-//		return hashtagAbonnementMapper;
-//	}
-//
-//	public void anlegen(HashtagAbonnement h) {
-//		Connection con = DatenbankVerbindung.connection();
-//		try {
-//			Statement state = con.createStatement();
-//			String sqlquery = "INSERT INTO NutzerHashtag (NutzerId, HashtagId) VALUES ("
-//					+ "'"
-//					+ h.getAbonnementErsteller().getId()
-//					+ "','"
-//					+ h.getHashtag().getHashtagId()
-//					+ "') ;";
-//			state.executeUpdate(sqlquery);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-//
-//	public void entfernen(HashtagAbonnement h) {
-//		Connection con = DatenbankVerbindung.connection();
-//		try {
-//		Statement state = con.createStatement();
-//		String sqlquery = "DELETE FROM NutzerHashtag (NutzerId, HashtagId) VALUES ("
-//				+ "'" + h.getAbonnementErsteller().getId() + "'" + h.getHashtag().getHashtagId() + "');";
-//			state.executeUpdate(sqlquery);
-//		}
-//		catch (Exception e){
-//			e.printStackTrace();
-//		}
-//	}
-//}
-//>>>>>>> origin/master
+public class HashtagAbonnementMapper {
+
+	private static HashtagAbonnementMapper hashtagAbonnementMapper = null;
+
+	protected HashtagAbonnementMapper() {
+
+	}
+
+	/**
+	 * Die statische Methode wird über HashtagAbonnementMapper
+	 * hashtagAbonnementMapper () aufgerufen. Diese überprüft, dass nur eine
+	 * Instanz von HashtagAbonnementMapper besteht.
+	 */
+
+	public static HashtagAbonnementMapper hashtagAbonnementMapper() {
+		if (hashtagAbonnementMapper == null) {
+			hashtagAbonnementMapper = new HashtagAbonnementMapper();
+
+		}
+		return hashtagAbonnementMapper;
+	}
+
+	public void anlegen(HashtagAbonnement h) {
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			String sqlquery = "INSERT INTO NutzerHashtag (NutzerId, HashtagId) VALUES ("
+					+ "'"
+					+ h.getAbonnementErsteller().getId()
+					+ "','"
+					+ h.getHashtag().getHashtagId()
+					+ "') ;";
+			state.executeUpdate(sqlquery);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void entfernen(HashtagAbonnement h) {
+		Connection con = DatenbankVerbindung.connection();
+		try {
+		Statement state = con.createStatement();
+		String sqlquery = "DELETE FROM NutzerHashtag (NutzerId, HashtagId) WHERE Id='" + h
+				+ "';";
+			state.executeUpdate(sqlquery);
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+}
