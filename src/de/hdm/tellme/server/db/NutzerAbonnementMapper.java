@@ -21,31 +21,33 @@ public class NutzerAbonnementMapper {
 		return nutzerAbonnementMapper;
 	}
 
-	public  Vector <Nutzer>ladeAbonnierendeNutzerListe (int nutzer) {
- Connection con = DatenbankVerbindung.connection();
- 
- Vector<Nutzer> NutzerListe = new Vector<Nutzer>();
- 
- try {
-  Statement state = con.createStatement();
-  ResultSet rs = state.executeQuery("SELECT AbonnentBenutzer.NachId, Nutzer.Id, Nutzer.Vorname, Nutzer.Nachname, Nutzer.Mailadresse FROM AbonnentBenutzer LEFT JOIN Nutzer ON AbonnentBenutzer.NachId = Nutzer.Id Where AbonnentBenutzer.VonId = '"+nutzer+ "';");
-       
-  while (rs.next()) {
-    Nutzer na = new Nutzer();
-    na.setId(rs.getInt("Id"));
-    na.setVorname(rs.getString("Vorname"));
-    na.setNachname(rs.getString("Nachname"));
-    na.setMailadresse(rs.getString("Mailadresse"));
-    NutzerListe.add(na);
-     }
-   } 
- 
- catch (Exception e) {
-  e.printStackTrace();
-   }
- 
- return NutzerListe;   
-}
+	public Vector<Nutzer> ladeAbonnierendeNutzerListe(int nutzer) {
+		Connection con = DatenbankVerbindung.connection();
+
+		Vector<Nutzer> NutzerListe = new Vector<Nutzer>();
+
+		try {
+			Statement state = con.createStatement();
+			ResultSet rs = state
+					.executeQuery("SELECT AbonnentBenutzer.NachId, Nutzer.Id, Nutzer.Vorname, Nutzer.Nachname, Nutzer.Mailadresse FROM AbonnentBenutzer LEFT JOIN Nutzer ON AbonnentBenutzer.NachId = Nutzer.Id Where AbonnentBenutzer.VonId = '"
+							+ nutzer + "';");
+
+			while (rs.next()) {
+				Nutzer na = new Nutzer();
+				na.setId(rs.getInt("Id"));
+				na.setVorname(rs.getString("Vorname"));
+				na.setNachname(rs.getString("Nachname"));
+				na.setMailadresse(rs.getString("Mailadresse"));
+				NutzerListe.add(na);
+			}
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return NutzerListe;
+	}
 
 	public void loescheNutzeraboById(int vonId, int nachId) {
 
@@ -63,42 +65,42 @@ public class NutzerAbonnementMapper {
 		}
 	}
 
-	public Vector<Nutzer> alleNochNichtAbonnierteNutzerSelektieren( int id) {
-  
-    Vector<Nutzer> alleNutzerAuﬂerMeinNutzerListe = new Vector<Nutzer>();
+	public Vector<Nutzer> alleNochNichtAbonnierteNutzerSelektieren(int id) {
 
-  Connection con = DatenbankVerbindung.connection();
-  int meineid = id; 
-  try {
-    Statement state = con.createStatement();
-    ResultSet rs = state.executeQuery("SELECT * From Nutzer LEFT JOIN  (SELECT * FROM AbonnentBenutzer WHERE AbonnentBenutzer.VonId = '"+meineid+"' )AS A  ON Nutzer.Id  = A.NachId");
-     
-     while (rs.next()) {
-       
-      if ((rs.getInt("VonId"))==meineid){
-         
-      }else if((rs.getInt("Id"))==meineid){
-        
-      }
-      else{
-        Nutzer n = new Nutzer();
-            n.setId(rs.getInt("Id"));
-            n.setVorname(rs.getString("Vorname"));
-            n.setNachname(rs.getString("Nachname"));
-            n.setMailadresse(rs.getString("Mailadresse"));
-         alleNutzerAuﬂerMeinNutzerListe.addElement(n);
-        
-      } 
-        
-       
-          }
+		Vector<Nutzer> alleNutzerAuﬂerMeinNutzerListe = new Vector<Nutzer>();
 
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    // Ergebnisvektor zur¸ckgeben
-      return alleNutzerAuﬂerMeinNutzerListe;
-  }
+		Connection con = DatenbankVerbindung.connection();
+		int meineid = id;
+		try {
+			Statement state = con.createStatement();
+			ResultSet rs = state
+					.executeQuery("SELECT * From Nutzer LEFT JOIN  (SELECT * FROM AbonnentBenutzer WHERE AbonnentBenutzer.VonId = '"
+							+ meineid + "' )AS A  ON Nutzer.Id  = A.NachId");
+
+			while (rs.next()) {
+
+				if ((rs.getInt("VonId")) == meineid) {
+
+				} else if ((rs.getInt("Id")) == meineid) {
+
+				} else {
+					Nutzer n = new Nutzer();
+					n.setId(rs.getInt("Id"));
+					n.setVorname(rs.getString("Vorname"));
+					n.setNachname(rs.getString("Nachname"));
+					n.setMailadresse(rs.getString("Mailadresse"));
+					alleNutzerAuﬂerMeinNutzerListe.addElement(n);
+
+				}
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// Ergebnisvektor zur¸ckgeben
+		return alleNutzerAuﬂerMeinNutzerListe;
+	}
 
 	public void nutzerAboErstellen(int vonId, int nachId) {
 

@@ -2,8 +2,12 @@ package de.hdm.tellme.shared.bo;
 
 import java.sql.Timestamp;
 
-public class Hashtag {
+public class Hashtag extends BusinessObject{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int hashtagId;
 	private String schlagwort;
 	private Timestamp erstellungsDatum;
