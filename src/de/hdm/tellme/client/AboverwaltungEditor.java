@@ -107,8 +107,10 @@ public class AboverwaltungEditor extends VerticalPanel {
 
 	private Button hashtagNichtAbonnieren = new Button("Hashtagabo l�schen");
 
-	public void onLoad() { // Aufbau der Seite
-	// loadListBoxAbonnierteLoeschenNutzer();
+	public void onLoad() {
+		nA.setLoginInfo(loginInfo);
+		// Aufbau der Seite
+		// loadListBoxAbonnierteLoeschenNutzer();
 		/*
 		 * Buttons und Labels werden den jeweiligen Panels zugeordnet.
 		 */

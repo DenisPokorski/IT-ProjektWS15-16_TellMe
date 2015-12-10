@@ -12,6 +12,13 @@ import de.hdm.tellme.shared.bo.*;
 @SuppressWarnings("serial")
 public class EditorServiceImpl extends RemoteServiceServlet implements
 		EditorService {
+	/**
+	 * 
+	 * @author Feltrin, Zimmermann
+	 * @version 
+	 * @since 26.11.2015
+	 * 
+	 */
 	public EditorServiceImpl() throws IllegalArgumentException {
 
 	}
@@ -87,15 +94,15 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 }
 
 	@Override
-	public Vector<Nutzer> getAlleNochNichtAbonnierteNutzerListe() {
-		int id =7;
+	public Vector<Nutzer> getAlleNochNichtAbonnierteNutzerListe(int id) {
+		
 		Vector<Nutzer> alleNutzer = naMapper.alleNochNichtAbonnierteNutzerSelektieren(id );
 		return alleNutzer;
 	}
 
 	@Override
 	public void erstellenNutzeraboById(int vonId, int nachId) {
-		naMapper.nutzerAboErstellen(vonId,nachId);
+		naMapper.nutzerAboErstellen(vonId, nachId);
 		
 		
 	}

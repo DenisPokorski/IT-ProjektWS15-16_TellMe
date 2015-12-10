@@ -23,7 +23,7 @@ public interface EditorServiceAsync {
 	void getNochNichtAbonnenteNutzerListe(int meineId,
 			AsyncCallback<Vector<Nutzer>> asyncCallback);
 
-	void getAlleNochNichtAbonnierteNutzerListe(AsyncCallback<Vector<Nutzer>> asyncCallback);
+	void getAlleNochNichtAbonnierteNutzerListe(int i, AsyncCallback<Vector<Nutzer>> asyncCallback);
 
 	void getZuAbonnieredeLoeschenNutzerListe(int i,
 			AsyncCallback<Vector<Nutzer>> callback);
