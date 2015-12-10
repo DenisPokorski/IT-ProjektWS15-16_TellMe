@@ -7,6 +7,8 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+
+import de.hdm.tellme.shared.LoginInfo;
 /**
  * 
  * Dieser Report zeigt alle Hashtagabonnements von einem bestimmten Nutzer an. 
@@ -17,7 +19,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 /* TODO Kommentare nachtragen*/
 
-public class Report3  {
+public class Report3 extends VerticalPanel {
 	
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift1 =  new Label("Report3: Hashtagabonnements abfragen");
@@ -52,6 +54,11 @@ public class Report3  {
 				
 			}
 		});
+		
+	}
+
+	public void setLoginInfo(LoginInfo loginInfo) {
+		// TODO Auto-generated method stub
 		
 	}
 

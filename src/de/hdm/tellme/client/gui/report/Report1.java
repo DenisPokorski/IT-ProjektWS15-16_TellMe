@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 
 import de.hdm.tellme.server.report.Report1Generator;
+import de.hdm.tellme.shared.LoginInfo;
 
 
 /**
@@ -24,7 +25,7 @@ import de.hdm.tellme.server.report.Report1Generator;
  * 
  */
 
-public class Report1 {
+public class Report1 extends VerticalPanel{
 
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift1 = new Label("Report1: Nachrichten abfragen");
@@ -90,6 +91,11 @@ public class Report1 {
 
 			}
 		});
+	}
+
+	public void setLoginInfo(LoginInfo loginInfo) {
+		// TODO Auto-generated method stub
+		
 	}
 
  
