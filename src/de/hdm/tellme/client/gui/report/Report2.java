@@ -6,6 +6,8 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.hdm.tellme.shared.LoginInfo;
+
 /**
  * 
  * Dieser Report zeigt alle Nutzerabonnements von einem bestimmten Nutzer an. 
@@ -16,7 +18,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 /* TODO Kommentare nachtragen*/
 
-public class Report2 {
+public class Report2   {
 	
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift1 =  new Label("Report2: Nutzerabonnements abfragen");
@@ -29,6 +31,11 @@ public class Report2 {
 		reportPanel.add( nutzerAnzeigen);
 		RootPanel.get("content").clear();
 		RootPanel.get("content").add(reportPanel);
+	}
+
+	public void setLoginInfo(LoginInfo loginInfo) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

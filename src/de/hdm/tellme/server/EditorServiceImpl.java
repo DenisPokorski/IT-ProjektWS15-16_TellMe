@@ -8,7 +8,7 @@ import de.hdm.tellme.server.db.NutzerAbonnementMapper;
 import de.hdm.tellme.server.db.NutzerMapper;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.bo.*;
-
+ 
 @SuppressWarnings("serial")
 public class EditorServiceImpl extends RemoteServiceServlet implements
 		EditorService {
@@ -66,35 +66,51 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return n;
 	}
 
-	@Override
-	public Vector<Nutzer> getZuAbonnieredeNutzerListe  (int n) {
-		Vector<Nutzer> alleNutzerListe = naMapper.ladeZuAbonnierendeNutzerListe(n);
-		Vector<NutzerAbonnement> alleNutzerAbonnementListe = naMapper.ladeNutzerAboListe(n);
-		
-		Vector<Nutzer> zuAboonierendeNutzer = new Vector<Nutzer>();
-
-		for(int i = 0; i < alleNutzerListe.size(); i++){
-			if(	alleNutzerListe.get(i).getId() == alleNutzerAbonnementListe.get(i).getAbonnementErsteller().getId() ){
-				i++;
-			} else{
-				Nutzer nutzer = new Nutzer();
-				nutzer.setId(alleNutzerListe.get(i).getId());
-				nutzer.setVorname(alleNutzerListe.get(i).getVorname());
-				nutzer.setNachname(alleNutzerListe.get(i).getNachname());
-				nutzer.setMailadresse(alleNutzerListe.get(i).getMailadresse());
-				zuAboonierendeNutzer.add(nutzer);
-			}
-		}
-		
-	
-		return zuAboonierendeNutzer;
-		
-	}
 
 	@Override
 	public Vector<Nutzer> getZuAbonnieredeLoeschenNutzerListe(int i) {
-		Vector<Nutzer> alleAbboniertenNutzer = naMapper.ladeZuAbonnierendeNutzerListe(i);
+		Vector<Nutzer> alleAbboniertenNutzer = naMapper.ladeAbonnierendeNutzerListe(i);
 		return alleAbboniertenNutzer;
 	}
 
+	@Override
+	public void loescheNutzeraboById(int vonId, int nachId) {
+		naMapper.loescheNutzeraboById(vonId,nachId);
+	}
+
+	@Override
+	public Vector<Nutzer> getNochNichtAbonnenteNutzerListe(int meineId) {
+		return null; 
+		// death
+ 
+
+}
+
+	@Override
+	public Vector<Nutzer> getAlleNochNichtAbonnierteNutzerListe() {
+		int id =7;
+		Vector<Nutzer> alleNutzer = naMapper.alleNochNichtAbonnierteNutzerSelektieren(id );
+		return alleNutzer;
+	}
+
+	@Override
+	public void erstellenNutzeraboById(int vonId, int nachId) {
+		naMapper.nutzerAboErstellen(vonId,nachId);
+		
+		
+	}
+
+	@Override
+	public Vector<Nutzer> getAlleNutzerAußerMeineId(int meineId) {
+		Vector<Nutzer> alleNutzer = nMapper.alleNutzerAusserMeineId(meineId );
+		
+		return alleNutzer;
+	}
+
+	@Override
+	public Vector<Hashtag> getZuAbonnierendeLoeschenHashtagAboListe(int meineId) {
+		Vector<Hashtag> alleHashtag = haMapper.ladeAbonnierteHashtag();
+		return null;
+	}
+	
 }

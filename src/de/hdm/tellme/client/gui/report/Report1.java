@@ -1,11 +1,20 @@
 package de.hdm.tellme.client.gui.report;
 
+import java.util.Date;
+
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
+
+import de.hdm.tellme.server.report.Report1Generator;
+import de.hdm.tellme.shared.LoginInfo;
 
 
 /**
@@ -43,5 +52,51 @@ public class Report1 {
 		reportPanel1_right.add(bisDateBox);
 		reportPanel1_right.add(nutzerAbosAnzeigen);
 		reportPanel.add(reportPanel1);
+		
+		nutzerDropDown.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				
+			}
+		});
+		
+		vonDateBox.addValueChangeHandler(new ValueChangeHandler<Date>() {
+			
+			@Override
+			public void onValueChange(ValueChangeEvent<Date> event) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		bisDateBox.addValueChangeHandler(new ValueChangeHandler<Date>() {
+
+			@Override
+			public void onValueChange(ValueChangeEvent<Date> event) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		nutzerAbosAnzeigen.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				
+			/*	new Report1Generator report = new Report1Generator;
+				report.report1Generieren();*/
+				
+
+			}
+		});
 	}
+
+	public void setLoginInfo(LoginInfo loginInfo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+ 
 }
