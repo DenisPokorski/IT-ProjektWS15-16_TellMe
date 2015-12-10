@@ -1,6 +1,5 @@
 package de.hdm.tellme.client;
 
-
 import java.util.Vector;
 
 import com.google.gwt.core.shared.GWT;
@@ -17,206 +16,149 @@ import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.server.db.NutzerAbonnementMapper;
- 
+
 /*
- * Diese Klasse stellt die Aboverwaltung f√ºr den Editor dar.
- * @author: Alex Homann
- * @version: 1.1
- * nicht fertiggestellt
+ * Diese Klasse stellt die Aboverwaltung f¸r den Editor dar.
+ * @author: thuering
+ * @version: 1.2
  * 
  */
- 
+
 public class AboverwaltungEditor extends VerticalPanel {
-	
- 	private LoginInfo loginInfo;
+
+	private LoginInfo loginInfo;
 
 	public void setLoginInfo(LoginInfo loginInfo) {
 		this.loginInfo = loginInfo;
 	}
-	
-	//Vertical Panel f√ºr den gesamten AboverwaltungsEditor
-	
-	private VerticalPanel aboPanel = new VerticalPanel();//Panel wird erstellt
-		
-	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);//RPC Methode, die auf Client in einer bestimmten Runtime ausgef√ºhrt zur Transaktion von Daten mit dem Server
-	private Label ueberschrift1 = new Label("Aboverwaltung");//√úberschrift eingef√ºgt
-	
+
+	// Vertical Panel f¸r den gesamten AboverwaltungsEditor
+
+	private VerticalPanel aboPanel = new VerticalPanel();// Panel wird erstellt
+
+	private Label ueberschrift1 = new Label("Aboverwaltung");// ‹berschrift
+																// eingef¸gt
+
 	private Label untertitel = new Label(
-			"Hier kannst du deine Abonnements verwalten.");//Beschreibung eingef√ºgt
-	
-	
-		//Vertical Panel f√ºr NutzerAbo
-		private HorizontalPanel nutzerAboPanel = new HorizontalPanel();//Panel f√ºr Nutzerabos
-		
-		private Label ueberschriftNutzerAbo = new Label("Nutzerabo");
-		
-				//Nutzerabo hinzuf√ºgen
-				private VerticalPanel nutzerAboPanel1 = new VerticalPanel();//Panel wird erstellt
-				
-				private Label untertitelNutzerAbonnieren = new Label (
-				"Hier kannst du die Nutzer ausw√§hlen, die du abonnieren m√∂chtest");
-				
-				//Einf√ºgen der Dropdown-Liste um einen Nutzer auszuw√§hlen, den man ausw√§hlen m√∂chte.
-				private Label nutzerText1= new Label("Nutzer ausw√§hlen: ");
+			"Hier kannst du deine Abonnements verwalten.");// Beschreibung
+															// eingef¸gt
 
-				//Dropdown hinzuf√ºgen
-				private ListBox dropDownNutzerLoeschenAbonniert = new ListBox();
-				
-				private ListBox dropDownNutzerNichtAbonniert = new ListBox();
- 
-				
-				// Button hinzuf√ºgen
-				private Button nutzerAbonnieren = new Button("Nutzerabo hinzuf√ºgen");
-				
-				//Nutzerabo l√∂schen
-				private VerticalPanel nutzerAboPanel2 = new VerticalPanel();//Panel wird erstellt
-				
-				private Label untertitelNutzerAboLoeschen = new Label (
-						"Hier kannst du die Nutzer ausw√§hlen, f√ºr die du dein Abo l√∂schen m√∂chtest");
-				
-				private Label nutzerText2= new Label("Nutzer ausw√§hlen: ");
+	// Vertical Panel f¸r NutzerAbo
+	private HorizontalPanel nutzerAboPanel = new HorizontalPanel();// Panel f¸r
+																	// Nutzerabos
 
-				private ListBox dropDownNutzerAbonniert = new ListBox();
-				/*
-				
-				Vector<Nutzer>  NutzerListe = new Vector<Nutzer>;
-				
-				
-				N = Nutzer.getVorname() + Nutzer.getNachname();//FEHLT API zur Implementierung dieser DropDownListe
-				for (int i= 0; i < Nutzer.length; i++){
-					dropBoxNutzer.addItem(Vector[i]);
-				}*/
-			
-				private Button nutzerNichtAbonnieren = new Button("Nutzerabo l√∂schen");
-		
-		//Vertical Panel f√ºr HashtagAbo
-		private HorizontalPanel hashtagAboPanel = new HorizontalPanel();//Panel f√ºr Hashtagabos
-		
-		private Label ueberschriftHashtagAbo = new Label("Hashtagabo");
-				//Hashtagabo hinzuf√ºgen
-				private VerticalPanel hashtagAboPanel1 = new VerticalPanel();//Panel wird erstellt
-				
-				private Label untertitelHashtagAbonnieren = new Label (
-						"Hier kannst du die Hashtags ausw√§hlen, die du abonnieren m√∂chtest");
-				
-				private Label hashtagText1= new Label("Hashtag ausw√§hlen: ");
-				
+	private Label ueberschriftNutzerAbo = new Label("Nutzerabo");
 
-				private ListBox dropDownHashtagsNichtAbonniert = new ListBox();
-				/*
-				
-				Vector<Hashtag>  HashtagListe = new Vector<Hashtag>;
-				
-				
-				Vector<Hashtag> = Hashtag.getSchlagwort();
-				for (int i= 0; i < Hashtag.length; i++){//vermutlich falsche umsetzung -> Prinzip stimmt aber
-					dropBoxHashtag.addItem(Vector[i]);
-				}*/
-				private Button hashtagAbonnieren = new Button("Hashtagabo hinzuf√ºgen");
-				
-				//Hashtagabo l√∂schen
-				private VerticalPanel hashtagAboPanel2 = new VerticalPanel();//Panel wird erstellt
-				
-				private Label untertitelHashtagAboLoeschen = new Label (
-						"Hier kannst du die Hashtags ausw√§hlen, f√ºr die du dein Abo l√∂schen m√∂chtest");
-				
-				private Label hashtagText2= new Label("Hashtag ausw√§hlen: ");
-				
-				private ListBox dropDownHashtagsAbonniert = new ListBox();
-/*
-				
-				Vector<Hashtag>  HashtagListe = new Vector<Hashtag>;
-				
-				
-				Vector<Hashtag> = Hashtag.getSchlagwort();
-				for (int i= 0; i < Hashtag.length; i++){//vermutlich falsche umsetzung -> Prinzip stimmt aber
-					dropBoxHashtag.addItem(Vector[i]);
-				}*/
-				private Button hashtagNichtAbonnieren = new Button("Hashtagabo l√∂schen");
-				
-			
-				private ListBox loadListBoxAbonnierteNutzer(){
-					NutzerAbo na = new NutzerAbo();
-					Vector<Nutzer> abonnierteNutzerListe = na.getZuAbonnieredeNutzerListe();
-					
-						for (int i= 0; i < abonnierteNutzerListe.size(); i++){
-							dropDownNutzerAbonniert.addItem(abonnierteNutzerListe.get(i).getVorname() +"  "+ abonnierteNutzerListe.get(i).getNachname());
-						}
-						
-					return dropDownHashtagsAbonniert;
-				}
-				
-				private ListBox loadListBoxAbonnierteLoeschenNutzer(){
-					NutzerAbo na = new NutzerAbo();
-					Vector<Nutzer> abonnierteNutzerLoeschenListe = na.getZuAbonnieredeNutzerListe();
-					
-						for (int i= 0; i < abonnierteNutzerLoeschenListe.size(); i++){
-							dropDownNutzerAbonniert.addItem(abonnierteNutzerLoeschenListe.get(i).getVorname() +"  "+ abonnierteNutzerLoeschenListe.get(i).getNachname());
-						}
-						
-					return dropDownHashtagsAbonniert;
-				}
-				
-				
-	public void onLoad(){  //Aufbau der Seite
-		
+	// Nutzerabo hinzuf¸gen
+	private VerticalPanel nutzerAboPanel1 = new VerticalPanel();// Panel wird
+																// erstellt
+
+	private Label untertitelNutzerAbonnieren = new Label(
+			"Hier kannst du die Nutzer ausw‰hlen, die du abonnieren mˆchtest");
+
+	// Einf¸gen der Dropdown-Liste um einen Nutzer auszuw‰hlen, den man
+	// ausw‰hlen mˆchte.
+	private Label nutzerText1 = new Label("Nutzer ausw‰hlen: ");
+
+	// Button hinzuf¸gen
+	private Button nutzerAbonnieren = new Button("Nutzerabo hinzuf¸gen");
+
+	// Nutzerabo lˆschen
+	private VerticalPanel nutzerAboPanel2 = new VerticalPanel();// Panel wird
+																// erstellt
+
+	private Label untertitelNutzerAboLoeschen = new Label(
+			"Hier kannst du die Nutzer ausw‰hlen, f¸r die du dein Abo lˆschen mˆchtest");
+
+	private Label nutzerText2 = new Label("Nutzer ausw‰hlen: ");
+
+	private ListBox dropDownNutzerAbonnieren = new ListBox();
+
+	private Button nutzerNichtAbonnieren = new Button("Nutzerabo lˆschen");
+
+	private HorizontalPanel hashtagAboPanel = new HorizontalPanel();// Panel f¸r
+																	// Hashtagabos
+
+	private Label ueberschriftHashtagAbo = new Label("Hashtagabo");
+
+	private VerticalPanel hashtagAboPanel1 = new VerticalPanel();// Panel wird
+																	// erstellt
+
+	private Label untertitelHashtagAbonnieren = new Label(
+			"Hier kannst du die Hashtags ausw‰hlen, die du abonnieren mˆchtest");
+
+	private Label hashtagText1 = new Label("Hashtag ausw‰hlen: ");
+
+	private ListBox dropDownHashtagsNichtAbonniert = new ListBox();
+
+	private NutzerAbo nA = new NutzerAbo();
+
+	private Button hashtagAbonnieren = new Button("Hashtagabo hinzuf¸gen");
+
+	private VerticalPanel hashtagAboPanel2 = new VerticalPanel();// Panel wird
+																	// erstellt
+
+	private Label untertitelHashtagAboLoeschen = new Label(
+			"Hier kannst du die Hashtags ausw‰hlen, f¸r die du dein Abo lˆschen mˆchtest");
+
+	private Label hashtagText2 = new Label("Hashtag ausw‰hlen: ");
+
+	private ListBox dropDownHashtagsAbonniert = new ListBox();
+
+	private Button hashtagNichtAbonnieren = new Button("Hashtagabo lˆschen");
+
+	public void onLoad() { // Aufbau der Seite
+	// loadListBoxAbonnierteLoeschenNutzer();
 		/*
 		 * Buttons und Labels werden den jeweiligen Panels zugeordnet.
 		 */
+		aboPanel.add(ueberschrift1);// ‹berschrift f¸r AboPanel
+		aboPanel.add(untertitel);// Untertitel f¸r AboPanel
+		aboPanel.add(ueberschriftNutzerAbo);
+		aboPanel.add(nutzerAboPanel);
 
-		
-		
-		aboPanel.add(ueberschrift1);//√úberschrift f√ºr AboPanel
-			aboPanel.add(untertitel);//Untertitel f√ºr AboPanel
-			aboPanel.add(ueberschriftNutzerAbo);
-				aboPanel.add(nutzerAboPanel);
-						//Nutzeraboverwaltung zuweisen
-						
-						aboPanel.add(ueberschriftHashtagAbo);
-						//Nutzerabo hinzuf√ºgen
-						nutzerAboPanel.add(nutzerAboPanel1);
-						nutzerAboPanel1.add(untertitelNutzerAbonnieren);
-						nutzerAboPanel1.add(nutzerText1);
-						//Dropdownliste&Button 
-						nutzerAboPanel1.add(dropDownNutzerLoeschenAbonniert);
-						nutzerAboPanel1.add(nutzerAbonnieren);
-						
-						//Nutzerabo l√∂schen
-						nutzerAboPanel.add(nutzerAboPanel2);
-						nutzerAboPanel2.add(untertitelNutzerAboLoeschen);
-						nutzerAboPanel2.add(nutzerText2);
-						//Dropdownliste&Button
-						nutzerAboPanel2.add(dropDownNutzerAbonniert);
-						nutzerAboPanel2.add(nutzerNichtAbonnieren);
-						
-				aboPanel.add(ueberschriftHashtagAbo);		
-				aboPanel.add(hashtagAboPanel);
-						//Hashtagaboverwaltung zuweisen
-						
-						//Hashtagabo hinzuf√ºgen
-						hashtagAboPanel.add(hashtagAboPanel1);
-						hashtagAboPanel1.add(untertitelHashtagAbonnieren);
-						hashtagAboPanel1.add(hashtagText1);
-						//Dropdownliste&Button 
-						hashtagAboPanel1.add(dropDownHashtagsNichtAbonniert);
-						hashtagAboPanel1.add(hashtagAbonnieren);
-						
-						//Hashtagabo l√∂schen
-						hashtagAboPanel.add(hashtagAboPanel2);
-						hashtagAboPanel2.add(untertitelHashtagAboLoeschen);
-						hashtagAboPanel2.add(hashtagText2);
-						//Dropdownliste&Button
-						hashtagAboPanel2.add(dropDownHashtagsAbonniert);
-						hashtagAboPanel2.add(hashtagNichtAbonnieren);
-						
-						
+		// Nutzeraboverwaltung zuweisen
+		aboPanel.add(ueberschriftHashtagAbo);
+
+		// Nutzerabo hinzuf¸gen
+		nutzerAboPanel.add(nutzerAboPanel1);
+		nutzerAboPanel1.add(untertitelNutzerAbonnieren);
+		nutzerAboPanel1.add(nutzerText1);
+
+		// Dropdownliste&Button
+		nutzerAboPanel1.add(nA.getZuAbonnierndeNutzerHinzuf¸genListe());
+		nutzerAboPanel1.add(nA.AboErstellenButton());
+
+		// Nutzerabo lˆschen
+		nutzerAboPanel.add(nutzerAboPanel2);
+		nutzerAboPanel2.add(untertitelNutzerAboLoeschen);
+		nutzerAboPanel2.add(nutzerText2);
+		// Dropdownliste&Button
+		nutzerAboPanel2.add(nA.getAbonnierteNutzerLoeschenListe());
+		nutzerAboPanel2.add(nA.AboLoeschenButton());
+
+		aboPanel.add(ueberschriftHashtagAbo);
+		aboPanel.add(hashtagAboPanel);
+		// Hashtagaboverwaltung zuweisen
+
+		// Hashtagabo hinzuf¸gen
+		hashtagAboPanel.add(hashtagAboPanel1);
+		hashtagAboPanel1.add(untertitelHashtagAbonnieren);
+		hashtagAboPanel1.add(hashtagText1);
+		// Dropdownliste&Button
+		hashtagAboPanel1.add(dropDownNutzerAbonnieren);
+		hashtagAboPanel1.add(hashtagAbonnieren);
+
+		// Hashtagabo lˆschen
+		hashtagAboPanel.add(hashtagAboPanel2);
+		hashtagAboPanel2.add(untertitelHashtagAboLoeschen);
+		hashtagAboPanel2.add(hashtagText2);
+		// Dropdownliste&Button
+		hashtagAboPanel2.add(dropDownHashtagsAbonniert);
+		hashtagAboPanel2.add(hashtagNichtAbonnieren);
+
 		RootPanel.get("content").add(aboPanel);
-		
-		
-		
-		
-	
 
-}
+	}
 
 }
