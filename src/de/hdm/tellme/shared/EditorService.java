@@ -6,6 +6,8 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import de.hdm.tellme.shared.bo.Nutzer;
+import de.hdm.tellme.shared.bo.Hashtag;
+
 
 @RemoteServiceRelativePath("editorservice")
 public interface EditorService extends RemoteService {
@@ -27,5 +29,8 @@ public interface EditorService extends RemoteService {
 	void erstellenNutzeraboById(int vonId, int nachId);
 
 	Vector<Nutzer> getAlleNutzerAußerMeineId(int meineId);
+	
+
+	Vector<Hashtag> getZuAbonnierendeLoeschenHashtagAboListe(int meineId);
 
 }
