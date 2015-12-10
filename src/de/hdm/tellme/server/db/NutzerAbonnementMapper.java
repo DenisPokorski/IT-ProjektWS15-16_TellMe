@@ -67,7 +67,7 @@ public class NutzerAbonnementMapper {
 
 	public Vector<Nutzer> alleNochNichtAbonnierteNutzerSelektieren(int id) {
 
-		Vector<Nutzer> alleNutzerAuﬂerMeinNutzerListe = new Vector<Nutzer>();
+		Vector<Nutzer> alleNutzerAusserMeinNutzerListe = new Vector<Nutzer>();
 
 		Connection con = DatenbankVerbindung.connection();
 		int meineid = id;
@@ -89,7 +89,7 @@ public class NutzerAbonnementMapper {
 					n.setVorname(rs.getString("Vorname"));
 					n.setNachname(rs.getString("Nachname"));
 					n.setMailadresse(rs.getString("Mailadresse"));
-					alleNutzerAuﬂerMeinNutzerListe.addElement(n);
+					alleNutzerAusserMeinNutzerListe.addElement(n);
 
 				}
 
@@ -99,7 +99,7 @@ public class NutzerAbonnementMapper {
 			e.printStackTrace();
 		}
 		// Ergebnisvektor zur¸ckgeben
-		return alleNutzerAuﬂerMeinNutzerListe;
+		return alleNutzerAusserMeinNutzerListe;
 	}
 
 	public void nutzerAboErstellen(int vonId, int nachId) {
