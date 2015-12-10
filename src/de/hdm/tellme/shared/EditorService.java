@@ -17,8 +17,18 @@ public interface EditorService extends RemoteService {
 	void nutzerLoeschen(Nutzer n);
 
  
-	Vector<Nutzer> getZuAbonnieredeNutzerListe(int i);
+ 
 
-	Vector<Nutzer> getZuAbonnieredeLoeschenNutzerListe(int n);
+	void loescheNutzeraboById(int vonId, int nachId);
+
+	Vector<Nutzer> getNochNichtAbonnenteNutzerListe(int meineId);
+
+	Vector<Nutzer> getAlleNochNichtAbonnierteNutzerListe();
+
+	Vector<Nutzer> getZuAbonnieredeLoeschenNutzerListe(int i);
+
+	void erstellenNutzeraboById(int vonId, int nachId);
+
+	Vector<Nutzer> getAlleNutzerAußerMeineId(int meineId);
 
 }
