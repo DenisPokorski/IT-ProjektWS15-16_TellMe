@@ -42,8 +42,8 @@ public class DatenbankVerbindung {
 				 * Datenbanktreiber, Datenbank-URL und Zugangsdaten übergeben.
 				 */
 				con = DriverManager.getConnection(
-					      "jdbc:mysql://db4free.net:3306/ws1516tellme",
-					      "tellmedb", "TellMe!123");
+						"jdbc:mysql://feltrin-immobilien.de:3306/db_tellme",
+						"tellme", "M22azd0!");
 
 			}
 			/**
