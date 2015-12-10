@@ -84,7 +84,7 @@ public class NutzerAbo {
 						NutzerAboloeschenByIds(meineId,auswahlIdAboLoeschen );
 					}
 					else{
-						Window.alert("Bitte wählen Sie ein NutzerAbonnement in der Liste aus, dass gelöscht werden soll, aus. ");
+						Window.alert("Bitte wählen Sie ein NutzerAbonnement in der Liste aus, dass gelöscht werden soll.");
 					}
 				} 
 			});

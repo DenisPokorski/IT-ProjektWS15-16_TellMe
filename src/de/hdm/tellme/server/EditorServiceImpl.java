@@ -106,5 +106,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		
 		return alleNutzer;
 	}
+
+	@Override
+	public Vector<Hashtag> getZuAbonnierendeLoeschenHashtagAboListe(int meineId) {
+		Vector<Hashtag> alleHashtag = haMapper.ladeAbonnierteHashtag();
+		return null;
+	}
 	
 }
