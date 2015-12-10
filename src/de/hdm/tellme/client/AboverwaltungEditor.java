@@ -18,7 +18,7 @@ import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.server.db.NutzerAbonnementMapper;
 
 /*
- * Diese Klasse stellt die Aboverwaltung für den Editor dar.
+ * Diese Klasse stellt die Aboverwaltung fï¿½r den Editor dar.
  * @author: thuering
  * @version: 1.2
  * 
@@ -32,51 +32,51 @@ public class AboverwaltungEditor extends VerticalPanel {
 		this.loginInfo = loginInfo;
 	}
 
-	// Vertical Panel für den gesamten AboverwaltungsEditor
+	// Vertical Panel fï¿½r den gesamten AboverwaltungsEditor
 
 	private VerticalPanel aboPanel = new VerticalPanel();// Panel wird erstellt
 
-	private Label ueberschrift1 = new Label("Aboverwaltung");// Überschrift
-																// eingefügt
+	private Label ueberschrift1 = new Label("Aboverwaltung");// ï¿½berschrift
+																// eingefï¿½gt
 
 	private Label untertitel = new Label(
 			"Hier kannst du deine Abonnements verwalten.");// Beschreibung
-															// eingefügt
+															// eingefï¿½gt
 
-	// Vertical Panel für NutzerAbo
-	private HorizontalPanel nutzerAboPanel = new HorizontalPanel();// Panel für
+	// Vertical Panel fï¿½r NutzerAbo
+	private HorizontalPanel nutzerAboPanel = new HorizontalPanel();// Panel fï¿½r
 																	// Nutzerabos
 
 	private Label ueberschriftNutzerAbo = new Label("Nutzerabo");
 
-	// Nutzerabo hinzufügen
+	// Nutzerabo hinzufï¿½gen
 	private VerticalPanel nutzerAboPanel1 = new VerticalPanel();// Panel wird
 																// erstellt
 
 	private Label untertitelNutzerAbonnieren = new Label(
-			"Hier kannst du die Nutzer auswählen, die du abonnieren möchtest");
+			"Hier kannst du die Nutzer auswï¿½hlen, die du abonnieren mï¿½chtest");
 
-	// Einfügen der Dropdown-Liste um einen Nutzer auszuwählen, den man
-	// auswählen möchte.
-	private Label nutzerText1 = new Label("Nutzer auswählen: ");
+	// Einfï¿½gen der Dropdown-Liste um einen Nutzer auszuwï¿½hlen, den man
+	// auswï¿½hlen mï¿½chte.
+	private Label nutzerText1 = new Label("Nutzer auswï¿½hlen: ");
 
-	// Button hinzufügen
-	private Button nutzerAbonnieren = new Button("Nutzerabo hinzufügen");
+	// Button hinzufï¿½gen
+	private Button nutzerAbonnieren = new Button("Nutzerabo hinzufï¿½gen");
 
-	// Nutzerabo löschen
+	// Nutzerabo lï¿½schen
 	private VerticalPanel nutzerAboPanel2 = new VerticalPanel();// Panel wird
 																// erstellt
 
 	private Label untertitelNutzerAboLoeschen = new Label(
-			"Hier kannst du die Nutzer auswählen, für die du dein Abo löschen möchtest");
+			"Hier kannst du die Nutzer auswï¿½hlen, fï¿½r die du dein Abo lï¿½schen mï¿½chtest");
 
-	private Label nutzerText2 = new Label("Nutzer auswählen: ");
+	private Label nutzerText2 = new Label("Nutzer auswï¿½hlen: ");
 
 	private ListBox dropDownNutzerAbonnieren = new ListBox();
 
-	private Button nutzerNichtAbonnieren = new Button("Nutzerabo löschen");
+	private Button nutzerNichtAbonnieren = new Button("Nutzerabo lï¿½schen");
 
-	private HorizontalPanel hashtagAboPanel = new HorizontalPanel();// Panel für
+	private HorizontalPanel hashtagAboPanel = new HorizontalPanel();// Panel fï¿½r
 																	// Hashtagabos
 
 	private Label ueberschriftHashtagAbo = new Label("Hashtagabo");
@@ -85,51 +85,51 @@ public class AboverwaltungEditor extends VerticalPanel {
 																	// erstellt
 
 	private Label untertitelHashtagAbonnieren = new Label(
-			"Hier kannst du die Hashtags auswählen, die du abonnieren möchtest");
+			"Hier kannst du die Hashtags auswï¿½hlen, die du abonnieren mï¿½chtest");
 
-	private Label hashtagText1 = new Label("Hashtag auswählen: ");
+	private Label hashtagText1 = new Label("Hashtag auswï¿½hlen: ");
 
 	private ListBox dropDownHashtagsNichtAbonniert = new ListBox();
 
 	private NutzerAbo nA = new NutzerAbo();
 
-	private Button hashtagAbonnieren = new Button("Hashtagabo hinzufügen");
+	private Button hashtagAbonnieren = new Button("Hashtagabo hinzufï¿½gen");
 
 	private VerticalPanel hashtagAboPanel2 = new VerticalPanel();// Panel wird
 																	// erstellt
 
 	private Label untertitelHashtagAboLoeschen = new Label(
-			"Hier kannst du die Hashtags auswählen, für die du dein Abo löschen möchtest");
+			"Hier kannst du die Hashtags auswï¿½hlen, fï¿½r die du dein Abo lï¿½schen mï¿½chtest");
 
-	private Label hashtagText2 = new Label("Hashtag auswählen: ");
+	private Label hashtagText2 = new Label("Hashtag auswï¿½hlen: ");
 
 	private ListBox dropDownHashtagsAbonniert = new ListBox();
 
-	private Button hashtagNichtAbonnieren = new Button("Hashtagabo löschen");
+	private Button hashtagNichtAbonnieren = new Button("Hashtagabo lï¿½schen");
 
 	public void onLoad() { // Aufbau der Seite
 	// loadListBoxAbonnierteLoeschenNutzer();
 		/*
 		 * Buttons und Labels werden den jeweiligen Panels zugeordnet.
 		 */
-		aboPanel.add(ueberschrift1);// Überschrift für AboPanel
-		aboPanel.add(untertitel);// Untertitel für AboPanel
+		aboPanel.add(ueberschrift1);// ï¿½berschrift fï¿½r AboPanel
+		aboPanel.add(untertitel);// Untertitel fï¿½r AboPanel
 		aboPanel.add(ueberschriftNutzerAbo);
 		aboPanel.add(nutzerAboPanel);
 
 		// Nutzeraboverwaltung zuweisen
 		aboPanel.add(ueberschriftHashtagAbo);
 
-		// Nutzerabo hinzufügen
+		// Nutzerabo hinzufï¿½gen
 		nutzerAboPanel.add(nutzerAboPanel1);
 		nutzerAboPanel1.add(untertitelNutzerAbonnieren);
 		nutzerAboPanel1.add(nutzerText1);
 
 		// Dropdownliste&Button
-		nutzerAboPanel1.add(nA.getZuAbonnierndeNutzerHinzufügenListe());
+		nutzerAboPanel1.add(nA.getZuAbonnierndeNutzerHinzufÃ¼genListe());
 		nutzerAboPanel1.add(nA.AboErstellenButton());
 
-		// Nutzerabo löschen
+		// Nutzerabo lï¿½schen
 		nutzerAboPanel.add(nutzerAboPanel2);
 		nutzerAboPanel2.add(untertitelNutzerAboLoeschen);
 		nutzerAboPanel2.add(nutzerText2);
@@ -141,7 +141,7 @@ public class AboverwaltungEditor extends VerticalPanel {
 		aboPanel.add(hashtagAboPanel);
 		// Hashtagaboverwaltung zuweisen
 
-		// Hashtagabo hinzufügen
+		// Hashtagabo hinzufï¿½gen
 		hashtagAboPanel.add(hashtagAboPanel1);
 		hashtagAboPanel1.add(untertitelHashtagAbonnieren);
 		hashtagAboPanel1.add(hashtagText1);
@@ -149,7 +149,7 @@ public class AboverwaltungEditor extends VerticalPanel {
 		hashtagAboPanel1.add(dropDownNutzerAbonnieren);
 		hashtagAboPanel1.add(hashtagAbonnieren);
 
-		// Hashtagabo löschen
+		// Hashtagabo lï¿½schen
 		hashtagAboPanel.add(hashtagAboPanel2);
 		hashtagAboPanel2.add(untertitelHashtagAboLoeschen);
 		hashtagAboPanel2.add(hashtagText2);

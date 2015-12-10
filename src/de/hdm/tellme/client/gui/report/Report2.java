@@ -18,7 +18,7 @@ import de.hdm.tellme.shared.LoginInfo;
 
 /* TODO Kommentare nachtragen*/
 
-public class Report2 extends VerticalPanel {
+public class Report2   {
 	
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift1 =  new Label("Report2: Nutzerabonnements abfragen");

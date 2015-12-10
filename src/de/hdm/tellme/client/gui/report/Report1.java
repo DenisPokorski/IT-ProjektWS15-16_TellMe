@@ -25,7 +25,7 @@ import de.hdm.tellme.shared.LoginInfo;
  * 
  */
 
-public class Report1 extends VerticalPanel{
+public class Report1 {
 
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift1 = new Label("Report1: Nachrichten abfragen");
