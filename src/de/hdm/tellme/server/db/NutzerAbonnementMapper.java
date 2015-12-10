@@ -115,4 +115,41 @@ public class NutzerAbonnementMapper {
 
 	}
 
-}
+	public Vector<Nutzer> alleNutzerAbosEinesNutzers (int nachId) {
+		
+		Vector <Nutzer> alleNutzerAbosEinesNutzers = new Vector <Nutzer>();
+		
+		Connection con = DatenbankVerbindung.connection();
+		int tempId = nachId;
+		
+		try {
+			
+			Statement state = con.createStatement();
+			ResultSet rs = state
+			.executeQuery("SELECT AbonnentBenutzer.NachId, Nutzer.Id, Nutzer.Vorname, Nutzer.Nachname, Nutzer.Mailadresse FROM AbonnentBenutzer LEFT JOIN Nutzer ON AbonnentBenutzer.NachId = Nutzer.Id WHERE AbonnentBenutzer.VonId = '"+tempId+"')");
+			
+			while (rs.next()) {
+
+				if ((rs.getInt("NachId")) == tempId) {
+
+				} else if ((rs.getInt("Id")) == tempId) {
+
+				} else {
+					Nutzer nu = new Nutzer();
+					nu.setId(rs.getInt("Id"));
+					nu.setVorname(rs.getString("Vorname"));
+					nu.setNachname(rs.getString("Nachname"));
+					nu.setMailadresse(rs.getString("Mailadresse"));
+					alleNutzerAbosEinesNutzers.addElement(nu);
+
+				}
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// Ergebnisvektor zurückgeben
+		return alleNutzerAbosEinesNutzers;
+		}
+	}

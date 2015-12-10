@@ -8,7 +8,6 @@ import java.util.Vector;
 import de.hdm.tellme.server.db.DatenbankVerbindung;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.HashtagAbonnement;
-import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
  * Mapper-Klasse, die HashtagAbonnement-Objekte in der Datenbank abbildet. Diese
