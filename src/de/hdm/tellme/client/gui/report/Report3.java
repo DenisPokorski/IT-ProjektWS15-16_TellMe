@@ -19,14 +19,14 @@ import de.hdm.tellme.shared.LoginInfo;
 
 /* TODO Kommentare nachtragen*/
 
-public class Report3   {
+public class Report3  extends VerticalPanel {
 	
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift1 =  new Label("Report3: Hashtagabonnements abfragen");
 	private Button hashtagAnzeigen = new Button("Report 3 generieren");
 	private ListBox hashtagAboDropDown = new ListBox();
  	
- 	private void onLoad()  {
+ 	public void onLoad()  {
 		
 		reportPanel.add(ueberSchrift1);
 		reportPanel.add(hashtagAboDropDown);

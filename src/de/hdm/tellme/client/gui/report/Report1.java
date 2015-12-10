@@ -25,7 +25,7 @@ import de.hdm.tellme.shared.LoginInfo;
  * 
  */
 
-public class Report1 {
+public class Report1 extends VerticalPanel{
 
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift1 = new Label("Report1: Nachrichten abfragen");
@@ -41,7 +41,7 @@ public class Report1 {
 	private DateBox bisDateBox = new DateBox( ); 
 	private Button nutzerAbosAnzeigen = new Button("Nutzerabos anzeigen");
 	
-	private void onLoad(){
+	public void onLoad(){
 		reportPanel.add(ueberSchrift1);
 		reportPanel1.add(reportPanel1_left);
 		reportPanel1.add(reportPanel1_right);

@@ -18,14 +18,14 @@ import de.hdm.tellme.shared.LoginInfo;
 
 /* TODO Kommentare nachtragen*/
 
-public class Report2   {
+public class Report2   extends VerticalPanel{
 	
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift1 =  new Label("Report2: Nutzerabonnements abfragen");
 	private Button nutzerAnzeigen = new Button("Report 2 generieren");
 	private ListBox nutzerAboDropDown = new ListBox();
  	
-	private void onLoad()  {
+	public void onLoad()  {
 		reportPanel.add(ueberSchrift1);
 		reportPanel.add(nutzerAboDropDown );
 		reportPanel.add( nutzerAnzeigen);
