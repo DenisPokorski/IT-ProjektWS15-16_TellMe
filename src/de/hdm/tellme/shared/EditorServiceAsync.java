@@ -5,6 +5,8 @@ import java.util.Vector;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import de.hdm.tellme.shared.bo.Nutzer;
+import de.hdm.tellme.shared.bo.Hashtag;
+
 
 public interface EditorServiceAsync {
 
@@ -33,4 +35,7 @@ public interface EditorServiceAsync {
 
 	void getAlleNutzerAußerMeineId(int meineId,
 			AsyncCallback<Vector<Nutzer>> asyncCallback);
+
+	void getZuAbonnierendeLoeschenHashtagAboListe(int meineId,
+			AsyncCallback<Vector<Hashtag>> asyncCallback);
 }
