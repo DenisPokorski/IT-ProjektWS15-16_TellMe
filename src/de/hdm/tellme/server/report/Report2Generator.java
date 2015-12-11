@@ -12,12 +12,13 @@ import de.hdm.tellme.shared.bo.NutzerAbonnement;
 
 public class Report2Generator {
 	private final ReportServiceAsync asyncObj = GWT.create(ReportService.class);
-	private Nutzer n = new Nutzer(); 
+	private Nutzer n = new Nutzer();
 	
 	public Vector<Nutzer> report2Generieren() {
 		  Vector<Nutzer> report2GenerierenListe = new Vector<Nutzer>();
 
-		  asyncObj.report2GenerierenListe(n, new AsyncCallback < Vector<Nutzer>>() {
+		  int tempId = 7;
+		asyncObj.report2GenerierenListe(tempId, new AsyncCallback < Vector<Nutzer>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {

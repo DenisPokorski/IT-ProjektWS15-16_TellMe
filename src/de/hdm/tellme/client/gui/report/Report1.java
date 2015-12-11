@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 
@@ -20,8 +21,8 @@ import de.hdm.tellme.shared.LoginInfo;
 /**
  * 
  * Dieser Report zeigt alle Nachrichten je Nutzer und Zeitraum an. 
- * @author Zimmermann
- * @version 1.0
+ * @author Zimmerman & Alex Homann
+ * @version 1.1
  * 
  */
 
@@ -52,6 +53,11 @@ public class Report1 extends VerticalPanel{
 		reportPanel1_right.add(bisDateBox);
 		reportPanel1_right.add(nutzerAbosAnzeigen);
 		reportPanel.add(reportPanel1);
+		
+		
+		RootPanel.get("content").clear();
+		RootPanel.get("content").add(reportPanel);
+		
 		
 		nutzerDropDown.addClickHandler(new ClickHandler() {
 			

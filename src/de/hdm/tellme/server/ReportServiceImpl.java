@@ -13,27 +13,23 @@ import de.hdm.tellme.shared.bo.*;
 @SuppressWarnings("serial")
 public class ReportServiceImpl extends RemoteServiceServlet implements
 		ReportService {
+	
+	
+	
 	public ReportServiceImpl() throws IllegalArgumentException {
 
 	}
+	
+	//Für Report2 benötigen wir den NutzerAbonnementMapper und NutzerMapper
+	private NutzerMapper nMapper = null;
+	private NutzerAbonnementMapper naMapper = null;
 
 	@Override
-	public Vector<Nachricht> report1GenerierenListe() {
-		// TODO Auto-generated method stub
-		return null;
+	public Vector<Nutzer> report2GenerierenListe(int i) {
+		
+		Vector<Nutzer> alleNutzer = nMapper.alleNutzerAusserMeineId( i );// Hier müssen wir noch einen Mapper mit ALLEN Nutzern erstellen, probeweise aber mit alle außer ich selber
+		return alleNutzer;
 	}
-
-	@Override
-	public Vector<Nutzer> report2GenerierenListe(Nutzer n) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-//	@Override
-//	public Vector<Nutzer> report2GenerierenListe() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
 
 }

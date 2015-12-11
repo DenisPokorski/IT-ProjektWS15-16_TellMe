@@ -10,9 +10,7 @@ import de.hdm.tellme.shared.bo.NutzerAbonnement;
 
 public interface ReportServiceAsync {
 
-	void report1GenerierenListe(AsyncCallback<Vector<Nachricht>> asyncCallback);
-
-	void report2GenerierenListe(Nutzer n,
+	void report2GenerierenListe(int i,
 			AsyncCallback<Vector<Nutzer>> asyncCallback);
 
  
