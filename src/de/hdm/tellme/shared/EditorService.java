@@ -35,4 +35,6 @@ public interface EditorService extends RemoteService {
 
 	void erstellenHashtagAboById(int NutzerId, int HashtagId);
 
+	Vector<Nutzer> getAlleNochNichtAbonnierteHashtagAboListe(int id);
+
 }
