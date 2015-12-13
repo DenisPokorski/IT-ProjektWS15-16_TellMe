@@ -43,30 +43,28 @@ public class TellMe implements EntryPoint {
 	@Override
 	public void onModuleLoad() {
 
-		loginService.getNutzerInfo(
-				com.google.gwt.core.client.GWT.getHostPageBaseURL(),
-				new AsyncCallback<LoginInfo>() {
+		loginService.getNutzerInfo(new AsyncCallback<LoginInfo>() {
 
-					@Override
-					public void onSuccess(LoginInfo result) {
-						loginInfo = result;
+			@Override
+			public void onSuccess(LoginInfo result) {
+				loginInfo = result;
 
-						if (loginInfo.isLoggedIn()) {
-			
-							ladeMenuBarEditor();
+				if (loginInfo.isLoggedIn()) {
 
-						} else {
+					ladeMenuBarEditor();
 
-							loadLogin();
-						}
+				} else {
 
-					}
+					loadLogin();
+				}
 
-					@Override
-					public void onFailure(Throwable caught) {
+			}
 
-					}
-				});
+			@Override
+			public void onFailure(Throwable caught) {
+
+			}
+		});
 
 	}
 }
