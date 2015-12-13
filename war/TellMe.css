@@ -39,6 +39,12 @@ h1 {
 	margin-right: 31px;
 	line-height: 20px;
 }
+
+#content_left { .
+	width: auto;
+	max-width: 270px;
+	float: left;
+}
 /** 
 *
 *Styleschablone für Layoutbausteine
