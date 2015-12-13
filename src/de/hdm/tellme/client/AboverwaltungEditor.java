@@ -89,7 +89,7 @@ public class AboverwaltungEditor extends VerticalPanel {
 
 	private Label hashtagText1 = new Label("Hashtag ausw�hlen: ");
 
-	private ListBox dropDownHashtagsNichtAbonniert = new ListBox();
+	private ListBox getAbonnierteHashtagAboHinzufuegenListe = new ListBox();
 
 	private NutzerAbo nA = new NutzerAbo();
 	private HashtagAbo hA = new HashtagAbo();
@@ -150,8 +150,8 @@ public class AboverwaltungEditor extends VerticalPanel {
 		hashtagAboPanel1.add(untertitelHashtagAbonnieren);
 		hashtagAboPanel1.add(hashtagText1);
 		// Dropdownliste&Button
-		hashtagAboPanel1.add(dropDownNutzerAbonnieren);
-		hashtagAboPanel1.add(hashtagAbonnieren);
+		hashtagAboPanel1.add(hA.getAbonnierteHashtagAboHinzufuegenListe());
+		hashtagAboPanel1.add(hA.HashtagAboErstellen());
 
 		// Hashtagabo l�schen
 		hashtagAboPanel.add(hashtagAboPanel2);

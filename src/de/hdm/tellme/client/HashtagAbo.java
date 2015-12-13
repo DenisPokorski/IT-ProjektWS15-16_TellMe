@@ -120,6 +120,28 @@ public class HashtagAbo {
 		
 	}
 	
+	private void HashtagAboErstellenByIds(int NutzerId,
+			int HashtagId) {
+		asyncObj.erstellenHashtagAboById(NutzerId, HashtagId, new AsyncCallback<Void>(){
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Das Hashtagabo wurde nicht hinzugefügt");
+			}
+
+			@Override
+			public void onSuccess(Void result) {
+				Window.alert("Das Hashtagabo wurde erfolgreich hinzugefügt");
+				RootPanel.get("content").clear();
+				AboverwaltungEditor aE = new AboverwaltungEditor();
+				RootPanel.get("content").add(aE);
+				
+			}
+			
+		});
+		
+	}
+	
 	public ListBox getAbonnerteHashtagAboLoeschenListe() {
 		final int meineId = loginInfo.getUser().getId();
 
@@ -160,6 +182,28 @@ public class HashtagAbo {
 			}
 		});
 		return dropDownHashtagBereitsAbonniert;
+	}
+	
+	public Button HashtagAboErstellen(){
+		Button HashtagAboErstellenButton = new Button("Hashtagabonnement erstellen");
+		HashtagAboErstellenButton.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				if ((auswahlIdHashtagAboHinzufuegen !=0)
+						&& (dropDownHashtagNochNichtAbooniert.getSelectedIndex() >0 )){
+					HashtagAboErstellenByIds(loginInfo.getUser().getId(),
+							auswahlIdHashtagAboHinzufuegen);
+				} else{
+					Window.alert("Bitte wählen Sie ein Hashtag aus der Liste, zu dem ein Abo erstellt werden soll.");
+				
+				}
+				
+			}
+
+		
+		});
+		return HashtagAboErstellenButton;
 	}
 
 	public void setLoginInfo(LoginInfo loginInfo) {
