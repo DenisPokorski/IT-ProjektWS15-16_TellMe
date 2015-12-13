@@ -6,7 +6,7 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.RootPanel;
 
-import de.hdm.tellme.client.NutzerBearbeiten;
+import de.hdm.tellme.client.NutzerBearbeitenEditor;
 import de.hdm.tellme.shared.LoginInfo;
 
 /**

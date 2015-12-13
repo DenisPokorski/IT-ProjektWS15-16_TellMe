@@ -2,15 +2,14 @@ package de.hdm.tellme.client;
 
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.tellme.client.gui.report.Report1;
 import de.hdm.tellme.client.gui.report.Report2;
 import de.hdm.tellme.client.gui.report.Report3;
-import de.hdm.tellme.shared.LoginInfo;
 
 /**
  * 
@@ -21,22 +20,50 @@ import de.hdm.tellme.shared.LoginInfo;
  */
 
 public class MenuBarEditor extends HorizontalPanel {
-
-	private LoginInfo loginInfo;
-
 	/**
-	 * Definition von leerem Konstruktor
+	 * Alle Ansichten sollen aus Performancegründen nur einmal erstellt werden.
+	 * 
 	 */
-	public MenuBarEditor() {
+	private static NachrichtenverwaltungEditor ansichtUnterhaltungen = null;
 
+	public static NachrichtenverwaltungEditor gibansichtUnterhaltungen() {
+		if (ansichtUnterhaltungen == null)
+			ansichtUnterhaltungen = new NachrichtenverwaltungEditor();
+		return ansichtUnterhaltungen;
+	}
+
+	private static NeuigkeitenEditor ansichtNeuigkeiten = null;
+
+	public static NeuigkeitenEditor gibansichtNeuigkeiten() {
+		if (ansichtNeuigkeiten == null)
+			ansichtNeuigkeiten = new NeuigkeitenEditor();
+		return ansichtNeuigkeiten;
+	}
+
+	private static AboverwaltungEditor ansichtEinstellungenAboverwatung = null;
+
+	public static AboverwaltungEditor gibansichtEinstellungenAboverwatung() {
+		// lade jedes mal neu um Listen aktuell zu halten
+		ansichtEinstellungenAboverwatung = new AboverwaltungEditor();
+		// TODO: kann noch nicht entfernt werden, da sonst Fehler auftauchen
+		ansichtEinstellungenAboverwatung.setLoginInfo(TellMe.gibEingeloggterBenutzer());
+		return ansichtEinstellungenAboverwatung;
+	}
+
+	private static NutzerBearbeitenEditor ansichtEinstellungenBenutzereinstellungen = null;
+
+	public static NutzerBearbeitenEditor gibansichtEinstellungenBenutzereinstellungen() {
+		// lade jedes mal neu um Listen aktuell zu halten
+		ansichtEinstellungenBenutzereinstellungen = new NutzerBearbeitenEditor();
+		// TODO: kann noch nicht entfernt werden, da sonst Fehler auftauchen
+		ansichtEinstellungenBenutzereinstellungen.setLoginInfo(TellMe.gibEingeloggterBenutzer());
+		return ansichtEinstellungenBenutzereinstellungen;
 	}
 
 	/**
-	 * An dieser Stelle wird das LoginInfo von der Methode setLoginInfo(),
-	 * übergeben und gesetzt.
+	 * Definition von Konstruktor
 	 */
-	public void setLoginInfo(LoginInfo loginInfo) {
-		this.loginInfo = loginInfo;
+	public MenuBarEditor() {
 	}
 
 	public void onLoad() {
@@ -46,40 +73,32 @@ public class MenuBarEditor extends HorizontalPanel {
 		 * hinzugefügt: MeinProfil, Aboverwaltung, Nachrichten und Report 1-3.
 		 * Mit der 'public void execute()'-Methode wird definiert was bei Klick
 		 * darauf passieren soll. In unserem Fall laden, leeren wir erst den
-		 * Cotent-Bereich mit dem Befehl RootPanel.get("content").clear(); Im
-		 * Anschluss werden wir die GUI-Klassen dem 'RootPanel.get("content")'
-		 * -Bereich zuordnen.
+		 * Cotent-Bereich mit dem Befehl clearContent(); Im Anschluss werden wir
+		 * die GUI-Klassen dem 'RootPanel.get("content")' -Bereich zuordnen.
 		 */
 		MenuBar HauptMenue = new MenuBar(false);
 		HauptMenue.setAutoOpen(true);
 		HauptMenue.setAnimationEnabled(true);
-		
 
 		final String LogoLink = "<img src='/logo.png'/>";
-		HauptMenue.addItem(new MenuItem(LogoLink,true,new Command() {
+		HauptMenue.addItem(new MenuItem(LogoLink, true, new Command() {
 			@Override
 			public void execute() {
-				//Nichts laden wenn Benutzer Logo auswählt
+				// Nichts laden wenn Benutzer Logo auswählt
 			}
 		}));
-		
+
 		HauptMenue.addItem("Unterhaltungen", new Command() {
 			@Override
 			public void execute() {
-				RootPanel.get("content").clear();
-				NachrichtenverwaltungEditor nvE = new NachrichtenverwaltungEditor();
-				// nvE.setLoginInfo(loginInfo);
-				RootPanel.get("content").add(nvE); // Leiste wird oben gesetzt
+				setzeInhalt(gibansichtUnterhaltungen());
 			}
 		});
 
 		HauptMenue.addItem("Neuigkeiten", new Command() {
 			@Override
 			public void execute() {
-				RootPanel.get("content").clear();
-				// Wird später hinzugefügt
-				// RootPanel.get("content").add(nvE); // Leiste wird oben
-				// gesetzt
+				setzeInhalt(gibansichtNeuigkeiten());
 			}
 		});
 
@@ -90,37 +109,25 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.addItem("Aboverwaltung", new Command() {
 			@Override
 			public void execute() {
-				RootPanel.get("content").clear();
-				AboverwaltungEditor aE = new AboverwaltungEditor();
-				aE.setLoginInfo(loginInfo);
-				RootPanel.get("content").add(aE); // Leiste wird oben gesetzt
+				setzeInhalt(gibansichtEinstellungenAboverwatung());
 			}
 		});
 
 		EinstellungenMenu.addItem("Benutzereinstellungen", new Command() {
 			@Override
 			public void execute() {
-				RootPanel.get("content").clear();
-				NutzerBearbeiten nB = new NutzerBearbeiten();
-				nB.setLoginInfo(loginInfo);
-				RootPanel.get("content").add(nB); // Leiste wird oben gesetzt
+				setzeInhalt(gibansichtEinstellungenBenutzereinstellungen());
 			}
 		});
 
 		EinstellungenMenu.addItem("Hashtagverwaltung(?)", new Command() {
 			@Override
 			public void execute() {
-				RootPanel.get("content").clear();
-//				HashtagAbo hA = HashtagAbo();
-//				hA.setLoginInfo(loginInfo);
-//				RootPanel.get("content").add(hA); // Leiste wird oben gesetzt
+				// TODO:really?!
 			}
 		});
 
-		
-		
-		//TEMPORÄRES MENÜ
-
+		// TODO: TEMPORÄRES MENÜ LÖSCHEN VOR ABGABE
 		MenuBar tempReports = new MenuBar(true);
 		tempReports.setAnimationEnabled(true);
 		HauptMenue.addItem(new MenuItem("Reports", tempReports));
@@ -128,35 +135,34 @@ public class MenuBarEditor extends HorizontalPanel {
 		tempReports.addItem("Report 1", new Command() {
 			@Override
 			public void execute() {
-				RootPanel.get("content").clear();
-				Report1 r1 = new Report1();
-				r1.setLoginInfo(loginInfo);
-				RootPanel.get("content").add(r1);
+				setzeInhalt(new Report1());
 			}
 		});
 
 		tempReports.addItem("Report 2", new Command() {
 			@Override
 			public void execute() {
-				RootPanel.get("content").clear();
-				Report2 r2 = new Report2();
-				r2.setLoginInfo(loginInfo);
-				RootPanel.get("content").add(r2);
+				setzeInhalt(new Report2());
 			}
 		});
 
 		tempReports.addItem("Report 3", new Command() {
 			@Override
 			public void execute() {
-				RootPanel.get("content").clear();
-				Report3 r3 = new Report3();
-				r3.setLoginInfo(loginInfo);
-				RootPanel.get("content").add(r3);
+				setzeInhalt(new Report3());
 			}
 		});
-		
-		
+
 		RootPanel.get("header").add(HauptMenue);
 
 	}
+
+	public static void setzeInhalt(VerticalPanel ZuSetzendesPanel) {
+
+		RootPanel.get("content_left").clear();
+		RootPanel.get("content_right").clear();
+		RootPanel.get("content").clear();
+		RootPanel.get("content").add(ZuSetzendesPanel);
+	}
+
 }

@@ -30,7 +30,7 @@ import de.hdm.tellme.shared.bo.Nutzer;
  * 
  */
 
-public class NutzerBearbeiten extends VerticalPanel {
+public class NutzerBearbeitenEditor extends VerticalPanel {
 
 	/*
 	 * Deklarationen der einzelnen Widgets wie beispielsweise den Panels,
