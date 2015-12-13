@@ -1,5 +1,7 @@
 package de.hdm.tellme.client;
 
+import java.util.Vector;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -11,6 +13,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
+import de.hdm.tellme.shared.bo.Hashtag;
 
 public class HashtagAbo {
 	
@@ -72,10 +75,11 @@ public class HashtagAbo {
 			public void onSuccess(Vector<Hashtag> resultListe) {
 				// TODO Auto-generated method stub
 				
-			});
+			}
 		
 			
-		}
+		});
+		return dropDownHashtagBereitsAbonniert;
 	}
 
 }
