@@ -15,7 +15,13 @@ import de.hdm.tellme.shared.bo.Nutzer;
 
 public class LoginServiceImpl extends RemoteServiceServlet implements
 		LoginService {
-
+	/**
+	 * 
+	 * @author Feltrin, Zimmermann
+	 * @version
+	 * @since 26.11.2015
+	 * 
+	 */
 	private String uri_;
 
 	public LoginServiceImpl() throws IllegalArgumentException {

@@ -33,4 +33,6 @@ public interface EditorService extends RemoteService {
 
 	Vector<Hashtag> getZuAbonnierendeLoeschenHashtagAboListe(int meineId);
 
+	void erstellenHashtagAboById(int NutzerId, int HashtagId);
+
 }

@@ -32,10 +32,14 @@ public interface EditorServiceAsync {
 
 	void erstellenNutzeraboById(int vonId, int nachId,
 			AsyncCallback<Void> asyncCallback);
+	
 
 	void getAlleNutzerAußerMeineId(int meineId,
 			AsyncCallback<Vector<Nutzer>> asyncCallback);
 
 	void getZuAbonnierendeLoeschenHashtagAboListe(int meineId,
 			AsyncCallback<Vector<Hashtag>> asyncCallback);
+
+	void erstellenHashtagAboById(int nutzerId, int hashtagId,
+			AsyncCallback<Void> asyncCallback);
 }
