@@ -125,5 +125,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Vector<Nutzer> getAlleNochNichtAbonnierteHashtagAboListe(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

@@ -42,4 +42,7 @@ public interface EditorServiceAsync {
 
 	void erstellenHashtagAboById(int nutzerId, int hashtagId,
 			AsyncCallback<Void> asyncCallback);
+
+	void getAlleNochNichtAbonnierteHashtagAboListe(int id,
+			AsyncCallback<Vector<Nutzer>> asyncCallback);
 }

@@ -17,6 +17,7 @@ import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.bo.Hashtag;
+import de.hdm.tellme.shared.bo.Nutzer;
 
 public class HashtagAbo {
 	
@@ -75,7 +76,50 @@ public class HashtagAbo {
 				});
 
 	}
+	
+	public ListBox getAbonnierteHashtagAboHinzufuegenListe(){
+		
+		asyncObj.getAlleNochNichtAbonnierteHashtagAboListe(loginInfo.getUser().getId(), new AsyncCallback<Vector<Nutzer>>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO
+				Window.alert("Fehler");
 
+			}
+
+			@Override
+			public void onSuccess(Vector<Nutzer> resultListe) {
+
+				dropDownHashtagNochNichtAbooniert.clear();
+				dropDownHashtagNochNichtAbooniert.addItem("---");
+
+				for (int i = 0; i <= resultListe.size(); i++) {
+					dropDownHashtagNochNichtAbooniert.addItem(resultListe
+							.get(i).getId()
+							+ "-"
+							+ resultListe.get(i).getSichtbarkeit()
+							+ "  "
+							+ resultListe.get(i).getErstellungsDatum());
+				}
+			}
+		});
+
+		dropDownHashtagNochNichtAbooniert.addChangeHandler(new ChangeHandler() {
+
+			@Override
+			public void onChange(ChangeEvent event) {
+				int i = dropDownHashtagNochNichtAbooniert.getSelectedIndex();
+				String s = dropDownHashtagNochNichtAbooniert.getValue(i);
+				s = s.substring(0, s.indexOf('-'));
+				auswahlIdHashtagAboHinzufuegen = Integer.parseInt(s);
+			}
+		});
+
+		return dropDownHashtagNochNichtAbooniert;
+	
+		
+	}
+	
 	public ListBox getAbonnerteHashtagAboLoeschenListe() {
 		final int meineId = loginInfo.getUser().getId();
 
@@ -90,11 +134,11 @@ public class HashtagAbo {
 
 					@Override
 					public void onSuccess(Vector<Hashtag> resultListe) {
-						dropDownHashtagNochNichtAbooniert.clear();
-						dropDownHashtagNochNichtAbooniert.addItem("----");
+						dropDownHashtagBereitsAbonniert.clear();
+						dropDownHashtagBereitsAbonniert.addItem("----");
 						
 						for (int i=0; i<=resultListe.size();i++){
-							dropDownHashtagNochNichtAbooniert.addItem(resultListe
+							dropDownHashtagBereitsAbonniert.addItem(resultListe
 									.get(i).getId()
 									+"-"
 									+resultListe.get(i).getSchlagwort()
@@ -106,16 +150,16 @@ public class HashtagAbo {
 
 				});
 		
-		dropDownHashtagNochNichtAbooniert.addChangeHandler(new ChangeHandler(){
+		dropDownHashtagBereitsAbonniert.addChangeHandler(new ChangeHandler(){
 			@Override
 			public void onChange(ChangeEvent event) {
-				int i = dropDownHashtagNochNichtAbooniert.getSelectedIndex();
-				String s = dropDownHashtagNochNichtAbooniert.getValue(i);
+				int i = dropDownHashtagBereitsAbonniert.getSelectedIndex();
+				String s = dropDownHashtagBereitsAbonniert.getValue(i);
 				s = s.substring(0, s.indexOf('-'));
 				auswahlIdHashtagAboHinzufuegen = Integer.parseInt(s);
 			}
 		});
-		return dropDownHashtagNochNichtAbooniert;
+		return dropDownHashtagBereitsAbonniert;
 	}
 
 	public void setLoginInfo(LoginInfo loginInfo) {

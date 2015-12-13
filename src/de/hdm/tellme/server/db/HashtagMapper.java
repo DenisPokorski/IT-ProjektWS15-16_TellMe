@@ -28,8 +28,10 @@ public class HashtagMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = " INSERT INTO Hashtag (Schlagwort, Erstellungsdatum) VALUES ("
+			String sqlquery = " INSERT INTO Hashtag (Id, Schlagwort, Erstellungsdatum) VALUES ("
 					+ "'"
+					+ h.getId()
+					+ "','"
 					+ h.getSchlagwort()
 					+"','"
 					+ h.getErstellungsDatum()
