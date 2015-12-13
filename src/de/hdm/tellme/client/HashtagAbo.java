@@ -13,9 +13,18 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
+import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.bo.Hashtag;
 
 public class HashtagAbo {
+	
+	/**
+	 * 
+	 * @author Denis Pokorski
+	 * @version 1.1
+	 * @since 26.11.2015
+	 * 
+	 */
 	
 	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
 
@@ -23,6 +32,10 @@ public class HashtagAbo {
 	private ListBox dropDownHashtagNochNichtAbooniert = new ListBox();
 	
 	private int auswahlIdHashtagAboLoeschen;
+
+	private LoginInfo loginInfo;
+	
+	
 	
 	public Button HashtagAboLoeschenButton ()	{
 		
@@ -59,8 +72,27 @@ public class HashtagAbo {
 	});
 		
 	}
-
+	
+	public void HashtagAboErstellenByIds(int NutzerId, int HashtagId)	{
+		asyncObj.erstellenHashtagAboById(NutzerId, HashtagId,
+				new AsyncCallback<Void>(){
+				@Override
+				public void onFailure(Throwable caught){
+						Window.alert("Das Hashtagabo wurde nicht erstellt.");
+						
+				}
+				@Override
+				public void onSuccess(Void result){
+					Window.alert("Das Hashtagabonnement wurde erfolgreich erstellt.");
+					RootPanel.get("content").clear();
+					AboverwaltungEditor aE = new AboverwaltungEditor();
+					RootPanel.get("content").add(aE);
+				}
+		});
+	}
+	
 	public ListBox getAbonnerteHashtagAboLoeschenListe(){
+
 		final int meineId=7;
 		
 		asyncObj.getZuAbonnierendeLoeschenHashtagAboListe(meineId, new AsyncCallback <Vector<Hashtag>>(){
@@ -81,5 +113,8 @@ public class HashtagAbo {
 		});
 		return dropDownHashtagBereitsAbonniert;
 	}
-
+	
+	public void setLoginInfo(LoginInfo loginInfo) {
+		this.loginInfo = loginInfo;
+	}
 }

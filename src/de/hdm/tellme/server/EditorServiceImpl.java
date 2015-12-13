@@ -119,5 +119,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void erstellenHashtagAboById(int NutzerId, int HashtagId) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
