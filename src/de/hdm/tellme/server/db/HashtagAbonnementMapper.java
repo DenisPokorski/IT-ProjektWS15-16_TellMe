@@ -38,7 +38,7 @@ public class HashtagAbonnementMapper {
 		}
 		return hashtagAbonnementMapper;
 	}
-	
+
 	public Vector<Hashtag> ladeAbonnierendeHashtagListe(int hashtag) {
 		Connection con = DatenbankVerbindung.connection();
 
@@ -74,8 +74,7 @@ public class HashtagAbonnementMapper {
 					+ "'"
 					+ h.getAbonnementErsteller().getId()
 					+ "','"
-					+ h.getHashtag().getHashtagId()
-					+ "') ;";
+					+ h.getHashtag().getHashtagId() + "') ;";
 			state.executeUpdate(sqlquery);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -85,13 +84,44 @@ public class HashtagAbonnementMapper {
 	public void entfernen(HashtagAbonnement h) {
 		Connection con = DatenbankVerbindung.connection();
 		try {
-		Statement state = con.createStatement();
-		String sqlquery = "DELETE FROM NutzerHashtag (NutzerId, HashtagId) WHERE Id='" + h
-				+ "';";
+			Statement state = con.createStatement();
+			String sqlquery = "DELETE FROM NutzerHashtag (NutzerId, HashtagId) WHERE Id='"
+					+ h + "';";
 			state.executeUpdate(sqlquery);
-		}
-		catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public Vector<Hashtag> alleHashtagsEinesNutzers(int HashtagId) {
+		Vector<Hashtag> alleHashtagsEinesNutzers = new Vector<Hashtag>();
+		Connection con = DatenbankVerbindung.connection();
+		int tempId = HashtagId;
+		try {
+			Statement state = con.createStatement();
+			ResultSet rs = state
+					.executeQuery("SELECT NutzerHashtag.HashtagId, Hashtag.HashtagId, Hashtag.Schlagwort, Hashtag.ErstellungsDatum FROM NutzerHashtag LEFT JOIN Hashtag ON NutzerHashtag.HashtagId = Hashtag.HashtagId WHERE Nutzerhashtag.NutzerId = '"
+							+ tempId + "')");
+			while (rs.next()) {
+
+				if ((rs.getInt("HashtagId")) == tempId) {
+
+				} else if ((rs.getInt("Id")) == tempId) {
+
+				} else {
+					Hashtag ha = new Hashtag();
+					ha.setHashtagId(rs.getInt("hashtagId"));
+					ha.setSchlagwort(rs.getString("Schlagwort"));
+					ha.setErstellungsDatum(rs.getTimestamp("ErstellungsDatum"));
+					alleHashtagsEinesNutzers.addElement(ha);
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// Ergebnisvektor zurückgeben
+		return alleHashtagsEinesNutzers;
+
 	}
 }
