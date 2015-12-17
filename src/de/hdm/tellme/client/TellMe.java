@@ -18,7 +18,7 @@ import de.hdm.tellme.shared.LoginInfo;
 
 public class TellMe implements EntryPoint {
 
-	private static LoginInfo eingeloggterBenutzer = null;
+	public static LoginInfo eingeloggterBenutzer = null;
 
 	private HorizontalPanel loginPanel = new HorizontalPanel();
 	LoginServiceAsync loginService = GWT.create(LoginService.class);

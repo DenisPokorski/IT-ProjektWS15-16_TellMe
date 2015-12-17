@@ -26,12 +26,6 @@ import de.hdm.tellme.server.db.NutzerAbonnementMapper;
 
 public class AboverwaltungEditor extends VerticalPanel {
 
-	private LoginInfo loginInfo;
-
-	public void setLoginInfo(LoginInfo loginInfo) {
-		this.loginInfo = loginInfo;
-	}
-
 	// Vertical Panel f�r den gesamten AboverwaltungsEditor
 
 	private VerticalPanel aboPanel = new VerticalPanel();// Panel wird erstellt
@@ -109,8 +103,8 @@ public class AboverwaltungEditor extends VerticalPanel {
 	private Button hashtagNichtAbonnieren = new Button("Hashtagabo l�schen");
 
 	public void onLoad() {
-		nA.setLoginInfo(loginInfo);
-		hA.setLoginInfo(loginInfo);
+		nA.setLoginInfo(TellMe.eingeloggterBenutzer);
+		hA.setLoginInfo(TellMe.eingeloggterBenutzer);
 		// Aufbau der Seite
 		// loadListBoxAbonnierteLoeschenNutzer();
 		/*

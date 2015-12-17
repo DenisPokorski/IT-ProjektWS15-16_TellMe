@@ -45,8 +45,7 @@ public class MenuBarEditor extends HorizontalPanel {
 	public static AboverwaltungEditor gibansichtEinstellungenAboverwatung() {
 		// lade jedes mal neu um Listen aktuell zu halten
 		ansichtEinstellungenAboverwatung = new AboverwaltungEditor();
-		// TODO: kann noch nicht entfernt werden, da sonst Fehler auftauchen
-		ansichtEinstellungenAboverwatung.setLoginInfo(TellMe.gibEingeloggterBenutzer());
+
 		return ansichtEinstellungenAboverwatung;
 	}
 
@@ -55,8 +54,7 @@ public class MenuBarEditor extends HorizontalPanel {
 	public static NutzerBearbeitenEditor gibansichtEinstellungenBenutzereinstellungen() {
 		// lade jedes mal neu um Listen aktuell zu halten
 		ansichtEinstellungenBenutzereinstellungen = new NutzerBearbeitenEditor();
-		// TODO: kann noch nicht entfernt werden, da sonst Fehler auftauchen
-		ansichtEinstellungenBenutzereinstellungen.setLoginInfo(TellMe.gibEingeloggterBenutzer());
+
 		return ansichtEinstellungenBenutzereinstellungen;
 	}
 
