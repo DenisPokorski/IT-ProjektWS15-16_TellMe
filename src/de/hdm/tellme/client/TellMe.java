@@ -51,6 +51,8 @@ public class TellMe implements EntryPoint {
 	@Override
 	public void onModuleLoad() {
 
+		ladeTellMe(); //TODO verübergehend hier der Aufruf zum starten Login wird übersprungen 
+
 		loginService.getNutzerInfo(new AsyncCallback<LoginInfo>() {
 
 			@Override
