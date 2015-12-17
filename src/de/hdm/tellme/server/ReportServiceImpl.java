@@ -27,7 +27,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public Vector<Nutzer> report2GenerierenListe(int i) {
 		
-		Vector<Nutzer> alleNutzer = nMapper.alleNutzerAusserMeineId( i );// Hier müssen wir noch einen Mapper mit ALLEN Nutzern erstellen, probeweise aber mit alle außer ich selber
+		Vector<Nutzer> alleNutzer = nMapper.alleNutzer(i);// Hier müssen wir noch einen Mapper mit ALLEN Nutzern erstellen, probeweise aber mit alle außer ich selber
 		return alleNutzer;
 	}
 
