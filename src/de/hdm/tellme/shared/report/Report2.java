@@ -9,7 +9,7 @@ import java.io.Serializable;
  *
  */
 public class Report2 
-	extends VerbundenerReport
+	extends EinfacherReport
 	implements Serializable{
 
 	/**
