@@ -230,5 +230,35 @@ public class NutzerMapper {
 		// Ergebnisvektor zur�ckgeben
 		return alleNutzerAusserMeinNutzerListe;
 	}
+	
+	public Vector<Nutzer> alleNutzer(int meineid) {
+
+		Vector<Nutzer> alleNutzerListe = new Vector<Nutzer>();
+
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			ResultSet rs = state.executeQuery("SELECT * From Nutzer");
+
+			while (rs.next()) {
+
+				
+					Nutzer n = new Nutzer();
+					n.setId(rs.getInt("Id"));
+					n.setVorname(rs.getString("Vorname"));
+					n.setNachname(rs.getString("Nachname"));
+					n.setMailadresse(rs.getString("Mailadresse"));
+					alleNutzerListe.addElement(n);
+
+				
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// Ergebnisvektor zur�ckgeben
+		return alleNutzerListe;
+	}
 
 }
