@@ -50,15 +50,10 @@ public class TellMe implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
-
-		ladeTellMe(); //TODO verübergehend hier der Aufruf zum starten Login wird übersprungen 
-
 		loginService.getNutzerInfo(new AsyncCallback<LoginInfo>() {
 
 			@Override
 			public void onSuccess(LoginInfo result) {
-
-				if(result.isLoggedIn())
 				eingeloggterBenutzer = result;
 
 				if (eingeloggterBenutzer.isLoggedIn()) {
