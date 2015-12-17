@@ -14,7 +14,7 @@ import de.hdm.tellme.shared.bo.NutzerAbonnement;
 public interface ReportService extends RemoteService {
 
 
-	Report2 report2GenerierenListe(Nutzer n);
+	Vector<Nutzer> report2GenerierenListe(int i);
 
  
  

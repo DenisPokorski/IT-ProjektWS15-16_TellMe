@@ -9,7 +9,6 @@ import de.hdm.tellme.shared.bo.Nutzer;
 
 public interface ReportServiceAsync {
 
-	void report2GenerierenListe(Nutzer n,
-			AsyncCallback<Report2> callback);
+	void report2GenerierenListe(int i, AsyncCallback<Vector<Nutzer>> callback);
 	
 }

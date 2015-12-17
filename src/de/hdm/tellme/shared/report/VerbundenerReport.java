@@ -3,7 +3,7 @@ package de.hdm.tellme.shared.report;
 import java.io.Serializable;
 import java.util.Vector;
 
-public abstract class GemischterReport
+public abstract class VerbundenerReport
 	extends Report 
 	implements Serializable{
 
