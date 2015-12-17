@@ -80,8 +80,56 @@ body {
 
 #footer {
 	/*Todo vervollständigen*/
-	
 }
+
+/*Unterhaltung Nachrichten anzeigen **/
+.NachrichtFlowPanel {
+    background: #0A64BF;
+    width: 480px;
+    color: white;
+    margin-bottom: 4px;
+        padding: 5px;
+    border: 1px solid #999;
+    border-radius: 8px;
+       
+}
+.NachrichtText {
+font-size: 14px;
+    margin-top: -3px;   
+}
+
+
+.NachrichtSenderName {
+}
+
+
+.NachrichtDatum {
+   
+}
+.NachrichtButton {
+    line-height: 12px;
+    float: right;
+    }
+
+ 
+.NachrichtButton,.NachrichtDatum,.NachrichtSenderName {
+   display:inline; 
+   font-size: 11px;
+}
+
+.textAreaNachrichtSendenButton {
+       height: 55px;
+   
+}
+.textAreaNachrichtSenden{
+       width: 417px;
+    height: 55px;
+    max-height: 100px;
+}
+.NachrichtSendeBtnWrap{
+  
+}
+
 
 /** 
 *

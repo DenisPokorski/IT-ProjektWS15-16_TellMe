@@ -11,9 +11,11 @@ public class Nachricht extends BusinessObject {
 	private static final long serialVersionUID = 1L;
 
 	private String text;
-	private Nutzer sender;
-	private Vector<Hashtag> hashtagListe;
-	private Vector<Nutzer> empfaengerListe;
+	private int senderId;
+	private String senderVorname; 
+	private String senderNachname; 
+
+ 	private Vector<Nutzer> empfaengerListe;
 
 	public String getText() {
 		return text;
@@ -23,21 +25,14 @@ public class Nachricht extends BusinessObject {
 		this.text = text;
 	}
 
-	public Nutzer getSender() {
-		return sender;
+	public int getSenderId() {
+		return senderId;
 	}
 
-	public void setSender(Nutzer sender) {
-		this.sender = sender;
+	public void setSenderId(int sender) {
+		this.senderId = sender;
 	}
 
-	public Vector<Hashtag> getHashtagListe() {
-		return hashtagListe;
-	}
-
-	public void setHashtagListe(Vector<Hashtag> hashtagListe) {
-		this.hashtagListe = hashtagListe;
-	}
 
 	public Vector<Nutzer> getEmpfaengerListe() {
 		return empfaengerListe;
@@ -45,6 +40,22 @@ public class Nachricht extends BusinessObject {
 
 	public void setEmpfaengerListe(Vector<Nutzer> empfaengerListe) {
 		this.empfaengerListe = empfaengerListe;
+	}
+
+	public String getSenderVorname() {
+		return senderVorname;
+	}
+
+	public void setSenderVorname(String senderVorname) {
+		this.senderVorname = senderVorname;
+	}
+
+	public String getSenderNachname() {
+		return senderNachname;
+	}
+
+	public void setSenderNachname(String senderNachname) {
+		this.senderNachname = senderNachname;
 	}
 
 }

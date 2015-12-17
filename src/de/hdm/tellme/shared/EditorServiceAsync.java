@@ -1,12 +1,14 @@
 package de.hdm.tellme.shared;
 
+import java.sql.Timestamp;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Hashtag;
-
+import de.hdm.tellme.shared.bo.Nachricht;
+import de.hdm.tellme.shared.bo.Nutzer;
+import de.hdm.tellme.shared.bo.Unterhaltung;
 
 public interface EditorServiceAsync {
 
@@ -32,17 +34,34 @@ public interface EditorServiceAsync {
 
 	void erstellenNutzeraboById(int vonId, int nachId,
 			AsyncCallback<Void> asyncCallback);
-	
 
 	void getAlleNutzerAußerMeineId(int meineId,
 			AsyncCallback<Vector<Nutzer>> asyncCallback);
+ 
 
-	void getZuAbonnierendeLoeschenHashtagAboListe(int meineId,
-			AsyncCallback<Vector<Hashtag>> asyncCallback);
+	void NachrichtErstellen(Nachricht n, AsyncCallback<Void> asyncCallback);
 
-	void erstellenHashtagAboById(int nutzerId, int hashtagId,
+	void UnterhaltungErstellen(Timestamp ts, String text,
+			AsyncCallback<Integer> asyncCallback);
+
+	void alleNachrichtenVonUnterhaltungListe(int uId,
+			AsyncCallback<Vector<Nachricht>> asyncCallback);
+
+	void nachrichtUnterhaltungZuweisen(String txt, int uId, Timestamp ts,
 			AsyncCallback<Void> asyncCallback);
 
+	void NachrichtErstellenUnnterhaltungZuweisen(Nachricht n,
+			int uid, AsyncCallback<Void> asyncCallback);
+
+	void ladeAlleOeffentlichenUnterhaltungen(
+			AsyncCallback<Vector<Unterhaltung>> asyncCallback);
+
+	void getZuAbonnierendeLoeschenHashtagAboListe(int meineId,
+			AsyncCallback<Vector<Hashtag>> callback);
+
+	void erstellenHashtagAboById(int NutzerId, int HashtagId,
+			AsyncCallback<Void> callback);
+
 	void getAlleNochNichtAbonnierteHashtagAboListe(int id,
-			AsyncCallback<Vector<Nutzer>> asyncCallback);
+			AsyncCallback<Vector<Nutzer>> callback);
 }
