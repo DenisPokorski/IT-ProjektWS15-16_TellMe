@@ -50,6 +50,7 @@ public interface EditorServiceAsync {
 	void nachrichtUnterhaltungZuweisen(String txt, int uId, Timestamp ts,
 			AsyncCallback<Void> asyncCallback);
 
+ 
 	void NachrichtErstellenUnnterhaltungZuweisen(Nachricht n,
 			int uid, AsyncCallback<Void> asyncCallback);
 
@@ -63,5 +64,7 @@ public interface EditorServiceAsync {
 			AsyncCallback<Void> callback);
 
 	void getAlleNochNichtAbonnierteHashtagAboListe(int id,
-			AsyncCallback<Vector<Nutzer>> callback);
-}
+			AsyncCallback<Vector<Hashtag>> asyncCallback);
+
+	 
+ }

@@ -11,7 +11,7 @@ import de.hdm.tellme.shared.bo.HashtagAbonnement;
 
 /**
  * Mapper-Klasse, die HashtagAbonnement-Objekte in der Datenbank abbildet. Diese
- * enthält Methoden zum Anlegen, Aktualisieren, Entfernen und Suchen von
+ * enthï¿½lt Methoden zum Anlegen, Aktualisieren, Entfernen und Suchen von
  * Objekten.
  * 
  * @author Nicole Reum
@@ -26,8 +26,8 @@ public class HashtagAbonnementMapper {
 	}
 
 	/**
-	 * Die statische Methode wird über HashtagAbonnementMapper
-	 * hashtagAbonnementMapper () aufgerufen. Diese überprüft, dass nur eine
+	 * Die statische Methode wird ï¿½ber HashtagAbonnementMapper
+	 * hashtagAbonnementMapper () aufgerufen. Diese ï¿½berprï¿½ft, dass nur eine
 	 * Instanz von HashtagAbonnementMapper besteht.
 	 */
 
@@ -59,11 +59,51 @@ public class HashtagAbonnementMapper {
 			}
 		}
 
+		
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 
+		System.out.println("hasttag size liste: " + HashtagListe.size());
 		return HashtagListe;
+	}
+	
+	public Vector<Hashtag> alleNochNichtAboonierteHashtagsSelektieren (int i) {
+		
+		Vector<Hashtag> alleHashtagAusserMeinHashtagListe =  new Vector<Hashtag>();
+		
+		Connection con = DatenbankVerbindung.connection();
+		int meineid = i;
+		try{
+			Statement state = con.createStatement();
+			ResultSet rs = state
+					.executeQuery("SELECT * From Nutzer LEFT JOIN (SELECT * FROM NutzerHashtag WHERE NutzerHashtag.NutzerId = '"
+							+ meineid + "') AS A ON Nutzer.Id =  A.HashtagId");
+			
+			while (rs.next()) {
+				
+				Hashtag h = new Hashtag();
+				h.setId(rs.getInt("Id"));
+				h.setErstellungsDatum(rs.getTimestamp("Erstellungsdatum"));
+				h.setSchlagwort(rs.getString("Schlagwort"));
+				alleHashtagAusserMeinHashtagListe.addElement(h);
+				
+			}
+		} catch (Exception e)	{
+			e.printStackTrace();
+		}
+		return alleHashtagAusserMeinHashtagListe;
+	}
+	
+	public void hashtagAboErstellen(int NutzerId, int HashtagId)	{
+		Connection con = DatenbankVerbindung.connection();
+		try{
+			Statement state = con.createStatement();
+			state.executeUpdate("INSERT INTO NutzerHashtag(NutzerId, HashtagId) VALUES ('"
+					+ NutzerId + "','" + HashtagId +"');  ");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void anlegen(HashtagAbonnement h) {
@@ -120,7 +160,7 @@ public class HashtagAbonnementMapper {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// Ergebnisvektor zurückgeben
+		// Ergebnisvektor zurï¿½ckgeben
 		return alleHashtagsEinesNutzers;
 
 	}

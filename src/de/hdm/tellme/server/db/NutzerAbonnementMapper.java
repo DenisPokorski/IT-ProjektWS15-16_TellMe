@@ -74,16 +74,12 @@ public class NutzerAbonnementMapper {
 		try {
 			Statement state = con.createStatement();
 			ResultSet rs = state
-					.executeQuery("SELECT * From Nutzer LEFT JOIN  (SELECT * FROM AbonnentBenutzer WHERE AbonnentBenutzer.VonId = '"
-							+ meineid + "' )AS A  ON Nutzer.Id  = A.NachId");
+						.executeQuery("SELECT * From Nutzer RIGHT JOIN  (SELECT * FROM AbonnentBenutzer WHERE AbonnentBenutzer.VonId = '"
+								+ meineid + "' )AS A  ON Nutzer.Id  = A.NachId");
 
 			while (rs.next()) {
 
-				if ((rs.getInt("VonId")) == meineid) {
-
-				} else if ((rs.getInt("Id")) == meineid) {
-
-				} else {
+	 
 					Nutzer n = new Nutzer();
 					n.setId(rs.getInt("Id"));
 					n.setVorname(rs.getString("Vorname"));
@@ -91,14 +87,14 @@ public class NutzerAbonnementMapper {
 					n.setMailadresse(rs.getString("Mailadresse"));
 					alleNutzerAusserMeinNutzerListe.addElement(n);
 
-				}
+			 
 
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// Ergebnisvektor zurückgeben
+		// Ergebnisvektor zurï¿½ckgeben
 		return alleNutzerAusserMeinNutzerListe;
 	}
 
@@ -115,41 +111,41 @@ public class NutzerAbonnementMapper {
 
 	}
 
-	public Vector<Nutzer> alleNutzerAbosEinesNutzers (int nachId) {
-		
-		Vector <Nutzer> alleNutzerAbosEinesNutzers = new Vector <Nutzer>();
-		
-		Connection con = DatenbankVerbindung.connection();
-		int tempId = nachId;
-		
-		try {
-			
-			Statement state = con.createStatement();
-			ResultSet rs = state
-			.executeQuery("SELECT AbonnentBenutzer.NachId, Nutzer.Id, Nutzer.Vorname, Nutzer.Nachname, Nutzer.Mailadresse FROM AbonnentBenutzer LEFT JOIN Nutzer ON AbonnentBenutzer.NachId = Nutzer.Id WHERE AbonnentBenutzer.VonId = '"+tempId+"')");
-			
-			while (rs.next()) {
-
-				if ((rs.getInt("NachId")) == tempId) {
-
-				} else if ((rs.getInt("Id")) == tempId) {
-
-				} else {
-					Nutzer nu = new Nutzer();
-					nu.setId(rs.getInt("Id"));
-					nu.setVorname(rs.getString("Vorname"));
-					nu.setNachname(rs.getString("Nachname"));
-					nu.setMailadresse(rs.getString("Mailadresse"));
-					alleNutzerAbosEinesNutzers.addElement(nu);
-
-				}
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		// Ergebnisvektor zurückgeben
-		return alleNutzerAbosEinesNutzers;
-		}
+//	public Vector<Nutzer> alleNutzerAbosEinesNutzers (int nachId) {
+//		
+//		Vector <Nutzer> alleNutzerAbosEinesNutzers = new Vector <Nutzer>();
+//		
+//		Connection con = DatenbankVerbindung.connection();
+//		int tempId = nachId;
+//		
+//		try {
+//			
+//			Statement state = con.createStatement();
+//			ResultSet rs = state
+//			.executeQuery("SELECT AbonnentBenutzer.NachId, Nutzer.Id, Nutzer.Vorname, Nutzer.Nachname, Nutzer.Mailadresse FROM AbonnentBenutzer LEFT JOIN Nutzer ON AbonnentBenutzer.NachId = Nutzer.Id WHERE AbonnentBenutzer.VonId = '"+tempId+"')");
+//			
+//			while (rs.next()) {
+//
+//				if ((rs.getInt("NachId")) == tempId) {
+//
+//				} else if ((rs.getInt("Id")) == tempId) {
+//
+//				} else {
+//					Nutzer nu = new Nutzer();
+//					nu.setId(rs.getInt("Id"));
+//					nu.setVorname(rs.getString("Vorname"));
+//					nu.setNachname(rs.getString("Nachname"));
+//					nu.setMailadresse(rs.getString("Mailadresse"));
+//					alleNutzerAbosEinesNutzers.addElement(nu);
+//
+//				}
+//
+//			}
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		// Ergebnisvektor zurï¿½ckgeben
+//		return alleNutzerAbosEinesNutzers;
+//		}
 	}

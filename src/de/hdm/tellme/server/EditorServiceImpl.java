@@ -5,8 +5,10 @@ import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-import de.hdm.tellme.server.db.NachrichtMapper;
-import de.hdm.tellme.server.db.NutzerAbonnementMapper;
+ import de.hdm.tellme.server.db.NachrichtMapper;
+ import de.hdm.tellme.server.db.HashtagAbonnementMapper;
+import de.hdm.tellme.server.db.HashtagMapper;
+ import de.hdm.tellme.server.db.NutzerAbonnementMapper;
 import de.hdm.tellme.server.db.NutzerMapper;
 import de.hdm.tellme.server.db.UnterhaltungMapper;
 import de.hdm.tellme.shared.EditorService;
@@ -20,7 +22,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	}
 
 	public void init() throws IllegalArgumentException {
-		this.nutzerMapper = NutzerMapper.nutzerMapper();
+ 		this.nutzerMapper = NutzerMapper.nutzerMapper();
 		this.nutzeraboMapper = NutzerAbonnementMapper.nutzerAbonnementMapper();
 		this.nachrichtMapper = NachrichtMapper.nachrichtMapper();
 		this.unterhaltungMapper = UnterhaltungMapper.unterhaltungMapper();
@@ -31,6 +33,16 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 	private NachrichtMapper nachrichtMapper = null;
 	private UnterhaltungMapper unterhaltungMapper = null;
+ 		 
+
+
+		
+ 
+
+	private NutzerMapper nMapper = null;
+	private NutzerAbonnementMapper naMapper = null;
+	private HashtagAbonnementMapper hashtagAboMapper = null;
+	private HashtagMapper hashtagMapper = null;
 
 
 	public void nutzerAnlegen(Nutzer na) {
@@ -77,7 +89,12 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	public Vector<Nutzer> getNochNichtAbonnenteNutzerListe(int meineId) {
 		return null; 
 	}
+		// death
+	
+ 
 
+	
+	
 	@Override
 	public Vector<Nutzer> getAlleNochNichtAbonnierteNutzerListe(int id) {
 		//int id =7;
@@ -140,20 +157,20 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public Vector<Hashtag> getZuAbonnierendeLoeschenHashtagAboListe(int meineId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		Vector<Hashtag> alleAbboniertenHashtags =hashtagAboMapper.ladeAbonnierendeHashtagListe(meineId) ;
+		return alleAbboniertenHashtags;	
+		}
 
 	@Override
 	public void erstellenHashtagAboById(int NutzerId, int HashtagId) {
-		// TODO Auto-generated method stub
-		
+			hashtagAboMapper.hashtagAboErstellen(NutzerId, HashtagId);
 	}
 
 	@Override
-	public Vector<Nutzer> getAlleNochNichtAbonnierteHashtagAboListe(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Vector<Hashtag> getAlleNochNichtAbonnierteHashtagAboListe(int i) {
+		Vector<Hashtag> alleHashtags = hashtagAboMapper.alleNochNichtAboonierteHashtagsSelektieren(i);
+			naMapper.alleNochNichtAbonnierteNutzerSelektieren(i );
+		return alleHashtags;		
 	}
 	
 }

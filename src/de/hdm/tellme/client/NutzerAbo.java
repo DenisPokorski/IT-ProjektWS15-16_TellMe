@@ -39,6 +39,7 @@ public class NutzerAbo {
 	public ListBox getAbonnierteNutzerLoeschenListe() {
 
 		final int meineId = loginInfo.getUser().getId();
+		
 		asyncObj.getZuAbonnieredeLoeschenNutzerListe(meineId,
 				new AsyncCallback<Vector<Nutzer>>() {
 					@Override
@@ -101,6 +102,7 @@ public class NutzerAbo {
 	// Nutzerabo löschen Funktionen ende
 	// __________________________________
 
+	
 	public ListBox getZuAbonnierndeNutzerHinzufügenListe() {
 
 		asyncObj.getAlleNochNichtAbonnierteNutzerListe(loginInfo.getUser().getId(), new AsyncCallback<Vector<Nutzer>>() {

@@ -79,7 +79,7 @@ public class HashtagAbo {
 	
 	public ListBox getAbonnierteHashtagAboHinzufuegenListe(){
 		
-		asyncObj.getAlleNochNichtAbonnierteHashtagAboListe(loginInfo.getUser().getId(), new AsyncCallback<Vector<Nutzer>>() {
+		asyncObj.getAlleNochNichtAbonnierteHashtagAboListe(loginInfo.getUser().getId(), new AsyncCallback<Vector<Hashtag>>() {
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO
@@ -88,7 +88,7 @@ public class HashtagAbo {
 			}
 
 			@Override
-			public void onSuccess(Vector<Nutzer> resultListe) {
+			public void onSuccess(Vector<Hashtag> resultListe) {
 
 				dropDownHashtagNochNichtAbooniert.clear();
 				dropDownHashtagNochNichtAbooniert.addItem("---");
@@ -184,6 +184,7 @@ public class HashtagAbo {
 		return dropDownHashtagBereitsAbonniert;
 	}
 	
+	
 	public Button HashtagAboErstellen(){
 		Button HashtagAboErstellenButton = new Button("Hashtagabonnement erstellen");
 		HashtagAboErstellenButton.addClickHandler(new ClickHandler() {
@@ -192,8 +193,7 @@ public class HashtagAbo {
 			public void onClick(ClickEvent event) {
 				if ((auswahlIdHashtagAboHinzufuegen !=0)
 						&& (dropDownHashtagNochNichtAbooniert.getSelectedIndex() >0 )){
-					HashtagAboErstellenByIds(loginInfo.getUser().getId(),
-							auswahlIdHashtagAboHinzufuegen);
+					HashtagAboErstellenByIds(loginInfo.getUser().getId(),auswahlIdHashtagAboHinzufuegen);
 				} else{
 					Window.alert("Bitte wählen Sie ein Hashtag aus der Liste, zu dem ein Abo erstellt werden soll.");
 				
