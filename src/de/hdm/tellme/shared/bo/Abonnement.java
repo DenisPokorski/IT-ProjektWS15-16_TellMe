@@ -29,7 +29,7 @@ public abstract class Abonnement extends BusinessObject {
 	}
 	
 	/**
-	 * Der abonnementErsteller bekommt den abonnementErsteller aus der Datenbank zugewiesen
+	 * Setzen des abonnementErsteller 
 	 * @param abonnementErsteller
 	 */
 
