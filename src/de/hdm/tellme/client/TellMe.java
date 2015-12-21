@@ -12,10 +12,11 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
+import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.MenuBarEditor;
 import de.hdm.tellme.client.gui.editor.NutzerBearbeitenEditor;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
-import de.hdm.tellme.client.gui.editor.NutzerCellListModus;
+
 import de.hdm.tellme.shared.LoginService;
 import de.hdm.tellme.shared.LoginServiceAsync;
 import de.hdm.tellme.shared.LoginInfo;
@@ -46,7 +47,7 @@ public class TellMe implements EntryPoint {
 
 			RootPanel.get("header").add(menuBar);
 
-			menuBar.setzeInhalt(new NutzerCellList().generiereCellList(NutzerCellListModus.Nachrichtenuebersicht),menuBar.gibansichtNeuigkeiten());
+			menuBar.setzeInhalt(new NutzerCellList().generiereCellList(CellListModus.Nachrichtenuebersicht),menuBar.gibansichtNeuigkeiten());
 		}
 		return null;
 	}
