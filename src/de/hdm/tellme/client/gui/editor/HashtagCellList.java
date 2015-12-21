@@ -65,7 +65,7 @@ public class HashtagCellList {
 
 		ShowMorePagerPanel sPager = new ShowMorePagerPanel();
 		sPager.setWidth("250px");
-		sPager.setHeight("100px");
+		sPager.setHeight("100%");
 		sPager.setDisplay(cellList);
 
 		RangeLabelPager fPager = new RangeLabelPager();
@@ -75,6 +75,8 @@ public class HashtagCellList {
 
 		fP.add(new ScrollPanel(sPager));
 		fP.add(new SimplePanel(fPager));
+		
+		RootPanel.get("content_left").clear();
 		return fP;
 
 	}

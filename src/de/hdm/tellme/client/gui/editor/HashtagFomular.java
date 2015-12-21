@@ -16,32 +16,30 @@ package de.hdm.tellme.client.gui.editor;
  * the License.
  */
 
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
-import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.user.datepicker.client.DateBox;
-
+import de.hdm.tellme.client.TellMe;
+import de.hdm.tellme.shared.EditorService;
+import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Hashtag;
-import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
  * A form used for editing contacts.
  */
 
 public class HashtagFomular extends Composite {
+	
+	private final EditorServiceAsync _asyncObj = GWT.create(EditorService.class);
+
 	private Hashtag hashtag = null;
 	Button btnAbonieren = new Button("abonieren");
 	Button btnDeabonieren = new Button("deabonieren");
@@ -49,6 +47,7 @@ public class HashtagFomular extends Composite {
 	
 
 	public HashtagFomular() {
+		
 		// Handle events.
 		btnAbonieren.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -58,6 +57,7 @@ public class HashtagFomular extends Composite {
 				HashtagDataProvider.gib().abonieren(hashtag);
 			}
 		});
+		
 		// Handle events.
 		btnDeabonieren.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -69,25 +69,73 @@ public class HashtagFomular extends Composite {
 		});
 	}
 	
+	// Panel Rückgabe 
 	public VerticalPanel gibFormular(){
 		VerticalPanel vpForm = new VerticalPanel();
 		vpForm.clear();
 		vpForm.add(new Label(hashtag.getSchlagwort() ));
+		
+		btnAbonieren.addClickHandler(btnAbonnierenClickHandler);
+		btnDeabonieren.addClickHandler(btnDeabonnierenClickHandler);
+
 		vpForm.add(btnAbonieren);
 		vpForm.add(btnDeabonieren);
 		
 		return vpForm;
 	}
 
+		//TODO Clickhandler richtige Stelle verschieben
+	 	ClickHandler btnAbonnierenClickHandler = new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				int NutzerId = TellMe.eingeloggterBenutzer.getUser().getId();
+				int  HashtagId = hashtag.getId();
+				
+				_asyncObj.hashtagAboErstellen(NutzerId,HashtagId, new AsyncCallback <Void>() {
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert("Fehler" );
+		 			}
+					@Override
+					public void onSuccess(Void  resultListe) {
+					Window.alert("Das Abo wurde erfolgreich erstellt.");
+		 			}
+					});
+			}
+		};
+		
+		//TODO Clickhandler richtige Stelle verschieben
+		ClickHandler btnDeabonnierenClickHandler = new ClickHandler() {
+				public void onClick(ClickEvent event) {
+					int NutzerId = TellMe.eingeloggterBenutzer.getUser().getId();
+					int HashtagId = hashtag.getId();
+					
+					_asyncObj.hashtagEntfernen(NutzerId,HashtagId, new AsyncCallback <Void>() {
+						@Override
+						public void onFailure(Throwable caught) {
+							Window.alert("Fehler" );
+			 			}
+						@Override
+						public void onSuccess(Void  resultListe) {
+						Window.alert("Das Abo wurde erfolgreich entfernt.");
+			 			}
+						});
+				}
+			};		
+	
+// Setze Buttons
 	public void setzeHashtagAbo(HashtagZelle.ZellenObjekt ZellenObjekt) {
 		this.hashtag = ZellenObjekt.hashtag;
 		
 		if (ZellenObjekt.aboniert) {
 			btnAbonieren.setEnabled(false);
 			btnDeabonieren.setEnabled(true);
+			
 		} else {
 			btnAbonieren.setEnabled(true);
 			btnDeabonieren.setEnabled(false);
+			
+			
+			
 		}
 
 	}

@@ -69,5 +69,11 @@ public interface EditorServiceAsync {
 	void ladeAbonnierendeHashtagListe(int meineId,
 			AsyncCallback<Vector<Integer>> asyncCallback);
 
+	void hashtagAboErstellen(int nutzerId, int hashtagId,
+			AsyncCallback<Void> asyncCallback);
+
+	void hashtagEntfernen(int nutzerId, int hashtagId,
+			AsyncCallback<Void> asyncCallback);
+
 	 
  }

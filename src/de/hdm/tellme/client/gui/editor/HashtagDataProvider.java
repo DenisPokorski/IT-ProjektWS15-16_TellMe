@@ -5,14 +5,12 @@ import java.util.Vector;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.cellview.client.CellList;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.view.client.ListDataProvider;
 
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Hashtag;
-import de.hdm.tellme.shared.bo.Nutzer;
 
 public class HashtagDataProvider {
 

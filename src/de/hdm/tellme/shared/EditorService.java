@@ -56,5 +56,9 @@ public interface EditorService extends RemoteService {
 
 	Vector<Integer> ladeAbonnierendeHashtagListe(int meineId);
 
+	void hashtagAboErstellen(int nutzerId, int hashtagId);
+
+	void hashtagEntfernen(int nutzerId, int hashtagId);
+
  
 }

@@ -174,4 +174,15 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return alleHashtags;
 	}
 
+	@Override
+	public void hashtagAboErstellen(int nutzerId, int hashtagId) {
+		hashtagAboMapper.hashtagAboErstellen(nutzerId,hashtagId);
+	}
+
+	@Override
+	public void hashtagEntfernen(int nutzerId, int hashtagId) {
+		hashtagAboMapper.entfernen(nutzerId,hashtagId);
+
+	}
+
 }

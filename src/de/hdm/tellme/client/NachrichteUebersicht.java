@@ -73,26 +73,6 @@ public class NachrichteUebersicht extends VerticalPanel {
 	//Jedes GWT Widget implementiert diese Methode, welche zeigt was passiert wenn eine Widget-Instanz zur Anzeige gebracht wird.
 	 	public void onLoad(){
 	 		
-	 				    // Erstellt eine Celllist, die alle Nachrichten enth�lt
-//		    CellList<String> nachrichtenListe = new CellList<String>(null);
-//		    nachrichtenListe.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
-//
-//		    
-//		    // Das Objekt wird ausgew�hlt
-//		    final SingleSelectionModel<String> selectionModel = new SingleSelectionModel<String>();
-//		    nachrichtenListe.setSelectionModel(selectionModel);
-//		    selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-//		      public void onSelectionChange(SelectionChangeEvent event) {
-//		        String ausgewaehlt = selectionModel.getSelectedObject();
-//		        if (ausgewaehlt != null) {
-//		          Window.alert("Sie haben " + ausgewaehlt);
-//		        }
-//		      }
-//		    });
-
-		
-		    // Die Daten werden dem Widget hinzugef�gt
-		 //   nachrichtenListe.setRowData(0, nachrichtenListe);
 
 
 	 			    // Es wird eine cellliste erstellt

@@ -42,7 +42,6 @@ public class MenuBarEditor extends HorizontalPanel {
 	public static AboverwaltungEditor gibansichtEinstellungenAboverwatung() {
 		// lade jedes mal neu um Listen aktuell zu halten
 		ansichtEinstellungenAboverwatung = new AboverwaltungEditor();
-
 		return ansichtEinstellungenAboverwatung;
 	}
 
@@ -51,7 +50,6 @@ public class MenuBarEditor extends HorizontalPanel {
 	public static NutzerBearbeitenEditor gibansichtEinstellungenBenutzereinstellungen() {
 		// lade jedes mal neu um Listen aktuell zu halten
 		ansichtEinstellungenBenutzereinstellungen = new NutzerBearbeitenEditor();
-
 		return ansichtEinstellungenBenutzereinstellungen;
 	}
 
@@ -86,7 +84,6 @@ public class MenuBarEditor extends HorizontalPanel {
 		HauptMenue.addItem("Neuigkeiten", new Command() {
 			@Override
 			public void execute() {
-
 				setzeInhalt(new NutzerCellList().generiereCellList(CellListModus.Nachrichtenuebersicht),gibansichtNeuigkeiten());
 			}
 		});
@@ -131,21 +128,12 @@ public class MenuBarEditor extends HorizontalPanel {
 			@Override
 			public void execute() {
 				setzeInhalt(new Report1());
-				// RootPanel.get("content_right").add(new
-				// ExCell().generiereCellList());
-				// FlowPanel fp = new ExCell().generiereCellList();
-				// RootPanel.get("content_right").add(fp);
-//				 new CellList();
-				// RootPanel.get("content_right").add(new CwCellList());
-
 			}
 		});
 
 		tempReports.addItem("Report 2", new Command() {
 			@Override
 			public void execute() {
-				// setzeInhalt(new Report2());
-				// FlowPanel fp = new ExCell().generiereCellList();
 
 			}
 		});

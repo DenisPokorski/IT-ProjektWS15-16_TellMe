@@ -121,12 +121,12 @@ public class HashtagAbonnementMapper {
 		}
 	}
 
-	public void entfernen(HashtagAbonnement h) {
+	public void entfernen(int NutzerId, int HashtagId ) {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "DELETE FROM NutzerHashtag (NutzerId, HashtagId) WHERE Id='"
-					+ h + "';";
+			String sqlquery = "DELETE FROM NutzerHashtag (NutzerId, HashtagId) WHERE NutzerId='"
+			+ NutzerId + "' AND HashtagId='"+HashtagId + "';";
 			state.executeUpdate(sqlquery);
 		} catch (Exception e) {
 			e.printStackTrace();
