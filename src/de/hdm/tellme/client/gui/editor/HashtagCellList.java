@@ -20,7 +20,7 @@ import de.hdm.tellme.shared.bo.Nutzer;
 
 
 
-public class NutzerCellList {
+public class HashtagCellList {
 
 	Nutzer selektiererBenutzer = null;
 

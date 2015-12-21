@@ -87,7 +87,7 @@ public class MenuBarEditor extends HorizontalPanel {
 			@Override
 			public void execute() {
 
-				setzeInhalt(new NutzerCellList().generiereCellList(NutzerCellListModus.Nachrichtenuebersicht),gibansichtNeuigkeiten());
+				setzeInhalt(new NutzerCellList().generiereCellList(CellListModus.Nachrichtenuebersicht),gibansichtNeuigkeiten());
 			}
 		});
 
@@ -98,13 +98,17 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.addItem("NutzeraboVerwaltung", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(gibansichtEinstellungenAboverwatung());
+				//setzeInhalt(gibansichtEinstellungenAboverwatung());
+				RootPanel.get("content_left").add(new NutzerCellList().generiereCellList(CellListModus.Einstellungen));
+
 			}
 		});
 		EinstellungenMenu.addItem("HashtagaboVerwaltung", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(gibansichtEinstellungenAboverwatung());
+				RootPanel.get("content_left").add(new NutzerCellList().generiereCellList(CellListModus.Einstellungen));
+
+			//	setzeInhalt(gibansichtEinstellungenAboverwatung());
 			}
 		});
 
@@ -146,7 +150,6 @@ public class MenuBarEditor extends HorizontalPanel {
 			public void execute() {
 				// setzeInhalt(new Report2());
 				// FlowPanel fp = new ExCell().generiereCellList();
-				RootPanel.get("content_right").add(new NutzerCellList().generiereCellList(NutzerCellListModus.Einstellungen));
 
 			}
 		});
