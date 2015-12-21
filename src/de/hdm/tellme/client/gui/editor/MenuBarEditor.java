@@ -1,12 +1,16 @@
-package de.hdm.tellme.client;
+package de.hdm.tellme.client.gui.editor;
 
+import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
 
+import de.hdm.tellme.client.*;
 import de.hdm.tellme.client.gui.report.Report1;
 import de.hdm.tellme.client.gui.report.Report2;
 import de.hdm.tellme.client.gui.report.Report3;
@@ -24,13 +28,6 @@ public class MenuBarEditor extends HorizontalPanel {
 	 * Alle Ansichten sollen aus Performancegründen nur einmal erstellt werden.
 	 * 
 	 */
-	private static NachrichtenverwaltungEditor ansichtUnterhaltungen = null;
-
-	public static NachrichtenverwaltungEditor gibansichtUnterhaltungen() {
-		if (ansichtUnterhaltungen == null)
-			ansichtUnterhaltungen = new NachrichtenverwaltungEditor();
-		return ansichtUnterhaltungen;
-	}
 
 	private static NeuigkeitenEditor ansichtNeuigkeiten = null;
 
@@ -86,17 +83,11 @@ public class MenuBarEditor extends HorizontalPanel {
 			}
 		}));
 
-		HauptMenue.addItem("Unterhaltungen", new Command() {
-			@Override
-			public void execute() {
-				setzeInhalt(gibansichtUnterhaltungen());
-			}
-		});
-
 		HauptMenue.addItem("Neuigkeiten", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(gibansichtNeuigkeiten());
+
+				setzeInhalt(new NutzerCellList().generiereCellList(NutzerCellListModus.Nachrichtenuebersicht),gibansichtNeuigkeiten());
 			}
 		});
 
@@ -104,10 +95,23 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.setAnimationEnabled(true);
 		HauptMenue.addItem(new MenuItem("Einstellungen", EinstellungenMenu));
 
-		EinstellungenMenu.addItem("Aboverwaltung", new Command() {
+		EinstellungenMenu.addItem("NutzeraboVerwaltung", new Command() {
 			@Override
 			public void execute() {
 				setzeInhalt(gibansichtEinstellungenAboverwatung());
+			}
+		});
+		EinstellungenMenu.addItem("HashtagaboVerwaltung", new Command() {
+			@Override
+			public void execute() {
+				setzeInhalt(gibansichtEinstellungenAboverwatung());
+			}
+		});
+
+		EinstellungenMenu.addItem("Hashtagverwaltung", new Command() {
+			@Override
+			public void execute() {
+				// TODO:really?!
 			}
 		});
 
@@ -115,13 +119,6 @@ public class MenuBarEditor extends HorizontalPanel {
 			@Override
 			public void execute() {
 				setzeInhalt(gibansichtEinstellungenBenutzereinstellungen());
-			}
-		});
-
-		EinstellungenMenu.addItem("Hashtagverwaltung(?)", new Command() {
-			@Override
-			public void execute() {
-				// TODO:really?!
 			}
 		});
 
@@ -134,13 +131,23 @@ public class MenuBarEditor extends HorizontalPanel {
 			@Override
 			public void execute() {
 				setzeInhalt(new Report1());
+				// RootPanel.get("content_right").add(new
+				// ExCell().generiereCellList());
+				// FlowPanel fp = new ExCell().generiereCellList();
+				// RootPanel.get("content_right").add(fp);
+//				 new CellList();
+				// RootPanel.get("content_right").add(new CwCellList());
+
 			}
 		});
 
 		tempReports.addItem("Report 2", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(new Report2());
+				// setzeInhalt(new Report2());
+				// FlowPanel fp = new ExCell().generiereCellList();
+				RootPanel.get("content_right").add(new NutzerCellList().generiereCellList(NutzerCellListModus.Einstellungen));
+
 			}
 		});
 
@@ -155,12 +162,21 @@ public class MenuBarEditor extends HorizontalPanel {
 
 	}
 
-	public static void setzeInhalt(VerticalPanel ZuSetzendesPanel) {
+	public static void setzeInhalt(Widget ZuSetzendesPanel) {
 
 		RootPanel.get("content_left").clear();
 		RootPanel.get("content_right").clear();
 		RootPanel.get("content").clear();
 		RootPanel.get("content").add(ZuSetzendesPanel);
+	}
+
+	public static void setzeInhalt(Widget ZuSetzendesPanelLinks,Widget ZuSetzendesPanelRechts) {
+
+		RootPanel.get("content_left").clear();
+		RootPanel.get("content_right").clear();
+		RootPanel.get("content").clear();
+		RootPanel.get("content_left").add(ZuSetzendesPanelLinks);
+		RootPanel.get("content_right").add(ZuSetzendesPanelRechts);
 	}
 
 }

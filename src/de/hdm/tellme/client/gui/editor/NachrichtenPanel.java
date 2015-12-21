@@ -1,4 +1,4 @@
-package de.hdm.tellme.client;
+package de.hdm.tellme.client.gui.editor;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -19,6 +19,8 @@ import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.hdm.tellme.client.NachrichtenErstellen;
+import de.hdm.tellme.client.UnterhaltungErstellen;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Nutzer;

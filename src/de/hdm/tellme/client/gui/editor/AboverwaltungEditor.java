@@ -1,4 +1,4 @@
-package de.hdm.tellme.client;
+package de.hdm.tellme.client.gui.editor;
 
 import java.util.Vector;
 
@@ -11,6 +11,9 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.hdm.tellme.client.HashtagAbo;
+import de.hdm.tellme.client.NutzerAbo;
+import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.LoginInfo;

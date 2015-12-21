@@ -1,4 +1,5 @@
 package de.hdm.tellme.client;
+
 import java.sql.Timestamp;
 import java.util.Vector;
 
@@ -26,12 +27,11 @@ import de.hdm.tellme.shared.bo.Nutzer;
  */
 
 public class NachrichtenErstellen extends VerticalPanel {
-	
 
-	  private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
+	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
 
-	void oeffentlicheNachrichtErstellen(Timestamp date, String text ){
-		
+	public void oeffentlicheNachrichtErstellen(Timestamp date, String text) {
+
 		int meineId = 7;
 		Nachricht n = new Nachricht();
 		n.setErstellungsDatum(date);
@@ -39,27 +39,26 @@ public class NachrichtenErstellen extends VerticalPanel {
 		n.setText(text);
 		n.setSenderId(meineId);
 
-		asyncObj.NachrichtErstellen(n, new AsyncCallback <Void>() {
+		asyncObj.NachrichtErstellen(n, new AsyncCallback<Void>() {
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert( "fail1");
+				Window.alert("fail1");
 			}
-			 
+
 			@Override
 			public void onSuccess(Void result) {
-			}	
-			});
-	} 
-	
-	
-	void privateNachrichtErstellen(){} 
-	
-	void antwortNachrichtErstellen(){}
+			}
+		});
+	}
 
+	void privateNachrichtErstellen() {
+	}
 
-	public void oeffentlicheNachrichtErstellenUnterhaltungZuweisen(
-			Timestamp ts, String text, int uid) {
- 
+	void antwortNachrichtErstellen() {
+	}
+
+	public void oeffentlicheNachrichtErstellenUnterhaltungZuweisen(Timestamp ts, String text, int uid) {
+
 		int meineId = 7;
 		Nachricht n = new Nachricht();
 		n.setErstellungsDatum(ts);
@@ -67,45 +66,41 @@ public class NachrichtenErstellen extends VerticalPanel {
 		n.setText(text);
 		n.setSenderId(meineId);
 
-		asyncObj.NachrichtErstellenUnnterhaltungZuweisen(n,uid, new AsyncCallback <Void>() {
+		asyncObj.NachrichtErstellenUnnterhaltungZuweisen(n, uid, new AsyncCallback<Void>() {
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert( "fail1");
+				Window.alert("fail1");
 			}
-			 
+
 			@Override
 			public void onSuccess(Void result) {
-			}	
-			});
-		
-		
-		
+			}
+		});
+
 	}
 
-
-//	public void oeffentlicheNachrichtUnterhaltungZuweisen(Timestamp timestamp,
-//			String text, int uid) {
-//		
-//		final String txt = text;
-//		final int uId = uid; 
-//		final Timestamp ts = timestamp;
-//		
-//		asyncObj.nachrichtUnterhaltungZuweisen(txt, uId, ts, new AsyncCallback <Void>() {
-//			@Override
-//			public void onFailure(Throwable caught) {
-//				Window.alert( "fail1");
-//			}
-//			 
-//			@Override
-//			public void onSuccess(Void result) {
-//			}	
-//			} );
-//
-//		 
-//		
-//	} 
-
-
- 	
+	// public void oeffentlicheNachrichtUnterhaltungZuweisen(Timestamp
+	// timestamp,
+	// String text, int uid) {
+	//
+	// final String txt = text;
+	// final int uId = uid;
+	// final Timestamp ts = timestamp;
+	//
+	// asyncObj.nachrichtUnterhaltungZuweisen(txt, uId, ts, new AsyncCallback
+	// <Void>() {
+	// @Override
+	// public void onFailure(Throwable caught) {
+	// Window.alert( "fail1");
+	// }
+	//
+	// @Override
+	// public void onSuccess(Void result) {
+	// }
+	// } );
+	//
+	//
+	//
+	// }
 
 }
