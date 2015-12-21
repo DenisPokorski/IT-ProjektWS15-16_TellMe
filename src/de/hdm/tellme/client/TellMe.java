@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import de.hdm.tellme.client.gui.editor.MenuBarEditor;
+import de.hdm.tellme.client.gui.editor.NutzerBearbeitenEditor;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
 import de.hdm.tellme.client.gui.editor.NutzerCellListModus;
 import de.hdm.tellme.shared.LoginService;
@@ -20,36 +21,34 @@ import de.hdm.tellme.shared.LoginServiceAsync;
 import de.hdm.tellme.shared.LoginInfo;
 
 public class TellMe implements EntryPoint {
+	public TellMe() {
+
+	}
 
 	public static LoginInfo eingeloggterBenutzer = null;
 
-	private HorizontalPanel loginPanel = new HorizontalPanel();
 	LoginServiceAsync loginService = GWT.create(LoginService.class);
-	private Anchor signInLink = new Anchor("Anmelden");
-	private Anchor signOutLink = new Anchor("Abmelden");
 
 	public static LoginInfo gibEingeloggterBenutzer() {
 		return eingeloggterBenutzer;
 	}
 
-	public void ladeTellMe() {
-		// Startseite anzeigen
-		MenuBarEditor menuBar = new MenuBarEditor();
+	public Widget ladeTellMe() {
+		if (eingeloggterBenutzer.getUser().getVorname() == "undefined"
+				|| eingeloggterBenutzer.getUser().getNachname() == "undefined") {
+			NutzerBearbeitenEditor nE = new NutzerBearbeitenEditor();
+			RootPanel.get("content").add(nE);
 
-		RootPanel.get("header").add(menuBar);
+		} else {
 
-		menuBar.setzeInhalt(new NutzerCellList().generiereCellList(NutzerCellListModus.Nachrichtenuebersicht),menuBar.gibansichtNeuigkeiten());
-		
-		
-	}
+			// Startseite anzeigen
+			MenuBarEditor menuBar = new MenuBarEditor();
 
-	public Widget loadLogin() {
-		signInLink.setHref(eingeloggterBenutzer.getLoginUrl());
-		loginPanel.add(new Label("Bitte anmelden"));
-		loginPanel.add(signInLink);
+			RootPanel.get("header").add(menuBar);
 
-		RootPanel.get("header").add(loginPanel);
-		return loginPanel;
+			menuBar.setzeInhalt(new NutzerCellList().generiereCellList(NutzerCellListModus.Nachrichtenuebersicht),menuBar.gibansichtNeuigkeiten());
+		}
+		return null;
 	}
 
 	@Override
@@ -61,11 +60,12 @@ public class TellMe implements EntryPoint {
 				eingeloggterBenutzer = result;
 
 				if (eingeloggterBenutzer.isLoggedIn()) {
-					ladeTellMe();
 
+					ladeTellMe();
 				} else {
-					loadLogin();
+					Window.Location.assign(eingeloggterBenutzer.getLoginUrl());
 				}
+
 			}
 
 			@Override

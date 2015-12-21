@@ -1,6 +1,7 @@
 package de.hdm.tellme.shared;
 
 import de.hdm.tellme.shared.bo.Nutzer;
+
 import java.io.Serializable;
 
 public class LoginInfo implements Serializable {
@@ -10,7 +11,9 @@ public class LoginInfo implements Serializable {
 	private String loginUrl;
 	private String logoutUrl;
 	private String emailAddress;
+	private String googleId;
 	private Nutzer user;
+	
 
 	public boolean isLoggedIn() {
 		return loggedIn;
@@ -50,5 +53,13 @@ public class LoginInfo implements Serializable {
 
 	public void setUser(Nutzer user) {
 		this.user = user;
+	}
+
+	public String getGoogleId() {
+		return googleId;
+	}
+
+	public void setGoogleId(String string) {
+		this.googleId = string;
 	}
 }

@@ -15,7 +15,7 @@ import de.hdm.tellme.shared.bo.Unterhaltung;
 @RemoteServiceRelativePath("editorservice")
 public interface EditorService extends RemoteService {
 
-	Nutzer getNutzerVonMailadresse(String eMailAdress);
+	
 
 	void nutzerAktualisieren(Nutzer n);
 

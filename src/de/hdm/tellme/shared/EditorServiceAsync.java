@@ -12,8 +12,6 @@ import de.hdm.tellme.shared.bo.Unterhaltung;
 
 public interface EditorServiceAsync {
 
-	void getNutzerVonMailadresse(String eMailAdress, AsyncCallback<Nutzer> asyncCallback);
-
 	void nutzerAktualisieren(Nutzer n, AsyncCallback<Void> asyncCallback);
 
 	void nutzerLoeschen(Nutzer n, AsyncCallback<Void> asyncCallback);

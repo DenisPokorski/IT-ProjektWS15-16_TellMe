@@ -60,11 +60,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return n;
 	}
 
-	public Nutzer getNutzerVonMailadresse(String eMailAdress) {
-		Nutzer n = new Nutzer();
-		n = nutzerMapper.suchenNutzerIdMitMailadresse(eMailAdress);
-		return n;
-	}
+
 
 	@Override
 	public Vector<Nutzer> getZuAbonnieredeLoeschenNutzerListe(int i) {

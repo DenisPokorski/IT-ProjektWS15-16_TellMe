@@ -51,13 +51,13 @@ public class NutzerMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "INSERT INTO Nutzer (Vorname, Nachname, Mailadresse) VALUES ("
+			String sqlquery = "INSERT INTO Nutzer (Vorname, Nachname, GoogleId, Mailadresse) VALUES ("
 					+ "'"
 					+ n.getVorname()
 					+ "','"
 					+ n.getNachname()
 					+ "','"
-					+ n.getMailadresse() + "') ;";
+					+ n.getGoogleId() + "','" + n.getMailadresse() + "') ;";
 			state.executeUpdate(sqlquery);
 
 		} catch (Exception e) {
@@ -138,15 +138,15 @@ public class NutzerMapper {
 	 * ausgegeben.
 	 */
 
-	public Nutzer suchenNutzerIdMitMailadresse(String eMailAdress) {
+	public Nutzer suchenNutzerMitGoogleId(String GoogleId) {
 
 		Connection con = DatenbankVerbindung.connection();
 		Nutzer na = new Nutzer();
 		try {
 			Statement state = con.createStatement();
 			ResultSet rs = state
-					.executeQuery("SELECT * FROM Nutzer WHERE Mailadresse='"
-							+ eMailAdress + "';");
+					.executeQuery("SELECT * FROM Nutzer WHERE GoogleId='"
+							+ GoogleId + "';");
 
 			while (rs.next()) {
 
@@ -154,6 +154,7 @@ public class NutzerMapper {
 				na.setVorname(rs.getString("Vorname"));
 				na.setNachname(rs.getString("Nachname"));
 				na.setMailadresse(rs.getString("Mailadresse"));
+				na.setGoogleId(rs.getString("GoogleId"));
 			}
 
 		} catch (SQLException e) {
@@ -230,7 +231,7 @@ public class NutzerMapper {
 		// Ergebnisvektor zur�ckgeben
 		return alleNutzerAusserMeinNutzerListe;
 	}
-	
+
 	public Vector<Nutzer> alleNutzer(int meineid) {
 
 		Vector<Nutzer> alleNutzerListe = new Vector<Nutzer>();
@@ -242,15 +243,12 @@ public class NutzerMapper {
 
 			while (rs.next()) {
 
-				
-					Nutzer n = new Nutzer();
-					n.setId(rs.getInt("Id"));
-					n.setVorname(rs.getString("Vorname"));
-					n.setNachname(rs.getString("Nachname"));
-					n.setMailadresse(rs.getString("Mailadresse"));
-					alleNutzerListe.addElement(n);
-
-				
+				Nutzer n = new Nutzer();
+				n.setId(rs.getInt("Id"));
+				n.setVorname(rs.getString("Vorname"));
+				n.setNachname(rs.getString("Nachname"));
+				n.setMailadresse(rs.getString("Mailadresse"));
+				alleNutzerListe.addElement(n);
 
 			}
 

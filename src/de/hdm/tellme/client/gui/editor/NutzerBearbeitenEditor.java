@@ -57,13 +57,14 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 	private Label untertitel = new Label(
 			"Hier siehst du dein Profil und kannst es bearbeiten, löschen und dich abmelden.");
 	private Label ueberschrift2 = new Label("Profil bearbeiten");
-	
+
 	/*
 	 * Die Methode des AsyncCallbacks, um die Daten zum Nutzer bearbeiten an die
 	 * Datenbank zu senden. Nach erfolgreicher Ausführung kommt eine
 	 * Bildschirmmeldung.
 	 */
 	public void nutzerBearbeiten(Nutzer n) {
+		
 		asyncObj.nutzerAktualisieren(n, new AsyncCallback<Void>() {
 
 			@Override
@@ -74,8 +75,9 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 
 			@Override
 			public void onSuccess(Void result) {
-				Window.alert("Profil erfolgreich editiert.");
 				RootPanel.get("content").clear();
+				Window.alert("Profil erfolgreich editiert.");
+				
 
 			}
 		});
@@ -90,23 +92,25 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 	 * löschen genutzt.
 	 */
 	public void nutzerLoeschen() {
-		asyncObj.nutzerLoeschen(TellMe.eingeloggterBenutzer.getUser(), new AsyncCallback<Void>() {
+		asyncObj.nutzerLoeschen(TellMe.eingeloggterBenutzer.getUser(),
+				new AsyncCallback<Void>() {
 
-			@Override
-			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
+					@Override
+					public void onFailure(Throwable caught) {
+						// TODO Auto-generated method stub
 
-			}
+					}
 
-			@Override
-			public void onSuccess(Void result) {
-				Window.alert("Profil gelöscht");
-				Window.alert(TellMe.eingeloggterBenutzer.getLogoutUrl());
-				Window.Location.assign(TellMe.eingeloggterBenutzer.getLogoutUrl());
-				RootPanel.get("content").clear();
+					@Override
+					public void onSuccess(Void result) {
+						Window.alert("Profil gelöscht");
+						Window.alert(TellMe.eingeloggterBenutzer.getLogoutUrl());
+						Window.Location.assign(TellMe.eingeloggterBenutzer
+								.getLogoutUrl());
+						RootPanel.get("content").clear();
 
-			}
-		});
+					}
+				});
 	}
 
 	/*
@@ -117,9 +121,27 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 	 * CSS-Styles zugeordnet.
 	 */
 	public void onLoad() {
-		vornameTextBox.setText(TellMe.eingeloggterBenutzer.getUser().getVorname());
-		nachnameTextBox.setText(TellMe.eingeloggterBenutzer.getUser().getNachname());
-		emailTextBox.setText(TellMe.eingeloggterBenutzer.getUser().getMailadresse());
+
+		if (TellMe.eingeloggterBenutzer.getUser().getVorname() == "undefined"
+				|| TellMe.eingeloggterBenutzer.getUser().getNachname() == "undefined") {
+			// TODO: das Label noch stylen
+			RootPanel.get("content").clear();
+			RootPanel
+					.get("content")
+					.add(new Label(
+							"Bitte vervollständige deinen Vor- und Nachnamen."));
+			// vornameTextBox.setText("");
+			// nachnameTextBox.setText("");
+		} else {
+			RootPanel.get("content").clear();
+			vornameTextBox.setText(TellMe.eingeloggterBenutzer.getUser()
+					.getVorname());
+			nachnameTextBox.setText(TellMe.eingeloggterBenutzer.getUser()
+					.getNachname());
+		}
+
+		emailTextBox.setText(TellMe.eingeloggterBenutzer.getUser()
+				.getMailadresse());
 
 		profilPanel.add(ueberschrift1);
 		profilPanel.add(untertitel);
@@ -152,7 +174,6 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 
 		profilloeschenButton.addStyleName("profilloeschenButton");
 
-		RootPanel.get("content").clear();
 		RootPanel.get("content").add(profilPanel);
 		RootPanel.get("content").add(ButtonPanel);
 		/*
@@ -168,14 +189,20 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				if (vornameTextBox.getValue().isEmpty()
 						|| nachnameTextBox.getValue().isEmpty()) {
-					Window.alert("Bitte alle Felder befüllen");
+					Window.alert("Bitte alle Felder richtig befüllen");
 				} else {
 
 					n.setId(TellMe.eingeloggterBenutzer.getUser().getId());
 					n.setMailadresse(emailTextBox.getText());
 					n.setVorname(vornameTextBox.getText());
 					n.setNachname(nachnameTextBox.getText());
+					TellMe.eingeloggterBenutzer.getUser().setVorname(
+							n.getVorname());
+					TellMe.eingeloggterBenutzer.getUser().setNachname(
+							n.getNachname());
 					nutzerBearbeiten(n);
+					
+					RootPanel.get("header").add(new MenuBarEditor());
 
 				}
 

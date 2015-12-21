@@ -19,11 +19,13 @@ public class Nutzer extends BusinessObject {
 	 * Die Variable Nachname ist vom Typ String
 	 * Die Variable Vorname ist vom Typ String
 	 * Die Variable Mailadresse ist vom Typ String
+	 * Die Variable GoogleId ist vom Typ Id
 	 */
 	
 	private String Nachname;
 	private String Vorname;
 	private String Mailadresse;
+	private String GoogleId;
 	
 	/**
 	 * Mit dieser Methode wird der nachname ausgelesen
@@ -77,6 +79,14 @@ public class Nutzer extends BusinessObject {
 
 	public void setMailadresse(String mailadresse) {
 		Mailadresse = mailadresse;
+	}
+
+	public String getGoogleId() {
+		return GoogleId;
+	}
+
+	public void setGoogleId(String googleId) {
+		GoogleId = googleId;
 	}
 
 }
