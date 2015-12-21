@@ -23,6 +23,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
@@ -33,6 +34,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DateBox;
 
+import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
@@ -40,7 +42,7 @@ import de.hdm.tellme.shared.bo.Nutzer;
  */
 
 public class HashtagFomular extends Composite {
-	private Nutzer nutzer = null;
+	private Hashtag hashtag = null;
 	Button btnAbonieren = new Button("abonieren");
 	Button btnDeabonieren = new Button("deabonieren");
 	
@@ -50,35 +52,36 @@ public class HashtagFomular extends Composite {
 		// Handle events.
 		btnAbonieren.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				if (nutzer == null) {
+				if (hashtag == null) {
 					return;
 				}
-				NutzerDataProvider.gib().abonieren(nutzer);
+				HashtagDataProvider.gib().abonieren(hashtag);
 			}
 		});
 		// Handle events.
 		btnDeabonieren.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				if (nutzer == null) {
+				if (hashtag == null) {
 					return;
 				}
-				NutzerDataProvider.gib().deabonieren(nutzer);
+				HashtagDataProvider.gib().deabonieren(hashtag);
 			}
 		});
 	}
 	
 	public VerticalPanel gibFormular(){
 		VerticalPanel vpForm = new VerticalPanel();
-		
-		vpForm.add(new Label(nutzer.getVorname() ));
+		vpForm.clear();
+		vpForm.add(new Label(hashtag.getSchlagwort() ));
 		vpForm.add(btnAbonieren);
 		vpForm.add(btnDeabonieren);
 		
 		return vpForm;
 	}
 
-	public void setzeNutzerAbo(NutzerZelle.ZellenObjekt ZellenObjekt) {
-		this.nutzer = ZellenObjekt.nutzer;
+	public void setzeHashtagAbo(HashtagZelle.ZellenObjekt ZellenObjekt) {
+		this.hashtag = ZellenObjekt.hashtag;
+		
 		if (ZellenObjekt.aboniert) {
 			btnAbonieren.setEnabled(false);
 			btnDeabonieren.setEnabled(true);

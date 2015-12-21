@@ -52,5 +52,9 @@ public interface EditorService extends RemoteService {
 
 	Vector<Hashtag> getAlleNochNichtAbonnierteHashtagAboListe(int id);
 
+	Vector<Hashtag> gibHashtagListe();
+
+	Vector<Integer> ladeAbonnierendeHashtagListe(int meineId);
+
  
 }

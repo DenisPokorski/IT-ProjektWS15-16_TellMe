@@ -114,7 +114,7 @@ public class HashtagAbonnementMapper {
 					+ "'"
 					+ h.getAbonnementErsteller().getId()
 					+ "','"
-					+ h.getHashtag().getHashtagId() + "') ;";
+					+ h.getHashtag().getId() + "') ;";
 			state.executeUpdate(sqlquery);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -150,7 +150,7 @@ public class HashtagAbonnementMapper {
 
 				} else {
 					Hashtag ha = new Hashtag();
-					ha.setHashtagId(rs.getInt("hashtagId"));
+					ha.setId(rs.getInt("hashtagId"));
 					ha.setSchlagwort(rs.getString("Schlagwort"));
 					ha.setErstellungsDatum(rs.getTimestamp("ErstellungsDatum"));
 					alleHashtagsEinesNutzers.addElement(ha);
@@ -163,5 +163,54 @@ public class HashtagAbonnementMapper {
 		// Ergebnisvektor zur�ckgeben
 		return alleHashtagsEinesNutzers;
 
+	}
+	
+	
+	public Vector<Integer> ladeAbonnierteHashtagListe(int nutzerId) {
+		Connection con = DatenbankVerbindung.connection();
+
+		Vector<Integer> HashtagListe = new Vector<Integer>();
+
+		try {
+			Statement state = con.createStatement();
+			ResultSet rs = state.executeQuery("SELECT * From NutzerHashtag Where NutzerId='" + nutzerId + "';");
+
+			while (rs.next()) {
+				HashtagListe.add(rs.getInt("HashtagId"));
+			}
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return HashtagListe;
+	}
+	
+	
+
+	public Vector<Hashtag> gibALleHashtags() {
+		Vector<Hashtag> alleHashtagsEinesNutzers = new Vector<Hashtag>();
+		Connection con = DatenbankVerbindung.connection();
+		
+ 		try {
+			Statement state = con.createStatement();
+			ResultSet rs = state.executeQuery("SELECT * FROM Hashtag");
+			
+			while (rs.next()) {
+					Hashtag ha = new Hashtag();
+					ha.setId(rs.getInt("Id"));
+					ha.setSchlagwort(rs.getString("Schlagwort"));
+					ha.setErstellungsDatum(rs.getTimestamp("ErstellungsDatum"));
+					alleHashtagsEinesNutzers.addElement(ha);
+				 
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// Ergebnisvektor zur�ckgeben
+ 		
+		return alleHashtagsEinesNutzers;
 	}
 }

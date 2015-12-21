@@ -25,6 +25,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		this.nutzeraboMapper = NutzerAbonnementMapper.nutzerAbonnementMapper();
 		this.nachrichtMapper = NachrichtMapper.nachrichtMapper();
 		this.unterhaltungMapper = UnterhaltungMapper.unterhaltungMapper();
+		this.hashtagAboMapper = HashtagAbonnementMapper.hashtagAbonnementMapper();
+
 	}
 
 	private NutzerMapper nutzerMapper = null;
@@ -67,7 +69,17 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		Vector<Nutzer> alleAbboniertenNutzer = nutzeraboMapper.ladeAbonnierendeNutzerListe(i);
 		return alleAbboniertenNutzer;
 	}
+	
+	
+	@Override
+	public Vector<Integer> ladeAbonnierendeHashtagListe(int i) {
+		Vector<Integer> alleAbboniertenNutzer = hashtagAboMapper.ladeAbonnierteHashtagListe(i);
+		return alleAbboniertenNutzer;
+	}
 
+		
+	
+	
 	@Override
 	public void loescheNutzeraboById(int vonId, int nachId) {
 		nutzeraboMapper.loescheNutzeraboById(vonId, nachId);
@@ -153,6 +165,12 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	public Vector<Hashtag> getAlleNochNichtAbonnierteHashtagAboListe(int i) {
 		Vector<Hashtag> alleHashtags = hashtagAboMapper.alleNochNichtAboonierteHashtagsSelektieren(i);
 		naMapper.alleNochNichtAbonnierteNutzerSelektieren(i);
+		return alleHashtags;
+	}
+
+	@Override
+	public Vector<Hashtag> gibHashtagListe() {
+		Vector<Hashtag> alleHashtags = hashtagAboMapper.gibALleHashtags();
 		return alleHashtags;
 	}
 

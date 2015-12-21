@@ -21,28 +21,8 @@ public class Hashtag extends BusinessObject {
 	 * Die Variable Schlagwort ist vom Typ String
 	 */
 
-	private int hashtagId;
 	private String schlagwort;
 
-	/**
-	 * Mit dieser Methode wird die HashtagId ausgelesen
-	 * 
-	 * @return hashtagId
-	 */
-
-	public int getHashtagId() {
-		return hashtagId;
-	}
-
-	/**
-	 * Mit dieser Methode wird die HashtagId gesetzt
-	 * 
-	 * @param hashtagId
-	 */
-
-	public void setHashtagId(int hashtagId) {
-		this.hashtagId = hashtagId;
-	}
 
 	/**
 	 * Mit dieser Methode wird das Schlagwort ausgelesen

@@ -64,5 +64,10 @@ public interface EditorServiceAsync {
 	void getAlleNochNichtAbonnierteHashtagAboListe(int id,
 			AsyncCallback<Vector<Hashtag>> asyncCallback);
 
+	void gibHashtagListe(AsyncCallback<Vector<Hashtag>> asyncCallback);
+
+	void ladeAbonnierendeHashtagListe(int meineId,
+			AsyncCallback<Vector<Integer>> asyncCallback);
+
 	 
  }

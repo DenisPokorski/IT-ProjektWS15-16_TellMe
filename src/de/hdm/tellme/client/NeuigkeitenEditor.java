@@ -17,10 +17,12 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.sun.java.swing.plaf.windows.resources.windows;
 
+import de.hdm.tellme.client.gui.editor.HashtagZelle;
 import de.hdm.tellme.client.gui.editor.NutzerZelle;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.LoginInfo;
+import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
 
 public class NeuigkeitenEditor extends VerticalPanel {
@@ -40,6 +42,10 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	
 	public void FilterNachBenutzer(NutzerZelle.ZellenObjekt nah){
 		Window.alert("Nachrichten werden nach Benutzer " + nah.nutzer.getVorname());
+	}
+	
+	public void FilterNachBenutzer(HashtagZelle.ZellenObjekt nah){
+		Window.alert("Nachrichten werden nach Benutzer " + nah.hashtag.getSchlagwort());
 	}
 	
 	public void onLoad() {	

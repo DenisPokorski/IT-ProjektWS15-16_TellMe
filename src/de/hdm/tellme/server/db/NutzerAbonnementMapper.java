@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Vector;
 
+import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 public class NutzerAbonnementMapper {
@@ -21,23 +22,21 @@ public class NutzerAbonnementMapper {
 		return nutzerAbonnementMapper;
 	}
 
-	public Vector<Nutzer> ladeAbonnierendeNutzerListe(int nutzer) {
+	public Vector<Nutzer> ladeAbonnierendeNutzerListe(int nutzerId) {
 		Connection con = DatenbankVerbindung.connection();
 
 		Vector<Nutzer> NutzerListe = new Vector<Nutzer>();
 
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT AbonnentBenutzer.NachId, Nutzer.Id, Nutzer.Vorname, Nutzer.Nachname, Nutzer.Mailadresse FROM AbonnentBenutzer LEFT JOIN Nutzer ON AbonnentBenutzer.NachId = Nutzer.Id Where AbonnentBenutzer.VonId = '"
-							+ nutzer + "';");
+			ResultSet rs = state.executeQuery("SELECT * From Nutzer Where Id ='" + nutzerId + "';");
+//					.executeQuery("SELECT AbonnentBenutzer.NachId, Nutzer.Id, Nutzer.Vorname, Nutzer.Nachname, Nutzer.Mailadresse FROM AbonnentBenutzer LEFT JOIN Nutzer ON AbonnentBenutzer.NachId = Nutzer.Id Where AbonnentBenutzer.VonId = '"
+//							+ nutzer + "';");
+				
 
 			while (rs.next()) {
 				Nutzer na = new Nutzer();
 				na.setId(rs.getInt("Id"));
-				na.setVorname(rs.getString("Vorname"));
-				na.setNachname(rs.getString("Nachname"));
-				na.setMailadresse(rs.getString("Mailadresse"));
 				NutzerListe.add(na);
 			}
 		}
@@ -49,6 +48,10 @@ public class NutzerAbonnementMapper {
 		return NutzerListe;
 	}
 
+
+	
+	
+	
 	public void loescheNutzeraboById(int vonId, int nachId) {
 
 		Connection con = DatenbankVerbindung.connection();

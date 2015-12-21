@@ -16,22 +16,23 @@ import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 
+import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 
 
 public class HashtagCellList {
 
-	Nutzer selektiererBenutzer = null;
+	Hashtag selektiertesHashstag = null;
 
 	public FlowPanel generiereCellList(CellListModus modi) {
 
-		CellList<NutzerZelle.ZellenObjekt> cellList = new CellList<NutzerZelle.ZellenObjekt>(new NutzerZelle().new ZellenElement());
+		CellList<HashtagZelle.ZellenObjekt> cellList = new CellList<HashtagZelle.ZellenObjekt>(new HashtagZelle().new ZellenElement());
 
-		NutzerDataProvider.gib().addDataDisplay(cellList);
+		HashtagDataProvider.gib().addDataDisplay(cellList);
 
 		// Add a selection model so we can select cells.
-		final SingleSelectionModel<NutzerZelle.ZellenObjekt> selectionModel = new SingleSelectionModel<NutzerZelle.ZellenObjekt>();
+		final SingleSelectionModel<HashtagZelle.ZellenObjekt> selectionModel = new SingleSelectionModel<HashtagZelle.ZellenObjekt>();
 		cellList.setSelectionModel(selectionModel);
 		switch (modi) {
 		case Einstellungen:
@@ -39,9 +40,11 @@ public class HashtagCellList {
 				public void onSelectionChange(SelectionChangeEvent event) {
 					// TODO:Prüfen ob abboniert
 					// TODO:rechtel aktuallisieren
-					NutzerFomular nf = new NutzerFomular();
-					nf.setzeNutzerAbo(selectionModel.getSelectedObject());
+					HashtagFomular nf = new HashtagFomular();
+					nf.setzeHashtagAbo(selectionModel.getSelectedObject());
+					RootPanel.get("content_right").clear();
 					RootPanel.get("content_right").add(nf.gibFormular());
+
 				}
 			});
 			break;

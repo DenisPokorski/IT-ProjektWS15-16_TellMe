@@ -98,24 +98,20 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.addItem("NutzeraboVerwaltung", new Command() {
 			@Override
 			public void execute() {
-				//setzeInhalt(gibansichtEinstellungenAboverwatung());
 				RootPanel.get("content_left").add(new NutzerCellList().generiereCellList(CellListModus.Einstellungen));
-
 			}
 		});
+		
 		EinstellungenMenu.addItem("HashtagaboVerwaltung", new Command() {
 			@Override
 			public void execute() {
-				RootPanel.get("content_left").add(new NutzerCellList().generiereCellList(CellListModus.Einstellungen));
-
-			//	setzeInhalt(gibansichtEinstellungenAboverwatung());
+				RootPanel.get("content_left").add(new HashtagCellList().generiereCellList(CellListModus.Einstellungen));
 			}
 		});
 
 		EinstellungenMenu.addItem("Hashtagverwaltung", new Command() {
 			@Override
 			public void execute() {
-				// TODO:really?!
 			}
 		});
 

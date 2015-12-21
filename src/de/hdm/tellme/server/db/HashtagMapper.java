@@ -5,7 +5,7 @@ import java.sql.Statement;
 
 import de.hdm.tellme.shared.bo.Hashtag;
 
-	/** Mapper-Klasse, die Hashtag-Objekte in der Datenbank abbildet. Diese enthält Methoden zum
+	/** Mapper-Klasse, die Hashtag-Objekte in der Datenbank abbildet. Diese enthï¿½lt Methoden zum
 	 * Anlegen, Aktualisieren und Entfernen von Objekten.
 	 * @author Nicole Reum */
 
@@ -15,7 +15,7 @@ public class HashtagMapper {
 	protected HashtagMapper() {
 		
 	}
-	/** Die statische Methode wird über HashtagMapper hashtagMapper aufgerufen. Sie überprüft, dass nur eine Instanz von HashtagMapper besteht.*/	
+	/** Die statische Methode wird ï¿½ber HashtagMapper hashtagMapper aufgerufen. Sie ï¿½berprï¿½ft, dass nur eine Instanz von HashtagMapper besteht.*/	
 	
 	public static HashtagMapper hashtagMapper() {
 		if (hashtagMapper == null) {
@@ -44,10 +44,10 @@ public class HashtagMapper {
 	}
 	
 	/** Die Methode aktualisieren stellt eine Verbindung zur Datenbank her. Dazu wird die Methode "connection()" aus der Klasse DatenbankVerbindung
-	 * dem Objekt con übergeben.  Im Anschluss wird im "try-Block" ein Statement erstellt. 
-	 * Nun legen wir einen neuen String an, der das SQL-Statement mit dynamischen Hashtagdaten beinhaltet. Jetzt wird über die Methode "state.executeUpdate(sqlquery);"
-	 * ausgeführt und der SQL String an die Datenbank übergeben. Sollte der "try-Block" Fehler aufweisen, wird der "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
-	 * ausgeführt. 
+	 * dem Objekt con ï¿½bergeben.  Im Anschluss wird im "try-Block" ein Statement erstellt. 
+	 * Nun legen wir einen neuen String an, der das SQL-Statement mit dynamischen Hashtagdaten beinhaltet. Jetzt wird ï¿½ber die Methode "state.executeUpdate(sqlquery);"
+	 * ausgefï¿½hrt und der SQL String an die Datenbank ï¿½bergeben. Sollte der "try-Block" Fehler aufweisen, wird der "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
+	 * ausgefï¿½hrt. 
 	 */
 	
 	public void aktualisieren (Hashtag h) {
@@ -68,17 +68,17 @@ public class HashtagMapper {
 	}
 	
 	/** Die Methode entfernen stellt eine Verbindung zur Datenbank her. Dazu wird die Methode "connection()" aus der Klasse DatenbankVerbindung
-	 * dem Objekt con übergeben.  Im Anschluss wird im "try-Block" ein Statement erstellt. 
-	 * Nun legen wir einen neuen String an, der das SQL-Statement mit dynamischen Hashtagdaten beinhaltet (HashtagId). Jetzt wird über die Methode "state.executeUpdate(sqlquery);"
-	 * ausgeführt und der SQL String an die Datenbank übergeben. Sollte der "try-Block" Fehler aufweisen, wird der "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
-	 * ausgeführt. 
+	 * dem Objekt con ï¿½bergeben.  Im Anschluss wird im "try-Block" ein Statement erstellt. 
+	 * Nun legen wir einen neuen String an, der das SQL-Statement mit dynamischen Hashtagdaten beinhaltet (HashtagId). Jetzt wird ï¿½ber die Methode "state.executeUpdate(sqlquery);"
+	 * ausgefï¿½hrt und der SQL String an die Datenbank ï¿½bergeben. Sollte der "try-Block" Fehler aufweisen, wird der "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
+	 * ausgefï¿½hrt. 
 	 */
 	
 	public void entfernen (Hashtag h) {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "DELETE FROM Hashtag WHERE Id = '" + h.getHashtagId() + "';";
+			String sqlquery = "DELETE FROM Hashtag WHERE Id = '" + h.getId() + "';";
 			state.executeUpdate(sqlquery);		
 		}
 		catch (Exception e) {

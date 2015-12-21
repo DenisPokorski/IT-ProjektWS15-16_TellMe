@@ -3,11 +3,12 @@ package de.hdm.tellme.client.gui.editor;
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 
+import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 public class HashtagZelle  {
 	public class ZellenObjekt {
-		public Nutzer nutzer;
+		public Hashtag hashtag;
 		public boolean aboniert;
 	}
 
@@ -20,7 +21,7 @@ public class HashtagZelle  {
 			}
 
 			sb.appendHtmlConstant("<table><tr><td>");
-			sb.appendEscaped(value.nutzer.getVorname() + " " + value.nutzer.getNachname());
+			sb.appendEscaped("# " + value.hashtag.getSchlagwort());
 			sb.appendHtmlConstant("</td></tr></table>");
 		}
 	}
