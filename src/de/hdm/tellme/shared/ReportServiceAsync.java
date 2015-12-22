@@ -13,5 +13,6 @@ public interface ReportServiceAsync {
 	
 	void report2GenerierenListe(int i, AsyncCallback<Vector<Nutzer>> asyncCallback);
 	void report3Generieren(int i, AsyncCallback<Vector<Hashtag>> asyncCallback);
+	void init(AsyncCallback<Void> initReportCallback);
 	
 }

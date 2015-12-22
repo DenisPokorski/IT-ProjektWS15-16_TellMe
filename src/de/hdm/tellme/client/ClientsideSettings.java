@@ -47,7 +47,7 @@ public class ClientsideSettings extends CommonSettings{
 					
 				}
 			};
-		//	report.init(initReportCallback);
+		report.init(initReportCallback);
 			
 		}
 		return report;

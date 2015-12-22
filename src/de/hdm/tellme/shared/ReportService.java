@@ -19,6 +19,8 @@ public interface ReportService extends RemoteService {
 
 	Vector<Hashtag> report3Generieren(int i);
 
+	void init();
+
  
  
 	 
