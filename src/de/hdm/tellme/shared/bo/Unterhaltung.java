@@ -1,5 +1,6 @@
 package de.hdm.tellme.shared.bo;
 
+import java.util.HashMap;
 import java.util.Vector;
 
 public class Unterhaltung extends BusinessObject {
@@ -9,7 +10,8 @@ public class Unterhaltung extends BusinessObject {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Vector<Nachricht> alleNachrichten;
-	private Vector<Nutzer> teilnehmer;
+
+	private HashMap<Boolean, Nutzer> teilnehmer;
 
 	public enum UnterhaltungsTyp {
 		privat, oeffentlich;
@@ -23,11 +25,11 @@ public class Unterhaltung extends BusinessObject {
 		this.alleNachrichten = alleNachrichten;
 	}
 
-	public Vector<Nutzer> getTeilnehmer() {
+	public HashMap<Boolean, Nutzer> getTeilnehmer() {
 		return teilnehmer;
 	}
 
-	public void setTeilnehmer(Vector<Nutzer> teilnehmer) {
+	public void setTeilnehmer(HashMap<Boolean, Nutzer> teilnehmer) {
 		this.teilnehmer = teilnehmer;
 	}
 
