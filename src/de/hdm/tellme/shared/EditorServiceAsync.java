@@ -82,5 +82,14 @@ public interface EditorServiceAsync {
 
 	void hashtagAboEntfernen(int nutzerId, int hashtagId, AsyncCallback<Void> asyncCallback);
 
+	void meineUnterhaltungenMitSichtbarkeit(int meineId,
+			AsyncCallback<Unterhaltung> callback);
+
+	void oeffentlicheNachrichtenVonBenutzer(int id,
+			AsyncCallback<Unterhaltung> callback);
+
+	void oeffentlicheNachrichtenNachHashtag(int id,
+			AsyncCallback<Unterhaltung> callback);
+
 	 
  }

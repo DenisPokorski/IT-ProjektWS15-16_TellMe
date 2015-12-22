@@ -66,4 +66,10 @@ public interface EditorService extends RemoteService {
 
 	void hashtagAboEntfernen(int nutzerId, int hashtagId);
 
+	Unterhaltung meineUnterhaltungenMitSichtbarkeit(int meineId);
+
+	Unterhaltung oeffentlicheNachrichtenVonBenutzer(int id);
+
+	Unterhaltung oeffentlicheNachrichtenNachHashtag(int id);
+
 }

@@ -15,7 +15,8 @@ import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.bo.*;
 
 @SuppressWarnings("serial")
-public class EditorServiceImpl extends RemoteServiceServlet implements EditorService {
+public class EditorServiceImpl extends RemoteServiceServlet implements
+		EditorService {
 	public EditorServiceImpl() throws IllegalArgumentException {
 
 	}
@@ -25,7 +26,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		this.nutzeraboMapper = NutzerAbonnementMapper.nutzerAbonnementMapper();
 		this.nachrichtMapper = NachrichtMapper.nachrichtMapper();
 		this.unterhaltungMapper = UnterhaltungMapper.unterhaltungMapper();
-		this.hashtagAboMapper = HashtagAbonnementMapper.hashtagAbonnementMapper();
+		this.hashtagAboMapper = HashtagAbonnementMapper
+				.hashtagAbonnementMapper();
 		this.hashtagMapper = HashtagMapper.hashtagMapper();
 
 	}
@@ -64,13 +66,15 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	@Override
 	public Vector<Nutzer> getZuAbonnieredeLoeschenNutzerListe(int i) {
-		Vector<Nutzer> alleAbboniertenNutzer = nutzeraboMapper.ladeAbonnierendeNutzerListe(i);
+		Vector<Nutzer> alleAbboniertenNutzer = nutzeraboMapper
+				.ladeAbonnierendeNutzerListe(i);
 		return alleAbboniertenNutzer;
 	}
 
 	@Override
 	public Vector<Integer> ladeAbonnierendeHashtagListe(int i) {
-		Vector<Integer> alleAbboniertenNutzer = hashtagAboMapper.ladeAbonnierteHashtagListe(i);
+		Vector<Integer> alleAbboniertenNutzer = hashtagAboMapper
+				.ladeAbonnierteHashtagListe(i);
 		return alleAbboniertenNutzer;
 	}
 
@@ -84,13 +88,15 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	@Override
 	public Vector<Nutzer> getAlleNochNichtAbonnierteNutzerListe(int id) {
 		// int id =7;
-		Vector<Nutzer> alleNutzer = nutzeraboMapper.alleNochNichtAbonnierteNutzerSelektieren(id);
+		Vector<Nutzer> alleNutzer = nutzeraboMapper
+				.alleNochNichtAbonnierteNutzerSelektieren(id);
 		return alleNutzer;
 	}
 
 	@Override
 	public Vector<Nutzer> getAlleNutzerAußerMeineId(int meineId) {
-		Vector<Nutzer> alleNutzer = nutzerMapper.alleNutzerAusserMeineId(meineId);
+		Vector<Nutzer> alleNutzer = nutzerMapper
+				.alleNutzerAusserMeineId(meineId);
 		return alleNutzer;
 	}
 
@@ -105,13 +111,15 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		unterhaltungMapper.anlegen(ts, unterhaltungsTyp);
 		int nachrichtenId = nachrichtMapper.nachrichtSelektieren(ts, text);
 		int unterhaltungsId = unterhaltungMapper.unterhaltungSelektieren(ts);
-		unterhaltungMapper.UnterhaltungNachrichtZuweisen(unterhaltungsId, nachrichtenId);
+		unterhaltungMapper.UnterhaltungNachrichtZuweisen(unterhaltungsId,
+				nachrichtenId);
 		return unterhaltungsId;
 	}
 
 	@Override
 	public Vector<Nachricht> alleNachrichtenVonUnterhaltungListe(int uId) {
-		Vector<Nachricht> nachrichtListe = unterhaltungMapper.alleNachrichtenEinerUnterhaltung(uId);
+		Vector<Nachricht> nachrichtListe = unterhaltungMapper
+				.alleNachrichtenEinerUnterhaltung(uId);
 		return nachrichtListe;
 	}
 
@@ -123,19 +131,22 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	@Override
 	public void NachrichtErstellenUnnterhaltungZuweisen(Nachricht n, int uId) {
 		nachrichtMapper.anlegen(n);
-		int nachrichtenId = nachrichtMapper.nachrichtSelektieren(n.getErstellungsDatum(), n.getText());
+		int nachrichtenId = nachrichtMapper.nachrichtSelektieren(
+				n.getErstellungsDatum(), n.getText());
 		unterhaltungMapper.UnterhaltungNachrichtZuweisen(uId, nachrichtenId);
 	}
 
 	@Override
 	public Vector<Unterhaltung> ladeAlleOeffentlichenUnterhaltungen() {
-		Vector<Unterhaltung> unterhaltungListe = unterhaltungMapper.alleUnterhaltungen();
+		Vector<Unterhaltung> unterhaltungListe = unterhaltungMapper
+				.alleUnterhaltungen();
 		return unterhaltungListe;
 	}
 
 	@Override
 	public Vector<Hashtag> getZuAbonnierendeLoeschenHashtagAboListe(int meineId) {
-		Vector<Hashtag> alleAbboniertenHashtags = hashtagAboMapper.ladeAbonnierendeHashtagListe(meineId);
+		Vector<Hashtag> alleAbboniertenHashtags = hashtagAboMapper
+				.ladeAbonnierendeHashtagListe(meineId);
 		return alleAbboniertenHashtags;
 	}
 
@@ -146,7 +157,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	@Override
 	public Vector<Hashtag> getAlleNochNichtAbonnierteHashtagAboListe(int i) {
-		Vector<Hashtag> alleHashtags = hashtagAboMapper.alleNochNichtAboonierteHashtagsSelektieren(i);
+		Vector<Hashtag> alleHashtags = hashtagAboMapper
+				.alleNochNichtAboonierteHashtagsSelektieren(i);
 		naMapper.alleNochNichtAbonnierteNutzerSelektieren(i);
 		return alleHashtags;
 	}
@@ -164,7 +176,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	@Override
 	public Vector<Integer> holeAlleAbonniertenNutzer(int meineId) {
-		Vector<Integer> alleAbonniertenNutzer = nutzerMapper.alleAbonniertenNutzer(meineId);
+		Vector<Integer> alleAbonniertenNutzer = nutzerMapper
+				.alleAbonniertenNutzer(meineId);
 
 		return alleAbonniertenNutzer;
 	}
@@ -199,6 +212,26 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	public void hashtagAboEntfernen(int nutzerId, int hashtagId) {
 		hashtagAboMapper.HashtagAboEntfernen(nutzerId, hashtagId);
 	}
-	
+
+	@Override
+	public Unterhaltung meineUnterhaltungenMitSichtbarkeit(int meineId) {
+		Unterhaltung meineUnterhaltungen = unterhaltungMapper
+				.meineUnterhaltungen(meineId);
+		return meineUnterhaltungen;
+	}
+
+	@Override
+	public Unterhaltung oeffentlicheNachrichtenVonBenutzer(int id) {
+		Unterhaltung oeffentlicheNachrichtenVonBenutzer = unterhaltungMapper
+				.oeffentlicheNachrichtenVonBenutzer(id);
+		return oeffentlicheNachrichtenVonBenutzer;
+	}
+
+	@Override
+	public Unterhaltung oeffentlicheNachrichtenNachHashtag(int id) {
+		Unterhaltung oeffentlicheNachrichtenNachHashtag = hashtagMapper
+				.oeffentlicheNachrichtenNachHashtag(id);
+		return oeffentlicheNachrichtenNachHashtag;
+	}
 
 }

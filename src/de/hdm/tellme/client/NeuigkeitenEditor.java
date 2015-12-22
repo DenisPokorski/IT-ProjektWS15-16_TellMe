@@ -24,6 +24,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.TreeViewModel;
 import com.sun.java.swing.plaf.windows.resources.windows;
 
+import de.hdm.tellme.client.gui.editor.HashtagZelle;
 import de.hdm.tellme.client.gui.editor.NeuigkeitenEinzelNachricht;
 import de.hdm.tellme.client.gui.editor.NeuigkeitenNachrichtenBaumModel;
 import de.hdm.tellme.client.gui.editor.NeuigkeitenNeueNachrichtDialogbox;
@@ -46,6 +47,10 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	public void FilterNachBenutzer(NutzerZelle.ZellenObjekt nah) {
 		Window.alert("Nachrichten werden nach Benutzer " + nah.nutzer.getVorname());
 	}
+	public void FilterNachHashtag(HashtagZelle.ZellenObjekt nah) {
+		Window.alert("Nachrichten werden nach Benutzer " + nah.hashtag.getSchlagwort());
+	}
+
 
 	public void onLoad() {
 

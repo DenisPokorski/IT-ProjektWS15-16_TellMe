@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Vector;
 
- 
+import com.google.appengine.api.prospectivesearch.ProspectiveSearchPb.SubscriptionRecord.State;
 
 import de.hdm.tellme.server.db.DatenbankVerbindung;
 import de.hdm.tellme.shared.bo.Nachricht;
@@ -41,8 +41,8 @@ public class UnterhaltungMapper {
 	}
 
 	public void anlegen(Timestamp ts, int unterhaltungsTyp) {
-		
-		int sichtbarkeit =1;
+
+		int sichtbarkeit = 1;
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
@@ -52,8 +52,7 @@ public class UnterhaltungMapper {
 					+ "','"
 					+ ts
 					+ "','"
-					+ unterhaltungsTyp
-					+ "')";
+					+ unterhaltungsTyp + "')";
 			state.executeUpdate(sqlquery);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,114 +61,161 @@ public class UnterhaltungMapper {
 
 	public int unterhaltungSelektieren(Timestamp ts) {
 
-		 Connection con = DatenbankVerbindung.connection();
-		 int  unterhaltungId = 0;
-		 try {
-		  Statement state = con.createStatement();
-		  ResultSet rs = state.executeQuery("SELECT * FROM Unterhaltung WHERE Erstellungsdatum ='"+ts+"'");
-		       
-		  if (rs.next()) {
-			  unterhaltungId = rs.getInt("Id");
-		     }
-		   } 
-		 
-		 catch (Exception e) {
-		  e.printStackTrace();
-		   }
-	
-	
-	return unterhaltungId;
-}
+		Connection con = DatenbankVerbindung.connection();
+		int unterhaltungId = 0;
+		try {
+			Statement state = con.createStatement();
+			ResultSet rs = state
+					.executeQuery("SELECT * FROM Unterhaltung WHERE Erstellungsdatum ='"
+							+ ts + "'");
 
-	public void UnterhaltungNachrichtZuweisen(int unterhaltungsId,int nachrichtenId) {
- 
+			if (rs.next()) {
+				unterhaltungId = rs.getInt("Id");
+			}
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return unterhaltungId;
+	}
+
+	public void UnterhaltungNachrichtZuweisen(int unterhaltungsId,
+			int nachrichtenId) {
+
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
 			String sqlquery = "INSERT INTO `NachrichtUnterhaltung` (UnterhaltungId, NachrichtId) VALUES ('"
-					+ unterhaltungsId
-					+ "','"
-					+ nachrichtenId
-					+ "')";
+					+ unterhaltungsId + "','" + nachrichtenId + "')";
 			state.executeUpdate(sqlquery);
 		} catch (Exception e) {
 			e.printStackTrace();
 
 		}
-		System.out.println("antowrt zuweisen nid/uid" + nachrichtenId+  " " +unterhaltungsId);
+		System.out.println("antowrt zuweisen nid/uid" + nachrichtenId + " "
+				+ unterhaltungsId);
 
-		
 	}
 
-	public  Vector<Nachricht> alleNachrichtenEinerUnterhaltung(int uId) {
-		 Connection con = DatenbankVerbindung.connection();
-		 
-		 Vector<Nachricht> nachrichtListe = new Vector<Nachricht>();
+	public Vector<Nachricht> alleNachrichtenEinerUnterhaltung(int uId) {
+		Connection con = DatenbankVerbindung.connection();
 
- 		 try {
-		  Statement state = con.createStatement();
-		  ResultSet rs = state.executeQuery("SELECT N.Id, N.AutorId, N.ErstellungsDatum, N.Text, Nutzer.Vorname, Nutzer.Nachname FROM Nachricht AS N RIGHT JOIN (SELECT * FROM `NachrichtUnterhaltung` WHERE UnterhaltungId ='"+24+"')AS A ON N.Id = A.NachrichtId LEFT JOIN Nutzer ON Nutzer.Id = N.AutorId");
- 
-		  while (rs.next()) {
-			  Nachricht n = new Nachricht(); 
-			  n.setId(rs.getInt("Id"));
-//			  n.setSenderVorname(rs.getString("Vorname"));
-//			  n.setSenderNachname(rs.getString("Nachname"));
-			  n.setText(rs.getString("Text"));
-			  n.setErstellungsDatum(rs.getTimestamp("ErstellungsDatum"));
-			  nachrichtListe.add(n);
+		Vector<Nachricht> nachrichtListe = new Vector<Nachricht>();
+
+		try {
+			Statement state = con.createStatement();
+			ResultSet rs = state
+					.executeQuery("SELECT N.Id, N.AutorId, N.ErstellungsDatum, N.Text, Nutzer.Vorname, Nutzer.Nachname FROM Nachricht AS N RIGHT JOIN (SELECT * FROM `NachrichtUnterhaltung` WHERE UnterhaltungId ='"
+							+ 24
+							+ "')AS A ON N.Id = A.NachrichtId LEFT JOIN Nutzer ON Nutzer.Id = N.AutorId");
+
+			while (rs.next()) {
+				Nachricht n = new Nachricht();
+				n.setId(rs.getInt("Id"));
+				// n.setSenderVorname(rs.getString("Vorname"));
+				// n.setSenderNachname(rs.getString("Nachname"));
+				n.setText(rs.getString("Text"));
+				n.setErstellungsDatum(rs.getTimestamp("ErstellungsDatum"));
+				nachrichtListe.add(n);
 				System.out.println(rs.getString("Nachname"));
 
-		     }
-		   } 
-		 
-		 catch (Exception e) {
-		  e.printStackTrace();
-		   }
-			System.out.println( " uid--> "+uId);
+			}
+		}
 
-	
-	return nachrichtListe;		
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(" uid--> " + uId);
+
+		return nachrichtListe;
 	}
 
 	public Vector<Unterhaltung> alleUnterhaltungen() {
- Connection con = DatenbankVerbindung.connection();
-		 
-		 Vector<Unterhaltung> unterhaltungListe = new Vector<Unterhaltung>();
+		Connection con = DatenbankVerbindung.connection();
 
- 		 try {
-		  Statement state = con.createStatement();
-		  ResultSet rs = state.executeQuery("SELECT * FROM Unterhaltung WHERE Typ = 1"); // AND Sichtbarkeit = 1
- 
-		  while (rs.next()) {
-			  Unterhaltung u = new Unterhaltung(); 
-			  u.setId(rs.getInt("Id"));
-//			  u.setTyp(rs.getInt("Typ"));
-			  u.setSichtbarkeit(rs.getInt("Sichtbarkeit"));
- 
-			  unterhaltungListe.add(u);
+		Vector<Unterhaltung> unterhaltungListe = new Vector<Unterhaltung>();
 
-		     }
-		   } 
-		 
-		 catch (Exception e) {
-		  e.printStackTrace();
-		   }
-			System.out.println( " unterhaltungsliste size--> "+unterhaltungListe.size());
+		try {
+			Statement state = con.createStatement();
+			ResultSet rs = state
+					.executeQuery("SELECT * FROM Unterhaltung WHERE Typ = 1"); // AND
+																				// Sichtbarkeit
+																				// =
+																				// 1
 
-	return unterhaltungListe;	
+			while (rs.next()) {
+				Unterhaltung u = new Unterhaltung();
+				u.setId(rs.getInt("Id"));
+				// u.setTyp(rs.getInt("Typ"));
+				u.setSichtbarkeit(rs.getInt("Sichtbarkeit"));
+
+				unterhaltungListe.add(u);
+
+			}
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(" unterhaltungsliste size--> "
+				+ unterhaltungListe.size());
+
+		return unterhaltungListe;
 	}
-	 
 
-	 
-	
+	public Unterhaltung meineUnterhaltungen(int meineId) {
+		Connection con = DatenbankVerbindung.connection();
+		Unterhaltung u = new Unterhaltung();
+		Vector<Nachricht> meineNachrichten = new Vector<Nachricht>();
 
-	
-	
-	
-	
-	
-	
-	
+		try {
+			Statement state = con.createStatement();
+			String sqlquery = "SELECT * FROM NachrichtUnterhaltung JOIN Nachricht ON NachrichtUnterhaltung.NachrichtId=Nachricht.Id WHERE Nachricht.AutorId = '"
+					+ meineId
+					+ "' AND Nachricht.Sichtbarkeit = 1 ORDER BY Nachricht.ErstellungsDatum DESC";
+			ResultSet rs = state.executeQuery(sqlquery);
+			while (rs.next()) {
+				Nachricht nA = new Nachricht();
+				nA.setId(rs.getInt("Nachricht.Id"));
+				nA.setText(rs.getString("Nachricht.Text"));
+				nA.setSenderId(rs.getInt("Nachricht.AutorId"));
+				nA.setErstellungsDatum(rs
+						.getTimestamp("Nachricht.ErstellungsDatum"));
+				meineNachrichten.add(nA);
+
+			}
+			u.setAlleNachrichten(meineNachrichten);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return u;
+	}
+
+	public Unterhaltung oeffentlicheNachrichtenVonBenutzer(int id) {
+		Connection con = DatenbankVerbindung.connection();
+		Vector<Nachricht> OeffentlichenNachrichtenVonBenutzer = new Vector<Nachricht>();
+		Unterhaltung u = new Unterhaltung();
+		try {
+			Statement state = con.createStatement();
+			String sqlquery = "SELECT * FROM NachrichtUnterhaltung JOIN Nachricht ON NachrichtUnterhaltung.NachrichtId = Nachricht.Id JOIN Unterhaltung ON NachrichtUnterhaltung.UnterhaltungId = Unterhaltung.Id WHERE Nachricht.Sichtbarkeit = 1 AND Unterhaltung.Typ = 1 AND Nachricht.AutorId = '"
+					+ id + "' ORDER BY Nachricht.ErstellungsDatum DESC";
+			ResultSet rs = state.executeQuery(sqlquery);
+			while (rs.next()) {
+				Nachricht nA = new Nachricht();
+				nA.setId(rs.getInt("Nachricht.Id"));
+				nA.setText(rs.getString("Nachricht.Text"));
+				nA.setErstellungsDatum(rs
+						.getTimestamp("Nachricht.ErstellungsDatum"));
+				OeffentlichenNachrichtenVonBenutzer.add(nA);
+
+			}
+			u.setAlleNachrichten(OeffentlichenNachrichtenVonBenutzer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return u;
+	}
 	
 }
