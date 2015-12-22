@@ -11,7 +11,7 @@ public class Unterhaltung extends BusinessObject {
 	private static final long serialVersionUID = 1L;
 	private Vector<Nachricht> alleNachrichten;
 
-	private HashMap<Boolean, Nutzer> teilnehmer;
+	private Vector<Nutzer> teilnehmer;
 
 	public enum UnterhaltungsTyp {
 		privat, oeffentlich;
@@ -25,12 +25,14 @@ public class Unterhaltung extends BusinessObject {
 		this.alleNachrichten = alleNachrichten;
 	}
 
-	public HashMap<Boolean, Nutzer> getTeilnehmer() {
+	public Vector<Nutzer> getTeilnehmer() {
 		return teilnehmer;
 	}
 
-	public void setTeilnehmer(HashMap<Boolean, Nutzer> teilnehmer) {
+	public void setTeilnehmer(Vector<Nutzer> teilnehmer) {
 		this.teilnehmer = teilnehmer;
 	}
+
+	
 
 }

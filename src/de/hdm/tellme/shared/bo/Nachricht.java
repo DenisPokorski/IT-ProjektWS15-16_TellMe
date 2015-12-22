@@ -28,7 +28,7 @@ public class Nachricht extends BusinessObject {
 	private String text;
 	private Nutzer sender;
 	private int senderId;
-	private Vector<Nutzer> empfaengerListe;
+	
 
 	/**
 	 * Mit dieser Methode wird der Text ausgelesen
@@ -70,43 +70,6 @@ public class Nachricht extends BusinessObject {
 		this.senderId = senderId;
 	}
 
-	/**
-	 * Mit dieser Methode wird die empfaengerListe ausgelesen
-	 * 
-	 * @return empfaengerListe
-	 */
-
-	public Vector<Nutzer> getEmpfaengerListe() {
-		return empfaengerListe;
-	}
-
-	/**
-	 * Mit dieser Methode wird die empfaengerListe zugewiesen
-	 * 
-	 * @param empfaengerListe
-	 */
-
-	public void setEmpfaengerListe(Vector<Nutzer> empfaengerListe) {
-		this.empfaengerListe = empfaengerListe;
-	}
-
-	/**
-	 * Mit dieser Methode wird der senderVorname ausgelesen
-	 * 
-	 * @return senderVorname
-	 */
-
-	/**
-	 * Mit dieser Methode wird der senderVorname zugewiesen
-	 * 
-	 * @param senderVorname
-	 */
-
-	/**
-	 * Mit dieser Methode wird der senderNachname zugewiesen
-	 * 
-	 * @param senderNachname
-	 */
 
 	public Nutzer getSender() {
 		return sender;
