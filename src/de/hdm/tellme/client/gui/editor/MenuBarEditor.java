@@ -110,8 +110,6 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.addItem("Hashtagverwaltung", new Command() {
 			@Override
 			public void execute() {
-			RootPanel.get("content_left").add(new HashtagCellList().generiereCellList(CellListModus.HastagVerwaltung));
-
 			}
 		});
 

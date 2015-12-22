@@ -52,20 +52,7 @@ public class HashtagCellList {
 		case Nachrichtenuebersicht:
 			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 				public void onSelectionChange(SelectionChangeEvent event) {
-					MenuBarEditor.gibansichtNeuigkeiten().FilterNachBenutzer(selectionModel.getSelectedObject());
-				}
-			});
-			
-			break;
-			
-		case HastagVerwaltung:
-			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-				public void onSelectionChange(SelectionChangeEvent event) {
-					HashtagVerwaltungFomular nvf = new HashtagVerwaltungFomular();
-					nvf.setzeHashtag(selectionModel.getSelectedObject());
-					RootPanel.get("content_right").clear();
-					RootPanel.get("content_right").add(nvf.gibFormular());
-				
+//					MenuBarEditor.gibansichtNeuigkeiten().FilterNachBenutzer(selectionModel.getSelectedObject());
 				}
 			});
 			

@@ -59,7 +59,7 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 			u1.setId(333);
 			u1.setSichtbarkeit(1);
 			u1.setTeilnehmer(TeilnehmerListe);
-			u1.setUnterhaltungstyp(Unterhaltung.eUnterhaltungsTyp.privat);
+//			u1.setUnterhaltungstyp(Unterhaltung.eUnterhaltungsTyp.privat);
 
 			Nachricht u1n1 = new Nachricht();
 			u1n1.setErstellungsDatum(new Timestamp(now));

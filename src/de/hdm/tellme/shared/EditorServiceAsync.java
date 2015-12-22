@@ -61,16 +61,7 @@ public interface EditorServiceAsync {
 	void hashtagAboErstellen(int nutzerId, int hashtagId,
 			AsyncCallback<Void> asyncCallback);
 
-	void hashtagSpeichern(Hashtag hashtag, AsyncCallback<Void> asyncCallback);
 
-	void hashtagEntfernen(Hashtag hashtag, AsyncCallback<Void> asyncCallback);
-
-	void hashtagAboEntfernen(int nutzerId, int hashtagId,
-			AsyncCallback<Void> asyncCallback);
-
-<<<<<<< HEAD
-	void hashtagErstellen(Hashtag hashtag, AsyncCallback<Void> asyncCallback);
-=======
 	void getAlleNutzerAußerMeineId(int meineId,
 			AsyncCallback<Vector<Nutzer>> callback);
 
@@ -82,7 +73,14 @@ public interface EditorServiceAsync {
 
 	void nutzerAbonnementLoeschen(int id, Nutzer _nutzerDeabonieren,
 			AsyncCallback<Void> callback);
->>>>>>> origin/master
+
+	void hashtagErstellen(Hashtag hashtag, AsyncCallback<Void> callback);
+
+	void hashtagSpeichern(Hashtag hashtag, AsyncCallback<Void> callback);
+
+	void hashtagEntfernen(Hashtag hashtag, AsyncCallback<Void> callback);
+
+	void hashtagAboEntfernen(int nutzerId, int hashtagId, AsyncCallback<Void> asyncCallback);
 
 	 
  }
