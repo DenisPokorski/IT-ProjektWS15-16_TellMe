@@ -10,6 +10,7 @@ import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Unterhaltung;
+import de.hdm.tellme.shared.bo.Unterhaltung.eUnterhaltungsTyp;
 
 @RemoteServiceRelativePath("editorservice")
 public interface EditorService extends RemoteService {
@@ -32,15 +33,7 @@ public interface EditorService extends RemoteService {
 
 	void erstellenHashtagAboById(int NutzerId, int HashtagId);
 
-	Vector<Unterhaltung> ladeAlleOeffentlichenUnterhaltungen();
-
-	void NachrichtErstellenUnnterhaltungZuweisen(Nachricht n, int uid);
-
 	void nachrichtUnterhaltungZuweisen(String txt, int uId, Timestamp ts);
-
-	Vector<Nachricht> alleNachrichtenVonUnterhaltungListe(int uId);
-
-	int UnterhaltungErstellen(Timestamp ts, String text);
 
 	void NachrichtErstellen(Nachricht n);
 
@@ -66,10 +59,12 @@ public interface EditorService extends RemoteService {
 
 	void hashtagAboEntfernen(int nutzerId, int hashtagId);
 
-	Unterhaltung meineUnterhaltungenMitSichtbarkeit(int meineId);
-
-	Unterhaltung oeffentlicheNachrichtenVonBenutzer(int id);
-
 	Unterhaltung oeffentlicheNachrichtenNachHashtag(int id);
+
+	int unterhaltung_anlegen(eUnterhaltungsTyp _unterhaltungsTyp);
+
+	boolean unterhaltung_loeschen(int unterhaltungsID);
+
+	Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(int teilnehmerID);
 
 }

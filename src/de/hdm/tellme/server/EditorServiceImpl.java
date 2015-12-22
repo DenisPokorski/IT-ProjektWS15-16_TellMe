@@ -105,42 +105,10 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		nachrichtMapper.anlegen(n);
 	}
 
-	@Override
-	public int UnterhaltungErstellen(Timestamp ts, String text) {
-		int unterhaltungsTyp = 1;
-		unterhaltungMapper.anlegen(ts, unterhaltungsTyp);
-		int nachrichtenId = nachrichtMapper.nachrichtSelektieren(ts, text);
-		int unterhaltungsId = unterhaltungMapper.unterhaltungSelektieren(ts);
-		unterhaltungMapper.UnterhaltungNachrichtZuweisen(unterhaltungsId,
-				nachrichtenId);
-		return unterhaltungsId;
-	}
-
-	@Override
-	public Vector<Nachricht> alleNachrichtenVonUnterhaltungListe(int uId) {
-		Vector<Nachricht> nachrichtListe = unterhaltungMapper
-				.alleNachrichtenEinerUnterhaltung(uId);
-		return nachrichtListe;
-	}
 
 	@Override
 	public void nachrichtUnterhaltungZuweisen(String txt, int uId, Timestamp ts) {
 
-	}
-
-	@Override
-	public void NachrichtErstellenUnnterhaltungZuweisen(Nachricht n, int uId) {
-		nachrichtMapper.anlegen(n);
-		int nachrichtenId = nachrichtMapper.nachrichtSelektieren(
-				n.getErstellungsDatum(), n.getText());
-		unterhaltungMapper.UnterhaltungNachrichtZuweisen(uId, nachrichtenId);
-	}
-
-	@Override
-	public Vector<Unterhaltung> ladeAlleOeffentlichenUnterhaltungen() {
-		Vector<Unterhaltung> unterhaltungListe = unterhaltungMapper
-				.alleUnterhaltungen();
-		return unterhaltungListe;
 	}
 
 	@Override
@@ -216,24 +184,31 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public Unterhaltung meineUnterhaltungenMitSichtbarkeit(int meineId) {
-		Unterhaltung meineUnterhaltungen = unterhaltungMapper
-				.meineUnterhaltungen(meineId);
-		return meineUnterhaltungen;
-	}
-
-	@Override
-	public Unterhaltung oeffentlicheNachrichtenVonBenutzer(int id) {
-		Unterhaltung oeffentlicheNachrichtenVonBenutzer = unterhaltungMapper
-				.oeffentlicheNachrichtenVonBenutzer(id);
-		return oeffentlicheNachrichtenVonBenutzer;
-	}
-
-	@Override
 	public Unterhaltung oeffentlicheNachrichtenNachHashtag(int id) {
 		Unterhaltung oeffentlicheNachrichtenNachHashtag = hashtagMapper
 				.oeffentlicheNachrichtenNachHashtag(id);
 		return oeffentlicheNachrichtenNachHashtag;
+	}	
+
+	@Override
+	public int unterhaltung_anlegen(Unterhaltung.eUnterhaltungsTyp _unterhaltungsTyp){
+		int ergebnis = -1;
+		ergebnis = unterhaltungMapper.anlegen(_unterhaltungsTyp);
+		return ergebnis;
+	}
+
+	@Override
+	public boolean unterhaltung_loeschen(int unterhaltungsID){
+		boolean ergebnis = false;
+		ergebnis = unterhaltungMapper.loescheUnterhaltungAnhandID(unterhaltungsID);
+		return ergebnis;
+	}
+
+	@Override
+	public Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(int teilnehmerID){
+		Vector<Unterhaltung> Unterhaltungen = null;
+		Unterhaltungen = unterhaltungMapper.alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(teilnehmerID);
+		return Unterhaltungen;
 	}
 
 }

@@ -9,6 +9,7 @@ import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Unterhaltung;
+import de.hdm.tellme.shared.bo.Unterhaltung.eUnterhaltungsTyp;
 
 public interface EditorServiceAsync {
 
@@ -28,21 +29,8 @@ public interface EditorServiceAsync {
 
 	void NachrichtErstellen(Nachricht n, AsyncCallback<Void> asyncCallback);
 
-	void UnterhaltungErstellen(Timestamp ts, String text,
-			AsyncCallback<Integer> asyncCallback);
-
-	void alleNachrichtenVonUnterhaltungListe(int uId,
-			AsyncCallback<Vector<Nachricht>> asyncCallback);
-
 	void nachrichtUnterhaltungZuweisen(String txt, int uId, Timestamp ts,
 			AsyncCallback<Void> asyncCallback);
-
- 
-	void NachrichtErstellenUnnterhaltungZuweisen(Nachricht n,
-			int uid, AsyncCallback<Void> asyncCallback);
-
-	void ladeAlleOeffentlichenUnterhaltungen(
-			AsyncCallback<Vector<Unterhaltung>> asyncCallback);
 
 	void getZuAbonnierendeLoeschenHashtagAboListe(int meineId,
 			AsyncCallback<Vector<Hashtag>> callback);
@@ -82,14 +70,14 @@ public interface EditorServiceAsync {
 
 	void hashtagAboEntfernen(int nutzerId, int hashtagId, AsyncCallback<Void> asyncCallback);
 
-	void meineUnterhaltungenMitSichtbarkeit(int meineId,
-			AsyncCallback<Unterhaltung> callback);
-
-	void oeffentlicheNachrichtenVonBenutzer(int id,
-			AsyncCallback<Unterhaltung> callback);
-
 	void oeffentlicheNachrichtenNachHashtag(int id,
 			AsyncCallback<Unterhaltung> callback);
+
+	void unterhaltung_anlegen(eUnterhaltungsTyp _unterhaltungsTyp, AsyncCallback<Integer> callback);
+
+	void unterhaltung_loeschen(int unterhaltungsID, AsyncCallback<Boolean> callback);
+
+	void alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(int teilnehmerID, AsyncCallback<Vector<Unterhaltung>> callback);
 
 	 
  }

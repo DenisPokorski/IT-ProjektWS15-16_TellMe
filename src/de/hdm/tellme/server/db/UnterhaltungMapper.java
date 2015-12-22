@@ -1,17 +1,13 @@
 package de.hdm.tellme.server.db;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.Vector;
 
-import com.google.appengine.api.prospectivesearch.ProspectiveSearchPb.SubscriptionRecord.State;
 
 import de.hdm.tellme.server.db.DatenbankVerbindung;
-import de.hdm.tellme.shared.bo.Nachricht;
-import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Unterhaltung;
 
 /**
@@ -25,7 +21,6 @@ public class UnterhaltungMapper {
 	private static UnterhaltungMapper unterhaltungMapper = null;
 
 	protected UnterhaltungMapper() {
-
 	}
 
 	/**
@@ -40,182 +35,78 @@ public class UnterhaltungMapper {
 		return unterhaltungMapper;
 	}
 
-	public void anlegen(Timestamp ts, int unterhaltungsTyp) {
-
+	//legt unterhaltung an, gibt id neuer unterhaltung zurück oder -1 wenn nicht erfolgreich
+	public int anlegen(Unterhaltung.eUnterhaltungsTyp unterHaltungsTyp) {
 		int sichtbarkeit = 1;
+		int ergebnis = -1;
+
 		Connection con = DatenbankVerbindung.connection();
 		try {
-			Statement state = con.createStatement();
-			String sqlquery = "INSERT INTO Unterhaltung (Sichtbarkeit, ErstellungsDatum, Typ) VALUES ("
-					+ "'"
-					+ sichtbarkeit
-					+ "','"
-					+ ts
-					+ "','"
-					+ unterhaltungsTyp + "')";
-			state.executeUpdate(sqlquery);
+			PreparedStatement prepState = con.prepareStatement("INSERT INTO Unterhaltung (Sichtbarkeit, ErstellungsDatum, Typ) VALUES (?,CURRENT_TIMESTAMP,?)",
+					Statement.RETURN_GENERATED_KEYS);
+			prepState.setInt(1, sichtbarkeit);
+			prepState.setInt(2, unterHaltungsTyp.ordinal());
+
+			prepState.executeUpdate();
+			
+			ResultSet rs = prepState.getGeneratedKeys();
+			if (rs.next()){
+				ergebnis=rs.getInt(1);
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return ergebnis;
 	}
 
-	public int unterhaltungSelektieren(Timestamp ts) {
-
-		Connection con = DatenbankVerbindung.connection();
-		int unterhaltungId = 0;
-		try {
-			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT * FROM Unterhaltung WHERE Erstellungsdatum ='"
-							+ ts + "'");
-
-			if (rs.next()) {
-				unterhaltungId = rs.getInt("Id");
-			}
-		}
-
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return unterhaltungId;
-	}
-
-	public void UnterhaltungNachrichtZuweisen(int unterhaltungsId,
-			int nachrichtenId) {
+	public boolean loescheUnterhaltungAnhandID(int unterhaltungsID) {
+		boolean erfolgreich = false;
 
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "INSERT INTO `NachrichtUnterhaltung` (UnterhaltungId, NachrichtId) VALUES ('"
-					+ unterhaltungsId + "','" + nachrichtenId + "')";
-			state.executeUpdate(sqlquery);
+			String sqlquery = "DELETE FROM Unterhaltung WHERE `Id`='" + unterhaltungsID + "';";
+			int anzahlBetroffenerZeilen = state.executeUpdate(sqlquery);
+			if (anzahlBetroffenerZeilen > 0)
+				erfolgreich = true;
+			else
+				erfolgreich = false;
 		} catch (Exception e) {
 			e.printStackTrace();
-
 		}
-		System.out.println("antowrt zuweisen nid/uid" + nachrichtenId + " "
-				+ unterhaltungsId);
 
+		return erfolgreich;
 	}
 
-	public Vector<Nachricht> alleNachrichtenEinerUnterhaltung(int uId) {
+	// Gibt eine Liste an Unterhaltungen zurück, bei dem der Nutzer mit der
+	// Nutzerid <teilnehmerID>
+	// als aktiver Teilnehmer (Eintrag in NutzerUnterhaltung ist Vorhanden und
+	// Sichtbar) agiert
+	public Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(int teilnehmerID) {
+		Vector<Unterhaltung> alleUnterhaltungen = new Vector<Unterhaltung>();
+
 		Connection con = DatenbankVerbindung.connection();
-
-		Vector<Nachricht> nachrichtListe = new Vector<Nachricht>();
-
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT N.Id, N.AutorId, N.ErstellungsDatum, N.Text, Nutzer.Vorname, Nutzer.Nachname FROM Nachricht AS N RIGHT JOIN (SELECT * FROM `NachrichtUnterhaltung` WHERE UnterhaltungId ='"
-							+ 24
-							+ "')AS A ON N.Id = A.NachrichtId LEFT JOIN Nutzer ON Nutzer.Id = N.AutorId");
-
-			while (rs.next()) {
-				Nachricht n = new Nachricht();
-				n.setId(rs.getInt("Id"));
-				// n.setSenderVorname(rs.getString("Vorname"));
-				// n.setSenderNachname(rs.getString("Nachname"));
-				n.setText(rs.getString("Text"));
-				n.setErstellungsDatum(rs.getTimestamp("ErstellungsDatum"));
-				nachrichtListe.add(n);
-				System.out.println(rs.getString("Nachname"));
-
-			}
-		}
-
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println(" uid--> " + uId);
-
-		return nachrichtListe;
-	}
-
-	public Vector<Unterhaltung> alleUnterhaltungen() {
-		Connection con = DatenbankVerbindung.connection();
-
-		Vector<Unterhaltung> unterhaltungListe = new Vector<Unterhaltung>();
-
-		try {
-			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT * FROM Unterhaltung WHERE Typ = 1"); // AND
-																				// Sichtbarkeit
-																				// =
-																				// 1
+			ResultSet rs = state.executeQuery("SELECT * FROM NutzerUnterhaltung INNER JOIN Unterhaltung ON"
+					+ " NutzerUnterhaltung.UnterhaltungId = Unterhaltung.Id Where NutzerID = " + teilnehmerID + " AND NutzerUnterhaltung.Sichtbarkeit = 1;");
 
 			while (rs.next()) {
 				Unterhaltung u = new Unterhaltung();
 				u.setId(rs.getInt("Id"));
-				// u.setTyp(rs.getInt("Typ"));
-				u.setSichtbarkeit(rs.getInt("Sichtbarkeit"));
-
-				unterhaltungListe.add(u);
-
-			}
-		}
-
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println(" unterhaltungsliste size--> "
-				+ unterhaltungListe.size());
-
-		return unterhaltungListe;
-	}
-
-	public Unterhaltung meineUnterhaltungen(int meineId) {
-		Connection con = DatenbankVerbindung.connection();
-		Unterhaltung u = new Unterhaltung();
-		Vector<Nachricht> meineNachrichten = new Vector<Nachricht>();
-
-		try {
-			Statement state = con.createStatement();
-			String sqlquery = "SELECT * FROM NachrichtUnterhaltung JOIN Nachricht ON NachrichtUnterhaltung.NachrichtId=Nachricht.Id WHERE Nachricht.AutorId = '"
-					+ meineId
-					+ "' AND Nachricht.Sichtbarkeit = 1 ORDER BY Nachricht.ErstellungsDatum DESC";
-			ResultSet rs = state.executeQuery(sqlquery);
-			while (rs.next()) {
-				Nachricht nA = new Nachricht();
-				nA.setId(rs.getInt("Nachricht.Id"));
-				nA.setText(rs.getString("Nachricht.Text"));
-				nA.setSenderId(rs.getInt("Nachricht.AutorId"));
-				nA.setErstellungsDatum(rs
-						.getTimestamp("Nachricht.ErstellungsDatum"));
-				meineNachrichten.add(nA);
+				u.setSichtbarkeit(1);
+				int typ = rs.getInt("Typ");
+				u.setUnterhaltungstyp(Unterhaltung.eUnterhaltungsTyp.values()[typ]);
+				u.setErstellungsDatum(rs.getTimestamp("ErstellungsDatum"));
+				alleUnterhaltungen.add(u);
 
 			}
-			u.setAlleNachrichten(meineNachrichten);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return u;
+
+		return alleUnterhaltungen;
 	}
 
-	public Unterhaltung oeffentlicheNachrichtenVonBenutzer(int id) {
-		Connection con = DatenbankVerbindung.connection();
-		Vector<Nachricht> OeffentlichenNachrichtenVonBenutzer = new Vector<Nachricht>();
-		Unterhaltung u = new Unterhaltung();
-		try {
-			Statement state = con.createStatement();
-			String sqlquery = "SELECT * FROM NachrichtUnterhaltung JOIN Nachricht ON NachrichtUnterhaltung.NachrichtId = Nachricht.Id JOIN Unterhaltung ON NachrichtUnterhaltung.UnterhaltungId = Unterhaltung.Id WHERE Nachricht.Sichtbarkeit = 1 AND Unterhaltung.Typ = 1 AND Nachricht.AutorId = '"
-					+ id + "' ORDER BY Nachricht.ErstellungsDatum DESC";
-			ResultSet rs = state.executeQuery(sqlquery);
-			while (rs.next()) {
-				Nachricht nA = new Nachricht();
-				nA.setId(rs.getInt("Nachricht.Id"));
-				nA.setText(rs.getString("Nachricht.Text"));
-				nA.setErstellungsDatum(rs
-						.getTimestamp("Nachricht.ErstellungsDatum"));
-				OeffentlichenNachrichtenVonBenutzer.add(nA);
-
-			}
-			u.setAlleNachrichten(OeffentlichenNachrichtenVonBenutzer);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return u;
-	}
-	
 }

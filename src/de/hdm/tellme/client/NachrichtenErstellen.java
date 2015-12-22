@@ -66,16 +66,16 @@ public class NachrichtenErstellen extends VerticalPanel {
 		n.setText(text);
 		n.setSenderId(meineId);
 
-		asyncObj.NachrichtErstellenUnnterhaltungZuweisen(n, uid, new AsyncCallback<Void>() {
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("fail1");
-			}
-
-			@Override
-			public void onSuccess(Void result) {
-			}
-		});
+//		asyncObj.NachrichtErstellenUnnterhaltungZuweisen(n, uid, new AsyncCallback<Void>() {
+//			@Override
+//			public void onFailure(Throwable caught) {
+//				Window.alert("fail1");
+//			}
+//
+//			@Override
+//			public void onSuccess(Void result) {
+//			}
+//		});
 
 	}
 
