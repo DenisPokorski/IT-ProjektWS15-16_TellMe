@@ -208,6 +208,27 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		nutzeraboMapper.nutzerAboErstellen(vonId, _nutzer);
 
 	}
+	@Override
+	public Vector<Integer> holeAlleAbonniertenNutzer(int meineId) {
+		Vector<Integer> alleAbonniertenNutzer = nutzerMapper
+				.alleAbonniertenNutzer(meineId);
+
+		return alleAbonniertenNutzer;
+	}
+
+	@Override
+	public void nutzerAbonnementLoeschen(int id, Nutzer _nutzerDeabonieren) {
+		nutzeraboMapper.loescheNutzeraboById(id, _nutzerDeabonieren);
+		
+	}
+
+	@Override
+	public void nutzerAbonnementErstellen(int vonId, Nutzer _nutzer) {
+		nutzeraboMapper.nutzerAboErstellen(vonId, _nutzer);
+
+	}
+
+
 
 
 
