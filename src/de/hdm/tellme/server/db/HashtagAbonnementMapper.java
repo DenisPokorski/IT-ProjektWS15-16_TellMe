@@ -140,7 +140,7 @@ public class HashtagAbonnementMapper {
 		try {
 			Statement state = con.createStatement();
 			ResultSet rs = state
-					.executeQuery("SELECT * FROM NutzerHashtag LEFT JOIN Hashtag ON NutzerHashtag.HashtagId = Hashtag.Id WHERE NutzerId '"+NutzerId + "';");
+					.executeQuery("SELECT * FROM NutzerHashtag LEFT JOIN Hashtag ON NutzerHashtag.HashtagId = Hashtag.Id WHERE NutzerId=65 ;");
 			while (rs.next()) {
 				Hashtag h= new Hashtag();
 				h.setId(rs.getInt("Id"));

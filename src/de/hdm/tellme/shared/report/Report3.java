@@ -2,7 +2,7 @@ package de.hdm.tellme.shared.report;
 
 import java.io.Serializable;
 
-public class Report3 extends VerbundenerReport implements Serializable {
+public class Report3 extends EinfacherReport implements Serializable {
 
 	/**
 	 * 
