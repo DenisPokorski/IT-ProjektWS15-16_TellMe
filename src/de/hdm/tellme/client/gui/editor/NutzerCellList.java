@@ -72,20 +72,20 @@ public class NutzerCellList {
 
 			break;
 			
-//		case Report:
-//			selectionModel
-//					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-//						public void onSelectionChange(SelectionChangeEvent event) {
-//														
-//							ReportFormular rF = new ReportFormular();
-//							rF.report3Generieren(selectionModel.getSelectedObject());
-//							RootPanel.get("content_right").clear();
-//							RootPanel.get("content_right").add(rF.gibFormular());
-//							
-//						}
-//					});
-//
-//			break;
+		case Report:
+			selectionModel
+					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+						public void onSelectionChange(SelectionChangeEvent event) {
+														
+							ReportFormular rF = new ReportFormular();
+							rF.report3Generieren(selectionModel.getSelectedObject());
+							RootPanel.get("content_right").clear();
+							RootPanel.get("content_right").add(rF.gibFormular());
+							
+						}
+					});
+
+			break;
 
 		default:
 			break;
