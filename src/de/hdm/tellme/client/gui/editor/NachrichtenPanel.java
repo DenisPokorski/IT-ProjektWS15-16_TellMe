@@ -41,7 +41,7 @@ public class NachrichtenPanel {
 		 
 			private VerticalPanel  EmpfaengerHinzufügenWrap = new VerticalPanel(); 
 			SuggestBox  EmpfaengerHinzufügenSug = new SuggestBox(oracle); 
-			//EmpfaengerHinzufügenBar
+			//EmpfaengerHinzuf�genBar
 			HorizontalPanel EmpfaengerHinzufügenBar = new HorizontalPanel(); 
 			private FlowPanel  EmpfaengerHinzufügenLeiste = new FlowPanel(); 
 
@@ -70,7 +70,7 @@ public class NachrichtenPanel {
 				public void onClick(ClickEvent event) {
 					
  						if (textArea.getValue().isEmpty()) {
-							Window.alert("Bitte Textfeld befüllen");
+							Window.alert("Bitte Textfeld bef�llen");
 						} else {
 					
 						 Date utilDate = new  Date();
@@ -108,7 +108,7 @@ public class NachrichtenPanel {
 				public void onClick(ClickEvent event) {
 					
 						if (textArea.getValue().isEmpty()) {
-							Window.alert("Bitte Textfeld befüllen");
+							Window.alert("Bitte Textfeld bef�llen");
 						} else {
 					
 						 Date utilDate = new  Date();
@@ -147,7 +147,7 @@ public class NachrichtenPanel {
 			
 			// GET ALLE HASHSTAGS
 			
-//			asyncObj.getAlleNutzerAußerMeineId(meineId, new AsyncCallback <Vector<Nutzer>>() {
+//			asyncObj.getAlleNutzerAu�erMeineId(meineId, new AsyncCallback <Vector<Nutzer>>() {
 //				@Override
 //				public void onFailure(Throwable caught) {
 //					Window.alert("bba -" );
@@ -165,7 +165,7 @@ public class NachrichtenPanel {
 			
 
 			
-			//  EmpfaengerHinzufügenWrap.add(EmpfaengerHinzufügenSug);
+			//  EmpfaengerHinzuf�genWrap.add(EmpfaengerHinzuf�genSug);
 
 			EmpfaengerHinzufügenBar.add(EmpfaengerHinzufügenSug);
 	  }
@@ -173,7 +173,7 @@ public class NachrichtenPanel {
 	  
 	void setloadNutzerSugestListeHizufügenButton(){
 		
-		Button b = new Button("+ Hinzufügen"); 
+		Button b = new Button("+ Hinzuf�gen"); 
 		EmpfaengerHinzufügenBar.add(b); 
 
 		b.addClickHandler(new ClickHandler() {
@@ -196,7 +196,7 @@ public class NachrichtenPanel {
 						//((	final int i = e.getRowId();
 							//Window.alert("Auswahl " + e.getRowId());
 
-									//EmpfaengerHinzufügenLeiste.remove(i) ;
+									//EmpfaengerHinzuf�genLeiste.remove(i) ;
 									b2.removeFromParent();
 							
 							

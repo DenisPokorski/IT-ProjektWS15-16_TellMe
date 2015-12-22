@@ -36,10 +36,10 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	private NachrichtMapper nachrichtMapper = null;
 	private UnterhaltungMapper unterhaltungMapper = null;
 
-	private NutzerMapper nMapper = null;
+	
 	private NutzerAbonnementMapper naMapper = null;
 	private HashtagAbonnementMapper hashtagAboMapper = null;
-	private HashtagMapper hashtagMapper = null;
+	
 
 	public void nutzerAnlegen(Nutzer na) {
 		Nutzer n = new Nutzer();
@@ -81,11 +81,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		
 	
 	
-	@Override
-	public void loescheNutzeraboById(int vonId, int nachId) {
-		nutzeraboMapper.loescheNutzeraboById(vonId, nachId);
-	}
-
+	
 	@Override
 	public Vector<Nutzer> getNochNichtAbonnenteNutzerListe(int meineId) {
 		return null;
@@ -100,11 +96,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return alleNutzer;
 	}
 
-	@Override
-	public void erstellenNutzeraboById(int vonId, int nachId) {
-		nutzeraboMapper.nutzerAboErstellen(vonId, nachId);
 
-	}
 
 	@Override
 	public Vector<Nutzer> getAlleNutzerAußerMeineId(int meineId) {
@@ -197,6 +189,27 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	public void hashtagAboEntfernen(int nutzerId, int hashtagId) {
 		hashtagAboMapper.HashtagAboEntfernen(nutzerId, hashtagId);
 	}
+	@Override
+	public Vector<Integer> holeAlleAbonniertenNutzer(int meineId) {
+		Vector<Integer> alleAbonniertenNutzer = nutzerMapper
+				.alleAbonniertenNutzer(meineId);
+
+		return alleAbonniertenNutzer;
+	}
+
+	@Override
+	public void nutzerAbonnementLoeschen(int id, Nutzer _nutzerDeabonieren) {
+		nutzeraboMapper.loescheNutzeraboById(id, _nutzerDeabonieren);
+		
+	}
+
+	@Override
+	public void nutzerAbonnementErstellen(int vonId, Nutzer _nutzer) {
+		nutzeraboMapper.nutzerAboErstellen(vonId, _nutzer);
+
+	}
+
+
 
 	@Override
 	public void hashtagAboErstellen(int nutzerId, int hashtagId) {

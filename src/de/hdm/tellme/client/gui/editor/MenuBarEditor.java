@@ -37,14 +37,6 @@ public class MenuBarEditor extends HorizontalPanel {
 		return ansichtNeuigkeiten;
 	}
 
-	private static AboverwaltungEditor ansichtEinstellungenAboverwatung = null;
-
-	public static AboverwaltungEditor gibansichtEinstellungenAboverwatung() {
-		// lade jedes mal neu um Listen aktuell zu halten
-		ansichtEinstellungenAboverwatung = new AboverwaltungEditor();
-		return ansichtEinstellungenAboverwatung;
-	}
-
 	private static NutzerBearbeitenEditor ansichtEinstellungenBenutzereinstellungen = null;
 
 	public static NutzerBearbeitenEditor gibansichtEinstellungenBenutzereinstellungen() {
@@ -84,7 +76,10 @@ public class MenuBarEditor extends HorizontalPanel {
 		HauptMenue.addItem("Neuigkeiten", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(new NutzerCellList().generiereCellList(CellListModus.Nachrichtenuebersicht),gibansichtNeuigkeiten());
+				setzeInhalt(
+						new NutzerCellList()
+								.generiereCellList(CellListModus.Nachrichtenuebersicht),
+						gibansichtNeuigkeiten());
 			}
 		});
 
@@ -95,14 +90,20 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.addItem("NutzeraboVerwaltung", new Command() {
 			@Override
 			public void execute() {
-				RootPanel.get("content_left").add(new NutzerCellList().generiereCellList(CellListModus.Einstellungen));
+				RootPanel
+						.get("content_left")
+						.add(new NutzerCellList()
+								.generiereCellList(CellListModus.Einstellungen));
 			}
 		});
-		
+
 		EinstellungenMenu.addItem("HashtagaboVerwaltung", new Command() {
 			@Override
 			public void execute() {
-				RootPanel.get("content_left").add(new HashtagCellList().generiereCellList(CellListModus.Einstellungen));
+				RootPanel
+						.get("content_left")
+						.add(new HashtagCellList()
+								.generiereCellList(CellListModus.Einstellungen));
 			}
 		});
 
@@ -159,7 +160,8 @@ public class MenuBarEditor extends HorizontalPanel {
 		RootPanel.get("content").add(ZuSetzendesPanel);
 	}
 
-	public static void setzeInhalt(Widget ZuSetzendesPanelLinks,Widget ZuSetzendesPanelRechts) {
+	public static void setzeInhalt(Widget ZuSetzendesPanelLinks,
+			Widget ZuSetzendesPanelRechts) {
 
 		RootPanel.get("content_left").clear();
 		RootPanel.get("content_right").clear();
