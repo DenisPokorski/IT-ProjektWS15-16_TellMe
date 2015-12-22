@@ -40,7 +40,7 @@ public class NutzerDataProvider {
 		if (dataList != null)
 			dataList.clear();
 
-		asyncObj.getAlleNutzerAuﬂerMeineId(TellMe.eingeloggterBenutzer
+		asyncObj.getAlleNutzerAu√üerMeineId(TellMe.eingeloggterBenutzer
 				.getUser().getId(), new AsyncCallback<Vector<Nutzer>>() {
 
 			@Override

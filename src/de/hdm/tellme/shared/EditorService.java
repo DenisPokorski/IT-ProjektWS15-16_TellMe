@@ -26,7 +26,7 @@ public interface EditorService extends RemoteService {
 	Vector<Nutzer> getZuAbonnieredeLoeschenNutzerListe(int i);
 
 
-	Vector<Nutzer> getAlleNutzerAuﬂerMeineId(int meineId);
+	Vector<Nutzer> getAlleNutzerAu√üerMeineId(int meineId);
 
 	Vector<Hashtag> getZuAbonnierendeLoeschenHashtagAboListe(int meineId);
 

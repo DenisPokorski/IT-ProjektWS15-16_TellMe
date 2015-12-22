@@ -98,7 +98,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 
 	@Override
-	public Vector<Nutzer> getAlleNutzerAuﬂerMeineId(int meineId) {
+	public Vector<Nutzer> getAlleNutzerAu√üerMeineId(int meineId) {
 		Vector<Nutzer> alleNutzer = nutzerMapper.alleNutzerAusserMeineId(meineId);
 		return alleNutzer;
 	}

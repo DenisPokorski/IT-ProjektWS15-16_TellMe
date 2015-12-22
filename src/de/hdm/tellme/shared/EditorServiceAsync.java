@@ -64,7 +64,7 @@ public interface EditorServiceAsync {
 	void hashtagEntfernen(int nutzerId, int hashtagId,
 			AsyncCallback<Void> asyncCallback);
 
-	void getAlleNutzerAuﬂerMeineId(int meineId,
+	void getAlleNutzerAu√üerMeineId(int meineId,
 			AsyncCallback<Vector<Nutzer>> callback);
 
 	void holeAlleAbonniertenNutzer(int meineId,

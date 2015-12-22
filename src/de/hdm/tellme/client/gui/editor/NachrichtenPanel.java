@@ -39,38 +39,38 @@ public class NachrichtenPanel {
 		    
 		    
 		 
-			private VerticalPanel  EmpfaengerHinzufügenWrap = new VerticalPanel(); 
-			SuggestBox  EmpfaengerHinzufügenSug = new SuggestBox(oracle); 
-			//EmpfaengerHinzufügenBar
-			HorizontalPanel EmpfaengerHinzufügenBar = new HorizontalPanel(); 
-			private FlowPanel  EmpfaengerHinzufügenLeiste = new FlowPanel(); 
+			private VerticalPanel  EmpfaengerHinzufÃ¼genWrap = new VerticalPanel(); 
+			SuggestBox  EmpfaengerHinzufÃ¼genSug = new SuggestBox(oracle); 
+			//EmpfaengerHinzufï¿½genBar
+			HorizontalPanel EmpfaengerHinzufÃ¼genBar = new HorizontalPanel(); 
+			private FlowPanel  EmpfaengerHinzufÃ¼genLeiste = new FlowPanel(); 
 
 	
 	
 	public void ErsteNarchichtErstellenPanel(){
 		 loadNutzerSugestListe();
-		  setloadNutzerSugestListeHizufügenButton();
+		  setloadNutzerSugestListeHizufÃ¼genButton();
 		  
 		  textArea.setStylePrimaryName("textAreaNachrichtSenden");
 		  sendenButton.setStylePrimaryName("textAreaNachrichtSendenButton");
 		  NachrichtSendeBtnWrap.setStylePrimaryName("textAreaNachrichtSendenWrap");
 		  
-		  EmpfaengerHinzufügenWrap.add(EmpfaengerHinzufügenBar);
-		  EmpfaengerHinzufügenWrap.add(EmpfaengerHinzufügenLeiste);
+		  EmpfaengerHinzufÃ¼genWrap.add(EmpfaengerHinzufÃ¼genBar);
+		  EmpfaengerHinzufÃ¼genWrap.add(EmpfaengerHinzufÃ¼genLeiste);
 		
 		  textArea.setWidth("100%");
 		  NachrichtSendeBtnWrap.add(textArea);
 		  NachrichtSendeBtnWrap.add(sendenButton);
-		  EmpfaengerHinzufügenWrap.add(NachrichtSendeBtnWrap);
+		  EmpfaengerHinzufÃ¼genWrap.add(NachrichtSendeBtnWrap);
 
-		  RootPanel.get("content_right").add(EmpfaengerHinzufügenWrap);
+		  RootPanel.get("content_right").add(EmpfaengerHinzufÃ¼genWrap);
 		
 		  sendenButton.addClickHandler(new ClickHandler() {
 				@Override
 				public void onClick(ClickEvent event) {
 					
  						if (textArea.getValue().isEmpty()) {
-							Window.alert("Bitte Textfeld befüllen");
+							Window.alert("Bitte Textfeld befï¿½llen");
 						} else {
 					
 						 Date utilDate = new  Date();
@@ -108,7 +108,7 @@ public class NachrichtenPanel {
 				public void onClick(ClickEvent event) {
 					
 						if (textArea.getValue().isEmpty()) {
-							Window.alert("Bitte Textfeld befüllen");
+							Window.alert("Bitte Textfeld befï¿½llen");
 						} else {
 					
 						 Date utilDate = new  Date();
@@ -130,7 +130,7 @@ public class NachrichtenPanel {
 	 
 	  void loadNutzerSugestListe(){
 		  int meineId = 7; 
-			asyncObj.getAlleNutzerAußerMeineId(meineId, new AsyncCallback <Vector<Nutzer>>() {
+			asyncObj.getAlleNutzerAuÃŸerMeineId(meineId, new AsyncCallback <Vector<Nutzer>>() {
 				@Override
 				public void onFailure(Throwable caught) {
 					Window.alert("bba -" );
@@ -147,7 +147,7 @@ public class NachrichtenPanel {
 			
 			// GET ALLE HASHSTAGS
 			
-//			asyncObj.getAlleNutzerAußerMeineId(meineId, new AsyncCallback <Vector<Nutzer>>() {
+//			asyncObj.getAlleNutzerAuï¿½erMeineId(meineId, new AsyncCallback <Vector<Nutzer>>() {
 //				@Override
 //				public void onFailure(Throwable caught) {
 //					Window.alert("bba -" );
@@ -165,16 +165,16 @@ public class NachrichtenPanel {
 			
 
 			
-			//  EmpfaengerHinzufügenWrap.add(EmpfaengerHinzufügenSug);
+			//  EmpfaengerHinzufï¿½genWrap.add(EmpfaengerHinzufï¿½genSug);
 
-			EmpfaengerHinzufügenBar.add(EmpfaengerHinzufügenSug);
+			EmpfaengerHinzufÃ¼genBar.add(EmpfaengerHinzufÃ¼genSug);
 	  }
 	 
 	  
-	void setloadNutzerSugestListeHizufügenButton(){
+	void setloadNutzerSugestListeHizufÃ¼genButton(){
 		
-		Button b = new Button("+ Hinzufügen"); 
-		EmpfaengerHinzufügenBar.add(b); 
+		Button b = new Button("+ Hinzufï¿½gen"); 
+		EmpfaengerHinzufÃ¼genBar.add(b); 
 
 		b.addClickHandler(new ClickHandler() {
 			
@@ -185,10 +185,10 @@ public class NachrichtenPanel {
 					
 
 				
-					 final Button b2 = new Button(EmpfaengerHinzufügenSug.getText() +"  (X)  ");
+					 final Button b2 = new Button(EmpfaengerHinzufÃ¼genSug.getText() +"  (X)  ");
 					 
 					 b2.setStylePrimaryName("ButtonX-Nachrichtenverwaltung");
-						 EmpfaengerHinzufügenLeiste.add(b2);
+						 EmpfaengerHinzufÃ¼genLeiste.add(b2);
 
 				     b2.addClickHandler(new ClickHandler() {
 						
@@ -196,7 +196,7 @@ public class NachrichtenPanel {
 						//((	final int i = e.getRowId();
 							//Window.alert("Auswahl " + e.getRowId());
 
-									//EmpfaengerHinzufügenLeiste.remove(i) ;
+									//EmpfaengerHinzufï¿½genLeiste.remove(i) ;
 									b2.removeFromParent();
 							
 							

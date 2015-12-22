@@ -113,8 +113,8 @@ public class UnterhaltungMapper {
 		  while (rs.next()) {
 			  Nachricht n = new Nachricht(); 
 			  n.setId(rs.getInt("Id"));
-			  n.setSenderVorname(rs.getString("Vorname"));
-			  n.setSenderNachname(rs.getString("Nachname"));
+//			  n.setSenderVorname(rs.getString("Vorname"));
+//			  n.setSenderNachname(rs.getString("Nachname"));
 			  n.setText(rs.getString("Text"));
 			  n.setErstellungsDatum(rs.getTimestamp("ErstellungsDatum"));
 			  nachrichtListe.add(n);
@@ -144,7 +144,7 @@ public class UnterhaltungMapper {
 		  while (rs.next()) {
 			  Unterhaltung u = new Unterhaltung(); 
 			  u.setId(rs.getInt("Id"));
-			  u.setTyp(rs.getInt("Typ"));
+//			  u.setTyp(rs.getInt("Typ"));
 			  u.setSichtbarkeit(rs.getInt("Sichtbarkeit"));
  
 			  unterhaltungListe.add(u);

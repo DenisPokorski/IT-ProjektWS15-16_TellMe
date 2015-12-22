@@ -26,7 +26,7 @@ public class Nachricht extends BusinessObject {
 	 */
 
 	private String text;
-	private Nutzer nutzer;
+	private Nutzer sender;
 	private int senderId;
 	private Vector<Nutzer> empfaengerListe;
 
@@ -108,12 +108,12 @@ public class Nachricht extends BusinessObject {
 	 * @param senderNachname
 	 */
 
-	public Nutzer getNutzer() {
-		return nutzer;
+	public Nutzer getSender() {
+		return sender;
 	}
 
-	public void setNutzer(Nutzer nutzer) {
-		this.nutzer = nutzer;
+	public void setSender(Nutzer nutzer) {
+		this.sender = nutzer;
 	}
 
 }
