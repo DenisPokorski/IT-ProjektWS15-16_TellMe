@@ -11,17 +11,13 @@ import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Unterhaltung;
 
-
 @RemoteServiceRelativePath("editorservice")
 public interface EditorService extends RemoteService {
-
-	
 
 	void nutzerAktualisieren(Nutzer n);
 
 	void nutzerLoeschen(Nutzer n);
 
-	void loescheNutzeraboById(int vonId, int nachId);
 
 	Vector<Nutzer> getNochNichtAbonnenteNutzerListe(int meineId);
 
@@ -29,10 +25,8 @@ public interface EditorService extends RemoteService {
 
 	Vector<Nutzer> getZuAbonnieredeLoeschenNutzerListe(int i);
 
-	void erstellenNutzeraboById(int vonId, int nachId);
 
-	Vector<Nutzer> getAlleNutzerAu√üerMeineId(int meineId);
-	
+	Vector<Nutzer> getAlleNutzerAuﬂerMeineId(int meineId);
 
 	Vector<Hashtag> getZuAbonnierendeLoeschenHashtagAboListe(int meineId);
 
@@ -60,5 +54,9 @@ public interface EditorService extends RemoteService {
 
 	void hashtagEntfernen(int nutzerId, int hashtagId);
 
- 
+	void nutzerAbonnementErstellen(int i, Nutzer _nutzer);
+
+	Vector<Integer> holeAlleAbonniertenNutzer(int meineId);
+
+	void nutzerAbonnementLoeschen(int id, Nutzer _nutzerDeabonieren);
 }

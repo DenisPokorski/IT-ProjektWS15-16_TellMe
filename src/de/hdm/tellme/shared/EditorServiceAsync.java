@@ -17,11 +17,6 @@ public interface EditorServiceAsync {
 	void nutzerLoeschen(Nutzer n, AsyncCallback<Void> asyncCallback);
 
  
- 
-
-	void loescheNutzeraboById(int vonId, int nachId,
-			AsyncCallback<Void> asyncCallback);
-
 	void getNochNichtAbonnenteNutzerListe(int meineId,
 			AsyncCallback<Vector<Nutzer>> asyncCallback);
 
@@ -30,12 +25,6 @@ public interface EditorServiceAsync {
 	void getZuAbonnieredeLoeschenNutzerListe(int i,
 			AsyncCallback<Vector<Nutzer>> callback);
 
-	void erstellenNutzeraboById(int vonId, int nachId,
-			AsyncCallback<Void> asyncCallback);
-
-	void getAlleNutzerAu√üerMeineId(int meineId,
-			AsyncCallback<Vector<Nutzer>> asyncCallback);
- 
 
 	void NachrichtErstellen(Nachricht n, AsyncCallback<Void> asyncCallback);
 
@@ -74,6 +63,18 @@ public interface EditorServiceAsync {
 
 	void hashtagEntfernen(int nutzerId, int hashtagId,
 			AsyncCallback<Void> asyncCallback);
+
+	void getAlleNutzerAuﬂerMeineId(int meineId,
+			AsyncCallback<Vector<Nutzer>> callback);
+
+	void holeAlleAbonniertenNutzer(int meineId,
+			AsyncCallback<Vector<Integer>> callback);
+
+	void nutzerAbonnementErstellen(int i, Nutzer _nutzer,
+			AsyncCallback<Void> callback);
+
+	void nutzerAbonnementLoeschen(int id, Nutzer _nutzerDeabonieren,
+			AsyncCallback<Void> callback);
 
 	 
  }

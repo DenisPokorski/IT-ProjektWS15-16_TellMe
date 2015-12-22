@@ -259,4 +259,23 @@ public class NutzerMapper {
 		return alleNutzerListe;
 	}
 
+	public Vector<Integer> alleAbonniertenNutzer(int meineId) {
+		Vector<Integer> alleAbonniertenNutzer = new Vector<Integer>();
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			ResultSet rs = state
+					.executeQuery("SELECT * FROM AbonnentBenutzer WHERE VonId = '"
+							+ meineId + "';");
+			while (rs.next()) {
+				alleAbonniertenNutzer.add(rs.getInt("NachId"));
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		return alleAbonniertenNutzer;
+	}
+
 }
