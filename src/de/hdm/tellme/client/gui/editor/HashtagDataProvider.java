@@ -89,6 +89,10 @@ public class HashtagDataProvider {
 
 	}
 
+	public static Vector<Hashtag> gebeHashtagListe(){
+		return hashTagListeTemp;
+	}
+	
 	public void addDataDisplay(CellList<HashtagZelle.ZellenObjekt> cellList) {
 		dataProvider.addDataDisplay(cellList);
 	}
@@ -97,6 +101,62 @@ public class HashtagDataProvider {
 		dataProvider.refresh();
 	}
 
+	public void hashtagSpeichern(Hashtag hashtag){
+		
+		_asyncObj.hashtagSpeichern(hashtag, new AsyncCallback <Void>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fehler" );
+ 			}
+			@Override
+			public void onSuccess(Void  resultListe) {
+			holeHashtagListe();
+			RootPanel.get("content_right").clear();
+			Window.alert("Der Hashtag wurde erfolgreich angelegt.");
+
+ 			}
+			});
+		
+	}
+
+	public void hashtagEntfernen(Hashtag hashtag){
+		
+		
+		_asyncObj.hashtagEntfernen(hashtag, new AsyncCallback <Void>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fehler" );
+ 			}
+			@Override
+			public void onSuccess(Void  resultListe) {
+			holeHashtagListe();
+			RootPanel.get("content_right").clear();
+			Window.alert("Der Hashtag wurde erfolgreich entfernt.");
+
+ 			}
+			});
+		
+	}
+
+	public void hashtagErstellen(Hashtag hashtag){
+		
+		_asyncObj.hashtagErstellen(hashtag, new AsyncCallback <Void>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fehler" );
+ 			}
+			
+			@Override
+			public void onSuccess(Void  resultListe) {
+				holeHashtagListe();
+				RootPanel.get("content_right").clear();
+				Window.alert("Der Hashtag wurde erfolgreich erstellt.");
+
+ 			}
+			});
+		
+	}
+	
 	public void abonieren(Hashtag hashtag) {
 
  
@@ -125,7 +185,7 @@ public class HashtagDataProvider {
 		int NutzerId = TellMe.eingeloggterBenutzer.getUser().getId();
 		int  HashtagId = hashtag.getId();
 		
-		_asyncObj.hashtagEntfernen(NutzerId,HashtagId, new AsyncCallback <Void>() {
+		_asyncObj.hashtagAboEntfernen(NutzerId,HashtagId, new AsyncCallback <Void>() {
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Fehler" );

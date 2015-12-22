@@ -72,8 +72,14 @@ public interface EditorServiceAsync {
 	void hashtagAboErstellen(int nutzerId, int hashtagId,
 			AsyncCallback<Void> asyncCallback);
 
-	void hashtagEntfernen(int nutzerId, int hashtagId,
+	void hashtagSpeichern(Hashtag hashtag, AsyncCallback<Void> asyncCallback);
+
+	void hashtagEntfernen(Hashtag hashtag, AsyncCallback<Void> asyncCallback);
+
+	void hashtagAboEntfernen(int nutzerId, int hashtagId,
 			AsyncCallback<Void> asyncCallback);
+
+	void hashtagErstellen(Hashtag hashtag, AsyncCallback<Void> asyncCallback);
 
 	 
  }

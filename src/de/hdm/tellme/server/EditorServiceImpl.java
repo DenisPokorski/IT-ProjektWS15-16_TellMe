@@ -26,6 +26,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		this.nachrichtMapper = NachrichtMapper.nachrichtMapper();
 		this.unterhaltungMapper = UnterhaltungMapper.unterhaltungMapper();
 		this.hashtagAboMapper = HashtagAbonnementMapper.hashtagAbonnementMapper();
+		this.hashtagMapper = HashtagMapper.hashtagMapper();
 
 	}
 
@@ -174,15 +175,32 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return alleHashtags;
 	}
 
+	
+
+	@Override
+	public void hashtagEntfernen(Hashtag hashtag) {
+		hashtagMapper.entfernen(hashtag);
+	}
+
+	@Override
+	public void hashtagSpeichern(Hashtag hashtag) {
+		hashtagMapper.aktualisieren(hashtag);
+	}
+	
+	@Override
+	public void hashtagErstellen(Hashtag hashtag) {
+		hashtagMapper.erstellen(hashtag);
+	}
+
+	
+	@Override
+	public void hashtagAboEntfernen(int nutzerId, int hashtagId) {
+		hashtagAboMapper.HashtagAboEntfernen(nutzerId, hashtagId);
+	}
+
 	@Override
 	public void hashtagAboErstellen(int nutzerId, int hashtagId) {
 		hashtagAboMapper.hashtagAboErstellen(nutzerId,hashtagId);
 	}
-
-	@Override
-	public void hashtagEntfernen(int nutzerId, int hashtagId) {
-		hashtagAboMapper.entfernen(nutzerId,hashtagId);
-
-	}
-
+	
 }

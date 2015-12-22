@@ -121,7 +121,7 @@ public class HashtagAbonnementMapper {
 		}
 	}
 
-	public void entfernen(int NutzerId, int HashtagId ) {
+	public void HashtagAboEntfernen(int NutzerId, int HashtagId ) {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
