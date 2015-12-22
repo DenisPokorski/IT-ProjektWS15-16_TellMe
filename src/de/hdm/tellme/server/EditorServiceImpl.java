@@ -196,6 +196,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public void hashtagEntfernen(Hashtag hashtag) {
+		nachrichtMapper.hashtagZuordnungLoeschen(hashtag);
+		nutzerMapper.hashtagZuordnungLoeschen(hashtag);
 		hashtagMapper.entfernen(hashtag);
 	}
 

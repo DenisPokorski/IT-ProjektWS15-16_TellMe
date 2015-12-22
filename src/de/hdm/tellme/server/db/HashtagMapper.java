@@ -111,11 +111,26 @@ public class HashtagMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
+			state.execute("DELETE FROM NachrichtHashtag WHERE HashtagId = '"
+					+ hashtag.getId() + "';");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			Statement state = con.createStatement();
+			state.execute("DELETE FROM NutzerHashtag WHERE HashtagId = '"
+					+ hashtag.getId() + "';");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			Statement state = con.createStatement();
 			String sqlquery = "DELETE FROM Hashtag WHERE Id = '"
 					+ hashtag.getId() + "';";
 			state.executeUpdate(sqlquery);
 		} catch (Exception e) {
 			e.printStackTrace();
+
 		}
 	}
 

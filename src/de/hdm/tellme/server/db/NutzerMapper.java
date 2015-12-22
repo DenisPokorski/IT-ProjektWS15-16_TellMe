@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.tellme.server.db.DatenbankVerbindung;
+import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
@@ -276,6 +277,18 @@ public class NutzerMapper {
 
 		}
 		return alleAbonniertenNutzer;
+	}
+
+	public void hashtagZuordnungLoeschen(Hashtag hashtag) {
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			state.execute("DELETE FROM NutzerHashtag WHERE HashtagId = '"
+					+ hashtag.getId() + "';");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }
