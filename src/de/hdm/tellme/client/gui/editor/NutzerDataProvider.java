@@ -9,6 +9,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.view.client.ListDataProvider;
+import com.sun.java.swing.plaf.windows.resources.windows_de;
 
 import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.shared.EditorService;
@@ -141,11 +142,13 @@ public class NutzerDataProvider {
 	}
 	
 	public void report3Generieren(Nutzer nutzer) {
+		Window.alert("ha123123llo");
+
 		_reportAsyncObj.report3Generieren(loginInfo.getUser().getId(), new AsyncCallback<Vector<Hashtag>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
+				Window.alert("nutzredata");
 
 			}
 
@@ -154,8 +157,11 @@ public class NutzerDataProvider {
 
 			@Override
 			public void onSuccess(Vector<Hashtag> result) {
-				// TODO Auto-generated method stub
-				
+				Window.alert("hello");
+
+				for (int i =0; i < result.size(); i++) {
+					Window.alert(result.get(i).getSchlagwort());					
+				}				
 			}
 		});
 

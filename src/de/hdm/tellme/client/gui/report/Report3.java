@@ -33,10 +33,10 @@ public class Report3  extends VerticalPanel {
 
 		RootPanel.get("content").clear();
 		RootPanel.get("content").add(ueberSchrift1);
-//		RootPanel
-//		.get("content_left")
-//		.add(new NutzerCellList()
-//				.generiereCellList(CellListModus.Report));
+		RootPanel
+		.get("content_left")
+		.add(new NutzerCellList()
+				.generiereCellList(CellListModus.Report));
 		
 		
  	}

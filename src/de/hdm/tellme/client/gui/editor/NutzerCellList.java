@@ -23,7 +23,7 @@ import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.client.gui.report.Report3;
-import de.hdm.tellme.client.gui.report.ReportFormular;
+import de.hdm.tellme.client.gui.report.Report3Formular;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Nutzer;
@@ -77,7 +77,7 @@ public class NutzerCellList {
 					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
 														
-							ReportFormular rF = new ReportFormular();
+							Report3Formular rF = new Report3Formular();
 							rF.report3Generieren(selectionModel.getSelectedObject());
 							RootPanel.get("content_right").clear();
 							RootPanel.get("content_right").add(rF.gibFormular());

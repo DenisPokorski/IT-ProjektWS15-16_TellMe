@@ -140,12 +140,15 @@ public class HashtagAbonnementMapper {
 		try {
 			Statement state = con.createStatement();
 			ResultSet rs = state
-					.executeQuery("SELECT * FROM 'NutzerHashtag' LEFT JOIN Hashtag ON NutzerHashtag.HashtagId = Hashtag.Id WHERE NutzerId '"+NutzerId + "';");
+					.executeQuery("SELECT * FROM NutzerHashtag LEFT JOIN Hashtag ON NutzerHashtag.HashtagId = Hashtag.Id WHERE NutzerId '"+NutzerId + "';");
 			while (rs.next()) {
-
-				if ((rs.getInt("HashtagId")) == tempId) {
-
-				}
+				Hashtag h= new Hashtag();
+				h.setId(rs.getInt("Id"));
+				h.setErstellungsDatum(rs.getTimestamp("ErstellungsDatum"));
+				h.setSchlagwort(rs.getString("Schlagwort"));
+				
+				System.out.println(h.getSchlagwort());
+				alleHashtagsEinesNutzers.add(h);
 			}
 
 		} catch (Exception e) {
