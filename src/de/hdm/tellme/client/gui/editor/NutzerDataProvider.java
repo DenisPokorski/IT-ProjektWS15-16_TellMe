@@ -13,15 +13,22 @@ import com.google.gwt.view.client.ListDataProvider;
 import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
+import de.hdm.tellme.shared.LoginInfo;
+import de.hdm.tellme.shared.ReportService;
+import de.hdm.tellme.shared.ReportServiceAsync;
+import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 public class NutzerDataProvider {
 	List<NutzerZelle.ZellenObjekt> dataList = null;
 	private ListDataProvider<NutzerZelle.ZellenObjekt> dataProvider = new ListDataProvider<NutzerZelle.ZellenObjekt>();
-	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
+	private final EditorServiceAsync _editorAsyncObj = GWT.create(EditorService.class);
+	private final ReportServiceAsync _reportAsyncObj = GWT.create(ReportService.class);
+
 	private static NutzerDataProvider instanz = null;
 	private static Vector<Nutzer> alleNutzer = null;
 	private static Vector<Integer> alleAbonniertenNutzer = null;
+	private LoginInfo loginInfo = new LoginInfo();
 
 	public static NutzerDataProvider gib() {
 		if (instanz == null)
@@ -40,7 +47,7 @@ public class NutzerDataProvider {
 		if (dataList != null)
 			dataList.clear();
 
-		asyncObj.getAlleNutzerAußerMeineId(TellMe.eingeloggterBenutzer
+		_editorAsyncObj.getAlleNutzerAußerMeineId(TellMe.eingeloggterBenutzer
 				.getUser().getId(), new AsyncCallback<Vector<Nutzer>>() {
 
 			@Override
@@ -52,7 +59,7 @@ public class NutzerDataProvider {
 			@Override
 			public void onSuccess(Vector<Nutzer> result) {
 				alleNutzer = result;
-				asyncObj.holeAlleAbonniertenNutzer(TellMe.eingeloggterBenutzer
+				_editorAsyncObj.holeAlleAbonniertenNutzer(TellMe.eingeloggterBenutzer
 						.getUser().getId(),
 						new AsyncCallback<Vector<Integer>>() {
 
@@ -94,7 +101,7 @@ public class NutzerDataProvider {
 
 	public void abonieren(Nutzer _nutzer) {
 
-		asyncObj.nutzerAbonnementErstellen(TellMe.eingeloggterBenutzer
+		_editorAsyncObj.nutzerAbonnementErstellen(TellMe.eingeloggterBenutzer
 				.getUser().getId(), _nutzer, new AsyncCallback<Void>() {
 
 			@Override
@@ -114,7 +121,7 @@ public class NutzerDataProvider {
 	}
 
 	public void deabonieren(Nutzer _nutzerDeabonieren) {
-		asyncObj.nutzerAbonnementLoeschen(TellMe.eingeloggterBenutzer.getUser()
+		_editorAsyncObj.nutzerAbonnementLoeschen(TellMe.eingeloggterBenutzer.getUser()
 				.getId(), _nutzerDeabonieren, new AsyncCallback<Void>() {
 
 			@Override
@@ -132,4 +139,26 @@ public class NutzerDataProvider {
 			}
 		});
 	}
+	
+	public void report3Generieren(Nutzer nutzer) {
+		_reportAsyncObj.report3Generieren(loginInfo.getUser().getId(), new AsyncCallback<Vector<Hashtag>>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+
+			}
+
+
+	
+
+			@Override
+			public void onSuccess(Vector<Hashtag> result) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+
+	}
+	
 }

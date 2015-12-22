@@ -18,8 +18,12 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
-
 import de.hdm.tellme.client.TellMe;
+import de.hdm.tellme.shared.EditorService;
+import de.hdm.tellme.shared.EditorServiceAsync;
+import de.hdm.tellme.client.TellMe;
+import de.hdm.tellme.client.gui.report.Report3;
+import de.hdm.tellme.client.gui.report.ReportFormular;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Nutzer;
@@ -67,6 +71,21 @@ public class NutzerCellList {
 					});
 
 			break;
+			
+//		case Report:
+//			selectionModel
+//					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+//						public void onSelectionChange(SelectionChangeEvent event) {
+//														
+//							ReportFormular rF = new ReportFormular();
+//							rF.report3Generieren(selectionModel.getSelectedObject());
+//							RootPanel.get("content_right").clear();
+//							RootPanel.get("content_right").add(rF.gibFormular());
+//							
+//						}
+//					});
+//
+//			break;
 
 		default:
 			break;

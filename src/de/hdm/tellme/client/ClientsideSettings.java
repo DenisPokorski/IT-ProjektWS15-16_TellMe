@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import de.hdm.tellme.shared.CommonSettings;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.ReportServiceAsync;
 

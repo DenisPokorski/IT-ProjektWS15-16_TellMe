@@ -133,27 +133,18 @@ public class HashtagAbonnementMapper {
 		}
 	}
 
-	public Vector<Hashtag> alleHashtagsEinesNutzers(int HashtagId) {
+	public Vector<Hashtag> alleHashtagsEinesNutzers(int NutzerId) {
 		Vector<Hashtag> alleHashtagsEinesNutzers = new Vector<Hashtag>();
 		Connection con = DatenbankVerbindung.connection();
-		int tempId = HashtagId;
+		int tempId = NutzerId;
 		try {
 			Statement state = con.createStatement();
 			ResultSet rs = state
-					.executeQuery("SELECT NutzerHashtag.HashtagId, Hashtag.HashtagId, Hashtag.Schlagwort, Hashtag.ErstellungsDatum FROM NutzerHashtag LEFT JOIN Hashtag ON NutzerHashtag.HashtagId = Hashtag.HashtagId WHERE Nutzerhashtag.NutzerId = '"
-							+ tempId + "')");
+					.executeQuery("SELECT * FROM 'NutzerHashtag' LEFT JOIN Hashtag ON NutzerHashtag.HashtagId = Hashtag.Id WHERE NutzerId '"+NutzerId + "';");
 			while (rs.next()) {
 
 				if ((rs.getInt("HashtagId")) == tempId) {
 
-				} else if ((rs.getInt("Id")) == tempId) {
-
-				} else {
-					Hashtag ha = new Hashtag();
-					ha.setId(rs.getInt("hashtagId"));
-					ha.setSchlagwort(rs.getString("Schlagwort"));
-					ha.setErstellungsDatum(rs.getTimestamp("ErstellungsDatum"));
-					alleHashtagsEinesNutzers.addElement(ha);
 				}
 			}
 

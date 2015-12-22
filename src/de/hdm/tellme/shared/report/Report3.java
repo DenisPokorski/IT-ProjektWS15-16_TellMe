@@ -1,5 +1,12 @@
 package de.hdm.tellme.shared.report;
 
-public class Report3 {
+import java.io.Serializable;
+
+public class Report3 extends VerbundenerReport implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 }
