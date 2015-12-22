@@ -97,7 +97,7 @@ public VerticalPanel  ladeAlleNachrichtenVonUnterhaltungListe(int uId) {
 					FlowPanel fP = new FlowPanel();
 					DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy HH:mm:ss");
 
-					Label nachrichtSenderName= new Label(nachrichtenListe.get(i).getSender().getVorname() +" "+ nachrichtenListe.get(i).getSender().getNachname());
+					Label nachrichtSenderName= new Label(nachrichtenListe.get(i).getSenderVorname() +" "+ nachrichtenListe.get(i).getSenderNachname());
 					Label nachrichtDatum = new Label("- "+dtf.format(nachrichtenListe.get(i).getErstellungsDatum()));
 					Label nachrichtText = new Label(nachrichtenListe.get(i).getText());
 					Button bearbeiten = new Button("bearbeiten");

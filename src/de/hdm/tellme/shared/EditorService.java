@@ -27,7 +27,11 @@ public interface EditorService extends RemoteService {
 
 
 	Vector<Nutzer> getAlleNutzerAußerMeineId(int meineId);
+<<<<<<< HEAD
+	
+=======
 
+>>>>>>> origin/master
 	Vector<Hashtag> getZuAbonnierendeLoeschenHashtagAboListe(int meineId);
 
 	void erstellenHashtagAboById(int NutzerId, int HashtagId);
@@ -52,7 +56,13 @@ public interface EditorService extends RemoteService {
 
 	void hashtagAboErstellen(int nutzerId, int hashtagId);
 
-	void hashtagEntfernen(int nutzerId, int hashtagId);
+	void hashtagEntfernen(Hashtag hashtag);
+
+	void hashtagSpeichern(Hashtag hashtag);
+
+	void hashtagAboEntfernen(int nutzerId, int hashtagId);
+
+	void hashtagErstellen(Hashtag hashtag);
 
 	void nutzerAbonnementErstellen(int i, Nutzer _nutzer);
 

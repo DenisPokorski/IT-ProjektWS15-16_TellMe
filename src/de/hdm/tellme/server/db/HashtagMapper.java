@@ -50,17 +50,17 @@ public class HashtagMapper {
 	 * ausgef�hrt. 
 	 */
 	
-	public void aktualisieren (Hashtag h) {
+	public void aktualisieren (Hashtag hashtag) {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "UPDATE Hashtag SET ("
-					+ "'"
-					+ h.getSchlagwort()
-					+ "','"
-					+ h.getErstellungsDatum()
-					+ "';";
+			String sqlquery = "UPDATE Hashtag SET Schlagwort='"  
+					+ hashtag.getSchlagwort() 
+					+ "', Erstellungsdatum='"
+					+ DateHelperClass.getCurrentTime()
+					+ "' WHERE Id='"+ hashtag.getId()+"';";
 			state.executeUpdate(sqlquery);
+			System.out.println(sqlquery);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -74,15 +74,34 @@ public class HashtagMapper {
 	 * ausgef�hrt. 
 	 */
 	
-	public void entfernen (Hashtag h) {
+	public void entfernen (Hashtag hashtag) {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "DELETE FROM Hashtag WHERE Id = '" + h.getId() + "';";
+			String sqlquery = "DELETE FROM Hashtag WHERE Id = '" + hashtag.getId() + "';";
 			state.executeUpdate(sqlquery);		
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void erstellen(Hashtag hashtag) {
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			String sqlquery = "INSERT INTO Hashtag (Schlagwort, Erstellungsdatum) VALUES ("
+					+ "'"
+					+ hashtag.getSchlagwort()
+					+ "','"
+					+ DateHelperClass.getCurrentTime()
+					+ "') ;";
+			state.executeUpdate(sqlquery);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 }
