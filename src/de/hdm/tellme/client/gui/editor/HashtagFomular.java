@@ -74,54 +74,14 @@ public class HashtagFomular extends Composite {
 		VerticalPanel vpForm = new VerticalPanel();
 		vpForm.clear();
 		vpForm.add(new Label(hashtag.getSchlagwort() ));
-		
-		btnAbonieren.addClickHandler(btnAbonnierenClickHandler);
-		btnDeabonieren.addClickHandler(btnDeabonnierenClickHandler);
-
 		vpForm.add(btnAbonieren);
 		vpForm.add(btnDeabonieren);
 		
 		return vpForm;
 	}
 
-		//TODO Clickhandler richtige Stelle verschieben
-	 	ClickHandler btnAbonnierenClickHandler = new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				int NutzerId = TellMe.eingeloggterBenutzer.getUser().getId();
-				int  HashtagId = hashtag.getId();
-				
-				_asyncObj.hashtagAboErstellen(NutzerId,HashtagId, new AsyncCallback <Void>() {
-					@Override
-					public void onFailure(Throwable caught) {
-						Window.alert("Fehler" );
-		 			}
-					@Override
-					public void onSuccess(Void  resultListe) {
-					Window.alert("Das Abo wurde erfolgreich erstellt.");
-		 			}
-					});
-			}
-		};
-		
-		//TODO Clickhandler richtige Stelle verschieben
-		ClickHandler btnDeabonnierenClickHandler = new ClickHandler() {
-				public void onClick(ClickEvent event) {
-					int NutzerId = TellMe.eingeloggterBenutzer.getUser().getId();
-					int HashtagId = hashtag.getId();
-					
-					_asyncObj.hashtagEntfernen(NutzerId,HashtagId, new AsyncCallback <Void>() {
-						@Override
-						public void onFailure(Throwable caught) {
-							Window.alert("Fehler" );
-			 			}
-						@Override
-						public void onSuccess(Void  resultListe) {
-						Window.alert("Das Abo wurde erfolgreich entfernt.");
-			 			}
-						});
-				}
-			};		
 	
+	 
 // Setze Buttons
 	public void setzeHashtagAbo(HashtagZelle.ZellenObjekt ZellenObjekt) {
 		this.hashtag = ZellenObjekt.hashtag;
