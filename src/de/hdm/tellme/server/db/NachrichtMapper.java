@@ -1,6 +1,7 @@
 package de.hdm.tellme.server.db;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Timestamp;
@@ -10,6 +11,7 @@ import javax.persistence.Result;
 
 import com.google.appengine.api.search.query.ExpressionParser.negation_return;
 
+import de.hdm.tellme.shared.bo.BusinessObject.eSichtbarkeit;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
@@ -53,16 +55,27 @@ public class NachrichtMapper {
 	 * 
 	 * @author Denis Pokorski
 	 */
-	public void anlegen(Nachricht n) {
+	public int anlegen(Nachricht n) {
+		int ergebnis = -1;
+
 		Connection con = DatenbankVerbindung.connection();
 		try {
-			Statement state = con.createStatement();
-			String sqlquery = "INSERT INTO Nachricht (Text, Sichtbarkeit, ErstellungsDatum, AutorId) VALUES (" + "'" + n.getText() + "','" + 1 + "','"
-					+ n.getErstellungsDatum() + "','" + n.getSenderId() + "')";
-			state.executeUpdate(sqlquery);
+			PreparedStatement prepState = con.prepareStatement("INSERT INTO Nachricht (`AutorId`, `Text`, `Sichtbarkeit`, `ErstellungsDatum`) VALUES (?, ?, ?, CURRENT_TIMESTAMP);", Statement.RETURN_GENERATED_KEYS);
+			prepState.setInt(1, n.getSenderId());
+			prepState.setString(2, n.getText());
+			prepState.setInt(3, eSichtbarkeit.Sichtbar.ordinal());
+
+			prepState.executeUpdate();
+
+			ResultSet rs = prepState.getGeneratedKeys();
+			if (rs.next()) {
+				ergebnis = rs.getInt(1);
+			}		
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return ergebnis;
 	}
 
 	/**
