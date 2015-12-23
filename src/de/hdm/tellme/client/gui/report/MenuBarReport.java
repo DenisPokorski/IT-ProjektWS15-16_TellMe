@@ -15,7 +15,10 @@ import de.hdm.tellme.shared.LoginInfo;
  * @version 1.0
  * @since 26.11.2015
  * 
+ * Die Klasse MenuBarReport implementiert den EntryPoint für das Modul "Report" der Applikation.
+ * Hier wird sowohl der Login, als auch das Menü im HTML-div "head_wrap" initialisiert.
  */
+
 
 public class MenuBarReport extends HorizontalPanel{
 	
@@ -36,7 +39,10 @@ public class MenuBarReport extends HorizontalPanel{
 		this.loginInfo = loginInfo;
 	}
 	
-	
+	 /**
+	   * Bei erfolgreichem Login wird folgende Methode geladen. 
+	   * Dem Benutzer wird das Menü angezeigt.
+	   */
 	public void onLoad() {
 		
 		/**
@@ -60,7 +66,9 @@ public class MenuBarReport extends HorizontalPanel{
 		MenuBar report2 = new MenuBar(true);
 		MenuBar report3 = new MenuBar(true);
  		 
-		
+		 /**
+		   * Die folgenden "Commands" definieren was beim jeweiligen Aufruf der Menü-Punkte passieren soll.
+		   */
 		report1.addItem("Report 1", new Command(){
 			@Override 
 			public void execute() {

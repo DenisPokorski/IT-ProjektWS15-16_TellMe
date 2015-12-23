@@ -149,6 +149,8 @@ public class MenuBarEditor extends HorizontalPanel {
 		tempReports.addItem("Report 2", new Command() {
 			@Override
 			public void execute() {
+				setzeInhalt(new Report2Gui());
+	
 
 			}
 		});

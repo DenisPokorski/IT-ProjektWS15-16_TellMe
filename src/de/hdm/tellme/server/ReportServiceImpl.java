@@ -58,8 +58,8 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public Vector<Nutzer> report2GenerierenListe(int i) {
-		// TODO Auto-generated method stub
-		return null;
+		Vector<Nutzer> report2 = nutzeraboMapper.ladeAbonnierendeNutzerListe(i);
+		return report2;
 	}
 
 	@Override

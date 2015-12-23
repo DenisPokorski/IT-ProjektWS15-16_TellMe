@@ -21,6 +21,12 @@ import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.report.HTMLReportWriter;
 
+/**
+ * 
+ * 
+ * @author denispokorski
+ *
+ */
 public class NutzerDataProvider {
 	List<NutzerZelle.ZellenObjekt> dataList = null;
 	private ListDataProvider<NutzerZelle.ZellenObjekt> dataProvider = new ListDataProvider<NutzerZelle.ZellenObjekt>();
@@ -165,9 +171,6 @@ public class NutzerDataProvider {
 
 						hRW.generateReport3(result, b);
 
-						// for (int i =0; i < result.size(); i++) {
-						// Window.alert(result.get(i).getSchlagwort());
-						// }
 					}
 				});
 
@@ -186,6 +189,10 @@ public class NutzerDataProvider {
 					@Override
 					public void onSuccess(Vector<Nutzer> result) {
 						Window.alert("ErfolgreichReport2");
+
+						HTMLReportWriter hRW = new HTMLReportWriter();
+
+						hRW.generateReport2(result, b);
 					}
 				});
 	}

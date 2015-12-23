@@ -16,7 +16,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import de.hdm.tellme.client.Impressum;
 import de.hdm.tellme.client.gui.editor.NutzerDataProvider;
 import de.hdm.tellme.client.gui.editor.NutzerZelle;
-import de.hdm.tellme.server.report.Report2Generator;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nutzer;
 /**

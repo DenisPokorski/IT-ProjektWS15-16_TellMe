@@ -25,6 +25,7 @@ import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.client.gui.report.Report3Gui;
 import de.hdm.tellme.client.gui.report.ReportFormular1_1;
+import de.hdm.tellme.client.gui.report.ReportFormular2;
 import de.hdm.tellme.client.gui.report.ReportFormular3;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
@@ -97,6 +98,21 @@ public class NutzerCellList {
 														
 							ReportFormular3 rF = new ReportFormular3();
 							rF.report3Generieren(selectionModel.getSelectedObject());
+							RootPanel.get("content_left").clear();
+							RootPanel.get("content_left").add(rF.gibFormular());
+							
+						}
+					});
+
+			break;
+			
+		case Report2_NutzerNutzerAbonnement:
+			selectionModel
+					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+						public void onSelectionChange(SelectionChangeEvent event) {
+														
+							ReportFormular2 rF = new ReportFormular2();
+							rF.report2Generieren(selectionModel.getSelectedObject());
 							RootPanel.get("content_left").clear();
 							RootPanel.get("content_left").add(rF.gibFormular());
 							

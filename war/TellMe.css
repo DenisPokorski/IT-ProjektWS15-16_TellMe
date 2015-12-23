@@ -31,6 +31,8 @@ h1 {
 	margin: 15px 6px 6px;
 }
 
+
+
 .ButtonX-Nachrichtenverwaltung {
 	
 }
@@ -185,7 +187,7 @@ border-collapse: collapse;
 width: 100%;
 border: 1px solid black;
 padding: 15px;
-text-align: center;
+text-align: left;
 }
 .ergebnisZeileReport:nth-child(even){
 	background-color: #f2f2f2
@@ -217,6 +219,18 @@ text-align: center;
 }
 .kopfdatenbox_rechts{
 	    vertical-align: top;
+}
+/*Headline Reportgenerator*/
+.ueberschrift_report{
+	font-size:20px; 
+	line-height: 30px; 
+	padding-top: 15px;
+}
+.subtext_report{
+	font-size:14px; 
+	line-height: 18px; 
+	padding-bottom: 15px;
+	
 }
 
 .kopfdatenbox_rechts, .kopfdatenbox_links{

@@ -9,19 +9,28 @@ import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.client.gui.report.Report2Gui;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nutzer;
-
+/**
+ * 
+ * Das ist das asynchrone Gegenstück des Interface zum {@link ReportService}.
+ * Das wird teil-automatisch durch das Google-Plugin erstellt und gewartet. 
+ * Deswegen keine weitere Dokumentation.
+ *
+ *
+ */
 public interface ReportServiceAsync {
 	void report1_1Generieren(int nutzerId, Timestamp vonDatum,
 			Timestamp bisDatum, AsyncCallback<Vector<Nachricht>> callback);
-	
-	void report1_2Generieren(Timestamp vonDatum, Timestamp bisDatum, AsyncCallback<Vector<Nachricht>> asyncCallback);
-	
-	void report1_3Generieren(int i, AsyncCallback<Vector<Nachricht>> asyncCallback);
-	
+
+	void report1_2Generieren(Timestamp vonDatum, Timestamp bisDatum,
+			AsyncCallback<Vector<Nachricht>> asyncCallback);
+
+	void report1_3Generieren(int i,
+			AsyncCallback<Vector<Nachricht>> asyncCallback);
+
 	void report1_4Generieren(AsyncCallback<Vector<Nachricht>> asyncCallback);
- 	void report2GenerierenListe(int i, AsyncCallback<Vector<Nutzer>> callback);
- 	
+
+	void report2GenerierenListe(int i, AsyncCallback<Vector<Nutzer>> callback);
+
 	void report3Generieren(int i, AsyncCallback<Vector<Hashtag>> asyncCallback);
-	
-	
+
 }
