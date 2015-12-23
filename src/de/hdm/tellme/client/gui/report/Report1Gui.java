@@ -17,8 +17,13 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import de.hdm.tellme.server.report.Report1Generator;
 import de.hdm.tellme.shared.LoginInfo;
 
-
 /**
+ * TODO
+ */
+/**
+ * 
+ * 
+ * 
  * 
  * Dieser Report zeigt alle Nachrichten je Nutzer und Zeitraum an. 
  * @author Zimmerman & Alex Homann
@@ -63,8 +68,7 @@ public class Report1Gui extends VerticalPanel{
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				
-			}
+ 			}
 		});
 		
 		vonDateBox.addValueChangeHandler(new ValueChangeHandler<Date>() {

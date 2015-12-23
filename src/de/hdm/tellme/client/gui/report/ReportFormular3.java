@@ -20,8 +20,7 @@ public class ReportFormular3 extends Composite{
 	public ReportFormular3(){
 		report3GenerierenButton.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){
-				Window.alert("asd");
-				NutzerDataProvider.gib().report3Generieren(nutzer );
+ 				NutzerDataProvider.gib().report3Generieren(nutzer );
 
 				}			
 		});
@@ -41,3 +40,5 @@ public class ReportFormular3 extends Composite{
 
 
 }
+
+

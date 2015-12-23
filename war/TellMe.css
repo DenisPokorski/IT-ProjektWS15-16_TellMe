@@ -66,7 +66,7 @@ body {
 #header {
 	width: 100%;
 	background: #fff;
-	border-bottom: 1px solid #f3f3f3;
+	border-top: 1px solid #f3f3f3;
 }
 
 .gwt-MenuBar .gwt-MenuBar-vertical {
@@ -175,4 +175,79 @@ font-size: 14px;
 }
 
 #footer{ }
-	 
+.kopfZeileKoerper{
+	background-color: #628cd5;
+	color: white;
+	height: 50px;
+}
+.reportkoerper{
+border-collapse: collapse;
+width: 100%;
+border: 1px solid black;
+padding: 15px;
+text-align: center;
+}
+.ergebnisZeileReport:nth-child(even){
+	background-color: #f2f2f2
+}
+
+.ergebnisZeileReport{
+    border-top: 1px solid #ddd;
+    height:35px;
+}
+
+
+.reportkoerper:hover{
+	background-color:#B0C4DE;
+}
+.reportTabelle{
+	border-collapse: collapse;
+width: 100%;
+border: 1px solid black;
+padding: 15px;
+text-align: center;
+}
+.reportTabelle:hover{
+ background-color: #B0C4DE;
+}
+.reportKopfzeile{
+	background-color: #628cd5;
+	color: white;
+	height: 32px;
+}
+.kopfdatenbox_rechts{
+	    vertical-align: top;
+}
+
+.kopfdatenbox_rechts, .kopfdatenbox_links{
+	    vertical-align: top !Important;
+}
+.kopfdatenbox_links, .kopfdatenbox_rechts{
+border-collapse: collapse;
+border: 1px solid black;
+padding: 15px;
+text-align: left
+}
+
+.kopfdatenbox_rechts h2 {font-size: 14px;}
+
+.kopfdatenbox_links, .kopfdatenbox_rechts:hover{
+ background-color: #B0C4DE;
+}
+/*table, th, td {
+border: 1px solid black;
+}
+th{
+background-color: #628cd5;
+color: white;
+height: 35px;
+}
+th, td{
+padding: 15px;
+text-align: left
+}
+tr:nth-child(even) {background-color: #f2f2f2}
+tr:hover{
+background-color: #B0C4DE;
+}*/
+}	 

@@ -11,18 +11,22 @@ import de.hdm.tellme.client.gui.editor.NutzerDataProvider;
 import de.hdm.tellme.client.gui.editor.NutzerZelle;
 import de.hdm.tellme.server.report.Report2Generator;
 import de.hdm.tellme.shared.bo.Nutzer;
-
+/**
+ * TODO
+ * @author denispokorski
+ *
+ */
 public class ReportFormular2 extends Composite{
 	private Nutzer nutzer = null;
-	Button report3GenerierenButton = new Button("Report 3 erstellen");
+	Button report2GenerierenButton = new Button("Report 2 erstellen");
 	
 	public ReportFormular2(){
-		report3GenerierenButton.addClickHandler(new ClickHandler(){
+		report2GenerierenButton.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){
 				if (nutzer == null){
 					return;
 				}
-				//NutzerDataProvider.gib().report3Generieren(nutzer);
+				NutzerDataProvider.gib().report2Generieren(nutzer);
 				}			
 		});
 	}
@@ -31,7 +35,7 @@ public class ReportFormular2 extends Composite{
 		VerticalPanel vpForm = new VerticalPanel();
 		
 		vpForm.add(new Label(nutzer.getVorname() + nutzer.getNachname()));
-		vpForm.add(report3GenerierenButton);
+		vpForm.add(report2GenerierenButton);
 		return vpForm;
 	}
 	public void report3Generieren(NutzerZelle.ZellenObjekt ZellenObjekt){

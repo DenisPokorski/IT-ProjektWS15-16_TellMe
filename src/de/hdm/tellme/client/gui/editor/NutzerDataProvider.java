@@ -24,8 +24,12 @@ import de.hdm.tellme.shared.report.HTMLReportWriter;
 public class NutzerDataProvider {
 	List<NutzerZelle.ZellenObjekt> dataList = null;
 	private ListDataProvider<NutzerZelle.ZellenObjekt> dataProvider = new ListDataProvider<NutzerZelle.ZellenObjekt>();
-	private final EditorServiceAsync _editorAsyncObj = GWT.create(EditorService.class);
-	private final ReportServiceAsync _reportAsyncObj = GWT.create(ReportService.class);
+	private final EditorServiceAsync _editorAsyncObj = GWT
+			.create(EditorService.class);
+	private final ReportServiceAsync _reportAsyncObj = GWT
+			.create(ReportService.class);
+	private final ReportServiceAsync _report2AsyncObj = GWT
+			.create(ReportService.class);
 
 	private static NutzerDataProvider instanz = null;
 	private static Vector<Nutzer> alleNutzer = null;
@@ -61,8 +65,8 @@ public class NutzerDataProvider {
 			@Override
 			public void onSuccess(Vector<Nutzer> result) {
 				alleNutzer = result;
-				_editorAsyncObj.holeAlleAbonniertenNutzer(TellMe.eingeloggterBenutzer
-						.getUser().getId(),
+				_editorAsyncObj.holeAlleAbonniertenNutzer(
+						TellMe.eingeloggterBenutzer.getUser().getId(),
 						new AsyncCallback<Vector<Integer>>() {
 
 							@Override
@@ -123,51 +127,66 @@ public class NutzerDataProvider {
 	}
 
 	public void deabonieren(Nutzer _nutzerDeabonieren) {
-		_editorAsyncObj.nutzerAbonnementLoeschen(TellMe.eingeloggterBenutzer.getUser()
-				.getId(), _nutzerDeabonieren, new AsyncCallback<Void>() {
+		_editorAsyncObj.nutzerAbonnementLoeschen(TellMe.eingeloggterBenutzer
+				.getUser().getId(), _nutzerDeabonieren,
+				new AsyncCallback<Void>() {
 
-			@Override
-			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
+					@Override
+					public void onFailure(Throwable caught) {
+						// TODO Auto-generated method stub
 
-			}
+					}
 
-			@Override
-			public void onSuccess(Void result) {
+					@Override
+					public void onSuccess(Void result) {
 
-				fuelleListe();
-				Window.alert("Erfolgreich deaboniert");
+						fuelleListe();
+						Window.alert("Erfolgreich deaboniert");
 
-			}
-		});
+					}
+				});
 	}
-	
-	public void report3Generieren(Nutzer n ) {
+
+	public void report3Generieren(Nutzer n) {
 		final Nutzer b = n;
- 		_reportAsyncObj.report3Generieren(n.getId(), new AsyncCallback<Vector<Hashtag>>() {
+		_reportAsyncObj.report3Generieren(n.getId(),
+				new AsyncCallback<Vector<Hashtag>>() {
 
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("nutzredata");
-			}
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert("nutzredata");
+					}
 
+					@Override
+					public void onSuccess(Vector<Hashtag> result) {
+						Window.alert("Erfolgreich tod");
 
-	
+						HTMLReportWriter hRW = new HTMLReportWriter();
 
-			@Override
-			public void onSuccess(Vector<Hashtag> result) {
-				Window.alert("Erfolgreich tod");
+						hRW.generateReport3(result, b);
 
-				  HTMLReportWriter hRW = new HTMLReportWriter();
-			 
-				hRW.generateReport3(result,b);
-				
-//				for (int i =0; i < result.size(); i++) {
-//					Window.alert(result.get(i).getSchlagwort());					
-//				}				
-			}
-		});
+						// for (int i =0; i < result.size(); i++) {
+						// Window.alert(result.get(i).getSchlagwort());
+						// }
+					}
+				});
 
 	}
-	
+
+	public void report2Generieren(Nutzer n) {
+		final Nutzer b = n;
+		_report2AsyncObj.report2GenerierenListe(n.getId(),
+				new AsyncCallback<Vector<Nutzer>>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert("nutzer2data");
+					}
+
+					@Override
+					public void onSuccess(Vector<Nutzer> result) {
+						Window.alert("ErfolgreichReport2");
+					}
+				});
+	}
 }
