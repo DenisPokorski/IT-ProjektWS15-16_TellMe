@@ -8,6 +8,8 @@ import java.util.Vector;
 
 import javax.persistence.Result;
 
+import com.google.appengine.api.search.query.ExpressionParser.negation_return;
+
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
@@ -158,27 +160,6 @@ public void entfernen(Nachricht n) {
 
   }
   
-  public Vector<Nachricht> report1_3Mapper(int meineId){
-	  Vector<Nachricht> alleNachrichteneinesNutzers = new Vector<Nachricht>();
-	  Connection con = DatenbankVerbindung.connection();
-	  try{
-		  Statement state = con.createStatement();
-		  ResultSet rs = state
-				  .executeQuery(("SELECT * FROM Nachricht WHERE AutorId = '"+meineId+"' ORDER BY ErstellungsDatum DESC;"));
-		  while (rs.next()){
-			  Nachricht nA = new Nachricht();
-			  nA.setId(rs.getInt("Id"));
-			  nA.setText(rs.getString("Text"));
-			  nA.setSenderId(rs.getInt("AutoId"));
-			  nA.setErstellungsDatum(rs.getTimestamp("Erstellungsdatum"));
-			  alleNachrichteneinesNutzers.add(nA);
-			  
-		  }
-	  }catch (Exception e){
-		  e.printStackTrace();
-	  }
-	  return alleNachrichteneinesNutzers;
-  }
 
   public Vector<Nachricht> selektiereNachrichtenVonId(int meineId) {
     Vector<Nachricht> meineNachrichten = new Vector<Nachricht>();
@@ -201,4 +182,91 @@ public void entfernen(Nachricht n) {
 
     return meineNachrichten;
   }
+  
+ public Vector<Nachricht> report1_1Mapper(int meineId, Timestamp vonDatum, Timestamp bisDatum){
+	 Vector<Nachricht> alleNachrichtenVonBestimmtenNutzerInBestimmtemZeitraum = new Vector<Nachricht>();
+	 Connection con = DatenbankVerbindung.connection();
+	 try{
+		 Statement state = con.createStatement();
+		 ResultSet rs = state
+				 .executeQuery(("SELECT * FROM Nachricht WHERE AutorId = '"+meineId+"' AND WHERE ErstellungsDatum BETWEEN '"+vonDatum+"' AND '"+bisDatum+"' ORDER BY ErstellungsDatum DESC;"));
+		 while(rs.next()){
+			 Nachricht nA = new Nachricht();
+			 nA.setId(rs.getInt("Id"));
+				nA.setText(rs.getString("Text"));
+			    nA.setSenderId(rs.getInt("AutorId"));
+			    nA.setErstellungsDatum(rs.getTimestamp("Erstellungsdatum"));
+			    alleNachrichtenVonBestimmtenNutzerInBestimmtemZeitraum.add(nA);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	return alleNachrichtenVonBestimmtenNutzerInBestimmtemZeitraum;
+	 
+ }
+
+public Vector<Nachricht> report1_2Mapper(Timestamp vonDatum, Timestamp bisDatum) {
+	Vector<Nachricht> alleNachrichtenInBestimmtemZeitraum = new Vector<Nachricht>();
+	Connection con = DatenbankVerbindung.connection();
+	try{
+		Statement state = con.createStatement();
+		ResultSet rs = state
+				.executeQuery(("SELECT * FROM Nachricht  WHERE ErstellungsDatum BETWEEN '"+vonDatum+"' AND '"+bisDatum+"' ORDER BY ErstellungsDatum DESC;"));
+		while(rs.next()){
+			Nachricht nA = new Nachricht();
+			nA.setId(rs.getInt("Id"));
+			nA.setText(rs.getString("Text"));
+		    nA.setSenderId(rs.getInt("AutorId"));
+		    nA.setErstellungsDatum(rs.getTimestamp("Erstellungsdatum"));
+		    alleNachrichtenInBestimmtemZeitraum.add(nA);
+		}
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	return alleNachrichtenInBestimmtemZeitraum;
+}
+
+public Vector<Nachricht> report1_3Mapper(int meineId){
+	  Vector<Nachricht> alleNachrichteneinesNutzers = new Vector<Nachricht>();
+	  Connection con = DatenbankVerbindung.connection();
+	  try{
+		  Statement state = con.createStatement();
+		  ResultSet rs = state
+				  .executeQuery(("SELECT * FROM Nachricht WHERE AutorId = '"+meineId+"' ORDER BY ErstellungsDatum DESC;"));
+		  while (rs.next()){
+			  Nachricht nA = new Nachricht();
+			  nA.setId(rs.getInt("Id"));
+			  nA.setText(rs.getString("Text"));
+			  nA.setSenderId(rs.getInt("AutoId"));
+			  nA.setErstellungsDatum(rs.getTimestamp("Erstellungsdatum"));
+			  alleNachrichteneinesNutzers.add(nA);
+			  
+		  }
+	  }catch (Exception e){
+		  e.printStackTrace();
+	  }
+	  return alleNachrichteneinesNutzers;
+}
+
+public Vector<Nachricht> report1_4Mapper(){
+	Vector<Nachricht> alleNachrichten = new Vector<Nachricht>();
+	Connection con = DatenbankVerbindung.connection();
+	try{
+		Statement state = con.createStatement();
+		ResultSet rs = state
+				.executeQuery(("SELECT * FROM Nachricht ORDER BY ErstellungsDatum DESC;"));
+		 while (rs.next()){
+			  Nachricht nA = new Nachricht();
+			  nA.setId(rs.getInt("Id"));
+			  nA.setText(rs.getString("Text"));
+			  nA.setSenderId(rs.getInt("AutoId"));
+			  nA.setErstellungsDatum(rs.getTimestamp("Erstellungsdatum"));
+			  alleNachrichten.add(nA);
+			  
+		  }
+	  }catch (Exception e){
+		  e.printStackTrace();
+	  }
+	  return alleNachrichten;
+}
 }
