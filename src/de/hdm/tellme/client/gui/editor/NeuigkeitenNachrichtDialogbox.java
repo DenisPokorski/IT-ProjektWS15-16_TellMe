@@ -23,6 +23,8 @@ import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
+import de.hdm.tellme.shared.bo.BusinessObject.eSichtbarkeit;
+import de.hdm.tellme.shared.bo.Unterhaltung.eUnterhaltungsTyp;
 
 public class NeuigkeitenNachrichtDialogbox {
 
@@ -40,12 +42,21 @@ public class NeuigkeitenNachrichtDialogbox {
 	final MultiWordSuggestOracle suggestOracleHashtags = new MultiWordSuggestOracle();
 	Vector<Hashtag> moeglicheHashtags = new Vector<Hashtag>();
 	Vector<Hashtag> AusgewaehlteHashtags = new Vector<Hashtag>();
-	
+
+	TextArea textArea = new TextArea();
 
 	final DialogBox db = new DialogBox();
 
 	eNachrichtenmodus NachrichtenModus = null;
-
+	
+	//Panel für Nachricht Empfänger Dialog Box
+	final FlowPanel fpAusgewaehlteEmpfanger = new FlowPanel();
+	HorizontalPanel hpEmpfaenger = new HorizontalPanel();
+	
+	// Panel für Nachricht Hashtag Dialog Box
+	HorizontalPanel hpHashtags = new HorizontalPanel();
+	final FlowPanel fpAusgewaehlteHashtags = new FlowPanel();
+	
 	// Elemente, die von jedem Nachrichtemodus unterschiedlich befüllt werden
 	private String boxTitel;
 	private String textAreaInhalt = "";
@@ -61,7 +72,7 @@ public class NeuigkeitenNachrichtDialogbox {
 
 	public DialogBox getAntwortNachrichtDialogbox() {
 		NachrichtenModus = eNachrichtenmodus.AntwortNachricht;
-		boxTitel = "Neue Nachricht verfassen";
+		boxTitel = "Antwort verfassen";
 		textFunktionsbutton = "Senden";
 
 		return gibDialogBox();
@@ -69,10 +80,53 @@ public class NeuigkeitenNachrichtDialogbox {
 
 	public DialogBox getNachrichtBearbeitenDialogbox(Nachricht _nachrichtZumBearbeiten) {
 		NachrichtenModus = eNachrichtenmodus.BearbeitenNachricht;
-		boxTitel = "Neue Nachricht verfassen";
+		boxTitel = "Nachricht bearbeiten";
 		textFunktionsbutton = "Speichern";
 		textAreaInhalt = _nachrichtZumBearbeiten.getText();
-				
+ 		// HashtagPanel
+		
+		AusgewaehlteHashtags = _nachrichtZumBearbeiten.getVerknuepfteHashtags();
+		
+		for(int i=0; i< AusgewaehlteHashtags.size() ; i++){
+			
+			Hashtag zuHinzuzufuegenderHashtag = null;
+			zuHinzuzufuegenderHashtag = AusgewaehlteHashtags.get(i); 			
+			
+ 			final Button btnLoescheHashtag = new Button("#" + zuHinzuzufuegenderHashtag.getSchlagwort() + "(X)");
+			btnLoescheHashtag.setStylePrimaryName("ButtonX-Nachrichtenverwaltung");
+
+			btnLoescheHashtag.addClickHandler(new ClickHandler() {
+				public void onClick(ClickEvent event) {
+					// Wenn ein Hashtag in der AusgewaehlteHashtag
+					// Liste mit Text des Entfernenbutton,
+					// entferne button von Panel und Hashtag von Liste
+					// der Ausgewählten Hastags
+					for (Hashtag hashtag : AusgewaehlteHashtags) {
+						if (btnLoescheHashtag.getText().equals("#" + hashtag.getSchlagwort() + "(X)")) {
+							AusgewaehlteHashtags.remove(hashtag);
+							btnLoescheHashtag.removeFromParent();
+							continue;
+						}
+					}
+				}
+			});
+			
+			
+			//fpAusgewaehlteHashtags.add(_nachrichtZumBearbeiten.getVerknuepfteHashtags().get(i));
+			 
+		
+
+		}
+		
+		
+		
+		Vector<Nutzer> moeglicheEmpfaenger = new Vector<Nutzer>();
+		Vector<Nutzer> AusgewaehlteEmpfaenger = new Vector<Nutzer>();
+
+		final MultiWordSuggestOracle suggestOracleHashtags = new MultiWordSuggestOracle();
+		Vector<Hashtag> moeglicheHashtags = new Vector<Hashtag>();
+		Vector<Hashtag> AusgewaehlteHashtags = new Vector<Hashtag>();
+		
 		return gibDialogBox();
 	}
 
@@ -85,13 +139,12 @@ public class NeuigkeitenNachrichtDialogbox {
 		db.setGlassEnabled(true);
 
 		FlowPanel fpDialog = new FlowPanel();
-//		fpDialog.setHeight("500px");
-//		fpDialog.setWidth("500px");
+		// fpDialog.setHeight("500px");
+		// fpDialog.setWidth("500px");
 
 		// Empfaenger Panele
 		if (NachrichtenModus == eNachrichtenmodus.NeueNachricht) {
-			final HorizontalPanel hpAusgewaehlteEmpfanger = new HorizontalPanel();
-			HorizontalPanel hpEmpfaenger = new HorizontalPanel();
+			
 			hpEmpfaenger.add(new Label("Empfänger:"));
 
 			final SuggestBox EmpfaengerHinzufuegenSug = new SuggestBox(suggestOracleEmpfaenger);
@@ -128,6 +181,7 @@ public class NeuigkeitenNachrichtDialogbox {
 					// hinzu.
 					// Ansonsten Fehlermeldung ausgeben
 					if (bereitsHinzugefuegt) {
+						Window.alert("Der Empfänger kann nicht hinzugefügt werden, da dieser bereits hinzugefügt wurde.");
 
 					} else if (zuHinzuzufuegenderBenutzer == null) {
 						Window.alert("Kein vorhandener Benutzer ausgewaehlt.");
@@ -155,7 +209,7 @@ public class NeuigkeitenNachrichtDialogbox {
 							}
 						});
 
-						hpAusgewaehlteEmpfanger.add(btnLoescheEmpfaenger);
+						fpAusgewaehlteEmpfanger.add(btnLoescheEmpfaenger);
 					}
 
 					EmpfaengerHinzufuegenSug.setText("");
@@ -163,19 +217,17 @@ public class NeuigkeitenNachrichtDialogbox {
 				}
 			});
 			fpDialog.add(hpEmpfaenger);
-			fpDialog.add(hpAusgewaehlteEmpfanger);
+			fpDialog.add(fpAusgewaehlteEmpfanger);
 		}
 
 		// Textarea
-		TextArea textArea = new TextArea();
 		textArea.setWidth("90%");
 		textArea.setVisibleLines(10);
-		textArea.setText(textAreaInhalt);		
+		textArea.setText(textAreaInhalt);
+		// maxlength="50"
 		fpDialog.add(textArea);
 
 		// Hashtag Panele
-		HorizontalPanel hpHashtags = new HorizontalPanel();
-		final HorizontalPanel hpAusgewaehlteHashtags = new HorizontalPanel();
 		hpHashtags.add(new Label("Hashtags:"));
 
 		final SuggestBox HastagHinzufuegenSug = new SuggestBox(suggestOracleHashtags);
@@ -211,6 +263,8 @@ public class NeuigkeitenNachrichtDialogbox {
 				// Wenn Text Valide ist, füge einen Button zum Entfernen hinzu.
 				// Ansonsten Fehlermeldung ausgeben
 				if (bereitsHinzugefuegt) {
+					Window.alert("Der Hashtag kann nicht hinzugefügt werden, da dieser bereits hinzugefügt wurde.");
+
 
 				} else if (zuHinzuzufuegenderHashtag == null) {
 					Window.alert("Kein vorhandener Hashtag ausgewaehlt.");
@@ -235,19 +289,19 @@ public class NeuigkeitenNachrichtDialogbox {
 						}
 					});
 
-					hpAusgewaehlteHashtags.add(btnLoescheHashtag);
+					fpAusgewaehlteHashtags.add(btnLoescheHashtag);
 				}
 				HastagHinzufuegenSug.setText("");
 			}
 		});
 		fpDialog.add(hpHashtags);
-		fpDialog.add(hpAusgewaehlteHashtags);
+		fpDialog.add(fpAusgewaehlteHashtags);
 
 		HorizontalPanel hpButtons = new HorizontalPanel();
 		hpButtons.setWidth("100%");
 		hpButtons.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 
-		Button btnFunktionsbutton = new Button(textFunktionsbutton);				
+		Button btnFunktionsbutton = new Button(textFunktionsbutton);
 		btnFunktionsbutton.addClickHandler(clickHandlerFunktionsbutton);
 
 		Button btnAbbrechen = new Button("Abbrechen");
@@ -259,9 +313,9 @@ public class NeuigkeitenNachrichtDialogbox {
 		hpButtons.add(btnFunktionsbutton);
 		hpButtons.add(btnAbbrechen);
 		fpDialog.add(hpButtons);
-		
+
 		db.setWidget(fpDialog);
-		
+
 		return db;
 	}
 
@@ -296,21 +350,54 @@ public class NeuigkeitenNachrichtDialogbox {
 		});
 	}
 
-	
 	private String gibVorschlageTextFuerNutzer(Nutzer _nutzer) {
 		return _nutzer.getVorname() + " " + _nutzer.getNachname() + " (" + _nutzer.getMailadresse() + ")";
 	}
 
-	
 	private ClickHandler clickHandlerFunktionsbutton = new ClickHandler() {
-		
+
 		@Override
 		public void onClick(ClickEvent event) {
+			
+			
+			if(textArea.getValue() == ""){
+			Window.alert("Bitte geben Sie einen Text ein um die Nachricht versenden zu können.");	
+				
+			} else {
 			// TODO Auto-generated method stub
 			switch (NachrichtenModus) {
 			case NeueNachricht:
 			default:
-				
+				Nachricht neueNachricht = new Nachricht();
+				// neueNachricht.setErstellungsDatum(erstellungsDatum); wird im
+				// Mapper direkt gesetzt
+				// neueNachricht.setId(id); wird für anlegen nicht benötigt
+				neueNachricht.setSender(TellMe.gibEingeloggterBenutzer().getUser());
+				neueNachricht.setSenderId(TellMe.gibEingeloggterBenutzer().getUser().getId());
+				neueNachricht.setSichtbarkeit(eSichtbarkeit.Sichtbar.ordinal());
+
+				neueNachricht.setText(textArea.getText());
+				neueNachricht.setVerknuepfteHashtags(AusgewaehlteHashtags);
+
+				AusgewaehlteEmpfaenger.addElement(TellMe.gibEingeloggterBenutzer().getUser());
+
+				asyncObj.unterhaltungStarten(eUnterhaltungsTyp.oeffentlich, neueNachricht, AusgewaehlteEmpfaenger, new AsyncCallback<Boolean>() {
+
+					@Override
+					public void onSuccess(Boolean result) {
+						// TODO Auto-generated method stub
+						if (result)
+							Window.alert("Nachricht erfolgreich erstellt");
+						else
+							Window.alert("Fehler beim erstellen der Nachricht, bitte an Administrator wenden.");
+					}
+
+					@Override
+					public void onFailure(Throwable caught) {
+						// TODO Auto-generated method stub
+						Window.alert("Fehler beim erstellen der Nachricht, bitte an Administrator wenden.");
+					}
+				});
 				break;
 
 			case AntwortNachricht:
@@ -320,7 +407,9 @@ public class NeuigkeitenNachrichtDialogbox {
 				Window.alert("Speichern");
 				break;
 			}
-			
+			db.hide();
+
+			}
 		}
 	};
 }

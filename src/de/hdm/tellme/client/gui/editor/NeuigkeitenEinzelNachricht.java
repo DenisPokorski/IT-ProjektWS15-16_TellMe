@@ -34,8 +34,8 @@ public class NeuigkeitenEinzelNachricht extends Composite {
 		fpNachricht.add(hpHeader);
 		
 		if(_istUnterhaltungsRahmen){
-			Button btnVerlasseUnterhaltung = new Button("Unterhaltung verlassen");
-			hpHeader.add(btnVerlasseUnterhaltung);
+				Button btnVerlasseUnterhaltung = new Button("Unterhaltung verlassen");
+				hpHeader.add(btnVerlasseUnterhaltung);
 		}
 
 		HorizontalPanel hpNachricht = new HorizontalPanel();
