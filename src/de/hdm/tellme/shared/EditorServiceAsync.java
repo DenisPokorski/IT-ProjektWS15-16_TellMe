@@ -73,11 +73,11 @@ public interface EditorServiceAsync {
 	void oeffentlicheNachrichtenNachHashtag(int id,
 			AsyncCallback<Unterhaltung> callback);
 
-	void unterhaltung_anlegen(eUnterhaltungsTyp _unterhaltungsTyp, AsyncCallback<Integer> callback);
-
 	void unterhaltung_loeschen(int unterhaltungsID, AsyncCallback<Boolean> callback);
 
 	void alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(int teilnehmerID, AsyncCallback<Vector<Unterhaltung>> callback);
+
+	void unterhaltungStarten(eUnterhaltungsTyp unterhaltungsTyp, Nachricht ersteNachricht, Vector<Nutzer> teilnehmer, AsyncCallback<Boolean> callback);
 
 	 
  }

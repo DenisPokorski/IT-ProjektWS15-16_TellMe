@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Vector;
 
-
 import de.hdm.tellme.server.db.DatenbankVerbindung;
 import de.hdm.tellme.shared.bo.Unterhaltung;
+import de.hdm.tellme.shared.bo.BusinessObject.eSichtbarkeit;
 
 /**
  * Mapper-Klasse, die Nutzer-Objekte in der Datenbank abbildet. Diese enth�lt
@@ -35,7 +35,8 @@ public class UnterhaltungMapper {
 		return unterhaltungMapper;
 	}
 
-	//legt unterhaltung an, gibt id neuer unterhaltung zurück oder -1 wenn nicht erfolgreich
+	// legt unterhaltung an, gibt id neuer unterhaltung zurück oder -1 wenn
+	// nicht erfolgreich
 	public int anlegen(Unterhaltung.eUnterhaltungsTyp unterHaltungsTyp) {
 		int sichtbarkeit = 1;
 		int ergebnis = -1;
@@ -48,10 +49,10 @@ public class UnterhaltungMapper {
 			prepState.setInt(2, unterHaltungsTyp.ordinal());
 
 			prepState.executeUpdate();
-			
+
 			ResultSet rs = prepState.getGeneratedKeys();
-			if (rs.next()){
-				ergebnis=rs.getInt(1);
+			if (rs.next()) {
+				ergebnis = rs.getInt(1);
 			}
 
 		} catch (Exception e) {
@@ -74,6 +75,7 @@ public class UnterhaltungMapper {
 				erfolgreich = false;
 		} catch (Exception e) {
 			e.printStackTrace();
+			erfolgreich = false;
 		}
 
 		return erfolgreich;
@@ -107,6 +109,25 @@ public class UnterhaltungMapper {
 		}
 
 		return alleUnterhaltungen;
+	}
+
+	public boolean teilnehmerHinzufuegen(int UnterhaltungsID, int TeilnehmerID) {
+		boolean erfolgreich = true;
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			String sqlquery = "INSERT INTO NutzerUnterhaltung (`NutzerId`, `UnterhaltungId`, `Sichtbarkeit`) VALUES ('" + TeilnehmerID + "', '"
+					+ UnterhaltungsID + "', '" + eSichtbarkeit.Sichtbar.ordinal() + "');";
+			int anzahlBetroffenerZeilen = state.executeUpdate(sqlquery);
+			if (anzahlBetroffenerZeilen > 0)
+				erfolgreich = true;
+			else
+				erfolgreich = false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			erfolgreich = false;
+		}
+		return erfolgreich;
 	}
 
 }

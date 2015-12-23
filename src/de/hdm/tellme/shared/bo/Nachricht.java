@@ -29,6 +29,8 @@ public class Nachricht extends BusinessObject {
 	private Nutzer sender;
 	private int senderId;
 	
+	private Vector<Hashtag> verknuepfteHashtags;
+	
 
 	/**
 	 * Mit dieser Methode wird der Text ausgelesen
@@ -47,6 +49,10 @@ public class Nachricht extends BusinessObject {
 	 */
 
 	public void setText(String text) {
+		//Textbegrenzung auf 255 Zeichen
+		if(text.length() > 255)
+			text = text.substring(0, 254);
+		
 		this.text = text;
 	}
 
@@ -78,5 +84,15 @@ public class Nachricht extends BusinessObject {
 	public void setSender(Nutzer nutzer) {
 		this.sender = nutzer;
 	}
+
+	public Vector<Hashtag> getVerknuepfteHashtags() {
+		return verknuepfteHashtags;
+	}
+
+	public void setVerknuepfteHashtags(Vector<Hashtag> verknuepfteHashtags) {
+		this.verknuepfteHashtags = verknuepfteHashtags;
+	}
+	
+	
 
 }

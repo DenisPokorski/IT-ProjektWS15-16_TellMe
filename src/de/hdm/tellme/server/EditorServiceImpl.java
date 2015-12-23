@@ -13,10 +13,10 @@ import de.hdm.tellme.server.db.NutzerMapper;
 import de.hdm.tellme.server.db.UnterhaltungMapper;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.bo.*;
+import de.hdm.tellme.shared.bo.Unterhaltung.eUnterhaltungsTyp;
 
 @SuppressWarnings("serial")
-public class EditorServiceImpl extends RemoteServiceServlet implements
-		EditorService {
+public class EditorServiceImpl extends RemoteServiceServlet implements EditorService {
 	public EditorServiceImpl() throws IllegalArgumentException {
 
 	}
@@ -26,8 +26,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		this.nutzeraboMapper = NutzerAbonnementMapper.nutzerAbonnementMapper();
 		this.nachrichtMapper = NachrichtMapper.nachrichtMapper();
 		this.unterhaltungMapper = UnterhaltungMapper.unterhaltungMapper();
-		this.hashtagAboMapper = HashtagAbonnementMapper
-				.hashtagAbonnementMapper();
+		this.hashtagAboMapper = HashtagAbonnementMapper.hashtagAbonnementMapper();
 		this.hashtagMapper = HashtagMapper.hashtagMapper();
 
 	}
@@ -66,15 +65,13 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public Vector<Nutzer> getZuAbonnieredeLoeschenNutzerListe(int i) {
-		Vector<Nutzer> alleAbboniertenNutzer = nutzeraboMapper
-				.ladeAbonnierendeNutzerListe(i);
+		Vector<Nutzer> alleAbboniertenNutzer = nutzeraboMapper.ladeAbonnierendeNutzerListe(i);
 		return alleAbboniertenNutzer;
 	}
 
 	@Override
 	public Vector<Integer> ladeAbonnierendeHashtagListe(int i) {
-		Vector<Integer> alleAbboniertenNutzer = hashtagAboMapper
-				.ladeAbonnierteHashtagListe(i);
+		Vector<Integer> alleAbboniertenNutzer = hashtagAboMapper.ladeAbonnierteHashtagListe(i);
 		return alleAbboniertenNutzer;
 	}
 
@@ -88,24 +85,23 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public Vector<Nutzer> getAlleNochNichtAbonnierteNutzerListe(int id) {
 		// int id =7;
-		Vector<Nutzer> alleNutzer = nutzeraboMapper
-				.alleNochNichtAbonnierteNutzerSelektieren(id);
+		Vector<Nutzer> alleNutzer = nutzeraboMapper.alleNochNichtAbonnierteNutzerSelektieren(id);
 		return alleNutzer;
 	}
 
 	@Override
 	public Vector<Nutzer> getAlleNutzerAußerMeineId(int meineId) {
-		Vector<Nutzer> alleNutzer = nutzerMapper
-				.alleNutzerAusserMeineId(meineId);
+		Vector<Nutzer> alleNutzer = nutzerMapper.alleNutzerAusserMeineId(meineId);
 		return alleNutzer;
 	}
 
+	@Deprecated
 	@Override
 	public void NachrichtErstellen(Nachricht n) {
 		nachrichtMapper.anlegen(n);
 	}
 
-
+	@Deprecated
 	@Override
 	public void nachrichtUnterhaltungZuweisen(String txt, int uId, Timestamp ts) {
 
@@ -113,8 +109,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public Vector<Hashtag> getZuAbonnierendeLoeschenHashtagAboListe(int meineId) {
-		Vector<Hashtag> alleAbboniertenHashtags = hashtagAboMapper
-				.ladeAbonnierendeHashtagListe(meineId);
+		Vector<Hashtag> alleAbboniertenHashtags = hashtagAboMapper.ladeAbonnierendeHashtagListe(meineId);
 		return alleAbboniertenHashtags;
 	}
 
@@ -125,8 +120,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public Vector<Hashtag> getAlleNochNichtAbonnierteHashtagAboListe(int i) {
-		Vector<Hashtag> alleHashtags = hashtagAboMapper
-				.alleNochNichtAboonierteHashtagsSelektieren(i);
+		Vector<Hashtag> alleHashtags = hashtagAboMapper.alleNochNichtAboonierteHashtagsSelektieren(i);
 		naMapper.alleNochNichtAbonnierteNutzerSelektieren(i);
 		return alleHashtags;
 	}
@@ -144,8 +138,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public Vector<Integer> holeAlleAbonniertenNutzer(int meineId) {
-		Vector<Integer> alleAbonniertenNutzer = nutzerMapper
-				.alleAbonniertenNutzer(meineId);
+		Vector<Integer> alleAbonniertenNutzer = nutzerMapper.alleAbonniertenNutzer(meineId);
 
 		return alleAbonniertenNutzer;
 	}
@@ -185,30 +178,58 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public Unterhaltung oeffentlicheNachrichtenNachHashtag(int id) {
-		Unterhaltung oeffentlicheNachrichtenNachHashtag = hashtagMapper
-				.oeffentlicheNachrichtenNachHashtag(id);
+		Unterhaltung oeffentlicheNachrichtenNachHashtag = hashtagMapper.oeffentlicheNachrichtenNachHashtag(id);
 		return oeffentlicheNachrichtenNachHashtag;
-	}	
-
-	@Override
-	public int unterhaltung_anlegen(Unterhaltung.eUnterhaltungsTyp _unterhaltungsTyp){
-		int ergebnis = -1;
-		ergebnis = unterhaltungMapper.anlegen(_unterhaltungsTyp);
-		return ergebnis;
 	}
 
 	@Override
-	public boolean unterhaltung_loeschen(int unterhaltungsID){
+	public boolean unterhaltung_loeschen(int unterhaltungsID) {
 		boolean ergebnis = false;
 		ergebnis = unterhaltungMapper.loescheUnterhaltungAnhandID(unterhaltungsID);
 		return ergebnis;
 	}
 
 	@Override
-	public Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(int teilnehmerID){
+	public Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(int teilnehmerID) {
 		Vector<Unterhaltung> Unterhaltungen = null;
 		Unterhaltungen = unterhaltungMapper.alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(teilnehmerID);
 		return Unterhaltungen;
 	}
 
+	@Override
+	public boolean unterhaltungStarten(eUnterhaltungsTyp unterhaltungsTyp, Nachricht ersteNachricht, Vector<Nutzer> teilnehmer) {
+		boolean erfolgreich = true;
+		int unterhaltungsID = -1;
+		unterhaltungsID = unterhaltungMapper.anlegen(eUnterhaltungsTyp.oeffentlich);
+		if (unterhaltungsID != -1) {
+			for (Nutzer nutzer : teilnehmer) {
+				unterhaltungMapper.teilnehmerHinzufuegen(unterhaltungsID, nutzer.getId());
+			}
+
+			int nachrichtenID = -1;
+			nachrichtenID = nachricht_erstellen(ersteNachricht);
+			if (nachrichtenID != -1) {
+				nachrichtMapper.nachrichtEinerUnterhaltungZuordnen(nachrichtenID, unterhaltungsID);
+
+			} else {
+				erfolgreich = false;
+			}
+		} else {
+			erfolgreich = false;
+		}
+
+		return erfolgreich;
+	}
+
+	private int nachricht_erstellen(Nachricht n) {
+		int neueNachrichtID = -1;
+		neueNachrichtID = nachrichtMapper.anlegen(n);
+		if (neueNachrichtID != -1) {
+			for (Hashtag hashtag : n.getVerknuepfteHashtags()) {
+				nachrichtMapper.hashtagEinerNachrichtZuordnen(hashtag.getId(), neueNachrichtID);
+
+			}
+		}
+		return neueNachrichtID;
+	}
 }

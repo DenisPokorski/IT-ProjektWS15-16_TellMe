@@ -61,10 +61,10 @@ public interface EditorService extends RemoteService {
 
 	Unterhaltung oeffentlicheNachrichtenNachHashtag(int id);
 
-	int unterhaltung_anlegen(eUnterhaltungsTyp _unterhaltungsTyp);
-
 	boolean unterhaltung_loeschen(int unterhaltungsID);
 
 	Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(int teilnehmerID);
+
+	boolean unterhaltungStarten(eUnterhaltungsTyp unterhaltungsTyp, Nachricht ersteNachricht, Vector<Nutzer> teilnehmer);
 
 }
