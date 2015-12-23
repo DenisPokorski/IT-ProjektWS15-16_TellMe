@@ -14,6 +14,7 @@ import de.hdm.tellme.client.*;
 import de.hdm.tellme.client.gui.report.Report1Gui;
 import de.hdm.tellme.client.gui.report.Report2Gui;
 import de.hdm.tellme.client.gui.report.Report3Gui;
+import de.hdm.tellme.client.gui.report.ReportWillkommenSeite;
 
 /**
  * 
@@ -130,6 +131,14 @@ public class MenuBarEditor extends HorizontalPanel {
 		tempReports.setAnimationEnabled(true);
 		HauptMenue.addItem(new MenuItem("Reports", tempReports));
 
+		tempReports.addItem("Report Startseite", new Command() {
+			
+			@Override
+			public void execute() {
+				setzeInhalt(new ReportWillkommenSeite());
+				
+			}
+		});
 		tempReports.addItem("Report 1", new Command() {
 			@Override
 			public void execute() {

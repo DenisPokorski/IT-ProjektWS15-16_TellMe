@@ -12,9 +12,11 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DateBox;
 
-import de.hdm.tellme.server.report.Report1Generator;
+import de.hdm.tellme.client.gui.editor.CellListModus;
+import de.hdm.tellme.client.gui.editor.NutzerCellList;
 import de.hdm.tellme.shared.LoginInfo;
 
 /**
@@ -32,7 +34,6 @@ import de.hdm.tellme.shared.LoginInfo;
  */
 
 public class Report1Gui extends VerticalPanel{
-
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift1 = new Label("Report1: Nachrichten abfragen");
 	private Label subSchrift1 = new Label("Nutzer auswählen");
@@ -45,23 +46,33 @@ public class Report1Gui extends VerticalPanel{
 	private ListBox nutzerDropDown = new ListBox();
 	private DateBox vonDateBox = new DateBox( ); 
 	private DateBox bisDateBox = new DateBox( ); 
-	private Button nutzerAbosAnzeigen = new Button("Nutzerabos anzeigen");
+	private Button report1Generieren = new Button("Report 1 generieren");
+	
+	private Label beschreibung = new Label("Der Report 1 gibt alle Nachrichten eines Nutzers in einen bestimmten Zeitraum, \n"
+			+ "alle Nachrichten eines Nutzers,\n alle Nachrichten in einem bestimmten Zeitraum"
+			+ " \n oder alle Nachrichten aus");
 	
 	public void onLoad(){
 		reportPanel.add(ueberSchrift1);
 		reportPanel1.add(reportPanel1_left);
 		reportPanel1.add(reportPanel1_right);
 		reportPanel1_left.add(subSchrift1);
-		reportPanel1_left.add(nutzerDropDown);
-		reportPanel1_right.add(subSchrift2);
-		reportPanel1_right.add(vonDateBox);
-		reportPanel1_right.add(bisDateBox);
-		reportPanel1_right.add(nutzerAbosAnzeigen);
+		reportPanel1_left.add(subSchrift2);
+		reportPanel1_left.add(vonDateBox);
+		reportPanel1_left.add(bisDateBox);
+		reportPanel1_left.add(report1Generieren);
+		
+		
 		reportPanel.add(reportPanel1);
 		
 		
+		
 		RootPanel.get("content").clear();
-		RootPanel.get("content").add(reportPanel);
+		RootPanel.get("content_left").clear();
+		RootPanel.get("content_right").clear();
+		RootPanel.get("content_left").add(reportPanel1_left);
+		RootPanel.get("content_left").add(new NutzerCellList()
+		.generiereCellList(CellListModus.Report1_NachrichtNutzerZeitraum));
 		
 		
 		nutzerDropDown.addClickHandler(new ClickHandler() {
@@ -90,7 +101,7 @@ public class Report1Gui extends VerticalPanel{
 			
 		});
 		
-		nutzerAbosAnzeigen.addClickHandler(new ClickHandler() {
+		report1Generieren.addClickHandler(new ClickHandler() {
 			
 			@Override
 			public void onClick(ClickEvent event) {
