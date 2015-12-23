@@ -6,6 +6,7 @@ import java.util.Vector;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.hdm.tellme.server.db.HashtagAbonnementMapper;
+import de.hdm.tellme.server.db.HashtagMapper;
 import de.hdm.tellme.server.db.NachrichtMapper;
 import de.hdm.tellme.server.db.NutzerAbonnementMapper;
 import de.hdm.tellme.server.db.NutzerMapper;
@@ -37,6 +38,8 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 	
 	private NutzerAbonnementMapper naMapper = null;
 	private HashtagAbonnementMapper hashtagAboMapper = null;
+	
+	private HashtagMapper hashtagMapper = null;
 	
 
 
@@ -74,11 +77,16 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 	}
 
 
-	@Override
-	public Vector<Nachricht> report1_3Generieren(int nutzerId) {
-		Vector<Nachricht> report1_3 = nachrichtMapper.report1_3Mapper(nutzerId);
-		return report1_3;
-	}
+//	@Override
+////	public Vector<Nachricht> report1_3Generieren(int nutzerId) {
+//		Vector<Nachricht> nachrichtListe = nachrichtMapper.report1_3Mapper(nutzerId);
+//		Vector<Hashtag> hashtagListe = hashtagMapper.report1_3Mapper(nutzerId); //Alle Hashtags zu nachrichten id 
+//
+////		for(int i=0; i <report1_3.size(); i++ ){
+////			report1_3.get(i).getVerknuepfteHashtags()
+////		}
+//		//return report1_3;
+//	}
 
 
 
@@ -88,4 +96,15 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 		return report1_4;
 	}
 
+
+
+	@Override
+	public Vector<Nachricht> report1_3Generieren(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+//	public class UnterhaltungNachrichtHashtagBinder(Vector<Nachricht> n, Vector<Unterhaltung> u){
+//		
+//	}
 }

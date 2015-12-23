@@ -16,27 +16,19 @@ public class ReportFormular1_1 extends Composite{
 	Button report1_1GenerierenButton = new Button("Report 1 erstellen");
 	
 	public ReportFormular1_1(){
-//		report1_1GenerierenButton.addClickHandler(new ClickHandler(){
-//			public void onClick(ClickEvent event){
-//				
-//				
-//					return;
-//				}
-//			//	NutzerDataProvider.gib().report3Generieren(nutzer);
-//				}			
-//		});
-//	}
-//	
+		
+	
 //	public VerticalPanel gibFormular(){
 //		VerticalPanel vpForm = new VerticalPanel();
 //		
 //		vpForm.add(new Label(nutzer.getVorname() + nutzer.getNachname()));
-//		vpForm.add(report3GenerierenButton);
+//		vpForm.add(report1_1GenerierenButton);
 //		return vpForm;
 //	}
-//	public void report3Generieren(NutzerZelle.ZellenObjekt ZellenObjekt){
+//	public void report1_1Generieren(NutzerZelle.ZellenObjekt ZellenObjekt){
 //		this.nutzer = ZellenObjekt.nutzer;
 //
-	}
+//	}
 
+}
 }

@@ -2,11 +2,14 @@ package de.hdm.tellme.client.gui.report;
 
 import java.util.Date;
 
+import org.apache.tools.ant.taskdefs.Execute;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
@@ -18,6 +21,10 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
 import de.hdm.tellme.shared.LoginInfo;
+
+import de.hdm.tellme.shared.ReportService;
+import de.hdm.tellme.shared.ReportServiceAsync;
+import de.hdm.tellme.shared.report.HTMLReportWriter;
 
 /**
  * TODO
@@ -48,19 +55,32 @@ public class Report1Gui extends VerticalPanel{
 	private DateBox bisDateBox = new DateBox( ); 
 	private Button report1Generieren = new Button("Report 1 generieren");
 	
-	private Label beschreibung = new Label("Der Report 1 gibt alle Nachrichten eines Nutzers in einen bestimmten Zeitraum, \n"
-			+ "alle Nachrichten eines Nutzers,\n alle Nachrichten in einem bestimmten Zeitraum"
-			+ " \n oder alle Nachrichten aus");
+	private HTML beschreibung1 = new HTML("<ul><b>Der Report 1 gibt alle Nachrichten eines Nutzers in einen bestimmten Zeitraum, "
+			+ "alle Nachrichten eines Nutzers, alle Nachrichten in einem bestimmten Zeitraum"
+			+ " oder alle Nachrichten aus</b>"
+			+ "<li>Um einen Report auszugeben, der  alle Nachrichten <b>eines Nutzers</b>"
+			+ "in <b>einem bestimmten Zeitraum</b> darstellt, musst du einen Nutzer<b> UND</b> einen Zeitraum auswählen</li>"
+			+ "<li>Um einen Report auszugeben, der alle Nachrichten in <b>einem bestimmten Zeitraum</b>"
+			+ " darstellt, darfst du <b>KEINEN Nutzer</b> auswählen und <b>musst einen Zeitraum </b>auswählen.</li> "
+			+ "<li>Um einen Report auszugeben, der alle Nachrichten von<b> einem bestimmten Nutzer</b>"
+			+ " darstellt, musst du <b>einen Nutzer </b>auswählen und darfst <b>keinen Zeitraum </b>auswählen. </li>"
+			+ "<li>Um einen Report auszugeben, der alle Nachrichten "
+			+ " darstellt, darfst du<b> keinen Nutzer</b> und <b>keinen Zeitraum</b> auswählen.</li></ul>");
 	
 	public void onLoad(){
 		reportPanel.add(ueberSchrift1);
 		reportPanel1.add(reportPanel1_left);
 		reportPanel1.add(reportPanel1_right);
 		reportPanel1_left.add(subSchrift1);
+		reportPanel1_left.add(new NutzerCellList()
+		.generiereCellList(CellListModus.Report1_NachrichtNutzerZeitraum));
 		reportPanel1_left.add(subSchrift2);
 		reportPanel1_left.add(vonDateBox);
 		reportPanel1_left.add(bisDateBox);
 		reportPanel1_left.add(report1Generieren);
+		
+		reportPanel1_right.add(beschreibung1);
+		
 		
 		
 		reportPanel.add(reportPanel1);
@@ -70,18 +90,10 @@ public class Report1Gui extends VerticalPanel{
 		RootPanel.get("content").clear();
 		RootPanel.get("content_left").clear();
 		RootPanel.get("content_right").clear();
+		RootPanel.get("content_right").add(reportPanel1_right);
 		RootPanel.get("content_left").add(reportPanel1_left);
-		RootPanel.get("content_left").add(new NutzerCellList()
-		.generiereCellList(CellListModus.Report1_NachrichtNutzerZeitraum));
-		
-		
-		nutzerDropDown.addClickHandler(new ClickHandler() {
-			
-			@Override
-			public void onClick(ClickEvent event) {
- 			}
-		});
-		
+
+
 		vonDateBox.addValueChangeHandler(new ValueChangeHandler<Date>() {
 			
 			@Override
@@ -105,11 +117,8 @@ public class Report1Gui extends VerticalPanel{
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				
-			/*	new Report1Generator report = new Report1Generator;
-				report.report1Generieren();*/
-				
 
+				
 			}
 		});
 	}

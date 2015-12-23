@@ -20,7 +20,7 @@ public class ReportFormular1_3 {
 	 */
 	private Nutzer nutzer = null;
 	
-	Button report1_3GenerierenButton = new Button ("Report 1 erstellen");
+	Button report1_3GenerierenButton = new Button ("Report 1_3 erstellen");
 	/**
 	 * Methode ReportFormular1_3 wird aufgerufen um den CLickhandler in ihr zu instanziieren. 
 	 */
@@ -30,9 +30,8 @@ public class ReportFormular1_3 {
 			
 			@Override
 			public void onClick(ClickEvent event) {
-
-				Window.alert("Report1_3 wird erstellt");
-	//			NutzerDataProvider.gib().report1_3Generieren(nutzer);
+				
+				NutzerDataProvider.gib().report1_3Generieren(nutzer);
 			}
 		});
 	}

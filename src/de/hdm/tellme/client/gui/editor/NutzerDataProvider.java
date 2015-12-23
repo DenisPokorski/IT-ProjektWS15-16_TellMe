@@ -18,6 +18,7 @@ import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.ReportService;
 import de.hdm.tellme.shared.ReportServiceAsync;
 import de.hdm.tellme.shared.bo.Hashtag;
+import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.report.HTMLReportWriter;
 
@@ -151,6 +152,29 @@ public class NutzerDataProvider {
 
 					}
 				});
+	}
+	
+	public void report1_3Generieren(Nutzer n){
+		final Nutzer b = n;
+		_reportAsyncObj.report1_3Generieren(n.getId(), new AsyncCallback<Vector<Nachricht>>(){
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fehler 1_3");
+				
+			}
+
+			@Override
+			public void onSuccess(Vector<Nachricht> result) {
+				
+				Window.alert("Soweitsogut");
+				HTMLReportWriter hRW = new HTMLReportWriter();
+				
+				hRW.generateReport1_3(result, b);
+				}
+			
+		});
+		
 	}
 
 	public void report3Generieren(Nutzer n) {

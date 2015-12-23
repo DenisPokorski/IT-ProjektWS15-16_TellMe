@@ -159,4 +159,24 @@ public class HashtagMapper {
 			e.printStackTrace();
 		}
 	}
+
+	public Vector<Hashtag> report1_3Mapper(int nachrichtId) {
+		Vector<Hashtag> hashtagsAnNachricht = new Vector<Hashtag>();
+		Connection con = DatenbankVerbindung.connection();
+		try{
+			Statement state = con.createStatement();
+			ResultSet rs = state.executeQuery("SELECT * FROM NachrichtHashtag RIGHT JOIN Hashtag ON NachrichtHashtag.HashtagId = Hashtag.Id WHERE NachrichtId ="+nachrichtId+" ;");
+			while(rs.next()){
+				Hashtag hT = new Hashtag();
+				hT.setId(rs.getInt("Id"));
+				hT.setSchlagwort(rs.getString("Schlagwort"));
+				hT.setErstellungsDatum(rs.getTimestamp("Erstellungsdatum"));
+				hashtagsAnNachricht.add(hT);
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return hashtagsAnNachricht;
+	}
 }

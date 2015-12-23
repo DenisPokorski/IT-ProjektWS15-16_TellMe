@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 import de.hdm.tellme.client.Impressum;
 import de.hdm.tellme.shared.bo.Hashtag;
+import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
@@ -125,6 +126,49 @@ public class HTMLReportWriter  {
 			
 
 		}
+
+		private Label ueberschrift1_3 = new Label("Report 1_3");
+		private Label subtext1_3 = new Label("Report 1_3 gibt alle Nachrichten eines Nutzers aus.");
+		
+		public void generateReport1_3(Vector<Nachricht> result, Nutzer b) {
+			RootPanel.get("content").clear();
+			ueberschrift1_3.setStylePrimaryName("ueberschrift_report");
+			subtext.setStylePrimaryName("subtext_report");
+			
+			erstelleKopfDatenReport1_3(b);
+			erstelleKoerperDatenReport1_3(result);
+			
+			this.reportText = buffer.toString();
+			
+			RootPanel.get("content_right").add(ueberschrift1_3);
+			   RootPanel.get("content_right").add(subtext1_3);
+
+			   RootPanel.get("content_right").add(new HTML(reportText));
+		}
+
+
+		public void erstelleKopfDatenReport1_3( Nutzer n){
+			String ausgangsnutzer = 	"Ausgangsnutzer:<div></div>" + n.getVorname() + " " + n.getNachname();
+			Date currentTime = new Date(System.currentTimeMillis());
+			HTML Erstellungsdatum = new HTML(""+new Timestamp(currentTime.getTime()));
+			// Nutzerabo Klasse Format
+			buffer.append("<table class='reportTabelle'>");
+			buffer.append("<th colspan='2' class='reportKopfzeile'> Report 1_3 </th>");
+
+		 	buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"+ausgangsnutzer  +"</div><div> Datum: "+Erstellungsdatum + "</div></td><td class='kopfdatenbox_rechts'>"+new Impressum().getHtmlImpressum()+"</td></tr>"); 
+			buffer.append("</table>");
+		
+		}
+		
+		public void erstelleKoerperDatenReport1_3 (Vector<Nachricht> result) {
+			
+			buffer.append("<table class='reportkoerper'>");
+			buffer.append("<tr class='kopfZeileKoerper'> <th>Nachricht</th><th>Empfänger</th><th>Erstellungsdatum</th><th>Hashtag</th><th>Sichtbarkeit</th></tr>");
+			for(int i= 0; i< result.size(); i++){
+//				buffer.append("<tr class='ergebnisZeileReport'><td>"+result.get(i).getText()+"</td><td>"result.get(i).g""+result.get(i).getNachname()  +"</td>"
+//						+ "<td>"+result.get(i).getErstellungsDatum()  +"</td></tr>"); 
+			}
+			buffer.append("</table>");
 }
 
-	
+}

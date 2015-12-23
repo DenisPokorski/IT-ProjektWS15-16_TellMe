@@ -25,6 +25,7 @@ import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.client.gui.report.Report3Gui;
 import de.hdm.tellme.client.gui.report.ReportFormular1_1;
+import de.hdm.tellme.client.gui.report.ReportFormular1_3;
 import de.hdm.tellme.client.gui.report.ReportFormular2;
 import de.hdm.tellme.client.gui.report.ReportFormular3;
 import de.hdm.tellme.shared.EditorService;
@@ -74,6 +75,17 @@ public class NutzerCellList {
 					});
 
 			break;
+			
+		case Report1_3_NachrichtNutzer:
+			selectionModel
+				.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+					public void onSelectionChange(SelectionChangeEvent event){
+						
+						ReportFormular1_3 rF = new ReportFormular1_3();
+						
+					}
+					
+				});
 			
 //		case Report1_NachrichtNutzerZeitraum:
 //			selectionModel
