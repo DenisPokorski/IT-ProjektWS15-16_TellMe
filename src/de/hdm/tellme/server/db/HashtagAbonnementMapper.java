@@ -136,11 +136,10 @@ public class HashtagAbonnementMapper {
 	public Vector<Hashtag> alleHashtagsEinesNutzers(int NutzerId) {
 		Vector<Hashtag> alleHashtagsEinesNutzers = new Vector<Hashtag>();
 		Connection con = DatenbankVerbindung.connection();
-		int tempId = NutzerId;
-		try {
+ 		try {
 			Statement state = con.createStatement();
 			ResultSet rs = state
-					.executeQuery("SELECT * FROM NutzerHashtag LEFT JOIN Hashtag ON NutzerHashtag.HashtagId = Hashtag.Id WHERE NutzerId=65 ;");
+					.executeQuery("SELECT * FROM NutzerHashtag LEFT JOIN Hashtag ON NutzerHashtag.HashtagId = Hashtag.Id WHERE NutzerId='"+NutzerId+"'  ;");
 			while (rs.next()) {
 				Hashtag h= new Hashtag();
 				h.setId(rs.getInt("Id"));

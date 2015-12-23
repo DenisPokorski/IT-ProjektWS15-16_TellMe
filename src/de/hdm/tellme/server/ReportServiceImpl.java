@@ -48,8 +48,8 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 	
 	
 	@Override 
-	public Vector<Hashtag> report3Generieren(int i) {   
-		Vector<Hashtag> report3 = hashtagAboMapper.alleHashtagsEinesNutzers(i);// Hier müssen wir noch einen Mapper mit ALLEN Nutzern erstellen, probeweise aber mit alle außer ich selber
+	public Vector<Hashtag> report3Generieren(int nutzerId) {   
+		Vector<Hashtag> report3 = hashtagAboMapper.alleHashtagsEinesNutzers(nutzerId);// Hier müssen wir noch einen Mapper mit ALLEN Nutzern erstellen, probeweise aber mit alle außer ich selber
 		return report3;
 	}
 

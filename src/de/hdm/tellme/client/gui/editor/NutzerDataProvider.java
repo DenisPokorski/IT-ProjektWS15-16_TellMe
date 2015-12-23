@@ -19,6 +19,7 @@ import de.hdm.tellme.shared.ReportService;
 import de.hdm.tellme.shared.ReportServiceAsync;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nutzer;
+import de.hdm.tellme.shared.report.HTMLReportWriter;
 
 public class NutzerDataProvider {
 	List<NutzerZelle.ZellenObjekt> dataList = null;
@@ -141,15 +142,13 @@ public class NutzerDataProvider {
 		});
 	}
 	
-	public void report3Generieren(Nutzer nutzer) {
-		Window.alert("ha123123llo");
-
-		_reportAsyncObj.report3Generieren(loginInfo.getUser().getId(), new AsyncCallback<Vector<Hashtag>>() {
+	public void report3Generieren(Nutzer n ) {
+		final Nutzer b = n;
+ 		_reportAsyncObj.report3Generieren(n.getId(), new AsyncCallback<Vector<Hashtag>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("nutzredata");
-
 			}
 
 
@@ -157,11 +156,15 @@ public class NutzerDataProvider {
 
 			@Override
 			public void onSuccess(Vector<Hashtag> result) {
-				Window.alert("hello");
+				Window.alert("Erfolgreich tod");
 
-				for (int i =0; i < result.size(); i++) {
-					Window.alert(result.get(i).getSchlagwort());					
-				}				
+				  HTMLReportWriter hRW = new HTMLReportWriter();
+			 
+				hRW.generateReport3(result,b);
+				
+//				for (int i =0; i < result.size(); i++) {
+//					Window.alert(result.get(i).getSchlagwort());					
+//				}				
 			}
 		});
 

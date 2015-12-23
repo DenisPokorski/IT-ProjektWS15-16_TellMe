@@ -8,6 +8,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 
 
 
+import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.user.client.ui.Button;
 
 
@@ -44,7 +45,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 
 
-public class Impressum extends VerticalPanel {
+public class Impressum extends HTML {
 
 
 

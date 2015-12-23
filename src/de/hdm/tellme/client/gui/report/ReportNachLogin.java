@@ -8,7 +8,9 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 
-
+/**
+ * TODO
+ */
 /**
  * 
  * Diese Oberfläche erscheint nach dem erfolgreichen Login in der Reporapplikation. 

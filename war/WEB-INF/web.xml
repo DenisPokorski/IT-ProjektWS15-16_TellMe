@@ -39,6 +39,8 @@
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>TellMe.html</welcome-file>
+        <welcome-file>TellMeReport.html</welcome-file>
+    
   </welcome-file-list>
 
 </web-app>

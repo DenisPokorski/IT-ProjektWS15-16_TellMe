@@ -152,5 +152,27 @@ font-size: 14px;
 
 .profilBtn {
 	/*Todo vervollständigen*/
+}
+
+/*Report CSS Settings*/
+
+#wrap_report {
+}
+
+#header_report {
+}
+
+#header_report_left {
+	float:left;
+}
+
+#header_report_right {
+		float:right;
 	
 }
+
+#content_report {
+}
+
+#footer{ }
+	 

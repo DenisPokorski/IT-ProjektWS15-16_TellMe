@@ -11,9 +11,9 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import de.hdm.tellme.client.*;
-import de.hdm.tellme.client.gui.report.Report1;
-import de.hdm.tellme.client.gui.report.Report2;
-import de.hdm.tellme.client.gui.report.Report3;
+import de.hdm.tellme.client.gui.report.Report1Gui;
+import de.hdm.tellme.client.gui.report.Report2Gui;
+import de.hdm.tellme.client.gui.report.Report3Gui;
 
 /**
  * 
@@ -133,7 +133,7 @@ public class MenuBarEditor extends HorizontalPanel {
 		tempReports.addItem("Report 1", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(new Report1());
+				setzeInhalt(new Report1Gui());
 			}
 		});
 
@@ -147,7 +147,7 @@ public class MenuBarEditor extends HorizontalPanel {
 		tempReports.addItem("Report 3", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(new Report3());
+				setzeInhalt(new Report3Gui());
 			}
 		});
 
