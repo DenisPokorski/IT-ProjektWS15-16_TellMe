@@ -3,7 +3,7 @@ package de.hdm.tellme.shared.bo;
 import java.util.HashMap;
 import java.util.Vector;
 
-public class Unterhaltung extends BusinessObject {
+public class Unterhaltung extends BusinessObject implements Comparable<Unterhaltung> {
 
  /**
   * 
@@ -43,6 +43,16 @@ public class Unterhaltung extends BusinessObject {
  public void setUnterhaltungstyp(eUnterhaltungsTyp unterhaltungstyp) {
   Unterhaltungstyp = unterhaltungstyp;
  }
+
+@Override
+public int compareTo(Unterhaltung arg0) {
+	if(arg0.getErstellungsDatum() == null || this.getErstellungsDatum() == null)
+		return 0;
+	if(arg0.getErstellungsDatum().before(this.getErstellungsDatum()))
+		return 1;
+	else
+		return -1;
+}
 
  
 

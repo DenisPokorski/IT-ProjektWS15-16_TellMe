@@ -31,7 +31,7 @@ public class BusinessObject implements Serializable {
 
 	private int id = 0;
 	private int sichtbarkeit;
-	private Timestamp erstellungsDatum;
+	private Timestamp erstellungsDatum = new Timestamp(0);
 
 	/**
 	 * Mit dieser Methode wird die Id ausgelesen

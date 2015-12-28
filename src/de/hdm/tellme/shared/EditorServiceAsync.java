@@ -97,5 +97,7 @@ public interface EditorServiceAsync {
 
 	void UnterhaltungVerlassen(Unterhaltung u, AsyncCallback<Boolean> callback);
 
+	void getAlleRelevantenUnterhaltungen(int UserID, AsyncCallback<Vector<Unterhaltung>> callback);
+
 	 
  }

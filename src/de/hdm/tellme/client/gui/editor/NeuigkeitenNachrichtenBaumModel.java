@@ -8,6 +8,7 @@ import com.google.gwt.cell.client.Cell;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
@@ -15,6 +16,7 @@ import com.google.gwt.view.client.TreeViewModel;
 import com.sun.java.swing.plaf.windows.resources.windows;
 
 import de.hdm.tellme.client.NeuigkeitenEditor;
+import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Hashtag;
@@ -23,12 +25,12 @@ import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Unterhaltung;
 
 public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
-	private final Vector<UnterhaltungsNachicht> alleUnterhaltungen = new Vector<UnterhaltungsNachicht>();
-	private ListDataProvider<UnterhaltungsNachicht> dataProvider;
+	private static Vector<UnterhaltungsNachicht> alleUnterhaltungen = new Vector<UnterhaltungsNachicht>();
+	private static ListDataProvider<UnterhaltungsNachicht> dataProvider;
 
 	// RPC Methode, die auf Client in einer bestimmten Runtime ausgeführt wird
 	// um Daten mit dem Server auszutauschen
-	private final EditorServiceAsync _asyncObj = GWT.create(EditorService.class);
+	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
 
 	final SingleSelectionModel<UnterhaltungsNachicht> unterhaltungSelectionModel = new SingleSelectionModel<UnterhaltungsNachicht>();
 	final SingleSelectionModel<Nachricht> nachrichtenSelectionModel = new SingleSelectionModel<Nachricht>();
@@ -50,11 +52,10 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 					selektiereNeuesElement = true;
 					if (nachrichtenSelectionModel.getSelectedObject() != null) {
 						nachrichtenSelectionModel.setSelected(nachrichtenSelectionModel.getSelectedObject(), false);
-					}
-					else{
+					} else {
 						selektiereNeuesElement = false;
 					}
-					
+
 					NeuigkeitenEditor.setzeOptionenButton(unterhaltungSelectionModel.getSelectedObject().u, unterhaltungSelectionModel.getSelectedObject().n);
 				} else {
 					selektiereNeuesElement = false;
@@ -68,8 +69,7 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 					selektiereNeuesElement = true;
 					if (unterhaltungSelectionModel.getSelectedObject() != null) {
 						unterhaltungSelectionModel.setSelected(unterhaltungSelectionModel.getSelectedObject(), false);
-					}
-					else{
+					} else {
 						selektiereNeuesElement = false;
 					}
 
@@ -129,6 +129,7 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 	 * opened.
 	 */
 	public boolean isLeaf(Object value) {
+		
 		// The leaf nodes are the songs, which are Strings.
 		if (value instanceof Nachricht) {
 			return true;
@@ -138,56 +139,38 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 
 	private void ladeUnterhaltungenAsync() {
 
-		for (int i = 0; i < 200; i++) {
+		asyncObj.getAlleRelevantenUnterhaltungen(TellMe.gibEingeloggterBenutzer().getUser().getId(), new AsyncCallback<Vector<Unterhaltung>>() {
 
-			long now = 100000;
-			Nutzer empfaenger1 = new Nutzer();
-			empfaenger1.setId(2);
-			empfaenger1.setVorname("Testvorname");
-			empfaenger1.setNachname("Testnachname");
+			@Override
+			public void onSuccess(Vector<Unterhaltung> result) {
 
-			Nutzer empfaenger2 = new Nutzer();
-			empfaenger2.setId(5);
-			empfaenger2.setVorname("Testvorname2");
-			empfaenger2.setNachname("Testnachname2");
+				dataProvider.getList().clear();
 
-			Vector<Nutzer> TeilnehmerListe = new Vector<Nutzer>();
-			TeilnehmerListe.add(empfaenger1);
-			TeilnehmerListe.add(empfaenger2);
+				
+				for (Unterhaltung unterhaltung : result) {
+					UnterhaltungsNachicht un = new UnterhaltungsNachicht(unterhaltung);
 
-			Unterhaltung u1 = new Unterhaltung();
-			u1.setErstellungsDatum(new Timestamp(now - 300));
-			u1.setId((int) (Math.random() * 500));
-			u1.setSichtbarkeit(1);
-			u1.setTeilnehmer(TeilnehmerListe);
-			// u1.setUnterhaltungstyp(Unterhaltung.eUnterhaltungsTyp.privat);
+					alleUnterhaltungen.addElement(un);
+				}
 
-			Nachricht u1n1 = new Nachricht();
-			u1n1.setErstellungsDatum(new Timestamp(now));
-			u1n1.setSenderId(empfaenger1.getId());
-			u1n1.setSender(empfaenger1);
-			u1n1.setText("Hey Wie gehts dir?");
+				Window.alert(dataProvider.getList().size() + "");
 
-			Nachricht u1n2 = new Nachricht();
-			u1n2.setErstellungsDatum(new Timestamp(now - 300));
-			u1n2.setSenderId(empfaenger2.getId());
-			u1n2.setSender(empfaenger2);
-			u1n2.setText("Gut und dir?");
-			Hashtag h1 = new Hashtag();
-			
-			
-			h1.setSchlagwort("coolio");
-			Vector<Hashtag> alleHashtags = new Vector<Hashtag>();
-			alleHashtags.add(h1);
-			u1n1.setVerknuepfteHashtags(alleHashtags);
+				dataProvider.flush();
+				dataProvider.refresh();
 
-			Vector<Nachricht> alleNachrichten = new Vector<Nachricht>();
-			alleNachrichten.add(u1n2);
-			alleNachrichten.add(u1n1);
-			u1.setAlleNachrichten(alleNachrichten);
+				// cellTable.redraw();
 
-			alleUnterhaltungen.addElement(new UnterhaltungsNachicht(u1));
-		}
+			}
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+
+		//
+
 	}
 
 	public class UnterhaltungsNachicht {

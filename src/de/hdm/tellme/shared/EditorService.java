@@ -82,4 +82,6 @@ public interface EditorService extends RemoteService {
 
 	boolean UnterhaltungVerlassen(Unterhaltung u);
 
+	Vector<Unterhaltung> getAlleRelevantenUnterhaltungen(int UserID);
+
 }
