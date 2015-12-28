@@ -199,7 +199,7 @@ public class UnterhaltungMapper {
 					+ meineId + "' AND Sichtbarkeit = 1";
 			ResultSet rs = state.executeQuery(sql);
 			while (rs.next()) {
-				meineUnterhaltungen.add(rs.getInt("NutzerId"));
+				meineUnterhaltungen.add(rs.getInt("UnterhaltungId"));
 
 			}
 		} catch (Exception e) {
@@ -253,6 +253,28 @@ public class UnterhaltungMapper {
 			e.printStackTrace();
 		}
 		return teilnehmer;
+	}
+
+	public boolean ueberpruefeObTeilnehmerInaktivInUnterhaltung(
+			int unterhaltungsId, int teilnehmerId) {
+		boolean vorhanden = false;
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			String sql = "SELECT * FROM NutzerUnterhaltung WHERE UnterhaltungId = '"
+					+ unterhaltungsId
+					+ "' AND NutzerId = '"
+					+ teilnehmerId
+					+ "';";
+
+			int anzahlBetroffenerZeilen = state.executeUpdate(sql);
+			if (anzahlBetroffenerZeilen >= 0)
+				vorhanden = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return vorhanden;
 	}
 
 }
