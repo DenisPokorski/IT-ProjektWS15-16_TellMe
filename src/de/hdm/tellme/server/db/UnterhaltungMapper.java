@@ -44,8 +44,10 @@ public class UnterhaltungMapper {
 
 		Connection con = DatenbankVerbindung.connection();
 		try {
-			PreparedStatement prepState = con.prepareStatement("INSERT INTO Unterhaltung (Sichtbarkeit, ErstellungsDatum, Typ) VALUES (?,CURRENT_TIMESTAMP,?)",
-					Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement prepState = con
+					.prepareStatement(
+							"INSERT INTO Unterhaltung (Sichtbarkeit, ErstellungsDatum, Typ) VALUES (?,CURRENT_TIMESTAMP,?)",
+							Statement.RETURN_GENERATED_KEYS);
 			prepState.setInt(1, sichtbarkeit);
 			prepState.setInt(2, unterHaltungsTyp.ordinal());
 
@@ -68,7 +70,8 @@ public class UnterhaltungMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "UPDATE `Unterhaltung` SET `Sichtbarkeit`='0' WHERE `Id`='" + unterhaltungsID + "';";
+			String sqlquery = "UPDATE `Unterhaltung` SET `Sichtbarkeit`='0' WHERE `Id`='"
+					+ unterhaltungsID + "';";
 			int anzahlBetroffenerZeilen = state.executeUpdate(sqlquery);
 			if (anzahlBetroffenerZeilen > 0)
 				erfolgreich = true;
@@ -86,14 +89,18 @@ public class UnterhaltungMapper {
 	// Nutzerid <teilnehmerID>
 	// als aktiver Teilnehmer (Eintrag in NutzerUnterhaltung ist Vorhanden und
 	// Sichtbar) agiert
-	public Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(int teilnehmerID) {
+	public Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(
+			int teilnehmerID) {
 		Vector<Unterhaltung> alleUnterhaltungen = new Vector<Unterhaltung>();
 
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state.executeQuery("SELECT * FROM NutzerUnterhaltung INNER JOIN Unterhaltung ON"
-					+ " NutzerUnterhaltung.UnterhaltungId = Unterhaltung.Id Where NutzerID = " + teilnehmerID + " AND NutzerUnterhaltung.Sichtbarkeit = 1;");
+			ResultSet rs = state
+					.executeQuery("SELECT * FROM NutzerUnterhaltung INNER JOIN Unterhaltung ON"
+							+ " NutzerUnterhaltung.UnterhaltungId = Unterhaltung.Id Where NutzerID = "
+							+ teilnehmerID
+							+ " AND NutzerUnterhaltung.Sichtbarkeit = 1;");
 
 			while (rs.next()) {
 				Unterhaltung u = new Unterhaltung();
@@ -117,8 +124,12 @@ public class UnterhaltungMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "INSERT INTO NutzerUnterhaltung (`NutzerId`, `UnterhaltungId`, `Sichtbarkeit`) VALUES ('" + TeilnehmerID + "', '"
-					+ UnterhaltungsID + "', '" + eSichtbarkeit.Sichtbar.ordinal() + "');";
+			String sqlquery = "INSERT INTO NutzerUnterhaltung (`NutzerId`, `UnterhaltungId`, `Sichtbarkeit`) VALUES ('"
+					+ TeilnehmerID
+					+ "', '"
+					+ UnterhaltungsID
+					+ "', '"
+					+ eSichtbarkeit.Sichtbar.ordinal() + "');";
 			int anzahlBetroffenerZeilen = state.executeUpdate(sqlquery);
 			if (anzahlBetroffenerZeilen > 0)
 				erfolgreich = true;
@@ -130,14 +141,17 @@ public class UnterhaltungMapper {
 		}
 		return erfolgreich;
 	}
-	
-	
-	public boolean teilnehmerAktualisieren(int UnterhaltungsID, int TeilnehmerID, int Sichtbarkeit) {
+
+	public boolean teilnehmerAktualisieren(int UnterhaltungsID,
+			int TeilnehmerID, int Sichtbarkeit) {
 		boolean erfolgreich = true;
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "UPDATE `NutzerUnterhaltung` SET `Sichtbarkeit`='" + Sichtbarkeit + "' WHERE `NutzerId`='" + TeilnehmerID
+			String sqlquery = "UPDATE `NutzerUnterhaltung` SET `Sichtbarkeit`='"
+					+ Sichtbarkeit
+					+ "' WHERE `NutzerId`='"
+					+ TeilnehmerID
 					+ "' and`UnterhaltungId`='" + UnterhaltungsID + "';";
 			int anzahlBetroffenerZeilen = state.executeUpdate(sqlquery);
 			if (anzahlBetroffenerZeilen > 0)
@@ -222,5 +236,23 @@ public class UnterhaltungMapper {
 		}
 		return u;
 	}
-	
+
+	public Vector<Integer> gibTeilnehmerFuerUnterhaltung(int unterhaltungsId) {
+		Connection con = DatenbankVerbindung.connection();
+		Vector<Integer> teilnehmer = new Vector<Integer>();
+		try {
+			Statement state = con.createStatement();
+			String sql = "SELECT * FROM NutzerUnterhaltung WHERE UnterhaltungId = '"
+					+ unterhaltungsId + "';";
+			ResultSet rs = state.executeQuery(sql);
+			while (rs.next()) {
+				teilnehmer.add(rs.getInt("NutzerId"));
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return teilnehmer;
+	}
+
 }
