@@ -1,16 +1,13 @@
 package de.hdm.tellme.client.gui.editor;
 
-import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.client.Command;
-import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-import de.hdm.tellme.client.*;
+import de.hdm.tellme.client.NeuigkeitenEditor;
 import de.hdm.tellme.client.gui.report.Report1Gui;
 import de.hdm.tellme.client.gui.report.Report2Gui;
 import de.hdm.tellme.client.gui.report.Report3Gui;
@@ -168,6 +165,7 @@ public class MenuBarEditor extends HorizontalPanel {
 
 	public static void setzeInhalt(Widget ZuSetzendesPanel) {
 
+		RootPanel.get("ButtonBar").clear();
 		RootPanel.get("content_left").clear();
 		RootPanel.get("content_right").clear();
 		RootPanel.get("content").clear();
@@ -177,6 +175,7 @@ public class MenuBarEditor extends HorizontalPanel {
 	public static void setzeInhalt(Widget ZuSetzendesPanelLinks,
 			Widget ZuSetzendesPanelRechts) {
 
+		RootPanel.get("ButtonBar").clear();
 		RootPanel.get("content_left").clear();
 		RootPanel.get("content_right").clear();
 		RootPanel.get("content").clear();

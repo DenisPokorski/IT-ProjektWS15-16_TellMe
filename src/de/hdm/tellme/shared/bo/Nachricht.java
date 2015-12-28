@@ -29,7 +29,7 @@ public class Nachricht extends BusinessObject {
 	private Nutzer sender;
 	private int senderId;
 	
-	private Vector<Hashtag> verknuepfteHashtags;
+	private Vector<Hashtag> verknuepfteHashtags = new Vector<Hashtag>();
 	
 
 	/**

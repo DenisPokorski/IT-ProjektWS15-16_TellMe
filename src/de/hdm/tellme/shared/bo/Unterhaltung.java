@@ -9,9 +9,9 @@ public class Unterhaltung extends BusinessObject {
   * 
   */
  private static final long serialVersionUID = 1L;
- private Vector<Nachricht> alleNachrichten;
+ private Vector<Nachricht> alleNachrichten = new Vector<Nachricht>();
 
- private Vector<Nutzer> teilnehmer;
+ private Vector<Nutzer> teilnehmer = new Vector<Nutzer>();
  
  private eUnterhaltungsTyp Unterhaltungstyp;
  

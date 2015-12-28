@@ -1,44 +1,32 @@
 package de.hdm.tellme.client;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellTree;
 import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSelectionPolicy;
-import com.google.gwt.user.cellview.client.TreeNode;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.Tree;
-import com.google.gwt.user.client.ui.TreeItem;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.TreeViewModel;
-import com.sun.java.swing.plaf.windows.resources.windows;
 
 import de.hdm.tellme.client.gui.editor.HashtagZelle;
-import de.hdm.tellme.client.gui.editor.NeuigkeitenEinzelNachricht;
-import de.hdm.tellme.client.gui.editor.NeuigkeitenNachrichtenBaumModel;
+import de.hdm.tellme.client.gui.editor.NeuigkeitenJaNeinDialogbox;
 import de.hdm.tellme.client.gui.editor.NeuigkeitenNachrichtDialogbox;
+import de.hdm.tellme.client.gui.editor.NeuigkeitenNachrichtenBaumModel;
+import de.hdm.tellme.client.gui.editor.NeuigkeitenTeilnehmerBearbeitenDialogbox;
 import de.hdm.tellme.client.gui.editor.NutzerZelle;
-import de.hdm.tellme.shared.EditorService;
-import de.hdm.tellme.shared.EditorServiceAsync;
-import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Unterhaltung;
 
 public class NeuigkeitenEditor extends VerticalPanel {
 
+	private static Unterhaltung ausgewaehlteUnterhaltung;
+	private static  Nachricht ausgewaehlteNachricht;
+	
 	public NeuigkeitenEditor() {
 	}
 
@@ -52,15 +40,6 @@ public class NeuigkeitenEditor extends VerticalPanel {
 
 	public void onLoad() {
 
-		HorizontalPanel hpOptionen = new HorizontalPanel();
-		hpOptionen.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
-
-		Button btnNeueNachricht = new Button("Neue Nachricht verfassen");
-		btnNeueNachricht.addClickHandler(btnNeueNachrichtClickHandler);
-		hpOptionen.add(btnNeueNachricht);
-
-		RootPanel.get("content_right").add(hpOptionen);
-
 		TreeViewModel model = new NeuigkeitenNachrichtenBaumModel();
 		/*
 		 * Create the tree using the model. We use <code>null</code> as the
@@ -69,23 +48,109 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 */
 		CellTree tree = new CellTree(model, null);
 		tree.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
-		RootPanel.get("content_right").add(tree);
 
-		Button btnTest = new Button("Test");
-		RootPanel.get("content_right").add(btnTest);
-			
+		ScrollPanel scPanel = new ScrollPanel();
+		scPanel.setHeight("800px");
+		scPanel.add(tree);
 
+		RootPanel.get("content_right").add(scPanel);
+
+		setzeOptionenButton(null, null);
 	}
-
-	ClickHandler btnNeueNachrichtClickHandler = new ClickHandler() {
-		public void onClick(ClickEvent event) {
-			NeuigkeitenEditor.showDialogBox(new NeuigkeitenNachrichtDialogbox().getNeueNachrichtDialogbox());
-		}
-	};
 
 	public static void showDialogBox(DialogBox anzuzeigendeBox) {
 		anzuzeigendeBox.center();
 		anzuzeigendeBox.show();
 	}
+
+	public static void setzeOptionenButton(Unterhaltung _ausgewaehlteUnterhaltung, Nachricht _ausgewaehlteNachricht) {
+		RootPanel.get("ButtonBar").clear();
+
+		HorizontalPanel hpUnterhaltungsOptionen = new HorizontalPanel();
+		HorizontalPanel hpNachrichtenOptionen = new HorizontalPanel();
+
+		Button btnAntworten = new Button("Unterhaltung beantworten");
+		btnAntworten.addClickHandler(btnAntwortenClickHandler);
+		hpUnterhaltungsOptionen.add(btnAntworten);
+
+		Button btnTeilnehmerBearbeiten = new Button("Teilnehmer bearbeiten");
+		btnTeilnehmerBearbeiten.addClickHandler(btnTeilnehmerBearbeitenClickHandler);
+		hpUnterhaltungsOptionen.add(btnTeilnehmerBearbeiten);
+
+		Button btnUnterhaltungVerlassen = new Button("Unterhaltung verlassen");
+		btnUnterhaltungVerlassen.addClickHandler(btnUnterhaltungVerlassenClickHandler);
+		hpUnterhaltungsOptionen.add(btnUnterhaltungVerlassen);
+
+		Button btnNeueNachricht = new Button("Neue Nachricht verfassen");
+		btnNeueNachricht.addClickHandler(btnNeueNachrichtClickHandler);
+		hpNachrichtenOptionen.add(btnNeueNachricht);
+		
+		Button btnNachrichtBearbeiten = new Button("Nachricht bearbeiten");
+		btnNachrichtBearbeiten.addClickHandler(btnNachrichtBearbeitenClickHandler);
+		hpNachrichtenOptionen.add(btnNachrichtBearbeiten);
+		
+		Button btnNachrichtLoeaschen = new Button("Nachricht löschen");
+		btnNachrichtLoeaschen.addClickHandler(btnNachrichtLoeschenClickHandler);
+		hpNachrichtenOptionen.add(btnNachrichtLoeaschen);
+
+		if (_ausgewaehlteUnterhaltung == null) {
+			ausgewaehlteUnterhaltung = null;
+			btnAntworten.setEnabled(false);
+			btnTeilnehmerBearbeiten.setEnabled(false);
+			btnUnterhaltungVerlassen.setEnabled(false);
+			
+
+		} else {
+			ausgewaehlteUnterhaltung = _ausgewaehlteUnterhaltung;
+			btnAntworten.setEnabled(true);
+			btnTeilnehmerBearbeiten.setEnabled(true);
+			btnUnterhaltungVerlassen.setEnabled(true);
+
+		}
+
+		if (_ausgewaehlteNachricht == null) {
+			ausgewaehlteNachricht = null;
+			btnNachrichtBearbeiten.setEnabled(false);
+			btnNachrichtLoeaschen.setEnabled(false);
+		} else {
+			ausgewaehlteNachricht = _ausgewaehlteNachricht;
+			btnNachrichtBearbeiten.setEnabled(true);
+			btnNachrichtLoeaschen.setEnabled(true);
+		}
+
+		RootPanel.get("ButtonBar").add(hpNachrichtenOptionen);
+		RootPanel.get("ButtonBar").add(hpUnterhaltungsOptionen);
+	}
+
+	static ClickHandler btnNeueNachrichtClickHandler = new ClickHandler() {
+		public void onClick(ClickEvent event) {
+			NeuigkeitenEditor.showDialogBox(new NeuigkeitenNachrichtDialogbox().getNeueNachrichtDialogbox());
+		}
+	};
+	static ClickHandler btnAntwortenClickHandler = new ClickHandler() {
+		public void onClick(ClickEvent event) {
+			NeuigkeitenEditor.showDialogBox(new NeuigkeitenNachrichtDialogbox().getAntwortNachrichtDialogbox(ausgewaehlteUnterhaltung));
+		}
+	};
+	static ClickHandler btnNachrichtBearbeitenClickHandler = new ClickHandler() {
+		public void onClick(ClickEvent event) {
+			NeuigkeitenEditor.showDialogBox(new NeuigkeitenNachrichtDialogbox().getNachrichtBearbeitenDialogbox(ausgewaehlteNachricht));
+		}
+	};
+	static ClickHandler btnNachrichtLoeschenClickHandler = new ClickHandler() {
+		public void onClick(ClickEvent event) {
+			NeuigkeitenEditor.showDialogBox(new NeuigkeitenJaNeinDialogbox().getNachrichtLoeschenDialogBox(ausgewaehlteNachricht));
+		}
+	};
+	static ClickHandler btnTeilnehmerBearbeitenClickHandler = new ClickHandler() {
+		public void onClick(ClickEvent event) {
+			NeuigkeitenEditor.showDialogBox(new NeuigkeitenTeilnehmerBearbeitenDialogbox().getTeilnehmerBearbeiten(ausgewaehlteUnterhaltung));
+		}
+	};
+	static ClickHandler btnUnterhaltungVerlassenClickHandler = new ClickHandler() {
+		public void onClick(ClickEvent event) {
+			NeuigkeitenEditor.showDialogBox(new NeuigkeitenJaNeinDialogbox().getUnterhaltungVerlassenDialogBox(ausgewaehlteUnterhaltung));
+		}
+	};
 
 }
