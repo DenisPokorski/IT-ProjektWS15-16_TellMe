@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.server.db.NachrichtMapper;
 import de.hdm.tellme.server.db.HashtagAbonnementMapper;
 import de.hdm.tellme.server.db.HashtagMapper;
@@ -341,5 +342,26 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	public Vector<Unterhaltung> ladeAlleNachrichtenZuUnterhaltung(int meineId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public boolean NachrichtAktualisieren(Nachricht n){
+		boolean erfolgreich = true;
+		erfolgreich = nachrichtMapper.aktualisieren(n);
+		return erfolgreich;
+	}
+
+	@Override
+	public boolean NachrichtLoeschen(Nachricht n){
+		boolean erfolgreich = true;
+		erfolgreich = nachrichtMapper.entfernen(n.getId());
+		return erfolgreich;
+	}
+	
+	@Override
+	public boolean UnterhaltungVerlassen(Unterhaltung u){
+		boolean erfolgreich = true;
+		erfolgreich = unterhaltungMapper.teilnehmerAktualisieren(u.getId(), TellMe.gibEingeloggterBenutzer().getUser().getId(), 0);
+		return erfolgreich;
 	}
 }

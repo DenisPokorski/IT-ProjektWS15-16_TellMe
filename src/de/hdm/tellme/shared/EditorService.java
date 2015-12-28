@@ -76,4 +76,10 @@ public interface EditorService extends RemoteService {
 
 	Vector<Unterhaltung> alleAbonniertenHashtagNachrichtenVonId(int nutzerId);
 
+	boolean NachrichtAktualisieren(Nachricht n);
+
+	boolean NachrichtLoeschen(Nachricht n);
+
+	boolean UnterhaltungVerlassen(Unterhaltung u);
+
 }

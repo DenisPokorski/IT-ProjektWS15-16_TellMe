@@ -91,5 +91,11 @@ public interface EditorServiceAsync {
 	void alleAbonniertenHashtagNachrichtenVonId(int nutzerId,
 			AsyncCallback<Vector<Unterhaltung>> callback);
 
+	void NachrichtAktualisieren(Nachricht n, AsyncCallback<Boolean> callback);
+
+	void NachrichtLoeschen(Nachricht n, AsyncCallback<Boolean> callback);
+
+	void UnterhaltungVerlassen(Unterhaltung u, AsyncCallback<Boolean> callback);
+
 	 
  }
