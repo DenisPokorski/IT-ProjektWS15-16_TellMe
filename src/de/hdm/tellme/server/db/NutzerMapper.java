@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import org.apache.tools.ant.taskdefs.Execute;
+
 import de.hdm.tellme.server.db.DatenbankVerbindung;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nutzer;
@@ -64,6 +66,27 @@ public class NutzerMapper {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public Nutzer suchenMitEmailAdresse(String mailAdresse) {
+		Connection con = DatenbankVerbindung.connection();
+		Nutzer n = new Nutzer();
+		try {
+			Statement state = con.createStatement();
+			String sqlquery = "SELECT * FROM Nutzer WHERE Mailadresse = '"
+					+ mailAdresse + "'";
+			ResultSet rs = state.executeQuery(sqlquery);
+			while (rs.next()) {
+				n.setId(rs.getInt("Id"));
+				n.setVorname(rs.getString("Vorname"));
+				n.setNachname(rs.getString("Nachname"));
+				n.setMailadresse(rs.getString("Mailadresse"));
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return n;
 	}
 
 	/**
@@ -138,31 +161,6 @@ public class NutzerMapper {
 	 * ausgef�hrt. �ber "return" wird der Nutzer mit allen Attributen
 	 * ausgegeben.
 	 */
-
-	public Nutzer suchenNutzerMitGoogleId(String GoogleId) {
-
-		Connection con = DatenbankVerbindung.connection();
-		Nutzer na = new Nutzer();
-		try {
-			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT * FROM Nutzer WHERE GoogleId='"
-							+ GoogleId + "';");
-
-			while (rs.next()) {
-
-				na.setId(rs.getInt("Id"));
-				na.setVorname(rs.getString("Vorname"));
-				na.setNachname(rs.getString("Nachname"));
-				na.setMailadresse(rs.getString("Mailadresse"));
-				na.setGoogleId(rs.getString("GoogleId"));
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return na;
-	}
 
 	/**
 	 * Die Methode suchenNutzerMitId stellt eine Verbindung zur Datenbank her.

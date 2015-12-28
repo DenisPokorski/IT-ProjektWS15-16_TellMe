@@ -64,10 +64,9 @@ public class LoginServiceImpl extends RemoteServiceServlet implements
 
 			loginInfo.setLoggedIn(true);
 			loginInfo.setEmailAddress(nutzer.getEmail());
-			loginInfo.setGoogleId(nutzer.getUserId());
 			loginInfo.setLogoutUrl(userService.createLogoutURL(uri_));
 
-			Nutzer n = nMapper.suchenNutzerMitGoogleId(loginInfo.getGoogleId());
+			Nutzer n = nMapper.suchenMitEmailAdresse(loginInfo.getEmailAddress());
 
 			if (n.getMailadresse() != null) {
 				loginInfo.setUser(n);
@@ -77,7 +76,6 @@ public class LoginServiceImpl extends RemoteServiceServlet implements
 				Nutzer na = new Nutzer();
 				na.setMailadresse(loginInfo.getEmailAddress());
 
-				na.setGoogleId(loginInfo.getGoogleId());
 				na.setVorname("undefined");
 				na.setNachname("undefined");
 				nMapper.anlegen(na);

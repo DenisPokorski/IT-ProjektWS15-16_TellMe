@@ -9,6 +9,7 @@ import java.util.Vector;
 
 import javax.persistence.Result;
 
+import com.google.appengine.api.prospectivesearch.ProspectiveSearchPb.SubscriptionRecord.State;
 import com.google.appengine.api.search.query.ExpressionParser.negation_return;
 
 import de.hdm.tellme.shared.bo.BusinessObject.eSichtbarkeit;
@@ -60,7 +61,10 @@ public class NachrichtMapper {
 
 		Connection con = DatenbankVerbindung.connection();
 		try {
-			PreparedStatement prepState = con.prepareStatement("INSERT INTO Nachricht (`AutorId`, `Text`, `Sichtbarkeit`, `ErstellungsDatum`) VALUES (?, ?, ?, CURRENT_TIMESTAMP);", Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement prepState = con
+					.prepareStatement(
+							"INSERT INTO Nachricht (`AutorId`, `Text`, `Sichtbarkeit`, `ErstellungsDatum`) VALUES (?, ?, ?, CURRENT_TIMESTAMP);",
+							Statement.RETURN_GENERATED_KEYS);
 			prepState.setInt(1, n.getSenderId());
 			prepState.setString(2, n.getText());
 			prepState.setInt(3, eSichtbarkeit.Sichtbar.ordinal());
@@ -70,7 +74,7 @@ public class NachrichtMapper {
 			ResultSet rs = prepState.getGeneratedKeys();
 			if (rs.next()) {
 				ergebnis = rs.getInt(1);
-			}		
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,7 +98,9 @@ public class NachrichtMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "UPDATE Nachricht SET (" + "'" + n.getText() + "','" + n.getSichtbarkeit() + "','" + n.getErstellungsDatum() + "','";
+			String sqlquery = "UPDATE Nachricht SET (" + "'" + n.getText()
+					+ "','" + n.getSichtbarkeit() + "','"
+					+ n.getErstellungsDatum() + "','";
 			state.executeUpdate(sqlquery);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,7 +123,8 @@ public class NachrichtMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "UPDATE Nachricht SET Sichtbarkeit= '0' WHERE Sichtbarkeit='" + n.getSichtbarkeit() + "';";
+			String sqlquery = "UPDATE Nachricht SET Sichtbarkeit= '0' WHERE Sichtbarkeit='"
+					+ n.getSichtbarkeit() + "';";
 			state.executeUpdate(sqlquery);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -129,12 +136,16 @@ public class NachrichtMapper {
 		int nachrichtId = 0;
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state.executeQuery("SELECT * FROM Nachricht WHERE Erstellungsdatum='" + ts + "'");
-			System.out.println(ts + " 1-  na - " + text + " -  na - " + nachrichtId);
+			ResultSet rs = state
+					.executeQuery("SELECT * FROM Nachricht WHERE Erstellungsdatum='"
+							+ ts + "'");
+			System.out.println(ts + " 1-  na - " + text + " -  na - "
+					+ nachrichtId);
 
 			if (rs.next()) {
 				nachrichtId = rs.getInt("Id");
-				System.out.println(ts + " 2-  na - " + text + " -  na - " + nachrichtId);
+				System.out.println(ts + " 2-  na - " + text + " -  na - "
+						+ nachrichtId);
 
 			}
 
@@ -143,7 +154,8 @@ public class NachrichtMapper {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(ts + " 3-  na - " + text + " -  na - " + nachrichtId);
+		System.out
+				.println(ts + " 3-  na - " + text + " -  na - " + nachrichtId);
 
 		return nachrichtId;
 	}
@@ -152,7 +164,8 @@ public class NachrichtMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			state.execute("DELETE FROM NachrichtHashtag WHERE HashtagId = '" + hashtag.getId() + "';");
+			state.execute("DELETE FROM NachrichtHashtag WHERE HashtagId = '"
+					+ hashtag.getId() + "';");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -165,7 +178,8 @@ public class NachrichtMapper {
 		try {
 			Statement state = con.createStatement();
 			ResultSet rs = state
-					.executeQuery(("SELECT * FROM Nachricht WHERE AutorId = '" + meineId + "' AND Sichtbarkeit = 1 ORDER BY ErstellungsDatum DESC;"));
+					.executeQuery(("SELECT * FROM Nachricht WHERE AutorId = '"
+							+ meineId + "' AND Sichtbarkeit = 1 ORDER BY ErstellungsDatum DESC;"));
 			while (rs.next()) {
 				Nachricht nA = new Nachricht();
 				nA.setId(rs.getInt("Id"));
@@ -181,13 +195,17 @@ public class NachrichtMapper {
 		return meineNachrichten;
 	}
 
-	public Vector<Nachricht> report1_1Mapper(int meineId, Timestamp vonDatum, Timestamp bisDatum) {
+	public Vector<Nachricht> report1_1Mapper(int meineId, Timestamp vonDatum,
+			Timestamp bisDatum) {
 		Vector<Nachricht> alleNachrichtenVonBestimmtenNutzerInBestimmtemZeitraum = new Vector<Nachricht>();
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state.executeQuery(("SELECT * FROM Nachricht WHERE AutorId = '" + meineId + "' AND WHERE ErstellungsDatum BETWEEN '" + vonDatum
-					+ "' AND '" + bisDatum + "' ORDER BY ErstellungsDatum DESC;"));
+			ResultSet rs = state
+					.executeQuery(("SELECT * FROM Nachricht WHERE AutorId = '"
+							+ meineId
+							+ "' AND WHERE ErstellungsDatum BETWEEN '"
+							+ vonDatum + "' AND '" + bisDatum + "' ORDER BY ErstellungsDatum DESC;"));
 			while (rs.next()) {
 				Nachricht nA = new Nachricht();
 				nA.setId(rs.getInt("Id"));
@@ -203,13 +221,15 @@ public class NachrichtMapper {
 
 	}
 
-	public Vector<Nachricht> report1_2Mapper(Timestamp vonDatum, Timestamp bisDatum) {
+	public Vector<Nachricht> report1_2Mapper(Timestamp vonDatum,
+			Timestamp bisDatum) {
 		Vector<Nachricht> alleNachrichtenInBestimmtemZeitraum = new Vector<Nachricht>();
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
 			ResultSet rs = state
-					.executeQuery(("SELECT * FROM Nachricht  WHERE ErstellungsDatum BETWEEN '" + vonDatum + "' AND '" + bisDatum + "' ORDER BY ErstellungsDatum DESC;"));
+					.executeQuery(("SELECT * FROM Nachricht  WHERE ErstellungsDatum BETWEEN '"
+							+ vonDatum + "' AND '" + bisDatum + "' ORDER BY ErstellungsDatum DESC;"));
 			while (rs.next()) {
 				Nachricht nA = new Nachricht();
 				nA.setId(rs.getInt("Id"));
@@ -229,7 +249,9 @@ public class NachrichtMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state.executeQuery(("SELECT * FROM Nachricht WHERE AutorId = '" + meineId + "' ORDER BY ErstellungsDatum DESC;"));
+			ResultSet rs = state
+					.executeQuery(("SELECT * FROM Nachricht WHERE AutorId = '"
+							+ meineId + "' ORDER BY ErstellungsDatum DESC;"));
 			while (rs.next()) {
 				Nachricht nA = new Nachricht();
 				nA.setId(rs.getInt("Id"));
@@ -250,7 +272,8 @@ public class NachrichtMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state.executeQuery(("SELECT * FROM Nachricht ORDER BY ErstellungsDatum DESC;"));
+			ResultSet rs = state
+					.executeQuery(("SELECT * FROM Nachricht ORDER BY ErstellungsDatum DESC;"));
 			while (rs.next()) {
 				Nachricht nA = new Nachricht();
 				nA.setId(rs.getInt("Id"));
@@ -266,13 +289,14 @@ public class NachrichtMapper {
 		return alleNachrichten;
 	}
 
-	public boolean nachrichtEinerUnterhaltungZuordnen(int NachrichtenID, int UnterhaltungsID) {
+	public boolean nachrichtEinerUnterhaltungZuordnen(int NachrichtenID,
+			int UnterhaltungsID) {
 		boolean erfolgreich = true;
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "INSERT INTO NachrichtUnterhaltung (`UnterhaltungId`, `NachrichtId`) VALUES ('" + UnterhaltungsID + "', '" + NachrichtenID
-					+ "');";
+			String sqlquery = "INSERT INTO NachrichtUnterhaltung (`UnterhaltungId`, `NachrichtId`) VALUES ('"
+					+ UnterhaltungsID + "', '" + NachrichtenID + "');";
 			int anzahlBetroffenerZeilen = state.executeUpdate(sqlquery);
 			if (anzahlBetroffenerZeilen > 0)
 				erfolgreich = true;
@@ -290,7 +314,8 @@ public class NachrichtMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "INSERT INTO NachrichtHashtag (`NachrichtId`, `HashtagId`) VALUES ('" + NachrichtID + "', '" + HashtagID + "');";
+			String sqlquery = "INSERT INTO NachrichtHashtag (`NachrichtId`, `HashtagId`) VALUES ('"
+					+ NachrichtID + "', '" + HashtagID + "');";
 			int anzahlBetroffenerZeilen = state.executeUpdate(sqlquery);
 			if (anzahlBetroffenerZeilen > 0)
 				erfolgreich = true;
@@ -301,5 +326,52 @@ public class NachrichtMapper {
 			erfolgreich = false;
 		}
 		return erfolgreich;
+	}
+
+	public Vector<Nachricht> gibAlleNachrichtenVonUnterhaltung(int id) {
+		Connection con = DatenbankVerbindung.connection();
+		Vector<Nachricht> Nachrichten = new Vector<Nachricht>();
+		try {
+			Statement state = con.createStatement();
+			String sqlquery = "SELECT * FROM NachrichtUnterhaltung INNER JOIN Unterhaltung ON NachrichtUnterhaltung.UnterhaltungId = Unterhaltung.Id INNER JOIN Nachricht ON NachrichtUnterhaltung.NachrichtId = Nachricht.Id WHERE NachrichtUnterhaltung.UnterhaltungId = '"
+					+ id
+					+ "' AND Unterhaltung.Sichtbarkeit = 1 AND Nachricht.Sichtbarkeit = 1 ORDER BY Nachricht.ErstellungsDatum DESC;";
+			ResultSet rs = state.executeQuery(sqlquery);
+			while (rs.next()) {
+				Nachricht nA = new Nachricht();
+				nA.setId(rs.getInt("Nachricht.Id"));
+				nA.setText(rs.getString("Nachricht.Text"));
+				nA.setErstellungsDatum(rs
+						.getTimestamp("Nachricht.ErstellungsDatum"));
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Nachrichten;
+	}
+
+	public Vector<Nachricht> gibNachrichtenVonHashtagId(Integer integer) {
+		Connection con = DatenbankVerbindung.connection();
+		Vector<Nachricht> meineNachrichten = new Vector<Nachricht>();
+		try {
+			Statement state = con.createStatement();
+			String sqlquery = "SELECT * FROM NachrichtHashtag INNER JOIN Nachricht ON NachrichtHashtag.NachrichtId = Nachricht.Id WHERE HashtagId = '"
+					+ integer + "' AND Nachricht.Sichtbarkeit = 1";
+			ResultSet rs = state.executeQuery(sqlquery);
+			while (rs.next()) {
+				Nachricht nA = new Nachricht();
+				nA.setId(rs.getInt("Nachricht.Id"));
+				nA.setSenderId(rs.getInt("Nachricht.Id"));
+				nA.setText(rs.getString("Nachricht.Text"));
+				nA.setErstellungsDatum(rs
+						.getTimestamp("Nachricht.ErstellungsDatum"));
+				meineNachrichten.add(nA);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return meineNachrichten;
 	}
 }

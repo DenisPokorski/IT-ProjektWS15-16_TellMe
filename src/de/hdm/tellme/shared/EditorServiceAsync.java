@@ -79,5 +79,17 @@ public interface EditorServiceAsync {
 
 	void unterhaltungStarten(eUnterhaltungsTyp unterhaltungsTyp, Nachricht ersteNachricht, Vector<Nutzer> teilnehmer, AsyncCallback<Boolean> callback);
 
+	void ladeAlleNachrichtenZuUnterhaltung(int meineId,
+			AsyncCallback<Vector<Unterhaltung>> callback);
+
+	void meineUnterhaltungenMitSichtbarkeit(int meineId,
+			AsyncCallback<Vector<Unterhaltung>> callback);
+
+	void oeffentlicheUnterhaltungenAbonnierterNutzer(int meineId,
+			AsyncCallback<Vector<Unterhaltung>> callback);
+
+	void alleAbonniertenHashtagNachrichtenVonId(int nutzerId,
+			AsyncCallback<Vector<Unterhaltung>> callback);
+
 	 
  }

@@ -206,4 +206,20 @@ public class HashtagAbonnementMapper {
  		
 		return alleHashtagsEinesNutzers;
 	}
+	public Vector<Integer> selektiereAlleHashtagsNachAbonehmer(int nutzerId) {
+		Vector<Integer> hashtagIds = new Vector<Integer>();
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			ResultSet rs = state
+					.executeQuery("SELECT * FROM NutzerHashtag WHERE NutzerId = '"
+							+ nutzerId + "';");
+			while (rs.next()) {
+				hashtagIds.add(rs.getInt("HashtagId"));
+			}
+		} catch (Exception e) {
+
+		}
+		return hashtagIds;
+	}
 }

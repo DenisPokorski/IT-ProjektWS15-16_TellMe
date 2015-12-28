@@ -154,7 +154,6 @@ public class HashtagMapper {
 					+ DateHelperClass.getCurrentTime() + "' WHERE Id='"
 					+ hashtag.getId() + "';";
 			state.executeUpdate(sqlquery);
-			System.out.println(sqlquery);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -110,4 +110,21 @@ public class NutzerAbonnementMapper {
 
 	}
 
+	public Vector<Integer> vonMirabonnierteNutzerIds(int meineId) {
+		Vector<Integer> abonnierteNutzerIds = new Vector<Integer>();
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			String sqlquery = "SELECT * FROM AbonnentBenutzer WHERE VonId = '"
+					+ meineId + "';";
+			ResultSet rs = state.executeQuery(sqlquery);
+			while (rs.next()) {
+				abonnierteNutzerIds.add(rs.getInt("NachId"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return abonnierteNutzerIds;
+	}
+
 }

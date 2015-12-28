@@ -67,4 +67,13 @@ public interface EditorService extends RemoteService {
 
 	boolean unterhaltungStarten(eUnterhaltungsTyp unterhaltungsTyp, Nachricht ersteNachricht, Vector<Nutzer> teilnehmer);
 
+
+	Vector<Unterhaltung> meineUnterhaltungenMitSichtbarkeit(int meineId);
+
+	Vector<Unterhaltung> ladeAlleNachrichtenZuUnterhaltung(int meineId);
+
+	Vector<Unterhaltung> oeffentlicheUnterhaltungenAbonnierterNutzer(int meineId);
+
+	Vector<Unterhaltung> alleAbonniertenHashtagNachrichtenVonId(int nutzerId);
+
 }
