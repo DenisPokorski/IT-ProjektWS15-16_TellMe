@@ -26,6 +26,7 @@ public class TellMe implements EntryPoint {
 
 	}
 
+	@Deprecated 
 	public static LoginInfo eingeloggterBenutzer = null;
 
 	LoginServiceAsync loginService = GWT.create(LoginService.class);

@@ -59,13 +59,12 @@ public interface EditorService extends RemoteService {
 
 	void hashtagAboEntfernen(int nutzerId, int hashtagId);
 
-	Unterhaltung oeffentlicheNachrichtenNachHashtag(int id);
 
 	boolean unterhaltung_loeschen(int unterhaltungsID);
 
 	Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(int teilnehmerID);
 
-	boolean unterhaltungStarten(eUnterhaltungsTyp unterhaltungsTyp, Nachricht ersteNachricht, Vector<Nutzer> teilnehmer);
+	boolean unterhaltungStarten(Nachricht ersteNachricht, Vector<Nutzer> teilnehmer);
 
 
 	Vector<Unterhaltung> meineUnterhaltungenMitSichtbarkeit(int meineId);

@@ -180,12 +180,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 
 	@Override
-	public Unterhaltung oeffentlicheNachrichtenNachHashtag(int id) {
-		Unterhaltung oeffentlicheNachrichtenNachHashtag = hashtagMapper.oeffentlicheNachrichtenNachHashtag(id);
-		return oeffentlicheNachrichtenNachHashtag;
-	}
-
-	@Override
 	public boolean unterhaltung_loeschen(int unterhaltungsID) {
 		boolean ergebnis = false;
 		ergebnis = unterhaltungMapper.loescheUnterhaltungAnhandID(unterhaltungsID);
@@ -200,7 +194,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 
 	@Override
-	public boolean unterhaltungStarten(eUnterhaltungsTyp unterhaltungsTyp, Nachricht ersteNachricht, Vector<Nutzer> teilnehmer) {
+	public boolean unterhaltungStarten( Nachricht ersteNachricht, Vector<Nutzer> teilnehmer) {
 		boolean erfolgreich = true;
 		int unterhaltungsID = -1;
 		unterhaltungsID = unterhaltungMapper.anlegen(eUnterhaltungsTyp.oeffentlich);

@@ -74,10 +74,7 @@ public class MenuBarEditor extends HorizontalPanel {
 		HauptMenue.addItem("Neuigkeiten", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(
-						new NutzerCellList()
-								.generiereCellList(CellListModus.Nachrichtenuebersicht),
-						gibansichtNeuigkeiten());
+				setzeInhalt(new NutzerCellList().generiereCellList(CellListModus.Nachrichtenuebersicht), gibansichtNeuigkeiten());
 			}
 		});
 
@@ -88,30 +85,22 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.addItem("NutzeraboVerwaltung", new Command() {
 			@Override
 			public void execute() {
-				RootPanel
-						.get("content_left")
-						.add(new NutzerCellList()
-								.generiereCellList(CellListModus.Einstellungen));
+
+				setzeInhalt(new NutzerCellList().generiereCellList(CellListModus.Einstellungen), null);
 			}
 		});
 
 		EinstellungenMenu.addItem("HashtagaboVerwaltung", new Command() {
 			@Override
 			public void execute() {
-				RootPanel
-						.get("content_left")
-						.add(new HashtagCellList()
-								.generiereCellList(CellListModus.Einstellungen));
+				setzeInhalt(new HashtagCellList().generiereCellList(CellListModus.Einstellungen),null);
 			}
 		});
 
 		EinstellungenMenu.addItem("Hashtagverwaltung", new Command() {
 			@Override
 			public void execute() {
-				RootPanel
-						.get("content_left")
-						.add(new HashtagCellList()
-								.generiereCellList(CellListModus.HastagVerwaltung));
+				setzeInhalt(new HashtagCellList().generiereCellList(CellListModus.HastagVerwaltung), null);
 
 			}
 		});
@@ -129,11 +118,11 @@ public class MenuBarEditor extends HorizontalPanel {
 		HauptMenue.addItem(new MenuItem("Reports", tempReports));
 
 		tempReports.addItem("Report Startseite", new Command() {
-			
+
 			@Override
 			public void execute() {
 				setzeInhalt(new ReportWillkommenSeite());
-				
+
 			}
 		});
 		tempReports.addItem("Report 1", new Command() {
@@ -147,7 +136,6 @@ public class MenuBarEditor extends HorizontalPanel {
 			@Override
 			public void execute() {
 				setzeInhalt(new Report2Gui());
-	
 
 			}
 		});
@@ -172,8 +160,7 @@ public class MenuBarEditor extends HorizontalPanel {
 		RootPanel.get("content").add(ZuSetzendesPanel);
 	}
 
-	public static void setzeInhalt(Widget ZuSetzendesPanelLinks,
-			Widget ZuSetzendesPanelRechts) {
+	public static void setzeInhalt(Widget ZuSetzendesPanelLinks, Widget ZuSetzendesPanelRechts) {
 
 		RootPanel.get("ButtonBar").clear();
 		RootPanel.get("content_left").clear();

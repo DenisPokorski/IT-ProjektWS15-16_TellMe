@@ -129,7 +129,7 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 	 * opened.
 	 */
 	public boolean isLeaf(Object value) {
-		
+
 		// The leaf nodes are the songs, which are Strings.
 		if (value instanceof Nachricht) {
 			return true;
@@ -143,28 +143,28 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 
 			@Override
 			public void onSuccess(Vector<Unterhaltung> result) {
-
 				dataProvider.getList().clear();
 
-				
 				for (Unterhaltung unterhaltung : result) {
-					UnterhaltungsNachicht un = new UnterhaltungsNachicht(unterhaltung);
-
-					alleUnterhaltungen.addElement(un);
+					try {
+						UnterhaltungsNachicht un = new UnterhaltungsNachicht(unterhaltung);
+						alleUnterhaltungen.addElement(un);
+					} catch (Exception ex) {
+						// FEHLER
+						Window.alert("Fehler beim hinzufuegen einer Nachricht");
+					}
 				}
 
-				Window.alert(dataProvider.getList().size() + "");
+				Window.alert("Nachrichten erhalten: " + dataProvider.getList().size());
 
 				dataProvider.flush();
 				dataProvider.refresh();
-
-				// cellTable.redraw();
 
 			}
 
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
+				Window.alert("Fehler beim laden der Nachrichten");
 
 			}
 		});

@@ -311,9 +311,10 @@ public class NeuigkeitenNachrichtDialogbox {
 						neueNachricht.setText(textArea.getText());
 						neueNachricht.setVerknuepfteHashtags(AusgewaehlteHashtags);
 
-						AusgewaehlteEmpfaenger.addElement(TellMe.gibEingeloggterBenutzer().getUser());
+						//Füge eigene ID als Teilnehmer hinzu
+							AusgewaehlteEmpfaenger.addElement(TellMe.gibEingeloggterBenutzer().getUser());
 
-						asyncObj.unterhaltungStarten(eUnterhaltungsTyp.oeffentlich, neueNachricht, AusgewaehlteEmpfaenger, new AsyncCallback<Boolean>() {
+						asyncObj.unterhaltungStarten(neueNachricht, AusgewaehlteEmpfaenger, new AsyncCallback<Boolean>() {
 
 							@Override
 							public void onSuccess(Boolean result) {
@@ -334,7 +335,16 @@ public class NeuigkeitenNachrichtDialogbox {
 					break;
 
 				case AntwortNachricht:
-					Window.alert("Auf Unterhaltung antworten");
+					if (textArea.getValue() == "") {
+						Window.alert("Bitte geben Sie einen Text ein um die Unterhaltung zu beantworten.");
+					} else {
+						Nachricht antwortNachricht = new Nachricht();
+						antwortNachricht.setSender(TellMe.gibEingeloggterBenutzer().getUser());
+						antwortNachricht.setSichtbarkeit(1);
+						antwortNachricht.setText(textArea.getValue());
+						antwortNachricht.setVerknuepfteHashtags(AusgewaehlteHashtags);
+						
+					}
 					break;
 				case BearbeitenNachricht:
 					if (textArea.getValue() == "") {
@@ -347,7 +357,7 @@ public class NeuigkeitenNachrichtDialogbox {
 							@Override
 							public void onSuccess(Boolean result) {
 								if (result)
-									Window.alert("Nachricht erfolgreich erstellt");
+									Window.alert("Nachricht erfolgreich aktualisiert");
 								else
 									Window.alert("Fehler beim bearbeiten der Nachricht, bitte an Administrator wenden.");
 

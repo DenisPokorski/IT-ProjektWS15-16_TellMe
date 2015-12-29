@@ -70,14 +70,11 @@ public interface EditorServiceAsync {
 
 	void hashtagAboEntfernen(int nutzerId, int hashtagId, AsyncCallback<Void> asyncCallback);
 
-	void oeffentlicheNachrichtenNachHashtag(int id,
-			AsyncCallback<Unterhaltung> callback);
-
 	void unterhaltung_loeschen(int unterhaltungsID, AsyncCallback<Boolean> callback);
 
 	void alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(int teilnehmerID, AsyncCallback<Vector<Unterhaltung>> callback);
 
-	void unterhaltungStarten(eUnterhaltungsTyp unterhaltungsTyp, Nachricht ersteNachricht, Vector<Nutzer> teilnehmer, AsyncCallback<Boolean> callback);
+	void unterhaltungStarten(Nachricht ersteNachricht, Vector<Nutzer> teilnehmer, AsyncCallback<Boolean> callback);
 
 	void ladeAlleNachrichtenZuUnterhaltung(int meineId,
 			AsyncCallback<Vector<Unterhaltung>> callback);

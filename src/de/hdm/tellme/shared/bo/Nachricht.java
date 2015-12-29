@@ -83,6 +83,7 @@ public class Nachricht extends BusinessObject {
 
 	public void setSender(Nutzer nutzer) {
 		this.sender = nutzer;
+		this.senderId = nutzer.getId();
 	}
 
 	public Vector<Hashtag> getVerknuepfteHashtags() {
