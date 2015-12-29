@@ -47,8 +47,8 @@ public interface EditorServiceAsync {
 
 	void unterhaltungStarten(Nachricht ersteNachricht, Vector<Nutzer> teilnehmer, AsyncCallback<Boolean> callback);
 
-	void ladeAlleNachrichtenZuUnterhaltung(int meineId,
-			AsyncCallback<Vector<Unterhaltung>> callback);
+	void ladeAlleNachrichtenZuUnterhaltung(int UnterhaltungsID,
+			AsyncCallback<Vector<Nachricht>> callback);
 
 	void meineUnterhaltungenMitSichtbarkeit(int meineId,
 			AsyncCallback<Vector<Unterhaltung>> callback);
@@ -59,7 +59,7 @@ public interface EditorServiceAsync {
 	void alleUnterhaltungenVonAbonniertemHashtagUeberNutzerId(int nutzerId,
 			AsyncCallback<Vector<Unterhaltung>> callback);
 
-	void NachrichtAktualisieren(Nachricht n, AsyncCallback<Boolean> callback);
+	void NachrichtAktualisieren(Nachricht original, Nachricht neu, AsyncCallback<Boolean> callback);
 
 	void NachrichtLoeschen(Nachricht n, AsyncCallback<Boolean> callback);
 

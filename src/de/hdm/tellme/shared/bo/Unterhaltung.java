@@ -48,9 +48,9 @@ public int compareTo(Unterhaltung arg0) {
 	if(arg0.getErstellungsDatum() == null || this.getErstellungsDatum() == null)
 		return 0;
 	if(arg0.getErstellungsDatum().before(this.getErstellungsDatum()))
-		return 1;
-	else
 		return -1;
+	else
+		return 1;
 }
 
  

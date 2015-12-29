@@ -60,7 +60,7 @@ public class NeuigkeitenNachrichtDialogbox {
 	private String textFunktionsbutton = "";
 
 	private Unterhaltung antwortUnterhaltung;
-	private Nachricht bearbeitenNachricht;
+	private Nachricht originalNachricht;
 
 	public DialogBox getNeueNachrichtDialogbox() {
 		NachrichtenModus = eNachrichtenmodus.NeueNachricht;
@@ -85,7 +85,7 @@ public class NeuigkeitenNachrichtDialogbox {
 		boxTitel = "Nachricht bearbeiten";
 		textFunktionsbutton = "Speichern";
 
-		bearbeitenNachricht = _nachrichtZumBearbeiten;
+		originalNachricht = _nachrichtZumBearbeiten;
 		textAreaInhalt = _nachrichtZumBearbeiten.getText();
 
 		// Fuelle HashtagPanel
@@ -310,8 +310,8 @@ public class NeuigkeitenNachrichtDialogbox {
 						neueNachricht.setText(textArea.getText());
 						neueNachricht.setVerknuepfteHashtags(AusgewaehlteHashtags);
 
-						//Füge eigene ID als Teilnehmer hinzu
-							AusgewaehlteEmpfaenger.addElement(TellMe.gibEingeloggterBenutzer().getUser());
+						// Füge eigene ID als Teilnehmer hinzu
+						AusgewaehlteEmpfaenger.addElement(TellMe.gibEingeloggterBenutzer().getUser());
 
 						asyncObj.unterhaltungStarten(neueNachricht, AusgewaehlteEmpfaenger, new AsyncCallback<Boolean>() {
 
@@ -342,16 +342,23 @@ public class NeuigkeitenNachrichtDialogbox {
 						antwortNachricht.setSichtbarkeit(1);
 						antwortNachricht.setText(textArea.getValue());
 						antwortNachricht.setVerknuepfteHashtags(AusgewaehlteHashtags);
-						
+						//TODO: do somthng
 					}
 					break;
 				case BearbeitenNachricht:
 					if (textArea.getValue() == "") {
 						Window.alert("Bitte geben Sie einen Text ein um die Nachricht speichern zu können.");
 					} else {
-						bearbeitenNachricht.setText(textArea.getValue());
-						bearbeitenNachricht.setVerknuepfteHashtags(AusgewaehlteHashtags);
-						asyncObj.NachrichtAktualisieren(bearbeitenNachricht, new AsyncCallback<Boolean>() {
+
+						Nachricht bearbeiteteNachricht = new Nachricht();
+						bearbeiteteNachricht.setErstellungsDatum(originalNachricht.getErstellungsDatum());
+						bearbeiteteNachricht.setId(originalNachricht.getId());
+						bearbeiteteNachricht.setSender(originalNachricht.getSender());
+						bearbeiteteNachricht.setSichtbarkeit(originalNachricht.getSichtbarkeit());
+						bearbeiteteNachricht.setText(textArea.getValue());
+						bearbeiteteNachricht.setVerknuepfteHashtags(AusgewaehlteHashtags);
+						Window.alert(bearbeiteteNachricht.getVerknuepfteHashtags().size() + "");
+						asyncObj.NachrichtAktualisieren(originalNachricht, bearbeiteteNachricht, new AsyncCallback<Boolean>() {
 
 							@Override
 							public void onSuccess(Boolean result) {

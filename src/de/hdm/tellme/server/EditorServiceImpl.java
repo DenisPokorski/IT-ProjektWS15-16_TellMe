@@ -28,6 +28,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 
 	public void init() throws IllegalArgumentException {
+		if (Helper.debugModus)
+			Helper.LogDebug("HELLO TELLME! - DEBUG MODE ON");
+		else
+			Helper.LogDebug("HELLO TELLME! - DEBUG MODE OFF");
+
 		this.nutzerMapper = NutzerMapper.nutzerMapper();
 		this.nutzeraboMapper = NutzerAbonnementMapper.nutzerAbonnementMapper();
 		this.nachrichtMapper = NachrichtMapper.nachrichtMapper();
@@ -51,7 +56,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	// ################### LISTEN #####################
 
 	private static Vector<Nutzer> alleUser = null;
-	
 
 	// ################### NUTZER #####################
 
@@ -101,12 +105,12 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		Vector<Nutzer> alleNutzeAuserMir = new Vector<Nutzer>();
 
 		for (Nutzer nutzer : this.getAlleNutzer(false)) {
-		if (nutzer.getId() != meineId)
-		alleNutzeAuserMir.add(nutzer);
+			if (nutzer.getId() != meineId)
+				alleNutzeAuserMir.add(nutzer);
 		}
 
-		 return alleNutzeAuserMir;
-		}
+		return alleNutzeAuserMir;
+	}
 
 	public Vector<Nutzer> getAlleNutzer(boolean zwingeNeuladen) {
 		if (alleUser == null || zwingeNeuladen)
@@ -118,12 +122,10 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	// ################### NutzerABO #####################
 
-
 	@Override
 	public void nutzerAbonnementLoeschen(int aboNehmerID, Nutzer aboGeber) {
 		nutzeraboMapper.loescheNutzeraboById(aboNehmerID, aboGeber);
 	}
-
 
 	@Override
 	public void nutzerAbonnementErstellen(int aboNehmerID, Nutzer aboGeber) {
@@ -164,8 +166,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	// TODO: Ovverride
 	@Override
 	public void hashtagEntfernen(Hashtag hashtag) {
-		nachrichtMapper.hashtagZuordnungLoeschen(hashtag);
-		nutzerMapper.hashtagZuordnungLoeschen(hashtag);
+		nachrichtMapper.alleHashtagZuordnungLoeschen(hashtag.getId());
+		nutzerMapper.alleHashtagZuordnungLoeschen(hashtag);
 		hashtagMapper.entfernen(hashtag);
 	}
 
@@ -181,7 +183,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	// ################### HashtagABO #####################
 
-
 	@Override
 	public Vector<Integer> getAlleAbonniertenHashtagsfuerAbonehmer(int aboNehmerId) {
 		Vector<Integer> alleAbboniertenNutzer = hashtagAboMapper.ladeAbonnierteHashtagListe(aboNehmerId);
@@ -195,7 +196,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	@Override
 	public Vector<Hashtag> getAbonnierteHashtags(int aboNehmerID) {
-		Vector<Hashtag>alleHashtags = hashtagAboMapper.alleHashtagsEinesNutzers(aboNehmerID);
+		Vector<Hashtag> alleHashtags = hashtagAboMapper.alleHashtagsEinesNutzers(aboNehmerID);
 		return alleHashtags;
 	}
 
@@ -211,16 +212,24 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	// ################### NACHRICHT #####################
 
-	/**
-	 * @Deprecated WTF?!
-	 */
-	@Deprecated
 	@Override
-	public Vector<Unterhaltung> ladeAlleNachrichtenZuUnterhaltung(int meineId) {
-		// TODO implementieren
-		return null;
-	}
+	public Vector<Nachricht> ladeAlleNachrichtenZuUnterhaltung(int UnterhaltungsID) {
+		Vector<Nachricht> alleNachrichten = nachrichtMapper.gibAlleNachrichtenVonUnterhaltung(UnterhaltungsID);
 
+		// lade zu jeder Nachricht den Sender und die Hashtags
+		if (alleNachrichten.size() > 0) {
+			for (Nachricht nachricht : alleNachrichten) {
+				Vector<Hashtag> alleHashtagsZuNachricht = hashtagMapper.alleHashtagsZuNachrichtenID(nachricht.getId());
+				nachricht.setVerknuepfteHashtags(alleHashtagsZuNachricht);
+
+				Nutzer sender = null;
+				sender = getNutzerAnhandID(nachricht.getSenderId());
+				nachricht.setSender(sender);
+
+			}
+		}
+		return alleNachrichten;
+	}
 
 	@Override
 	public Vector<Unterhaltung> alleUnterhaltungenVonAbonniertemHashtagUeberNutzerId(int nutzerId) {
@@ -277,9 +286,51 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 
 	@Override
-	public boolean NachrichtAktualisieren(Nachricht n) {
+	public boolean NachrichtAktualisieren(Nachricht original, Nachricht neu) {
 		boolean erfolgreich = true;
-		erfolgreich = nachrichtMapper.aktualisieren(n);
+
+		//welche hashtags muessen geloescht werden
+		Vector<Hashtag> ZuLoeschendeHashtags = new Vector<Hashtag>();
+		for (Hashtag hashtagOriginal : original.getVerknuepfteHashtags()) {
+			boolean existiertNoch = false;
+			for (Hashtag hashtagNeu : neu.getVerknuepfteHashtags()) {
+				if (hashtagOriginal.getId() == hashtagNeu.getId()) {
+					existiertNoch = true;
+					break;
+				}
+			}
+
+			if (existiertNoch == false)
+				ZuLoeschendeHashtags.add(hashtagOriginal);
+		}
+
+		//welche hashtags muessen hinzugefuegt werden
+		Vector<Hashtag> ZuHinzuzufuegendeHashtags = new Vector<Hashtag>();
+		for (Hashtag hashtagNeu : neu.getVerknuepfteHashtags()) {
+			boolean istNeu = true;
+			for (Hashtag hashtagOriginal : original.getVerknuepfteHashtags()) {
+				if(hashtagNeu.getId() == hashtagOriginal.getId()){
+					istNeu= false;
+					break;
+				}
+			}
+			
+			if(istNeu)
+				ZuHinzuzufuegendeHashtags.add(hashtagNeu);
+		}
+
+		erfolgreich = nachrichtMapper.aktualisieren(neu);
+		
+		if(erfolgreich){
+			for (Hashtag hashtag : ZuLoeschendeHashtags) {
+				nachrichtMapper.hashtagZuordnungLoeschen(hashtag.getId(), neu.getId());
+			}			
+			for (Hashtag hashtag : ZuHinzuzufuegendeHashtags) {
+				nachrichtMapper.hashtagEinerNachrichtZuordnen(hashtag.getId(), neu.getId());
+			}			
+			
+		}
+		
 		return erfolgreich;
 	}
 
@@ -377,7 +428,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		erfolgreich = unterhaltungMapper.teilnehmerAktualisieren(u.getId(), TellMe.gibEingeloggterBenutzer().getUser().getId(), 0);
 		return erfolgreich;
 	}
-	
+
 	@Override
 	public Vector<Unterhaltung> getAlleSichtbarenUnterhaltungenFuerTeilnehmer(int aktiverTeilnehmerID) {
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungen = new Vector<Unterhaltung>();
@@ -388,27 +439,20 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		// lade Nachrichten zu Unterhaltungen
 		for (Unterhaltung unterhaltung : alleSichtbarenUnterhaltungen) {
 
-			Vector<Nachricht> alleNachrichten = nachrichtMapper.gibAlleNachrichtenVonUnterhaltung(unterhaltung.getId());
-
-			// lade zu jeder Nachricht den Sender und die Hashtags
-			if (alleNachrichten.size() > 0) {
-				for (Nachricht nachricht : alleNachrichten) {
-					Vector<Hashtag> alleHashtagsZuNachricht = hashtagMapper.alleHashtagsZuNachrichtenID(nachricht.getId());
-					nachricht.setVerknuepfteHashtags(alleHashtagsZuNachricht);
-
-					Nutzer sender = null;
-					sender = getNutzerAnhandID(nachricht.getSenderId());
-					nachricht.setSender(sender);
-
-				}
+			Vector<Nachricht> alleNachrichten = ladeAlleNachrichtenZuUnterhaltung(unterhaltung.getId());
 			unterhaltung.setAlleNachrichten(alleNachrichten);
-			alleSichtbarenUnterhaltungenMitSichtbarenNachrichten.add(unterhaltung);
-			}
+
+			if (alleNachrichten.isEmpty() == false)
+				alleSichtbarenUnterhaltungenMitSichtbarenNachrichten.add(unterhaltung);
+			else
+				Helper.LogWarnung("getAlleSichtbarenUnterhaltungenFuerTeilnehmer - sichtbare Unterhaltung ohne Sichtbare Nachricht entdeckt. UnterhaltungsID: "
+						+ unterhaltung.getId());
+
 		}
 
 		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;
 	}
-	
+
 	@Override
 	public Vector<Unterhaltung> getAlleRelevantenUnterhaltungen(int UserID) {
 		Vector<Unterhaltung> alleUnterhaltungen = new Vector<Unterhaltung>();

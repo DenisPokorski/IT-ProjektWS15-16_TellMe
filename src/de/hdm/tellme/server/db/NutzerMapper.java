@@ -274,7 +274,7 @@ public class NutzerMapper {
 		return alleAbonniertenNutzer;
 	}
 
-	public void hashtagZuordnungLoeschen(Hashtag hashtag) {
+	public void alleHashtagZuordnungLoeschen(Hashtag hashtag) {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();

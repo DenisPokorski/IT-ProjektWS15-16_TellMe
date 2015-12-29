@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Vector;
 
+import de.hdm.tellme.server.Helper;
 import de.hdm.tellme.shared.bo.BusinessObject.eSichtbarkeit;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
@@ -164,11 +165,22 @@ public class NachrichtMapper {
 		return nachrichtId;
 	}
 
-	public void hashtagZuordnungLoeschen(Hashtag hashtag) {
+	public void hashtagZuordnungLoeschen(int hashtagid, int nachrichtid) {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			state.execute("DELETE FROM NachrichtHashtag WHERE HashtagId = '" + hashtag.getId() + "';");
+			state.execute("DELETE FROM NachrichtHashtag WHERE HashtagId = '" + hashtagid + "' AND NachrichtId = '" + nachrichtid + "';");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	public void alleHashtagZuordnungLoeschen(int hashtagid) {
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			state.execute("DELETE FROM NachrichtHashtag WHERE HashtagId = '" + hashtagid + "';");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

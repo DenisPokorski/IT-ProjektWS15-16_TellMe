@@ -46,13 +46,11 @@ public interface EditorService extends RemoteService {
 
 	Vector<Unterhaltung> meineUnterhaltungenMitSichtbarkeit(int meineId);
 
-	Vector<Unterhaltung> ladeAlleNachrichtenZuUnterhaltung(int meineId);
+	Vector<Nachricht> ladeAlleNachrichtenZuUnterhaltung(int UnterhaltungsID);
 
 	Vector<Unterhaltung> oeffentlicheUnterhaltungenAbonnierterNutzer(int meineId);
 
 	Vector<Unterhaltung> alleUnterhaltungenVonAbonniertemHashtagUeberNutzerId(int nutzerId);
-
-	boolean NachrichtAktualisieren(Nachricht n);
 
 	boolean NachrichtLoeschen(Nachricht n);
 
@@ -70,6 +68,8 @@ public interface EditorService extends RemoteService {
 
 	Vector<Unterhaltung> getAlleSichtbarenUnterhaltungenFuerTeilnehmer(
 			int aktiverTeilnehmerID);
+
+	boolean NachrichtAktualisieren(Nachricht original, Nachricht neu);
 
 
 }
