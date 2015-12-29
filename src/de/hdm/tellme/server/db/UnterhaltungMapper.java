@@ -217,7 +217,7 @@ public class UnterhaltungMapper {
 			Statement state = con.createStatement();
 			String sql = "SELECT * FROM NachrichtUnterhaltung INNER JOIN Unterhaltung ON NachrichtUnterhaltung.UnterhaltungId = Unterhaltung.Id INNER JOIN Nachricht ON NachrichtUnterhaltung.NachrichtId = Nachricht.Id WHERE NachrichtUnterhaltung.UnterhaltungId = '"
 					+ unterhaltungsId
-					+ "' AND Unterhaltung.Sichtbarkeit = 1 AND Nachricht.Sichtbarkeit = 1 ORDER BY Nachricht.ErstellungsDatum DESC;";
+					+ "' AND Unterhaltung.Sichtbarkeit = 1 ORDER BY Nachricht.ErstellungsDatum DESC;";
 			ResultSet rs = state.executeQuery(sql);
 			while (rs.next()) {
 				u.setId(rs.getInt("NachrichtUnterhaltung.UnterhaltungId"));
