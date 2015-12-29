@@ -63,7 +63,7 @@ public class HashtagAbonnementMapper {
 			e.printStackTrace();
 		}
 
-		System.out.println("hasttag size liste: " + HashtagListe.size());
+		System.out.println("hashtag size liste: " + HashtagListe.size());
 		return HashtagListe;
 	}
 	

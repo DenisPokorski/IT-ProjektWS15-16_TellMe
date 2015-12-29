@@ -16,33 +16,7 @@ public interface EditorServiceAsync {
 
 	void nutzerLoeschen(Nutzer n, AsyncCallback<Void> asyncCallback);
 
- 
-	void getNochNichtAbonnenteNutzerListe(int meineId,
-			AsyncCallback<Vector<Nutzer>> asyncCallback);
-
-	void getAlleNochNichtAbonnierteNutzerListe(int i, AsyncCallback<Vector<Nutzer>> asyncCallback);
-
-	void getZuAbonnieredeLoeschenNutzerListe(int i,
-			AsyncCallback<Vector<Nutzer>> callback);
-
-
-	void NachrichtErstellen(Nachricht n, AsyncCallback<Void> asyncCallback);
-
-	void nachrichtUnterhaltungZuweisen(String txt, int uId, Timestamp ts,
-			AsyncCallback<Void> asyncCallback);
-
-	void getZuAbonnierendeLoeschenHashtagAboListe(int meineId,
-			AsyncCallback<Vector<Hashtag>> callback);
-
-	void erstellenHashtagAboById(int NutzerId, int HashtagId,
-			AsyncCallback<Void> callback);
-
-	void getAlleNochNichtAbonnierteHashtagAboListe(int id,
-			AsyncCallback<Vector<Hashtag>> asyncCallback);
-
-	void gibHashtagListe(AsyncCallback<Vector<Hashtag>> asyncCallback);
-
-	void ladeAbonnierendeHashtagListe(int meineId,
+	void getAlleAbonniertenHashtagsfuerAbonehmer(int meineId,
 			AsyncCallback<Vector<Integer>> asyncCallback);
 
 	void hashtagAboErstellen(int nutzerId, int hashtagId,
@@ -63,8 +37,6 @@ public interface EditorServiceAsync {
 
 	void hashtagErstellen(Hashtag hashtag, AsyncCallback<Void> callback);
 
-	void hashtagSpeichern(Hashtag hashtag, AsyncCallback<Void> callback);
-
 	void hashtagEntfernen(Hashtag hashtag, AsyncCallback<Void> callback);
 
 	void hashtagAboEntfernen(int nutzerId, int hashtagId, AsyncCallback<Void> asyncCallback);
@@ -84,7 +56,7 @@ public interface EditorServiceAsync {
 	void oeffentlicheUnterhaltungenAbonnierterNutzer(int meineId,
 			AsyncCallback<Vector<Unterhaltung>> callback);
 
-	void alleAbonniertenHashtagNachrichtenVonId(int nutzerId,
+	void alleUnterhaltungenVonAbonniertemHashtagUeberNutzerId(int nutzerId,
 			AsyncCallback<Vector<Unterhaltung>> callback);
 
 	void NachrichtAktualisieren(Nachricht n, AsyncCallback<Boolean> callback);
@@ -94,6 +66,19 @@ public interface EditorServiceAsync {
 	void UnterhaltungVerlassen(Unterhaltung u, AsyncCallback<Boolean> callback);
 
 	void getAlleRelevantenUnterhaltungen(int UserID, AsyncCallback<Vector<Unterhaltung>> callback);
+
+	void gibAlleHashtags(AsyncCallback<Vector<Hashtag>> callback);
+
+	void hashtagAktualisieren(Hashtag hashtag, AsyncCallback<Void> callback);
+
+	void erstellenHashtagAbo(int NutzerId, int HashtagId,
+			AsyncCallback<Void> callback);
+
+	void getAbonnierteHashtags(int aboNehmerID,
+			AsyncCallback<Vector<Hashtag>> callback);
+
+	void getAlleSichtbarenUnterhaltungenFuerTeilnehmer(int aktiverTeilnehmerID,
+			AsyncCallback<Vector<Unterhaltung>> callback);
 
 	 
  }

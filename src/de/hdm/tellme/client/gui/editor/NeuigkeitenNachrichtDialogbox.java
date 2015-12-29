@@ -407,7 +407,7 @@ public class NeuigkeitenNachrichtDialogbox {
 			}
 		});
 
-		asyncObj.gibHashtagListe(new AsyncCallback<Vector<Hashtag>>() {
+		asyncObj.gibAlleHashtags(new AsyncCallback<Vector<Hashtag>>() {
 			@Override
 			public void onFailure(Throwable caught) {
 			}

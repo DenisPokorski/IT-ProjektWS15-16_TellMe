@@ -18,29 +18,9 @@ public interface EditorService extends RemoteService {
 
 	void nutzerLoeschen(Nutzer n);
 
-
-	Vector<Nutzer> getNochNichtAbonnenteNutzerListe(int meineId);
-
-	Vector<Nutzer> getAlleNochNichtAbonnierteNutzerListe(int i);
-
-	Vector<Nutzer> getZuAbonnieredeLoeschenNutzerListe(int i);
-
-
 	Vector<Nutzer> getAlleNutzerAußerMeineId(int meineId);
 
-	Vector<Hashtag> getZuAbonnierendeLoeschenHashtagAboListe(int meineId);
-
-	void erstellenHashtagAboById(int NutzerId, int HashtagId);
-
-	void nachrichtUnterhaltungZuweisen(String txt, int uId, Timestamp ts);
-
-	void NachrichtErstellen(Nachricht n);
-
-	Vector<Hashtag> getAlleNochNichtAbonnierteHashtagAboListe(int id);
-
-	Vector<Hashtag> gibHashtagListe();
-
-	Vector<Integer> ladeAbonnierendeHashtagListe(int meineId);
+	Vector<Integer> getAlleAbonniertenHashtagsfuerAbonehmer(int meineId);
 
 	void hashtagAboErstellen(int nutzerId, int hashtagId);
 
@@ -49,8 +29,6 @@ public interface EditorService extends RemoteService {
 	Vector<Integer> holeAlleAbonniertenNutzer(int meineId);
 
 	void nutzerAbonnementLoeschen(int id, Nutzer _nutzerDeabonieren);
-
-	void hashtagSpeichern(Hashtag hashtag);
 
 	void hashtagErstellen(Hashtag hashtag);
 
@@ -72,7 +50,7 @@ public interface EditorService extends RemoteService {
 
 	Vector<Unterhaltung> oeffentlicheUnterhaltungenAbonnierterNutzer(int meineId);
 
-	Vector<Unterhaltung> alleAbonniertenHashtagNachrichtenVonId(int nutzerId);
+	Vector<Unterhaltung> alleUnterhaltungenVonAbonniertemHashtagUeberNutzerId(int nutzerId);
 
 	boolean NachrichtAktualisieren(Nachricht n);
 
@@ -81,5 +59,17 @@ public interface EditorService extends RemoteService {
 	boolean UnterhaltungVerlassen(Unterhaltung u);
 
 	Vector<Unterhaltung> getAlleRelevantenUnterhaltungen(int UserID);
+
+	Vector<Hashtag> gibAlleHashtags();
+
+	void hashtagAktualisieren(Hashtag hashtag);
+
+	void erstellenHashtagAbo(int NutzerId, int HashtagId);
+
+	Vector<Hashtag> getAbonnierteHashtags(int aboNehmerID);
+
+	Vector<Unterhaltung> getAlleSichtbarenUnterhaltungenFuerTeilnehmer(
+			int aktiverTeilnehmerID);
+
 
 }

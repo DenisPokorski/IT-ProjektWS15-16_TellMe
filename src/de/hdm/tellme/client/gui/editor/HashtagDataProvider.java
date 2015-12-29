@@ -47,7 +47,7 @@ public class HashtagDataProvider {
 		dataList = dataProvider.getList();
 
 
-		_asyncObj.gibHashtagListe(new AsyncCallback<Vector<Hashtag>>() {
+		_asyncObj.gibAlleHashtags(new AsyncCallback<Vector<Hashtag>>() {
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO
@@ -59,7 +59,7 @@ public class HashtagDataProvider {
 				hashTagListeTemp = hashTagListe;
 				int NutzerId = TellMe.eingeloggterBenutzer.getUser().getId();
 
- 				_asyncObj.ladeAbonnierendeHashtagListe(NutzerId,
+ 				_asyncObj.getAlleAbonniertenHashtagsfuerAbonehmer(NutzerId,
 						new AsyncCallback<Vector<Integer>>() {
 
 							@Override
@@ -101,7 +101,7 @@ public class HashtagDataProvider {
 
 	public void hashtagSpeichern(Hashtag hashtag){
 		
-		_asyncObj.hashtagSpeichern(hashtag, new AsyncCallback <Void>() {
+		_asyncObj.hashtagAktualisieren(hashtag, new AsyncCallback <Void>() {
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Fehler" );

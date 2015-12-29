@@ -51,7 +51,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	// ################### LISTEN #####################
 
 	private static Vector<Nutzer> alleUser = null;
-	private static Vector<Hashtag> alleHashtags = null;
+	
 
 	// ################### NUTZER #####################
 
@@ -68,24 +68,45 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 
 	public Nutzer getNutzerAnhandID(int nutzerID) {
-		// TODO: Implementieren falls gebraucht???
-		return null;
+
+		Vector<Nutzer> alleNutzer = getAlleNutzer(false);
+		Nutzer gesuchterNutzer = null;
+		for (Nutzer nutzer : alleNutzer) {
+			if (nutzer.getId() == nutzerID) {
+				gesuchterNutzer = nutzer;
+				break;
+			}
+		}
+
+		if (gesuchterNutzer == null) {
+			// Nutzer konnte nicht gefunden werden, stattdessen unknown user
+			// erstellen und zurückgeben
+			// Erstelle Unknown User und ordne diesen zu
+			Nutzer n = new Nutzer();
+			n.setId(-1);
+			n.setMailadresse("unknown@unknown.de");
+			n.setVorname("Unknown");
+			n.setNachname("User");
+			return n;
+
+		}
+
+		return gesuchterNutzer;
+
 	}
 
 	@Override
 	public Vector<Nutzer> getAlleNutzerAußerMeineId(int meineId) {
-		// Vector<Nutzer> alleNutzer =
-		// nutzerMapper.alleNutzerAusserMeineId(meineId);type name = new
-		// type(arguments);
-		Vector<Nutzer> alleNutzer = getAlleNutzer(false);
-		for (Nutzer nutzer : alleNutzer) {
-			if (nutzer.getId() == TellMe.gibEingeloggterBenutzer().getUser().getId()) {
-				alleNutzer.remove(nutzer);
-				continue;
-			}
+
+		Vector<Nutzer> alleNutzeAuserMir = new Vector<Nutzer>();
+
+		for (Nutzer nutzer : this.getAlleNutzer(false)) {
+		if (nutzer.getId() != meineId)
+		alleNutzeAuserMir.add(nutzer);
 		}
-		return alleNutzer;
-	}
+
+		 return alleNutzeAuserMir;
+		}
 
 	public Vector<Nutzer> getAlleNutzer(boolean zwingeNeuladen) {
 		if (alleUser == null || zwingeNeuladen)
@@ -97,54 +118,16 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	// ################### NutzerABO #####################
 
-	/**
-	 * @Deprecated waaas?
-	 */
-	@Deprecated
+
 	@Override
-	public Vector<Nutzer> getZuAbonnieredeLoeschenNutzerListe(int i) {
-		Vector<Nutzer> alleAbboniertenNutzer = nutzeraboMapper.ladeAbonnierendeNutzerListe(i);
-		return alleAbboniertenNutzer;
+	public void nutzerAbonnementLoeschen(int aboNehmerID, Nutzer aboGeber) {
+		nutzeraboMapper.loescheNutzeraboById(aboNehmerID, aboGeber);
 	}
 
-	/**
-	 * @Deprecated ???
-	 */
-	@Deprecated
-	@Override
-	public Vector<Nutzer> getNochNichtAbonnenteNutzerListe(int meineId) {
-		return null;
-	}
 
-	/**
-	 * @Deprecated wtf?.... getNichtAbonierteNutzer benutzen
-	 */
-	@Deprecated
 	@Override
-	public Vector<Nutzer> getAlleNochNichtAbonnierteNutzerListe(int id) {
-		// int id =7;
-		Vector<Nutzer> alleNutzer = nutzeraboMapper.alleNochNichtAbonnierteNutzerSelektieren(id);
-		return alleNutzer;
-	}
-
-	/**
-	 * @Deprecated bitte nutzerAbonnementLoeschen(int aboNehmerID, int
-	 *             aboGeberID) benutzen!
-	 */
-	@Deprecated
-	@Override
-	public void nutzerAbonnementLoeschen(int id, Nutzer _nutzerDeabonieren) {
-		nutzeraboMapper.loescheNutzeraboById(id, _nutzerDeabonieren);
-	}
-
-	/**
-	 * @Deprecated bitte nutzerAbonnementErstellen(int aboNehmerID, int
-	 *             aboGeberID) benutzen!
-	 */
-	@Deprecated
-	@Override
-	public void nutzerAbonnementErstellen(int vonId, Nutzer _nutzer) {
-		nutzeraboMapper.nutzerAboErstellen(vonId, _nutzer);
+	public void nutzerAbonnementErstellen(int aboNehmerID, Nutzer aboGeber) {
+		nutzeraboMapper.nutzerAboErstellen(aboNehmerID, aboGeber);
 
 	}
 
@@ -156,14 +139,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		Vector<Integer> alleAbonniertenNutzer = nutzerMapper.alleAbonniertenNutzer(meineId);
 
 		return alleAbonniertenNutzer;
-	}
-
-	public void nutzerAbonnementLoeschen(int aboNehmerID, int aboGeberID) {
-		// TODO: METHODE UM ABONEMENT zu loeschen
-	}
-
-	public void nutzerAbonnementErstellen(int aboNehmerID, int aboGeberID) {
-		// TODO: METHODE UM ABONEMENT zu erstellen
 	}
 
 	public Vector<Nutzer> getAbonierteNutzer(int aboNehmerID) {
@@ -180,26 +155,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	// ################### HASHTAG #####################
 
-	/**
-	 * @Deprecated bitte gibAlleHashtags benutzen!
-	 */
-	@Deprecated
 	@Override
-	public Vector<Hashtag> gibHashtagListe() {
-		Vector<Hashtag> alleHashtags = hashtagAboMapper.gibALleHashtags();
-		return alleHashtags;
-	}
-
-	/**
-	 * @Deprecated bitte hashtagAktualisieren benutzen!
-	 */
-	@Deprecated
-	@Override
-	public void hashtagSpeichern(Hashtag hashtag) {
-		hashtagAktualisieren(hashtag);
-	}
-	
-	// TODO: Ovverride..
 	public Vector<Hashtag> gibAlleHashtags() {
 		Vector<Hashtag> alleHashtags = hashtagAboMapper.gibALleHashtags();
 		return alleHashtags;
@@ -213,7 +169,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		hashtagMapper.entfernen(hashtag);
 	}
 
-	// TODO: Ovverride..
+	@Override
 	public void hashtagAktualisieren(Hashtag hashtag) {
 		hashtagMapper.aktualisieren(hashtag);
 	}
@@ -225,54 +181,22 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	// ################### HashtagABO #####################
 
-	/**
-	 * @Deprecated kein sprechender Name
-	 */
-	@Deprecated
+
 	@Override
-	public Vector<Integer> ladeAbonnierendeHashtagListe(int i) {
-		Vector<Integer> alleAbboniertenNutzer = hashtagAboMapper.ladeAbonnierteHashtagListe(i);
+	public Vector<Integer> getAlleAbonniertenHashtagsfuerAbonehmer(int aboNehmerId) {
+		Vector<Integer> alleAbboniertenNutzer = hashtagAboMapper.ladeAbonnierteHashtagListe(aboNehmerId);
 		return alleAbboniertenNutzer;
 	}
 
-	/**
-	 * @Deprecated kein sprechender Name
-	 */
-	@Deprecated
 	@Override
-	public Vector<Hashtag> getZuAbonnierendeLoeschenHashtagAboListe(int meineId) {
-		Vector<Hashtag> alleAbboniertenHashtags = hashtagAboMapper.ladeAbonnierendeHashtagListe(meineId);
-		return alleAbboniertenHashtags;
-	}
-
-	/**
-	 * @Deprecated bitte erstellenHashtagAbo benutzen
-	 */
-	@Deprecated
-	@Override
-	public void erstellenHashtagAboById(int NutzerId, int HashtagId) {
-		hashtagAboMapper.hashtagAboErstellen(NutzerId, HashtagId);
-	}
-
-	/**
-	 * @Deprecated bitte getAbonierteHashtags(int aboNehmerID) benutzen
-	 */
-	@Deprecated
-	@Override
-	public Vector<Hashtag> getAlleNochNichtAbonnierteHashtagAboListe(int i) {
-		Vector<Hashtag> alleHashtags = hashtagAboMapper.alleNochNichtAboonierteHashtagsSelektieren(i);
-		naMapper.alleNochNichtAbonnierteNutzerSelektieren(i);
-		return alleHashtags;
-	}
-
-	// TODO: Override...
 	public void erstellenHashtagAbo(int NutzerId, int HashtagId) {
 		hashtagAboMapper.hashtagAboErstellen(NutzerId, HashtagId);
 	}
 
-	public Vector<Hashtag> getAbonierteHashtags(int aboNehmerID) {
-		// TODO: Implementieren
-		return null;
+	@Override
+	public Vector<Hashtag> getAbonnierteHashtags(int aboNehmerID) {
+		Vector<Hashtag>alleHashtags = hashtagAboMapper.alleHashtagsEinesNutzers(aboNehmerID);
+		return alleHashtags;
 	}
 
 	@Override
@@ -287,18 +211,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	// ################### NACHRICHT #####################
 
-	@Deprecated
-	@Override
-	public void NachrichtErstellen(Nachricht n) {
-		nachrichtMapper.anlegen(n);
-	}
-
-	@Deprecated
-	@Override
-	public void nachrichtUnterhaltungZuweisen(String txt, int uId, Timestamp ts) {
-
-	}
-
 	/**
 	 * @Deprecated WTF?!
 	 */
@@ -309,12 +221,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return null;
 	}
 
-	/**
-	 * @Deprecated WTF?!
-	 */
-	@Deprecated
+
 	@Override
-	public Vector<Unterhaltung> alleAbonniertenHashtagNachrichtenVonId(int nutzerId) {
+	public Vector<Unterhaltung> alleUnterhaltungenVonAbonniertemHashtagUeberNutzerId(int nutzerId) {
 		Vector<Nachricht> nachrichtenListe = new Vector<Nachricht>();
 		Vector<Unterhaltung> unterhaltungsListe = new Vector<Unterhaltung>();
 		Vector<Integer> hashtagIds = hashtagAboMapper.selektiereAlleHashtagsNachAbonehmer(nutzerId);
@@ -382,11 +291,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 
 	// ################### UNTERHALTUNG #####################
-	/**
-	 * @Deprecated Unterhaltungen werden nicht gelöscht, sondern nur die
-	 *             Sichtbarkeit aktualisiert!
-	 */
-	@Deprecated
+
 	@Override
 	public boolean unterhaltung_loeschen(int unterhaltungsID) {
 		boolean ergebnis = false;
@@ -404,7 +309,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		Vector<Integer> meineUnterhaltungenIds = unterhaltungMapper.meineUnterhaltungen(meineId);
 
 		for (Integer unterhaltungsId : meineUnterhaltungenIds) {
-			System.out.println(unterhaltungsId);
+			System.out.println("meineUnterhaltungenMitSichtbarkeit - geladene Unterhaltung: " + unterhaltungsId);
 			meineUnterhaltungen.add(unterhaltungMapper.gibNachrichtenIdsZuUnterhaltungsId(unterhaltungsId));
 		}
 
@@ -472,11 +377,42 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		erfolgreich = unterhaltungMapper.teilnehmerAktualisieren(u.getId(), TellMe.gibEingeloggterBenutzer().getUser().getId(), 0);
 		return erfolgreich;
 	}
+	
+	@Override
+	public Vector<Unterhaltung> getAlleSichtbarenUnterhaltungenFuerTeilnehmer(int aktiverTeilnehmerID) {
+		Vector<Unterhaltung> alleSichtbarenUnterhaltungen = new Vector<Unterhaltung>();
+		Vector<Unterhaltung> alleSichtbarenUnterhaltungenMitSichtbarenNachrichten = new Vector<Unterhaltung>();
 
+		alleSichtbarenUnterhaltungen = unterhaltungMapper.alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(aktiverTeilnehmerID);
+
+		// lade Nachrichten zu Unterhaltungen
+		for (Unterhaltung unterhaltung : alleSichtbarenUnterhaltungen) {
+
+			Vector<Nachricht> alleNachrichten = nachrichtMapper.gibAlleNachrichtenVonUnterhaltung(unterhaltung.getId());
+
+			// lade zu jeder Nachricht den Sender und die Hashtags
+			if (alleNachrichten.size() > 0) {
+				for (Nachricht nachricht : alleNachrichten) {
+					Vector<Hashtag> alleHashtagsZuNachricht = hashtagMapper.alleHashtagsZuNachrichtenID(nachricht.getId());
+					nachricht.setVerknuepfteHashtags(alleHashtagsZuNachricht);
+
+					Nutzer sender = null;
+					sender = getNutzerAnhandID(nachricht.getSenderId());
+					nachricht.setSender(sender);
+
+				}
+			unterhaltung.setAlleNachrichten(alleNachrichten);
+			alleSichtbarenUnterhaltungenMitSichtbarenNachrichten.add(unterhaltung);
+			}
+		}
+
+		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;
+	}
+	
 	@Override
 	public Vector<Unterhaltung> getAlleRelevantenUnterhaltungen(int UserID) {
 		Vector<Unterhaltung> alleUnterhaltungen = new Vector<Unterhaltung>();
-		Vector<Unterhaltung> TeilnehmendeUnterhaltungen = meineUnterhaltungenMitSichtbarkeit(UserID);
+		Vector<Unterhaltung> TeilnehmendeUnterhaltungen = getAlleSichtbarenUnterhaltungenFuerTeilnehmer(UserID);
 		alleUnterhaltungen = TeilnehmendeUnterhaltungen;
 
 		// Vector<Unterhaltung> OeffentlicheUnterhaltungenAbonierterNutzer =
