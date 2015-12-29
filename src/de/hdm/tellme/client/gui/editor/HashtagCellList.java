@@ -58,6 +58,7 @@ public class HashtagCellList {
 					nvf.setzeHashtag(selectionModel.getSelectedObject());
 					
 					RootPanel.get("content_right").clear();
+					RootPanel.get("content_right").add(nvf.gibInfoFormular());
 					RootPanel.get("content_right").add(nvf.gibFormular());
 				
 				}

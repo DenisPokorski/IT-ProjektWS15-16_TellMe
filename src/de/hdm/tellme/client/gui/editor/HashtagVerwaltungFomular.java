@@ -23,6 +23,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -133,6 +134,14 @@ public class HashtagVerwaltungFomular extends Composite {
 		return vpForm;
 	}
 
+	public VerticalPanel gibInfoFormular(){
+		VerticalPanel vpForm = new VerticalPanel();
+		vpForm.clear();
+		vpForm.add(new HTML("Hier kannst du ein <b>Hashtagabonnement</b> erstellen oder löschen. </br>"
+				+ "Wähle dazu das gewünschte Hashtag aus und drücke dann den Button zum <b>abonnieren</b> oder zum <b>deabonnieren</b>."));
+		return vpForm;
+	}
+	
 	// Setze Buttons
 	public void setzeHashtag(HashtagZelle.ZellenObjekt ZellenObjekt) {
 		this.hashtag = ZellenObjekt.hashtag;
