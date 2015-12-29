@@ -18,7 +18,6 @@ package de.hdm.tellme.client.gui.editor;
 
 import java.util.Vector;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
@@ -28,8 +27,6 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import de.hdm.tellme.shared.EditorService;
-import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Hashtag;
 
 /**
@@ -37,9 +34,6 @@ import de.hdm.tellme.shared.bo.Hashtag;
  */
 
 public class HashtagVerwaltungFomular extends Composite {
-
-	private final EditorServiceAsync _asyncObj = GWT
-			.create(EditorService.class);
 
 	private Hashtag hashtag = null;
 	Button htSpeichern = new Button("Hashtag speichern");

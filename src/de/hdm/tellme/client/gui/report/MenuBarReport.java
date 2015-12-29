@@ -22,8 +22,6 @@ import de.hdm.tellme.shared.LoginInfo;
 public class MenuBarReport extends HorizontalPanel{
 	
 	private HorizontalPanel menuePanel = new HorizontalPanel();
-	private LoginInfo loginInfo;
-	
 	/**
 	 * Definition von leerem Konstruktor
 	 */
@@ -35,7 +33,6 @@ public class MenuBarReport extends HorizontalPanel{
 	 * An dieser Stelle wird das LoginInfo von der Methode setLoginInfo(), übergeben und gesetzt. 
 	 */
 	public void setLoginInfo(LoginInfo loginInfo){
-		this.loginInfo = loginInfo;
 	}
 	
 	 /**

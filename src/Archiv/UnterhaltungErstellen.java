@@ -1,17 +1,12 @@
-package de.hdm.tellme.client;
+package Archiv;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import com.google.gwt.cell.client.TextCell;
-import com.google.gwt.core.shared.GWT;
-import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import de.hdm.tellme.shared.EditorService;
-import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Nachricht;
 
 public class UnterhaltungErstellen {
@@ -22,8 +17,6 @@ public class UnterhaltungErstellen {
       String a; 
 
 	
-	  private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
-
 	  public class UnterhaltungsIdSpeicher{
 		  
 			 private  int uId;
@@ -141,12 +134,7 @@ public  Vector <Nachricht> oeffentlicheUnterhaltungNachrichtenAnzeigen(int uId){
 
 
 public ArrayList<String> ladeAlleOeffentlichenUnterhaltungen() {
-	final	 TextCell textCell = new TextCell();
-
-  final  CellList<String> cellList = new CellList<String>(textCell);
- // final   Arrayist<String> unterhaltungListeV = null ;
-
-//	asyncObj.ladeAlleOeffentlichenUnterhaltungen( new AsyncCallback <Vector<Unterhaltung>>() {
+	//	asyncObj.ladeAlleOeffentlichenUnterhaltungen( new AsyncCallback <Vector<Unterhaltung>>() {
 //		@Override
 //		public void onFailure(Throwable caught) {
 //			Window.alert( "Fehler");

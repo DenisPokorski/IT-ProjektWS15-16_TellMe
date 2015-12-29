@@ -3,11 +3,11 @@ package de.hdm.tellme.client.gui.report;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 
-import de.hdm.tellme.shared.bo.Nutzer;
+//import de.hdm.tellme.shared.bo.Nutzer;
 
 public class ReportFormular1_1 extends Composite{
 	
-	private Nutzer nutzer = null;
+//	private Nutzer nutzer = null;
 	Button report1_1GenerierenButton = new Button("Report 1 erstellen");
 	
 	public ReportFormular1_1(){

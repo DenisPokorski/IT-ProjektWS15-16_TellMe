@@ -1,5 +1,4 @@
-package de.hdm.tellme.client;
-import com.google.gwt.core.shared.GWT;
+package Archiv;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -8,8 +7,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import de.hdm.tellme.shared.EditorService;
-import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.LoginInfo;
 
 /*
@@ -20,10 +17,7 @@ import de.hdm.tellme.shared.LoginInfo;
 
 public class NachrichtenSenden extends VerticalPanel {
 	
-	private LoginInfo loginInfo;
-	
 	public void setLoginInfo(LoginInfo loginInfo) {
-		  this.loginInfo = loginInfo;
 		 }
 	
 	//Panels werden erstellt
@@ -60,9 +54,6 @@ public class NachrichtenSenden extends VerticalPanel {
 				//Button zum Abbrechen --> Alles wir geleert, Seite bleibt aber offen
 				private Button abbrechenButton = new Button("Abbrechen");
 				
-	//RPC Methode, die auf Client in einer bestimmten Runtime ausgeführt wird um Daten mit dem Server auszutauschen
-		private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
-	
 	//Jedes GWT Widget implementiert diese Methode, welche zeigt was passiert wenn eine Widget-Instanz zur Anzeige gebracht wird.
  	public void onLoad(){
  		

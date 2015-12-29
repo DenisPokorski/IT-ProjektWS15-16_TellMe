@@ -10,7 +10,6 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
@@ -43,7 +42,6 @@ public class Report1Gui extends VerticalPanel{
 	private VerticalPanel reportPanel1_left = new VerticalPanel();
 	private VerticalPanel reportPanel1_right = new VerticalPanel();
 
-	private ListBox nutzerDropDown = new ListBox();
 	private DateBox vonDateBox = new DateBox( ); 
 	private DateBox bisDateBox = new DateBox( ); 
 	private Button report1Generieren = new Button("Report 1 generieren");

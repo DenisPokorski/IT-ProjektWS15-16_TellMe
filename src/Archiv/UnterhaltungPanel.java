@@ -1,4 +1,4 @@
-package de.hdm.tellme.client.gui.editor;
+package Archiv;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +17,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.Range;
 
-import de.hdm.tellme.client.UnterhaltungErstellen;
 import de.hdm.tellme.shared.bo.Nachricht;
 
 public class UnterhaltungPanel {

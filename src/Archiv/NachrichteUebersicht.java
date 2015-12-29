@@ -1,4 +1,4 @@
-package de.hdm.tellme.client;
+package Archiv;
 /**
  *Klasse mit �bersicht aller Nachrichten bzw. Unterhaltungen. 
  * 
@@ -9,7 +9,6 @@ package de.hdm.tellme.client;
  */
 import java.util.ArrayList;
 
-import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSelectionPolicy;
 import com.google.gwt.user.client.ui.Button;
@@ -20,8 +19,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 
-import de.hdm.tellme.shared.EditorService;
-import de.hdm.tellme.shared.EditorServiceAsync;
 /*
  * Diese KLasse stellt die �bersicht aller Nachrichten bzw. Unterhaltungen dar. 
  * @author: Dana Th�ring 
@@ -40,10 +37,6 @@ public class NachrichteUebersicht extends VerticalPanel {
 	
 	
 	
-	//RPC Methode, die auf Client in einer bestimmten Runtime ausgeführt wird um Daten mit dem Server auszutauschen
-	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
-		
-	
 	//�berschrift und Beschreibung einf�gen
 	private Label nachrichtenUebersicht = new Label("Nachrichten�bersicht"); 
 	private Label beschreibung = new Label("Hier kannst du deine �ffentlichen und privaten"
@@ -53,9 +46,7 @@ public class NachrichteUebersicht extends VerticalPanel {
 			+ "gel�scht werden. Beim Klicken des x im linken Feld werden Kommunikationsverl�ufe gel�scht.");
 
 	private Button neueNachricht = new Button("Neue Nachricht erstellen"); 
-	private Button nachrichtAuswaehlen = new Button();
-	
-	 //Es wird eine Zelle  erstellt, um die Nachrichten darzustellen 
+	//Es wird eine Zelle  erstellt, um die Nachrichten darzustellen 
 	  TextCell textCell = new TextCell();
 	  
 	  

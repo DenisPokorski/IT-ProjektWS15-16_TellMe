@@ -6,7 +6,6 @@ import java.util.Vector;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.hdm.tellme.server.db.HashtagAbonnementMapper;
-import de.hdm.tellme.server.db.HashtagMapper;
 import de.hdm.tellme.server.db.NachrichtMapper;
 import de.hdm.tellme.server.db.NutzerAbonnementMapper;
 import de.hdm.tellme.server.db.NutzerMapper;
@@ -21,26 +20,20 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 		ReportService {
 	
 	public void init() throws IllegalArgumentException {
-		this.nutzerMapper = NutzerMapper.nutzerMapper();
+		NutzerMapper.nutzerMapper();
 		this.nutzeraboMapper = NutzerAbonnementMapper.nutzerAbonnementMapper();
 		this.nachrichtMapper = NachrichtMapper.nachrichtMapper();
-		this.unterhaltungMapper = UnterhaltungMapper.unterhaltungMapper();
+		UnterhaltungMapper.unterhaltungMapper();
 		this.hashtagAboMapper = HashtagAbonnementMapper.hashtagAbonnementMapper();
 
 	}
 	
-	//Für Report2 benötigen wir den NutzerAbonnementMapper und NutzerMapper
-	private NutzerMapper nutzerMapper = null;
 	private NutzerAbonnementMapper nutzeraboMapper = null;
 
 	private NachrichtMapper nachrichtMapper = null;
-	private UnterhaltungMapper unterhaltungMapper = null;
-
-	
-	private NutzerAbonnementMapper naMapper = null;
 	private HashtagAbonnementMapper hashtagAboMapper = null;
 	
-	private HashtagMapper hashtagMapper = null;
+	
 	
 
 

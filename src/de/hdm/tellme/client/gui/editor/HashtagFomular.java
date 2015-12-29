@@ -17,7 +17,6 @@ package de.hdm.tellme.client.gui.editor;
  */
 
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
@@ -25,8 +24,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import de.hdm.tellme.shared.EditorService;
-import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Hashtag;
 
 /**
@@ -35,8 +32,6 @@ import de.hdm.tellme.shared.bo.Hashtag;
 
 public class HashtagFomular extends Composite {
 	
-	private final EditorServiceAsync _asyncObj = GWT.create(EditorService.class);
-
 	private Hashtag hashtag = null;
 	Button btnAbonieren = new Button("abonieren");
 	Button btnDeabonieren = new Button("deabonieren");

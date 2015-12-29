@@ -26,8 +26,6 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 		String strDatum = "";
 		String strAbsender = "";
 		String strText = "";
-		String strHashTags = "";
-
 		if (u.getUnterhaltungstyp() == eUnterhaltungsTyp.oeffentlich) {
 			strUnterhaltungsTyp = "OE";
 		} else {
@@ -42,7 +40,6 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 
 		if (value.getVerknuepfteHashtags() != null) {
 			for (Hashtag hashtag : value.getVerknuepfteHashtags()) {
-				strHashTags += "#" + hashtag.getSchlagwort() + " ";
 			}
 		}
 

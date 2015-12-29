@@ -29,7 +29,6 @@ public class HTMLReportWriter  {
 	private String reportText = "";
 	
 	private StringBuffer buffer = new StringBuffer(); 
-	private Vector<Hashtag> HashtagListe = new Vector<Hashtag>();
 	private Label ueberrschrift1 = new Label("Reportgenerator 3: ");
 	private Label subtext = new Label("Ausgabe aller Hashtagabonnoments eines Nutzers");
 
@@ -87,9 +86,8 @@ public class HTMLReportWriter  {
 		}
 		
 		
-		// Abschnitt Report 3
+		// Abschnitt Report 2
 		public void generateReport2(Vector <Nutzer> result,Nutzer n){
-			String ueberschrift1 = "Report 2";
 			erstelleKopfDatenReport2(n);
 			erstelleKoerperDatenReport2( result);
 			
@@ -102,7 +100,7 @@ public class HTMLReportWriter  {
 			HTML Erstellungsdatum = new HTML(""+new Timestamp(currentTime.getTime()));
 			// Nutzerabo Klasse Format
 			buffer.append("<table class='reportTabelle'>");
-			buffer.append("<th colspan='2' class='reportKopfzeile'> Report 3 </th>");
+			buffer.append("<th colspan='2' class='reportKopfzeile'> Report 2 </th>");
 
 		 	buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"+ausgangsnutzer  +"</div><div> Datum: "+Erstellungsdatum + "</div></td><td class='kopfdatenbox_rechts'>"+new Impressum().getHtmlImpressum()+"</td></tr>"); 
 			buffer.append("</table>");
