@@ -193,6 +193,7 @@ public class NachrichtMapper {
 				nA.setText(rs.getString("Text"));
 				nA.setSenderId(rs.getInt("AutorId"));
 				nA.setErstellungsDatum(rs.getTimestamp("Erstellungsdatum"));
+				nA.setSichtbarkeit(1);
 				meineNachrichten.add(nA);
 			}
 		} catch (Exception e) {
@@ -339,6 +340,7 @@ public class NachrichtMapper {
 				nA.setText(rs.getString("Nachricht.Text"));
 				nA.setErstellungsDatum(rs
 						.getTimestamp("Nachricht.ErstellungsDatum"));
+				nA.setSichtbarkeit(1);
 
 			}
 		} catch (Exception e) {

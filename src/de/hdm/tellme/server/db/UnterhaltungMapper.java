@@ -97,18 +97,18 @@ public class UnterhaltungMapper {
 		try {
 			Statement state = con.createStatement();
 			ResultSet rs = state
-					.executeQuery("SELECT * FROM NutzerUnterhaltung INNER JOIN Unterhaltung ON"
-							+ " NutzerUnterhaltung.UnterhaltungId = Unterhaltung.Id Where NutzerID = "
+					.executeQuery("SELECT * FROM NutzerUnterhaltung INNER JOIN Unterhaltung ON NutzerUnterhaltung.UnterhaltungId = Unterhaltung.Id WHERE NutzerId = '"
 							+ teilnehmerID
-							+ " AND NutzerUnterhaltung.Sichtbarkeit = 1;");
+							+ "' AND NutzerUnterhaltung.Sichtbarkeit = 1");
 
 			while (rs.next()) {
 				Unterhaltung u = new Unterhaltung();
-				u.setId(rs.getInt("Id"));
+				u.setId(rs.getInt("Unterhaltung.Id"));
 				u.setSichtbarkeit(1);
-				int typ = rs.getInt("Typ");
+				int typ = rs.getInt("Unterhaltung.Typ");
 				u.setUnterhaltungstyp(Unterhaltung.eUnterhaltungsTyp.values()[typ]);
-				u.setErstellungsDatum(rs.getTimestamp("ErstellungsDatum"));
+				u.setErstellungsDatum(rs
+						.getTimestamp("Unterhaltung.ErstellungsDatum"));
 				alleUnterhaltungen.add(u);
 
 			}
@@ -182,6 +182,7 @@ public class UnterhaltungMapper {
 				uH.setErstellungsDatum(rs
 						.getTimestamp("Unterhaltung.Erstellungsdatum"));
 				uH.setUnterhaltungstyp(Unterhaltung.eUnterhaltungsTyp.values()[typ]);
+				uH.setSichtbarkeit(1);
 			}
 
 		} catch (Exception e) {
@@ -227,6 +228,7 @@ public class UnterhaltungMapper {
 				nA.setErstellungsDatum(rs
 						.getTimestamp("Nachricht.ErstellungsDatum"));
 				nA.setText(rs.getString("Nachricht.Text"));
+				nA.setSichtbarkeit(1);
 				meineNachrichten.add(nA);
 
 			}
