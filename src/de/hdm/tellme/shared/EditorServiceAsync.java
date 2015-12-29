@@ -80,5 +80,7 @@ public interface EditorServiceAsync {
 	void getAlleSichtbarenUnterhaltungenFuerTeilnehmer(int aktiverTeilnehmerID,
 			AsyncCallback<Vector<Unterhaltung>> callback);
 
+	void unterhaltungBeantworten(Nachricht antwortNachricht, Unterhaltung unterhaltung, AsyncCallback<Boolean> callback);
+
 	 
  }

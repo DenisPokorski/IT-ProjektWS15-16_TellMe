@@ -71,5 +71,7 @@ public interface EditorService extends RemoteService {
 
 	boolean NachrichtAktualisieren(Nachricht original, Nachricht neu);
 
+	boolean unterhaltungBeantworten(Nachricht antwortNachricht, Unterhaltung unterhaltung);
+
 
 }

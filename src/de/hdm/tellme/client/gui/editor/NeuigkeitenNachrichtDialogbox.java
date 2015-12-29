@@ -77,6 +77,8 @@ public class NeuigkeitenNachrichtDialogbox {
 		boxTitel = "Antwort verfassen";
 		textFunktionsbutton = "Senden";
 
+		antwortUnterhaltung = u;
+		
 		return gibDialogBox();
 	}
 
@@ -312,6 +314,9 @@ public class NeuigkeitenNachrichtDialogbox {
 
 						// Füge eigene ID als Teilnehmer hinzu
 						AusgewaehlteEmpfaenger.addElement(TellMe.gibEingeloggterBenutzer().getUser());
+						
+						
+						
 
 						asyncObj.unterhaltungStarten(neueNachricht, AusgewaehlteEmpfaenger, new AsyncCallback<Boolean>() {
 
@@ -342,6 +347,25 @@ public class NeuigkeitenNachrichtDialogbox {
 						antwortNachricht.setSichtbarkeit(1);
 						antwortNachricht.setText(textArea.getValue());
 						antwortNachricht.setVerknuepfteHashtags(AusgewaehlteHashtags);
+						
+						asyncObj.unterhaltungBeantworten(antwortNachricht, antwortUnterhaltung, new AsyncCallback<Boolean>() {
+							
+							@Override
+							public void onSuccess(Boolean result) {
+								if (result)
+									Window.alert("Nachricht erfolgreich erstellt, sie wurden der Unterhaltung als Teilnehmer hinzugefuegt.");
+								else
+									Window.alert("Fehler beim erstellen der Nachricht, bitte an Administrator wenden.");
+								
+							}
+							
+							@Override
+							public void onFailure(Throwable caught) {
+								Window.alert("Fehler beim erstellen der Nachricht, bitte an Administrator wenden.");
+								
+							}
+						});
+						
 						//TODO: do somthng
 					}
 					break;

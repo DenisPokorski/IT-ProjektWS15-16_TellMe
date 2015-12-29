@@ -6,6 +6,7 @@ import com.google.gwt.user.client.Window;
 
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
+import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Unterhaltung;
 import de.hdm.tellme.shared.bo.Unterhaltung.eUnterhaltungsTyp;
 
@@ -28,6 +29,7 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 		String strAbsender = "";
 		String strText = "";
 		String strHashtags = "";
+		String strTeilnehmer = "";
 
 		if (u.getUnterhaltungstyp() == eUnterhaltungsTyp.oeffentlich) {
 			strUnterhaltungsTyp = "OE";
@@ -49,6 +51,16 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 			} else
 				strHashtags += "keine Hashtags vorhanden";
 		}
+		
+		if (u.getTeilnehmer() != null) {
+			if (u.getTeilnehmer().size() != 0) {
+				for (Nutzer teilnehmer : u.getTeilnehmer()) {
+					strTeilnehmer += teilnehmer.getVorname() + " " + teilnehmer.getNachname()+ ", ";
+				}
+				strTeilnehmer = strTeilnehmer.substring(0, strTeilnehmer.length()-3);
+			} else
+				strTeilnehmer += "keine Teilnehmer";
+		}
 
 		sb.appendHtmlConstant("<div class='neuigkeitenNachrichtInhalt'>");
 		sb.appendHtmlConstant("<table style='width:100%'><tr><td>");
@@ -63,7 +75,7 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 		sb.appendHtmlConstant("</td></tr><tr><td colspan='3'>");
 		sb.appendEscaped(strText);
 		sb.appendHtmlConstant("</td>");
-		sb.appendHtmlConstant("</tr>" + "<tr><td colspan='3'>" + "Hashtags: " + strHashtags + "</td></tr>" + "</table>");
+		sb.appendHtmlConstant("</tr><tr><td colspan='2'>" + "Teilnehmer: " + strTeilnehmer + "</td><td>" + "Hashtags: " + strHashtags + "</td></tr>" + "</table>");
 		sb.appendHtmlConstant("</div>");
 
 	}

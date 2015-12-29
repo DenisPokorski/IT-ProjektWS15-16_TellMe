@@ -289,7 +289,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	public boolean NachrichtAktualisieren(Nachricht original, Nachricht neu) {
 		boolean erfolgreich = true;
 
-		//welche hashtags muessen geloescht werden
+		// welche hashtags muessen geloescht werden
 		Vector<Hashtag> ZuLoeschendeHashtags = new Vector<Hashtag>();
 		for (Hashtag hashtagOriginal : original.getVerknuepfteHashtags()) {
 			boolean existiertNoch = false;
@@ -304,33 +304,33 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 				ZuLoeschendeHashtags.add(hashtagOriginal);
 		}
 
-		//welche hashtags muessen hinzugefuegt werden
+		// welche hashtags muessen hinzugefuegt werden
 		Vector<Hashtag> ZuHinzuzufuegendeHashtags = new Vector<Hashtag>();
 		for (Hashtag hashtagNeu : neu.getVerknuepfteHashtags()) {
 			boolean istNeu = true;
 			for (Hashtag hashtagOriginal : original.getVerknuepfteHashtags()) {
-				if(hashtagNeu.getId() == hashtagOriginal.getId()){
-					istNeu= false;
+				if (hashtagNeu.getId() == hashtagOriginal.getId()) {
+					istNeu = false;
 					break;
 				}
 			}
-			
-			if(istNeu)
+
+			if (istNeu)
 				ZuHinzuzufuegendeHashtags.add(hashtagNeu);
 		}
 
 		erfolgreich = nachrichtMapper.aktualisieren(neu);
-		
-		if(erfolgreich){
+
+		if (erfolgreich) {
 			for (Hashtag hashtag : ZuLoeschendeHashtags) {
 				nachrichtMapper.hashtagZuordnungLoeschen(hashtag.getId(), neu.getId());
-			}			
+			}
 			for (Hashtag hashtag : ZuHinzuzufuegendeHashtags) {
 				nachrichtMapper.hashtagEinerNachrichtZuordnen(hashtag.getId(), neu.getId());
-			}			
-			
+			}
+
 		}
-		
+
 		return erfolgreich;
 	}
 
@@ -378,7 +378,14 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	public boolean unterhaltungStarten(Nachricht ersteNachricht, Vector<Nutzer> teilnehmer) {
 		boolean erfolgreich = true;
 		int unterhaltungsID = -1;
-		unterhaltungsID = unterhaltungMapper.anlegen(eUnterhaltungsTyp.oeffentlich);
+
+		eUnterhaltungsTyp UnterhaltungsTyp;
+		if (teilnehmer.size() > 1)
+			UnterhaltungsTyp = eUnterhaltungsTyp.privat;
+		else
+			UnterhaltungsTyp = eUnterhaltungsTyp.oeffentlich;
+
+		unterhaltungsID = unterhaltungMapper.anlegen(UnterhaltungsTyp);
 		if (unterhaltungsID != -1) {
 			for (Nutzer nutzer : teilnehmer) {
 				unterhaltungMapper.teilnehmerHinzufuegen(unterhaltungsID, nutzer.getId());
@@ -392,6 +399,25 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			} else {
 				erfolgreich = false;
 			}
+		} else {
+			erfolgreich = false;
+		}
+
+		return erfolgreich;
+	}
+
+	@Override
+	public boolean unterhaltungBeantworten(Nachricht antwortNachricht, Unterhaltung unterhaltung) {
+		boolean erfolgreich = true;
+
+		int nachrichtenID = -1;
+		nachrichtenID = nachricht_erstellen(antwortNachricht);
+		if (nachrichtenID != -1) {
+			if (nachrichtMapper.nachrichtEinerUnterhaltungZuordnen(nachrichtenID, unterhaltung.getId())) {
+				// Nachricht wurde erfolgreich zugeordnet
+				nutzerEinerUnterhaltungZuordnen(antwortNachricht.getSenderId(), unterhaltung.getId());
+			}
+
 		} else {
 			erfolgreich = false;
 		}
@@ -436,20 +462,42 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 		alleSichtbarenUnterhaltungen = unterhaltungMapper.alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(aktiverTeilnehmerID);
 
-		// lade Nachrichten zu Unterhaltungen
+		// lade Nachrichten und Teilnehmer zu Unterhaltungen
 		for (Unterhaltung unterhaltung : alleSichtbarenUnterhaltungen) {
 
+			//Nachrichten
 			Vector<Nachricht> alleNachrichten = ladeAlleNachrichtenZuUnterhaltung(unterhaltung.getId());
 			unterhaltung.setAlleNachrichten(alleNachrichten);
 
-			if (alleNachrichten.isEmpty() == false)
-				alleSichtbarenUnterhaltungenMitSichtbarenNachrichten.add(unterhaltung);
-			else
+			//fuege nur Unterhaltungen mit mind. 1 Nachricht hinzu.
+			if (alleNachrichten.isEmpty() == false) {
+				boolean bereitsHinzugefuegt = false;
+				// Pruefe ob Unterhaltung bereits der Listehinzugefügt wurde
+				for (Unterhaltung unterhaltungInEntgueltigerListe : alleSichtbarenUnterhaltungenMitSichtbarenNachrichten) {
+					if (unterhaltungInEntgueltigerListe.getId() == unterhaltung.getId())
+						bereitsHinzugefuegt = true;
+				}
+				//Fuege nur Unterhaltungen hinzu, die nicht bereits zur liste hinzuegfügt wurden
+				if (bereitsHinzugefuegt == false)
+					alleSichtbarenUnterhaltungenMitSichtbarenNachrichten.add(unterhaltung);
+			} else
 				Helper.LogWarnung("getAlleSichtbarenUnterhaltungenFuerTeilnehmer - sichtbare Unterhaltung ohne Sichtbare Nachricht entdeckt. UnterhaltungsID: "
 						+ unterhaltung.getId());
 
-		}
+			
+			//Teilnehmer
+			Vector<Nutzer> alleTeilnehmer = new Vector<Nutzer>();
+			Vector<Integer> alleTeilnehmerIDs = unterhaltungMapper.gibTeilnehmerFuerUnterhaltung(unterhaltung.getId());
+			for (Integer teilnehmerID : alleTeilnehmerIDs) {
+				alleTeilnehmer.add(getNutzerAnhandID(teilnehmerID));
+			}
+			
+			unterhaltung.setTeilnehmer(alleTeilnehmer);
+			
 
+		}
+		
+		
 		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;
 	}
 
@@ -532,6 +580,13 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		}
 
 		return alleUnterhaltungen;
+	}
+
+	private boolean nutzerEinerUnterhaltungZuordnen(int nutzerID, int unterhaltungsID) {
+		boolean erfolgreich = true;
+		// TODO: prüfen ob bereits hinzugefügt
+		unterhaltungMapper.teilnehmerHinzufuegen(unterhaltungsID, nutzerID);
+		return erfolgreich;
 	}
 
 	// ################### NEU #####################
