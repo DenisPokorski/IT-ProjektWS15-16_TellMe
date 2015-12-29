@@ -9,7 +9,6 @@ import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Unterhaltung;
-import de.hdm.tellme.shared.bo.Unterhaltung.eUnterhaltungsTyp;
 
 public interface EditorServiceAsync {
 

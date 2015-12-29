@@ -1,8 +1,8 @@
 package de.hdm.tellme.shared;
 
-import de.hdm.tellme.shared.bo.Nutzer;
-
 import java.io.Serializable;
+
+import de.hdm.tellme.shared.bo.Nutzer;
 
 public class LoginInfo implements Serializable {
 

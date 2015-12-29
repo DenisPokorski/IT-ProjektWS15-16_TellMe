@@ -1,7 +1,10 @@
 package de.hdm.tellme.server.db;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 import com.google.appengine.api.rdbms.AppEngineDriver;
-import java.sql.*;
 
 /**
  * Aufbau und Vewarltung einer Datebankverbindung.

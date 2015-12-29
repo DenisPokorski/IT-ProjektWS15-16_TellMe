@@ -4,7 +4,6 @@ import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 
 import de.hdm.tellme.shared.bo.Hashtag;
-import de.hdm.tellme.shared.bo.Nutzer;
 
 public class HashtagZelle  {
 	public class ZellenObjekt {

@@ -1,10 +1,6 @@
 package de.hdm.tellme.shared.report;
 
-import java.util.Vector;
-
 import de.hdm.tellme.client.Impressum;
-import de.hdm.tellme.shared.bo.Hashtag;
-import de.hdm.tellme.shared.bo.Nutzer;
 
 public class ReportPanel {
 	

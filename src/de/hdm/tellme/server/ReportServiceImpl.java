@@ -11,9 +11,10 @@ import de.hdm.tellme.server.db.NachrichtMapper;
 import de.hdm.tellme.server.db.NutzerAbonnementMapper;
 import de.hdm.tellme.server.db.NutzerMapper;
 import de.hdm.tellme.server.db.UnterhaltungMapper;
-import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.ReportService;
-import de.hdm.tellme.shared.bo.*;
+import de.hdm.tellme.shared.bo.Hashtag;
+import de.hdm.tellme.shared.bo.Nachricht;
+import de.hdm.tellme.shared.bo.Nutzer;
 
 @SuppressWarnings("serial")
 public class ReportServiceImpl extends RemoteServiceServlet implements

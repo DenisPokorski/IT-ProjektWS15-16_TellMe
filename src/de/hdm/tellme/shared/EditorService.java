@@ -6,11 +6,10 @@ import java.util.Vector;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
+import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
-import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Unterhaltung;
-import de.hdm.tellme.shared.bo.Unterhaltung.eUnterhaltungsTyp;
 
 @RemoteServiceRelativePath("editorservice")
 public interface EditorService extends RemoteService {

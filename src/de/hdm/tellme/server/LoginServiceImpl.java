@@ -1,11 +1,8 @@
 package de.hdm.tellme.server;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.hdm.tellme.server.db.NutzerMapper;

@@ -6,7 +6,6 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.tellme.shared.bo.Nutzer;
-import de.hdm.tellme.shared.bo.NutzerAbonnement;
 
 public class NutzerAbonnementMapper {
 	private static NutzerAbonnementMapper nutzerAbonnementMapper = null;

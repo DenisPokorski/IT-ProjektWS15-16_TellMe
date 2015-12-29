@@ -6,10 +6,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Vector;
 
-import de.hdm.tellme.server.db.DatenbankVerbindung;
+import de.hdm.tellme.shared.bo.BusinessObject.eSichtbarkeit;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Unterhaltung;
-import de.hdm.tellme.shared.bo.BusinessObject.eSichtbarkeit;
 
 /**
  * Mapper-Klasse, die Nutzer-Objekte in der Datenbank abbildet. Diese enth�lt

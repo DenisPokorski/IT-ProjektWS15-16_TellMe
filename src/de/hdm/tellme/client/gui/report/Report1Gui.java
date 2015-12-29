@@ -2,8 +2,6 @@ package de.hdm.tellme.client.gui.report;
 
 import java.util.Date;
 
-import org.apache.tools.ant.taskdefs.Execute;
-
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
@@ -15,16 +13,11 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DateBox;
 
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
 import de.hdm.tellme.shared.LoginInfo;
-
-import de.hdm.tellme.shared.ReportService;
-import de.hdm.tellme.shared.ReportServiceAsync;
-import de.hdm.tellme.shared.report.HTMLReportWriter;
 
 /**
  * TODO

@@ -1,6 +1,5 @@
 package de.hdm.tellme.client.gui.editor;
 
-import java.sql.Timestamp;
 import java.util.Vector;
 
 import com.google.gwt.cell.client.AbstractCell;
@@ -13,15 +12,12 @@ import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.gwt.view.client.TreeViewModel;
-import com.sun.java.swing.plaf.windows.resources.windows;
 
 import de.hdm.tellme.client.NeuigkeitenEditor;
 import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
-import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
-import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Unterhaltung;
 
 public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {

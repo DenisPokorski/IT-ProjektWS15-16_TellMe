@@ -9,23 +9,9 @@ package de.hdm.tellme.client;
  */
 import java.util.ArrayList;
 
-/*
- * Diese KLasse stellt die �bersicht aller Nachrichten bzw. Unterhaltungen dar. 
- * @author: Dana Th�ring 
- * @version: 1.0
- * 
- * 
- */
-
-
-
-
-
-import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSelectionPolicy;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -36,6 +22,14 @@ import com.google.gwt.view.client.SingleSelectionModel;
 
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
+/*
+ * Diese KLasse stellt die �bersicht aller Nachrichten bzw. Unterhaltungen dar. 
+ * @author: Dana Th�ring 
+ * @version: 1.0
+ * 
+ * 
+ */
+import com.google.gwt.cell.client.TextCell;
 
 
 public class NachrichteUebersicht extends VerticalPanel {

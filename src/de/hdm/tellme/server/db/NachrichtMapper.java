@@ -7,14 +7,9 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Vector;
 
-import javax.persistence.Result;
-
-import com.google.appengine.api.search.query.ExpressionParser.negation_return;
-
 import de.hdm.tellme.shared.bo.BusinessObject.eSichtbarkeit;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
-import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
  * Mapper-Klasse, die Nachricht-Objekte in der Datenbank abbildet. Diese enth�lt

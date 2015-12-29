@@ -1,6 +1,5 @@
 package de.hdm.tellme.shared.bo;
 
-import java.util.HashMap;
 import java.util.Vector;
 
 public class Unterhaltung extends BusinessObject implements Comparable<Unterhaltung> {

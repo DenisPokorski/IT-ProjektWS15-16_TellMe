@@ -1,24 +1,15 @@
 package de.hdm.tellme.client;
 
 import java.sql.Timestamp;
-import java.util.Vector;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
-import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.bo.Nachricht;
-import de.hdm.tellme.shared.bo.Nutzer;
 
 /*
  * @author: DenisPokorski

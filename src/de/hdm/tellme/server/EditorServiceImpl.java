@@ -4,18 +4,20 @@ import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.Vector;
 
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.hdm.tellme.client.TellMe;
-import de.hdm.tellme.server.db.NachrichtMapper;
 import de.hdm.tellme.server.db.HashtagAbonnementMapper;
 import de.hdm.tellme.server.db.HashtagMapper;
+import de.hdm.tellme.server.db.NachrichtMapper;
 import de.hdm.tellme.server.db.NutzerAbonnementMapper;
 import de.hdm.tellme.server.db.NutzerMapper;
 import de.hdm.tellme.server.db.UnterhaltungMapper;
 import de.hdm.tellme.shared.EditorService;
-import de.hdm.tellme.shared.bo.*;
+import de.hdm.tellme.shared.bo.Hashtag;
+import de.hdm.tellme.shared.bo.Nachricht;
+import de.hdm.tellme.shared.bo.Nutzer;
+import de.hdm.tellme.shared.bo.Unterhaltung;
 import de.hdm.tellme.shared.bo.Unterhaltung.eUnterhaltungsTyp;
 
 @SuppressWarnings("serial")

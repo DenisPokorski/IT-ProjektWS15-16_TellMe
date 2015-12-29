@@ -1,14 +1,9 @@
 package de.hdm.tellme.client;
 
-import java.util.logging.Level;
-
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -16,10 +11,9 @@ import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.MenuBarEditor;
 import de.hdm.tellme.client.gui.editor.NutzerBearbeitenEditor;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
-
+import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.LoginService;
 import de.hdm.tellme.shared.LoginServiceAsync;
-import de.hdm.tellme.shared.LoginInfo;
 
 public class TellMe implements EntryPoint {
 	public TellMe() {
