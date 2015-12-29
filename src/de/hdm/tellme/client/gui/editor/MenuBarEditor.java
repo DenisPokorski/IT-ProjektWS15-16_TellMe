@@ -100,7 +100,7 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.addItem("Hashtagverwaltung", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(new HashtagCellList().generiereCellList(CellListModus.HastagVerwaltung), null);
+				setzeInhalt(new HashtagCellList().generiereCellList(CellListModus.HastagVerwaltung), new HashtagFormular().gibAnlegenFormular());
 
 			}
 		});

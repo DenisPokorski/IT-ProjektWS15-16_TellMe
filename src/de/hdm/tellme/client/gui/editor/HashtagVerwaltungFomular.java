@@ -42,6 +42,8 @@ public class HashtagVerwaltungFomular extends Composite {
 	TextBox schlagwortBox = new TextBox();
 	Vector<Hashtag> htl;
 
+	
+	
 	public HashtagVerwaltungFomular() {
 
 		// Handle events.
@@ -64,7 +66,7 @@ public class HashtagVerwaltungFomular extends Composite {
 					Window.alert("hallo " + existiertBereits);
 
 					if (existiertBereits == true) {
-						Window.alert("Hashtag Existiert bereits");
+						Window.alert("Hashtag existiert bereits");
 					} else {
 						hashtag.setSchlagwort(schlagwortBox.getText());
 						HashtagDataProvider.gib().hashtagSpeichern(hashtag);
@@ -100,10 +102,9 @@ public class HashtagVerwaltungFomular extends Composite {
 						}
 					}
 
-					Window.alert("hallo " + existiertBereits);
-
+				
 					if (existiertBereits == true) {
-						Window.alert("Hashtag Existiert bereits");
+						Window.alert("Hashtag existiert bereits");
 					} else {
 						hashtag.setSchlagwort(schlagwortBox.getText());
 						HashtagDataProvider.gib().hashtagErstellen(hashtag);
@@ -117,7 +118,8 @@ public class HashtagVerwaltungFomular extends Composite {
 
 	// Panel Rückgabe
 	public VerticalPanel gibFormular() {
-		VerticalPanel vpForm = new VerticalPanel();
+		
+		VerticalPanel vpForm = new VerticalPanel();	
 		vpForm.clear();
 		vpForm.add(schlagwortBox);
 

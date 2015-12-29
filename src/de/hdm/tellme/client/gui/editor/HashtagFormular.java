@@ -17,11 +17,15 @@ package de.hdm.tellme.client.gui.editor;
  */
 
 
+import java.util.Vector;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.tellme.shared.bo.Hashtag;
@@ -30,15 +34,17 @@ import de.hdm.tellme.shared.bo.Hashtag;
  * A form used for editing contacts.
  */
 
-public class HashtagFomular extends Composite {
+public class HashtagFormular extends Composite {
 	
 	private Hashtag hashtag = null;
-	Button btnAbonieren = new Button("abonieren");
-	Button btnDeabonieren = new Button("deabonieren");
-	
+	Button btnAbonieren = new Button("abonnieren");
+	Button btnDeabonieren = new Button("deabonnieren");
+	TextBox schlagwortBox = new TextBox();
+	Button htAnlegen = new Button("Hashtag neu erstellen");
+	Vector<Hashtag> htl;
 	
 
-	public HashtagFomular() {
+	public HashtagFormular() {
 		
 		// Handle events.
 		btnAbonieren.addClickHandler(new ClickHandler() {
@@ -59,10 +65,42 @@ public class HashtagFomular extends Composite {
 				HashtagDataProvider.gib().deabonieren(hashtag);
 			}
 		});
+		
+		
+		htAnlegen.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				htl = HashtagDataProvider.gebeHashtagListe();
+
+
+				if (schlagwortBox.getValue() == "") {
+					Window.alert("Bitte geben Sie einen Wert ein");
+				} else {
+
+					boolean existiertBereits = false;
+
+					for (Hashtag hashtag : htl) {
+						if (schlagwortBox.getValue() == hashtag.getSchlagwort()) {
+							existiertBereits = true;
+						}
+					}
+
+
+					if (existiertBereits == true) {
+						Window.alert("Hashtag existiert bereits");
+					} else {
+						 Hashtag neuesHashtag = new Hashtag();
+						neuesHashtag.setSchlagwort(schlagwortBox.getText());
+						HashtagDataProvider.gib().hashtagErstellen(neuesHashtag);
+					}
+
+				}
+ 
+			}
+		});
 	}
 	
 	// Panel Rückgabe 
-	public VerticalPanel gibFormular(){
+	public VerticalPanel gibBearbeitenFormular(){
 		VerticalPanel vpForm = new VerticalPanel();
 		vpForm.clear();
 		vpForm.add(new Label(hashtag.getSchlagwort() ));
@@ -71,7 +109,15 @@ public class HashtagFomular extends Composite {
 		
 		return vpForm;
 	}
-
+	
+	public VerticalPanel gibAnlegenFormular(){
+		VerticalPanel vpForm = new VerticalPanel();
+		vpForm.clear();
+		vpForm.add(schlagwortBox);
+		vpForm.add(htAnlegen);
+		
+		return vpForm;
+	}
 	
 	 
 // Setze Buttons

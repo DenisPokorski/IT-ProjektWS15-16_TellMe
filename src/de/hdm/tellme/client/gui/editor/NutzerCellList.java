@@ -35,7 +35,7 @@ public class NutzerCellList {
 						public void onSelectionChange(SelectionChangeEvent event) {
 							
 							// TODO:rechtel aktuallisieren
-							NutzerFomular nf = new NutzerFomular();
+							NutzerFormular nf = new NutzerFormular();
 							nf.setzeNutzerAbo(selectionModel
 									.getSelectedObject());
 							RootPanel.get("content_right").clear();

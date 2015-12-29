@@ -29,14 +29,14 @@ import de.hdm.tellme.shared.bo.Nutzer;
  * A form used for editing contacts.
  */
 
-public class NutzerFomular extends Composite {
+public class NutzerFormular extends Composite {
 	private Nutzer nutzer = null;
-	Button btnAbonieren = new Button("abonieren");
-	Button btnDeabonieren = new Button("deabonieren");
+	Button btnAbonieren = new Button("abonnieren");
+	Button btnDeabonieren = new Button("deabonnieren");
 	
 	
 
-	public NutzerFomular() {
+	public NutzerFormular() {
 		// Handle events.
 		btnAbonieren.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
