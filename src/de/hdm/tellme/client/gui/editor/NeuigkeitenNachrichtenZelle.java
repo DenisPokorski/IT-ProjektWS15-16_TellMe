@@ -2,6 +2,7 @@ package de.hdm.tellme.client.gui.editor;
 
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
+import com.google.gwt.user.client.Window;
 
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
@@ -26,6 +27,8 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 		String strDatum = "";
 		String strAbsender = "";
 		String strText = "";
+		String strHashtags = "";
+
 		if (u.getUnterhaltungstyp() == eUnterhaltungsTyp.oeffentlich) {
 			strUnterhaltungsTyp = "OE";
 		} else {
@@ -39,8 +42,12 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 		strText = value.getText();
 
 		if (value.getVerknuepfteHashtags() != null) {
-			for (Hashtag hashtag : value.getVerknuepfteHashtags()) {
-			}
+			if (value.getVerknuepfteHashtags().size() != 0) {
+				for (Hashtag hashtag : value.getVerknuepfteHashtags()) {
+					strHashtags += "#" + hashtag.getSchlagwort() + " ";
+				}
+			} else
+				strHashtags += "keine Hashtags vorhanden";
 		}
 
 		sb.appendHtmlConstant("<div class='neuigkeitenNachrichtInhalt'>");
@@ -56,7 +63,7 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 		sb.appendHtmlConstant("</td></tr><tr><td colspan='3'>");
 		sb.appendEscaped(strText);
 		sb.appendHtmlConstant("</td>");
-		sb.appendHtmlConstant("</tr>" + "<tr><td colspan='3'>" + "Hashtags: " + "</td></tr>" + "</table>");
+		sb.appendHtmlConstant("</tr>" + "<tr><td colspan='3'>" + "Hashtags: " + strHashtags + "</td></tr>" + "</table>");
 		sb.appendHtmlConstant("</div>");
 
 	}

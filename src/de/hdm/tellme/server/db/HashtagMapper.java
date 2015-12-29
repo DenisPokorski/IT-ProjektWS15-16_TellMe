@@ -178,4 +178,28 @@ public class HashtagMapper {
 		
 		return hashtagsAnNachricht;
 	}
+	
+	public Vector<Hashtag> alleHashtagsZuNachrichtenID(int nachrichtId) {
+		Vector<Hashtag> alleHashtags = new Vector<Hashtag>();
+
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			ResultSet rs = state
+					.executeQuery("SELECT * FROM db_tellme.NachrichtHashtag INNER JOIN Hashtag ON Hashtag.Id = HashtagId WHERE NachrichtId = "+nachrichtId+";");
+
+			while (rs.next()) {
+				Hashtag h = new Hashtag();
+				h.setId(rs.getInt("Id"));
+				h.setSchlagwort(rs.getString("Schlagwort"));
+				h.setErstellungsDatum(rs.getTimestamp("ErstellungsDatum"));
+				alleHashtags.add(h);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return alleHashtags;
+	}
 }

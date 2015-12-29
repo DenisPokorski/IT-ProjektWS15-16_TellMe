@@ -126,7 +126,7 @@ public class NachrichtMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "UPDATE `Nachricht` SET `Sichtbarkeit`='0' WHERE `Id`='"+nachrichtenID+"';";
+			String sqlquery = "UPDATE `Nachricht` SET `Sichtbarkeit`='0' WHERE `Id`='" + nachrichtenID + "';";
 			int anzahlBetroffenerZeilen = state.executeUpdate(sqlquery);
 			if (anzahlBetroffenerZeilen > 0)
 				erfolgreich = true;
@@ -319,24 +319,24 @@ public class NachrichtMapper {
 		}
 		return erfolgreich;
 	}
-	
-	public Vector<Nachricht> gibAlleNachrichtenVonUnterhaltung(int id) {
+
+	public Vector<Nachricht> gibAlleNachrichtenVonUnterhaltung(int unterhaltungsID) {
 		Connection con = DatenbankVerbindung.connection();
 		Vector<Nachricht> Nachrichten = new Vector<Nachricht>();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "SELECT * FROM NachrichtUnterhaltung INNER JOIN Unterhaltung ON NachrichtUnterhaltung.UnterhaltungId = Unterhaltung.Id INNER JOIN Nachricht ON NachrichtUnterhaltung.NachrichtId = Nachricht.Id WHERE NachrichtUnterhaltung.UnterhaltungId = '"
-					+ id
-					+ "' AND Unterhaltung.Sichtbarkeit = 1 AND Nachricht.Sichtbarkeit = 1 ORDER BY Nachricht.ErstellungsDatum DESC;";
+			String sqlquery = "SELECT * FROM NachrichtUnterhaltung INNER JOIN Nachricht ON NachrichtUnterhaltung.NachrichtId = Nachricht.Id WHERE NachrichtUnterhaltung.UnterhaltungId = '"
+					+ unterhaltungsID + "' AND Nachricht.Sichtbarkeit = 1 ORDER BY Nachricht.ErstellungsDatum DESC;";
 			ResultSet rs = state.executeQuery(sqlquery);
 			while (rs.next()) {
 				Nachricht nA = new Nachricht();
 				nA.setId(rs.getInt("Nachricht.Id"));
 				nA.setText(rs.getString("Nachricht.Text"));
-				nA.setErstellungsDatum(rs
-						.getTimestamp("Nachricht.ErstellungsDatum"));
+				nA.setErstellungsDatum(rs.getTimestamp("Nachricht.ErstellungsDatum"));
 				nA.setSichtbarkeit(1);
-
+				nA.setSenderId(rs.getInt("AutorId"));
+				
+				Nachrichten.add(nA);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -357,8 +357,7 @@ public class NachrichtMapper {
 				nA.setId(rs.getInt("Nachricht.Id"));
 				nA.setSenderId(rs.getInt("Nachricht.Id"));
 				nA.setText(rs.getString("Nachricht.Text"));
-				nA.setErstellungsDatum(rs
-						.getTimestamp("Nachricht.ErstellungsDatum"));
+				nA.setErstellungsDatum(rs.getTimestamp("Nachricht.ErstellungsDatum"));
 				meineNachrichten.add(nA);
 
 			}

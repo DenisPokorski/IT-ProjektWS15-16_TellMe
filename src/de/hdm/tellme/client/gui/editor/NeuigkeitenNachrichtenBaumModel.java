@@ -141,17 +141,21 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 			public void onSuccess(Vector<Unterhaltung> result) {
 				dataProvider.getList().clear();
 
+//				Window.alert("Anzahl Unterhaltungen total: " +result.size());
+				
 				for (Unterhaltung unterhaltung : result) {
 					try {
+//						Window.alert(unterhaltung.getId() + " " + unterhaltung.getAlleNachrichten().size());
+						
 						UnterhaltungsNachicht un = new UnterhaltungsNachicht(unterhaltung);
 						alleUnterhaltungen.addElement(un);
 					} catch (Exception ex) {
-						// FEHLER
-						Window.alert("Fehler beim hinzufuegen einer Nachricht");
+						Window.alert("Fehler beim hinzufuegen einer Nachricht" + ex.toString());
+						ex.printStackTrace();
 					}
 				}
 
-				Window.alert("Nachrichten erhalten: " + dataProvider.getList().size());
+//				Window.alert("Nachrichten erhalten: " + dataProvider.getList().size());
 
 				dataProvider.flush();
 				dataProvider.refresh();
