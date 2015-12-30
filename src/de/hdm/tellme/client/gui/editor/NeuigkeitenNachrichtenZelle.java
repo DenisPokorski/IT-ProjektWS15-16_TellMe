@@ -73,7 +73,7 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 		sb.appendHtmlConstant("</td><td>");
 		sb.appendHtmlConstant(strDatum);
 		sb.appendHtmlConstant("</td></tr><tr><td colspan='3'>");
-		sb.appendEscaped(strText);
+		sb.appendHtmlConstant(strText.replace("\n", "<br>"));
 		sb.appendHtmlConstant("</td>");
 		sb.appendHtmlConstant("</tr><tr><td colspan='2'>" + "Teilnehmer: " + strTeilnehmer + "</td><td>" + "Hashtags: " + strHashtags + "</td></tr>" + "</table>");
 		sb.appendHtmlConstant("</div>");

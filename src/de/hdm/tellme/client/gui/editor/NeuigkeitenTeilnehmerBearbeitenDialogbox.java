@@ -202,7 +202,9 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 	}
 
 	private void ladVorschlagListen() {
-		asyncObj.getAlleNutzerAußerMeineId(TellMe.eingeloggterBenutzer.getUser().getId(), new AsyncCallback<Vector<Nutzer>>() {
+		
+		
+		asyncObj.getAlleNutzer(false,new AsyncCallback<Vector<Nutzer>>() {
 			@Override
 			public void onFailure(Throwable caught) {
 			}

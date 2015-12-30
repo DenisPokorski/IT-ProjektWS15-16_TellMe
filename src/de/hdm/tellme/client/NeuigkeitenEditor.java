@@ -8,16 +8,20 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.TreeViewModel;
 
+import de.hdm.tellme.client.gui.editor.CellListModus;
+import de.hdm.tellme.client.gui.editor.HashtagCellList;
 import de.hdm.tellme.client.gui.editor.HashtagZelle;
 import de.hdm.tellme.client.gui.editor.NeuigkeitenJaNeinDialogbox;
 import de.hdm.tellme.client.gui.editor.NeuigkeitenNachrichtDialogbox;
 import de.hdm.tellme.client.gui.editor.NeuigkeitenNachrichtenBaumModel;
 import de.hdm.tellme.client.gui.editor.NeuigkeitenTeilnehmerBearbeitenDialogbox;
+import de.hdm.tellme.client.gui.editor.NutzerCellList;
 import de.hdm.tellme.client.gui.editor.NutzerZelle;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Unterhaltung;
@@ -26,16 +30,17 @@ public class NeuigkeitenEditor extends VerticalPanel {
 
 	private static Unterhaltung ausgewaehlteUnterhaltung;
 	private static  Nachricht ausgewaehlteNachricht;
+
+	private static HashtagCellList hsCL = new HashtagCellList();
+	private static NutzerCellList nuCL = new NutzerCellList();
 	
 	public NeuigkeitenEditor() {
 	}
 
 	public void FilterNachBenutzer(NutzerZelle.ZellenObjekt nah) {
-		Window.alert("Nachrichten werden nach Benutzer " + nah.nutzer.getVorname());
 	}
 
 	public void FilterNachHashtag(HashtagZelle.ZellenObjekt nah) {
-		Window.alert("Nachrichten werden nach Benutzer " + nah.hashtag.getSchlagwort());
 	}
 
 	public void onLoad() {
@@ -50,7 +55,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		tree.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
 
 		ScrollPanel scPanel = new ScrollPanel();
-		scPanel.setHeight("800px");
+		scPanel.setHeight("600px");
 		scPanel.add(tree);
 
 		RootPanel.get("content_right").add(scPanel);
@@ -66,20 +71,9 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	public static void setzeOptionenButton(Unterhaltung _ausgewaehlteUnterhaltung, Nachricht _ausgewaehlteNachricht) {
 		RootPanel.get("ButtonBar").clear();
 
-		HorizontalPanel hpUnterhaltungsOptionen = new HorizontalPanel();
+
+		//###################### Nachrichtenoptionen
 		HorizontalPanel hpNachrichtenOptionen = new HorizontalPanel();
-
-		Button btnAntworten = new Button("Unterhaltung beantworten");
-		btnAntworten.addClickHandler(btnAntwortenClickHandler);
-		hpUnterhaltungsOptionen.add(btnAntworten);
-
-		Button btnTeilnehmerBearbeiten = new Button("Teilnehmer bearbeiten");
-		btnTeilnehmerBearbeiten.addClickHandler(btnTeilnehmerBearbeitenClickHandler);
-		hpUnterhaltungsOptionen.add(btnTeilnehmerBearbeiten);
-
-		Button btnUnterhaltungVerlassen = new Button("Unterhaltung verlassen");
-		btnUnterhaltungVerlassen.addClickHandler(btnUnterhaltungVerlassenClickHandler);
-		hpUnterhaltungsOptionen.add(btnUnterhaltungVerlassen);
 
 		Button btnNeueNachricht = new Button("Neue Nachricht verfassen");
 		btnNeueNachricht.addClickHandler(btnNeueNachrichtClickHandler);
@@ -92,6 +86,38 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		Button btnNachrichtLoeaschen = new Button("Nachricht löschen");
 		btnNachrichtLoeaschen.addClickHandler(btnNachrichtLoeschenClickHandler);
 		hpNachrichtenOptionen.add(btnNachrichtLoeaschen);
+		
+		if (_ausgewaehlteNachricht == null) {
+			ausgewaehlteNachricht = null;
+			btnNachrichtBearbeiten.setEnabled(false);
+			btnNachrichtLoeaschen.setEnabled(false);
+		} else {
+			ausgewaehlteNachricht = _ausgewaehlteNachricht;
+			btnNachrichtBearbeiten.setEnabled(true);
+			btnNachrichtLoeaschen.setEnabled(true);
+		}
+
+		
+		RootPanel.get("ButtonBar").add(hpNachrichtenOptionen);
+
+		//###################### Unterhaltungsoptionen
+		HorizontalPanel hpUnterhaltungsOptionen = new HorizontalPanel();
+		
+		Button btnAntworten = new Button("Unterhaltung beantworten");
+		btnAntworten.addClickHandler(btnAntwortenClickHandler);
+		hpUnterhaltungsOptionen.add(btnAntworten);		
+
+		Button btnTeilnehmerBearbeiten = new Button("Teilnehmer bearbeiten");
+		btnTeilnehmerBearbeiten.addClickHandler(btnTeilnehmerBearbeitenClickHandler);
+		hpUnterhaltungsOptionen.add(btnTeilnehmerBearbeiten);
+
+		Button btnUnterhaltungVerlassen = new Button("Unterhaltung verlassen");
+		btnUnterhaltungVerlassen.addClickHandler(btnUnterhaltungenAktualisierenClickHandler);
+		hpUnterhaltungsOptionen.add(btnUnterhaltungVerlassen);
+
+		Button btnUnterhaltungenAktualisieren = new Button("Unterhaltungen aktualisieren");
+		btnUnterhaltungenAktualisieren.addClickHandler(btnUnterhaltungenAktualisierenClickHandler);
+		hpUnterhaltungsOptionen.add(btnUnterhaltungenAktualisieren);
 
 		if (_ausgewaehlteUnterhaltung == null) {
 			ausgewaehlteUnterhaltung = null;
@@ -107,21 +133,29 @@ public class NeuigkeitenEditor extends VerticalPanel {
 			btnUnterhaltungVerlassen.setEnabled(true);
 
 		}
-
-		if (_ausgewaehlteNachricht == null) {
-			ausgewaehlteNachricht = null;
-			btnNachrichtBearbeiten.setEnabled(false);
-			btnNachrichtLoeaschen.setEnabled(false);
-		} else {
-			ausgewaehlteNachricht = _ausgewaehlteNachricht;
-			btnNachrichtBearbeiten.setEnabled(true);
-			btnNachrichtLoeaschen.setEnabled(true);
-		}
-
-		RootPanel.get("ButtonBar").add(hpNachrichtenOptionen);
+		
 		RootPanel.get("ButtonBar").add(hpUnterhaltungsOptionen);
 	}
 
+	public static VerticalPanel gibFilterPanel(){
+		VerticalPanel vpFilterPanel = new VerticalPanel();
+		vpFilterPanel.add(nuCL.generiereCellList(CellListModus.Nachrichtenuebersicht));
+		vpFilterPanel.add(new Label("________________________________________"));
+		vpFilterPanel.add(hsCL.generiereCellList(CellListModus.Nachrichtenuebersicht));
+		vpFilterPanel.add(new Label("________________________________________"));
+		Button btnFilterZuruecksetzen = new Button("Filter zurücksetzen");
+		btnFilterZuruecksetzen.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				NeuigkeitenNachrichtenBaumModel.setzeKeinenFilter();				
+			}
+		});
+		vpFilterPanel.add(btnFilterZuruecksetzen);
+		
+		return vpFilterPanel;
+	}
+	
 	static ClickHandler btnNeueNachrichtClickHandler = new ClickHandler() {
 		public void onClick(ClickEvent event) {
 			NeuigkeitenEditor.showDialogBox(new NeuigkeitenNachrichtDialogbox().getNeueNachrichtDialogbox());
@@ -150,6 +184,11 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	static ClickHandler btnUnterhaltungVerlassenClickHandler = new ClickHandler() {
 		public void onClick(ClickEvent event) {
 			NeuigkeitenEditor.showDialogBox(new NeuigkeitenJaNeinDialogbox().getUnterhaltungVerlassenDialogBox(ausgewaehlteUnterhaltung));
+		}
+	};
+	static ClickHandler btnUnterhaltungenAktualisierenClickHandler = new ClickHandler() {
+		public void onClick(ClickEvent event) {
+			NeuigkeitenNachrichtenBaumModel.ladeUnterhaltungenAsync();
 		}
 	};
 

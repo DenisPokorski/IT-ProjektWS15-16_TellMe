@@ -45,7 +45,8 @@ public class HashtagCellList {
 		case Nachrichtenuebersicht:
 			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 				public void onSelectionChange(SelectionChangeEvent event) {
-					MenuBarEditor.gibansichtNeuigkeiten().FilterNachHashtag(selectionModel.getSelectedObject());
+					NeuigkeitenNachrichtenBaumModel.setzeHashtagFilter(selectionModel.getSelectedObject().hashtag, selectionModel);
+					
 				}
 			});
 			

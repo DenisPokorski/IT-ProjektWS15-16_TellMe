@@ -73,5 +73,7 @@ public interface EditorService extends RemoteService {
 
 	boolean unterhaltungBeantworten(Nachricht antwortNachricht, Unterhaltung unterhaltung);
 
+	Vector<Nutzer> getAlleNutzer(boolean zwingeNeuladen);
+
 
 }

@@ -60,6 +60,27 @@ public class UnterhaltungMapper {
 		}
 		return ergebnis;
 	}
+	
+	public boolean aktualisieren(Unterhaltung u) {
+		boolean erfolgreich = false;
+
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			String sqlquery = "UPDATE `db_tellme`.`Unterhaltung` SET `Sichtbarkeit`='"+u.getSichtbarkeit()+"', `Typ`='"+u.getUnterhaltungstyp().ordinal()+"' WHERE `Id`='"+u.getId()+"';";
+			int anzahlBetroffenerZeilen = state.executeUpdate(sqlquery);
+			if (anzahlBetroffenerZeilen > 0)
+				erfolgreich = true;
+			else
+				erfolgreich = false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			erfolgreich = false;
+		}
+
+		return erfolgreich;
+
+	}
 
 	public boolean loescheUnterhaltungAnhandID(int unterhaltungsID) {
 		boolean erfolgreich = false;
@@ -247,6 +268,31 @@ public class UnterhaltungMapper {
 			int anzahlBetroffenerZeilen = state.executeUpdate(sql);
 			if (anzahlBetroffenerZeilen >= 0)
 				vorhanden = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return vorhanden;
+	}
+
+	public boolean istNutzerTeilnehmer(int unterhaltungsID, int nutzerID) {
+		boolean vorhanden = false;
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			String sql = "SELECT count(*) as Anzahl FROM NutzerUnterhaltung WHERE UnterhaltungId = "+unterhaltungsID+" AND NutzerId = "+nutzerID+";";
+
+			ResultSet rs = state.executeQuery(sql);
+			int ergebnis = -1;
+			while (rs.next()) {
+				ergebnis = (rs.getInt("Anzahl"));
+			}
+			
+			if(ergebnis >0)
+				vorhanden = true;
+			else
+				vorhanden = false;
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

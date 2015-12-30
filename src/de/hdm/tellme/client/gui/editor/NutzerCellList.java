@@ -17,11 +17,10 @@ import de.hdm.tellme.shared.bo.NutzerAbonnement;
 public class NutzerCellList {
 	NutzerAbonnement nA = new NutzerAbonnement();
 	Nutzer selektiererBenutzer = null;
-	
+
 	public FlowPanel generiereCellList(CellListModus modi) {
 
-		CellList<NutzerZelle.ZellenObjekt> cellList = new CellList<NutzerZelle.ZellenObjekt>(
-				new NutzerZelle().new ZellenElement());
+		CellList<NutzerZelle.ZellenObjekt> cellList = new CellList<NutzerZelle.ZellenObjekt>(new NutzerZelle().new ZellenElement());
 
 		NutzerDataProvider.gib().addDataDisplay(cellList);
 
@@ -30,87 +29,77 @@ public class NutzerCellList {
 		cellList.setSelectionModel(selectionModel);
 		switch (modi) {
 		case Einstellungen:
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-						public void onSelectionChange(SelectionChangeEvent event) {
-							
-							// TODO:rechtel aktuallisieren
-							NutzerFormular nf = new NutzerFormular();
-							nf.setzeNutzerAbo(selectionModel
-									.getSelectedObject());
-							RootPanel.get("content_right").clear();
-							RootPanel.get("content_right")
-									.add(nf.gibFormular());
-						}
-					});
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+				public void onSelectionChange(SelectionChangeEvent event) {
+
+					// TODO:rechtel aktuallisieren
+					NutzerFormular nf = new NutzerFormular();
+					nf.setzeNutzerAbo(selectionModel.getSelectedObject());
+					RootPanel.get("content_right").clear();
+					RootPanel.get("content_right").add(nf.gibFormular());
+				}
+			});
 			break;
 
 		case Nachrichtenuebersicht:
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-						public void onSelectionChange(SelectionChangeEvent event) {
-							MenuBarEditor.gibansichtNeuigkeiten()
-									.FilterNachBenutzer(
-											selectionModel.getSelectedObject());
-						}
-					});
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+				public void onSelectionChange(SelectionChangeEvent event) {
+					NeuigkeitenNachrichtenBaumModel.setzeNutzerFilter(selectionModel.getSelectedObject().nutzer, selectionModel);
+				}
+			});
 
 			break;
-			
+
 		case Report1_3_NachrichtNutzer:
-			selectionModel
-				.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-					public void onSelectionChange(SelectionChangeEvent event){
-						
-						ReportFormular1_3 rF = new ReportFormular1_3();
-						
-					}
-					
-				});
-			
-//		case Report1_NachrichtNutzerZeitraum:
-//			selectionModel
-//					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-//						public void onSelectionChange(SelectionChangeEvent event) {
-//														
-//							ReportFormular1_1 rF = new ReportFormular1_1();
-//							rF.reportGenerieren(selectionModel.getSelectedObject());
-//							RootPanel.get("content_right").clear();
-//							RootPanel.get("content_right").add(rF.gibFormular());
-//							
-//						}
-//					});
-//
-//			break;
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+				public void onSelectionChange(SelectionChangeEvent event) {
 
-			
+					ReportFormular1_3 rF = new ReportFormular1_3();
+
+				}
+
+			});
+
+			// case Report1_NachrichtNutzerZeitraum:
+			// selectionModel
+			// .addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+			// public void onSelectionChange(SelectionChangeEvent event) {
+			//
+			// ReportFormular1_1 rF = new ReportFormular1_1();
+			// rF.reportGenerieren(selectionModel.getSelectedObject());
+			// RootPanel.get("content_right").clear();
+			// RootPanel.get("content_right").add(rF.gibFormular());
+			//
+			// }
+			// });
+			//
+			// break;
+
 		case Report3_NutzerHashtagAbonnement:
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-						public void onSelectionChange(SelectionChangeEvent event) {
-														
-							ReportFormular3 rF = new ReportFormular3();
-							rF.report3Generieren(selectionModel.getSelectedObject());
-							RootPanel.get("content_left").clear();
-							RootPanel.get("content_left").add(rF.gibFormular());
-							
-						}
-					});
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+				public void onSelectionChange(SelectionChangeEvent event) {
+
+					ReportFormular3 rF = new ReportFormular3();
+					rF.report3Generieren(selectionModel.getSelectedObject());
+					RootPanel.get("content_left").clear();
+					RootPanel.get("content_left").add(rF.gibFormular());
+
+				}
+			});
 
 			break;
-			
+
 		case Report2_NutzerNutzerAbonnement:
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-						public void onSelectionChange(SelectionChangeEvent event) {
-														
-							ReportFormular2 rF = new ReportFormular2();
-							rF.report2Generieren(selectionModel.getSelectedObject());
-							RootPanel.get("content_left").clear();
-							RootPanel.get("content_left").add(rF.gibFormular());
-							
-						}
-					});
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+				public void onSelectionChange(SelectionChangeEvent event) {
+
+					ReportFormular2 rF = new ReportFormular2();
+					rF.report2Generieren(selectionModel.getSelectedObject());
+					RootPanel.get("content_left").clear();
+					RootPanel.get("content_left").add(rF.gibFormular());
+
+				}
+			});
 
 			break;
 

@@ -82,5 +82,7 @@ public interface EditorServiceAsync {
 
 	void unterhaltungBeantworten(Nachricht antwortNachricht, Unterhaltung unterhaltung, AsyncCallback<Boolean> callback);
 
+	void getAlleNutzer(boolean zwingeNeuladen, AsyncCallback<Vector<Nutzer>> callback);
+
 	 
  }

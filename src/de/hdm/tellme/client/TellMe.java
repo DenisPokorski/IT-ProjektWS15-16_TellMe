@@ -41,7 +41,7 @@ public class TellMe implements EntryPoint {
 
 			RootPanel.get("header").add(menuBar);
 
-			menuBar.setzeInhalt(new NutzerCellList().generiereCellList(CellListModus.Nachrichtenuebersicht),menuBar.gibansichtNeuigkeiten());
+			menuBar.setzeInhalt(NeuigkeitenEditor.gibFilterPanel(),menuBar.gibansichtNeuigkeiten());
 		}
 		return null;
 	}

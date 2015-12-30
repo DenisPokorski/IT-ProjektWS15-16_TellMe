@@ -74,7 +74,9 @@ public class MenuBarEditor extends HorizontalPanel {
 		HauptMenue.addItem("Neuigkeiten", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(new NutzerCellList().generiereCellList(CellListModus.Nachrichtenuebersicht), gibansichtNeuigkeiten());
+
+				setzeInhalt(NeuigkeitenEditor.gibFilterPanel(),gibansichtNeuigkeiten());
+//				setzeInhalt(new NutzerCellList().generiereCellList(CellListModus.Nachrichtenuebersicht), gibansichtNeuigkeiten());
 			}
 		});
 
