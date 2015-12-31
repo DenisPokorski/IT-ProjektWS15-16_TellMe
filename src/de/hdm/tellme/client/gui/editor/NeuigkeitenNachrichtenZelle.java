@@ -1,8 +1,8 @@
 package de.hdm.tellme.client.gui.editor;
 
 import com.google.gwt.cell.client.AbstractCell;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
-import com.google.gwt.user.client.Window;
 
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
@@ -11,7 +11,7 @@ import de.hdm.tellme.shared.bo.Unterhaltung;
 import de.hdm.tellme.shared.bo.Unterhaltung.eUnterhaltungsTyp;
 
 public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
-
+	DateTimeFormat dF = DateTimeFormat.getFormat("dd.MM.yyyy HH:mm:ss");
 	Unterhaltung u = null;
 
 	public NeuigkeitenNachrichtenZelle(Unterhaltung _u) {
@@ -37,7 +37,7 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 			strUnterhaltungsTyp = "PR";
 		}
 
-		strDatum = value.getErstellungsDatum().toString();
+		strDatum = dF.format(value.getErstellungsDatum()).toString();
 
 		strAbsender = u.getId() + value.getSender().getVorname() + " " + value.getSender().getNachname();
 
