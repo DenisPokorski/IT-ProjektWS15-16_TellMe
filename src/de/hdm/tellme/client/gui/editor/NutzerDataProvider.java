@@ -220,25 +220,25 @@ public class NutzerDataProvider {
 				});
 	}
 
-	public void report1_1Generieren(Nutzer n, Date vonDate, Date bisDate) {
-		final Nutzer b = n;
-		final Date vD = vonDate;
-		final Date bD = bisDate;
-		_reportAsyncObj.report1_1Generieren(b.getId(), vD, bD, new AsyncCallback<Vector<Nutzer>>() {
-
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("Fehler");				
-			}
-
-			@Override
-			public void onSuccess(Vector<Nutzer> result) {
-				Window.alert("Report 1_1 wird erstellt");	
-				
-				HTMLReportWriter hRW = new HTMLReportWriter();
-				
-				hRW.generateReport1_1(result, b);
-			}
-		});
-	}
+//	public void report1_1Generieren(Nutzer n, Date vonDate, Date bisDate) {
+//		final Nutzer b = n;
+//		final Date vD = vonDate;
+//		final Date bD = bisDate;
+//		_reportAsyncObj.report1_1Generieren(b.getId(), vD, bD, new AsyncCallback<Vector<Nutzer>>() {
+//
+//			@Override
+//			public void onFailure(Throwable caught) {
+//				Window.alert("Fehler");				
+//			}
+//
+//			@Override
+//			public void onSuccess(Vector<Nutzer> result) {
+//				Window.alert("Report 1_1 wird erstellt");	
+//				
+//				HTMLReportWriter hRW = new HTMLReportWriter();
+//				
+//				hRW.generateReport1_1(result, b);
+//			}
+//		});
+//	}
 }

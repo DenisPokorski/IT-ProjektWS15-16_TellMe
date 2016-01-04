@@ -15,9 +15,9 @@ import de.hdm.tellme.shared.bo.Nutzer;
  */
 public class ReportFormular1 extends Composite{
 
-	public void reportGenerieren(Nutzer n, Date vonDate, Date bisDate) {
-				NutzerDataProvider.gib().report1_1Generieren(n, vonDate, bisDate);
-	}
+//	public void reportGenerieren(Nutzer n, Date vonDate, Date bisDate) {
+//				NutzerDataProvider.gib().report1_1Generieren(n, vonDate, bisDate);
+//	}
 
 
 	
