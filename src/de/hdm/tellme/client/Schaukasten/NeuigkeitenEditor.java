@@ -86,6 +86,9 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		hpHeadline.setStylePrimaryName("hpHeadline");
 		hpHeadline.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		
+		HorizontalPanel hpUnterhaltungsOptionen = new HorizontalPanel();
+
+		
 		HTML headline = new HTML(" <h2>Alle Neuigkeiten</h2> ");
 		hpHeadline.add(headline);
 		
@@ -120,6 +123,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		Button btnTeilnehmerBearbeiten =new Button("Teilnehmer bearbeiten");
 		btnTeilnehmerBearbeiten.setStylePrimaryName("btnTeilnehmerBearbeiten");
 		btnTeilnehmerBearbeiten.addClickHandler(btnTeilnehmerBearbeitenClickHandler);
+		hpUnterhaltungsOptionen.add(btnTeilnehmerBearbeiten); 
 		hpOptionen.add(btnTeilnehmerBearbeiten);
 
 		Button btnUnterhaltungVerlassen =new Button("Unterhaltung verlassen");
@@ -135,7 +139,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		
 	
 		
-		
+
 		
 		Button btnNachrichtBearbeiten = new Button("Nachricht bearbeiten");
 		btnNachrichtBearbeiten.addClickHandler(btnNachrichtBearbeitenClickHandler);
@@ -156,6 +160,20 @@ public class NeuigkeitenEditor extends VerticalPanel {
 			btnNachrichtBearbeiten.setEnabled(true);
 			btnNachrichtLoeaschen.setEnabled(true);
 		}
+		
+		if (_ausgewaehlteUnterhaltung == null) {
+			ausgewaehlteUnterhaltung = null;
+			btnAntworten.setEnabled(false);
+			btnTeilnehmerBearbeiten.setEnabled(false);
+			btnUnterhaltungVerlassen.setEnabled(false);
+			
+		} else {
+			ausgewaehlteUnterhaltung = _ausgewaehlteUnterhaltung;
+			btnAntworten.setEnabled(true);
+			btnTeilnehmerBearbeiten.setEnabled(true);
+			btnUnterhaltungVerlassen.setEnabled(true);
+
+		}
 
 		
 		RootPanel.get("ButtonBar").add(hpHeadline);
@@ -163,14 +181,12 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		RootPanel.get("ButtonBar").add(hpOptionen);
 	}
 		//###################### Unterhaltungsoptionen
-		HorizontalPanel hpUnterhaltungsOptionen = new HorizontalPanel();
 		
-		Button btnAntworten = new Button("Unterhaltung beantworten");
+	//	Button btnAntworten = new Button("Unterhaltung beantworten");
 //		hpUnterhaltungsOptionen.add(btnAntworten);		
 //
 //		Button btnTeilnehmerBearbeiten = new Button("Teilnehmer bearbeiten");
-//		btnTeilnehmerBearbeiten.addClickHandler(btnTeilnehmerBearbeitenClickHandler);
-//		hpUnterhaltungsOptionen.add(btnTeilnehmerBearbeiten);
+ 		//btnTeilnehmerBearbeiten.addClickHandler(btnTeilnehmerBearbeitenClickHandler);
 //
 //		Button btnUnterhaltungVerlassen = new Button("Unterhaltung verlassen");
 //		btnUnterhaltungVerlassen.addClickHandler(btnUnterhaltungenAktualisierenClickHandler);
@@ -180,19 +196,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 //		btnUnterhaltungenAktualisieren.addClickHandler(btnUnterhaltungenAktualisierenClickHandler);
 //		hpUnterhaltungsOptionen.add(btnUnterhaltungenAktualisieren);
 //
-//		if (_ausgewaehlteUnterhaltung == null) {
-//			ausgewaehlteUnterhaltung = null;
-//			btnAntworten.setEnabled(false);
-//			btnTeilnehmerBearbeiten.setEnabled(false);
-//			btnUnterhaltungVerlassen.setEnabled(false);
-//			
-//		} else {
-//			ausgewaehlteUnterhaltung = _ausgewaehlteUnterhaltung;
-//			btnAntworten.setEnabled(true);
-//			btnTeilnehmerBearbeiten.setEnabled(true);
-//			btnUnterhaltungVerlassen.setEnabled(true);
-//
-//		}
+	
 //		
 //		RootPanel.get("ButtonBar").add(hpUnterhaltungsOptionen);
 //	}

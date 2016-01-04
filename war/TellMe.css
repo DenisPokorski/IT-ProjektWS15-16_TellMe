@@ -1,3 +1,37 @@
+//		Button btnAntworten = new Button("Unterhaltung beantworten");
+//		btnAntworten.addClickHandler(btnAntwortenClickHandler);
+//		hpUnterhaltungsOptionen.add(btnAntworten);		
+//
+//		Button btnTeilnehmerBearbeiten = new Button("Teilnehmer bearbeiten");
+//		btnTeilnehmerBearbeiten.addClickHandler(btnTeilnehmerBearbeitenClickHandler);
+//		hpUnterhaltungsOptionen.add(btnTeilnehmerBearbeiten);
+//
+//		Button btnUnterhaltungVerlassen = new Button("Unterhaltung verlassen");
+//		btnUnterhaltungVerlassen.addClickHandler(btnUnterhaltungenAktualisierenClickHandler);
+//		hpUnterhaltungsOptionen.add(btnUnterhaltungVerlassen);
+//
+//		Button btnUnterhaltungenAktualisieren = new Button("Unterhaltungen aktualisieren");
+//		btnUnterhaltungenAktualisieren.addClickHandler(btnUnterhaltungenAktualisierenClickHandler);
+//		hpUnterhaltungsOptionen.add(btnUnterhaltungenAktualisieren);
+//
+//		if (_ausgewaehlteUnterhaltung == null) {
+//			ausgewaehlteUnterhaltung = null;
+//			btnAntworten.setEnabled(false);
+//			btnTeilnehmerBearbeiten.setEnabled(false);
+//			btnUnterhaltungVerlassen.setEnabled(false);
+//			
+//		} else {
+//			ausgewaehlteUnterhaltung = _ausgewaehlteUnterhaltung;
+//			btnAntworten.setEnabled(true);
+//			btnTeilnehmerBearbeiten.setEnabled(true);
+//			btnUnterhaltungVerlassen.setEnabled(true);
+//
+//		}
+//		
+//		RootPanel.get("ButtonBar").add(hpUnterhaltungsOptionen);
+//	}
+
+
 /** Add css rules here for your application. */
 /** Example rules used by the template application (remove for your app) */
 h1 {
@@ -203,6 +237,22 @@ h3 {font-size: 13px;}
             margin-top: 10px;
 }
 
+div.GPBYFDEFF.GPBYFDEKF.GPBYFDENF.GPBYFDELF{background:#f0f0f0;}
+
+/*.GPBYFDELF{background:#f0f0f0;}*/
+div.GPBYFDEFF.GPBYFDEHF{ 	 
+	border: 1px solid #ccc;}
+	
+	/*Hover
+	div.GPBYFDEFF.GPBYFDENF.GPBYFDELF, div.GPBYFDEFF.GPBYFDEHF{ 	background: #628cd5 !Important;}
+*/
+.GPBYFDEPF{border:none !Important; }
+
+.GPBYFDENF {
+    
+    border: 1px #ccc solid !Important;
+ 
+}
 .gwt-DialogBox .dialogMiddleCenter {
     background: #F1F1F1 !Important;
     }
