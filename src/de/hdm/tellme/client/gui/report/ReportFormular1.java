@@ -1,12 +1,23 @@
 package de.hdm.tellme.client.gui.report;
 
+
+
+import java.sql.Date;
+
 import com.google.gwt.user.client.ui.Composite;
+
+import de.hdm.tellme.client.gui.editor.NutzerDataProvider;
+import de.hdm.tellme.shared.bo.Nutzer;
 /**
  * TODO
  * @author denispokorski
  *
  */
 public class ReportFormular1 extends Composite{
+
+	public void reportGenerieren(Nutzer n, Date vonDate, Date bisDate) {
+				NutzerDataProvider.gib().report1_1Generieren(n, vonDate, bisDate);
+	}
 
 
 	

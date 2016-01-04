@@ -6,17 +6,23 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
+import com.google.gwt.view.client.SingleSelectionModel;
 
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
+import de.hdm.tellme.client.gui.editor.NutzerZelle;
+import de.hdm.tellme.client.gui.editor.NutzerZelle.ZellenObjekt;
 import de.hdm.tellme.shared.LoginInfo;
+import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
  * TODO
@@ -33,6 +39,21 @@ import de.hdm.tellme.shared.LoginInfo;
  */
 
 public class Report1Gui extends VerticalPanel{
+	
+	public static class Report1SelektierterNutzer{
+			
+//			private static Nutzer nutzerFilter;
+//			static SingleSelectionModel<NutzerZelle.ZellenObjekt> selectionModelNutzer = null;
+			
+
+		
+//		static SingleSelectionModel<NutzerZelle.ZellenObjekt> selectionModelNutzer = null;
+
+		
+	
+		
+		
+	}
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift1 = new Label("Report1: Nachrichten abfragen");
 	private Label subSchrift1 = new Label("Nutzer auswählen");
@@ -59,12 +80,14 @@ public class Report1Gui extends VerticalPanel{
 			+ " darstellt, darfst du<b> keinen Nutzer</b> und <b>keinen Zeitraum</b> auswählen.</li></ul>");
 	
 	public void onLoad(){
+		
+		FlowPanel a = new NutzerCellList().generiereCellList(CellListModus.Report1_NachrichtNutzerZeitraum);
+		 
 		reportPanel.add(ueberSchrift1);
 		reportPanel1.add(reportPanel1_left);
 		reportPanel1.add(reportPanel1_right);
 		reportPanel1_left.add(subSchrift1);
-		reportPanel1_left.add(new NutzerCellList()
-		.generiereCellList(CellListModus.Report1_NachrichtNutzerZeitraum));
+		reportPanel1_left.add(new NutzerCellList().generiereCellList(CellListModus.Report1_NachrichtNutzerZeitraum));
 		reportPanel1_left.add(subSchrift2);
 		reportPanel1_left.add(vonDateBox);
 		reportPanel1_left.add(bisDateBox);
@@ -108,16 +131,30 @@ public class Report1Gui extends VerticalPanel{
 			
 			@Override
 			public void onClick(ClickEvent event) {
-
+//				Nutzer n = Report1Gui.setzeNutzerFilter(n, selectionModel);
+//				Window.alert(n.getNachname() +"  "+ n.getVorname() +"  "+ 	bisDateBox.getValue() +"  "+vonDateBox.getValue());
+				vonDateBox.getValue();
+				bisDateBox.getValue();
 				
+				
+//				Window.alert(n.getNachname() +"  "+ n.getVorname() +"  "+ 	bisDateBox.getValue() +"  "+vonDateBox.getValue());
+	//			 ReportFormular1 rF = new ReportFormular1();				 rF.reportGenerieren(n, vonDateBox.getValue(), bisDateBox.getValue()); 
 			}
 		});
 	}
+	
+	
+	
 
 	public void setLoginInfo(LoginInfo loginInfo) {
 		// TODO Auto-generated method stub
 		
 	}
 
- 
+//	public static void setzeNutzerFilter(Nutzer n, SingleSelectionModel<NutzerZelle.ZellenObjekt> selectionModel){
+//		nutzerFilter = n;
+//		selectionModelNutzer = selectionModel;
+//			
+//		}
+	
 }
