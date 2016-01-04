@@ -46,6 +46,12 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	}
 
 	public void onLoad() {
+		
+		setzeOptionenButton(null, null);
+
+//		Button btnNeueNachricht = new Button("+ Nachricht");
+//
+//		btnNeueNachricht.setStylePrimaryName("neueNchrichtBtn");
 
 		TreeViewModel model = new NeuigkeitenNachrichtenBaumModel();
 		/*
@@ -62,7 +68,8 @@ public class NeuigkeitenEditor extends VerticalPanel {
 
 		RootPanel.get("content_right").add(scPanel);
 
-		setzeOptionenButton(null, null);
+		
+		
 	}
 
 	public static void showDialogBox(DialogBox anzuzeigendeBox) {
@@ -79,55 +86,66 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		hpHeadline.setStylePrimaryName("hpHeadline");
 		hpHeadline.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		
-
-		HorizontalPanel hpOptionen = new HorizontalPanel();
-		hpOptionen.setStylePrimaryName("hpOptionenButtonbar");
-		hpOptionen.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-
 		HTML headline = new HTML(" <h2>Alle Neuigkeiten</h2> ");
 		hpHeadline.add(headline);
 		
 		Button btnNeueNachricht = new Button("+ Nachricht");
-		btnNeueNachricht.setStylePrimaryName("neueNachrichtBtn");
+		btnNeueNachricht.setStylePrimaryName("neueNchrichtBtn");
 		btnNeueNachricht.addClickHandler(btnNeueNachrichtClickHandler);
 		hpHeadline.add(btnNeueNachricht);
 		
-		Label sublineHpOtion = new Label("Unterhaltung bearbeiten");
-		hpOptionen.add(sublineHpOtion);
+		Button btnAktualisieren = new Button("Aktualisieren");
+		btnAktualisieren.setStylePrimaryName("aktualisierenBtn");
+		btnAktualisieren.addClickHandler(btnUnterhaltungenAktualisierenClickHandler);
+		hpHeadline.add(btnAktualisieren);
+		
+		
+		
+		
+		HorizontalPanel hpOptionen = new HorizontalPanel();
+		hpOptionen.setStylePrimaryName("hpOptionenButtonbar");
+		hpOptionen.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+
+
+		
+//		Label sublineHpOtion = new Label("Unterhaltung bearbeiten");
+//		hpOptionen.add(sublineHpOtion);
 		
 		Button btnAntworten =new Button("Unterhaltung Antworten");
 		btnAntworten.setEnabled(false);
-		btnAntworten.setStylePrimaryName("btnAntworten");
-		btnAntworten.addClickHandler(btnNeueNachrichtClickHandler);
+		btnAntworten.setStylePrimaryName("btnUnterhaltungVerlassen"); 
+		btnAntworten.addClickHandler(btnAntwortenClickHandler);
 		hpOptionen.add(btnAntworten);
 		
 		Button btnTeilnehmerBearbeiten =new Button("Teilnehmer bearbeiten");
 		btnTeilnehmerBearbeiten.setStylePrimaryName("btnTeilnehmerBearbeiten");
-		btnTeilnehmerBearbeiten.addClickHandler(btnNeueNachrichtClickHandler);
+		btnTeilnehmerBearbeiten.addClickHandler(btnTeilnehmerBearbeitenClickHandler);
 		hpOptionen.add(btnTeilnehmerBearbeiten);
 
 		Button btnUnterhaltungVerlassen =new Button("Unterhaltung verlassen");
 		btnUnterhaltungVerlassen.setStylePrimaryName("btnUnterhaltungVerlassen");
-		btnUnterhaltungVerlassen.addClickHandler(btnNeueNachrichtClickHandler);
+		btnUnterhaltungVerlassen.addClickHandler(btnUnterhaltungVerlassenClickHandler);
 		hpOptionen.add(btnUnterhaltungVerlassen);
 
-		Button btnUnterhaltungAktualisieren =new Button("Aktualisieren");
-		btnUnterhaltungAktualisieren.setStylePrimaryName("btnAktualisieren");
-		btnUnterhaltungAktualisieren.addClickHandler(btnNeueNachrichtClickHandler);
-		hpOptionen.add(btnUnterhaltungAktualisieren);
-
-		RootPanel.get("content_right").add(hpHeadline);
-		RootPanel.get("content_right").add(hpOptionen);
+//		Button btnUnterhaltungAktualisieren =new Button("Aktualisieren");
+//		btnUnterhaltungAktualisieren.setStylePrimaryName("btnAktualisieren");
+//		btnUnterhaltungVerlassen.addClickHandler(btnUnterhaltungenAktualisierenClickHandler);
+//		hpOptionen.add(btnUnterhaltungAktualisieren);
+ 
+		
+	
 		
 		
 		
 		Button btnNachrichtBearbeiten = new Button("Nachricht bearbeiten");
 		btnNachrichtBearbeiten.addClickHandler(btnNachrichtBearbeitenClickHandler);
-		hpHeadline.add(btnNachrichtBearbeiten);
+		btnNachrichtBearbeiten.setStylePrimaryName("btnUnterhaltungVerlassen"); 
+		hpOptionen.add(btnNachrichtBearbeiten);
 		
 		Button btnNachrichtLoeaschen = new Button("Nachricht löschen");
+		btnNachrichtLoeaschen.setStylePrimaryName("btnUnterhaltungVerlassen"); 
 		btnNachrichtLoeaschen.addClickHandler(btnNachrichtLoeschenClickHandler);
-		hpHeadline.add(btnNachrichtLoeaschen);
+		hpOptionen.add(btnNachrichtLoeaschen);
 		
 		if (_ausgewaehlteNachricht == null) {
 			ausgewaehlteNachricht = null;
@@ -141,12 +159,13 @@ public class NeuigkeitenEditor extends VerticalPanel {
 
 		
 		RootPanel.get("ButtonBar").add(hpHeadline);
-
+		//RootPanel.get("content_right").add(hpHeadline);
+		RootPanel.get("ButtonBar").add(hpOptionen);
+	}
 		//###################### Unterhaltungsoptionen
 		HorizontalPanel hpUnterhaltungsOptionen = new HorizontalPanel();
 		
-//		Button btnAntworten = new Button("Unterhaltung beantworten");
-//		btnAntworten.addClickHandler(btnAntwortenClickHandler);
+		Button btnAntworten = new Button("Unterhaltung beantworten");
 //		hpUnterhaltungsOptionen.add(btnAntworten);		
 //
 //		Button btnTeilnehmerBearbeiten = new Button("Teilnehmer bearbeiten");
@@ -156,28 +175,27 @@ public class NeuigkeitenEditor extends VerticalPanel {
 //		Button btnUnterhaltungVerlassen = new Button("Unterhaltung verlassen");
 //		btnUnterhaltungVerlassen.addClickHandler(btnUnterhaltungenAktualisierenClickHandler);
 //		hpUnterhaltungsOptionen.add(btnUnterhaltungVerlassen);
-
-		Button btnUnterhaltungenAktualisieren = new Button("Unterhaltungen aktualisieren");
-		btnUnterhaltungenAktualisieren.addClickHandler(btnUnterhaltungenAktualisierenClickHandler);
-		hpUnterhaltungsOptionen.add(btnUnterhaltungenAktualisieren);
-
-		if (_ausgewaehlteUnterhaltung == null) {
-			ausgewaehlteUnterhaltung = null;
-			btnAntworten.setEnabled(false);
-			btnTeilnehmerBearbeiten.setEnabled(false);
-			btnUnterhaltungVerlassen.setEnabled(false);
-			
-
-		} else {
-			ausgewaehlteUnterhaltung = _ausgewaehlteUnterhaltung;
-			btnAntworten.setEnabled(true);
-			btnTeilnehmerBearbeiten.setEnabled(true);
-			btnUnterhaltungVerlassen.setEnabled(true);
-
-		}
-		
-		RootPanel.get("ButtonBar").add(hpUnterhaltungsOptionen);
-	}
+//
+//		Button btnUnterhaltungenAktualisieren = new Button("Unterhaltungen aktualisieren");
+//		btnUnterhaltungenAktualisieren.addClickHandler(btnUnterhaltungenAktualisierenClickHandler);
+//		hpUnterhaltungsOptionen.add(btnUnterhaltungenAktualisieren);
+//
+//		if (_ausgewaehlteUnterhaltung == null) {
+//			ausgewaehlteUnterhaltung = null;
+//			btnAntworten.setEnabled(false);
+//			btnTeilnehmerBearbeiten.setEnabled(false);
+//			btnUnterhaltungVerlassen.setEnabled(false);
+//			
+//		} else {
+//			ausgewaehlteUnterhaltung = _ausgewaehlteUnterhaltung;
+//			btnAntworten.setEnabled(true);
+//			btnTeilnehmerBearbeiten.setEnabled(true);
+//			btnUnterhaltungVerlassen.setEnabled(true);
+//
+//		}
+//		
+//		RootPanel.get("ButtonBar").add(hpUnterhaltungsOptionen);
+//	}
 
 	public static VerticalPanel gibFilterPanel(){
 		VerticalPanel vpFilterPanel = new VerticalPanel();
@@ -233,5 +251,8 @@ public class NeuigkeitenEditor extends VerticalPanel {
 			NeuigkeitenNachrichtenBaumModel.ladeUnterhaltungenAsync();
 		}
 	};
+	
+	
+	
 
 }
