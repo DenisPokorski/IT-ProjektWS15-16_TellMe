@@ -1,4 +1,4 @@
-package de.hdm.tellme.clientSchaukasten;
+package de.hdm.tellme.client.Schaukasten;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

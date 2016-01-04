@@ -7,12 +7,12 @@ import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
+import de.hdm.tellme.client.Schaukasten.NeuigkeitenEditor;
+import de.hdm.tellme.client.Schaukasten.NutzerBearbeitenEditor;
 import de.hdm.tellme.client.gui.report.Report1Gui;
 import de.hdm.tellme.client.gui.report.Report2Gui;
 import de.hdm.tellme.client.gui.report.Report3Gui;
 import de.hdm.tellme.client.gui.report.ReportWillkommenSeite;
-import de.hdm.tellme.clientSchaukasten.NeuigkeitenEditor;
-import de.hdm.tellme.clientSchaukasten.NutzerBearbeitenEditor;
 
 /**
  * 

@@ -14,7 +14,7 @@ import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.gwt.view.client.TreeViewModel;
 
 import de.hdm.tellme.client.TellMe;
-import de.hdm.tellme.clientSchaukasten.NeuigkeitenEditor;
+import de.hdm.tellme.client.Schaukasten.NeuigkeitenEditor;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Hashtag;
