@@ -174,9 +174,10 @@ h3 {font-size: 13px;}
     .subBtnHashtag, .subBtnEmpfaenger{
         color: #fff;
     font-size: 11px;
-    border: none;
+    border-top: 1px;
+    margin-top: 2px;
     margin-right: 1px;
-    margin-bottom: 1px; }
+    margin-bottom: 1px;}
     
      .btnPositiv{background: green;    margin-right: 15px;}
     .btnNegativ{   	background: red;
@@ -469,7 +470,6 @@ width: 690px;
     float: right;
     background: #fff;
     border-radius: 22px;
-    min-height: 500px;
 }
 
 #footer{ }
@@ -544,6 +544,21 @@ text-align: left
 
 .kopfdatenbox_links, .kopfdatenbox_rechts:hover{
  background-color: #B0C4DE;
+}
+
+.reportUebersichtPanel{
+width:100%;
+}
+
+.reportUebersichtPanel h2{
+width:100%;
+padding:5px;
+
+}
+
+.reportUebersichtPanel td{
+width:33%;
+padding:5px;
 }
 /*table, th, td {
 border: 1px solid black;
