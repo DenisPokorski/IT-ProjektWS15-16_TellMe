@@ -1,4 +1,4 @@
-package de.hdm.tellme.client.gui.editor;
+package Schaukasten;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.tellme.client.TellMe;
+import de.hdm.tellme.client.gui.editor.MenuBarEditor;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Nutzer;

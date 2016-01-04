@@ -1,5 +1,8 @@
 package de.hdm.tellme.client.gui.editor;
 
+import Schaukasten.NeuigkeitenEditor;
+import Schaukasten.NutzerBearbeitenEditor;
+
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.MenuBar;
@@ -7,7 +10,6 @@ import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-import de.hdm.tellme.client.NeuigkeitenEditor;
 import de.hdm.tellme.client.gui.report.Report1Gui;
 import de.hdm.tellme.client.gui.report.Report2Gui;
 import de.hdm.tellme.client.gui.report.Report3Gui;
