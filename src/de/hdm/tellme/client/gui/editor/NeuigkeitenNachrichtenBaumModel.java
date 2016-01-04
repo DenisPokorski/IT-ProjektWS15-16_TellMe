@@ -2,8 +2,6 @@ package de.hdm.tellme.client.gui.editor;
 
 import java.util.Vector;
 
-import Schaukasten.NeuigkeitenEditor;
-
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.cell.client.Cell;
 import com.google.gwt.core.shared.GWT;
@@ -16,6 +14,7 @@ import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.gwt.view.client.TreeViewModel;
 
 import de.hdm.tellme.client.TellMe;
+import de.hdm.tellme.clientSchaukasten.NeuigkeitenEditor;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Hashtag;

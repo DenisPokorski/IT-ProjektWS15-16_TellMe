@@ -1,4 +1,4 @@
-package Schaukasten;
+package de.hdm.tellme.clientSchaukasten;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -7,6 +7,8 @@ import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSe
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -73,19 +75,59 @@ public class NeuigkeitenEditor extends VerticalPanel {
 
 
 		//###################### Nachrichtenoptionen
-		HorizontalPanel hpNachrichtenOptionen = new HorizontalPanel();
+		HorizontalPanel hpHeadline = new HorizontalPanel();
+		hpHeadline.setStylePrimaryName("hpHeadline");
+		hpHeadline.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+		
 
-		Button btnNeueNachricht = new Button("Neue Nachricht verfassen");
+		HorizontalPanel hpOptionen = new HorizontalPanel();
+		hpOptionen.setStylePrimaryName("hpOptionenButtonbar");
+		hpOptionen.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+
+		HTML headline = new HTML(" <h2>Alle Neuigkeiten</h2> ");
+		hpHeadline.add(headline);
+		
+		Button btnNeueNachricht = new Button("+ Nachricht");
+		btnNeueNachricht.setStylePrimaryName("neueNachrichtBtn");
 		btnNeueNachricht.addClickHandler(btnNeueNachrichtClickHandler);
-		hpNachrichtenOptionen.add(btnNeueNachricht);
+		hpHeadline.add(btnNeueNachricht);
+		
+		Label sublineHpOtion = new Label("Unterhaltung bearbeiten");
+		hpOptionen.add(sublineHpOtion);
+		
+		Button btnAntworten =new Button("Unterhaltung Antworten");
+		btnAntworten.setEnabled(false);
+		btnAntworten.setStylePrimaryName("btnAntworten");
+		btnAntworten.addClickHandler(btnNeueNachrichtClickHandler);
+		hpOptionen.add(btnAntworten);
+		
+		Button btnTeilnehmerBearbeiten =new Button("Teilnehmer bearbeiten");
+		btnTeilnehmerBearbeiten.setStylePrimaryName("btnTeilnehmerBearbeiten");
+		btnTeilnehmerBearbeiten.addClickHandler(btnNeueNachrichtClickHandler);
+		hpOptionen.add(btnTeilnehmerBearbeiten);
+
+		Button btnUnterhaltungVerlassen =new Button("Unterhaltung verlassen");
+		btnUnterhaltungVerlassen.setStylePrimaryName("btnUnterhaltungVerlassen");
+		btnUnterhaltungVerlassen.addClickHandler(btnNeueNachrichtClickHandler);
+		hpOptionen.add(btnUnterhaltungVerlassen);
+
+		Button btnUnterhaltungAktualisieren =new Button("Aktualisieren");
+		btnUnterhaltungAktualisieren.setStylePrimaryName("btnAktualisieren");
+		btnUnterhaltungAktualisieren.addClickHandler(btnNeueNachrichtClickHandler);
+		hpOptionen.add(btnUnterhaltungAktualisieren);
+
+		RootPanel.get("content_right").add(hpHeadline);
+		RootPanel.get("content_right").add(hpOptionen);
+		
+		
 		
 		Button btnNachrichtBearbeiten = new Button("Nachricht bearbeiten");
 		btnNachrichtBearbeiten.addClickHandler(btnNachrichtBearbeitenClickHandler);
-		hpNachrichtenOptionen.add(btnNachrichtBearbeiten);
+		hpHeadline.add(btnNachrichtBearbeiten);
 		
 		Button btnNachrichtLoeaschen = new Button("Nachricht löschen");
 		btnNachrichtLoeaschen.addClickHandler(btnNachrichtLoeschenClickHandler);
-		hpNachrichtenOptionen.add(btnNachrichtLoeaschen);
+		hpHeadline.add(btnNachrichtLoeaschen);
 		
 		if (_ausgewaehlteNachricht == null) {
 			ausgewaehlteNachricht = null;
@@ -98,22 +140,22 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		}
 
 		
-		RootPanel.get("ButtonBar").add(hpNachrichtenOptionen);
+		RootPanel.get("ButtonBar").add(hpHeadline);
 
 		//###################### Unterhaltungsoptionen
 		HorizontalPanel hpUnterhaltungsOptionen = new HorizontalPanel();
 		
-		Button btnAntworten = new Button("Unterhaltung beantworten");
-		btnAntworten.addClickHandler(btnAntwortenClickHandler);
-		hpUnterhaltungsOptionen.add(btnAntworten);		
-
-		Button btnTeilnehmerBearbeiten = new Button("Teilnehmer bearbeiten");
-		btnTeilnehmerBearbeiten.addClickHandler(btnTeilnehmerBearbeitenClickHandler);
-		hpUnterhaltungsOptionen.add(btnTeilnehmerBearbeiten);
-
-		Button btnUnterhaltungVerlassen = new Button("Unterhaltung verlassen");
-		btnUnterhaltungVerlassen.addClickHandler(btnUnterhaltungenAktualisierenClickHandler);
-		hpUnterhaltungsOptionen.add(btnUnterhaltungVerlassen);
+//		Button btnAntworten = new Button("Unterhaltung beantworten");
+//		btnAntworten.addClickHandler(btnAntwortenClickHandler);
+//		hpUnterhaltungsOptionen.add(btnAntworten);		
+//
+//		Button btnTeilnehmerBearbeiten = new Button("Teilnehmer bearbeiten");
+//		btnTeilnehmerBearbeiten.addClickHandler(btnTeilnehmerBearbeitenClickHandler);
+//		hpUnterhaltungsOptionen.add(btnTeilnehmerBearbeiten);
+//
+//		Button btnUnterhaltungVerlassen = new Button("Unterhaltung verlassen");
+//		btnUnterhaltungVerlassen.addClickHandler(btnUnterhaltungenAktualisierenClickHandler);
+//		hpUnterhaltungsOptionen.add(btnUnterhaltungVerlassen);
 
 		Button btnUnterhaltungenAktualisieren = new Button("Unterhaltungen aktualisieren");
 		btnUnterhaltungenAktualisieren.addClickHandler(btnUnterhaltungenAktualisierenClickHandler);

@@ -66,7 +66,7 @@ margin: 15px 6px 6px;
         .subBtnHashtag{    background: #628CD5;
         }
         
-  .neueNchrichtBtn, .btnUnterhaltungVerlassen, .btnTeilnehmerBearbeiten, .btnAntworten{
+  .neueNchrichtBtn, .btnUnterhaltungVerlassen, .btnTeilnehmerBearbeiten, .btnAntworten, .btnAktualisieren{
    background: #628cd5;
     color: #fff;
     font-size: 13px;
@@ -155,20 +155,20 @@ margin: 15px 6px 6px;
     
  
     
-    .btnAntworten:active ,neueNchrichtBtn:active, btnTeilnehmerBearbeiten:active, btnUnterhaltungVerlassen:active{
+    .btnAntworten:active , .btnAktualisieren:active, .neueNchrichtBtn:active, .btnTeilnehmerBearbeiten:active, .btnUnterhaltungVerlassen:active{
   border: 1px inset #ccc;
 }
- .btnAntworten:hover ,neueNchrichtBtn:hover, btnTeilnehmerBearbeiten:hover, btnUnterhaltungVerlassen:hover {
+ .btnAntworten:hover , .btnAktualisieren:hover, .neueNchrichtBtn:hover, .btnTeilnehmerBearbeiten:hover, .btnUnterhaltungVerlassen:hover {
   border-color: #939393;
 }
- .btnAntworten[disabled]  ,neueNchrichtBtn[disabled] , btnTeilnehmerBearbeiten[disabled] , btnUnterhaltungVerlassen[disabled] {
+ .btnAntworten[disabled]  ,.btnAktualisieren[disabled], .neueNchrichtBtn[disabled] , .btnTeilnehmerBearbeiten[disabled] , .btnUnterhaltungVerlassen[disabled] {
   cursor: default;
   color: #888;
      background: #e7dfec;
   
 }
 
-.btnAntworten[disabled]:hover ,neueNchrichtBtn[disabled]:hover, btnTeilnehmerBearbeiten[disabled]:hover, btnUnterhaltungVerlassen[disabled]:hover
+.btnAntworten[disabled]:hover ,.btnAktualisieren[disabled]:hover, .neueNchrichtBtn[disabled]:hover, .btnTeilnehmerBearbeiten[disabled]:hover, .btnUnterhaltungVerlassen[disabled]:hover
 {
   border: 1px outset #ccc;
 }

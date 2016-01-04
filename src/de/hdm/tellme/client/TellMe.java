@@ -1,8 +1,5 @@
 package de.hdm.tellme.client;
 
-import Schaukasten.NeuigkeitenEditor;
-import Schaukasten.NutzerBearbeitenEditor;
-
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.client.Window;
@@ -13,6 +10,8 @@ import com.google.gwt.user.client.ui.Widget;
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.MenuBarEditor;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
+import de.hdm.tellme.clientSchaukasten.NeuigkeitenEditor;
+import de.hdm.tellme.clientSchaukasten.NutzerBearbeitenEditor;
 import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.LoginService;
 import de.hdm.tellme.shared.LoginServiceAsync;
