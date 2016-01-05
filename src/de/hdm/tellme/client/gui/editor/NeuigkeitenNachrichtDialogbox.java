@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.SuggestBox;
@@ -126,17 +127,31 @@ public class NeuigkeitenNachrichtDialogbox {
 		FlowPanel fpDialog = new FlowPanel();
 		// fpDialog.setHeight("500px");
 		// fpDialog.setWidth("500px");
+		
+		//db.setWidth("100%");
+
+		fpDialog.setWidth("100%");
+		//fpDialog.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+		Image btnAbbrechen = new Image("xbtn.png");
+		btnAbbrechen.setStylePrimaryName("xbtn");
+		btnAbbrechen.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				db.hide();
+			}
+		});
+		fpDialog.add(btnAbbrechen);
 
 		// ############################################## Empfaenger Panele
 		// ##############################################
 		if (NachrichtenModus == eNachrichtenmodus.NeueNachricht) {
 
-			hpEmpfaenger.add(new Label("Empfänger:"));
 
 			final SuggestBox EmpfaengerHinzufuegenSug = new SuggestBox(suggestOracleEmpfaenger);
 			hpEmpfaenger.add(EmpfaengerHinzufuegenSug);
 
-			final Button btnEmpfaengerHinzufuegen = new Button("+ Hinzufügen");
+			final Button btnEmpfaengerHinzufuegen = new Button("+ Empfänger");
+			btnEmpfaengerHinzufuegen.setStylePrimaryName("EmpfaengerPlusBtn");
+
 			hpEmpfaenger.add(btnEmpfaengerHinzufuegen);
 
 			btnEmpfaengerHinzufuegen.addClickHandler(new ClickHandler() {
@@ -176,6 +191,7 @@ public class NeuigkeitenNachrichtDialogbox {
 						final Button btnLoescheEmpfaenger = new Button(gibVorschlageTextFuerNutzer(zuHinzuzufuegenderBenutzer) + "(X)");
 						btnLoescheEmpfaenger.setStylePrimaryName("ButtonX-Nachrichtenverwaltung");
 
+
 						btnLoescheEmpfaenger.addClickHandler(new ClickHandler() {
 							public void onClick(ClickEvent event) {
 								// Wenn ein Benutzer in der
@@ -208,16 +224,16 @@ public class NeuigkeitenNachrichtDialogbox {
 
 		// ############################################## Textarea
 		// ##############################################
-		textArea.setWidth("90%");
+		textArea.setWidth("98.4%");
 		textArea.setVisibleLines(10);
 		textArea.setText(textAreaInhalt);
+		textArea.setStylePrimaryName("dialogtextArea");
+
 		// maxlength="50"
 		fpDialog.add(textArea);
 
 		// ############################################## Hashtag Panele
 		// ##############################################
-		hpHashtags.add(new Label("Hashtags:"));
-
 		final SuggestBox HastagHinzufuegenSug = new SuggestBox(suggestOracleHashtags);
 		hpHashtags.add(HastagHinzufuegenSug);
 
@@ -255,7 +271,8 @@ public class NeuigkeitenNachrichtDialogbox {
 				} else {
 					AusgewaehlteHashtags.addElement(zuHinzuzufuegenderHashtag);
 					final Button btnLoescheHashtag = new Button("#" + zuHinzuzufuegenderHashtag.getSchlagwort() + "(X)");
-					btnLoescheHashtag.setStylePrimaryName("ButtonX-Nachrichtenverwaltung");
+					btnLoescheHashtag.setStylePrimaryName("ButtonX-Hashtagverwaltung");
+
 
 					btnLoescheHashtag.addClickHandler(new ClickHandler() {
 						public void onClick(ClickEvent event) {
@@ -286,8 +303,13 @@ public class NeuigkeitenNachrichtDialogbox {
 		hpButtons.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 
 		Button btnFunktionsbutton = new Button(textFunktionsbutton);
+		btnHashtagHinzufuegen.setStylePrimaryName("HashtagPlusBtn");
+		
+		btnFunktionsbutton.setStylePrimaryName("NeuigkeitenDialogboxSendenBtn");
 		btnFunktionsbutton.addClickHandler(new ClickHandler() {
-
+			
+			
+			
 			@Override
 			public void onClick(ClickEvent event) {
 				// TODO Auto-generated method stub
@@ -407,14 +429,9 @@ public class NeuigkeitenNachrichtDialogbox {
 			}
 		});
 
-		Button btnAbbrechen = new Button("Abbrechen");
-		btnAbbrechen.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				db.hide();
-			}
-		});
+		
 		hpButtons.add(btnFunktionsbutton);
-		hpButtons.add(btnAbbrechen);
+		//hpButtons.add(btnAbbrechen);
 		fpDialog.add(hpButtons);
 
 		db.setWidget(fpDialog);
