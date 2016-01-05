@@ -74,6 +74,7 @@ public class HashtagCellList {
 		sPager.setWidth("250px");
 		sPager.setHeight("100%");
 		sPager.setDisplay(cellList);
+		sPager.setStylePrimaryName("pagerStyleBlue");
 
 		RangeLabelPager fPager = new RangeLabelPager();
 		fPager.setDisplay(cellList);

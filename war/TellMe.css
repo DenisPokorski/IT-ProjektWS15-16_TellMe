@@ -221,11 +221,12 @@ h3 {
 }
 
 .btnSpeichern{
-	background: blue;
+ 	background: #628cd5;
+ 
 }
 .btnNegativ, .btnPositiv, .btnSpeichern{
 	height: 30px;
-	width: 150px;
+	width: 100%;
 	border: none;
 	color: #fff;
 }
@@ -656,8 +657,11 @@ html {
 }
 
 /*Pagerpanel Celllist*/
-.pagerStyle {
-	background: #ccc;
+.pagerStyleGrey {
+	background: #d0d7e5;
+}
+.pagerStyleBlue {
+	background: #e3e8f4;
 }
 
 .subline_report {

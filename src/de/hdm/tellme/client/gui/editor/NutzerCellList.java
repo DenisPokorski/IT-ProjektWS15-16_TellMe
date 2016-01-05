@@ -118,7 +118,7 @@ public class NutzerCellList {
 		ShowMorePagerPanel sPager = new ShowMorePagerPanel();
 		sPager.setWidth("250px");
 		sPager.setHeight("100%");
-		sPager.setStylePrimaryName("pagerStyle");
+		sPager.setStylePrimaryName("pagerStyleBlue");
 		sPager.setDisplay(cellList);
 
 		RangeLabelPager fPager = new RangeLabelPager();

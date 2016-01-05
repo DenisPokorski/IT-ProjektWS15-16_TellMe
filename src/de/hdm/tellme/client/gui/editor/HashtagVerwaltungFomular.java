@@ -127,17 +127,16 @@ public class HashtagVerwaltungFomular extends Composite {
 
 		HorizontalPanel hpButtonBar = new HorizontalPanel();
 		hpButtonBar.add(htSpeichern);
-		htSpeichern.setStylePrimaryName("btnSpeichern");
+		htSpeichern.setStylePrimaryName("btnPositiv");
 
 		hpButtonBar.add(htLoeschen);
 		htLoeschen.setStylePrimaryName("btnNegativ");
 
 		hpButtonBar.add(htAnlegen);
-		htAnlegen.setStylePrimaryName("btnPositiv");
+		htAnlegen.setStylePrimaryName("neueNchrichtBtn");
 
 		vpForm.add(hpButtonBar);
 
-		// vpForm.add(new Label(hashtag.getSchlagwort() ));
 		return vpForm;
 	}
 
@@ -149,6 +148,7 @@ public class HashtagVerwaltungFomular extends Composite {
 		return vpForm;
 	}
 	
+ 
 	// Setze Buttons
 	public void setzeHashtag(HashtagZelle.ZellenObjekt ZellenObjekt) {
 		this.hashtag = ZellenObjekt.hashtag;

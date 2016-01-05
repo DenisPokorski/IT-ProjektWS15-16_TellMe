@@ -108,6 +108,44 @@ public class HashtagFormular extends Composite {
 
 		return vpForm;
 	}
+	
+	
+	public VerticalPanel gibBeschreibungHtAbo(){
+		VerticalPanel vpForm = new VerticalPanel();
+
+		HTML headline = new HTML(" <div class='" + "subline"
+				+ "'><h2>Hashtagabo(s) verwalten:</h2></div> ");
+		vpForm.add(headline);
+
+		HTML subtext = new HTML(
+				" <div class='"
+						+ "subtext"
+						+ "'><h4>Hier können Sie Hashtags abonnieren. Zudem können Sie bereits vorhandene Abonnoments löschen. Hinweis: Um Hashtags bearbeiten zu können so klicken Sie im Hauptmenü bitte auf Einstellungen und weiter auf Hastagverwaltung.  </h4></div> ");
+		vpForm.add(subtext);
+
+		vpForm.add(gibAnlegenFormular());
+		
+		return vpForm;
+	}
+	
+	public VerticalPanel gibBeschreibungHtVerwaltung(){
+		VerticalPanel vpForm = new VerticalPanel();
+
+		HTML headline = new HTML(" <div class='" + "subline"
+				+ "'><h2>Hashtag(s) verwalten:</h2></div> ");
+		vpForm.add(headline);
+
+		HTML subtext = new HTML(
+				" <div class='"
+						+ "subtext"
+						+ "'><h4>Hier können Sie Hashtags neu im System anlegen, bearbeiten und löschen. Bitte geben Sie zum anlegen das entsprechende Hashtag ein und klicken auf den Button-Anlegen oder wählen Sie hier in der Liste aller Hastags auf der rechten Seite aus, um es zu bearbeiten oder zu löschen.  </h4></div> ");
+		vpForm.add(subtext);
+
+		
+		return vpForm;
+	}
+	
+	
 
 	public VerticalPanel gibInfoFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
@@ -120,6 +158,8 @@ public class HashtagFormular extends Composite {
 
 	public VerticalPanel gibAnlegenFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
+		htAnlegen.setStylePrimaryName("btnSpeichern"); 
+		
 		vpForm.clear();
 		vpForm.add(schlagwortBox);
 		vpForm.add(htAnlegen);

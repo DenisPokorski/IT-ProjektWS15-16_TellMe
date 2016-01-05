@@ -7,6 +7,7 @@ import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
+import de.hdm.tellme.client.Impressum;
 import de.hdm.tellme.client.Schaukasten.NeuigkeitenEditor;
 import de.hdm.tellme.client.Schaukasten.NutzerBearbeitenEditor;
 import de.hdm.tellme.client.gui.report.Report1Gui;
@@ -43,6 +44,7 @@ public class MenuBarEditor extends HorizontalPanel {
 	 * Definition von Konstruktor
 	 */
 	public MenuBarEditor() {
+		
 	}
 
 	public void onLoad() {
@@ -97,7 +99,7 @@ public class MenuBarEditor extends HorizontalPanel {
 			public void execute() {
 				setzeInhalt(new HashtagCellList()
 						.generiereCellList(CellListModus.Einstellungen),
-						new HashtagVerwaltungFomular().gibInfoFormular());
+						   new HashtagFormular().gibBeschreibungHtAbo());
 			}
 		});
 
@@ -106,7 +108,7 @@ public class MenuBarEditor extends HorizontalPanel {
 			public void execute() {
 				setzeInhalt(new HashtagCellList()
 						.generiereCellList(CellListModus.HastagVerwaltung),
-						new HashtagFormular().gibAnlegenFormular());
+						new HashtagFormular().gibBeschreibungHtVerwaltung());
 
 			}
 		});
@@ -118,6 +120,15 @@ public class MenuBarEditor extends HorizontalPanel {
 			}
 		});
 
+		
+		EinstellungenMenu.addItem("Log out", new Command() {
+			@Override
+			public void execute() {
+ //TODO 
+			
+			}
+		});
+		
 		// TODO: TEMPORÄRES MENÜ LÖSCHEN VOR ABGABE
 		MenuBar tempReports = new MenuBar(true);
 		tempReports.setAnimationEnabled(true);
@@ -155,6 +166,12 @@ public class MenuBarEditor extends HorizontalPanel {
 
 		RootPanel.get("header").add(HauptMenue);
 
+		
+		/*Setzen von Imrpessum*/
+		Impressum impressum = new Impressum(); 
+		RootPanel.get("footer").add(new Impressum().impessumButton());
+
+		
 	}
 
 	public static void setzeInhalt(Widget ZuSetzendesPanel) {

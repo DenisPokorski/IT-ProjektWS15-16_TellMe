@@ -6,6 +6,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -51,11 +52,17 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 	private Button profilloeschenButton = new Button("Profil löschen");
 	private VerticalPanel profilPanel = new VerticalPanel();
 	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
-	private Label ueberschrift1 = new Label("Mein Profil");
-	private Label untertitel = new Label(
-			"Hier siehst du dein Profil und kannst es bearbeiten, löschen und dich abmelden.");
-	private Label ueberschrift2 = new Label("Profil bearbeiten");
+ 
+	private VerticalPanel vP = new VerticalPanel();
 
+	private Label subline = new Label("Profildaten");
+	HTML headline = new HTML(" <div class='" + "subline"
+			+ "'><h2>Meine Nutzerdaten bearbeiten</h2></div> ");
+	HTML subtext = new HTML(
+			" <div class='"
+					+ "subtext"
+					+ "'><h4>  Auf dieser Oberfläche können Sie Ihre Nutzerdaten bearbeiten und speichern sowie diese vollständig löschen.  </h4></div> ");
+	
 	/*
 	 * Die Methode des AsyncCallbacks, um die Daten zum Nutzer bearbeiten an die
 	 * Datenbank zu senden. Nach erfolgreicher Ausführung kommt eine
@@ -137,10 +144,8 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 		emailTextBox.setText(TellMe.eingeloggterBenutzer.getUser()
 				.getMailadresse());
 
-		profilPanel.add(ueberschrift1);
-		profilPanel.add(untertitel);
-		profilPanel.add(ueberschrift2);
-
+	 
+		profilPanel.add(subline);
 		profilPanel.add(bezeichnungVornameTextBox);
 		profilPanel.add(vornameTextBox);
 		profilPanel.add(bezeichnungNachnameTextBox);
@@ -149,13 +154,14 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 		profilPanel.add(emailTextBox);
 		emailTextBox.setReadOnly(true);
 
+		aenderungenSpeichernButton.setStylePrimaryName("btnPositiv");
+		profilloeschenButton.setStylePrimaryName("btnNegativ");
+		
 		ButtonPanel.add(aenderungenSpeichernButton);
+	
 
 		ButtonPanel.add(profilloeschenButton);
 
-		ueberschrift1.addStyleName("ueberschrift1");
-		untertitel.addStyleName("untertitel");
-		ueberschrift2.addStyleName("ueberschrift2");
 
 		bezeichnungVornameTextBox.addStyleName("bezeichnungVornameTextBox");
 		vornameTextBox.addStyleName("vornameTextBox");
@@ -168,8 +174,18 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 
 		profilloeschenButton.addStyleName("profilloeschenButton");
 
-		RootPanel.get("content").add(profilPanel);
-		RootPanel.get("content").add(ButtonPanel);
+		
+		
+
+		
+		vP.add(headline);
+		vP.add(subtext);
+		RootPanel.get("content_right").add(vP);
+
+		RootPanel.get("content_left").add(profilPanel);
+		RootPanel.get("content_right").add(ButtonPanel);
+		 
+		
 		/*
 		 * Der ClickHandler des Speichern-Buttons. Zuerst wird eine if-Abfrage
 		 * durchgeführt, ob die Textboxen Vorname und Nachname befüllt sind.
