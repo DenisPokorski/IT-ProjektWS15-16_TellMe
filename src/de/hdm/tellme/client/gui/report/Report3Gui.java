@@ -1,5 +1,6 @@
 package de.hdm.tellme.client.gui.report;
 
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -30,8 +31,14 @@ public class Report3Gui extends VerticalPanel {
 	 * uns die CellList an mehreren Stellen,mit einem spezifischen
 	 * Selektionsverhalten im System zu verwenden.
 	 */
+	
+	HTML subline = new HTML ("<div class='"+"subline_report"+"'><b>Bitte wählen Sie einen Nutzer aus:</b></div>");
+ 	
 	public void onLoad() {
-
+		RootPanel
+		.get("content_left")
+		.add(subline);
+		
 		RootPanel
 				.get("content_left")
 				.add(new NutzerCellList()

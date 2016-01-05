@@ -32,17 +32,26 @@ public class ReportWillkommenSeite extends VerticalPanel {
 			"Der Report 2 gibt alle du bist ne kleine missge eines Nutzers aus");
 	Label report3Beschreibung = new Label(
 			"Der Report 3 gibt alle Hashtagabonnements eines Nutzers aus");
+	
 
-	Button report1Button = new Button("Zu Report 1");
-	Button report2Button = new Button("Zu Report 2");
-	Button report3Button = new Button("Zu Report 3");
 
 	public void onLoad() {
+		
+		
+
+		Button report1Button = new Button("Zu Report 1");
+		Button report2Button = new Button("Zu Report 2");
+		Button report3Button = new Button("Zu Report 3");
+		
+		report3Button.setStylePrimaryName("neueNchrichtBtn");
+		report2Button.setStylePrimaryName("neueNchrichtBtn");
+		report1Button.setStylePrimaryName("neueNchrichtBtn");
+		
 		HorizontalPanel hpHeadline = new HorizontalPanel();
 		hpHeadline.setStylePrimaryName("hpHeadline");
 
 		HTML headline = new HTML(" <div class='" + "reportUebersichtPanel"
-				+ "'><h2>Alle Neuigkeiten</h2></div> ");
+				+ "'><h2>Reportgenerator </h2></div> ");
 		willkommenPanel.add(headline);
 
 		willkommenPanel.add(anordnungsPanel);

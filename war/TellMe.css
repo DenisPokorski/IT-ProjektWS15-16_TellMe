@@ -169,7 +169,7 @@ h3 {font-size: 13px;}
     width: 250px; }
        
        .neueNchrichtBtn{float:right; width:91px; height:30px;   margin-right: 10px;
-    margin-top: 15px;}
+    margin-top: 15px; width:100%;}
        
     .subBtnHashtag, .subBtnEmpfaenger{
         color: #fff;
@@ -306,9 +306,9 @@ div.GPBYFDEFF.GPBYFDEHF{
 }
 
 #content_left { .
-	width: auto;
-	max-width: 270px;
-	float: left;
+    max-width: 252px;
+    float: left;
+    padding: 10px;
  }
  
  #footer {
@@ -364,8 +364,7 @@ body {
  	    height: 100%;
  	    background: #fff;
     margin-top: 1px;
-    border-radius: 25px;
-	    
+ 	    
 }
 
 #footer {
@@ -466,7 +465,7 @@ font-size: 14px;
 
 #content_right {
 
-width: 690px;
+width: 688px ;
     float: right;
     background: #fff;
     border-radius: 22px;
@@ -555,6 +554,13 @@ width:100%;
 padding:5px;
 
 }
+
+/*Pagerpanel Celllist*/
+.pagerStyle{background:#ccc;}
+
+.subline_report{
+	margin-top:35px;
+    margin-bottom: 10px;}
 
 .reportUebersichtPanel td{
 width:33%;

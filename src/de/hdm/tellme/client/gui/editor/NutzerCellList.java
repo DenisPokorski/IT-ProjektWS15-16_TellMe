@@ -2,6 +2,7 @@ package de.hdm.tellme.client.gui.editor;
 
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -19,6 +20,8 @@ public class NutzerCellList {
 	Nutzer selektiererBenutzer = null;
 
 	public FlowPanel generiereCellList(CellListModus modi) {
+		HTML subline = new HTML ("<div><h3>Abonnierte Nutzer:</h3></div>"); 
+		RootPanel.get("content_right").add(subline);
 
 		CellList<NutzerZelle.ZellenObjekt> cellList = new CellList<NutzerZelle.ZellenObjekt>(new NutzerZelle().new ZellenElement());
 
@@ -29,6 +32,9 @@ public class NutzerCellList {
 		cellList.setSelectionModel(selectionModel);
 		switch (modi) {
 		case Einstellungen:
+			
+			RootPanel.get("content_right").add(subline);
+
 			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 				public void onSelectionChange(SelectionChangeEvent event) {
 
@@ -42,6 +48,10 @@ public class NutzerCellList {
 			break;
 
 		case Nachrichtenuebersicht:
+			RootPanel.get("content_right").add(subline);
+
+ 		 
+			
 			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 				public void onSelectionChange(SelectionChangeEvent event) {
 					NeuigkeitenNachrichtenBaumModel.setzeNutzerFilter(selectionModel.getSelectedObject().nutzer, selectionModel);
@@ -81,8 +91,8 @@ public class NutzerCellList {
 
 					ReportFormular3 rF = new ReportFormular3();
 					rF.report3Generieren(selectionModel.getSelectedObject());
-					RootPanel.get("content_left").clear();
-					RootPanel.get("content_left").add(rF.gibFormular());
+					RootPanel.get("content_right").clear();
+					RootPanel.get("content_right").add(rF.gibFormular());
 
 				}
 			});
@@ -95,8 +105,8 @@ public class NutzerCellList {
 
 					ReportFormular2 rF = new ReportFormular2();
 					rF.report2Generieren(selectionModel.getSelectedObject());
-					RootPanel.get("content_left").clear();
-					RootPanel.get("content_left").add(rF.gibFormular());
+					RootPanel.get("content_right").clear();
+					RootPanel.get("content_right").add(rF.gibFormular());
 
 				}
 			});
@@ -109,13 +119,16 @@ public class NutzerCellList {
 
 		ShowMorePagerPanel sPager = new ShowMorePagerPanel();
 		sPager.setWidth("250px");
-		sPager.setHeight("100px");
+		sPager.setHeight("100%");
+		sPager.setStylePrimaryName("pagerStyle");
 		sPager.setDisplay(cellList);
 
 		RangeLabelPager fPager = new RangeLabelPager();
 		fPager.setDisplay(cellList);
 
+		
 		FlowPanel fP = new FlowPanel();
+		fP.add(new HTML("Liste aller Nutzer:"));
 
 		fP.add(new ScrollPanel(sPager));
 		fP.add(new SimplePanel(fPager));

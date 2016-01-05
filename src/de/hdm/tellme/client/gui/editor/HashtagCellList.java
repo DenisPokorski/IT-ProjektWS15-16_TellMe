@@ -2,6 +2,7 @@ package de.hdm.tellme.client.gui.editor;
 
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -81,6 +82,7 @@ public class HashtagCellList {
 		fPager.setDisplay(cellList);
 
 		FlowPanel fP = new FlowPanel();
+		fP.add(new HTML("Liste aller Hashtags:"));
 
 		fP.add(new ScrollPanel(sPager));
 		fP.add(new SimplePanel(fPager));

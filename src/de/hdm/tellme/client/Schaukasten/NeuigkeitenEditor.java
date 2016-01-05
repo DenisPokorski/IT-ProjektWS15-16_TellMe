@@ -208,6 +208,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		vpFilterPanel.add(hsCL.generiereCellList(CellListModus.Nachrichtenuebersicht));
 		vpFilterPanel.add(new Label("________________________________________"));
 		Button btnFilterZuruecksetzen = new Button("Filter zurücksetzen");
+		btnFilterZuruecksetzen.setStylePrimaryName("neueNchrichtBtn");
 		btnFilterZuruecksetzen.addClickHandler(new ClickHandler() {
 			
 			@Override

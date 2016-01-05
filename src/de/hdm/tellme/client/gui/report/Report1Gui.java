@@ -56,8 +56,10 @@ public class Report1Gui extends VerticalPanel{
 	}
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift1 = new Label("Report1: Nachrichten abfragen");
-	private Label subSchrift1 = new Label("Nutzer auswählen");
-	private Label subSchrift2 = new Label("Zeitraum auswählen");
+	HTML subSchrift1 = new HTML ("<div class='"+"subline_report"+"'><b>Bitte wählen Sie einen Nutzer aus:</b></div>");
+	HTML subSchrift2 = new HTML ("<div class='"+"subline_report"+"'><b>Bitte wählen Sie den Zeitraum aus:</b></div>");
+
+ 
 	
 	private HorizontalPanel reportPanel1 = new HorizontalPanel();
 	private VerticalPanel reportPanel1_left = new VerticalPanel();
@@ -92,7 +94,8 @@ public class Report1Gui extends VerticalPanel{
 		reportPanel1_left.add(vonDateBox);
 		reportPanel1_left.add(bisDateBox);
 		reportPanel1_left.add(report1Generieren);
-		
+		report1Generieren.setStylePrimaryName("neueNchrichtBtn");
+
 		reportPanel1_right.add(beschreibung1);
 		
 		
