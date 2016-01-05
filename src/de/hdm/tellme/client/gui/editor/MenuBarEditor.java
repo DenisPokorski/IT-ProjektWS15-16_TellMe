@@ -88,7 +88,7 @@ public class MenuBarEditor extends HorizontalPanel {
 			public void execute() {
 
 				setzeInhalt(new NutzerCellList()
-						.generiereCellList(CellListModus.Einstellungen), null);
+						.generiereCellList(CellListModus.Einstellungen), new NutzerFormular().gibBeschreibung());
 			}
 		});
 

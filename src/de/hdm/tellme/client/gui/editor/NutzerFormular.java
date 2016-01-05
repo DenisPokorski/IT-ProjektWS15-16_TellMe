@@ -70,6 +70,27 @@ public class NutzerFormular extends Composite {
 	public VerticalPanel gibFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
 
+		HorizontalPanel hpForm = new HorizontalPanel();
+		btnAbonieren.setStylePrimaryName("btnPositiv");
+		btnDeabonieren.setStylePrimaryName("btnNegativ");
+
+		
+		Label selctionLabel = new Label("Ausgewählter Nutzer: "
+				+ nutzer.getVorname());
+		selctionLabel.setStylePrimaryName("selectionLabel");
+		vpForm.add(selctionLabel);
+		
+		hpForm.add(btnAbonieren);
+		hpForm.add(btnDeabonieren);
+
+		vpForm.add(hpForm);
+
+		return vpForm;
+	}
+	
+	public VerticalPanel gibBeschreibung(){
+		VerticalPanel vpForm = new VerticalPanel();
+
 		HTML headline = new HTML(" <div class='" + "subline"
 				+ "'><h2>Nuterabo(s) verwalten:</h2></div> ");
 		vpForm.add(headline);
@@ -80,20 +101,7 @@ public class NutzerFormular extends Composite {
 						+ "'><h4>Hier können Sie andere Nutzer abonieren. Wenn Sie dies getan haben, werden alle öffentlichen und privaten nachrichten in den Sie als Empfänger asugewählt sind, in dem Menüpunkt Neuigkeiten angezeigt. <br /> Zudem können Sie bereits vorhandene abonnoments löschen. </h4></div> ");
 		vpForm.add(subtext);
 
-		Label selctionLabel = new Label("Ausgewählter Nutzer: "
-				+ nutzer.getVorname());
-		selctionLabel.setStylePrimaryName("selectionLabel");
-		vpForm.add(selctionLabel);
-
-		HorizontalPanel hpForm = new HorizontalPanel();
-		btnAbonieren.setStylePrimaryName("btnPositiv");
-		btnDeabonieren.setStylePrimaryName("btnNegativ");
-
-		hpForm.add(btnAbonieren);
-		hpForm.add(btnDeabonieren);
-
-		vpForm.add(hpForm);
-
+		
 		return vpForm;
 	}
 

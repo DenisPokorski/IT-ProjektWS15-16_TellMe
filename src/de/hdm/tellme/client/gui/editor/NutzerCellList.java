@@ -20,8 +20,7 @@ public class NutzerCellList {
 	Nutzer selektiererBenutzer = null;
 
 	public FlowPanel generiereCellList(CellListModus modi) {
-		HTML subline = new HTML ("<div><h3>Abonnierte Nutzer:</h3></div>"); 
-		RootPanel.get("content_right").add(subline);
+		
 
 		CellList<NutzerZelle.ZellenObjekt> cellList = new CellList<NutzerZelle.ZellenObjekt>(new NutzerZelle().new ZellenElement());
 
@@ -33,7 +32,9 @@ public class NutzerCellList {
 		switch (modi) {
 		case Einstellungen:
 			
-			RootPanel.get("content_right").add(subline);
+			//RootPanel.get("placeholder").clear();
+			HTML holder = new HTML ("<div id='"+"placeholder"+"'>22</div>");
+			RootPanel.get("content_right").add(holder);
 
 			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 				public void onSelectionChange(SelectionChangeEvent event) {
@@ -41,15 +42,15 @@ public class NutzerCellList {
 					// TODO:rechtel aktuallisieren
 					NutzerFormular nf = new NutzerFormular();
 					nf.setzeNutzerAbo(selectionModel.getSelectedObject());
-					RootPanel.get("content_right").clear();
-					RootPanel.get("content_right").add(nf.gibFormular());
+					//nf.gibFormular().clear();
+					RootPanel.get("placeholder").clear();
+					RootPanel.get("placeholder").add(nf.gibFormular());
 				}
 			});
 			break;
 
 		case Nachrichtenuebersicht:
-			RootPanel.get("content_right").add(subline);
-
+ 
  		 
 			
 			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
