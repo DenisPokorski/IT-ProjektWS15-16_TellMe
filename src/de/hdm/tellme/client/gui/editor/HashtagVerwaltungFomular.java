@@ -40,6 +40,8 @@ public class HashtagVerwaltungFomular extends Composite {
 	Button htSpeichern = new Button("Hashtag speichern");
 	Button htLoeschen = new Button("Hashtag löschen");
 	Button htAnlegen = new Button("Hashtag neu erstellen");
+	Button btnAbonieren = new Button("abonieren");
+	Button btnDeabonieren = new Button ("deabonieren");
 	TextBox schlagwortBox = new TextBox();
 	Vector<Hashtag> htl;
 
@@ -125,8 +127,14 @@ public class HashtagVerwaltungFomular extends Composite {
 
 		HorizontalPanel hpButtonBar = new HorizontalPanel();
 		hpButtonBar.add(htSpeichern);
+		htSpeichern.setStylePrimaryName("btnSpeichern");
+
 		hpButtonBar.add(htLoeschen);
+		htLoeschen.setStylePrimaryName("btnNegativ");
+
 		hpButtonBar.add(htAnlegen);
+		htAnlegen.setStylePrimaryName("btnPositiv");
+
 		vpForm.add(hpButtonBar);
 
 		// vpForm.add(new Label(hashtag.getSchlagwort() ));
@@ -147,17 +155,17 @@ public class HashtagVerwaltungFomular extends Composite {
 
 		this.schlagwortBox.setText(ZellenObjekt.hashtag.getSchlagwort());
 
-		// if (ZellenObjekt.aboniert) {
-		// btnAbonieren.setEnabled(false);
-		// btnDeabonieren.setEnabled(true);
-		//
-		// } else {
-		// btnAbonieren.setEnabled(true);
-		// btnDeabonieren.setEnabled(false);
-		//
-		//
-		//
-		// }
+		 if (ZellenObjekt.aboniert) {
+		 btnAbonieren.setEnabled(false);
+		 btnDeabonieren.setEnabled(true);
+		
+		 } else {
+		 btnAbonieren.setEnabled(true);
+		 btnDeabonieren.setEnabled(false);
+		
+		
+		
+		 }
 
 	}
 }

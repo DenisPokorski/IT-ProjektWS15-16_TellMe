@@ -92,7 +92,7 @@ public class NutzerFormular extends Composite {
 		VerticalPanel vpForm = new VerticalPanel();
 
 		HTML headline = new HTML(" <div class='" + "subline"
-				+ "'><h2>Nuterabo(s) verwalten:</h2></div> ");
+				+ "'><h2>Nutzerabo(s) verwalten:</h2></div> ");
 		vpForm.add(headline);
 
 		HTML subtext = new HTML(
@@ -104,15 +104,22 @@ public class NutzerFormular extends Composite {
 		
 		return vpForm;
 	}
-
+/**
+ * TODO ein button davon sollte immer grau sein sodass nur der farbige angeklickt wird.
+ * @param ZellenObjekt
+ */
 	public void setzeNutzerAbo(NutzerZelle.ZellenObjekt ZellenObjekt) {
 		this.nutzer = ZellenObjekt.nutzer;
 		if (ZellenObjekt.aboniert) {
 			btnAbonieren.setEnabled(false);
 			btnDeabonieren.setEnabled(true);
+			btnAbonieren.setStylePrimaryName("btnPositivBereitsAbooniert"); 
+
 		} else {
 			btnAbonieren.setEnabled(true);
 			btnDeabonieren.setEnabled(false);
+			btnDeabonieren.setStylePrimaryName("btnPositivBereitsAbooniert");
+
 		}
 
 	}

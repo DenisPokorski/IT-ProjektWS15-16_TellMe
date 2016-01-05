@@ -99,6 +99,8 @@ public class HashtagFormular extends Composite {
 	// Panel Rückgabe
 	public VerticalPanel gibBearbeitenFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
+		btnAbonieren.setStylePrimaryName("btnPositiv");
+		btnDeabonieren.setStylePrimaryName("btnNegativ");
 		vpForm.clear();
 		vpForm.add(new Label(hashtag.getSchlagwort()));
 		vpForm.add(btnAbonieren);

@@ -210,11 +210,20 @@ h3 {
 	margin-right: 15px;
 }
 
+.btnPositivBereitsAbooniert{
+		background: grey;
+	margin-right: 15px;
+}
+
+
 .btnNegativ {
 	background: red;
 }
 
-.btnNegativ, .btnPositiv {
+.btnSpeichern{
+	background: blue;
+}
+.btnNegativ, .btnPositiv, .btnSpeichern{
 	height: 30px;
 	width: 150px;
 	border: none;
