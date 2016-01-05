@@ -30,12 +30,9 @@ public class HashtagCellList {
 		case Einstellungen:
 			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 				public void onSelectionChange(SelectionChangeEvent event) {
-					// TODO:Prüfen ob abboniert
-					// TODO:rechtel aktuallisieren
 					HashtagFormular nf = new HashtagFormular();
 					nf.setzeHashtagAbo(selectionModel.getSelectedObject());
 					RootPanel.get("content_right").clear();
-					RootPanel.get("content_right").add(nf.gibAnlegenFormular());
 					RootPanel.get("content_right").add(nf.gibBearbeitenFormular());
 
 

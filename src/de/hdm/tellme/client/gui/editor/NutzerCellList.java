@@ -32,19 +32,16 @@ public class NutzerCellList {
 		switch (modi) {
 		case Einstellungen:
 			
-			//RootPanel.get("placeholder").clear();
-			HTML holder = new HTML ("<div id='"+"placeholder"+"'>22</div>");
-			RootPanel.get("content_right").add(holder);
-
 			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 				public void onSelectionChange(SelectionChangeEvent event) {
 
-					// TODO:rechtel aktuallisieren
 					NutzerFormular nf = new NutzerFormular();
+					
 					nf.setzeNutzerAbo(selectionModel.getSelectedObject());
-					//nf.gibFormular().clear();
-					RootPanel.get("placeholder").clear();
-					RootPanel.get("placeholder").add(nf.gibFormular());
+					
+					RootPanel.get("content_right").clear();
+					RootPanel.get("content_right").add(nf.gibBeschreibung());
+					RootPanel.get("content_right").add(nf.gibFormular());
 				}
 			});
 			break;

@@ -16,7 +16,6 @@ package de.hdm.tellme.client.gui.editor;
  * the License.
  */
 
-
 import java.util.Vector;
 
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -36,17 +35,16 @@ import de.hdm.tellme.shared.bo.Hashtag;
  */
 
 public class HashtagFormular extends Composite {
-	
+
 	private Hashtag hashtag = null;
 	Button btnAbonieren = new Button("abonnieren");
 	Button btnDeabonieren = new Button("deabonnieren");
 	TextBox schlagwortBox = new TextBox();
 	Button htAnlegen = new Button("Hashtag neu erstellen");
 	Vector<Hashtag> htl;
-	
 
 	public HashtagFormular() {
-		
+
 		// Handle events.
 		btnAbonieren.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -56,7 +54,7 @@ public class HashtagFormular extends Composite {
 				HashtagDataProvider.gib().abonieren(hashtag);
 			}
 		});
-		
+
 		// Handle events.
 		btnDeabonieren.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -66,12 +64,10 @@ public class HashtagFormular extends Composite {
 				HashtagDataProvider.gib().deabonieren(hashtag);
 			}
 		});
-		
-		
+
 		htAnlegen.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				htl = HashtagDataProvider.gebeHashtagListe();
-
 
 				if (schlagwortBox.getValue() == "") {
 					Window.alert("Bitte geben Sie einen Wert ein");
@@ -85,58 +81,62 @@ public class HashtagFormular extends Composite {
 						}
 					}
 
-
 					if (existiertBereits == true) {
 						Window.alert("Hashtag existiert bereits");
 					} else {
-						 Hashtag neuesHashtag = new Hashtag();
+						Hashtag neuesHashtag = new Hashtag();
 						neuesHashtag.setSchlagwort(schlagwortBox.getText());
-						HashtagDataProvider.gib().hashtagErstellen(neuesHashtag);
+						HashtagDataProvider.gib()
+								.hashtagErstellen(neuesHashtag);
 					}
 
 				}
- 
+
 			}
 		});
 	}
-	
-	// Panel Rückgabe 
-	public VerticalPanel gibBearbeitenFormular(){
+
+	// Panel Rückgabe
+	public VerticalPanel gibBearbeitenFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
 		vpForm.clear();
-		vpForm.add(new Label(hashtag.getSchlagwort() ));
+		vpForm.add(new Label(hashtag.getSchlagwort()));
 		vpForm.add(btnAbonieren);
 		vpForm.add(btnDeabonieren);
-		
+
 		return vpForm;
 	}
-	
 
-	
-	public VerticalPanel gibAnlegenFormular(){
+	public VerticalPanel gibInfoFormular() {
+		VerticalPanel vpForm = new VerticalPanel();
+		vpForm.clear();
+		vpForm.add(new HTML(
+				"Hier kannst du ein <b>Hashtagabonnement</b> erstellen oder löschen. </br>"
+						+ "Wähle dazu das gewünschte Hashtag aus und drücke dann den Button zum <b>abonnieren</b> oder zum <b>deabonnieren</b>."));
+		return vpForm;
+	}
+
+	public VerticalPanel gibAnlegenFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
 		vpForm.clear();
 		vpForm.add(schlagwortBox);
 		vpForm.add(htAnlegen);
-		
+
 		return vpForm;
 	}
-	
-	 
-// Setze Buttons
+
+	// Setze Buttons
 	public void setzeHashtagAbo(HashtagZelle.ZellenObjekt ZellenObjekt) {
 		this.hashtag = ZellenObjekt.hashtag;
-		
+
 		if (ZellenObjekt.aboniert) {
 			btnAbonieren.setEnabled(false);
 			btnDeabonieren.setEnabled(true);
-			
+
 		} else {
 			btnAbonieren.setEnabled(true);
 			btnDeabonieren.setEnabled(false);
-			
-			
-			
+
 		}
 
 	}
