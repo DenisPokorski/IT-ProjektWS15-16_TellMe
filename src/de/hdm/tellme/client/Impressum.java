@@ -98,58 +98,7 @@ public class Impressum extends HTML {
 	
 	
 	
-	public Button impessumButton(){
-		
-		
-		final Button impressum = new Button("Imressum"); 
-		impressum.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-		
-			RootPanel.get("footer").add(getHtmlImpressum());	
-			impressum.setEnabled(false);
-			Button zurueckBtn = new Button("zurück zu Neuigkeiten"); 
-			zurueckBtn.addClickHandler(new ClickHandler() {
-				public void onClick(ClickEvent event) {
-					
- 					VerticalPanel n = NeuigkeitenEditor.gibFilterPanel();
-					RootPanel.get("content_left").add(n);
-  
-					impressum.setEnabled(true);
-
-					RootPanel.get("footer").clear();	
-					RootPanel.get("footer").add(impressum);	
-
-
-					 
-				}
-				});
-			}
-		});
-			
-	return impressum;
-		
-		
-	}
-
-public void onLoad(){
-
-
-
-Button zurueckButton = new  Button ("zurück");
-
-
-zurueckButton.setStylePrimaryName( "zurueckButton");
-
  
- 
-
-
-
-RootPanel.get("Impressum").add(zurueckButton);
-
-
-
-}
 
 
 

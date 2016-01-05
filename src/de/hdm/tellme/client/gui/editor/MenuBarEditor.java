@@ -119,7 +119,15 @@ public class MenuBarEditor extends HorizontalPanel {
 				setzeInhalt(gibansichtEinstellungenBenutzereinstellungen());
 			}
 		});
-
+		
+	 
+		EinstellungenMenu.addItem("Impressum", new Command() {
+			@Override
+			public void execute() {
+				setzeInhalt(new Impressum().getHtmlImpressum());
+			
+			}
+		});
 		
 		EinstellungenMenu.addItem("Log out", new Command() {
 			@Override
@@ -166,12 +174,7 @@ public class MenuBarEditor extends HorizontalPanel {
 
 		RootPanel.get("header").add(HauptMenue);
 
-		
-		/*Setzen von Imrpessum*/
-		Impressum impressum = new Impressum(); 
-		RootPanel.get("footer").add(new Impressum().impessumButton());
-
-		
+	
 	}
 
 	public static void setzeInhalt(Widget ZuSetzendesPanel) {
