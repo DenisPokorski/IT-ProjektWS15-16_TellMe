@@ -54,7 +54,6 @@ public interface EditorService extends RemoteService {
 
 	boolean NachrichtLoeschen(Nachricht n);
 
-	boolean UnterhaltungVerlassen(Unterhaltung u);
 
 	Vector<Unterhaltung> getAlleRelevantenUnterhaltungen(int UserID);
 
@@ -74,6 +73,8 @@ public interface EditorService extends RemoteService {
 	boolean unterhaltungBeantworten(Nachricht antwortNachricht, Unterhaltung unterhaltung);
 
 	Vector<Nutzer> getAlleNutzer(boolean zwingeNeuladen);
+
+	boolean UnterhaltungVerlassen(Unterhaltung u, int nutzerId);
 
 
 }

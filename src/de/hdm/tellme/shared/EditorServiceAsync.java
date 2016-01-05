@@ -63,7 +63,8 @@ public interface EditorServiceAsync {
 
 	void NachrichtLoeschen(Nachricht n, AsyncCallback<Boolean> callback);
 
-	void UnterhaltungVerlassen(Unterhaltung u, AsyncCallback<Boolean> callback);
+	void UnterhaltungVerlassen(Unterhaltung u, int nutzerId,
+			AsyncCallback<Boolean> callback);
 
 	void getAlleRelevantenUnterhaltungen(int UserID, AsyncCallback<Vector<Unterhaltung>> callback);
 

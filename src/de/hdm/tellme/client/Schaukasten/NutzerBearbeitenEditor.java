@@ -62,7 +62,7 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 	 * Bildschirmmeldung.
 	 */
 	public void nutzerBearbeiten(Nutzer n) {
-		
+
 		asyncObj.nutzerAktualisieren(n, new AsyncCallback<Void>() {
 
 			@Override
@@ -75,7 +75,6 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 			public void onSuccess(Void result) {
 				RootPanel.get("content").clear();
 				Window.alert("Profil erfolgreich editiert.");
-				
 
 			}
 		});
@@ -102,7 +101,6 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 					@Override
 					public void onSuccess(Void result) {
 						Window.alert("Profil gelöscht");
-						Window.alert(TellMe.eingeloggterBenutzer.getLogoutUrl());
 						Window.Location.assign(TellMe.eingeloggterBenutzer
 								.getLogoutUrl());
 						RootPanel.get("content").clear();
@@ -123,7 +121,6 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 		if (TellMe.eingeloggterBenutzer.getUser().getVorname() == "undefined"
 				|| TellMe.eingeloggterBenutzer.getUser().getNachname() == "undefined") {
 			// TODO: das Label noch stylen
-			RootPanel.get("content").clear();
 			RootPanel
 					.get("content")
 					.add(new Label(
@@ -131,7 +128,6 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 			// vornameTextBox.setText("");
 			// nachnameTextBox.setText("");
 		} else {
-			RootPanel.get("content").clear();
 			vornameTextBox.setText(TellMe.eingeloggterBenutzer.getUser()
 					.getVorname());
 			nachnameTextBox.setText(TellMe.eingeloggterBenutzer.getUser()
@@ -199,7 +195,7 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 					TellMe.eingeloggterBenutzer.getUser().setNachname(
 							n.getNachname());
 					nutzerBearbeiten(n);
-					
+					RootPanel.get("header").clear();
 					RootPanel.get("header").add(new MenuBarEditor());
 
 				}

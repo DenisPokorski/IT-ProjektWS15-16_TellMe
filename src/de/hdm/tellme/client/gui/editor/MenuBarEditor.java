@@ -23,16 +23,11 @@ import de.hdm.tellme.client.gui.report.ReportWillkommenSeite;
  */
 
 public class MenuBarEditor extends HorizontalPanel {
-	/**
-	 * Alle Ansichten sollen aus Performancegründen nur einmal erstellt werden.
-	 * 
-	 */
 
 	private static NeuigkeitenEditor ansichtNeuigkeiten = null;
 
 	public static NeuigkeitenEditor gibansichtNeuigkeiten() {
-		if (ansichtNeuigkeiten == null)
-			ansichtNeuigkeiten = new NeuigkeitenEditor();
+		ansichtNeuigkeiten = new NeuigkeitenEditor();
 		return ansichtNeuigkeiten;
 	}
 
@@ -76,8 +71,11 @@ public class MenuBarEditor extends HorizontalPanel {
 			@Override
 			public void execute() {
 
-				setzeInhalt(NeuigkeitenEditor.gibFilterPanel(),gibansichtNeuigkeiten());
-//				setzeInhalt(new NutzerCellList().generiereCellList(CellListModus.Nachrichtenuebersicht), gibansichtNeuigkeiten());
+				setzeInhalt(NeuigkeitenEditor.gibFilterPanel(),
+						gibansichtNeuigkeiten());
+				// setzeInhalt(new
+				// NutzerCellList().generiereCellList(CellListModus.Nachrichtenuebersicht),
+				// gibansichtNeuigkeiten());
 			}
 		});
 
@@ -89,21 +87,26 @@ public class MenuBarEditor extends HorizontalPanel {
 			@Override
 			public void execute() {
 
-				setzeInhalt(new NutzerCellList().generiereCellList(CellListModus.Einstellungen), null);
+				setzeInhalt(new NutzerCellList()
+						.generiereCellList(CellListModus.Einstellungen), null);
 			}
 		});
 
 		EinstellungenMenu.addItem("HashtagaboVerwaltung", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(new HashtagCellList().generiereCellList(CellListModus.Einstellungen),new HashtagVerwaltungFomular().gibInfoFormular());
+				setzeInhalt(new HashtagCellList()
+						.generiereCellList(CellListModus.Einstellungen),
+						new HashtagVerwaltungFomular().gibInfoFormular());
 			}
 		});
 
 		EinstellungenMenu.addItem("Hashtagverwaltung", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(new HashtagCellList().generiereCellList(CellListModus.HastagVerwaltung), new HashtagFormular().gibAnlegenFormular());
+				setzeInhalt(new HashtagCellList()
+						.generiereCellList(CellListModus.HastagVerwaltung),
+						new HashtagFormular().gibAnlegenFormular());
 
 			}
 		});
@@ -163,7 +166,8 @@ public class MenuBarEditor extends HorizontalPanel {
 		RootPanel.get("content").add(ZuSetzendesPanel);
 	}
 
-	public static void setzeInhalt(Widget ZuSetzendesPanelLinks, Widget ZuSetzendesPanelRechts) {
+	public static void setzeInhalt(Widget ZuSetzendesPanelLinks,
+			Widget ZuSetzendesPanelRechts) {
 
 		RootPanel.get("ButtonBar").clear();
 		RootPanel.get("content_left").clear();

@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 
+import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Nachricht;
@@ -102,14 +103,14 @@ public class NeuigkeitenJaNeinDialogbox {
 					break;
 
 				case UnterhaltungVerlassen:
-					asyncObj.UnterhaltungVerlassen(zuVerlassendeUnterhaltung, new AsyncCallback<Boolean>() {
+					asyncObj.UnterhaltungVerlassen(zuVerlassendeUnterhaltung, TellMe.gibEingeloggterBenutzer().getUser().getId(), new AsyncCallback<Boolean>() {
 
 						@Override
 						public void onSuccess(Boolean result) {
 							if (result)
-								Window.alert("Nachricht erfolgreich gelöscht");
+								Window.alert("Unterhaltung erfolgreich verlassen");
 							else
-								Window.alert("Fehler beim löschen der Nachricht, bitte wenden Sie sich an den Administrator");
+								Window.alert("Fehler beim verlassen der Unterhaltung, bitte wenden Sie sich an den Administrator");
 
 						}
 

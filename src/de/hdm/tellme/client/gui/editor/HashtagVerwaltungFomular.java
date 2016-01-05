@@ -64,7 +64,6 @@ public class HashtagVerwaltungFomular extends Composite {
 						}
 					}
 
-					Window.alert("hallo " + existiertBereits);
 
 					if (existiertBereits == true) {
 						Window.alert("Hashtag existiert bereits");

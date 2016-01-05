@@ -39,7 +39,7 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 
 		strDatum = dF.format(value.getErstellungsDatum()).toString();
 
-		strAbsender = u.getId() + value.getSender().getVorname() + " " + value.getSender().getNachname();
+		strAbsender = value.getSender().getVorname() + " " + value.getSender().getNachname();
 
 		strText = value.getText();
 
