@@ -33,6 +33,7 @@ public class HashtagCellList {
 					HashtagFormular nf = new HashtagFormular();
 					nf.setzeHashtagAbo(selectionModel.getSelectedObject());
 					RootPanel.get("content_right").clear();
+					RootPanel.get("content_right").add(nf.gibBeschreibungHtAbo());
 					RootPanel.get("content_right").add(nf.gibBearbeitenFormular());
 
 

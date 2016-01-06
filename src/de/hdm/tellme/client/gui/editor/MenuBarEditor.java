@@ -1,6 +1,7 @@
 package de.hdm.tellme.client.gui.editor;
 
 import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
@@ -8,6 +9,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import de.hdm.tellme.client.Impressum;
+import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.client.Schaukasten.NeuigkeitenEditor;
 import de.hdm.tellme.client.Schaukasten.NutzerBearbeitenEditor;
 import de.hdm.tellme.client.gui.report.Report1Gui;
@@ -132,7 +134,8 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.addItem("Log out", new Command() {
 			@Override
 			public void execute() {
- //TODO 
+				Window.Location.assign(TellMe.eingeloggterBenutzer
+						.getLogoutUrl());
 			
 			}
 		});

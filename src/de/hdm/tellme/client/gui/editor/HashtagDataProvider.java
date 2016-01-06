@@ -170,7 +170,9 @@ public class HashtagDataProvider {
 					public void onSuccess(Void  resultListe) {
 					holeHashtagListe();
 					RootPanel.get("content_right").clear();
+					RootPanel.get("content_right").add(new HashtagFormular().gibBeschreibungHtAbo());
 					Window.alert("Das Abo wurde erfolgreich erstellt.");
+					
 
 		 			}
 					});
@@ -192,6 +194,7 @@ public class HashtagDataProvider {
 			public void onSuccess(Void  resultListe) {
 			holeHashtagListe();
 			RootPanel.get("content_right").clear();
+			RootPanel.get("content_right").add(new HashtagFormular().gibBeschreibungHtAbo());
 			Window.alert("Das Abo wurde erfolgreich entfernt.");
 
  			}
