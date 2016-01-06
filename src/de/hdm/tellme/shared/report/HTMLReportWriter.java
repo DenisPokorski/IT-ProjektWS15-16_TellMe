@@ -74,6 +74,16 @@ public class HTMLReportWriter  {
 		}
 
 		public void erstelleKoerperDatenReport3(  Vector<Hashtag> result){
+			if(result.size() <= 0){
+				buffer.append("<table>");
+				buffer.append("<tr> <th>FÜR DEN AUSGEWÄHLTEN NUTZER"
+						+ " IST ZUR ZEIT KEIN REPORT 3 VERFÜGBAR, DA DER NUTZER KEINE "
+						+ "HASHTAGS ABONNIERT HAT!</th></tr>");
+				buffer.append("</table>");
+				
+			}else{
+				
+			
 			buffer.append("<table class='reportkoerper'>");
 			buffer.append("<tr class='kopfZeileKoerper'> <th>Hashtag</th><th>Erstellungsdatum</th></tr>");
 			for(int i= 0; i< result.size(); i++){
@@ -84,6 +94,7 @@ public class HTMLReportWriter  {
 								+ "</tr>"); 
 			}
 			buffer.append("</table>");
+			}
 		}
 		
 		
