@@ -124,15 +124,27 @@ public class HTMLReportWriter  {
 		 * @param result
 		 */
 		public void erstelleKoerperDatenReport2 (Vector<Nutzer> result) {
+			
+			if(result.size() <= 0){
+				buffer.append("<table>");
+				buffer.append("<tr> <th>FÜR DEN AUSGEWÄHLTEN NUTZER"
+						+ " IST ZUR ZEIT KEIN REPORT 2 VERFÜGBAR, DA DER NUTZER KEINE "
+						+ "ANDEREN NUTZER ABONNIERT HAT!</th></tr>");
+				buffer.append("</table>");
+			}
+				else{
 		
 			buffer.append("<table class='reportkoerper'>");
 			buffer.append("<tr class='kopfZeileKoerper'> <th>Nutzer</th><th>Erstellungsdatum</th></tr>");
 			for(int i= 0; i< result.size(); i++){
-				buffer.append("<tr class='ergebnisZeileReport'><td>"+result.get(i).getVorname()+" "+result.get(i).getNachname()  +"</td>"
-						+ "<td>"+result.get(i).getErstellungsDatum()  +"</td></tr>"); 
+				buffer.append("<tr class='ergebnisZeileReport'>"
+						+ "<td>"+result.get(i).getVorname()+" "+result.get(i).getNachname()  +"</td>"
+						+ "<td>"+result.get(i).getErstellungsDatum()  +"</td>"
+								+ "</tr>"); 
 			}
 			buffer.append("</table>");
 			
+				}
 
 		}
 
