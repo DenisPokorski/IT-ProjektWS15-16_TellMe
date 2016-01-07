@@ -11,6 +11,15 @@ import com.google.gwt.view.client.SingleSelectionModel;
 
 import de.hdm.tellme.shared.bo.Hashtag;
 
+/**
+ * Die Klasse <class>HashtagCellList</class> wird benötigt um die Hashtags in
+ * einer CellList anzuzeigen. Da die selbe CellList für verschiedene Fälle
+ * benötigt wird, wird sie durch die verschiedenen modi mittels eines case
+ * switchs verwendet.
+ * 
+ * @author Alex
+ *
+ */
 
 
 public class HashtagCellList {
@@ -18,7 +27,9 @@ public class HashtagCellList {
 	Hashtag selektiertesHashstag = null;
 
 	public FlowPanel generiereCellList(CellListModus modi) {
-
+/**
+ * TODO kommentieren
+ */
 		CellList<HashtagZelle.ZellenObjekt> cellList = new CellList<HashtagZelle.ZellenObjekt>(new HashtagZelle().new ZellenElement());
 
 		HashtagDataProvider.gib().addDataDisplay(cellList);
@@ -27,6 +38,14 @@ public class HashtagCellList {
 		final SingleSelectionModel<HashtagZelle.ZellenObjekt> selectionModel = new SingleSelectionModel<HashtagZelle.ZellenObjekt>();
 		cellList.setSelectionModel(selectionModel);
 		switch (modi) {
+		
+		/**
+		 * Der Fall Einstellungen wird genutzt, falls ein Hashtag in den
+		 * Einstellungen ausgewählt wird. Wenn ein Hashtag angeklickt wird, wird
+		 * auf der rechten Seite der Content gecleart, also gelöscht und es
+		 * werden die Formulare gibBeschreibungHtAbo() und
+		 * gibBearbeitenFormular() geladen.
+		 */
 		case Einstellungen:
 			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 				public void onSelectionChange(SelectionChangeEvent event) {
@@ -40,7 +59,13 @@ public class HashtagCellList {
 				}
 			});
 			break;
-
+			
+			/**
+			 * Der Fall Nachrichtenuebersicht wird genutzt, falls ein Hashtag in der Nachrichtenübersicht ausgewählt wird. 
+			 * Wenn ein Hashtag angeklickt wird, wird das NeuigkeitenNachrichtenBaumModel so verändert, dass durch die Methode
+			 * setzeHashtagFilter,der NeuigkeitenNachrichtenBaum die jeweiligen Hashtags angezeigt werden. 
+			 */
+			
 		case Nachrichtenuebersicht:
 			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 				public void onSelectionChange(SelectionChangeEvent event) {
@@ -51,7 +76,17 @@ public class HashtagCellList {
 			
 			break;
 			
-		case HastagVerwaltung:
+		/**
+		 * Der Fall HashtagVerwaltung wird genutzt, falls ein Hashtag in der
+		 * HashtagVerwaltung ausgewählt wird. Wenn ein Hashtag angeklickt
+		 * wird,wird ein neues Objekt des HashtagVerwaltungFomular erstellt und
+		 * für das aktuell ausgewählte Hashtag erstellt. Danach wird auf der
+		 * rechten Seite der Content gecleart, also gelöscht und es werden die
+		 * Formulare gibBeschreibungHtVerwaltung() und gibFormular() für das
+		 * vorher erstellte HashtagVerwaltungsFomular geladen.
+		 */
+			
+		case HashtagVerwaltung:
 			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 				public void onSelectionChange(SelectionChangeEvent event) {
 					HashtagVerwaltungFomular nvf = new HashtagVerwaltungFomular();
