@@ -6,6 +6,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
@@ -14,9 +15,14 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
+import com.google.gwt.view.client.SingleSelectionModel;
+
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
+import de.hdm.tellme.client.gui.editor.NutzerZelle;
+import de.hdm.tellme.client.gui.editor.NutzerZelle.ZellenObjekt;
 import de.hdm.tellme.shared.LoginInfo;
+import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
  * TODO
@@ -34,20 +40,17 @@ import de.hdm.tellme.shared.LoginInfo;
 
 public class Report1Gui extends VerticalPanel{
 	
-	public static class Report1SelektierterNutzer{
-			
-//			private static Nutzer nutzerFilter;
-//			static SingleSelectionModel<NutzerZelle.ZellenObjekt> selectionModelNutzer = null;
-			
+//	public static class Report1SelektierterNutzer{
+//
+//		
+//		
+//	}
 
-		
-//		static SingleSelectionModel<NutzerZelle.ZellenObjekt> selectionModelNutzer = null;
 
-		
-	
-		
-		
-	}
+	private static SingleSelectionModel<NutzerZelle.ZellenObjekt> selectionModelNutzer = null;
+
+
+
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift1 = new Label("Report1: Nachrichten abfragen");
 	HTML subSchrift1 = new HTML ("<div class='"+"subline_report"+"'><b>Bitte wählen Sie einen Nutzer aus:</b></div>");
@@ -76,6 +79,8 @@ public class Report1Gui extends VerticalPanel{
 			+ " darstellt, darfst du<b> keinen Nutzer</b> und <b>keinen Zeitraum</b> auswählen.</li></ul>");
 	
 	public void onLoad(){
+
+		
 		
 		FlowPanel a = new NutzerCellList().generiereCellList(CellListModus.Report1_NachrichtNutzerZeitraum);
 		 
@@ -128,14 +133,17 @@ public class Report1Gui extends VerticalPanel{
 			
 			@Override
 			public void onClick(ClickEvent event) {
-//				Nutzer n = Report1Gui.setzeNutzerFilter(n, selectionModel);
-//				Window.alert(n.getNachname() +"  "+ n.getVorname() +"  "+ 	bisDateBox.getValue() +"  "+vonDateBox.getValue());
-				vonDateBox.getValue();
-				bisDateBox.getValue();
+//				SingleSelectionModel<ZellenObjekt> selectionModelNutzer;
+//				Report1Gui.setzeNutzerFilter(n, selectionModelNutzer);
+//				selectionModelNutzer.getSelectedObject().nutzer.getMailadresse();		
+//				vonDateBox.getValue();
+//				bisDateBox.getValue();
+				Window.alert("TEST");
+				Window.alert(selectionModelNutzer.getSelectedObject().nutzer.getVorname() +" blabla "+bisDateBox.getValue() +"  "+vonDateBox.getValue());
 				
 				
-//				Window.alert(n.getNachname() +"  "+ n.getVorname() +"  "+ 	bisDateBox.getValue() +"  "+vonDateBox.getValue());
-	//			 ReportFormular1 rF = new ReportFormular1();				 rF.reportGenerieren(n, vonDateBox.getValue(), bisDateBox.getValue()); 
+//				Window.alert(nutzer.getNachname() +"  "+ nutzer.getVorname() +"  "+ 	bisDateBox.getValue() +"  "+vonDateBox.getValue());
+//				 ReportFormular1 rF = new ReportFormular1(); rF.reportGenerieren(nutzer, vonDateBox.getValue(), bisDateBox.getValue()); 
 			}
 		});
 	}
@@ -148,10 +156,12 @@ public class Report1Gui extends VerticalPanel{
 		
 	}
 
-//	public static void setzeNutzerFilter(Nutzer n, SingleSelectionModel<NutzerZelle.ZellenObjekt> selectionModel){
-//		nutzerFilter = n;
-//		selectionModelNutzer = selectionModel;
-//			
-//		}
+	public static  Nutzer setzeNutzerFilter(Nutzer n, SingleSelectionModel<NutzerZelle.ZellenObjekt> selectionModelNutzer){
+		Nutzer nutzerFilter = n;
+		SingleSelectionModel<ZellenObjekt> selectionModel = selectionModelNutzer;
+		
+		return n;
+			
+		}
 	
 }

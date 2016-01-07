@@ -196,7 +196,7 @@ public class HTMLReportWriter  {
 		private Label subtext1_1 = new Label("Report 1_1 gibt alle Nachrichten eines Nutzers aus.");
 		
 		
-		public void generateReport1_1(Vector<Nutzer> result, Nutzer b) {
+		public void generateReport1_1(Vector<Nachricht> result, Nutzer b) {
 			RootPanel.get("content").clear();
 			ueberschrift1_1.setStylePrimaryName("ueberschrift_report");
 			subtext1_1.setStylePrimaryName("subtext_report");
@@ -212,7 +212,7 @@ public class HTMLReportWriter  {
 			   RootPanel.get("content_right").add(new HTML(reportText));			
 		}
 
-		private void erstelleKoerperDatenReport1_1(Vector<Nutzer> result) {
+		private void erstelleKoerperDatenReport1_1(Vector<Nachricht> result) {
 			buffer.append("<table class='reportkoerper'>");
 			buffer.append("<tr class='kopfZeileKoerper'> <th>Nachricht</th><th>Empfänger</th><th>Erstellungsdatum</th><th>Hashtag</th><th>Sichtbarkeit</th></tr>");
 			for(int i= 0; i< result.size(); i++){

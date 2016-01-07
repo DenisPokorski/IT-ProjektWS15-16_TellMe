@@ -1,6 +1,7 @@
 package de.hdm.tellme.server;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -60,7 +61,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public Vector<Nachricht> report1_1Generieren(int nutzerId,Timestamp vonDatum, Timestamp bisDatum ){
+	public Vector<Nachricht> report1_1Generieren(int nutzerId,Date vonDatum, Date bisDatum ){
 		Vector<Nachricht> report1_1 = nachrichtMapper.report1_1Mapper(nutzerId, vonDatum, bisDatum);
 		return report1_1;
 	}
@@ -97,6 +98,14 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
+//	@Override
+//	public Vector<Nutzer> report1_1Generieren(int nutzerId, Date vD, Date bD) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 //	public class UnterhaltungNachrichtHashtagBinder(Vector<Nachricht> n, Vector<Unterhaltung> u){
 //		

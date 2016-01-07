@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Vector;
 
 import de.hdm.tellme.shared.bo.BusinessObject.eSichtbarkeit;
@@ -208,7 +209,7 @@ public class NachrichtMapper {
 		return meineNachrichten;
 	}
 
-	public Vector<Nachricht> report1_1Mapper(int meineId, Timestamp vonDatum, Timestamp bisDatum) {
+	public Vector<Nachricht> report1_1Mapper(int meineId, Date vonDatum, Date bisDatum) {
 		Vector<Nachricht> alleNachrichtenVonBestimmtenNutzerInBestimmtemZeitraum = new Vector<Nachricht>();
 		Connection con = DatenbankVerbindung.connection();
 		try {
