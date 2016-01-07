@@ -1,6 +1,7 @@
 package de.hdm.tellme.shared;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -17,8 +18,8 @@ import de.hdm.tellme.shared.bo.Nutzer;
  *
  */
 public interface ReportServiceAsync {
-	void report1_1Generieren(int nutzerId, Timestamp vonDatum,
-			Timestamp bisDatum, AsyncCallback<Vector<Nachricht>> callback);
+	void report1_1Generieren(int nutzerId, Date vonDatum, Date bisDatum,
+			AsyncCallback<Vector<Nachricht>> asyncCallback);
 
 	void report1_2Generieren(Timestamp vonDatum, Timestamp bisDatum,
 			AsyncCallback<Vector<Nachricht>> asyncCallback);

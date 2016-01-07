@@ -1,6 +1,7 @@
 package de.hdm.tellme.shared;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -29,10 +30,12 @@ public interface ReportService extends RemoteService {
 
 	Vector<Nachricht> report1_2Generieren(Timestamp vonDatum, Timestamp bisDatum);
 
-	Vector<Nachricht> report1_1Generieren(int nutzerId, Timestamp vonDatum,
-			Timestamp bisDatum);
+//	Vector<Nutzer> report1_1Generieren(int nutzerId, Date vD, Date bD);
 
 	Vector<Nachricht> report1_4Generieren();
+
+	Vector<Nachricht> report1_1Generieren(int nutzerId, Date vonDatum,
+			Date bisDatum);
 
 
  
