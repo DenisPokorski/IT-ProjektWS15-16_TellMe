@@ -14,6 +14,7 @@ import com.google.appengine.api.rdbms.AppEngineDriver;
  */
 
 public class DatenbankVerbindung {
+
 	/**
 	 * Die Klasse DatenbankVerbindung wird instantiiert. Mit dem Bezeichner
 	 * <code>static</code> wird die Variable als sogenannter "Singleton"
@@ -21,6 +22,7 @@ public class DatenbankVerbindung {
 	 * Klasse nur einmal vorhanden ist.
 	 */
 	private static Connection con = null;
+	private static boolean UseLocalCon = true;
 
 	/**
 	 * Durch den Paramater static kann die DBConnection.connection() nur einmal
@@ -44,9 +46,17 @@ public class DatenbankVerbindung {
 				 * <code>getConnection()</code> der entpsrechende JDBC
 				 * Datenbanktreiber, Datenbank-URL und Zugangsdaten übergeben.
 				 */
-				con = DriverManager.getConnection(
-						"jdbc:mysql://feltrin-immobilien.de:3306/db_tellme",
-						"tellme", "M22azd0!");
+				if (UseLocalCon) {
+					con = DriverManager
+							.getConnection(
+									"jdbc:mysql://feltrin-immobilien.de:3306/db_tellme",
+									"tellme", "M22azd0!");
+				} else {
+					con = DriverManager
+							.getConnection(
+									"jdbc:google:rdbms://it-projekt-1168:tell-me/db_tellme",
+									"root", "");
+				}
 
 			}
 			/**

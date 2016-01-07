@@ -1,6 +1,5 @@
 package de.hdm.tellme.shared;
 
-import java.sql.Timestamp;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.RemoteService;

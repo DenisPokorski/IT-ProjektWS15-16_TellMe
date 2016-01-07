@@ -6,7 +6,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
@@ -15,14 +14,9 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
-import com.google.gwt.view.client.SingleSelectionModel;
-
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
-import de.hdm.tellme.client.gui.editor.NutzerZelle;
-import de.hdm.tellme.client.gui.editor.NutzerZelle.ZellenObjekt;
 import de.hdm.tellme.shared.LoginInfo;
-import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
  * TODO

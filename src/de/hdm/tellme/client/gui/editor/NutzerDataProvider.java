@@ -1,6 +1,5 @@
 package de.hdm.tellme.client.gui.editor;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Vector;
 

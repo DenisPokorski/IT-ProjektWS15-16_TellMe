@@ -7,9 +7,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Vector;
 
-import de.hdm.tellme.server.Helper;
 import de.hdm.tellme.shared.bo.BusinessObject.eSichtbarkeit;
-import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
 
 /**

@@ -8,7 +8,6 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.UIObject;
 
 import de.hdm.tellme.client.Impressum;
 import de.hdm.tellme.shared.bo.Hashtag;

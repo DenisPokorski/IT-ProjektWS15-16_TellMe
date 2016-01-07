@@ -3,8 +3,6 @@ package de.hdm.tellme.client;
 import java.sql.Timestamp;
 
 import com.google.gwt.core.shared.GWT;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.tellme.shared.EditorService;
