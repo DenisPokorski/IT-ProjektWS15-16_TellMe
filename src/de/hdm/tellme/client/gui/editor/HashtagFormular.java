@@ -24,6 +24,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -99,12 +100,21 @@ public class HashtagFormular extends Composite {
 	// Panel Rückgabe
 	public VerticalPanel gibBearbeitenFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
+		HorizontalPanel hP = new HorizontalPanel();
+		Label l = new Label("# "+ hashtag.getSchlagwort());
+		hP.add(btnAbonieren);
+		hP.add(btnDeabonieren);
+
 		btnAbonieren.setStylePrimaryName("btnPositiv");
 		btnDeabonieren.setStylePrimaryName("btnNegativ");
+		l.setStylePrimaryName("selectionLabel");
+
+
 		vpForm.clear();
-		vpForm.add(new Label(hashtag.getSchlagwort()));
-		vpForm.add(btnAbonieren);
-		vpForm.add(btnDeabonieren);
+		vpForm.add(l);
+		
+		vpForm.add(hP);
+		 
 
 		return vpForm;
 	}

@@ -76,7 +76,7 @@ public class NutzerFormular extends Composite {
 
 		
 		Label selctionLabel = new Label("Ausgewählter Nutzer: "
-				+ nutzer.getVorname());
+				+ nutzer.getVorname()+" "+ nutzer.getNachname());
 		selctionLabel.setStylePrimaryName("selectionLabel");
 		vpForm.add(selctionLabel);
 		
