@@ -111,6 +111,7 @@ public class MenuBarEditor extends HorizontalPanel {
 				setzeInhalt(new HashtagCellList()
 						.generiereCellList(CellListModus.HastagVerwaltung),
 						new HashtagFormular().gibBeschreibungHtVerwaltung());
+				RootPanel.get("content_right").add(new HashtagFormular().gibAnlegenFormular());
 
 			}
 		});
