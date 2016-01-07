@@ -57,8 +57,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 	// ################### NUTZER #####################
 
-	public void nutzerAnlegen(Nutzer nutzer) {
-		nutzerMapper.anlegen(nutzer);
+	public int nutzerAnlegen(Nutzer nutzer) {
+		int ergebnis = nutzerMapper.anlegen(nutzer);
+		return ergebnis;
 	}
 
 	public void nutzerAktualisieren(Nutzer nutzer) {
@@ -471,19 +472,20 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 			uH = unterhaltungMapper
 					.selektiereUnterhaltungenVonNachrichtId(nachricht);
-			if (uH.getUnterhaltungstyp() == eUnterhaltungsTyp.oeffentlich) {
+			if (!unterhaltungsListe.contains(uH.getId()))
+				if (uH.getUnterhaltungstyp() == eUnterhaltungsTyp.oeffentlich) {
 
-				nachrichtenListex = nachrichtMapper
-						.gibAlleNachrichtenVonUnterhaltung(uH.getId());
-				for (Nachricht nachricht2 : nachrichtenListex) {
-					Vector<Hashtag> meineHashtags = new Vector<Hashtag>();
-					meineHashtags = hashtagMapper
-							.alleHashtagsZuNachrichtenID(nachricht2.getId());
-					nachricht2.setVerknuepfteHashtags(meineHashtags);
+					nachrichtenListex = nachrichtMapper
+							.gibAlleNachrichtenVonUnterhaltung(uH.getId());
+					for (Nachricht nachricht2 : nachrichtenListex) {
+						Vector<Hashtag> meineHashtags = new Vector<Hashtag>();
+						meineHashtags = hashtagMapper
+								.alleHashtagsZuNachrichtenID(nachricht2.getId());
+						nachricht2.setVerknuepfteHashtags(meineHashtags);
+
+					}
 
 				}
-
-			}
 			uH.setAlleNachrichten(nachrichtenListex);
 			unterhaltungsListe.add(uH);
 		}

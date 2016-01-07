@@ -72,10 +72,9 @@ public class LoginServiceImpl extends RemoteServiceServlet implements
 			else {
 				Nutzer na = new Nutzer();
 				na.setMailadresse(loginInfo.getEmailAddress());
-
 				na.setVorname("undefined");
 				na.setNachname("undefined");
-				nMapper.anlegen(na);
+				na.setId(nMapper.anlegen(na));
 				loginInfo.setUser(na);
 			}
 

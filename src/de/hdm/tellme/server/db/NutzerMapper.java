@@ -1,6 +1,7 @@
 package de.hdm.tellme.server.db;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -47,22 +48,27 @@ public class NutzerMapper {
 	 * ausgef�hrt.
 	 */
 
-	public void anlegen(Nutzer n) {
+	public int anlegen(Nutzer n) {
+		int ergebnis = -1;
 		Connection con = DatenbankVerbindung.connection();
 		try {
-			Statement state = con.createStatement();
-			String sqlquery = "INSERT INTO Nutzer (Vorname, Nachname, GoogleId, Mailadresse) VALUES ("
-					+ "'"
-					+ n.getVorname()
-					+ "','"
-					+ n.getNachname()
-					+ "','"
-					+ n.getGoogleId() + "','" + n.getMailadresse() + "') ;";
-			state.executeUpdate(sqlquery);
 
+			PreparedStatement prepState = con
+					.prepareStatement(
+							"INSERT INTO Nutzer (Vorname, Nachname, Mailadresse) VALUES (?,?,?) ;",
+							Statement.RETURN_GENERATED_KEYS);
+			prepState.setString(1, n.getVorname());
+			prepState.setString(2, n.getNachname());
+			prepState.setString(3, n.getMailadresse());
+			prepState.executeUpdate();
+			ResultSet rs = prepState.getGeneratedKeys();
+			if (rs.next()) {
+				ergebnis = rs.getInt(1);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return ergebnis;
 	}
 
 	public Nutzer suchenMitEmailAdresse(String mailAdresse) {
