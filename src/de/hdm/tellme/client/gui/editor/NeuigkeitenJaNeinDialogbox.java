@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 
 import de.hdm.tellme.client.TellMe;
@@ -65,6 +66,16 @@ public class NeuigkeitenJaNeinDialogbox {
 		db.setGlassEnabled(true);
 
 		FlowPanel fpDialog = new FlowPanel();
+		
+		fpDialog.setWidth("100%");
+		//fpDialog.setWidth("500px");
+		Image btnAbbrechen = new Image("xbtn.png");
+		btnAbbrechen.setStylePrimaryName("xbtn");
+		btnAbbrechen.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				db.hide();
+			}
+		});
 
 		HorizontalPanel hpFrage = new HorizontalPanel();
 		hpFrage.add(new Label(textFrage));
@@ -75,6 +86,7 @@ public class NeuigkeitenJaNeinDialogbox {
 		hpButtons.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 
 		Button btnJa = new Button("Ja");
+		btnJa.setStylePrimaryName("NeuigkeitenDialogboxSendenBtn");
 		btnJa.addClickHandler(new ClickHandler() {
 
 			@Override
@@ -125,12 +137,8 @@ public class NeuigkeitenJaNeinDialogbox {
 			}
 		});
 
-		Button btnAbbrechen = new Button("Abbrechen");
-		btnAbbrechen.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				db.hide();
-			}
-		});
+	
+		
 		hpButtons.add(btnJa);
 		hpButtons.add(btnAbbrechen);
 		fpDialog.add(hpButtons);

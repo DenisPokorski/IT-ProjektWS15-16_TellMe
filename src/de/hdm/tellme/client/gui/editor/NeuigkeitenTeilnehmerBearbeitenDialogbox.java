@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.SuggestBox;
@@ -26,6 +27,8 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 
 	final DialogBox db = new DialogBox();
 	TextArea textArea = new TextArea();
+	private String textAreaInhalt = "";
+
 	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
 
 	// Ausgelagert, da sie durch einen async call gefüllt werden
@@ -49,6 +52,7 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 
 		zuBearbeitendeUnterhaltung = _unterhaltungZumBearbeiten;
 
+		
 		// Fuelle TeilehmerPanel
 		for (Nutzer zuHinzuzufuegenderBenutzer : _unterhaltungZumBearbeiten.getTeilnehmer()) {
 
@@ -84,6 +88,9 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 	private DialogBox gibDialogBox() {
 		ladVorschlagListen();
 
+	
+		
+		
 		// Dialog und FlowPanel definition
 		db.setText(boxTitel);
 		db.setAnimationEnabled(true);
@@ -92,20 +99,37 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 		FlowPanel fpDialog = new FlowPanel();
 		// fpDialog.setHeight("500px");
 		// fpDialog.setWidth("500px");
+		
+		fpDialog.setWidth("100%");
+		
+		Image btnAbbrechen = new Image("xbtn.png");
+
+		btnAbbrechen.setStylePrimaryName("xbtn");
+
+		btnAbbrechen.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				db.hide();
+			}
+		});
+		
+		fpDialog.add(btnAbbrechen);
+		
 
 		// ############################################## Empfaenger Panele
 		// ##############################################
 
+	
 		hpEmpfaenger.add(new Label("Empfänger:"));
 
 		final SuggestBox EmpfaengerHinzufuegenSug = new SuggestBox(suggestOracleEmpfaenger);
 		hpEmpfaenger.add(EmpfaengerHinzufuegenSug);
 
 		final Button btnEmpfaengerHinzufuegen = new Button("+ Hinzufügen");
+		btnEmpfaengerHinzufuegen.setStylePrimaryName("EmpfaengerPlusBtn");
 		hpEmpfaenger.add(btnEmpfaengerHinzufuegen);
-
+		
 		btnEmpfaengerHinzufuegen.addClickHandler(new ClickHandler() {
-
+		
 			public void onClick(ClickEvent event) {
 				Nutzer zuHinzuzufuegenderBenutzer = null;
 				boolean bereitsHinzugefuegt = false;
@@ -169,12 +193,24 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 		});
 		fpDialog.add(hpEmpfaenger);
 		fpDialog.add(fpAusgewaehlteEmpfanger);
+		
+		
+		// ############################################## Textarea
+				// ##############################################
+				textArea.setWidth("100%");
+				textArea.setVisibleLines(10);
+				textArea.setText(textAreaInhalt);
+				textArea.setStylePrimaryName("dialogtextArea");
 
+				// maxlength="50"
+				fpDialog.add(textArea);
+		
 		HorizontalPanel hpButtons = new HorizontalPanel();
 		hpButtons.setWidth("100%");
 		hpButtons.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 
 		Button btnFunktionsbutton = new Button(textFunktionsbutton);
+		btnFunktionsbutton.setStylePrimaryName("NeuigkeitenDialogboxSendenBtn");
 		btnFunktionsbutton.addClickHandler(new ClickHandler() {
 
 			@Override
@@ -185,18 +221,12 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 				db.hide();
 			}
 		});
-		Button btnAbbrechen = new Button("Abbrechen");
-		btnAbbrechen.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				db.hide();
-			}
-		});
+
+		
 		hpButtons.add(btnFunktionsbutton);
-		hpButtons.add(btnAbbrechen);
 		fpDialog.add(hpButtons);
 
 		db.setWidget(fpDialog);
-
 		return db;
 	}
 

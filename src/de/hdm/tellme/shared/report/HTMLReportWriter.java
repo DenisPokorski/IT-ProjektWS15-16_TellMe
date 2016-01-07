@@ -24,7 +24,8 @@ import de.hdm.tellme.shared.bo.Nutzer;
 
 
 public class HTMLReportWriter  {
-	
+	DateTimeFormat dF = DateTimeFormat.getFormat("dd.MM.yyyy HH:mm:ss");
+
 	
 	private String reportText = "";
 	
@@ -61,8 +62,7 @@ public class HTMLReportWriter  {
  
 			//Datum formatiert
 			Date currentTime = new Date(System.currentTimeMillis());
-			DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy HH:mm:ss");
-			HTML Erstellungsdatum = new HTML( dtf.format(new Timestamp(currentTime.getTime())));
+			HTML Erstellungsdatum = new HTML( dF.format(new Timestamp(currentTime.getTime())));
 			
 			// Nutzerabo Klasse Format
 			buffer.append("<table class='reportTabelle'>");
@@ -108,7 +108,8 @@ public class HTMLReportWriter  {
 		public void erstelleKopfDatenReport2( Nutzer n){
 			String ausgangsnutzer = 	"Ausgangsnutzer:<div></div>" + n.getVorname() + " " + n.getNachname();
 			Date currentTime = new Date(System.currentTimeMillis());
-			HTML Erstellungsdatum = new HTML(""+new Timestamp(currentTime.getTime()));
+			
+			HTML Erstellungsdatum = new HTML(""+dF.format(new Timestamp(currentTime.getTime())));
 			// Nutzerabo Klasse Format
 			buffer.append("<table class='reportTabelle'>");
 			buffer.append("<th colspan='2' class='reportKopfzeile'> Report 2 </th>");
