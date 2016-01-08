@@ -18,7 +18,9 @@ import de.hdm.tellme.client.gui.report.Report3Gui;
 import de.hdm.tellme.client.gui.report.ReportWillkommenSeite;
 
 /**
- * 
+ * Dies ist die Klasse <class>MenuBarEditor</class>, sie wird verwendet um die MenuBar darzustellen. 
+ * Sie wird durch ein HorizontalPanel erweitert, damit die einzelnen Elemente nebeneinander angeordnet werden. 
+ * TODO
  * @author Zimmermann
  * @version 1.1
  * @since 26.11.2015
