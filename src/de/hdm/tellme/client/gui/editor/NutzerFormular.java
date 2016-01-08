@@ -42,7 +42,7 @@ public class NutzerFormular extends Composite {
 				if (nutzer == null) {
 					return;
 				}
-				NutzerDataProvider.gib().abonieren(nutzer);
+				NutzerDataProvider.gib(0).abonieren(nutzer);
 			}
 		});
 		// Handle events.
@@ -51,7 +51,7 @@ public class NutzerFormular extends Composite {
 				if (nutzer == null) {
 					return;
 				}
-				NutzerDataProvider.gib().deabonieren(nutzer);
+				NutzerDataProvider.gib(0).deabonieren(nutzer);
 			}
 		});
 	}

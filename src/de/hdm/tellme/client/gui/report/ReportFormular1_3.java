@@ -30,7 +30,7 @@ public class ReportFormular1_3 {
 			@Override
 			public void onClick(ClickEvent event) {
 				
-				NutzerDataProvider.gib().report1_3Generieren(nutzer);
+				NutzerDataProvider.gib(1).report1_3Generieren(nutzer);
 			}
 		});
 	}

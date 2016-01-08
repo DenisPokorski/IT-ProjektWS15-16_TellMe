@@ -33,7 +33,7 @@ public class ReportFormular3 extends Composite{
 				RootPanel.get("content_left").clear();
 				RootPanel.get("content_right").clear();
 
- 				NutzerDataProvider.gib().report3Generieren(nutzer ); // TODO KLASSE BESCHREIBEN
+ 				NutzerDataProvider.gib(1).report3Generieren(nutzer ); // TODO KLASSE BESCHREIBEN
 
 				}			
 		});

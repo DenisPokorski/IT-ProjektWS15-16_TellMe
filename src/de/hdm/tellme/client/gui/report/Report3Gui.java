@@ -42,7 +42,7 @@ public class Report3Gui extends VerticalPanel {
 		RootPanel
 				.get("content_left")
 				.add(new NutzerCellList()
-						.generiereCellList(CellListModus.Report3_NutzerHashtagAbonnement));
+						.generiereCellList(CellListModus.Report3_NutzerHashtagAbonnement, 1));
 	}
 
 }

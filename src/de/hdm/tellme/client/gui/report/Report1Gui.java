@@ -39,13 +39,6 @@ import de.hdm.tellme.shared.bo.Nutzer;
  */
 
 public class Report1Gui extends VerticalPanel{
-	
-//	public static class Report1SelektierterNutzer{
-//
-//		
-//		
-//	}
-
 
 	private static SingleSelectionModel<NutzerZelle.ZellenObjekt> selectionModelNutzer = null;
 
@@ -82,13 +75,13 @@ public class Report1Gui extends VerticalPanel{
 
 		
 		
-		FlowPanel a = new NutzerCellList().generiereCellList(CellListModus.Report1_NachrichtNutzerZeitraum);
+		FlowPanel a = new NutzerCellList().generiereCellList(CellListModus.Report1_NachrichtNutzerZeitraum, 1);
 		 
 		reportPanel.add(ueberSchrift1);
 		reportPanel1.add(reportPanel1_left);
 		reportPanel1.add(reportPanel1_right);
 		reportPanel1_left.add(subSchrift1);
-		reportPanel1_left.add(new NutzerCellList().generiereCellList(CellListModus.Report1_NachrichtNutzerZeitraum));
+		reportPanel1_left.add(new NutzerCellList().generiereCellList(CellListModus.Report1_NachrichtNutzerZeitraum, 1));
 		reportPanel1_left.add(subSchrift2);
 		reportPanel1_left.add(vonDateBox);
 		reportPanel1_left.add(bisDateBox);

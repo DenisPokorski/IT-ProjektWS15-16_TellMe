@@ -24,7 +24,7 @@ public class ReportFormular1 extends Composite{
 
 
 	public void reportGenerieren(Nutzer n, Date vonDate, Date bisDate) {
-				NutzerDataProvider.gib().report1_1Generieren(n, vonDate, bisDate);
+				NutzerDataProvider.gib(1).report1_1Generieren(n, vonDate, bisDate);
 	}
 
 

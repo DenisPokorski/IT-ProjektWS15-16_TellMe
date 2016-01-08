@@ -186,7 +186,7 @@ public class HTMLReportWriter {
 
 		buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"
 				+ ausgangsnutzer
-				+ "</div><div> Datum: "
+				+ "</div><div> <br />Datum: "
 				+ Erstellungsdatum
 				+ "</div></td><td class='kopfdatenbox_rechts'>"
 				+ new Impressum().getHtmlImpressum() + "</td></tr>");

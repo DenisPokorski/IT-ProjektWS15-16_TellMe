@@ -31,7 +31,7 @@ public class ReportFormular2 extends Composite {
 				RootPanel.get("content_left").clear();
 				RootPanel.get("content_right").clear();
 				
-				NutzerDataProvider.gib().report2Generieren(nutzer);
+				NutzerDataProvider.gib(1).report2Generieren(nutzer);
 			}
 		});
 	}

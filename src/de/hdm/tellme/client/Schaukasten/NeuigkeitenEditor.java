@@ -202,7 +202,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 
 	public static VerticalPanel gibFilterPanel(){
 		VerticalPanel vpFilterPanel = new VerticalPanel();
-		vpFilterPanel.add(nuCL.generiereCellList(CellListModus.Nachrichtenuebersicht));
+		vpFilterPanel.add(nuCL.generiereCellList(CellListModus.Nachrichtenuebersicht, 0));
 		vpFilterPanel.add(new Label("________________________________________"));
 		vpFilterPanel.add(hsCL.generiereCellList(CellListModus.Nachrichtenuebersicht));
 		vpFilterPanel.add(new Label("________________________________________"));

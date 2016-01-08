@@ -38,6 +38,7 @@ public class NutzerAbonnementMapper {
 				na.setVorname(rs.getString("Vorname"));
 				na.setNachname(rs.getString("Nachname"));
 				na.setMailadresse(rs.getString("Mailadresse"));
+				na.setErstellungsDatum(rs.getTimestamp("AbonnentBenutzer.ErstellungsDatum"));
 				NutzerListe.add(na);
 			}
 		}

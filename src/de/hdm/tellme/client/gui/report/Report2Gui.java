@@ -47,7 +47,7 @@ public class Report2Gui  extends VerticalPanel {
 		RootPanel
 		.get("content_left")
 		.add(new NutzerCellList()
-				.generiereCellList(CellListModus.Report2_NutzerNutzerAbonnement));
+				.generiereCellList(CellListModus.Report2_NutzerNutzerAbonnement, 1));
 		
 		
  	}

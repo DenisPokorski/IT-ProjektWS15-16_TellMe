@@ -110,7 +110,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 		return alleNutzeAuserMir;
 	}
-
+	
+	
 	@Override
 	public Vector<Nutzer> getAlleNutzer(boolean zwingeNeuladen) {
 		if (alleUser == null || zwingeNeuladen)
