@@ -374,7 +374,7 @@ public class NeuigkeitenNachrichtDialogbox {
 							@Override
 							public void onSuccess(Boolean result) {
 								if (result)
-									Window.alert("Nachricht erfolgreich erstellt, sie wurden der Unterhaltung als Teilnehmer hinzugefuegt.");
+									Window.alert("Nachricht erfolgreich gesendet.");
 								else
 									Window.alert("Fehler beim erstellen der Nachricht, bitte an Administrator wenden.");
 								
@@ -402,7 +402,6 @@ public class NeuigkeitenNachrichtDialogbox {
 						bearbeiteteNachricht.setSichtbarkeit(originalNachricht.getSichtbarkeit());
 						bearbeiteteNachricht.setText(textArea.getValue());
 						bearbeiteteNachricht.setVerknuepfteHashtags(AusgewaehlteHashtags);
-						Window.alert(bearbeiteteNachricht.getVerknuepfteHashtags().size() + "");
 						asyncObj.NachrichtAktualisieren(originalNachricht, bearbeiteteNachricht, new AsyncCallback<Boolean>() {
 
 							@Override

@@ -101,8 +101,8 @@ public class NutzerAbonnementMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			state.executeUpdate("INSERT INTO AbonnentBenutzer(VonId, NachId) VALUES ('"
-					+ vonId + "','" + _nutzer.getId() + "');");
+			state.executeUpdate("INSERT INTO AbonnentBenutzer(VonId, NachId, ErstellungsDatum) VALUES ('"
+					+ vonId + "','" + _nutzer.getId() + "', '"+DateHelperClass.getCurrentTime()+"');");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
