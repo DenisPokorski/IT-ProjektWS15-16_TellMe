@@ -149,6 +149,12 @@ public class HashtagDataProvider {
 				holeHashtagListe();
 				RootPanel.get("content_right").clear();
 				Window.alert("Der Hashtag wurde erfolgreich erstellt.");
+				RootPanel.get("content_right").add(
+						new HashtagFormular()
+								.gibBeschreibungHtVerwaltung());
+				RootPanel.get("content_right").add(
+						new HashtagFormular().gibAnlegenFormular());
+
 
  			}
 			});

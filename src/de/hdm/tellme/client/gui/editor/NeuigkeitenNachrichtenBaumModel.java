@@ -50,6 +50,7 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 	 */
 
 	public NeuigkeitenNachrichtenBaumModel() {
+		
 		ladeUnterhaltungenAsync();
 		unterhaltungSelectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 			public void onSelectionChange(SelectionChangeEvent event) {

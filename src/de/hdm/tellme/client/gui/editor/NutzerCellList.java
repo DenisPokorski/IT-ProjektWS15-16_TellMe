@@ -11,6 +11,7 @@ import com.google.gwt.view.client.SingleSelectionModel;
 
 import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.client.gui.editor.NutzerZelle.ZellenObjekt;
+import de.hdm.tellme.client.gui.report.ReportFormular1;
 import de.hdm.tellme.client.gui.report.ReportFormular1_3;
 import de.hdm.tellme.client.gui.report.ReportFormular2;
 import de.hdm.tellme.client.gui.report.ReportFormular3;
@@ -24,7 +25,6 @@ import de.hdm.tellme.shared.bo.NutzerAbonnement;
  *
  */
 public class NutzerCellList {
-	NutzerAbonnement nA = new NutzerAbonnement();
 	Nutzer selektiererBenutzer = null;
 
 	public FlowPanel generiereCellList(CellListModus modi, int i) {
@@ -77,6 +77,18 @@ public class NutzerCellList {
 						public void onSelectionChange(SelectionChangeEvent event) {
 
 							ReportFormular1_3 rF = new ReportFormular1_3();
+
+						}
+
+					});
+		case Report1_NachrichtNutzerZeitraum:
+			selectionModel
+					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+						public void onSelectionChange(SelectionChangeEvent event) {
+
+							ReportFormular1 rF = new ReportFormular1();
+							rF.report3Generieren(selectionModel
+									.getSelectedObject());
 
 						}
 

@@ -40,8 +40,7 @@ import de.hdm.tellme.shared.bo.Nutzer;
 
 public class Report1Gui extends VerticalPanel{
 
-	private static SingleSelectionModel<NutzerZelle.ZellenObjekt> selectionModelNutzer = null;
-
+	private Nutzer nutzer = null;
 
 
 	private VerticalPanel reportPanel = new VerticalPanel();
@@ -70,13 +69,13 @@ public class Report1Gui extends VerticalPanel{
 			+ " darstellt, musst du <b>einen Nutzer </b>auswählen und darfst <b>keinen Zeitraum </b>auswählen. </li>"
 			+ "<li>Um einen Report auszugeben, der alle Nachrichten "
 			+ " darstellt, darfst du<b> keinen Nutzer</b> und <b>keinen Zeitraum</b> auswählen.</li></ul>");
+
+	public void report1Generieren(NutzerZelle.ZellenObjekt ZellenObjekt) {
+		this.nutzer = ZellenObjekt.nutzer;
+
+	}
 	
 	public void onLoad(){
-
-		
-		
-		FlowPanel a = new NutzerCellList().generiereCellList(CellListModus.Report1_NachrichtNutzerZeitraum, 1);
-		 
 		reportPanel.add(ueberSchrift1);
 		reportPanel1.add(reportPanel1_left);
 		reportPanel1.add(reportPanel1_right);
@@ -126,35 +125,9 @@ public class Report1Gui extends VerticalPanel{
 			
 			@Override
 			public void onClick(ClickEvent event) {
-//				SingleSelectionModel<ZellenObjekt> selectionModelNutzer;
-//				Report1Gui.setzeNutzerFilter(n, selectionModelNutzer);
-//				selectionModelNutzer.getSelectedObject().nutzer.getMailadresse();		
-//				vonDateBox.getValue();
-//				bisDateBox.getValue();
-				Window.alert("TEST");
-				Window.alert(selectionModelNutzer.getSelectedObject().nutzer.getVorname() +" blabla "+bisDateBox.getValue() +"  "+vonDateBox.getValue());
-				
-				
-//				Window.alert(nutzer.getNachname() +"  "+ nutzer.getVorname() +"  "+ 	bisDateBox.getValue() +"  "+vonDateBox.getValue());
-//				 ReportFormular1 rF = new ReportFormular1(); rF.reportGenerieren(nutzer, vonDateBox.getValue(), bisDateBox.getValue()); 
 			}
 		});
 	}
 	
-	
-	
-
-	public void setLoginInfo(LoginInfo loginInfo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public static  Nutzer setzeNutzerFilter(Nutzer n, SingleSelectionModel<NutzerZelle.ZellenObjekt> selectionModelNutzer){
-		Nutzer nutzerFilter = n;
-		SingleSelectionModel<ZellenObjekt> selectionModel = selectionModelNutzer;
-		
-		return n;
-			
-		}
 	
 }

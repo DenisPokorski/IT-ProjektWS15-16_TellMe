@@ -82,7 +82,6 @@ public class HashtagVerwaltungFomular extends Composite {
 		htLoeschen.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				HashtagDataProvider.gib().hashtagEntfernen(hashtag);
-				Window.alert("Hashtag gelöscht");
 
 			}
 		});
