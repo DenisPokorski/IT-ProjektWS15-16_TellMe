@@ -664,6 +664,16 @@ html {
 		padding:15px;
 	
 }
+.btnAnlegen{ background: #000; color: #fff; 
+height: 30px;
+    width: 100%;
+    border: none;
+     }
+     
+     .btnAnlegen:hover{ background: #ccc; color: #000; 
+     }
+
+.top-margin{margin-top:15px !Important;}
 .bezeichnungVornameTextBox, .bezeichnungNachnameTextBox{margin-top:10px;}
 
 .Impressum{

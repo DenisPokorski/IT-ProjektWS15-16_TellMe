@@ -76,7 +76,7 @@ public class NutzerCellList {
 					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
 
-							ReportFormular1_3 rF = new ReportFormular1_3();
+							//ReportFormular1_3 rF = new ReportFormular1_3();
 
 						}
 
@@ -86,9 +86,9 @@ public class NutzerCellList {
 					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
 
-							ReportFormular1 rF = new ReportFormular1();
-							rF.report3Generieren(selectionModel
-									.getSelectedObject());
+//							ReportFormular1 rF = new ReportFormular1();
+//							rF.report3Generieren(selectionModel
+//									.getSelectedObject());
 
 						}
 
@@ -99,12 +99,12 @@ public class NutzerCellList {
 					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
 
-							ReportFormular3 rF = new ReportFormular3();
-							rF.report3Generieren(selectionModel
-									.getSelectedObject());
-							RootPanel.get("content_right").clear();
-							RootPanel.get("content_right")
-									.add(rF.gibFormular());
+//							ReportFormular3 rF = new ReportFormular3();
+//							rF.report3Generieren(selectionModel
+//									.getSelectedObject());
+//							RootPanel.get("content_right").clear();
+//							RootPanel.get("content_right")
+//									.add(rF.gibFormular());
 
 						}
 					});
@@ -115,12 +115,12 @@ public class NutzerCellList {
 			selectionModel
 					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
-							ReportFormular2 rF = new ReportFormular2();
-							rF.report2Generieren(selectionModel
-									.getSelectedObject());
-							RootPanel.get("content_right").clear();
-							RootPanel.get("content_right")
-									.add(rF.gibFormular());
+//							ReportFormular2 rF = new ReportFormular2();
+//							rF.report2Generieren(selectionModel
+//									.getSelectedObject());
+//							RootPanel.get("content_right").clear();
+//							RootPanel.get("content_right")
+//									.add(rF.gibFormular());
 
 						}
 					});

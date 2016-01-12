@@ -76,6 +76,15 @@ public class Report1Gui extends VerticalPanel{
 	}
 	
 	public void onLoad(){
+		
+		HTML headline = new HTML(" <div class='" + "subline"
+				+ "'><h2>Reportgenerator 1: Alle Nachrichten je Nutzer anzeigen</h2></div> ");
+		HTML subtext = new HTML(
+				" <div class='"
+						+ "subtext"
+						+ "'><h4> Der Report 1 gibt alle Nachrichten eines Nutzers in einen bestimmten Zeitraum, alle Nachrichten eines Nutzers, alle Nachrichten in einem bestimmten Zeitraum oder alle Nachrichten aus  </h4></div> ");
+
+		
 		reportPanel.add(ueberSchrift1);
 		reportPanel1.add(reportPanel1_left);
 		reportPanel1.add(reportPanel1_right);
@@ -87,6 +96,9 @@ public class Report1Gui extends VerticalPanel{
 		reportPanel1_left.add(report1Generieren);
 		report1Generieren.setStylePrimaryName("neueNchrichtBtn");
 
+		reportPanel1_right.add(headline);
+		reportPanel1_right.add(subtext);
+		
 		reportPanel1_right.add(beschreibung1);
 		
 		

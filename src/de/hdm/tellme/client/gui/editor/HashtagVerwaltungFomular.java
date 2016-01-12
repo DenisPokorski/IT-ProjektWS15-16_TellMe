@@ -122,6 +122,7 @@ public class HashtagVerwaltungFomular extends Composite {
 	public VerticalPanel gibFormular() {
 		
 		VerticalPanel vpForm = new VerticalPanel();	
+		vpForm.setStylePrimaryName("top-margin");
 		vpForm.clear();
 		vpForm.add(schlagwortBox);
 
@@ -133,7 +134,7 @@ public class HashtagVerwaltungFomular extends Composite {
 		htLoeschen.setStylePrimaryName("btnNegativ");
 
 		hpButtonBar.add(htAnlegen);
-		htAnlegen.setStylePrimaryName("neueNchrichtBtn");
+		htAnlegen.setStylePrimaryName("btnAnlegen");
 
 		vpForm.add(hpButtonBar);
 
@@ -142,6 +143,7 @@ public class HashtagVerwaltungFomular extends Composite {
 
 	public VerticalPanel gibInfoFormular(){
 		VerticalPanel vpForm = new VerticalPanel();
+		
 		vpForm.clear();
 		vpForm.add(new HTML("Hier kannst du ein <b>Hashtagabonnement</b> erstellen oder löschen. </br>"
 				+ "Wähle dazu das gewünschte Hashtag aus und drücke dann den Button zum <b>abonnieren</b> oder zum <b>deabonnieren</b>."));
