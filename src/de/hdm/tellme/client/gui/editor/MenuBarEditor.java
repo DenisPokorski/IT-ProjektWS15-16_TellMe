@@ -69,8 +69,8 @@ public class MenuBarEditor extends HorizontalPanel {
 		HauptMenue.addItem(new MenuItem(LogoLink, true, new Command() {
 			@Override
 			public void execute() {
-				// Nichts laden wenn Benutzer Logo auswählt
-			}
+				setzeInhalt(NeuigkeitenEditor.gibFilterPanel(),
+						gibansichtNeuigkeiten());			}
 		}));
 
 		HauptMenue.addItem("Neuigkeiten", new Command() {
