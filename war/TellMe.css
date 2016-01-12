@@ -1,38 +1,4 @@
-//
-Button btnAntworten = new Button ("Unterhaltung beantworten "); //		btnAntworten.addClickHandler
-	(btnAntwortenClickHandler); //		hpUnterhaltungsOptionen.add
-	(btnAntworten); // //		Button btnTeilnehmerBearbeiten = new Button
-	("Teilnehmer bearbeiten "); //		btnTeilnehmerBearbeiten.addClickHandler
-	(btnTeilnehmerBearbeitenClickHandler); //		hpUnterhaltungsOptionen.add
-	(btnTeilnehmerBearbeiten); // //		Button btnUnterhaltungVerlassen = new Button
-	("Unterhaltung verlassen "); //		btnUnterhaltungVerlassen.addClickHandler
-	(btnUnterhaltungenAktualisierenClickHandler); //		hpUnterhaltungsOptionen.add
-	(btnUnterhaltungVerlassen); // //		Button btnUnterhaltungenAktualisieren 
-	= new Button ("Unterhaltungen aktualisieren "); //		btnUnterhaltungenAktualisieren.addClickHandler
-	(btnUnterhaltungenAktualisierenClickHandler); //		hpUnterhaltungsOptionen.add
-	(btnUnterhaltungenAktualisieren); // //		if (_ausgewaehlteUnterhaltung 
-	== null ) { // ausgewaehlteUnterhaltung = null; // btnAntworten
-	.setEnabled(false); // btnTeilnehmerBearbeiten .setEnabled(false); //
-	btnUnterhaltungVerlassen .setEnabled(false); // //
-	
-}
-
-else { // ausgewaehlteUnterhaltung = _ausgewaehlteUnterhaltung; //
-	btnAntworten .setEnabled(true); // btnTeilnehmerBearbeiten
-	.setEnabled(true); // btnUnterhaltungVerlassen .setEnabled(true); // //
-	
-}
-
-//
-//
-RootPanel
-.get
-("ButtonBar")
-.add
-(hpUnterhaltungsOptionen);
-//
-	
-}
+ 
 
 /** Add css rules here for your application. */
 /** Example rules used by the template application (remove for your app) */
@@ -236,15 +202,19 @@ h3 {
 }
 
 .btnPositiv:hover {
-	border-color: #939393;
+ 		background: #13f5b8;
+	
 }
 
 .btnPositiv:[disabled] {
 	background: #3fb155;
-}
+		border: 1px outset #ccc;
+	
+ }
 
 .btnPositiv[disabled]:hover {
-	border: 1px outset #ccc;
+ 		background: #c28090;
+	
 }
 
 .btnNegativ:active {
@@ -252,18 +222,21 @@ h3 {
 }
 
 .btnNegativ:hover {
-	border-color: #939393;
+ 			background: #c28090;
+	
 }
 
 .btnNegativ:[disabled] {
 	background: #c28090;
+			border: 1px outset #ccc;
+	
 }
 
 .btnNegativ[disabled]:hover {
 	border: 1px outset #ccc;
 }
 
-.btnAntworten:active, neueNchrichtBtn:active, btnTeilnehmerBearbeiten:active,
+.btnAntworten:active, .neueNchrichtBtn:active, .btnTeilnehmerBearbeiten:active,
 	btnUnterhaltungVerlassen:active {
 	border: 1px inset #ccc;
 }
@@ -273,18 +246,17 @@ h3 {
 	border-color: #939393;
 }
 
-.btnAntworten[disabled], neueNchrichtBtn[disabled],
-	btnTeilnehmerBearbeiten[disabled], btnUnterhaltungVerlassen[disabled] {
+.btnAntworten[disabled], .neueNchrichtBtn[disabled],
+	.btnTeilnehmerBearbeiten[disabled], .btnUnterhaltungVerlassen[disabled] {
 	cursor: default;
 	color: #888;
 	background: #e7dfec;
 }
 
-.btnAntworten[disabled]:hover, neueNchrichtBtn[disabled]:hover,
-	btnTeilnehmerBearbeiten[disabled]:hover, btnUnterhaltungVerlassen[disabled]:hover
+.btnAntworten[disabled]:hover, .neueNchrichtBtn[disabled]:hover,
+	.btnTeilnehmerBearbeiten[disabled]:hover, .btnUnterhaltungVerlassen[disabled]:hover
 	{
-	border: 1px outset #ccc;
-}
+ }
 
 .dialogTop, .dialogTopCenter {
 	font-size: 15px;
@@ -316,7 +288,11 @@ h3 {
 }
 
 div.GPBYFDEFF.GPBYFDEKF.GPBYFDENF.GPBYFDELF {
-	background: #f0f0f0;
+	/*background: #f0f0f0;*/
+}
+
+div.GPBYFDEFF{	 
+	
 }
 
 /*.GPBYFDELF{background:#f0f0f0;}*/
