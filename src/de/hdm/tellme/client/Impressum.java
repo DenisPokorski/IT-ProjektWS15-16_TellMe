@@ -6,14 +6,14 @@ import de.hdm.tellme.client.Schaukasten.NeuigkeitenEditor;
 
 
 /**
-
+Das Impressum gibt
 
 
 * 
 
 
 
-* @author ….
+* @author Denis Pokorski
 
 
 
@@ -40,7 +40,7 @@ public class Impressum extends HTML {
 
 
 
-	"<p>Testperson<br />"+
+	"<p>Dana Thüring<br />"+
 
 
 
@@ -76,7 +76,7 @@ public class Impressum extends HTML {
 
 
 
-	"<td>info@hdm-stuttgart.de</td>"+
+	"<td>dt018@hdm-stuttgart.de</td>"+
 
 
 

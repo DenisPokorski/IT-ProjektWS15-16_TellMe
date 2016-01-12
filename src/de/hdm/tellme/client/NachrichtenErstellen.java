@@ -15,6 +15,15 @@ import de.hdm.tellme.shared.bo.Nachricht;
  * version: 1.2
  */
 
+/**
+ * Die Klasse <class>NachrichtenErstellen </class> 
+ * TODO
+ * WIRD DIE KLASSE NOCH VERWENDET?
+ * 
+ * Code:33 meineId=7
+ * @author denispokorski
+ *
+ */
 public class NachrichtenErstellen extends VerticalPanel {
 
 	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);

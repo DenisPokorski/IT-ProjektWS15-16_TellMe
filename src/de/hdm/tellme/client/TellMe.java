@@ -13,8 +13,22 @@ import de.hdm.tellme.client.gui.editor.MenuBarEditor;
 import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.LoginService;
 import de.hdm.tellme.shared.LoginServiceAsync;
-
+/**
+ * Das ist der Eingangspunkt-Klasse des Projekts <b>TellMe</b>
+ * TODO
+ * @author denispokorski
+ *
+ */
 public class TellMe implements EntryPoint {
+	
+	  /**
+	   * Die Klasse implementiert das Interface <code> EntryPoint</code>.
+	   * Dafür wird die Methode <code> pubic void onModuleLoad()</code>.
+	   * Das ist das GWT-Gegenstück der <code>main()</code> einer normalen 
+	   * Java-Applikation
+	   * 
+	   *
+	   */
 	public TellMe() {
 
 	}
