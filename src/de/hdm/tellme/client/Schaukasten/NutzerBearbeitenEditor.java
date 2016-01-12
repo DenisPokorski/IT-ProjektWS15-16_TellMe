@@ -102,7 +102,6 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 					@Override
 					public void onFailure(Throwable caught) {
 						// TODO Auto-generated method stub
-
 					}
 
 					@Override
@@ -111,7 +110,6 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 						Window.Location.assign(TellMe.eingeloggterBenutzer
 								.getLogoutUrl());
 						RootPanel.get("content").clear();
-
 					}
 				});
 	}
@@ -147,33 +145,30 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 		profilPanel.add(bezeichnungNachnameTextBox);
 		profilPanel.add(nachnameTextBox);
 		
-		
 		emailTextBox.setReadOnly(true);
-
-		aenderungenSpeichernButton.setStylePrimaryName("btnPositiv");
-		profilloeschenButton.setStylePrimaryName("btnNegativ");
-
+		
 		ButtonPanel.add(aenderungenSpeichernButton);
-
 		ButtonPanel.add(profilloeschenButton);
 
 		bezeichnungVornameTextBox.addStyleName("bezeichnungVornameTextBox");
 		vornameTextBox.addStyleName("vornameTextBox");
+		aenderungenSpeichernButton.setStylePrimaryName("btnPositiv");
+		profilloeschenButton.setStylePrimaryName("btnNegativ");
 		bezeichnungNachnameTextBox.addStyleName("bezeichnungNachnameTextBox");
 		nachnameTextBox.addStyleName("nachnameTextBox");
 		bezeichnungEmailTextBox.addStyleName("bezeichnungEmailTextBox");
 		emailTextBox.addStyleName("emailTextBox");
-
+		ButtonPanel.setStylePrimaryName("nutzerButtonPanel");
+		vP.addStyleName("vertical-box");
 		aenderungenSpeichernButton.addStyleName("aenderungenSpeichernButton");
-
 		profilloeschenButton.addStyleName("profilloeschenButton");
 
 		vP.add(headline);
 		vP.add(subtext);
+		vP.add(profilPanel);
+		vP.add(ButtonPanel);
 		RootPanel.get("content").add(vP);
 
-		RootPanel.get("content").add(profilPanel);
-		RootPanel.get("content").add(ButtonPanel);
 
 		/*
 		 * Der ClickHandler des Speichern-Buttons. Zuerst wird eine if-Abfrage

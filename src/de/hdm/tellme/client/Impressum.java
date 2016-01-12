@@ -35,7 +35,7 @@ public class Impressum extends HTML {
 		return ansichtNeuigkeiten;
 	}
 	
-	HTML impressumString = new HTML( "<h2>Impressum</h2>"
+	HTML impressumString = new HTML( "<div class='"+"Impressum"+"'><h2>Impressum</h2>"
 			+ "<h2>Angaben gemäß § 5 TMG:</h2>"+
 
 
@@ -80,7 +80,7 @@ public class Impressum extends HTML {
 
 
 
-	"</tr></table><p>");
+	"</tr></table><p></div>");
 
 
 	

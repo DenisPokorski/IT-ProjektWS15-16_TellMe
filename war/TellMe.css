@@ -17,6 +17,9 @@ h2 {
 h3 {
 	font-size: 13px;
 }
+.nutzerButtonPanel{
+	margin-top:10px;
+}
 
 .sendButton {
 	display: block;
@@ -657,6 +660,16 @@ html {
 	/* padding: 5px 10px; */
 	vertical-align: middle !Important;
 }
+.vertical-box{
+		padding:15px;
+	
+}
+.bezeichnungVornameTextBox, .bezeichnungNachnameTextBox{margin-top:10px;}
+
+.Impressum{
+	padding:15px;
+}
+.nutzerButtonPanel{margin-top:15px;}
 
 /*table, th, td {
 border: 1px solid black;

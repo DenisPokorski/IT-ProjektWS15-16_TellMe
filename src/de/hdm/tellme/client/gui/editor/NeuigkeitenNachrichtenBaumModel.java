@@ -99,7 +99,7 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 			// Create a data provider that contains the list of composers.
 			dataProvider = new ListDataProvider<UnterhaltungsNachicht>(alleUnterhaltungenGefiltert);
 			// Create a cell to display a composer.
-
+		
 			Cell<UnterhaltungsNachicht> cell = new AbstractCell<UnterhaltungsNachicht>() {
 
 				@Override
@@ -234,6 +234,8 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 	public static void UnterhaltungsListeErneuern() {
 
 		dataProvider.getList().clear();
+		
+ 
 
 //		// NutzerFilter
 //		if (nutzerFilter != null)

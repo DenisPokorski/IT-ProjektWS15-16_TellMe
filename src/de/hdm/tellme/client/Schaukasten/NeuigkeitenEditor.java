@@ -60,9 +60,9 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 */
 		CellTree tree = new CellTree(model, null);
 		tree.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
-
+ 
 		ScrollPanel scPanel = new ScrollPanel();
-		scPanel.setHeight("600px");
+		scPanel.setHeight("100%");
 		scPanel.add(tree);
 
 		RootPanel.get("content_right").add(scPanel);
