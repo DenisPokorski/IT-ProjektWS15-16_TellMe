@@ -32,7 +32,7 @@ import de.hdm.tellme.shared.bo.Nutzer;
 
 public class NutzerBearbeitenEditor extends VerticalPanel {
 
-	/*
+	/**
 	 * Deklarationen der einzelnen Widgets wie beispielsweise den Panels,
 	 * Textboxen und Buttons, RPC-Klasse und Überschriften.
 	 */
@@ -63,7 +63,7 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 					+ "subtext"
 					+ "'><h4>  Auf dieser Oberfläche können Sie Ihre Nutzerdaten bearbeiten und speichern sowie diese vollständig löschen.  </h4></div> ");
 
-	/*
+	/**
 	 * Die Methode des AsyncCallbacks, um die Daten zum Nutzer bearbeiten an die
 	 * Datenbank zu senden. Nach erfolgreicher Ausführung kommt eine
 	 * Bildschirmmeldung.
@@ -88,7 +88,7 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 
 	}
 
-	/*
+	/**
 	 * Die Methode des AsyncCallbacks, die die erforderlichen Daten um sein
 	 * eigenes Profil zu löschen, an die Datenbank zu senden. Nach erfolgreicher
 	 * Ausführung kommt eine Bildschirmmeldung und der Benutzer wird ausgeloggt.
@@ -114,7 +114,7 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 				});
 	}
 
-	/*
+	/**
 	 * Die onLoad Methode wird ausgeführt, wenn ein neues Objekt der Klasse
 	 * "NutzerBearbeiten" erstellt wird. Es werden in den Textboxen die Daten
 	 * des eingeloggten Nutzers gesetzt. Des Weiteren werden die Widgets den
@@ -127,6 +127,7 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 				|| TellMe.eingeloggterBenutzer.getUser().getNachname() == "undefined") {
 			vornameTextBox.setText("");
 			nachnameTextBox.setText("");
+			
 		} else {
 			vornameTextBox.setText(TellMe.eingeloggterBenutzer.getUser()
 					.getVorname());
@@ -170,7 +171,7 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 		RootPanel.get("content").add(vP);
 
 
-		/*
+		/**
 		 * Der ClickHandler des Speichern-Buttons. Zuerst wird eine if-Abfrage
 		 * durchgeführt, ob die Textboxen Vorname und Nachname befüllt sind.
 		 * Danach wird das Objekt n des Typ Nutzers mit den Daten aus der
@@ -195,8 +196,7 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 					TellMe.eingeloggterBenutzer.getUser().setNachname(
 							n.getNachname());
 					nutzerBearbeiten(n);
-					RootPanel.get("header").clear();
-					RootPanel.get("header").add(new MenuBarEditor());
+					new TellMe().ladeTellMe();
 
 				}
 

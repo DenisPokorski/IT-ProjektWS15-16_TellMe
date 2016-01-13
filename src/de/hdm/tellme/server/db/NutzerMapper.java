@@ -3,13 +3,11 @@ package de.hdm.tellme.server.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nutzer;
-import de.hdm.tellme.shared.bo.Unterhaltung;
 import de.hdm.tellme.shared.bo.Nutzer.eStatus;
 
 /**
@@ -143,8 +141,9 @@ public class NutzerMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			state.executeUpdate("UPDATE Nutzer SET Status = 0 WHERE Id = '"
-					+ n.getId() + "'");
+			state.executeUpdate("UPDATE Nutzer SET Status = '"
+					+ eStatus.inaktiv.ordinal() + "' WHERE Id = '" + n.getId()
+					+ "'");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -205,7 +204,8 @@ public class NutzerMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state.executeQuery("SELECT * From Nutzer  WHERE Status = '"
+			ResultSet rs = state
+					.executeQuery("SELECT * From Nutzer WHERE Status = '"
 							+ eStatus.aktiv.ordinal() + "'");
 
 			while (rs.next()) {
@@ -232,8 +232,9 @@ public class NutzerMapper {
 		try {
 			Statement state = con.createStatement();
 			ResultSet rs = state
-					.executeQuery("SELECT * FROM AbonnentBenutzer WHERE VonId = '"
-							+ meineId + "' AND Status = '"
+					.executeQuery("SELECT * FROM AbonnentBenutzer JOIN Nutzer ON AbonnentBenutzer.VonId = Nutzer.Id WHERE VonId = '"
+							+ meineId
+							+ "' AND Nutzer.Status = '"
 							+ eStatus.aktiv.ordinal() + "';");
 			while (rs.next()) {
 				alleAbonniertenNutzer.add(rs.getInt("NachId"));
@@ -263,8 +264,8 @@ public class NutzerMapper {
 		try {
 			Statement state = con.createStatement();
 
-			state.executeUpdate("UPDATE Nutzer SET Status = 1 WHERE Id = '"
-					+ id + "'");
+			state.executeUpdate("UPDATE Nutzer SET Status = '"
+					+ eStatus.aktiv.ordinal() + "' WHERE Id = '" + id + "'");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

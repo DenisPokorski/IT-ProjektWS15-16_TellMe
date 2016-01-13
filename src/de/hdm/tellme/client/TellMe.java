@@ -54,7 +54,7 @@ public class TellMe implements EntryPoint {
 
 			RootPanel.get("header").add(menuBar);
 
-			menuBar.setzeInhalt(NeuigkeitenEditor.gibFilterPanel(),menuBar.gibansichtNeuigkeiten());
+			MenuBarEditor.setzeInhalt(NeuigkeitenEditor.gibFilterPanel(),MenuBarEditor.gibansichtNeuigkeiten());
 		}
 		return null;
 	}
