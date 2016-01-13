@@ -25,6 +25,8 @@ public class ReportFormular2 extends Composite {
 	Button report2GenerierenButton = new Button("Report 2 erstellen");
 
 	public ReportFormular2() {
+		
+		report2GenerierenButton.setStylePrimaryName("reportBtn");
 		report2GenerierenButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 
@@ -42,8 +44,11 @@ public class ReportFormular2 extends Composite {
 	 */
 	public VerticalPanel gibFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
-
-		vpForm.add(new Label(nutzer.getVorname() + nutzer.getNachname()));
+		
+		Label label =new Label(nutzer.getVorname() + nutzer.getNachname());
+		label.setStylePrimaryName("selectionLabel");
+		vpForm.add(label);
+		
 		vpForm.add(report2GenerierenButton);
 		return vpForm;
 	}

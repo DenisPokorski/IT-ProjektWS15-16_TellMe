@@ -4,6 +4,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -28,6 +29,8 @@ public class ReportFormular3 extends Composite{
 	 * Zudem wird die die Mehtode <code>report3Generieren(Nutzer n)</code> aufgerufen. 
 	 */
 	public ReportFormular3(){
+		
+		report3GenerierenButton.setStylePrimaryName("reportBtn");
 		report3GenerierenButton.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){
 				RootPanel.get("content_left").clear();
@@ -35,8 +38,18 @@ public class ReportFormular3 extends Composite{
 
  				NutzerDataProvider.gib(1).report3Generieren(nutzer ); // TODO KLASSE BESCHREIBEN
 
-				}			
+				}		
+			
 		});
+	}
+	
+	
+	
+	public void zeigeReportFormular () {
+		RootPanel.get("content_right").clear();
+
+			NutzerDataProvider.gib(1).report3Generieren(nutzer ); // TODO KLASSE BESCHREIBEN
+		
 	}
 	
 	/**
@@ -45,6 +58,11 @@ public class ReportFormular3 extends Composite{
 	 */
 	public VerticalPanel gibFormular(){
 		VerticalPanel vpForm = new VerticalPanel();
+		
+		Label label =new Label(nutzer.getVorname() + nutzer.getNachname());
+		label.setStylePrimaryName("selectionLabel");
+		vpForm.add(label);
+		
 		vpForm.add(report3GenerierenButton);
 		return vpForm;
 	}

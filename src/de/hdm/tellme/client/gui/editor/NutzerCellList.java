@@ -1,15 +1,20 @@
 package de.hdm.tellme.client.gui.editor;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellList;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 import de.hdm.tellme.client.TellMe;
+import de.hdm.tellme.client.Schaukasten.NeuigkeitenEditor;
 import de.hdm.tellme.client.gui.editor.NutzerZelle.ZellenObjekt;
 import de.hdm.tellme.client.gui.report.ReportFormular1;
 import de.hdm.tellme.client.gui.report.ReportFormular1_3;
@@ -34,6 +39,7 @@ public class NutzerCellList {
 
 		NutzerDataProvider.gib(i).addDataDisplay(cellList);
 
+		
 		// Add a selection model so we can select cells.
 		final SingleSelectionModel<NutzerZelle.ZellenObjekt> selectionModel = new SingleSelectionModel<NutzerZelle.ZellenObjekt>();
 		cellList.setSelectionModel(selectionModel);
@@ -46,8 +52,7 @@ public class NutzerCellList {
 
 							NutzerFormular nf = new NutzerFormular();
 
-							nf.setzeNutzerAbo(selectionModel
-									.getSelectedObject());
+							nf.setzeNutzerAbo(selectionModel.getSelectedObject());
 
 							RootPanel.get("content_right").clear();
 							RootPanel.get("content_right").add(
@@ -98,13 +103,27 @@ public class NutzerCellList {
 			selectionModel
 					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
+							VerticalPanel vP = new VerticalPanel();
+							RootPanel.get("content_right").clear();
+						
+							ReportFormular3 rF = new ReportFormular3();
+							rF.report3Generieren(selectionModel
+									.getSelectedObject());
+							
+							HTML headline = new HTML(" <div class='" + "subline"
+									+ "'><h2>Reportgenerator 3: Alle Hashtagabos je anzeigen</h2></div> ");
+							HTML subtext = new HTML(
+									" <div class='"
+											+ "subtext"
+											+ "'><h4> Der Report 3 gibt alle Hashtagabonnoments eines Nutzers in einen bestimmten Zeitraum zurück.   </h4></div> ");
 
-//							ReportFormular3 rF = new ReportFormular3();
-//							rF.report3Generieren(selectionModel
-//									.getSelectedObject());
-//							RootPanel.get("content_right").clear();
-//							RootPanel.get("content_right")
-//									.add(rF.gibFormular());
+							vP.add(headline);
+							vP.add(subtext);
+							vP.add(rF.gibFormular());
+							
+							RootPanel.get("content_right").add(vP);
+							
+				 
 
 						}
 					});
@@ -115,9 +134,26 @@ public class NutzerCellList {
 			selectionModel
 					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
-//							ReportFormular2 rF = new ReportFormular2();
-//							rF.report2Generieren(selectionModel
-//									.getSelectedObject());
+							VerticalPanel vP = new VerticalPanel();
+							RootPanel.get("content_right").clear();
+							
+							ReportFormular2 rF = new ReportFormular2();
+							rF.report2Generieren(selectionModel
+									.getSelectedObject());
+
+							HTML headline = new HTML(" <div class='" + "subline"
+									+ "'><h2>Reportgenerator 2: Alle Nachrichten je Nutzer anzeigen</h2></div> ");
+							HTML subtext = new HTML(
+									" <div class='"
+											+ "subtext"
+											+ "'><h4> Der Report 2 gibt alle Nachrichten eines Nutzers in einen bestimmten Zeitraum, alle Nachrichten eines Nutzers, alle Nachrichten in einem bestimmten Zeitraum oder alle Nachrichten aus  </h4></div> ");
+
+							vP.add(headline);
+							vP.add(subtext);
+							vP.add(rF.gibFormular());
+							
+							RootPanel.get("content_right").add(vP);
+//							
 //							RootPanel.get("content_right").clear();
 //							RootPanel.get("content_right")
 //									.add(rF.gibFormular());

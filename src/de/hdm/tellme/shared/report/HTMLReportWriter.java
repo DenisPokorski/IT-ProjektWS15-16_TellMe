@@ -32,18 +32,24 @@ public class HTMLReportWriter {
 			"Ausgabe aller Hashtagabonnoments eines Nutzers");
 
 	public void generateReport3(Vector<Hashtag> result, Nutzer n) {
+		RootPanel.get("content_right").clear();
+
 		ueberrschrift1.setStylePrimaryName("ueberschrift_report");
 		subtext.setStylePrimaryName("subtext_report");
+//		reportText.setStylePrimaryName("report_inhalt");
 
 		erstelleKopfdatenReport3(n);
 		erstelleKoerperDatenReport3(result);
 
 		this.reportText = buffer.toString();
+		HTML html = new HTML(reportText);
+		html.setStylePrimaryName("report_inhalt");
 
+		
 		RootPanel.get("content_right").add(ueberrschrift1);
 		RootPanel.get("content_right").add(subtext);
 
-		RootPanel.get("content_right").add(new HTML(reportText));
+		RootPanel.get("content_right").add(html);
 	}
 
 	/**
@@ -96,11 +102,25 @@ public class HTMLReportWriter {
 
 	// Abschnitt Report 2
 	public void generateReport2(Vector<Nutzer> result, Nutzer n) {
+	
+		RootPanel.get("content_right").clear();
+		  Label ueberrschrift1 = new Label("Reportgenerator 2: ");
+		  Label subtext = new Label("Ausgabe aller Nachrichten eines Nutzers");
+			ueberrschrift1.setStylePrimaryName("ueberschrift_report");
+			subtext.setStylePrimaryName("subtext_report");
+			
+			RootPanel.get("content_right").add(ueberrschrift1);
+			RootPanel.get("content_right").add(subtext);
+
 		erstelleKopfDatenReport2(n);
 		erstelleKoerperDatenReport2(result);
 
+ 		
 		this.reportText = buffer.toString();
-		RootPanel.get("content").add(new HTML(reportText));
+		HTML html = new HTML(reportText);
+		html.setStylePrimaryName("report_inhalt");
+
+		RootPanel.get("content_right").add(html);
 	}
 
 	public void erstelleKopfDatenReport2(Nutzer n) {

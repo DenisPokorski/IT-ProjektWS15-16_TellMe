@@ -216,12 +216,12 @@ public class NutzerDataProvider {
 
 					@Override
 					public void onFailure(Throwable caught) {
-						Window.alert("nutzredata");
+						Window.alert("Fehler bei der Generierung");
 					}
 
 					@Override
 					public void onSuccess(Vector<Hashtag> result) {
-						Window.alert("Erfolgreich tod");
+						Window.alert("Erfolgreich generiert");
 
 						HTMLReportWriter hRW = new HTMLReportWriter();
 
@@ -239,12 +239,12 @@ public class NutzerDataProvider {
 
 					@Override
 					public void onFailure(Throwable caught) {
-						Window.alert("nutzer2data");
+						Window.alert("Fehler bei der Generierung");
 					}
 
 					@Override
 					public void onSuccess(Vector<Nutzer> result) {
-						Window.alert("ErfolgreichReport2");
+						Window.alert("Erfolgreich generiert");
 
 						HTMLReportWriter hRW = new HTMLReportWriter();
 

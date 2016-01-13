@@ -21,7 +21,7 @@ import de.hdm.tellme.client.gui.editor.NutzerCellList;
 
 public class Report3Gui extends VerticalPanel {
 
-	private Button report3Generieren = new Button("Report 2 generieren");
+	//private Button report3Generieren = new Button("Report 2 generieren");
 
 	
 	/**
@@ -41,7 +41,7 @@ public class Report3Gui extends VerticalPanel {
 	
 	public void onLoad() {
 		
- 		report3Generieren.setStylePrimaryName("neueNchrichtBtn");
+ 		//report3Generieren.setStylePrimaryName("neueNchrichtBtn");
 
 		HTML headline = new HTML(" <div class='" + "subline"
 				+ "'><h2>Reportgenerator 3: Alle Hashtagabos je anzeigen</h2></div> ");
@@ -64,10 +64,8 @@ public class Report3Gui extends VerticalPanel {
 				.get("content_left")
 				.add(new NutzerCellList()
 						.generiereCellList(CellListModus.Report3_NutzerHashtagAbonnement, 1));
-		
-		RootPanel
-		.get("content_left")
-		.add(report3Generieren);
+		 
+		//RootPanel.get("content_left").add(new ReportFormular3().gibFormular());
 	}
 
 }
