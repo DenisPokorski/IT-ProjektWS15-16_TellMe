@@ -20,8 +20,14 @@ import de.hdm.tellme.shared.bo.Nutzer.eStatus;
  */
 
 public class NachrichtMapper {
+	/**
+	 * TODO
+	 */
 	private static NachrichtMapper nachrichtMapper = null;
 
+	/**
+	 * TODO
+	 */
 	protected NachrichtMapper() {
 
 	}
@@ -88,7 +94,12 @@ public class NachrichtMapper {
 	 * "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
 	 * ausgeführt.
 	 */
-
+	/**
+	 * TODO
+	 * 
+	 * @param n
+	 * @return
+	 */
 	public boolean aktualisieren(Nachricht n) {
 		boolean erfolgreich = false;
 
@@ -124,6 +135,12 @@ public class NachrichtMapper {
 	 * "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
 	 * ausgeführt.
 	 */
+	/**
+	 * TODO
+	 * 
+	 * @param nachrichtenID
+	 * @return
+	 */
 	public boolean entfernen(int nachrichtenID) {
 		boolean erfolgreich = false;
 
@@ -145,6 +162,12 @@ public class NachrichtMapper {
 		return erfolgreich;
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param hashtagid
+	 * @param nachrichtid
+	 */
 	public void hashtagZuordnungLoeschen(int hashtagid, int nachrichtid) {
 		Connection con = DatenbankVerbindung.connection();
 		try {
@@ -157,6 +180,11 @@ public class NachrichtMapper {
 
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param hashtagid
+	 */
 	public void alleHashtagZuordnungLoeschen(int hashtagid) {
 		Connection con = DatenbankVerbindung.connection();
 		try {
@@ -169,6 +197,12 @@ public class NachrichtMapper {
 
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param meineId
+	 * @return
+	 */
 	public Vector<Nachricht> selektiereNachrichtenVonId(int meineId) {
 		Vector<Nachricht> meineNachrichten = new Vector<Nachricht>();
 		Connection con = DatenbankVerbindung.connection();
@@ -195,6 +229,14 @@ public class NachrichtMapper {
 		return meineNachrichten;
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param meineId
+	 * @param vonDatum
+	 * @param bisDatum
+	 * @return
+	 */
 	public Vector<Nachricht> report1Mapper(int meineId, Date vonDatum,
 			Date bisDatum) {
 		Vector<Nachricht> alleNachrichtenVonBestimmtenNutzerInBestimmtemZeitraum = new Vector<Nachricht>();
@@ -221,6 +263,13 @@ public class NachrichtMapper {
 
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param vonDatum
+	 * @param bisDatum
+	 * @return
+	 */
 	public Vector<Nachricht> report2Mapper(Timestamp vonDatum,
 			Timestamp bisDatum) {
 		Vector<Nachricht> alleNachrichtenInBestimmtemZeitraum = new Vector<Nachricht>();
@@ -244,6 +293,12 @@ public class NachrichtMapper {
 		return alleNachrichtenInBestimmtemZeitraum;
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param meineId
+	 * @return
+	 */
 	public Vector<Nachricht> report3Mapper(int meineId) {
 		Vector<Nachricht> alleNachrichteneinesNutzers = new Vector<Nachricht>();
 		Connection con = DatenbankVerbindung.connection();
@@ -267,6 +322,11 @@ public class NachrichtMapper {
 		return alleNachrichteneinesNutzers;
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @return
+	 */
 	public Vector<Nachricht> report4Mapper() {
 		Vector<Nachricht> alleNachrichten = new Vector<Nachricht>();
 		Connection con = DatenbankVerbindung.connection();
@@ -289,6 +349,13 @@ public class NachrichtMapper {
 		return alleNachrichten;
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param NachrichtenID
+	 * @param UnterhaltungsID
+	 * @return
+	 */
 	public boolean nachrichtEinerUnterhaltungZuordnen(int NachrichtenID,
 			int UnterhaltungsID) {
 		boolean erfolgreich = true;
@@ -309,6 +376,13 @@ public class NachrichtMapper {
 		return erfolgreich;
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param HashtagID
+	 * @param NachrichtID
+	 * @return
+	 */
 	public boolean hashtagEinerNachrichtZuordnen(int HashtagID, int NachrichtID) {
 		boolean erfolgreich = true;
 		Connection con = DatenbankVerbindung.connection();
@@ -328,6 +402,12 @@ public class NachrichtMapper {
 		return erfolgreich;
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param unterhaltungsID
+	 * @return
+	 */
 	public Vector<Nachricht> gibAlleNachrichtenVonUnterhaltung(
 			int unterhaltungsID) {
 		Connection con = DatenbankVerbindung.connection();
@@ -357,6 +437,12 @@ public class NachrichtMapper {
 		return Nachrichten;
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param integer
+	 * @return
+	 */
 	public Vector<Nachricht> gibNachrichtenVonHashtagId(Integer integer) {
 		Connection con = DatenbankVerbindung.connection();
 		Vector<Nachricht> meineNachrichten = new Vector<Nachricht>();
@@ -383,6 +469,14 @@ public class NachrichtMapper {
 		return meineNachrichten;
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param vonDatum
+	 * @param bisDatum
+	 * @param AutorId
+	 * @return
+	 */
 	public Vector<Nachricht> gibNachrichtVonNutzerIdMitDatum(
 			Timestamp vonDatum, Timestamp bisDatum, int AutorId) {
 		Connection con = DatenbankVerbindung.connection();
