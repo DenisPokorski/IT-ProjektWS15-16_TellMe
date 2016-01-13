@@ -1,6 +1,7 @@
 package de.hdm.tellme.server.db;
 
 import java.sql.Connection;
+
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Vector;
@@ -8,12 +9,38 @@ import java.util.Vector;
 import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Nutzer.eStatus;
 
+/**
+ * Mapper-Klasse, die NutzerAbonnement-Objekte in der relationalen Datenbank
+ * abbildet. Diese enthält Methoden zum Anlegen, Aktualisieren, Entfernen und
+ * Suchen von Objekten. Durch die Mapper-Klassen können Objekte in
+ * Datenbankstrukturen und Datenbankstrukturen in Objekte umgewandelt.
+ * 
+ * @author Nicole Reum
+ */
+
 public class NutzerAbonnementMapper {
+	/**
+	 * Damit die Klasse NutzerAbonnementMapper nur einmal während der Laufzeit
+	 * des Programms bestehen kann, muss man sie als Singleton darstellen, dies
+	 * geschieht durch die Referenz <code>static</code>.
+	 */
+
 	private static NutzerAbonnementMapper nutzerAbonnementMapper = null;
 
+	/**
+	 * Damit der NutzerAbonnementMapper nicht durch <code>new</code> neue
+	 * Instanzen in der Klasse erzeugen kann, wird der Konstruktor mit
+	 * <code>protected</code> geschützt.
+	 */
 	protected NutzerAbonnementMapper() {
 
 	}
+
+	/**
+	 * Die statische Methode wird über NutzerAbonnementMapper
+	 * nutzerAbonnementMapper() aufgerufen. Diese überprüft, dass nur eine
+	 * Instanz von NutzerAbonnementMapper besteht.
+	 */
 
 	public static NutzerAbonnementMapper nutzerAbonnementMapper() {
 		if (nutzerAbonnementMapper == null) {
@@ -21,6 +48,17 @@ public class NutzerAbonnementMapper {
 		}
 		return nutzerAbonnementMapper;
 	}
+
+	/**
+	 * Laden der Nutzer, die für einen Nutzer bereits abonniert sind. Hierfür
+	 * wird die Abonnement.NachId in der NutzerAbonnement-Tabelle mit der
+	 * AbonnentBenutzer.VonId verglichen um zu erkennen, welche Nutzer bereits
+	 * abonniert sind.
+	 * 
+	 * @param nutze
+	 * @return Ein Vektor mit Nutzer-Objekten, dass alle abonnierten Nutzer
+	 *         eines Nutzers anzeigt. TODO stimmt das?
+	 */
 
 	public Vector<Nutzer> ladeAbonnierendeNutzerListe(int nutzer) {
 		Connection con = DatenbankVerbindung.connection();
@@ -54,6 +92,16 @@ public class NutzerAbonnementMapper {
 		return NutzerListe;
 	}
 
+	/**
+	 * Dieser Mapper soll ein Nutzerabonnement löschen. Dies wird realisiert,
+	 * indem die Id vom ausgehenden Nutzer mit dem mitgegebenen Nutzer-Objekt
+	 * abgeglichen wird und das jeweilige NutzerAbonnement-Objekt aus der
+	 * Datenbank gelöscht wird.
+	 * 
+	 * @param _vonId
+	 * @param _nutzerDeabonieren
+	 */
+
 	public void loescheNutzeraboById(int _vonId, Nutzer _nutzerDeabonieren) {
 
 		Connection con = DatenbankVerbindung.connection();
@@ -71,6 +119,15 @@ public class NutzerAbonnementMapper {
 		}
 	}
 
+	/**
+	 * Dieser Mapper soll ein Nutzerabonnement erstellen. Dies wird realisiert,
+	 * indem die Id vom ausgehenden Nutzer (vonId) mit dem mitgegebenen
+	 * Nutzer-Objekt (der Nutzer, der abonniert werden soll) abgeglichen wird
+	 * und das jeweilige NutzerAbonnement-Objekt in der Datenbank erstellt wird.
+	 * 
+	 * @param vonId
+	 * @param _nutzer
+	 */
 	public void nutzerAboErstellen(int vonId, Nutzer _nutzer) {
 
 		Connection con = DatenbankVerbindung.connection();
@@ -88,6 +145,16 @@ public class NutzerAbonnementMapper {
 
 	}
 
+	/**
+	 * Dieser Mapper soll alle bereits abonnierten Nutzer vom angemeldeten
+	 * Nutzer anzeigen. Es wird der Parameter <code>meineId</code> mitgegeben
+	 * und ein Vektor aus Integer-Werten zurückgegeben.
+	 * 
+	 * @param meineId
+	 * @return Ein Vektor mit Integer-Objekten, dass die NutzerId's beinhaltet,
+	 *         die zu den Nutzern gehören, die der angemeldete Nutzer bereits
+	 *         abonniert hat.
+	 */
 	public Vector<Integer> vonMirabonnierteNutzerIds(int meineId) {
 		Vector<Integer> abonnierteNutzerIds = new Vector<Integer>();
 		Connection con = DatenbankVerbindung.connection();

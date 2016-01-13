@@ -12,15 +12,22 @@ import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Unterhaltung;
 
 /**
- * Mapper-Klasse, die Nutzer-Objekte in der Datenbank abbildet. Diese enth�lt
+ * Mapper-Klasse, die Nutzer-Objekte in der Datenbank abbildet. Diese enthält
  * Methoden zum Anlegen, Aktualisieren, Entfernen und Suchen von Objekten.
  * 
  * @author Nicole Reum
  */
 
 public class UnterhaltungMapper {
+
+	/**
+	 * TODO
+	 */
 	private static UnterhaltungMapper unterhaltungMapper = null;
 
+	/**
+	 * TODO
+	 */
 	protected UnterhaltungMapper() {
 	}
 
@@ -38,6 +45,12 @@ public class UnterhaltungMapper {
 
 	// legt unterhaltung an, gibt id neuer unterhaltung zurück oder -1 wenn
 	// nicht erfolgreich
+	/**
+	 * TODO
+	 * 
+	 * @param unterHaltungsTyp
+	 * @return
+	 */
 	public int anlegen(Unterhaltung.eUnterhaltungsTyp unterHaltungsTyp) {
 		int sichtbarkeit = 1;
 		int ergebnis = -1;
@@ -64,6 +77,12 @@ public class UnterhaltungMapper {
 		return ergebnis;
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param u
+	 * @return
+	 */
 	public boolean aktualisieren(Unterhaltung u) {
 		boolean erfolgreich = false;
 
@@ -90,6 +109,12 @@ public class UnterhaltungMapper {
 
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param unterhaltungsID
+	 * @return
+	 */
 	public boolean loescheUnterhaltungAnhandID(int unterhaltungsID) {
 		boolean erfolgreich = false;
 
@@ -115,6 +140,12 @@ public class UnterhaltungMapper {
 	// Nutzerid <teilnehmerID>
 	// als aktiver Teilnehmer (Eintrag in NutzerUnterhaltung ist Vorhanden und
 	// Sichtbar) agiert
+	/**
+	 * TODO
+	 * 
+	 * @param teilnehmerID
+	 * @return
+	 */
 	public Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(
 			int teilnehmerID) {
 		Vector<Unterhaltung> alleUnterhaltungen = new Vector<Unterhaltung>();
@@ -146,6 +177,13 @@ public class UnterhaltungMapper {
 		return alleUnterhaltungen;
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param UnterhaltungsID
+	 * @param TeilnehmerID
+	 * @return
+	 */
 	public boolean teilnehmerHinzufuegen(int UnterhaltungsID, int TeilnehmerID) {
 		boolean erfolgreich = true;
 		Connection con = DatenbankVerbindung.connection();
@@ -169,6 +207,14 @@ public class UnterhaltungMapper {
 		return erfolgreich;
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param UnterhaltungsID
+	 * @param TeilnehmerID
+	 * @param Sichtbarkeit
+	 * @return
+	 */
 	public boolean teilnehmerAktualisieren(int UnterhaltungsID,
 			int TeilnehmerID, int Sichtbarkeit) {
 		boolean erfolgreich = true;
@@ -192,6 +238,12 @@ public class UnterhaltungMapper {
 		return erfolgreich;
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param nachricht
+	 * @return
+	 */
 	public Unterhaltung selektiereUnterhaltungenVonNachrichtId(
 			Nachricht nachricht) {
 		Unterhaltung uH = new Unterhaltung();
@@ -220,6 +272,11 @@ public class UnterhaltungMapper {
 
 	// @Deprecated: name... use alleUnterhaltungenFuerAktivenTeilnehmer
 	@Deprecated
+	/**
+	 * TODO Deprecated weil nichtmehr verwendet. Kann man löschen??
+	 * @param meineId
+	 * @return
+	 */
 	public Vector<Integer> meineUnterhaltungen(int meineId) {
 		Vector<Integer> meineUnterhaltungen = new Vector<Integer>();
 		Connection con = DatenbankVerbindung.connection();
@@ -238,6 +295,12 @@ public class UnterhaltungMapper {
 		return meineUnterhaltungen;
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param unterhaltungsId
+	 * @return
+	 */
 	public Unterhaltung gibNachrichtenIdsZuUnterhaltungsId(
 			Integer unterhaltungsId) {
 		Unterhaltung u = new Unterhaltung();
@@ -268,6 +331,12 @@ public class UnterhaltungMapper {
 		return u;
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param unterhaltungsId
+	 * @return
+	 */
 	public Vector<Integer> gibTeilnehmerFuerUnterhaltung(int unterhaltungsId) {
 		Connection con = DatenbankVerbindung.connection();
 		Vector<Integer> teilnehmer = new Vector<Integer>();
@@ -288,6 +357,13 @@ public class UnterhaltungMapper {
 		return teilnehmer;
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param unterhaltungsId
+	 * @param teilnehmerId
+	 * @return
+	 */
 	public boolean ueberpruefeObTeilnehmerInaktivInUnterhaltung(
 			int unterhaltungsId, int teilnehmerId) {
 		boolean vorhanden = false;
@@ -312,6 +388,13 @@ public class UnterhaltungMapper {
 		return vorhanden;
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param unterhaltungsID
+	 * @param nutzerID
+	 * @return
+	 */
 	public boolean istNutzerTeilnehmer(int unterhaltungsID, int nutzerID) {
 		boolean vorhanden = false;
 		Connection con = DatenbankVerbindung.connection();
