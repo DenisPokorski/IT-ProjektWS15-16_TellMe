@@ -17,9 +17,11 @@ import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.client.Schaukasten.NeuigkeitenEditor;
 import de.hdm.tellme.client.gui.editor.NutzerZelle.ZellenObjekt;
 import de.hdm.tellme.client.gui.report.ReportFormular1;
-import de.hdm.tellme.client.gui.report.ReportFormular1_3;
 import de.hdm.tellme.client.gui.report.ReportFormular2;
 import de.hdm.tellme.client.gui.report.ReportFormular3;
+import de.hdm.tellme.client.gui.report.ReportFormular4;
+import de.hdm.tellme.client.gui.report.ReportFormular5;
+import de.hdm.tellme.client.gui.report.ReportFormular6;
 import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.NutzerAbonnement;
 
@@ -39,7 +41,6 @@ public class NutzerCellList {
 
 		NutzerDataProvider.gib(i).addDataDisplay(cellList);
 
-		
 		// Add a selection model so we can select cells.
 		final SingleSelectionModel<NutzerZelle.ZellenObjekt> selectionModel = new SingleSelectionModel<NutzerZelle.ZellenObjekt>();
 		cellList.setSelectionModel(selectionModel);
@@ -52,7 +53,8 @@ public class NutzerCellList {
 
 							NutzerFormular nf = new NutzerFormular();
 
-							nf.setzeNutzerAbo(selectionModel.getSelectedObject());
+							nf.setzeNutzerAbo(selectionModel
+									.getSelectedObject());
 
 							RootPanel.get("content_right").clear();
 							RootPanel.get("content_right").add(
@@ -76,91 +78,98 @@ public class NutzerCellList {
 
 			break;
 
-		case Report1_3_NachrichtNutzer:
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-						public void onSelectionChange(SelectionChangeEvent event) {
-
-							//ReportFormular1_3 rF = new ReportFormular1_3();
-
-						}
-
-					});
 		case Report1_NachrichtNutzerZeitraum:
 			selectionModel
 					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
 
-//							ReportFormular1 rF = new ReportFormular1();
-//							rF.report3Generieren(selectionModel
-//									.getSelectedObject());
+							ReportFormular1 rF = new ReportFormular1();
+							rF.report1Generieren(selectionModel
+									.getSelectedObject());
 
 						}
 
 					});
-
-		case Report3_NutzerHashtagAbonnement:
+			
+		case Report2_NachrichtZeitraum:
 			selectionModel
 					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
-							VerticalPanel vP = new VerticalPanel();
-							RootPanel.get("content_right").clear();
-						
-							ReportFormular3 rF = new ReportFormular3();
-							rF.report3Generieren(selectionModel
-									.getSelectedObject());
-							
-							HTML headline = new HTML(" <div class='" + "subline"
-									+ "'><h2>Reportgenerator 3: Alle Hashtagabos je anzeigen</h2></div> ");
-							HTML subtext = new HTML(
-									" <div class='"
-											+ "subtext"
-											+ "'><h4> Der Report 3 gibt alle Hashtagabonnoments eines Nutzers in einen bestimmten Zeitraum zurück.   </h4></div> ");
 
-							vP.add(headline);
-							vP.add(subtext);
-							vP.add(rF.gibFormular());
-							
-							RootPanel.get("content_right").add(vP);
-							
-				 
+							ReportFormular2 rF = new ReportFormular2();
+
+						}
+
+					});
+			break;
+
+		case Report3_NachrichtNutzer:
+			selectionModel
+					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+						public void onSelectionChange(SelectionChangeEvent event) {
+
+							ReportFormular3 rF = new ReportFormular3();
+
+						}
+
+					});
+			break;
+			
+		case Report4_AlleNachrichten:
+			selectionModel
+					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+						public void onSelectionChange(SelectionChangeEvent event) {
+
+							ReportFormular4 rF = new ReportFormular4();
+
+						}
+
+					});
+			break;
+
+		case Report5_NutzerNutzerAbonnement:
+			selectionModel
+					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+						public void onSelectionChange(SelectionChangeEvent event) {
+							ReportFormular5 rF = new ReportFormular5();
+							rF.report2Generieren(selectionModel
+									.getSelectedObject());
+							RootPanel.get("content_right").clear();
+							RootPanel.get("content_right")
+									.add(rF.gibFormular());
 
 						}
 					});
 
 			break;
 
-		case Report2_NutzerNutzerAbonnement:
+		case Report6_NutzerHashtagAbonnement:
 			selectionModel
 					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
+
 							VerticalPanel vP = new VerticalPanel();
 							RootPanel.get("content_right").clear();
-							
-							ReportFormular2 rF = new ReportFormular2();
-							rF.report2Generieren(selectionModel
+						
+							ReportFormular6 rF = new ReportFormular6();
+							rF.report3Generieren(selectionModel
 									.getSelectedObject());
-
+							
 							HTML headline = new HTML(" <div class='" + "subline"
-									+ "'><h2>Reportgenerator 2: Alle Nachrichten je Nutzer anzeigen</h2></div> ");
+									+ "'><h2>Reportgenerator 6: Alle Hashtagabos je anzeigen</h2></div> ");
 							HTML subtext = new HTML(
 									" <div class='"
 											+ "subtext"
-											+ "'><h4> Der Report 2 gibt alle Nachrichten eines Nutzers in einen bestimmten Zeitraum, alle Nachrichten eines Nutzers, alle Nachrichten in einem bestimmten Zeitraum oder alle Nachrichten aus  </h4></div> ");
+											+ "'><h4> Der Report 6 gibt alle Hashtagabonnoments eines Nutzers in einen bestimmten Zeitraum zurück.   </h4></div> ");
 
 							vP.add(headline);
 							vP.add(subtext);
 							vP.add(rF.gibFormular());
 							
 							RootPanel.get("content_right").add(vP);
-//							
-//							RootPanel.get("content_right").clear();
-//							RootPanel.get("content_right")
-//									.add(rF.gibFormular());
-
 						}
 					});
-
+	
 			break;
 
 		default:

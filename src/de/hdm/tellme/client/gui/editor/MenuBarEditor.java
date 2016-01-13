@@ -15,12 +15,16 @@ import de.hdm.tellme.client.Schaukasten.NutzerBearbeitenEditor;
 import de.hdm.tellme.client.gui.report.Report1Gui;
 import de.hdm.tellme.client.gui.report.Report2Gui;
 import de.hdm.tellme.client.gui.report.Report3Gui;
+import de.hdm.tellme.client.gui.report.Report4Gui;
+import de.hdm.tellme.client.gui.report.Report5Gui;
+import de.hdm.tellme.client.gui.report.Report6Gui;
 import de.hdm.tellme.client.gui.report.ReportWillkommenSeite;
 
 /**
- * Dies ist die Klasse <class>MenuBarEditor</class>, sie wird verwendet um die MenuBar darzustellen. 
- * Sie wird durch ein HorizontalPanel erweitert, damit die einzelnen Elemente nebeneinander angeordnet werden. 
- * TODO
+ * Dies ist die Klasse <class>MenuBarEditor</class>, sie wird verwendet um die
+ * MenuBar darzustellen. Sie wird durch ein HorizontalPanel erweitert, damit die
+ * einzelnen Elemente nebeneinander angeordnet werden. TODO
+ * 
  * @author Zimmermann
  * @version 1.1
  * @since 26.11.2015
@@ -48,7 +52,7 @@ public class MenuBarEditor extends HorizontalPanel {
 	 * Definition von Konstruktor
 	 */
 	public MenuBarEditor() {
-		
+
 	}
 
 	public void onLoad() {
@@ -69,8 +73,8 @@ public class MenuBarEditor extends HorizontalPanel {
 		HauptMenue.addItem(new MenuItem(LogoLink, true, new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(NeuigkeitenEditor.gibFilterPanel(),
-						gibansichtNeuigkeiten());			}
+				// Nichts laden wenn Benutzer Logo auswählt
+			}
 		}));
 
 		HauptMenue.addItem("Neuigkeiten", new Command() {
@@ -90,8 +94,9 @@ public class MenuBarEditor extends HorizontalPanel {
 			@Override
 			public void execute() {
 
-				setzeInhalt(new NutzerCellList()
-						.generiereCellList(CellListModus.Einstellungen, 0), new NutzerFormular().gibBeschreibung());
+				setzeInhalt(new NutzerCellList().generiereCellList(
+						CellListModus.Einstellungen, 0), new NutzerFormular()
+						.gibBeschreibung());
 			}
 		});
 
@@ -100,7 +105,7 @@ public class MenuBarEditor extends HorizontalPanel {
 			public void execute() {
 				setzeInhalt(new HashtagCellList()
 						.generiereCellList(CellListModus.Einstellungen),
-						   new HashtagFormular().gibBeschreibungHtAbo());
+						new HashtagFormular().gibBeschreibungHtAbo());
 			}
 		});
 
@@ -110,7 +115,8 @@ public class MenuBarEditor extends HorizontalPanel {
 				setzeInhalt(new HashtagCellList()
 						.generiereCellList(CellListModus.HashtagVerwaltung),
 						new HashtagFormular().gibBeschreibungHtVerwaltung());
-				RootPanel.get("content_right").add(new HashtagFormular().gibAnlegenFormular());
+				RootPanel.get("content_right").add(
+						new HashtagFormular().gibAnlegenFormular());
 
 			}
 		});
@@ -121,25 +127,24 @@ public class MenuBarEditor extends HorizontalPanel {
 				setzeInhalt(gibansichtEinstellungenBenutzereinstellungen());
 			}
 		});
-		
-	 
+
 		EinstellungenMenu.addItem("Impressum", new Command() {
 			@Override
 			public void execute() {
 				setzeInhalt(new Impressum().getHtmlImpressum());
-			
+
 			}
 		});
-		
+
 		EinstellungenMenu.addItem("Log out", new Command() {
 			@Override
 			public void execute() {
 				Window.Location.assign(TellMe.eingeloggterBenutzer
 						.getLogoutUrl());
-			
+
 			}
 		});
-		
+
 		// TODO: TEMPORÄRES MENÜ LÖSCHEN VOR ABGABE
 		MenuBar tempReports = new MenuBar(true);
 		tempReports.setAnimationEnabled(true);
@@ -175,9 +180,32 @@ public class MenuBarEditor extends HorizontalPanel {
 			}
 		});
 
+		tempReports.addItem("Report 4", new Command() {
+			@Override
+			public void execute() {
+				setzeInhalt(new Report4Gui());
+
+			}
+		});
+		
+		tempReports.addItem("Report 5", new Command() {
+			@Override
+			public void execute() {
+				setzeInhalt(new Report5Gui());
+
+			}
+		});
+		
+		tempReports.addItem("Report 6", new Command() {
+			@Override
+			public void execute() {
+				setzeInhalt(new Report6Gui());
+
+			}
+		});
+
 		RootPanel.get("header").add(HauptMenue);
 
-	
 	}
 
 	public static void setzeInhalt(Widget ZuSetzendesPanel) {

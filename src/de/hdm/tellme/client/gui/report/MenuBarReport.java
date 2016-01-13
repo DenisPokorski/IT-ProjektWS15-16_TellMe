@@ -61,6 +61,10 @@ public class MenuBarReport extends HorizontalPanel{
 		MenuBar report1 = new MenuBar(true);
 		MenuBar report2 = new MenuBar(true);
 		MenuBar report3 = new MenuBar(true);
+		MenuBar report4 = new MenuBar(true);
+		MenuBar report5 = new MenuBar(true);
+		MenuBar report6 = new MenuBar(true);
+
  		 
 		 /**
 		   * Die folgenden "Commands" definieren was beim jeweiligen Aufruf der Menü-Punkte passieren soll.
@@ -94,6 +98,9 @@ public class MenuBarReport extends HorizontalPanel{
 		menuePanel.add(report1);
 		menuePanel.add(report2);
 		menuePanel.add(report3);
+		menuePanel.add(report4);
+		menuePanel.add(report5);
+		menuePanel.add(report6);
 
 		RootPanel.get("header").add(menuePanel);
 		

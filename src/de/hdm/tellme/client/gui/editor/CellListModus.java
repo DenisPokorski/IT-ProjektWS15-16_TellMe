@@ -12,6 +12,6 @@ package de.hdm.tellme.client.gui.editor;
  *
  */
 public enum CellListModus {
-	Einstellungen, HashtagVerwaltung, Nachrichtenuebersicht, Report1_NachrichtNutzerZeitraum, Report1_2_NachrichtZeitraum,Report1_3_NachrichtNutzer, 
-	Report1_4_AlleNachrichten, Report2_NutzerNutzerAbonnement, Report3_NutzerHashtagAbonnement;
+	Einstellungen, HashtagVerwaltung, Nachrichtenuebersicht, Report1_NachrichtNutzerZeitraum, Report2_NachrichtZeitraum,Report3_NachrichtNutzer, 
+	Report4_AlleNachrichten, Report5_NutzerNutzerAbonnement, Report6_NutzerHashtagAbonnement;
 }
