@@ -25,7 +25,7 @@ import de.hdm.tellme.client.gui.editor.NutzerCellList;
 
 public class Report5Gui  extends VerticalPanel {
 	
-	private Button report2Generieren = new Button("Report 2 generieren");
+	private Button report5Generieren = new Button("Report 5 generieren");
 
 	/**
 	 * Bei klick auf den entsprchenden MenüBar-Button wird die Klasse aufgerufen
@@ -33,8 +33,8 @@ public class Report5Gui  extends VerticalPanel {
 	 * linken Bereich des Root-Panels mit der Methode
 	 * <code>generiereCellListModus</code> hinzu. In der Methode wird eine
 	 * scrollbare CellList erstellt und ein spezifisches selectionModel
-	 * <code>Report3_NutzerHashtagAbonnement</code> hinzugefügt. Die Angabe des
-	 * Enum-Parameters <code>Report2_NutzerNutzerAbonnement</code> ermöglicht
+	 * <code>Report6_NutzerHashtagAbonnement</code> hinzugefügt. Die Angabe des
+	 * Enum-Parameters <code>Report5_NutzerNutzerAbonnement</code> ermöglicht
 	 * uns die CellList an mehreren Stellen,mit einem spezifischen
 	 * Selektionsverhalten im System zu verwenden.
 	 */
@@ -43,14 +43,14 @@ public class Report5Gui  extends VerticalPanel {
  	VerticalPanel vP =  new VerticalPanel(); 
  	public void onLoad()  {
  		
- 		report2Generieren.setStylePrimaryName("neueNchrichtBtn");
+ 		report5Generieren.setStylePrimaryName("neueNchrichtBtn");
 
 		HTML headline = new HTML(" <div class='" + "subline"
-				+ "'><h2>Reportgenerator 2: Alle Nachrichten je Nutzer anzeigen</h2></div> ");
+				+ "'><h2>Reportgenerator 5: Alle Nachrichten je Nutzer anzeigen</h2></div> ");
 		HTML subtext = new HTML(
 				" <div class='"
 						+ "subtext"
-						+ "'><h4> Der Report 1 gibt alle Nachrichten eines Nutzers in einen bestimmten Zeitraum, alle Nachrichten eines Nutzers, alle Nachrichten in einem bestimmten Zeitraum oder alle Nachrichten aus  </h4></div> ");
+						+ "'><h4> Der Report 5 gibt alle Nutzerabonnements aus </h4></div> ");
 
 
 		vP.add(headline);

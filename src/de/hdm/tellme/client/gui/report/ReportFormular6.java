@@ -22,7 +22,7 @@ import de.hdm.tellme.shared.bo.Nutzer;
  */
 public class ReportFormular6 extends Composite{
 	private Nutzer nutzer = null;
-	private Button report3GenerierenButton = new Button("Report 3 erstellen");
+	private Button report6GenerierenButton = new Button("Report 3 erstellen");
 	/**
 	 * 
 	 * Im Konstruktor der Klasse werden als erstes die beiden Bereiche des Root-Panels "content-left", "content-right" gesäubert.
@@ -30,13 +30,13 @@ public class ReportFormular6 extends Composite{
 	 */
 	public ReportFormular6(){
 		
-		report3GenerierenButton.setStylePrimaryName("reportBtn");
-		report3GenerierenButton.addClickHandler(new ClickHandler(){
+		report6GenerierenButton.setStylePrimaryName("reportBtn");
+		report6GenerierenButton.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){
 				RootPanel.get("content_left").clear();
 				RootPanel.get("content_right").clear();
 
- 				NutzerDataProvider.gib(1).report3Generieren(nutzer ); // TODO KLASSE BESCHREIBEN
+ 				NutzerDataProvider.gib(1).report6Generieren(nutzer ); // TODO KLASSE BESCHREIBEN
 
 				}		
 			
@@ -48,7 +48,7 @@ public class ReportFormular6 extends Composite{
 	public void zeigeReportFormular () {
 		RootPanel.get("content_right").clear();
 
-			NutzerDataProvider.gib(1).report3Generieren(nutzer ); // TODO KLASSE BESCHREIBEN
+			NutzerDataProvider.gib(1).report6Generieren(nutzer ); // TODO KLASSE BESCHREIBEN
 		
 	}
 	
@@ -63,7 +63,7 @@ public class ReportFormular6 extends Composite{
 		label.setStylePrimaryName("selectionLabel");
 		vpForm.add(label);
 		
-		vpForm.add(report3GenerierenButton);
+		vpForm.add(report6GenerierenButton);
 		return vpForm;
 	}
 	
@@ -72,7 +72,7 @@ public class ReportFormular6 extends Composite{
  * TODO Kommentar nachtragen
  * @param ZellenObjekt
  */
-	public void report3Generieren(NutzerZelle.ZellenObjekt ZellenObjekt){
+	public void report6Generieren(NutzerZelle.ZellenObjekt ZellenObjekt){
 		this.nutzer = ZellenObjekt.nutzer;
 
 	}

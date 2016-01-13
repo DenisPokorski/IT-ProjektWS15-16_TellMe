@@ -22,18 +22,18 @@ import de.hdm.tellme.shared.bo.Nutzer;
  */
 public class ReportFormular5 extends Composite {
 	private Nutzer nutzer = null;
-	Button report2GenerierenButton = new Button("Report 2 erstellen");
+	Button report5GenerierenButton = new Button("Report 5 erstellen");
 
 	public ReportFormular5() {
 		
-		report2GenerierenButton.setStylePrimaryName("reportBtn");
-		report2GenerierenButton.addClickHandler(new ClickHandler() {
+		report5GenerierenButton.setStylePrimaryName("reportBtn");
+		report5GenerierenButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 
 				RootPanel.get("content_left").clear();
 				RootPanel.get("content_right").clear();
 				
-				NutzerDataProvider.gib(1).report2Generieren(nutzer);
+				NutzerDataProvider.gib(1).report5Generieren(nutzer);
 			}
 		});
 	}
@@ -49,7 +49,7 @@ public class ReportFormular5 extends Composite {
 		label.setStylePrimaryName("selectionLabel");
 		vpForm.add(label);
 		
-		vpForm.add(report2GenerierenButton);
+		vpForm.add(report5GenerierenButton);
 		return vpForm;
 	}
 	
@@ -58,7 +58,7 @@ public class ReportFormular5 extends Composite {
 	 * @param ZellenObjekt
 	 */	
 
-	public void report2Generieren(NutzerZelle.ZellenObjekt ZellenObjekt) {
+	public void report5Generieren(NutzerZelle.ZellenObjekt ZellenObjekt) {
 		this.nutzer = ZellenObjekt.nutzer;
 
 	}

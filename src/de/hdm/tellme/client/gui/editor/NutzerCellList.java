@@ -19,7 +19,6 @@ import de.hdm.tellme.client.gui.editor.NutzerZelle.ZellenObjekt;
 import de.hdm.tellme.client.gui.report.ReportFormular1;
 import de.hdm.tellme.client.gui.report.ReportFormular2;
 import de.hdm.tellme.client.gui.report.ReportFormular3;
-import de.hdm.tellme.client.gui.report.ReportFormular4;
 import de.hdm.tellme.client.gui.report.ReportFormular5;
 import de.hdm.tellme.client.gui.report.ReportFormular6;
 import de.hdm.tellme.shared.bo.Nutzer;
@@ -90,18 +89,6 @@ public class NutzerCellList {
 						}
 
 					});
-			
-		case Report2_NachrichtZeitraum:
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-						public void onSelectionChange(SelectionChangeEvent event) {
-
-							ReportFormular2 rF = new ReportFormular2();
-
-						}
-
-					});
-			break;
 
 		case Report3_NachrichtNutzer:
 			selectionModel
@@ -109,18 +96,12 @@ public class NutzerCellList {
 						public void onSelectionChange(SelectionChangeEvent event) {
 
 							ReportFormular3 rF = new ReportFormular3();
+							rF.report3Generieren(selectionModel
+									.getSelectedObject());
 
-						}
-
-					});
-			break;
-			
-		case Report4_AlleNachrichten:
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-						public void onSelectionChange(SelectionChangeEvent event) {
-
-							ReportFormular4 rF = new ReportFormular4();
+							RootPanel.get("content_right").clear();
+							RootPanel.get("content_right")
+									.add(rF.gibFormular());
 
 						}
 
@@ -132,7 +113,7 @@ public class NutzerCellList {
 					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
 							ReportFormular5 rF = new ReportFormular5();
-							rF.report2Generieren(selectionModel
+							rF.report5Generieren(selectionModel
 									.getSelectedObject());
 							RootPanel.get("content_right").clear();
 							RootPanel.get("content_right")
@@ -150,13 +131,15 @@ public class NutzerCellList {
 
 							VerticalPanel vP = new VerticalPanel();
 							RootPanel.get("content_right").clear();
-						
+
 							ReportFormular6 rF = new ReportFormular6();
-							rF.report3Generieren(selectionModel
+							rF.report6Generieren(selectionModel
 									.getSelectedObject());
-							
-							HTML headline = new HTML(" <div class='" + "subline"
-									+ "'><h2>Reportgenerator 6: Alle Hashtagabos je anzeigen</h2></div> ");
+
+							HTML headline = new HTML(
+									" <div class='"
+											+ "subline"
+											+ "'><h2>Reportgenerator 6: Alle Hashtagabos je anzeigen</h2></div> ");
 							HTML subtext = new HTML(
 									" <div class='"
 											+ "subtext"
@@ -165,11 +148,11 @@ public class NutzerCellList {
 							vP.add(headline);
 							vP.add(subtext);
 							vP.add(rF.gibFormular());
-							
+
 							RootPanel.get("content_right").add(vP);
 						}
 					});
-	
+
 			break;
 
 		default:

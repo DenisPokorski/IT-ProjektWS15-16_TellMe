@@ -19,6 +19,7 @@ import com.google.gwt.view.client.SingleSelectionModel;
 
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
+import de.hdm.tellme.client.gui.editor.NutzerDataProvider;
 import de.hdm.tellme.client.gui.editor.NutzerZelle;
 import de.hdm.tellme.client.gui.editor.NutzerZelle.ZellenObjekt;
 import de.hdm.tellme.shared.LoginInfo;
@@ -106,6 +107,13 @@ public class Report4Gui extends VerticalPanel{
 			
 			@Override
 			public void onClick(ClickEvent event) {
+				
+				RootPanel.get("content_left").clear();
+				RootPanel.get("content_right").clear();
+				
+				NutzerDataProvider.gib(1).report4Generieren(nutzer);
+				
+				
 			}
 		});
 	}

@@ -84,6 +84,7 @@ public class Report3Gui extends VerticalPanel {
 		 * Die Panels werden anschaulich angeordnet.
 		 */
 
+		RootPanel.get().clear();
 		reportPanel.add(ueberSchrift3);
 		reportPanel3.add(reportPanel3_left);
 		reportPanel3.add(reportPanel3_right);
@@ -97,9 +98,6 @@ public class Report3Gui extends VerticalPanel {
 
 		reportPanel3_left.add(new NutzerCellList().generiereCellList(
 				CellListModus.Report3_NachrichtNutzer, 1));
-		reportPanel3_left.add(report3Generieren);
-		report3Generieren.setStylePrimaryName("neueNchrichtBtn");
-
 		reportPanel3_right.add(beschreibung2);
 
 		reportPanel.add(reportPanel3);
@@ -116,12 +114,7 @@ public class Report3Gui extends VerticalPanel {
 		 * Der Button <code>report3Generieren</code> bekommt eine Funktion,
 		 * damit der Report 3 generiert werden kann.
 		 */
-		report3Generieren.addClickHandler(new ClickHandler() {
 
-			@Override
-			public void onClick(ClickEvent event) {
-			}
-		});
 	}
 
 }
