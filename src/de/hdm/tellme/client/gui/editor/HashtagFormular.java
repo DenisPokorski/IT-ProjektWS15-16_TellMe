@@ -38,8 +38,8 @@ import de.hdm.tellme.shared.bo.Hashtag;
 public class HashtagFormular extends Composite {
 
 	private Hashtag hashtag = null;
-	Button btnAbonieren = new Button("abonnieren");
-	Button btnDeabonieren = new Button("deabonnieren");
+	Button btnAbonieren = new Button("Abonnement hinzufügen");
+	Button btnDeabonieren = new Button("Abonnement löschen");
 	TextBox schlagwortBox = new TextBox();
 	Button htAnlegen = new Button("Hashtag neu erstellen");
 	Vector<Hashtag> htl;

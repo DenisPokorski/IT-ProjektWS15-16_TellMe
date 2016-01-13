@@ -40,8 +40,8 @@ public class HashtagVerwaltungFomular extends Composite {
 	Button htSpeichern = new Button("Hashtag speichern");
 	Button htLoeschen = new Button("Hashtag löschen");
 	Button htAnlegen = new Button("Hashtag neu erstellen");
-	Button btnAbonieren = new Button("abonieren");
-	Button btnDeabonieren = new Button ("deabonieren");
+	Button btnAbonieren = new Button("Abonnement hinzufügen");
+	Button btnDeabonieren = new Button ("Abonnement löschen");
 	TextBox schlagwortBox = new TextBox();
 	Vector<Hashtag> htl;
 
