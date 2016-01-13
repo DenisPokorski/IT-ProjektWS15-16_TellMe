@@ -377,4 +377,25 @@ public class NachrichtMapper {
 		}
 		return meineNachrichten;
 	}
+	
+	public Vector<Nachricht> gibNachrichtVonNutzerIdMitDatum (Timestamp vonDatum, Timestamp bisDatum, int AutorId){
+		Connection con = DatenbankVerbindung.connection();
+		Vector<Nachricht> nachrichtenNachNutzerNachDatum = new Vector<Nachricht>();
+		try{
+			Statement state = con.createStatement();
+			String sqlquery = "SELECT * FROM Nachricht WHERE ErstellungsDatum  BETWEEN '"+vonDatum+"' AND '"+bisDatum+"' AND AutorId ='"+AutorId+"' ORDER BY ErstellungsDatum DESC";
+			ResultSet rs = state.executeQuery(sqlquery);
+			while (rs.next()) {
+				Nachricht nA = new Nachricht();
+				nA.setId(rs.getInt("Id"));
+				nA.setText(rs.getString("Text"));
+				nA.setSenderId(rs.getInt("AutoId"));
+				nA.setErstellungsDatum(rs.getTimestamp("Erstellungsdatum"));
+				nachrichtenNachNutzerNachDatum.add(nA);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return nachrichtenNachNutzerNachDatum;
+	}
 }
