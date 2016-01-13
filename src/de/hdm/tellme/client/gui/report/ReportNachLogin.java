@@ -9,7 +9,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
  */
 /**
  * 
- * Diese Oberfläche erscheint nach dem erfolgreichen Login in der Reporapplikation. 
+ * Diese Oberfläche erscheint nach dem erfolgreichen Login in der Reportapplikation. 
  * @author Zimmermann
  * @version 1.0
  * 
