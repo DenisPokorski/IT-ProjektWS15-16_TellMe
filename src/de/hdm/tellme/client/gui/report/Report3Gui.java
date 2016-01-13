@@ -1,71 +1,127 @@
 package de.hdm.tellme.client.gui.report;
 
+import java.util.Date;
+
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.datepicker.client.DateBox;
+import com.google.gwt.view.client.SingleSelectionModel;
 
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
+import de.hdm.tellme.client.gui.editor.NutzerZelle;
+import de.hdm.tellme.client.gui.editor.NutzerZelle.ZellenObjekt;
+import de.hdm.tellme.shared.LoginInfo;
+import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
- * Diese Klasse wird bei uns durch Click auf den entsprechendne
- * MenüBar-Report-Button instanziiert. Dieser Report gibt alle
- * Hashtagabonnements eines bestimmten Nutzers aus. Die Generierung des Reports
- * erfolgt in der Klasse HTMLReportWriter.
+ * TODO
+ */
+/**
  * 
- * @author Zimmermann
- * @version 1.0
+ * 
+ * 
+ * 
+ * Dieser Report zeigt alle Nachrichten je Nutzer an.
+ * 
+ * @author Zimmerman & Alex Homann
+ * @version 1.1
  * 
  */
 
 public class Report3Gui extends VerticalPanel {
-
-	//private Button report3Generieren = new Button("Report 2 generieren");
-
-	
-	/**
-	 * Bei klick auf den entsprchenden MenüBar-Button wird die Klasse aufgerufen
-	 * und die <code>onLoad()</code> abgearbeitet. In dieser fügen wir dem
-	 * linken Bereich des Root-Panels mit der Methode
-	 * <code>generiereCellListModus</code> hinzu. In der Methode wird eine
-	 * scrollbare CellList erstellt und ein spezifisches selectionModel
-	 * <code>Report3_NutzerHashtagAbonnement</code> hinzugefügt. Die Angabe des
-	 * Enum-Parameters <code>Report3_NutzerHashtagAbonnement</code> ermöglicht
-	 * uns die CellList an mehreren Stellen,mit einem spezifischen
-	 * Selektionsverhalten im System zu verwenden.
+	/*
+	 * Es werden in einem Vertical Panel die verschiedenen benötigten Elemente
+	 * dargestellt. Dies sind die NutzerCellList um den Nutzer zu wählen, und
+	 * ein Button der die Funktion ReportGenerieren beinhaltet. Außerdem gibt es
+	 * eine Überschrift und eine Beschreibung für den Report 3.
 	 */
-	
-	HTML subline = new HTML ("<div class='"+"subline_report"+"'><b>Bitte wählen Sie einen Nutzer aus:</b></div>");
- 	VerticalPanel vP = new VerticalPanel(); 
-	
+
+	private Nutzer nutzer = null;
+
+	private VerticalPanel reportPanel = new VerticalPanel();
+	private Label ueberSchrift3 = new Label("Report3: Nachrichten abfragen");
+	HTML subSchrift3 = new HTML("<div class='" + "subline_report"
+			+ "'><b>Bitte wählen Sie einen Nutzer aus:</b></div>");
+
+	private HorizontalPanel reportPanel3 = new HorizontalPanel();
+	private VerticalPanel reportPanel3_left = new VerticalPanel();
+	private VerticalPanel reportPanel3_right = new VerticalPanel();
+
+	private Button report3Generieren = new Button("Report 3 generieren");
+
+	private HTML beschreibung2 = new HTML(
+			"<ul><b>Der Report 3 gibt alle Nachrichten eines Nutzers aus</b>"
+
+					+ "<li>Um einen Report auszugeben, der alle Nachrichten von<b> einem bestimmten Nutzer</b>"
+					+ " darstellt, musst du <b>einen Nutzer </b>auswählen und darfst <b>keinen Zeitraum </b>auswählen. </li></ul>");
+
+	public void report1Generieren(NutzerZelle.ZellenObjekt ZellenObjekt) {
+		this.nutzer = ZellenObjekt.nutzer;
+
+	}
+
+	/**
+	 * Die onLoad-Methode wird verwendet um in der Seite die verschiedenen
+	 * Panels anzuordnen. Sie startet beim Ausführen der Seite, da sie das
+	 * Pendant zur <code>main()</code>-Methode einer normalen Java Applikation
+	 * darstellt
+	 */
+
 	public void onLoad() {
-		
- 		//report3Generieren.setStylePrimaryName("neueNchrichtBtn");
 
-		HTML headline = new HTML(" <div class='" + "subline"
-				+ "'><h2>Reportgenerator 3: Alle Hashtagabos je anzeigen</h2></div> ");
-		HTML subtext = new HTML(
-				" <div class='"
-						+ "subtext"
-						+ "'><h4> Der Report 3 gibt alle Hashtagabonnoments eines Nutzers in einen bestimmten Zeitraum zurück.   </h4></div> ");
+		/*
+		 * Die Panels werden anschaulich angeordnet.
+		 */
 
+		reportPanel.add(ueberSchrift3);
+		reportPanel3.add(reportPanel3_left);
+		reportPanel3.add(reportPanel3_right);
+		reportPanel3_left.add(subSchrift3);
 
-		vP.add(headline);
-		vP.add(subtext);
+		/**
+		 * Dem <code>reportPanel3_left</code> wird die
+		 * <code>NutzerCellList</code> im modi Report3_NachrichtNutzer
+		 * zugewiesen, dies geschieht im Modus 1, da 1 den Report darstellt.
+		 */
 
-		
- 		
-		RootPanel
-		.get("content_right")
-		.add(vP);
-		
-		RootPanel
-				.get("content_left")
-				.add(new NutzerCellList()
-						.generiereCellList(CellListModus.Report3_NutzerHashtagAbonnement, 1));
-		 
-		//RootPanel.get("content_left").add(new ReportFormular3().gibFormular());
+		reportPanel3_left.add(new NutzerCellList().generiereCellList(
+				CellListModus.Report3_NachrichtNutzer, 1));
+		reportPanel3_left.add(report3Generieren);
+		report3Generieren.setStylePrimaryName("neueNchrichtBtn");
+
+		reportPanel3_right.add(beschreibung2);
+
+		reportPanel.add(reportPanel3);
+		/*
+		 * Das RootPanel wird gesäubert und die verschiedenen Elemente für
+		 * Report 3 zugeordnet.
+		 */
+		RootPanel.get("content").clear();
+		RootPanel.get("content_left").clear();
+		RootPanel.get("content_right").clear();
+		RootPanel.get("content_right").add(reportPanel3_right);
+		RootPanel.get("content_left").add(reportPanel3_left);
+		/*
+		 * Der Button <code>report3Generieren</code> bekommt eine Funktion,
+		 * damit der Report 3 generiert werden kann.
+		 */
+		report3Generieren.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+			}
+		});
 	}
 
 }

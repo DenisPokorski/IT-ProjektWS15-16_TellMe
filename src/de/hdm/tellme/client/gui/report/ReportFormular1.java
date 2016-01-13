@@ -48,8 +48,22 @@ public class ReportFormular1 extends Composite {
 		return vpForm;
 	}
 
-	public void report3Generieren(NutzerZelle.ZellenObjekt ZellenObjekt) {
+	public void report1Generieren(NutzerZelle.ZellenObjekt ZellenObjekt) {
 		this.nutzer = ZellenObjekt.nutzer;
 
 	}
+	
+	
+	
+//	public VerticalPanel gibFormular(){
+//	VerticalPanel vpForm = new VerticalPanel();
+//	
+//	vpForm.add(new Label(nutzer.getVorname() + nutzer.getNachname()));
+//	vpForm.add(report1_1GenerierenButton);
+//	return vpForm;
+//}
+//public void report1_1Generieren(NutzerZelle.ZellenObjekt ZellenObjekt){
+//	this.nutzer = ZellenObjekt.nutzer;
+//
+//}
 }
