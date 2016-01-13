@@ -32,8 +32,8 @@ import de.hdm.tellme.shared.bo.Nutzer;
 
 public class NutzerFormular extends Composite {
 	private Nutzer nutzer = null;
-	Button btnAbonieren = new Button("abonieren");
-	Button btnDeabonieren = new Button("deabonieren");
+	Button btnAbonieren = new Button("Abonnement hinzufügen");
+	Button btnDeabonieren = new Button("Abonnement löschen");
 
 	public NutzerFormular() {
 		// Handle events.
