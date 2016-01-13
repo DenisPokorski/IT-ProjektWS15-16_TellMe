@@ -8,6 +8,7 @@ import java.util.Vector;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Unterhaltung;
+import de.hdm.tellme.shared.bo.Nutzer.eStatus;
 
 /**
  * Mapper-Klasse, die Hashtag-Objekte in der Datenbank abbildet. Diese enth�lt
@@ -162,44 +163,25 @@ public class HashtagMapper {
 	public Vector<Hashtag> report1_3Mapper(int nachrichtId) {
 		Vector<Hashtag> hashtagsAnNachricht = new Vector<Hashtag>();
 		Connection con = DatenbankVerbindung.connection();
-		try{
+		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state.executeQuery("SELECT * FROM NachrichtHashtag RIGHT JOIN Hashtag ON NachrichtHashtag.HashtagId = Hashtag.Id WHERE NachrichtId ="+nachrichtId+" ;");
-			while(rs.next()){
+			ResultSet rs = state
+					.executeQuery("SELECT * FROM NachrichtHashtag JOIN Hashtag ON NachrichtHashtag.HashtagId = Hashtag.Id JOIN Nachricht ON NachrichtId = Nachricht.Id JOIN Nutzer ON Nachricht.AutorId = Nutzer.Id WHERE NachrichtId ='"
+							+ nachrichtId
+							+ "' AND Nutzer.Status = '"
+							+ eStatus.aktiv.ordinal() + "' ;");
+			while (rs.next()) {
 				Hashtag hT = new Hashtag();
 				hT.setId(rs.getInt("Id"));
 				hT.setSchlagwort(rs.getString("Schlagwort"));
 				hT.setErstellungsDatum(rs.getTimestamp("Erstellungsdatum"));
 				hashtagsAnNachricht.add(hT);
 			}
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-		
-		return hashtagsAnNachricht;
-	}
-	
-	public Vector<Hashtag> alleHashtagsZuNachrichtenID(int nachrichtId) {
-		Vector<Hashtag> alleHashtags = new Vector<Hashtag>();
-
-		Connection con = DatenbankVerbindung.connection();
-		try {
-			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT * FROM db_tellme.NachrichtHashtag INNER JOIN Hashtag ON Hashtag.Id = HashtagId WHERE NachrichtId = "+nachrichtId+";");
-
-			while (rs.next()) {
-				Hashtag h = new Hashtag();
-				h.setId(rs.getInt("Id"));
-				h.setSchlagwort(rs.getString("Schlagwort"));
-				h.setErstellungsDatum(rs.getTimestamp("ErstellungsDatum"));
-				alleHashtags.add(h);
-
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return alleHashtags;
+		return hashtagsAnNachricht;
 	}
+
 }

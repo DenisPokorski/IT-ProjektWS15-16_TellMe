@@ -9,6 +9,7 @@ import de.hdm.tellme.server.db.NutzerMapper;
 import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.LoginService;
 import de.hdm.tellme.shared.bo.Nutzer;
+import de.hdm.tellme.shared.bo.Nutzer.eStatus;
 
 public class LoginServiceImpl extends RemoteServiceServlet implements
 		LoginService {
@@ -55,7 +56,6 @@ public class LoginServiceImpl extends RemoteServiceServlet implements
 
 		setURI();
 
-		// TODO: Nach Deploy prüfen, ob das so funktioniert
 		if (nutzer != null) {
 			NutzerMapper nMapper = NutzerMapper.nutzerMapper();
 
@@ -63,10 +63,16 @@ public class LoginServiceImpl extends RemoteServiceServlet implements
 			loginInfo.setEmailAddress(nutzer.getEmail());
 			loginInfo.setLogoutUrl(userService.createLogoutURL(uri_));
 
-			Nutzer n = nMapper.suchenMitEmailAdresse(loginInfo.getEmailAddress());
+			Nutzer n = nMapper.suchenMitEmailAdresse(loginInfo
+					.getEmailAddress());
 
 			if (n.getMailadresse() != null) {
-				loginInfo.setUser(n);
+				if (n.getStatus() != eStatus.inaktiv) {
+					loginInfo.setUser(n);
+				} else {
+					nMapper.setzeNutzerAktiv(n.getId());
+					loginInfo.setUser(n);
+				}
 			}
 
 			else {
@@ -75,6 +81,7 @@ public class LoginServiceImpl extends RemoteServiceServlet implements
 				na.setVorname("undefined");
 				na.setNachname("undefined");
 				na.setId(nMapper.anlegen(na));
+
 				loginInfo.setUser(na);
 			}
 

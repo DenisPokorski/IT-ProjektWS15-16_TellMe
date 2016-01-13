@@ -1,5 +1,7 @@
 package de.hdm.tellme.shared.bo;
 
+import de.hdm.tellme.shared.bo.Unterhaltung.eUnterhaltungsTyp;
+
 /**
  * Die Klasse Nutzer erbt von der Superklasse BusinessObject. Es werden die get-
  * und set-Methoden für Nachname, Vorname und Mailadresse erstellt.
@@ -26,7 +28,11 @@ public class Nutzer extends BusinessObject {
 	private String Vorname;
 	private String Mailadresse;
 	private String GoogleId;
-	
+	private eStatus Status;
+
+	public enum eStatus {
+		inaktiv, aktiv;
+	}
 	/**
 	 * Mit dieser Methode wird der nachname ausgelesen
 	 * @return Nachname
@@ -81,12 +87,13 @@ public class Nutzer extends BusinessObject {
 		Mailadresse = mailadresse;
 	}
 
-	public String getGoogleId() {
-		return GoogleId;
+	public eStatus getStatus() {
+		return Status;
 	}
 
-	public void setGoogleId(String googleId) {
-		GoogleId = googleId;
+	public void setStatus(eStatus status) {
+		Status = status;
 	}
+
 
 }

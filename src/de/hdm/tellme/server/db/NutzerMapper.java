@@ -9,6 +9,8 @@ import java.util.Vector;
 
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nutzer;
+import de.hdm.tellme.shared.bo.Unterhaltung;
+import de.hdm.tellme.shared.bo.Nutzer.eStatus;
 
 /**
  * Mapper-Klasse, die Nutzer-Objekte in der Datenbank abbildet. Diese enth�lt
@@ -55,11 +57,12 @@ public class NutzerMapper {
 
 			PreparedStatement prepState = con
 					.prepareStatement(
-							"INSERT INTO Nutzer (Vorname, Nachname, Mailadresse) VALUES (?,?,?) ;",
+							"INSERT INTO Nutzer (Vorname, Nachname, Mailadresse, Status) VALUES (?,?,?,?) ;",
 							Statement.RETURN_GENERATED_KEYS);
 			prepState.setString(1, n.getVorname());
 			prepState.setString(2, n.getNachname());
 			prepState.setString(3, n.getMailadresse());
+			prepState.setInt(4, 1);
 			prepState.executeUpdate();
 			ResultSet rs = prepState.getGeneratedKeys();
 			if (rs.next()) {
@@ -84,6 +87,8 @@ public class NutzerMapper {
 				n.setVorname(rs.getString("Vorname"));
 				n.setNachname(rs.getString("Nachname"));
 				n.setMailadresse(rs.getString("Mailadresse"));
+				int status = rs.getInt("Status");
+				n.setStatus(Nutzer.eStatus.values()[status]);
 
 			}
 		} catch (Exception e) {
@@ -138,16 +143,11 @@ public class NutzerMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-
-			String sqlquery = "DELETE FROM Nutzer WHERE Id='" + n.getId()
-					+ "';";
-
-			state.executeUpdate(sqlquery);
-
+			state.executeUpdate("UPDATE Nutzer SET Status = 0 WHERE Id = '"
+					+ n.getId() + "'");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/**
@@ -165,44 +165,6 @@ public class NutzerMapper {
 	 * ausgegeben.
 	 */
 
-	/**
-	 * Die Methode suchenNutzerMitId stellt eine Verbindung zur Datenbank her.
-	 * Dazu wird die Methode "connection()" aus der Klasse DatenbankVerbindung
-	 * dem Objekt con �bergeben. Anschlie�end wird ein neues Objekt von dem Typ
-	 * Nutzer erstellt (na). Im Anschluss wird im "try-Block" ein Statement
-	 * erstellt. Nun legen wir �ber ResultSet fest, dass der Nutzer �ber die Id
-	 * gesucht werden soll. Danach wird f�r jeder Eintrag in das Objekt na
-	 * geschrieben. Jetzt wird �ber die Methode "state.executeUpdate(sqlquery);"
-	 * ausgef�hrt und der SQL String an die Datenbank �bergeben. Sollte der
-	 * "try-Block" Fehler aufweisen, wird der "catch-Block" mit einer
-	 * entsprechenden Fehlermeldung (Exception) ausgef�hrt. �ber "return" wird
-	 * der Nutzer mit allen Attributen ausgegeben.
-	 */
-
-	public Nutzer suchenNutzerMitId(Nutzer n) {
-
-		Connection con = DatenbankVerbindung.connection();
-
-		Nutzer na = new Nutzer();
-
-		try {
-			Statement state = con.createStatement();
-			ResultSet rs = state.executeQuery("SELECT * FROM Nutzer WHERE Id='"
-					+ n.getId() + "';");
-
-			while (rs.next()) {
-				na.setId(rs.getInt("Id"));
-				na.setVorname(rs.getString("Vorname"));
-				na.setNachname(rs.getString("Nachname"));
-				na.setMailadresse(rs.getString("Mailadresse"));
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return na;
-	}
-
 	public Vector<Nutzer> alleNutzerAusserMeineId(int meineid) {
 
 		Vector<Nutzer> alleNutzerAusserMeinNutzerListe = new Vector<Nutzer>();
@@ -210,7 +172,9 @@ public class NutzerMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state.executeQuery("SELECT * From Nutzer");
+			ResultSet rs = state
+					.executeQuery("SELECT * From Nutzer WHERE Status = '"
+							+ eStatus.aktiv.ordinal() + "'");
 
 			while (rs.next()) {
 
@@ -241,7 +205,8 @@ public class NutzerMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state.executeQuery("SELECT * From Nutzer");
+			ResultSet rs = state.executeQuery("SELECT * From Nutzer  WHERE Status = '"
+							+ eStatus.aktiv.ordinal() + "'");
 
 			while (rs.next()) {
 
@@ -268,7 +233,8 @@ public class NutzerMapper {
 			Statement state = con.createStatement();
 			ResultSet rs = state
 					.executeQuery("SELECT * FROM AbonnentBenutzer WHERE VonId = '"
-							+ meineId + "';");
+							+ meineId + "' AND Status = '"
+							+ eStatus.aktiv.ordinal() + "';");
 			while (rs.next()) {
 				alleAbonniertenNutzer.add(rs.getInt("NachId"));
 
@@ -286,6 +252,19 @@ public class NutzerMapper {
 			Statement state = con.createStatement();
 			state.execute("DELETE FROM NutzerHashtag WHERE HashtagId = '"
 					+ hashtag.getId() + "';");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void setzeNutzerAktiv(int id) {
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+
+			state.executeUpdate("UPDATE Nutzer SET Status = 1 WHERE Id = '"
+					+ id + "'");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

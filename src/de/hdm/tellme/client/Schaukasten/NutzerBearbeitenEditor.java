@@ -49,7 +49,7 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 	private Button aenderungenSpeichernButton = new Button(
 			"Änderungen speichern");
 
-	private Button profilloeschenButton = new Button("Profil löschen");
+	private Button profilloeschenButton = new Button("Profil deaktivieren");
 	private VerticalPanel profilPanel = new VerticalPanel();
 	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
 

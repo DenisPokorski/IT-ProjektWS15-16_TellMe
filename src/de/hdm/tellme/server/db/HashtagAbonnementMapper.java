@@ -67,32 +67,6 @@ public class HashtagAbonnementMapper {
 		return HashtagListe;
 	}
 	
-	public Vector<Hashtag> alleNochNichtAboonierteHashtagsSelektieren (int i) {
-		
-		Vector<Hashtag> alleHashtagAusserMeinHashtagListe =  new Vector<Hashtag>();
-		
-		Connection con = DatenbankVerbindung.connection();
-		int meineid = i;
-		try{
-			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT * From Nutzer LEFT JOIN (SELECT * FROM NutzerHashtag WHERE NutzerHashtag.NutzerId = '"
-							+ meineid + "') AS A ON Nutzer.Id =  A.HashtagId");
-			
-			while (rs.next()) {
-				
-				Hashtag h = new Hashtag();
-				h.setId(rs.getInt("Id"));
-				h.setErstellungsDatum(rs.getTimestamp("Erstellungsdatum"));
-				h.setSchlagwort(rs.getString("Schlagwort"));
-				alleHashtagAusserMeinHashtagListe.addElement(h);
-				
-			}
-		} catch (Exception e)	{
-			e.printStackTrace();
-		}
-		return alleHashtagAusserMeinHashtagListe;
-	}
 	
 	public void hashtagAboErstellen(int NutzerId, int HashtagId)	{
 		Connection con = DatenbankVerbindung.connection();

@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.tellme.shared.bo.Nutzer;
+import de.hdm.tellme.shared.bo.Nutzer.eStatus;
 
 public class NutzerAbonnementMapper {
 	private static NutzerAbonnementMapper nutzerAbonnementMapper = null;
@@ -29,8 +30,10 @@ public class NutzerAbonnementMapper {
 		try {
 			Statement state = con.createStatement();
 			ResultSet rs = state
-					.executeQuery("SELECT AbonnentBenutzer.NachId, Nutzer.Id, Nutzer.Vorname, Nutzer.Nachname, Nutzer.Mailadresse, AbonnentBenutzer.ErstellungsDatum FROM AbonnentBenutzer LEFT JOIN Nutzer ON AbonnentBenutzer.NachId = Nutzer.Id Where AbonnentBenutzer.VonId = '"
-							+ nutzer + "';");
+					.executeQuery("SELECT AbonnentBenutzer.NachId, Nutzer.Id, Nutzer.Vorname, Nutzer.Nachname, Nutzer.Mailadresse, Nutzer.Status, AbonnentBenutzer.ErstellungsDatum FROM AbonnentBenutzer LEFT JOIN Nutzer ON AbonnentBenutzer.NachId = Nutzer.Id Where AbonnentBenutzer.VonId = '"
+							+ nutzer
+							+ "' AND Nutzer.Status = '"
+							+ eStatus.aktiv.ordinal() + "';");
 
 			while (rs.next()) {
 				Nutzer na = new Nutzer();
@@ -38,7 +41,8 @@ public class NutzerAbonnementMapper {
 				na.setVorname(rs.getString("Vorname"));
 				na.setNachname(rs.getString("Nachname"));
 				na.setMailadresse(rs.getString("Mailadresse"));
-				na.setErstellungsDatum(rs.getTimestamp("AbonnentBenutzer.ErstellungsDatum"));
+				na.setErstellungsDatum(rs
+						.getTimestamp("AbonnentBenutzer.ErstellungsDatum"));
 				NutzerListe.add(na);
 			}
 		}
@@ -67,43 +71,17 @@ public class NutzerAbonnementMapper {
 		}
 	}
 
-	public Vector<Nutzer> alleNochNichtAbonnierteNutzerSelektieren(int id) {
-
-		Vector<Nutzer> alleNutzerAusserMeinNutzerListe = new Vector<Nutzer>();
-
-		Connection con = DatenbankVerbindung.connection();
-		int meineid = id;
-		try {
-			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT * From Nutzer RIGHT JOIN  (SELECT * FROM AbonnentBenutzer WHERE AbonnentBenutzer.VonId = '"
-							+ meineid + "' )AS A  ON Nutzer.Id  = A.NachId");
-
-			while (rs.next()) {
-
-				Nutzer n = new Nutzer();
-				n.setId(rs.getInt("Id"));
-				n.setVorname(rs.getString("Vorname"));
-				n.setNachname(rs.getString("Nachname"));
-				n.setMailadresse(rs.getString("Mailadresse"));
-				alleNutzerAusserMeinNutzerListe.addElement(n);
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		// Ergebnisvektor zur�ckgeben
-		return alleNutzerAusserMeinNutzerListe;
-	}
-
 	public void nutzerAboErstellen(int vonId, Nutzer _nutzer) {
 
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
 			state.executeUpdate("INSERT INTO AbonnentBenutzer(VonId, NachId, ErstellungsDatum) VALUES ('"
-					+ vonId + "','" + _nutzer.getId() + "', '"+DateHelperClass.getCurrentTime()+"');");
+					+ vonId
+					+ "','"
+					+ _nutzer.getId()
+					+ "', '"
+					+ DateHelperClass.getCurrentTime() + "');");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -115,8 +93,10 @@ public class NutzerAbonnementMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "SELECT * FROM AbonnentBenutzer WHERE VonId = '"
-					+ meineId + "';";
+			String sqlquery = "SELECT * FROM AbonnentBenutzer JOIN Nutzer ON AbonnentBenutzer.VonId = Nutzer.Id WHERE VonId = '"
+					+ meineId
+					+ "' AND Nutzer.Status = '"
+					+ eStatus.aktiv.ordinal() + "';";
 			ResultSet rs = state.executeQuery(sqlquery);
 			while (rs.next()) {
 				abonnierteNutzerIds.add(rs.getInt("NachId"));

@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.tellme.shared.bo.BusinessObject.eSichtbarkeit;
+import de.hdm.tellme.shared.bo.Nutzer.eStatus;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Unterhaltung;
 
@@ -43,8 +44,10 @@ public class UnterhaltungMapper {
 
 		Connection con = DatenbankVerbindung.connection();
 		try {
-			PreparedStatement prepState = con.prepareStatement("INSERT INTO Unterhaltung (Sichtbarkeit, ErstellungsDatum, Typ) VALUES (?,CURRENT_TIMESTAMP,?)",
-					Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement prepState = con
+					.prepareStatement(
+							"INSERT INTO Unterhaltung (Sichtbarkeit, ErstellungsDatum, Typ) VALUES (?,CURRENT_TIMESTAMP,?)",
+							Statement.RETURN_GENERATED_KEYS);
 			prepState.setInt(1, sichtbarkeit);
 			prepState.setInt(2, unterHaltungsTyp.ordinal());
 
@@ -60,14 +63,19 @@ public class UnterhaltungMapper {
 		}
 		return ergebnis;
 	}
-	
+
 	public boolean aktualisieren(Unterhaltung u) {
 		boolean erfolgreich = false;
 
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "UPDATE `db_tellme`.`Unterhaltung` SET `Sichtbarkeit`='"+u.getSichtbarkeit()+"', `Typ`='"+u.getUnterhaltungstyp().ordinal()+"' WHERE `Id`='"+u.getId()+"';";
+			String sqlquery = "UPDATE `db_tellme`.`Unterhaltung` SET `Sichtbarkeit`='"
+					+ u.getSichtbarkeit()
+					+ "', `Typ`='"
+					+ u.getUnterhaltungstyp().ordinal()
+					+ "' WHERE `Id`='"
+					+ u.getId() + "';";
 			int anzahlBetroffenerZeilen = state.executeUpdate(sqlquery);
 			if (anzahlBetroffenerZeilen > 0)
 				erfolgreich = true;
@@ -88,7 +96,8 @@ public class UnterhaltungMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "UPDATE `Unterhaltung` SET `Sichtbarkeit`='0' WHERE `Id`='" + unterhaltungsID + "';";
+			String sqlquery = "UPDATE `Unterhaltung` SET `Sichtbarkeit`='0' WHERE `Id`='"
+					+ unterhaltungsID + "';";
 			int anzahlBetroffenerZeilen = state.executeUpdate(sqlquery);
 			if (anzahlBetroffenerZeilen > 0)
 				erfolgreich = true;
@@ -106,15 +115,18 @@ public class UnterhaltungMapper {
 	// Nutzerid <teilnehmerID>
 	// als aktiver Teilnehmer (Eintrag in NutzerUnterhaltung ist Vorhanden und
 	// Sichtbar) agiert
-	public Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(int teilnehmerID) {
+	public Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(
+			int teilnehmerID) {
 		Vector<Unterhaltung> alleUnterhaltungen = new Vector<Unterhaltung>();
 
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
 			ResultSet rs = state
-					.executeQuery("SELECT * FROM NutzerUnterhaltung INNER JOIN Unterhaltung ON NutzerUnterhaltung.UnterhaltungId = Unterhaltung.Id WHERE NutzerId = '"
-							+ teilnehmerID + "' AND NutzerUnterhaltung.Sichtbarkeit = 1 AND Unterhaltung.Sichtbarkeit = 1");
+					.executeQuery("SELECT * FROM NutzerUnterhaltung INNER JOIN Unterhaltung ON NutzerUnterhaltung.UnterhaltungId = Unterhaltung.Id JOIN Nutzer ON NutzerId = Nutzer.Id WHERE NutzerId = '"
+							+ teilnehmerID
+							+ "' AND NutzerUnterhaltung.Sichtbarkeit = 1 AND Unterhaltung.Sichtbarkeit = 1 AND Nutzer.Status = '"
+							+ eStatus.aktiv.ordinal() + "'");
 
 			while (rs.next()) {
 				Unterhaltung u = new Unterhaltung();
@@ -122,7 +134,8 @@ public class UnterhaltungMapper {
 				u.setSichtbarkeit(1);
 				int typ = rs.getInt("Unterhaltung.Typ");
 				u.setUnterhaltungstyp(Unterhaltung.eUnterhaltungsTyp.values()[typ]);
-				u.setErstellungsDatum(rs.getTimestamp("Unterhaltung.ErstellungsDatum"));
+				u.setErstellungsDatum(rs
+						.getTimestamp("Unterhaltung.ErstellungsDatum"));
 				alleUnterhaltungen.add(u);
 
 			}
@@ -138,8 +151,12 @@ public class UnterhaltungMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "INSERT INTO NutzerUnterhaltung (`NutzerId`, `UnterhaltungId`, `Sichtbarkeit`) VALUES ('" + TeilnehmerID + "', '"
-					+ UnterhaltungsID + "', '" + eSichtbarkeit.Sichtbar.ordinal() + "');";
+			String sqlquery = "INSERT INTO NutzerUnterhaltung (`NutzerId`, `UnterhaltungId`, `Sichtbarkeit`) VALUES ('"
+					+ TeilnehmerID
+					+ "', '"
+					+ UnterhaltungsID
+					+ "', '"
+					+ eSichtbarkeit.Sichtbar.ordinal() + "');";
 			int anzahlBetroffenerZeilen = state.executeUpdate(sqlquery);
 			if (anzahlBetroffenerZeilen > 0)
 				erfolgreich = true;
@@ -152,12 +169,16 @@ public class UnterhaltungMapper {
 		return erfolgreich;
 	}
 
-	public boolean teilnehmerAktualisieren(int UnterhaltungsID, int TeilnehmerID, int Sichtbarkeit) {
+	public boolean teilnehmerAktualisieren(int UnterhaltungsID,
+			int TeilnehmerID, int Sichtbarkeit) {
 		boolean erfolgreich = true;
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "UPDATE `NutzerUnterhaltung` SET `Sichtbarkeit`='" + Sichtbarkeit + "' WHERE `NutzerId`='" + TeilnehmerID
+			String sqlquery = "UPDATE `NutzerUnterhaltung` SET `Sichtbarkeit`='"
+					+ Sichtbarkeit
+					+ "' WHERE `NutzerId`='"
+					+ TeilnehmerID
 					+ "' and`UnterhaltungId`='" + UnterhaltungsID + "';";
 			int anzahlBetroffenerZeilen = state.executeUpdate(sqlquery);
 			if (anzahlBetroffenerZeilen > 0)
@@ -171,7 +192,8 @@ public class UnterhaltungMapper {
 		return erfolgreich;
 	}
 
-	public Unterhaltung selektiereUnterhaltungenVonNachrichtId(Nachricht nachricht) {
+	public Unterhaltung selektiereUnterhaltungenVonNachrichtId(
+			Nachricht nachricht) {
 		Unterhaltung uH = new Unterhaltung();
 		Connection con = DatenbankVerbindung.connection();
 
@@ -184,7 +206,8 @@ public class UnterhaltungMapper {
 			while (rs.next()) {
 				int typ = rs.getInt("Unterhaltung.Typ");
 				uH.setId(rs.getInt("Unterhaltung.Id"));
-				uH.setErstellungsDatum(rs.getTimestamp("Unterhaltung.Erstellungsdatum"));
+				uH.setErstellungsDatum(rs
+						.getTimestamp("Unterhaltung.Erstellungsdatum"));
 				uH.setUnterhaltungstyp(Unterhaltung.eUnterhaltungsTyp.values()[typ]);
 				uH.setSichtbarkeit(1);
 			}
@@ -202,7 +225,8 @@ public class UnterhaltungMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sql = "SELECT * FROM NutzerUnterhaltung WHERE NutzerId = '" + meineId + "' AND Sichtbarkeit = 1";
+			String sql = "SELECT * FROM NutzerUnterhaltung WHERE NutzerId = '"
+					+ meineId + "' AND Sichtbarkeit = 1";
 			ResultSet rs = state.executeQuery(sql);
 			while (rs.next()) {
 				meineUnterhaltungen.add(rs.getInt("UnterhaltungId"));
@@ -214,21 +238,24 @@ public class UnterhaltungMapper {
 		return meineUnterhaltungen;
 	}
 
-	public Unterhaltung gibNachrichtenIdsZuUnterhaltungsId(Integer unterhaltungsId) {
+	public Unterhaltung gibNachrichtenIdsZuUnterhaltungsId(
+			Integer unterhaltungsId) {
 		Unterhaltung u = new Unterhaltung();
 		Vector<Nachricht> meineNachrichten = new Vector<Nachricht>();
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
 			String sql = "SELECT * FROM NachrichtUnterhaltung INNER JOIN Unterhaltung ON NachrichtUnterhaltung.UnterhaltungId = Unterhaltung.Id INNER JOIN Nachricht ON NachrichtUnterhaltung.NachrichtId = Nachricht.Id WHERE NachrichtUnterhaltung.UnterhaltungId = '"
-					+ unterhaltungsId + "' AND Unterhaltung.Sichtbarkeit = 1 ORDER BY Nachricht.ErstellungsDatum DESC;";
+					+ unterhaltungsId
+					+ "' AND Unterhaltung.Sichtbarkeit = 1 ORDER BY Nachricht.ErstellungsDatum DESC;";
 			ResultSet rs = state.executeQuery(sql);
 			while (rs.next()) {
 				u.setId(rs.getInt("NachrichtUnterhaltung.UnterhaltungId"));
 				Nachricht nA = new Nachricht();
 				nA.setId(rs.getInt("NachrichtUnterhaltung.NachrichtId"));
 				nA.setSenderId(rs.getInt("Nachricht.AutorId"));
-				nA.setErstellungsDatum(rs.getTimestamp("Nachricht.ErstellungsDatum"));
+				nA.setErstellungsDatum(rs
+						.getTimestamp("Nachricht.ErstellungsDatum"));
 				nA.setText(rs.getString("Nachricht.Text"));
 				nA.setSichtbarkeit(1);
 				meineNachrichten.add(nA);
@@ -246,7 +273,10 @@ public class UnterhaltungMapper {
 		Vector<Integer> teilnehmer = new Vector<Integer>();
 		try {
 			Statement state = con.createStatement();
-			String sql = "SELECT * FROM NutzerUnterhaltung WHERE UnterhaltungId = '" + unterhaltungsId + "';";
+			String sql = "SELECT * FROM NutzerUnterhaltung JOIN Nutzer ON NutzerUnterhaltung.NutzerId = Nutzer.Id WHERE UnterhaltungId = '"
+					+ unterhaltungsId
+					+ "' AND Nutzer.Status = '"
+					+ eStatus.aktiv.ordinal() + "';";
 			ResultSet rs = state.executeQuery(sql);
 			while (rs.next()) {
 				teilnehmer.add(rs.getInt("NutzerId"));
@@ -258,12 +288,19 @@ public class UnterhaltungMapper {
 		return teilnehmer;
 	}
 
-	public boolean ueberpruefeObTeilnehmerInaktivInUnterhaltung(int unterhaltungsId, int teilnehmerId) {
+	public boolean ueberpruefeObTeilnehmerInaktivInUnterhaltung(
+			int unterhaltungsId, int teilnehmerId) {
 		boolean vorhanden = false;
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sql = "SELECT * FROM NutzerUnterhaltung WHERE UnterhaltungId = '" + unterhaltungsId + "' AND NutzerId = '" + teilnehmerId + "';";
+			String sql = "SELECT * FROM NutzerUnterhaltung JOIN Nutzer ON NutzerUnterhaltung.NutzerId = Nutzer.Id WHERE UnterhaltungId = '"
+					+ unterhaltungsId
+					+ "' AND NutzerId = '"
+					+ teilnehmerId
+					+ "' AND Nutzer.Status = '"
+					+ eStatus.aktiv.ordinal()
+					+ "';";
 
 			int anzahlBetroffenerZeilen = state.executeUpdate(sql);
 			if (anzahlBetroffenerZeilen >= 0)
@@ -280,19 +317,22 @@ public class UnterhaltungMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sql = "SELECT count(*) as Anzahl FROM NutzerUnterhaltung WHERE UnterhaltungId = "+unterhaltungsID+" AND NutzerId = "+nutzerID+";";
+			String sql = "SELECT count(*) as Anzahl FROM NutzerUnterhaltung JOIN Nutzer ON NutzerUnterhaltung.NutzerId = Nutzer.Id WHERE UnterhaltungId = "
+					+ unterhaltungsID
+					+ " AND NutzerId = "
+					+ nutzerID
+					+ " AND Nutzer.Status = '" + eStatus.aktiv.ordinal() + "';";
 
 			ResultSet rs = state.executeQuery(sql);
 			int ergebnis = -1;
 			while (rs.next()) {
 				ergebnis = (rs.getInt("Anzahl"));
 			}
-			
-			if(ergebnis >0)
+
+			if (ergebnis > 0)
 				vorhanden = true;
 			else
 				vorhanden = false;
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
