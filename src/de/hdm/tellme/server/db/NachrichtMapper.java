@@ -195,7 +195,7 @@ public class NachrichtMapper {
 		return meineNachrichten;
 	}
 
-	public Vector<Nachricht> report1_1Mapper(int meineId, Date vonDatum,
+	public Vector<Nachricht> report1Mapper(int meineId, Date vonDatum,
 			Date bisDatum) {
 		Vector<Nachricht> alleNachrichtenVonBestimmtenNutzerInBestimmtemZeitraum = new Vector<Nachricht>();
 		Connection con = DatenbankVerbindung.connection();
@@ -221,7 +221,7 @@ public class NachrichtMapper {
 
 	}
 
-	public Vector<Nachricht> report1_2Mapper(Timestamp vonDatum,
+	public Vector<Nachricht> report2Mapper(Timestamp vonDatum,
 			Timestamp bisDatum) {
 		Vector<Nachricht> alleNachrichtenInBestimmtemZeitraum = new Vector<Nachricht>();
 		Connection con = DatenbankVerbindung.connection();
@@ -244,7 +244,7 @@ public class NachrichtMapper {
 		return alleNachrichtenInBestimmtemZeitraum;
 	}
 
-	public Vector<Nachricht> report1_3Mapper(int meineId) {
+	public Vector<Nachricht> report3Mapper(int meineId) {
 		Vector<Nachricht> alleNachrichteneinesNutzers = new Vector<Nachricht>();
 		Connection con = DatenbankVerbindung.connection();
 		try {
@@ -267,7 +267,7 @@ public class NachrichtMapper {
 		return alleNachrichteneinesNutzers;
 	}
 
-	public Vector<Nachricht> report1_4Mapper() {
+	public Vector<Nachricht> report4Mapper() {
 		Vector<Nachricht> alleNachrichten = new Vector<Nachricht>();
 		Connection con = DatenbankVerbindung.connection();
 		try {

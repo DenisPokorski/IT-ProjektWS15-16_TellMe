@@ -18,19 +18,19 @@ import de.hdm.tellme.shared.bo.Nutzer;
  *
  */
 public interface ReportServiceAsync {
-	void report1_1Generieren(int nutzerId, Date vonDatum, Date bisDatum,
+	void report1Generieren(int nutzerId, Date vonDatum, Date bisDatum,
 			AsyncCallback<Vector<Nachricht>> asyncCallback);
 
-	void report1_2Generieren(Timestamp vonDatum, Timestamp bisDatum,
+	void report2Generieren(Timestamp vonDatum, Timestamp bisDatum,
 			AsyncCallback<Vector<Nachricht>> asyncCallback);
 
-	void report1_3Generieren(int i,
+	void report3Generieren(int i,
 			AsyncCallback<Vector<Nachricht>> asyncCallback);
 
-	void report1_4Generieren(AsyncCallback<Vector<Nachricht>> asyncCallback);
+	void report4Generieren(AsyncCallback<Vector<Nachricht>> asyncCallback);
 
-	void report2GenerierenListe(int i, AsyncCallback<Vector<Nutzer>> callback);
+	void report5GenerierenListe(int i, AsyncCallback<Vector<Nutzer>> callback);
 
-	void report3Generieren(int i, AsyncCallback<Vector<Hashtag>> asyncCallback);
+	void report6Generieren(int i, AsyncCallback<Vector<Hashtag>> asyncCallback);
 
 }

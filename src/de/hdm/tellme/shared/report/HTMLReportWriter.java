@@ -31,21 +31,20 @@ public class HTMLReportWriter {
 	private Label subtext = new Label(
 			"Ausgabe aller Hashtagabonnoments eines Nutzers");
 
-	public void generateReport3(Vector<Hashtag> result, Nutzer n) {
+	public void generateReport6(Vector<Hashtag> result, Nutzer n) {
 		RootPanel.get("content_right").clear();
 
 		ueberrschrift1.setStylePrimaryName("ueberschrift_report");
 		subtext.setStylePrimaryName("subtext_report");
-//		reportText.setStylePrimaryName("report_inhalt");
+		// reportText.setStylePrimaryName("report_inhalt");
 
-		erstelleKopfdatenReport3(n);
-		erstelleKoerperDatenReport3(result);
+		erstelleKopfdatenReport6(n);
+		erstelleKoerperDatenReport6(result);
 
 		this.reportText = buffer.toString();
 		HTML html = new HTML(reportText);
 		html.setStylePrimaryName("report_inhalt");
 
-		
 		RootPanel.get("content_right").add(ueberrschrift1);
 		RootPanel.get("content_right").add(subtext);
 
@@ -56,7 +55,11 @@ public class HTMLReportWriter {
 	 * 
 	 * @param n
 	 */
-	public void erstelleKopfdatenReport3(Nutzer n) {
+
+	/*
+	 * Report 6
+	 */
+	public void erstelleKopfdatenReport6(Nutzer n) {
 		String ausgangsnutzer = "Ausgangsnutzer:<div></div>" + n.getVorname()
 				+ " " + n.getNachname();
 
@@ -67,7 +70,7 @@ public class HTMLReportWriter {
 
 		// Nutzerabo Klasse Format
 		buffer.append("<table class='reportTabelle'>");
-		buffer.append("<th colspan='2' class='reportKopfzeile'> Report 3 </th>");
+		buffer.append("<th colspan='2' class='reportKopfzeile'> Report 6 </th>");
 
 		buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"
 				+ ausgangsnutzer
@@ -78,11 +81,11 @@ public class HTMLReportWriter {
 		buffer.append("</table>");
 	}
 
-	public void erstelleKoerperDatenReport3(Vector<Hashtag> result) {
+	public void erstelleKoerperDatenReport6(Vector<Hashtag> result) {
 		if (result.size() <= 0) {
 			buffer.append("<table>");
 			buffer.append("<tr> <th>FÜR DEN AUSGEWÄHLTEN NUTZER"
-					+ " IST ZUR ZEIT KEIN REPORT 3 VERFÜGBAR, DA DER NUTZER KEINE "
+					+ " IST ZUR ZEIT KEIN REPORT 6 VERFÜGBAR, DA DER NUTZER KEINE "
 					+ "HASHTAGS ABONNIERT HAT!</th></tr>");
 			buffer.append("</table>");
 
@@ -100,22 +103,23 @@ public class HTMLReportWriter {
 		}
 	}
 
-	// Abschnitt Report 2
-	public void generateReport2(Vector<Nutzer> result, Nutzer n) {
-	
+	/*
+	 * Abschnitt Report 5
+	 */
+	public void generateReport5(Vector<Nutzer> result, Nutzer n) {
+
 		RootPanel.get("content_right").clear();
-		  Label ueberrschrift1 = new Label("Reportgenerator 2: ");
-		  Label subtext = new Label("Ausgabe aller Nachrichten eines Nutzers");
-			ueberrschrift1.setStylePrimaryName("ueberschrift_report");
-			subtext.setStylePrimaryName("subtext_report");
-			
-			RootPanel.get("content_right").add(ueberrschrift1);
-			RootPanel.get("content_right").add(subtext);
+		Label ueberrschrift1 = new Label("Reportgenerator 5: ");
+		Label subtext = new Label("Ausgabe aller Nachrichten eines Nutzers");
+		ueberrschrift1.setStylePrimaryName("ueberschrift_report");
+		subtext.setStylePrimaryName("subtext_report");
 
-		erstelleKopfDatenReport2(n);
-		erstelleKoerperDatenReport2(result);
+		RootPanel.get("content_right").add(ueberrschrift1);
+		RootPanel.get("content_right").add(subtext);
 
- 		
+		erstelleKopfDatenReport5(n);
+		erstelleKoerperDatenReport5(result);
+
 		this.reportText = buffer.toString();
 		HTML html = new HTML(reportText);
 		html.setStylePrimaryName("report_inhalt");
@@ -123,7 +127,7 @@ public class HTMLReportWriter {
 		RootPanel.get("content_right").add(html);
 	}
 
-	public void erstelleKopfDatenReport2(Nutzer n) {
+	public void erstelleKopfDatenReport5(Nutzer n) {
 		String ausgangsnutzer = "Ausgangsnutzer:<div></div>" + n.getVorname()
 				+ " " + n.getNachname();
 		Date currentTime = new Date(System.currentTimeMillis());
@@ -149,7 +153,7 @@ public class HTMLReportWriter {
 	 * 
 	 * @param result
 	 */
-	public void erstelleKoerperDatenReport2(Vector<Nutzer> result) {
+	public void erstelleKoerperDatenReport5(Vector<Nutzer> result) {
 
 		if (result.size() <= 0) {
 			buffer.append("<table>");
@@ -174,27 +178,30 @@ public class HTMLReportWriter {
 
 	}
 
-	private Label ueberschrift1_3 = new Label("Report 1_3");
-	private Label subtext1_3 = new Label(
-			"Report 1_3 gibt alle Nachrichten eines Nutzers aus.");
+	/*
+	 * Report 1
+	 */
+	private Label ueberschrift1 = new Label("Report 1");
+	private Label subtext1 = new Label(
+			"Report 1 gibt alle Nachrichten eines Nutzers aus.");
 
-	public void generateReport1_3(Vector<Nachricht> result, Nutzer b) {
+	public void generateReport1(Vector<Nachricht> result, Nutzer b) {
 		RootPanel.get("content").clear();
-		ueberschrift1_3.setStylePrimaryName("ueberschrift_report");
-		subtext1_3.setStylePrimaryName("subtext_report");
+		ueberschrift1.setStylePrimaryName("ueberschrift_report");
+		subtext1.setStylePrimaryName("subtext_report");
 
-		erstelleKopfDatenReport1_3(b);
-		erstelleKoerperDatenReport1_3(result);
+		erstelleKopfDatenReport1(b);
+		erstelleKoerperDatenReport1(result);
 
 		this.reportText = buffer.toString();
 
-		RootPanel.get("content_right").add(ueberschrift1_3);
-		RootPanel.get("content_right").add(subtext1_3);
+		RootPanel.get("content_right").add(ueberschrift1);
+		RootPanel.get("content_right").add(subtext1);
 
 		RootPanel.get("content_right").add(new HTML(reportText));
 	}
 
-	public void erstelleKopfDatenReport1_3(Nutzer n) {
+	public void erstelleKopfDatenReport1(Nutzer n) {
 		String ausgangsnutzer = "Ausgangsnutzer:<div></div>" + n.getVorname()
 				+ " " + n.getNachname();
 		Date currentTime = new Date(System.currentTimeMillis());
@@ -202,7 +209,7 @@ public class HTMLReportWriter {
 				+ dF.format(new Timestamp(currentTime.getTime())));
 		// Nutzerabo Klasse Format
 		buffer.append("<table class='reportTabelle'>");
-		buffer.append("<th colspan='2' class='reportKopfzeile'> Report 1_3 </th>");
+		buffer.append("<th colspan='2' class='reportKopfzeile'> Report 1 </th>");
 
 		buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"
 				+ ausgangsnutzer
@@ -214,41 +221,45 @@ public class HTMLReportWriter {
 
 	}
 
-	public void erstelleKoerperDatenReport1_3(Vector<Nachricht> result) {
+	public void erstelleKoerperDatenReport1(Vector<Nachricht> result) {
 
 		buffer.append("<table class='reportkoerper'>");
-		buffer.append("<tr class='kopfZeileKoerper'> <th>Nachricht</th><th>Empfänger</th><th>Erstellungsdatum</th><th>Hashtag</th><th>Sichtbarkeit</th></tr>");
+		buffer.append("<tr class='kopfZeileKoerper'> <th>Autor</th><th>Nachricht</th><th>Empfänger</th><th>Erstellungsdatum</th><th>Hashtag</th><th>Sichtbarkeit</th></tr>");
 		buffer.append("</table>");
 	}
 
-	private Label ueberschrift1_1 = new Label("Report 1_1");
-	private Label subtext1_1 = new Label(
-			"Report 1_1 gibt alle Nachrichten eines Nutzers aus.");
+	/*
+	 * Report 2
+	 */
 
-	public void generateReport1_1(Vector<Nachricht> result, Nutzer b) {
+	private Label ueberschrift2 = new Label("Report 2");
+	private Label subtext2 = new Label(
+			"Report 2 gibt alle Nachrichten in einem bestimmten Zeitraum aus.");
+
+	public void generateReport2(Vector<Nachricht> result, Nutzer b) {
 		RootPanel.get("content").clear();
-		ueberschrift1_1.setStylePrimaryName("ueberschrift_report");
-		subtext1_1.setStylePrimaryName("subtext_report");
+		ueberschrift2.setStylePrimaryName("ueberschrift_report");
+		subtext2.setStylePrimaryName("subtext_report");
 
-		erstelleKopfDatenReport1_1(b);
-		erstelleKoerperDatenReport1_1(result);
+		erstelleKopfDatenReport2(b);
+		erstelleKoerperDatenReport2(result);
 
 		this.reportText = buffer.toString();
 
-		RootPanel.get("content_right").add(ueberschrift1_1);
-		RootPanel.get("content_right").add(subtext1_1);
+		RootPanel.get("content_right").add(ueberschrift2);
+		RootPanel.get("content_right").add(subtext2);
 
 		RootPanel.get("content_right").add(new HTML(reportText));
 	}
 
-	private void erstelleKoerperDatenReport1_1(Vector<Nachricht> result) {
+	private void erstelleKoerperDatenReport2(Vector<Nachricht> result) {
 		buffer.append("<table class='reportkoerper'>");
 		buffer.append("<tr class='kopfZeileKoerper'> <th>Nachricht</th><th>Empfänger</th><th>Erstellungsdatum</th><th>Hashtag</th><th>Sichtbarkeit</th></tr>");
 		buffer.append("</table>");
 
 	}
 
-	private void erstelleKopfDatenReport1_1(Nutzer b) {
+	private void erstelleKopfDatenReport2(Nutzer b) {
 		String ausgangsnutzer = "Ausgangsnutzer:<div></div>" + b.getVorname()
 				+ " " + b.getNachname();
 		Date currentTime = new Date(System.currentTimeMillis());
@@ -256,7 +267,104 @@ public class HTMLReportWriter {
 				+ dF.format(new Timestamp(currentTime.getTime())));
 		// Nutzerabo Klasse Format
 		buffer.append("<table class='reportTabelle'>");
-		buffer.append("<th colspan='2' class='reportKopfzeile'> Report 1_1 </th>");
+		buffer.append("<th colspan='2' class='reportKopfzeile'> Report 2 </th>");
+
+		buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"
+				+ ausgangsnutzer
+				+ "</div><div> Datum: "
+				+ Erstellungsdatum
+				+ "</div></td><td class='kopfdatenbox_rechts'>"
+				+ new Impressum().getHtmlImpressum() + "</td></tr>");
+		buffer.append("</table>");
+	}
+
+	/**
+	 * Report 4
+	 */
+	private Label ueberschrift4 = new Label("Report 4");
+	private Label subtext4 = new Label("Report 4 gibt alle Nachrichten aus.");
+
+	public void generateReport4(Vector<Nachricht> result, Nutzer b) {
+		RootPanel.get("content").clear();
+		ueberschrift4.setStylePrimaryName("ueberschrift_report");
+		subtext4.setStylePrimaryName("subtext_report");
+
+		erstelleKopfDatenReport4(b);
+		erstelleKoerperDatenReport4(result);
+
+		this.reportText = buffer.toString();
+
+		RootPanel.get("content_right").add(ueberschrift4);
+		RootPanel.get("content_right").add(subtext4);
+
+		RootPanel.get("content_right").add(new HTML(reportText));
+	}
+
+	private void erstelleKoerperDatenReport4(Vector<Nachricht> result) {
+		buffer.append("<table class='reportkoerper'>");
+		buffer.append("<tr class='kopfZeileKoerper'> <th>Autor</th><th>Nachricht</th><th>Empfänger</th><th>Erstellungsdatum</th><th>Hashtag</th><th>Sichtbarkeit</th></tr>");
+		buffer.append("</table>");
+
+	}
+
+	private void erstelleKopfDatenReport4(Nutzer b) {
+		String ausgangsnutzer = "Ausgangsnutzer:<div></div>" + b.getVorname()
+				+ " " + b.getNachname();
+		Date currentTime = new Date(System.currentTimeMillis());
+		HTML Erstellungsdatum = new HTML(""
+				+ dF.format(new Timestamp(currentTime.getTime())));
+		// Nutzerabo Klasse Format
+		buffer.append("<table class='reportTabelle'>");
+		buffer.append("<th colspan='2' class='reportKopfzeile'> Report 4 </th>");
+
+		buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"
+				+ ausgangsnutzer
+				+ "</div><div> Datum: "
+				+ Erstellungsdatum
+				+ "</div></td><td class='kopfdatenbox_rechts'>"
+				+ new Impressum().getHtmlImpressum() + "</td></tr>");
+		buffer.append("</table>");
+	}
+
+	/**
+	 * Report 3
+	 */
+	private Label ueberschrift3 = new Label("Report 3");
+	private Label subtext3 = new Label(
+			"Report 3 gibt alle Nachrichten eines Nutzers aus.");
+
+	public void generateReport3(Vector<Nachricht> result, Nutzer b) {
+		RootPanel.get("content").clear();
+		ueberschrift3.setStylePrimaryName("ueberschrift_report");
+		subtext3.setStylePrimaryName("subtext_report");
+
+		erstelleKopfDatenReport3(b);
+		erstelleKoerperDatenReport3(result);
+
+		this.reportText = buffer.toString();
+
+		RootPanel.get("content_right").add(ueberschrift3);
+		RootPanel.get("content_right").add(subtext3);
+
+		RootPanel.get("content_right").add(new HTML(reportText));
+	}
+
+	private void erstelleKoerperDatenReport3(Vector<Nachricht> result) {
+		buffer.append("<table class='reportkoerper'>");
+		buffer.append("<tr class='kopfZeileKoerper'> <th>Autor</th><th>Nachricht</th><th>Empfänger</th><th>Erstellungsdatum</th><th>Hashtag</th><th>Sichtbarkeit</th></tr>");
+		buffer.append("</table>");
+
+	}
+
+	private void erstelleKopfDatenReport3(Nutzer b) {
+		String ausgangsnutzer = "Ausgangsnutzer:<div></div>" + b.getVorname()
+				+ " " + b.getNachname();
+		Date currentTime = new Date(System.currentTimeMillis());
+		HTML Erstellungsdatum = new HTML(""
+				+ dF.format(new Timestamp(currentTime.getTime())));
+		// Nutzerabo Klasse Format
+		buffer.append("<table class='reportTabelle'>");
+		buffer.append("<th colspan='2' class='reportKopfzeile'> Report 4 </th>");
 
 		buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"
 				+ ausgangsnutzer
