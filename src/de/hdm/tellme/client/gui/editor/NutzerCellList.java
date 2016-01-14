@@ -115,9 +115,26 @@ public class NutzerCellList {
 							ReportFormular5 rF = new ReportFormular5();
 							rF.report5Generieren(selectionModel
 									.getSelectedObject());
+							VerticalPanel vP = new VerticalPanel();
+
 							RootPanel.get("content_right").clear();
-							RootPanel.get("content_right")
-									.add(rF.gibFormular());
+
+							
+
+							HTML headline = new HTML(
+									" <div class='"
+											+ "subline"
+											+ "'><h2>Reportgenerator 5: Alle Nachrichten je Nutzer anzeigen</h2></div> ");
+							HTML subtext = new HTML(
+									" <div class='"
+											+ "subtext"
+											+ "'><h4> Der Report 5 gibt alle Nutzerabonnements aus.   </h4></div> ");
+
+							vP.add(headline);
+							vP.add(subtext);
+							vP.add(rF.gibFormular());
+							RootPanel.get("content_right").add(vP);
+
 
 						}
 					});

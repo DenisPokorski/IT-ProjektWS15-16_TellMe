@@ -118,14 +118,14 @@ h3 {
 }
 
 	.reportBtn {
-	background: #628cd5;
-	color: #fff;
-	font-size: 12px;
-	border: none;
-	height: 22px;
-	min-width: 91px;
-	margin-right: 1px;
-	width: 100%;
+    background: #628cd5;
+    color: #fff;
+    font-size: 12px;
+    border: none;
+    height: 22px;
+    min-width: 91px;
+    margin-right: 1px;
+    width: 200px;
 }
 
 /*Celllist*/
@@ -152,8 +152,8 @@ h3 {
 	background: #f1f1f1;
 	padding: 14px;
 	font-size: 14px;
-	width: 94%;
-	margin-bottom: 20px;
+    width: 500px;
+   	margin-bottom: 20px;
 }
 
 .hpOptionenButtonbar {
