@@ -201,13 +201,17 @@ public class NeuigkeitenEditor extends VerticalPanel {
 //	}
 
 	public static VerticalPanel gibFilterPanel(){
+		
+
+HTML infbox = new HTML("<div class='"+"infobox"+"'> <h3> Infobox:</h3><b> Die Kürzel PR, OE stehen für: </b><br /> PR = Private Nachricht<br /> OE = Öffentliche Nachricht<br /> </div>" );
+
 		VerticalPanel vpFilterPanel = new VerticalPanel();
 		vpFilterPanel.add(nuCL.generiereCellList(CellListModus.Nachrichtenuebersicht, 0));
-		vpFilterPanel.add(new Label("________________________________________"));
+		vpFilterPanel.add(new Label("______________________________________"));
 		vpFilterPanel.add(hsCL.generiereCellList(CellListModus.Nachrichtenuebersicht));
-		vpFilterPanel.add(new Label("________________________________________"));
+		vpFilterPanel.add(new Label("______________________________________"));
 		Button btnFilterZuruecksetzen = new Button("Filter zurücksetzen");
-		btnFilterZuruecksetzen.setStylePrimaryName("neueNchrichtBtn");
+		btnFilterZuruecksetzen.setStylePrimaryName("filterBtn");
 		btnFilterZuruecksetzen.addClickHandler(new ClickHandler() {
 			
 			@Override
@@ -216,6 +220,8 @@ public class NeuigkeitenEditor extends VerticalPanel {
 			}
 		});
 		vpFilterPanel.add(btnFilterZuruecksetzen);
+		vpFilterPanel.add(infbox);
+
 		
 		return vpFilterPanel;
 	}

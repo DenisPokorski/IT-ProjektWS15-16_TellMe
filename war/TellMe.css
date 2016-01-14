@@ -96,6 +96,27 @@ h3 {
 	width: 100%;
 }
 
+.filterBtn {
+	background: #628cd5;
+	color: #fff;
+	font-size: 12px;
+	border: none;
+	height: 22px;
+	min-width: 91px;
+	margin-right: 1px;
+	width: 100%;
+}
+.filterBtn:hover {
+	background: #ccc;
+	color: #fff;
+	font-size: 12px;
+	border: none;
+	height: 22px;
+	min-width: 91px;
+	margin-right: 1px;
+	width: 100%;
+}
+
 	.reportBtn {
 	background: #628cd5;
 	color: #fff;
@@ -694,6 +715,16 @@ height: 30px;
 }
 .nutzerButtonPanel{margin-top:15px;}
 .report_inhalt{margin-right:10px;}
+
+.infobox{
+    background: #f3f3f3;
+    border: 1px solid #ccc;
+    width: 217px;
+    margin-top: 13px;
+    padding: 15px;
+    padding-top: 5px;
+	
+}
 
 /*table, th, td {
 border: 1px solid black;
