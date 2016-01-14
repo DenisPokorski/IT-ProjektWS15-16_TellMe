@@ -13,7 +13,7 @@ import de.hdm.tellme.client.gui.editor.NutzerZelle;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
- * Report 1_3 gibt den alle Nachrichten eines Nutzers aus, ohne den Zeitraumm zu
+ * Report 3 gibt den alle Nachrichten eines Nutzers aus, ohne den Zeitraumm zu
  * beschränken
  * 
  * @author Alex
@@ -37,7 +37,9 @@ public class ReportFormular3 extends Composite {
 
 			@Override
 			public void onClick(ClickEvent event) {
-
+				RootPanel.get("content_left").clear();
+				RootPanel.get("content_right").clear();
+				
 				NutzerDataProvider.gib(1).report3Generieren(nutzer);
 			}
 		});

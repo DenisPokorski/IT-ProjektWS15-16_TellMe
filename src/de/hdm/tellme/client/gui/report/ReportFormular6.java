@@ -13,7 +13,7 @@ import de.hdm.tellme.client.gui.editor.NutzerZelle;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
- * Die Klasse ReportForumlar3 beeinhaltet den Report-Generierungs-Button "Report 3 erstellen", sowie eine Methode,
+ * Die Klasse ReportForumlar6 beeinhaltet den Report-Generierungs-Button "Report 6 erstellen", sowie eine Methode,
  * um den Button zurückzugeben.
  *
  * 
@@ -22,11 +22,11 @@ import de.hdm.tellme.shared.bo.Nutzer;
  */
 public class ReportFormular6 extends Composite{
 	private Nutzer nutzer = null;
-	private Button report6GenerierenButton = new Button("Report 3 erstellen");
+	private Button report6GenerierenButton = new Button("Report 6 erstellen");
 	/**
 	 * 
 	 * Im Konstruktor der Klasse werden als erstes die beiden Bereiche des Root-Panels "content-left", "content-right" gesäubert.
-	 * Zudem wird die die Mehtode <code>report3Generieren(Nutzer n)</code> aufgerufen. 
+	 * Zudem wird die die Mehtode <code>report6Generieren(Nutzer n)</code> aufgerufen. 
 	 */
 	public ReportFormular6(){
 		

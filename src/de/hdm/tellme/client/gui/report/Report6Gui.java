@@ -30,8 +30,8 @@ public class Report6Gui extends VerticalPanel {
 	 * linken Bereich des Root-Panels mit der Methode
 	 * <code>generiereCellListModus</code> hinzu. In der Methode wird eine
 	 * scrollbare CellList erstellt und ein spezifisches selectionModel
-	 * <code>Report3_NutzerHashtagAbonnement</code> hinzugefügt. Die Angabe des
-	 * Enum-Parameters <code>Report3_NutzerHashtagAbonnement</code> ermöglicht
+	 * <code>Report6_NutzerHashtagAbonnement</code> hinzugefügt. Die Angabe des
+	 * Enum-Parameters <code>Report6_NutzerHashtagAbonnement</code> ermöglicht
 	 * uns die CellList an mehreren Stellen,mit einem spezifischen
 	 * Selektionsverhalten im System zu verwenden.
 	 */
@@ -44,11 +44,11 @@ public class Report6Gui extends VerticalPanel {
  		//report3Generieren.setStylePrimaryName("neueNchrichtBtn");
 
 		HTML headline = new HTML(" <div class='" + "subline"
-				+ "'><h2>Reportgenerator 3: Alle Hashtagabos je anzeigen</h2></div> ");
+				+ "'><h2>Reportgenerator 6: Alle Hashtagabos je anzeigen</h2></div> ");
 		HTML subtext = new HTML(
 				" <div class='"
 						+ "subtext"
-						+ "'><h4> Der Report 3 gibt alle Hashtagabonnoments eines Nutzers in einen bestimmten Zeitraum zurück.   </h4></div> ");
+						+ "'><h4> Der Report 6 gibt alle Hashtagabonnoments eines Nutzers in einen bestimmten Zeitraum zurück.   </h4></div> ");
 
 
 		vP.add(headline);
