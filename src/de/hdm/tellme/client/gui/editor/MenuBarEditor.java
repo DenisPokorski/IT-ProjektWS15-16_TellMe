@@ -74,7 +74,8 @@ public class MenuBarEditor extends HorizontalPanel {
 			@Override
 			public void execute() {
 				setzeInhalt(NeuigkeitenEditor.gibFilterPanel(),
-						gibansichtNeuigkeiten());			}
+						gibansichtNeuigkeiten());
+			}
 		}));
 
 		HauptMenue.addItem("Neuigkeiten", new Command() {
@@ -187,7 +188,7 @@ public class MenuBarEditor extends HorizontalPanel {
 
 			}
 		});
-		
+
 		tempReports.addItem("Report 5", new Command() {
 			@Override
 			public void execute() {
@@ -195,7 +196,7 @@ public class MenuBarEditor extends HorizontalPanel {
 
 			}
 		});
-		
+
 		tempReports.addItem("Report 6", new Command() {
 			@Override
 			public void execute() {

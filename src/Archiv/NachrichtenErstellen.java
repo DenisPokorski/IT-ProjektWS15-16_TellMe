@@ -1,4 +1,4 @@
-package de.hdm.tellme.client;
+package Archiv;
 
 import java.sql.Timestamp;
 
