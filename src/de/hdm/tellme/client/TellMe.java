@@ -21,6 +21,13 @@ import de.hdm.tellme.shared.LoginServiceAsync;
  */
 public class TellMe implements EntryPoint {
 	
+	private static NeuigkeitenEditor ansichtNeuigkeiten = null;
+
+	public static NeuigkeitenEditor gibansichtNeuigkeiten() {
+		ansichtNeuigkeiten = new NeuigkeitenEditor();
+		return ansichtNeuigkeiten;
+	}
+	
 	  /**
 	   * Die Klasse implementiert das Interface <code> EntryPoint</code>.
 	   * Dafür wird die Methode <code> pubic void onModuleLoad()</code>.
@@ -42,6 +49,9 @@ public class TellMe implements EntryPoint {
 	}
 
 	public Widget ladeTellMe() {
+		
+		
+		
 		if (eingeloggterBenutzer.getUser().getVorname() == "undefined"
 				|| eingeloggterBenutzer.getUser().getNachname() == "undefined") {
 			NutzerBearbeitenEditor nE = new NutzerBearbeitenEditor();
@@ -52,7 +62,18 @@ public class TellMe implements EntryPoint {
 			// Startseite anzeigen
 			MenuBarEditor menuBar = new MenuBarEditor();
 
+			
+			
+			
+			RootPanel.get("ButtonBar").clear();
+			RootPanel.get("content_left").clear();
+			RootPanel.get("content_right").clear();
+			RootPanel.get("content").clear();
+			
 			RootPanel.get("header").add(menuBar);
+			RootPanel.get("content_left").add( NeuigkeitenEditor.gibFilterPanel());
+			RootPanel.get("content_right").add(	gibansichtNeuigkeiten());
+ 
 
 			MenuBarEditor.setzeInhalt(NeuigkeitenEditor.gibFilterPanel(),MenuBarEditor.gibansichtNeuigkeiten());
 		}
