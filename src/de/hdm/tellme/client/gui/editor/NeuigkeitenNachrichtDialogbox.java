@@ -148,7 +148,7 @@ public class NeuigkeitenNachrichtDialogbox {
 			final SuggestBox EmpfaengerHinzufuegenSug = new SuggestBox(suggestOracleEmpfaenger);
 			hpEmpfaenger.add(EmpfaengerHinzufuegenSug);
 
-			final Button btnEmpfaengerHinzufuegen = new Button("+ Empfänger");
+			final Button btnEmpfaengerHinzufuegen = new Button("+ Hinzufügen");
 			btnEmpfaengerHinzufuegen.setStylePrimaryName("EmpfaengerPlusBtn");
 
 			hpEmpfaenger.add(btnEmpfaengerHinzufuegen);

@@ -61,7 +61,7 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 	HTML subtext = new HTML(
 			" <div class='"
 					+ "subtext"
-					+ "'><h4>  Auf dieser Oberfläche können Sie Ihre Nutzerdaten bearbeiten und speichern sowie diese vollständig löschen.  </h4></div> ");
+					+ "'><h4>  Auf dieser Oberfläche kannst du deine Nutzerdaten bearbeiten und speichern oder vollständig löschen.  </h4></div> ");
 
 	/**
 	 * Die Methode des AsyncCallbacks, um die Daten zum Nutzer bearbeiten an die
