@@ -18,7 +18,6 @@ import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import de.hdm.tellme.client.NachrichtenErstellen;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Nutzer;

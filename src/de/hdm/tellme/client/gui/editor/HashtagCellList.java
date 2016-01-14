@@ -124,30 +124,38 @@ public class HashtagCellList {
 		default:
 			break;
 		}
+
 		/**
-		 * TODO
+		 * Es wird ein neues <code>ShowMorePagerPanel</code> erstellt, damit die
+		 * Liste automatisch erweitert wird. Die Panels werden geordnet und
+		 * gestylet.
 		 */
 		ShowMorePagerPanel sPager = new ShowMorePagerPanel();
 		sPager.setWidth("250px");
 		sPager.setHeight("100%");
 		sPager.setDisplay(cellList);
 		sPager.setStylePrimaryName("pagerStyleBlue");
+
 		/**
-		 * TODO
+		 * Es wird ein neuer <code>RangeLabelPager</code> erstellt, damit die
+		 * aktuelle Größe nicht verändert werden kann.
 		 */
 		RangeLabelPager fPager = new RangeLabelPager();
 		fPager.setDisplay(cellList);
+
 		/**
 		 * Hier wird ein FlowPanel hinzugefügt, dass die Überschrift
 		 * "Liste aller Hasthags:" in Form eines HTML-Codes erhält.
 		 */
 		FlowPanel fP = new FlowPanel();
 		fP.add(new HTML("Liste aller Hashtags:"));
+
 		/**
 		 * Das FlowPanel wird dem Scroll- und dem SimplePanel hinzugefügt
 		 */
 		fP.add(new ScrollPanel(sPager));
 		fP.add(new SimplePanel(fPager));
+
 		/**
 		 * Die linke Seite des RootPanels wird neu geladen.
 		 */
