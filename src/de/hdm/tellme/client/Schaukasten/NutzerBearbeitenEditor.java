@@ -45,6 +45,8 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 	private TextBox emailTextBox = new TextBox();
 	private Nutzer n = new Nutzer();
 
+	private MenuBarEditor a = new MenuBarEditor();
+	
 	private HorizontalPanel ButtonPanel = new HorizontalPanel();
 	private Button aenderungenSpeichernButton = new Button(
 			"Änderungen speichern");
@@ -81,7 +83,10 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 			@Override
 			public void onSuccess(Void result) {
 				RootPanel.get("content").clear();
+				RootPanel.get("header").clear();
+				RootPanel.get("header").add(a);
 				Window.alert("Profil erfolgreich editiert.");
+
 
 			}
 		});
