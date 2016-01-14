@@ -91,7 +91,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		HTML headline = new HTML(" <h2>Alle Neuigkeiten</h2> ");
 		hpHeadline.add(headline);
 		
-		Button btnNeueNachricht = new Button("+ Nachricht");
+		Button btnNeueNachricht = new Button("Neue Nachricht");
 		btnNeueNachricht.setStylePrimaryName("neueNchrichtBtn");
 		btnNeueNachricht.addClickHandler(btnNeueNachrichtClickHandler);
 		hpHeadline.add(btnNeueNachricht);
@@ -113,7 +113,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 //		Label sublineHpOtion = new Label("Unterhaltung bearbeiten");
 //		hpOptionen.add(sublineHpOtion);
 		
-		Button btnAntworten =new Button("Unterhaltung Antworten");
+		Button btnAntworten =new Button("Unterhaltung beantworten");
 		btnAntworten.setEnabled(false);
 		btnAntworten.setStylePrimaryName("btnUnterhaltungVerlassen"); 
 		btnAntworten.addClickHandler(btnAntwortenClickHandler);

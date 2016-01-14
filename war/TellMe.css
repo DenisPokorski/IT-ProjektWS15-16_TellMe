@@ -243,13 +243,13 @@ h3 {
 }
 
 .btnPositiv:[disabled] {
-	background: #3fb155;
+	background: #f3f3f3;
 		border: 1px outset #ccc;
 	
  }
 
 .btnPositiv[disabled]:hover {
- 		background: #c28090;
+ 		background: #f3f3f3;
 	
 }
 

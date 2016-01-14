@@ -76,6 +76,8 @@ public class NeuigkeitenJaNeinDialogbox {
 				db.hide();
 			}
 		});
+		
+		fpDialog.add(btnAbbrechen);
 
 		HorizontalPanel hpFrage = new HorizontalPanel();
 		hpFrage.add(new Label(textFrage));
@@ -140,7 +142,7 @@ public class NeuigkeitenJaNeinDialogbox {
 	
 		
 		hpButtons.add(btnJa);
-		hpButtons.add(btnAbbrechen);
+		//hpButtons.add(btnAbbrechen);
 		fpDialog.add(hpButtons);
 
 		db.setWidget(fpDialog);
