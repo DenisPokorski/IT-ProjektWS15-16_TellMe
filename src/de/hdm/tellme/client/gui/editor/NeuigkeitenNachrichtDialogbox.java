@@ -149,7 +149,7 @@ public class NeuigkeitenNachrichtDialogbox {
 			final SuggestBox EmpfaengerHinzufuegenSug = new SuggestBox(suggestOracleEmpfaenger);
 			hpEmpfaenger.add(EmpfaengerHinzufuegenSug);
 
-			final Button btnEmpfaengerHinzufuegen = new Button("+ Hinzufügen");
+			final Button btnEmpfaengerHinzufuegen = new Button("+ Empfänger");
 			btnEmpfaengerHinzufuegen.setStylePrimaryName("EmpfaengerPlusBtn");
 
 			hpEmpfaenger.add(btnEmpfaengerHinzufuegen);
@@ -238,7 +238,7 @@ public class NeuigkeitenNachrichtDialogbox {
 		final SuggestBox HastagHinzufuegenSug = new SuggestBox(suggestOracleHashtags);
 		hpHashtags.add(HastagHinzufuegenSug);
 
-		final Button btnHashtagHinzufuegen = new Button("+ Hinzufügen");
+		final Button btnHashtagHinzufuegen = new Button("+ Hashtag");
 		hpHashtags.add(btnHashtagHinzufuegen);
 
 		btnHashtagHinzufuegen.addClickHandler(new ClickHandler() {

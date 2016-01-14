@@ -119,12 +119,12 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 		// ##############################################
 
 	
-		hpEmpfaenger.add(new Label("Empfänger:"));
+		
 
 		final SuggestBox EmpfaengerHinzufuegenSug = new SuggestBox(suggestOracleEmpfaenger);
 		hpEmpfaenger.add(EmpfaengerHinzufuegenSug);
 
-		final Button btnEmpfaengerHinzufuegen = new Button("+ Hinzufügen");
+		final Button btnEmpfaengerHinzufuegen = new Button("+ Empfänger");
 		btnEmpfaengerHinzufuegen.setStylePrimaryName("EmpfaengerPlusBtn");
 		hpEmpfaenger.add(btnEmpfaengerHinzufuegen);
 		
