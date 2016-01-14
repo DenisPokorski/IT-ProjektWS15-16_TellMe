@@ -90,7 +90,7 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.setAnimationEnabled(true);
 		HauptMenue.addItem(new MenuItem("Einstellungen", EinstellungenMenu));
 
-		EinstellungenMenu.addItem("NutzeraboVerwaltung", new Command() {
+		EinstellungenMenu.addItem("Nutzeraboverwaltung", new Command() {
 			@Override
 			public void execute() {
 
@@ -100,7 +100,7 @@ public class MenuBarEditor extends HorizontalPanel {
 			}
 		});
 
-		EinstellungenMenu.addItem("HashtagaboVerwaltung", new Command() {
+		EinstellungenMenu.addItem("Hashtagaboverwaltung", new Command() {
 			@Override
 			public void execute() {
 				setzeInhalt(new HashtagCellList()

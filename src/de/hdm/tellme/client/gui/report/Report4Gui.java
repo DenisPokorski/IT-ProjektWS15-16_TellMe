@@ -70,6 +70,16 @@ public class Report4Gui extends VerticalPanel{
 	public void onLoad(){
 		
 
+		HTML headline = new HTML(
+				" <div class='"
+						+ "subline"
+						+ "'><h2>Reportgenerator 4: Alle Nachrichten des Systems anzeigen</h2></div> ");
+		HTML subtext = new HTML(
+				" <div class='"
+						+ "subtext"
+						+ "'><h4> Der Report 4 gibt alle Nachrichten des gesamten System aus  </h4></div> ");
+		
+
 		/*
 		 * Die Panels werden anschaulich angeordnet.
 		 */
@@ -80,10 +90,10 @@ public class Report4Gui extends VerticalPanel{
 		reportPanel1_left.add(report4Generieren);
 		report4Generieren.setStylePrimaryName("neueNchrichtBtn");
 
+		
+		reportPanel1_right.add(headline);
+		reportPanel1_right.add(subtext);
 		reportPanel1_right.add(beschreibung1);
-		
-		
-		
 		reportPanel.add(reportPanel1);
 		
 		
@@ -109,8 +119,8 @@ public class Report4Gui extends VerticalPanel{
 			public void onClick(ClickEvent event) {
 				
 				RootPanel.get("content_left").clear();
-				RootPanel.get("content_right").clear();
-				
+				RootPanel.get("content_left").add(headline);
+
 				NutzerDataProvider.gib(1).report4Generieren(nutzer);
 				
 				

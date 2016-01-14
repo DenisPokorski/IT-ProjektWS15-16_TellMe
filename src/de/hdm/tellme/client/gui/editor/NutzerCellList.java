@@ -94,14 +94,29 @@ public class NutzerCellList {
 			selectionModel
 					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
+							VerticalPanel vP = new VerticalPanel();
+							RootPanel.get("content_right").clear();
+
 
 							ReportFormular3 rF = new ReportFormular3();
 							rF.report3Generieren(selectionModel
 									.getSelectedObject());
+							
+							HTML headline = new HTML(
+									" <div class='"
+											+ "subline"
+											+ "'><h2>Reportgenerator 3: Alle Nachrichten je Nutzer anzeigen </h2></div> ");
+							HTML subtext = new HTML(
+									" <div class='"
+											+ "subtext"
+											+ "'><h4> 		Um einen Report auszugeben, der alle Nachrichten von<b> einem bestimmten Nutzer</b>" + " darstellt, musst du <b>einen Nutzer </b>auswählen und darfst <b>keinen Zeitraum  </h4></div> ");
 
-							RootPanel.get("content_right").clear();
-							RootPanel.get("content_right")
-									.add(rF.gibFormular());
+
+							vP.add(headline);
+							vP.add(subtext);
+							vP.add(rF.gibFormular());
+
+							RootPanel.get("content_right").add(vP);
 
 						}
 

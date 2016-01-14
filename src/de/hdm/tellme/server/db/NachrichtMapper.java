@@ -519,7 +519,7 @@ public class NachrichtMapper {
 				nA.setSenderId(rs.getInt("AutoId"));
 				nA.setSichtbarkeit(rs.getInt("Sichtbarkeit"));
 			 
-				nA.setVerknuepfteHashtags(verknuepfteHashtags);
+		//		nA.setVerknuepfteHashtags(verknuepfteHashtags);
 			
 			}
 		} catch(Exception e) {

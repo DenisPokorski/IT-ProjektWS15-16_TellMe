@@ -64,7 +64,7 @@ public class Report1Gui extends VerticalPanel {
 	private Button report1Generieren = new Button("Report 1 generieren");
 
 	private HTML beschreibung1 = new HTML(
-			"<ul><b>Der Report 1 gibt alle Nachrichten eines Nutzers in einen bestimmten Zeitraum aus</b>"
+			"<ul><b></b>"
 					+ "<li>Um einen Report auszugeben, der  alle Nachrichten <b>eines Nutzers</b> "
 					+ "in <b>einem bestimmten Zeitraum</b> darstellt, musst du einen Nutzer<b> UND</b> einen Zeitraum auswählen</li>");
 
@@ -157,6 +157,13 @@ public class Report1Gui extends VerticalPanel {
 
 			@Override
 			public void onClick(ClickEvent event) {
+				
+				RootPanel.get("content_left").clear();
+				RootPanel.get("content_right").clear();
+
+				RootPanel.get("content_right").add(headline);
+				//	NutzerDataProvider.gib(1).report1Generieren(nutzer);
+
 			}
 		});
 	}

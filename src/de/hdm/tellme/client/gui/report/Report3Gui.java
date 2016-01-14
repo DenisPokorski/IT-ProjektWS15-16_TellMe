@@ -57,14 +57,9 @@ public class Report3Gui extends VerticalPanel {
 	private HorizontalPanel reportPanel3 = new HorizontalPanel();
 	private VerticalPanel reportPanel3_left = new VerticalPanel();
 	private VerticalPanel reportPanel3_right = new VerticalPanel();
+ 	VerticalPanel vP = new VerticalPanel(); 
 
 	private Button report3Generieren = new Button("Report 3 generieren");
-
-	private HTML beschreibung2 = new HTML(
-			"<ul><b>Der Report 3 gibt alle Nachrichten eines Nutzers aus</b>"
-
-					+ "<li>Um einen Report auszugeben, der alle Nachrichten von<b> einem bestimmten Nutzer</b>"
-					+ " darstellt, musst du <b>einen Nutzer </b>auswählen und darfst <b>keinen Zeitraum </b>auswählen. </li></ul>");
 
 	public void report1Generieren(NutzerZelle.ZellenObjekt ZellenObjekt) {
 		this.nutzer = ZellenObjekt.nutzer;
@@ -79,7 +74,18 @@ public class Report3Gui extends VerticalPanel {
 	 */
 
 	public void onLoad() {
+		
+		HTML headline = new HTML(
+				" <div class='"
+						+ "subline"
+						+ "'><h2>Reportgenerator 3: Alle Nachrichten je Nutzer anzeigen \n </h2></div> ");
+		HTML subtext = new HTML(
+				" <div class='"
+						+ "subtext"
+						+ "'><h4> 		Um einen Report auszugeben, der alle Nachrichten von<b> einem bestimmten Nutzer</b>" + " darstellt, musst du <b>einen Nutzer </b>auswählen und darfst <b>keinen Zeitraum  </h4></div> ");
 
+
+			
 		/*
 		 * Die Panels werden anschaulich angeordnet.
 		 */
@@ -98,18 +104,31 @@ public class Report3Gui extends VerticalPanel {
 
 		reportPanel3_left.add(new NutzerCellList().generiereCellList(
 				CellListModus.Report3_NachrichtNutzer, 1));
-		reportPanel3_right.add(beschreibung2);
 
 		reportPanel.add(reportPanel3);
 		/*
 		 * Das RootPanel wird gesäubert und die verschiedenen Elemente für
 		 * Report 3 zugeordnet.
+		 * 
 		 */
+		
+//		reportPanel3_right.add(headline);
+//		reportPanel3_right.add(subtext);
+		
+		vP.add(headline);
+		vP.add(subtext);
+		
+
+		
 		RootPanel.get("content").clear();
 		RootPanel.get("content_left").clear();
 		RootPanel.get("content_right").clear();
 		RootPanel.get("content_right").add(reportPanel3_right);
+		RootPanel.get("content_right").add(vP);
+
+
 		RootPanel.get("content_left").add(reportPanel3_left);
+		
 		/*
 		 * Der Button <code>report3Generieren</code> bekommt eine Funktion,
 		 * damit der Report 3 generiert werden kann.

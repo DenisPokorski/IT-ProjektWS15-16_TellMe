@@ -1,5 +1,7 @@
 package de.hdm.tellme.client.gui.report;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -7,6 +9,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
+import de.hdm.tellme.client.gui.editor.NutzerDataProvider;
 /**
  * 
  * 
@@ -67,10 +70,26 @@ public class Report5Gui  extends VerticalPanel {
 		.add(new NutzerCellList()
 				.generiereCellList(CellListModus.Report5_NutzerNutzerAbonnement, 1));
 		
-//		RootPanel
-//		.get("content_left")
-//		.add(report2Generieren);
-//		
+		RootPanel
+		.get("content_left")
+		.add(report5Generieren);
+		
+		report5Generieren.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				
+				RootPanel.get("content_left").clear();
+				RootPanel.get("content_right").clear();
+
+				RootPanel.get("content_right").add(headline);
+
+			//	NutzerDataProvider.gib(1).report4Generieren(nutzer);
+				
+				
+			}
+		});
+ 		
 		
  	}
 
