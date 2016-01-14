@@ -82,11 +82,11 @@ public class Report1Gui extends VerticalPanel {
 
 	public void onLoad() {
 
-		HTML headline = new HTML(
+		final HTML headline = new HTML(
 				" <div class='"
 						+ "subline"
 						+ "'><h2>Reportgenerator 1: Alle Nachrichten je Nutzer anzeigen</h2></div> ");
-		HTML subtext = new HTML(
+		final HTML subtext = new HTML(
 				" <div class='"
 						+ "subtext"
 						+ "'><h4> Der Report 1 gibt alle Nachrichten eines Nutzers in einen bestimmten Zeitraum aus  </h4></div> ");

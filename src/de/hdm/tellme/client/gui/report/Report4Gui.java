@@ -70,11 +70,11 @@ public class Report4Gui extends VerticalPanel{
 	public void onLoad(){
 		
 
-		HTML headline = new HTML(
+		final HTML headline = new HTML(
 				" <div class='"
 						+ "subline"
 						+ "'><h2>Reportgenerator 4: Alle Nachrichten des Systems anzeigen</h2></div> ");
-		HTML subtext = new HTML(
+		final HTML subtext = new HTML(
 				" <div class='"
 						+ "subtext"
 						+ "'><h4> Der Report 4 gibt alle Nachrichten des gesamten System aus  </h4></div> ");
