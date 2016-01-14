@@ -122,6 +122,7 @@ public class NeuigkeitenNachrichtDialogbox {
 		db.setText(boxTitel);
 		db.setAnimationEnabled(true);
 		db.setGlassEnabled(true);
+		
 
 		FlowPanel fpDialog = new FlowPanel();
 		// fpDialog.setHeight("500px");
@@ -227,6 +228,7 @@ public class NeuigkeitenNachrichtDialogbox {
 		textArea.setVisibleLines(10);
 		textArea.setText(textAreaInhalt);
 		textArea.setStylePrimaryName("dialogtextArea");
+		textArea.getElement().setAttribute("maxlength", "255");
 
 		// maxlength="50"
 		fpDialog.add(textArea);
