@@ -503,4 +503,30 @@ public class NachrichtMapper {
 		}
 		return nachrichtenNachNutzerNachDatum;
 	}
+	
+	public Vector<Nachricht> gibAlleNachrichtenVonAlleNutzern (int AutorId, int NachrichtId, int HashtagId,  Timestamp vonDatum, Timestamp bisDatum ){
+		Connection con = DatenbankVerbindung.connection();
+		Vector<Nachricht> alleNachrichtenalleNutzer = new Vector<Nachricht>();
+		try {
+			Statement state = con.createStatement();
+			String sqlquery = "";
+			ResultSet rs = state.executeQuery(sqlquery);
+			while (rs.next()){
+				Nachricht nA = new Nachricht();
+				nA.setId(rs.getInt("Id"));
+				nA.setText("Text");
+				nA.setErstellungsDatum(rs.getTimestamp("Erstellungsdatum"));
+				nA.setSenderId(rs.getInt("AutoId"));
+				nA.setSichtbarkeit(rs.getInt("Sichtbarkeit"));
+			 
+				nA.setVerknuepfteHashtags(verknuepfteHashtags);
+			
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return alleNachrichtenalleNutzer;
+	}
+
+
 }
