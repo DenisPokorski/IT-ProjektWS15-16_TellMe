@@ -25,41 +25,41 @@ import de.hdm.tellme.client.gui.editor.NutzerZelle.ZellenObjekt;
 import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.bo.Nutzer;
 
-
 /**
  * 
  * 
  * 
  * 
- * Dieser Report zeigt alle Nachrichten an. 
+ * Dieser Report zeigt alle Nachrichten an. Deshalb benötigt die GUI von Report
+ * 4 keine Elemente um Bedingungen zu erfüllen, sondern hat nur einen Button zum
+ * erstellen des Reports.
+ * 
  * @author Zimmerman & Alex Homann
  * @version 1.1
  * 
  */
 
-public class Report4Gui extends VerticalPanel{
+public class Report4Gui extends VerticalPanel {
 	/*
 	 * Es werden in einem Vertical Panel die verschiedenen benötigten Elemente
-	 * dargestellt. Dies ist ein Button der die Funktion
-	 * ReportGenerieren beinhaltet. Außerdem gibt es eine Überschrift und eine
-	 * Beschreibung für den Report 4.
+	 * dargestellt. Dies ist ein Button der die Funktion ReportGenerieren
+	 * beinhaltet. Außerdem gibt es eine Überschrift und eine Beschreibung für
+	 * den Report 4.
 	 */
 	private Nutzer nutzer = null;
 
-
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift1 = new Label("Report4: Nachrichten abfragen");
-	
+
 	private HorizontalPanel reportPanel1 = new HorizontalPanel();
 	private VerticalPanel reportPanel1_left = new VerticalPanel();
 	private VerticalPanel reportPanel1_right = new VerticalPanel();
 
-
 	private Button report4Generieren = new Button("Report 4 generieren");
-	
-	private HTML beschreibung1 = new HTML("<ul><b>Der Report 4 gibt alle Nachrichten aus</b>"
-			+ "<li>Um einen Report auszugeben, der  alle Nachrichten darstellt, musst du den Button drücken</li></ul>");
 
+	private HTML beschreibung1 = new HTML(
+			"<ul><b>Der Report 4 gibt alle Nachrichten aus</b>"
+					+ "<li>Um einen Report auszugeben, der  alle Nachrichten darstellt, musst du den Button drücken</li></ul>");
 
 	/**
 	 * Die onLoad-Methode wird verwendet um in der Seite die verschiedenen
@@ -67,8 +67,7 @@ public class Report4Gui extends VerticalPanel{
 	 * Pendant zur <code>main()</code>-Methode einer normalen Java Applikation
 	 * darstellt
 	 */
-	public void onLoad(){
-		
+	public void onLoad() {
 
 		final HTML headline = new HTML(
 				" <div class='"
@@ -78,7 +77,6 @@ public class Report4Gui extends VerticalPanel{
 				" <div class='"
 						+ "subtext"
 						+ "'><h4> Der Report 4 gibt alle Nachrichten des gesamten System aus  </h4></div> ");
-		
 
 		/*
 		 * Die Panels werden anschaulich angeordnet.
@@ -90,18 +88,16 @@ public class Report4Gui extends VerticalPanel{
 		reportPanel1_left.add(report4Generieren);
 		report4Generieren.setStylePrimaryName("neueNchrichtBtn");
 
-		
 		reportPanel1_right.add(headline);
 		reportPanel1_right.add(subtext);
 		reportPanel1_right.add(beschreibung1);
 		reportPanel.add(reportPanel1);
-		
-		
+
 		/*
 		 * Das RootPanel wird gesäubert und die verschiedenen Elemente für
 		 * Report 4 zugeordnet.
 		 */
-		
+
 		RootPanel.get("content").clear();
 		RootPanel.get("content_left").clear();
 		RootPanel.get("content_right").clear();
@@ -112,21 +108,19 @@ public class Report4Gui extends VerticalPanel{
 		 * Der Button <code>report3Generieren</code> bekommt eine Funktion,
 		 * damit der Report 4 generiert werden kann.
 		 */
-		
+
 		report4Generieren.addClickHandler(new ClickHandler() {
-			
+
 			@Override
 			public void onClick(ClickEvent event) {
-				
+
 				RootPanel.get("content_left").clear();
 				RootPanel.get("content_left").add(headline);
 
 				NutzerDataProvider.gib(1).report4Generieren(nutzer);
-				
-				
+
 			}
 		});
 	}
-	
-	
+
 }

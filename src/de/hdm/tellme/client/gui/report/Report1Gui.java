@@ -30,7 +30,8 @@ import de.hdm.tellme.shared.bo.Nutzer;
  * 
  * 
  * Dieser Report zeigt alle Nachrichten eines Nutzer in einem bestimmten
- * Zeitraum an.
+ * Zeitraum an. Deshalb benötigt die GUI von Report 1 eine NutzerCellList um
+ * einen Nutzer auszuwählen und zwei DatePicker um einen Zeitraum auszuwählen.
  * 
  * @author Zimmerman & Alex Homann
  * @version 1.1
@@ -40,7 +41,7 @@ import de.hdm.tellme.shared.bo.Nutzer;
 public class Report1Gui extends VerticalPanel {
 
 	private Nutzer nutzer = null;
-	/*
+	/**
 	 * Es werden in einem Vertical Panel die verschiedenen benötigten Elemente
 	 * dargestellt. Dies sind die NutzerCellList um den Nutzer zu wählen, 2
 	 * DatePicker um den Zeitraum auszuwählen und ein Button der die Funktion
@@ -97,7 +98,7 @@ public class Report1Gui extends VerticalPanel {
 		reportPanel.add(ueberSchrift1);
 		reportPanel1.add(reportPanel1_left);
 		reportPanel1.add(reportPanel1_right);
-		//reportPanel1_left.add(subSchrift1);
+		// reportPanel1_left.add(subSchrift1);
 
 		/**
 		 * Dem <code>reportPanel1_left</code> wird die
@@ -157,12 +158,12 @@ public class Report1Gui extends VerticalPanel {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				
+
 				RootPanel.get("content_left").clear();
 				RootPanel.get("content_right").clear();
 
 				RootPanel.get("content_right").add(headline);
-				//	NutzerDataProvider.gib(1).report1Generieren(nutzer);
+				// NutzerDataProvider.gib(1).report1Generieren(nutzer);
 
 			}
 		});

@@ -32,7 +32,8 @@ import de.hdm.tellme.shared.bo.Nutzer;
  * 
  * 
  * 
- * Dieser Report zeigt alle Nachrichten je Nutzer an.
+ * Dieser Report zeigt alle Nachrichten eines Nutzers an. Deshalb benötigt die GUI
+ * von Report 3 eine NutzerCellList um einen Nutzer auszuwählen.
  * 
  * @author Zimmerman & Alex Homann
  * @version 1.1

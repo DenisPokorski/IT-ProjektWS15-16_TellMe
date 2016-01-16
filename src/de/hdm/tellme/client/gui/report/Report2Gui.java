@@ -25,62 +25,65 @@ import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
- * TODO
- */
-/**
+ * 
+ *
+ * Dieser Report zeigt alle Nachrichten in einem Zeitraum an. Deshalb benötigt
+ * die GUI von Report 2 zwei DatePicker um einen Zeitraum auszuwählen.
  * 
  * 
- * 
- * 
- * Dieser Report zeigt alle Nachrichten je Nutzer und Zeitraum an. 
  * @author Zimmerman & Alex Homann
  * @version 1.1
  * 
  */
 
-public class Report2Gui extends VerticalPanel{
+public class Report2Gui extends VerticalPanel {
 
-	/*
+	/**
 	 * Es werden in einem Vertical Panel die verschiedenen benötigten Elemente
-	 * dargestellt. Dies sind die 2
-	 * DatePicker um den Zeitraum auszuwählen und ein Button der die Funktion
-	 * ReportGenerieren beinhaltet. Außerdem gibt es eine Überschrift und eine
-	 * Beschreibung für den Report 2.
+	 * dargestellt. Dies sind die 2 DatePicker um den Zeitraum auszuwählen und
+	 * ein Button der die Funktion ReportGenerieren beinhaltet. Außerdem gibt es
+	 * eine Überschrift und eine Beschreibung für den Report 2.
 	 */
-	
-	private Nutzer nutzer = null;
 
+	private Nutzer nutzer = null;
 
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift2 = new Label("Report2: Nachrichten abfragen");
-	HTML subSchrift2 = new HTML ("<div class='"+"subline_report"+"'><b>Bitte wählen Sie den Zeitraum aus:</b></div>");
+	HTML subSchrift2 = new HTML("<div class='" + "subline_report"
+			+ "'><b>Bitte wählen Sie den Zeitraum aus:</b></div>");
 
- 
-	
 	private HorizontalPanel reportPanel2 = new HorizontalPanel();
 	private VerticalPanel reportPanel2_left = new VerticalPanel();
 	private VerticalPanel reportPanel2_right = new VerticalPanel();
 
-	private DateBox vonDateBox = new DateBox( ); 
-	private DateBox bisDateBox = new DateBox( ); 
+	private DateBox vonDateBox = new DateBox();
+	private DateBox bisDateBox = new DateBox();
 	private Button report2Generieren = new Button("Report 2 generieren");
-	
-	private HTML beschreibung2 = new HTML("<ul><b>Der Report 2 gibt alle Nachrichten in einen bestimmten Zeitraum aus</b>"
-			+ "<li>Um einen Report auszugeben, der alle Nachrichten in <b>einem bestimmten Zeitraum</b>"
-			+ " darstellt <b>musst einen Zeitraum </b>auswählen.</li></ul>");
 
+	private HTML beschreibung2 = new HTML(
+			"<ul><b>Der Report 2 gibt alle Nachrichten in einen bestimmten Zeitraum aus</b>"
+					+ "<li>Um einen Report auszugeben, der alle Nachrichten in <b>einem bestimmten Zeitraum</b>"
+					+ " darstellt <b>musst einen Zeitraum </b>auswählen.</li></ul>");
+
+	/**
+	 * Dies ist die Methode, die den report2Generieren soll. Es wird ein
+	 * ZellenObjekt aus der NutzerCellList übergeben. TODO report2 braucht kein
+	 * NutzerObjekt?! METHODE FALSCH!
+	 * 
+	 * @param ZellenObjekt
+	 */
 	public void report2Generieren(NutzerZelle.ZellenObjekt ZellenObjekt) {
 		this.nutzer = ZellenObjekt.nutzer;
 
 	}
-	
+
 	/**
 	 * Die onLoad-Methode wird verwendet um in der Seite die verschiedenen
 	 * Panels anzuordnen. Sie startet beim Ausführen der Seite, da sie das
 	 * Pendant zur <code>main()</code>-Methode einer normalen Java Applikation
 	 * darstellt
 	 */
-	public void onLoad(){
+	public void onLoad() {
 		HTML headline = new HTML(
 				" <div class='"
 						+ "subline"
@@ -90,11 +93,10 @@ public class Report2Gui extends VerticalPanel{
 						+ "subtext"
 						+ "'><h4> Der Report 2 gibt alle Nachrichten in einen bestimmten Zeitraum aus  </h4></div> ");
 
-		
 		/*
 		 * Die Panels werden anschaulich angeordnet.
 		 */
-		
+
 		reportPanel.add(ueberSchrift2);
 		reportPanel2.add(reportPanel2_left);
 		reportPanel2.add(reportPanel2_right);
@@ -103,21 +105,19 @@ public class Report2Gui extends VerticalPanel{
 		reportPanel2_left.add(bisDateBox);
 		reportPanel2_left.add(report2Generieren);
 		report2Generieren.setStylePrimaryName("neueNchrichtBtn");
-		
+
 		reportPanel2_right.add(headline);
 		reportPanel2_right.add(subtext);
 
 		reportPanel2_right.add(beschreibung2);
-		
-		
-		
+
 		reportPanel.add(reportPanel2);
-		
+
 		/*
 		 * Das RootPanel wird gesäubert und die verschiedenen Elemente für
 		 * Report 2 zugeordnet.
 		 */
-		
+
 		RootPanel.get("content").clear();
 		RootPanel.get("content_left").clear();
 		RootPanel.get("content_right").clear();
@@ -128,34 +128,33 @@ public class Report2Gui extends VerticalPanel{
 		 * Der jeweilige Zeitraum wird ausgewählt.
 		 */
 		vonDateBox.addValueChangeHandler(new ValueChangeHandler<Date>() {
-			
+
 			@Override
 			public void onValueChange(ValueChangeEvent<Date> event) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		
+
 		bisDateBox.addValueChangeHandler(new ValueChangeHandler<Date>() {
 
 			@Override
 			public void onValueChange(ValueChangeEvent<Date> event) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
 		/*
-		 * Der Button <code>report1Generieren</code> bekommt eine Funktion,
+		 * Der Button <code>report2Generieren</code> bekommt eine Funktion,
 		 * damit der Report 2 generiert werden kann.
 		 */
 		report2Generieren.addClickHandler(new ClickHandler() {
-			
+
 			@Override
 			public void onClick(ClickEvent event) {
 			}
 		});
 	}
-	
-	
+
 }

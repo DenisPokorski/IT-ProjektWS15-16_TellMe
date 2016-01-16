@@ -44,6 +44,14 @@ public class Report5Gui  extends VerticalPanel {
 	
 	HTML subline = new HTML ("<div class='"+"subline_report"+"'><b>Bitte wählen Sie einen Nutzer aus:</b></div>");
  	VerticalPanel vP =  new VerticalPanel(); 
+ 	
+ 	
+	/**
+	 * Die onLoad-Methode wird verwendet um in der Seite die verschiedenen
+	 * Panels anzuordnen. Sie startet beim Ausführen der Seite, da sie das
+	 * Pendant zur <code>main()</code>-Methode einer normalen Java Applikation
+	 * darstellt
+	 */
  	public void onLoad()  {
  		
  		report5Generieren.setStylePrimaryName("neueNchrichtBtn");
