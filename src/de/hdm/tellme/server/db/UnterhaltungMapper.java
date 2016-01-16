@@ -21,19 +21,24 @@ import de.hdm.tellme.shared.bo.Unterhaltung;
 public class UnterhaltungMapper {
 
 	/**
-	 * TODO
+	 * Damit die Klasse UnterhaltunMapper nur einmal während der Laufzeit des
+	 * Programms bestehen kann, muss man sie als Singleton darstellen, dies
+	 * geschieht durch die Referenz <code>static</code>.
 	 */
 	private static UnterhaltungMapper unterhaltungMapper = null;
 
 	/**
-	 * TODO
+	 * Damit der NutzerAbonnementMapper nicht durch <code>new</code> neue
+	 * Instanzen in der Klasse erzeugen kann, wird der Konstruktor mit
+	 * <code>protected</code> geschützt.
 	 */
+	
 	protected UnterhaltungMapper() {
 	}
 
 	/**
-	 * Die statische Methode wird �ber NutzerMapper nutzerMapper aufgerufen.
-	 * Diese �berpr�ft, dass nur eine Instanz von NutzerMapper besteht.
+	 * Die statische Methode wird über UnterhaltungMapper unterhaltungMapper aufgerufen.
+	 * Diese überprüft, dass nur eine Instanz von UnterhaltungMapper besteht.
 	 */
 
 	public static UnterhaltungMapper unterhaltungMapper() {
@@ -43,10 +48,9 @@ public class UnterhaltungMapper {
 		return unterhaltungMapper;
 	}
 
-	// legt unterhaltung an, gibt id neuer unterhaltung zurück oder -1 wenn
-	// nicht erfolgreich
+
 	/**
-	 * TODO
+	 * Diese Methode legt eine Unterhaltung an, gibt eine ID neuer Unterhaltung zurück oder -1 wenn nicht erfolgreich
 	 * 
 	 * @param unterHaltungsTyp
 	 * @return
@@ -136,12 +140,10 @@ public class UnterhaltungMapper {
 		return erfolgreich;
 	}
 
-	// Gibt eine Liste an Unterhaltungen zurück, bei dem der Nutzer mit der
-	// Nutzerid <teilnehmerID>
-	// als aktiver Teilnehmer (Eintrag in NutzerUnterhaltung ist Vorhanden und
-	// Sichtbar) agiert
 	/**
-	 * TODO
+	 * Diese Methode gibt eine Liste an Unterhaltungen zurück, bei dem der
+	 * Nutzer mit der Nutzerid <teilnehmerID> als aktiver Teilnehmer (Eintrag in
+	 * NutzerUnterhaltung ist Vorhanden und Sichtbar) agiert
 	 * 
 	 * @param teilnehmerID
 	 * @return
@@ -178,7 +180,7 @@ public class UnterhaltungMapper {
 	}
 
 	/**
-	 * TODO
+	 * Diese Methode für einer Unterhaltung einen Teilnehmer hinzu.
 	 * 
 	 * @param UnterhaltungsID
 	 * @param TeilnehmerID
@@ -239,7 +241,8 @@ public class UnterhaltungMapper {
 	}
 
 	/**
-	 * TODO
+	 * Diese Methode zeigt von einer jeweilgen NachrichtId die entsprechende
+	 * Unterhaltung an
 	 * 
 	 * @param nachricht
 	 * @return
@@ -273,6 +276,7 @@ public class UnterhaltungMapper {
 	// @Deprecated: name... use alleUnterhaltungenFuerAktivenTeilnehmer
 	@Deprecated
 	/**
+	 * TODO
 	 * TODO Deprecated weil nichtmehr verwendet. Kann man löschen??
 	 * @param meineId
 	 * @return
@@ -296,7 +300,7 @@ public class UnterhaltungMapper {
 	}
 
 	/**
-	 * TODO
+	 * Diese Methode zeigt alle aktiven Nachrichten einer Unterhaltung an.
 	 * 
 	 * @param unterhaltungsId
 	 * @return
@@ -332,7 +336,7 @@ public class UnterhaltungMapper {
 	}
 
 	/**
-	 * TODO
+	 * Diese Methode zeigt alle aktiven Teilnehmer einer Unterhaltung an
 	 * 
 	 * @param unterhaltungsId
 	 * @return
@@ -358,7 +362,8 @@ public class UnterhaltungMapper {
 	}
 
 	/**
-	 * TODO
+	 * Diese Methode gibt an, ob ein Nutzer in einer Unterhaltung teilgenommen
+	 * hat oder nicht.
 	 * 
 	 * @param unterhaltungsId
 	 * @param teilnehmerId
@@ -389,7 +394,8 @@ public class UnterhaltungMapper {
 	}
 
 	/**
-	 * TODO
+	 * Diese Methode gibt an, ob ein Nutzer in einer Unterhaltung teilnimmt oder
+	 * nicht.
 	 * 
 	 * @param unterhaltungsID
 	 * @param nutzerID
