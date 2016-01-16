@@ -31,7 +31,7 @@ public class HashtagMapper {
 	private static HashtagMapper hashtagMapper = null;
 
 	/**
-	 * Damit der NutzerAbonnementMapper nicht durch <code>new</code> neue
+	 * Damit der HashtagMapper nicht durch <code>new</code> neue
 	 * Instanzen in der Klasse erzeugen kann, wird der Konstruktor mit
 	 * <code>protected</code> geschützt.
 	 */

@@ -20,13 +20,18 @@ import de.hdm.tellme.shared.bo.Nutzer.eStatus;
  */
 
 public class NachrichtMapper {
+	
 	/**
-	 * TODO
+	 * Damit die Klasse NachrichtMapper nur einmal während der Laufzeit des
+	 * Programms bestehen kann, muss man sie als Singleton darstellen, dies
+	 * geschieht durch die Referenz <code>static</code>.
 	 */
 	private static NachrichtMapper nachrichtMapper = null;
 
 	/**
-	 * TODO
+	 * Damit der NachrichtMapper nicht durch <code>new</code> neue
+	 * Instanzen in der Klasse erzeugen kann, wird der Konstruktor mit
+	 * <code>protected</code> geschützt.
 	 */
 	protected NachrichtMapper() {
 

@@ -18,6 +18,13 @@ import de.hdm.tellme.shared.bo.Nutzer.eStatus;
  */
 
 public class NutzerMapper {
+
+	/**
+	 * Damit die Klasse NutzerMapper nur einmal während der Laufzeit des
+	 * Programms bestehen kann, muss man sie als Singleton darstellen, dies
+	 * geschieht durch die Referenz <code>static</code>.
+	 */
+
 	private static NutzerMapper nutzerMapper = null;
 
 	protected NutzerMapper() {
@@ -25,7 +32,7 @@ public class NutzerMapper {
 	}
 
 	/**
-	 * Die statische Methode wird über NutzerMapper nutzerMapper aufgerufen.
+	 * Die statische Methode wird über NutzerMapper nutzerMapper() aufgerufen.
 	 * Diese überprüft, dass nur eine Instanz von NutzerMapper besteht.
 	 */
 
@@ -46,8 +53,12 @@ public class NutzerMapper {
 	 * Datenbank übergeben. Sollte der "try-Block" Fehler aufweisen, wird der
 	 * "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
 	 * ausgeführt.
+	 *
+	 * TODO
+	 * 
+	 * @param n
+	 * @return int
 	 */
-
 	public int anlegen(Nutzer n) {
 		int ergebnis = -1;
 		Connection con = DatenbankVerbindung.connection();
@@ -72,6 +83,14 @@ public class NutzerMapper {
 		return ergebnis;
 	}
 
+	/**
+	 * Diese Methode sucht einen Nutzer über seine Emailadresse und gibt ein
+	 * Nutzer-Objekt zurück.
+	 * 
+	 * @param mailAdresse
+	 * @return Ein Nutzer-Objekt, dass durch seine E-Mail-Adresse identifiziert
+	 *         wurde.
+	 */
 	public Nutzer suchenMitEmailAdresse(String mailAdresse) {
 		Connection con = DatenbankVerbindung.connection();
 		Nutzer n = new Nutzer();

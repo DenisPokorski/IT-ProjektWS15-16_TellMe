@@ -104,15 +104,7 @@ public class HashtagAbonnementMapper {
 		}
 	}
 
-	/**
-	 * Dieser Mapper wird genutzt, um ein Hashtag-Abonnement in die Datenbank zu
-	 * schreiben. Hierfür werden sowohl die NutzerId, als auch die HashtagId
-	 * übergeben.
-	 * 
-	 * 
-	 * @param NutzerId
-	 * @param HashtagId
-	 */
+
 
 	/**
 	 * Dieser Mapper wird genutzt, um ein Hashtag-Abonnement in die Datenbank zu
@@ -225,7 +217,7 @@ public class HashtagAbonnementMapper {
 	}
 
 	/**
-	 * Dieser Mapper soll alle Hashtags in einem Vektor anzeigen.
+	 * Dieser Mapper soll alle Hashtags in einem Vektor zurückgeben.
 	 * 
 	 * @return Ein Vektor mit allen Hashtag-Objekten, die es in der Datenbank
 	 *         gibt
