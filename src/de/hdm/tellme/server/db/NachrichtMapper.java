@@ -20,7 +20,7 @@ import de.hdm.tellme.shared.bo.Nutzer.eStatus;
  */
 
 public class NachrichtMapper {
-	
+
 	/**
 	 * Damit die Klasse NachrichtMapper nur einmal während der Laufzeit des
 	 * Programms bestehen kann, muss man sie als Singleton darstellen, dies
@@ -29,9 +29,9 @@ public class NachrichtMapper {
 	private static NachrichtMapper nachrichtMapper = null;
 
 	/**
-	 * Damit der NachrichtMapper nicht durch <code>new</code> neue
-	 * Instanzen in der Klasse erzeugen kann, wird der Konstruktor mit
-	 * <code>protected</code> geschützt.
+	 * Damit der NachrichtMapper nicht durch <code>new</code> neue Instanzen in
+	 * der Klasse erzeugen kann, wird der Konstruktor mit <code>protected</code>
+	 * geschützt.
 	 */
 	protected NachrichtMapper() {
 
@@ -98,12 +98,10 @@ public class NachrichtMapper {
 	 * Datenbank übergeben. Sollte der "try-Block" Fehler aufweisen, wird der
 	 * "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
 	 * ausgeführt.
-	 */
-	/**
-	 * TODO
 	 * 
 	 * @param n
-	 * @return
+	 * @return boolean vom wert false, wenn die Anzahl der betroffenen Zeilen <0
+	 *         ist, und true wenn Zeilen bearbeitet wurden.
 	 */
 	public boolean aktualisieren(Nachricht n) {
 		boolean erfolgreich = false;
@@ -139,12 +137,15 @@ public class NachrichtMapper {
 	 * Datenbank übergeben. Sollte der "try-Block" Fehler aufweisen, wird der
 	 * "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
 	 * ausgeführt.
-	 */
-	/**
-	 * TODO
+	 * 
+	 * 
+	 * Da Nachrichten nicht gelöscht werden, sondern nur die Sichtbarkeit von
+	 * Nachrichten beim entfernen umgestellt wird, wird nur die Sichtbarkeit
+	 * einer Nachricht auf 0 geupdatet.
 	 * 
 	 * @param nachrichtenID
-	 * @return
+	 * @return boolean, false, wenn die Sichtbarkeit nicht geupdatet wurde.
+	 *         True, wenn die Sichtbarkeit geupdatet wurde.
 	 */
 	public boolean entfernen(int nachrichtenID) {
 		boolean erfolgreich = false;
@@ -168,7 +169,11 @@ public class NachrichtMapper {
 	}
 
 	/**
-	 * TODO
+	 * In dieser Methode wird die Zuordnung eines Hashtags an eine Nachricht
+	 * gelöscht. Das bedeuted, dass fals ein Hashtag von einer Nachricht
+	 * entfernt werden soll, wird dies über diesen Mapper ausgeführt. Hierzu
+	 * werden sowohl die HashtagId, als auch die NachrichtId übergeben und die
+	 * jeweilige Verbindung in der NachrichtHashtagTabelle gelöscht.
 	 * 
 	 * @param hashtagid
 	 * @param nachrichtid
@@ -186,7 +191,7 @@ public class NachrichtMapper {
 	}
 
 	/**
-	 * TODO
+	 * Diese Methode löscht alle Hashtag-Zuordnungen eines Hashtags.
 	 * 
 	 * @param hashtagid
 	 */
@@ -203,10 +208,12 @@ public class NachrichtMapper {
 	}
 
 	/**
-	 * TODO
+	 * Diese Methode soll alle Nachrichten vom angemeldeten Nutzer anzeigen und
+	 * gibt diese als Vector zurück.
 	 * 
 	 * @param meineId
-	 * @return
+	 * @return Vector mit Nachricht-Objekten, der alle Nachrichten des
+	 *         eingeloggten Nutzer enthält.
 	 */
 	public Vector<Nachricht> selektiereNachrichtenVonId(int meineId) {
 		Vector<Nachricht> meineNachrichten = new Vector<Nachricht>();
@@ -235,12 +242,14 @@ public class NachrichtMapper {
 	}
 
 	/**
-	 * TODO
+	 * Diese Methode zeigt alle Nachrichten eines Nutzers in einem bestimmten
+	 * Zeitraum an.
 	 * 
 	 * @param meineId
 	 * @param vonDatum
 	 * @param bisDatum
-	 * @return
+	 * @return Vektor von Nachricht-Objekten, der alle Nachrichten eines Nutzers
+	 *         in einem bestimmten Zeitraum enthält.
 	 */
 	public Vector<Nachricht> report1Mapper(int meineId, Date vonDatum,
 			Date bisDatum) {
@@ -269,11 +278,12 @@ public class NachrichtMapper {
 	}
 
 	/**
-	 * TODO
+	 * Diese Methode zeigt alle Nachrichten in einem bestimmten Zeitraum an.
 	 * 
 	 * @param vonDatum
 	 * @param bisDatum
-	 * @return
+	 * @return Vektor von Nachricht-Objekten, der alle Nachrichten in einem
+	 *         bestimmten Zeitraum enthält.
 	 */
 	public Vector<Nachricht> report2Mapper(Timestamp vonDatum,
 			Timestamp bisDatum) {
@@ -299,10 +309,11 @@ public class NachrichtMapper {
 	}
 
 	/**
-	 * TODO
+	 * Diese Methode zeigt alle Nachrichten eines Nutzers an.
 	 * 
 	 * @param meineId
-	 * @return
+	 * @return Vektor von Nachricht-Objekten, der alle Nachrichten eines Nutzers
+	 *         enthält.
 	 */
 	public Vector<Nachricht> report3Mapper(int meineId) {
 		Vector<Nachricht> alleNachrichteneinesNutzers = new Vector<Nachricht>();
@@ -328,9 +339,9 @@ public class NachrichtMapper {
 	}
 
 	/**
-	 * TODO
+	 * Diese Methode zeigt alle Nachrichten an.
 	 * 
-	 * @return
+	 * @return Vektor von Nachricht-Objekten, der alle Nachrichten enthält.
 	 */
 	public Vector<Nachricht> report4Mapper() {
 		Vector<Nachricht> alleNachrichten = new Vector<Nachricht>();
@@ -508,30 +519,31 @@ public class NachrichtMapper {
 		}
 		return nachrichtenNachNutzerNachDatum;
 	}
-	
-	public Vector<Nachricht> gibAlleNachrichtenVonAlleNutzern (int AutorId, int NachrichtId, int HashtagId,  Timestamp vonDatum, Timestamp bisDatum ){
+
+	public Vector<Nachricht> gibAlleNachrichtenVonAlleNutzern(int AutorId,
+			int NachrichtId, int HashtagId, Timestamp vonDatum,
+			Timestamp bisDatum) {
 		Connection con = DatenbankVerbindung.connection();
 		Vector<Nachricht> alleNachrichtenalleNutzer = new Vector<Nachricht>();
 		try {
 			Statement state = con.createStatement();
 			String sqlquery = "";
 			ResultSet rs = state.executeQuery(sqlquery);
-			while (rs.next()){
+			while (rs.next()) {
 				Nachricht nA = new Nachricht();
 				nA.setId(rs.getInt("Id"));
 				nA.setText("Text");
 				nA.setErstellungsDatum(rs.getTimestamp("Erstellungsdatum"));
 				nA.setSenderId(rs.getInt("AutoId"));
 				nA.setSichtbarkeit(rs.getInt("Sichtbarkeit"));
-			 
-		//		nA.setVerknuepfteHashtags(verknuepfteHashtags);
-			
+
+				// nA.setVerknuepfteHashtags(verknuepfteHashtags);
+
 			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return alleNachrichtenalleNutzer;
 	}
-
 
 }
