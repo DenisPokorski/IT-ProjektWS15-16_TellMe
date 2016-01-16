@@ -23,7 +23,9 @@ import de.hdm.tellme.client.gui.report.ReportWillkommenSeite;
 /**
  * Dies ist die Klasse <class>MenuBarEditor</class>, sie wird verwendet um die
  * MenuBar darzustellen. Sie wird durch ein HorizontalPanel erweitert, damit die
- * einzelnen Elemente nebeneinander angeordnet werden. TODO
+ * einzelnen Elemente nebeneinander angeordnet werden. Mit Hilfe der MenuBar ist
+ * es möglich jeden Menüpunkt im Editor zu erreichen.
+ * 
  * 
  * @author Zimmermann
  * @version 1.1
@@ -33,15 +35,35 @@ import de.hdm.tellme.client.gui.report.ReportWillkommenSeite;
 
 public class MenuBarEditor extends HorizontalPanel {
 
+	/**
+	 * Damit die Klasse NeuigkeitenEditor nur einmal während der Laufzeit des
+	 * Programms bestehen kann, muss man sie als Singleton darstellen, dies
+	 * geschieht durch die Referenz <code>static</code>.
+	 */
 	private static NeuigkeitenEditor ansichtNeuigkeiten = null;
 
+	/**
+	 * Die statische Methode wird über NeuigkeitenEditor gibansichtNeuigkeiten()
+	 * aufgerufen. Sie überprüft, dass nur eine Instanz von NeuigkeitenEditor
+	 * besteht.
+	 */
 	public static NeuigkeitenEditor gibansichtNeuigkeiten() {
 		ansichtNeuigkeiten = new NeuigkeitenEditor();
 		return ansichtNeuigkeiten;
 	}
 
+	/**
+	 * Damit die Klasse NutzerBearbeitenEditor nur einmal während der Laufzeit
+	 * des Programms bestehen kann, muss man sie als Singleton darstellen, dies
+	 * geschieht durch die Referenz <code>static</code>.
+	 */
 	private static NutzerBearbeitenEditor ansichtEinstellungenBenutzereinstellungen = null;
 
+	/**
+	 * Die statische Methode wird über NutzerBearbeitenEditor
+	 * gibansichtEinstellungenBenutzereinstellungen() aufgerufen. Sie überprüft,
+	 * dass nur eine Instanz von NutzerBearbeitenEditor besteht.
+	 */
 	public static NutzerBearbeitenEditor gibansichtEinstellungenBenutzereinstellungen() {
 		// lade jedes mal neu um Listen aktuell zu halten
 		ansichtEinstellungenBenutzereinstellungen = new NutzerBearbeitenEditor();
@@ -49,26 +71,35 @@ public class MenuBarEditor extends HorizontalPanel {
 	}
 
 	/**
-	 * Definition von Konstruktor
+	 * Definition von Konstruktor TODO LEERER KONSTRUKTOR BESCHREIBUNG
 	 */
 	public MenuBarEditor() {
 
 	}
 
 	public void onLoad() {
+
 		/**
-		 * Es werden 6 MenuBar mit dem new-Operator instanziert und mit 'true'
+		 * Es werden 2 MenuBar mit dem new-Operator instanziert und mit 'true'
 		 * sichtbar geschaltet. Folgend wird jeweils ein Neues Item der Menubar
-		 * hinzugefügt: MeinProfil, Aboverwaltung, Nachrichten und Report 1-3.
-		 * Mit der 'public void execute()'-Methode wird definiert was bei Klick
-		 * darauf passieren soll. In unserem Fall laden, leeren wir erst den
+		 * hinzugefügt: Neuigkeiten und Einstellungen mit den Unterpunkten:
+		 * Nutzeraboverwaltung, Hashtagaboverwaltung,
+		 * Hashtagverwaltung,Benutzereinstellungen, Impressum und Log Out. Mit
+		 * der 'public void execute()'-Methode wird definiert was bei Klick
+		 * darauf passieren soll. In unserem Fall leeren wir erst den
 		 * Cotent-Bereich mit dem Befehl clearContent(); Im Anschluss werden wir
-		 * die GUI-Klassen dem 'RootPanel.get("content")' -Bereich zuordnen.
+		 * die GUI-Klassen dem 'RootPanel.get("content")' -Bereich zuordnen um
+		 * den ausgewählten Menu-Punkt anzuzeigen.
 		 */
 		MenuBar HauptMenue = new MenuBar(false);
 		HauptMenue.setAutoOpen(true);
 		HauptMenue.setAnimationEnabled(true);
 
+		/**
+		 * Hier wird das TellMe logo implementiert. Bei Klick auf das
+		 * TellMe-Logo wird, ähnlich wie auf sozialen Netzwerken, der
+		 * NeugikeitenEditor aufgerufen.
+		 */
 		final String LogoLink = "<img src='/logo.png'/>";
 		HauptMenue.addItem(new MenuItem(LogoLink, true, new Command() {
 			@Override
@@ -77,7 +108,10 @@ public class MenuBarEditor extends HorizontalPanel {
 						gibansichtNeuigkeiten());
 			}
 		}));
-
+		/**
+		 * Wenn man auf den Menupunkt Neuigkeiten Klickt gelangt man zu den
+		 * Neuigkeiten, weil der Inhalt neu gesetzt wird.
+		 */
 		HauptMenue.addItem("Neuigkeiten", new Command() {
 			@Override
 			public void execute() {
@@ -87,10 +121,20 @@ public class MenuBarEditor extends HorizontalPanel {
 			}
 		});
 
+		/**
+		 * Wenn man über den Menupunkt Einstellung mit der Maus fährt, öffnet
+		 * sich eine Liste mit den Untermenüpunkten: Nutzeraboverwaltung,
+		 * Hashtagaboverwaltung, Hashtagverwaltung,Benutzereinstellungen,
+		 * Impressum und Log Out.
+		 */
 		MenuBar EinstellungenMenu = new MenuBar(true);
 		EinstellungenMenu.setAnimationEnabled(true);
 		HauptMenue.addItem(new MenuItem("Einstellungen", EinstellungenMenu));
 
+		/**
+		 * Bei Klick auf den Untermenüpunkt Nutzeraboverwaltung wird die
+		 * Nutzeraboverwaltung als neuer Inhalt gesetzt.
+		 */
 		EinstellungenMenu.addItem("Nutzeraboverwaltung", new Command() {
 			@Override
 			public void execute() {
@@ -101,6 +145,10 @@ public class MenuBarEditor extends HorizontalPanel {
 			}
 		});
 
+		/**
+		 * Bei Klick auf den Untermenüpunkt Hashtagaboverwaltung wird die
+		 * Hashtagaboverwaltung als neuer Inhalt gesetzt.
+		 */
 		EinstellungenMenu.addItem("Hashtagaboverwaltung", new Command() {
 			@Override
 			public void execute() {
@@ -110,6 +158,10 @@ public class MenuBarEditor extends HorizontalPanel {
 			}
 		});
 
+		/**
+		 * Bei Klick auf den Untermenüpunkt Hashtagverwaltung wird die
+		 * Hashtagverwaltung als neuer Inhalt gesetzt.
+		 */
 		EinstellungenMenu.addItem("Hashtagverwaltung", new Command() {
 			@Override
 			public void execute() {
@@ -121,14 +173,20 @@ public class MenuBarEditor extends HorizontalPanel {
 
 			}
 		});
-
+		/**
+		 * Bei Klick auf den Untermenüpunkt Benutzereinstellungen werden die
+		 * Benutzereinstellungen als neuer Inhalt gesetzt.
+		 */
 		EinstellungenMenu.addItem("Benutzereinstellungen", new Command() {
 			@Override
 			public void execute() {
 				setzeInhalt(gibansichtEinstellungenBenutzereinstellungen());
 			}
 		});
-
+		/**
+		 * Bei Klick auf den Untermenüpunkt Impressum wird das Impressum als
+		 * neuer Inhalt gesetzt.
+		 */
 		EinstellungenMenu.addItem("Impressum", new Command() {
 			@Override
 			public void execute() {
@@ -136,7 +194,10 @@ public class MenuBarEditor extends HorizontalPanel {
 
 			}
 		});
-
+		/**
+		 * Bei Klick auf den Untermenüpunkt Log out wird das Log out Menu als
+		 * neuer Inhalt gesetzt.
+		 */
 		EinstellungenMenu.addItem("Log out", new Command() {
 			@Override
 			public void execute() {
@@ -209,6 +270,23 @@ public class MenuBarEditor extends HorizontalPanel {
 
 	}
 
+	/**
+	 * Es gibt zwei verschiedene Arten von der Methode setzeInhalt. Bei einer
+	 * wird das zu setzende Panel im zum content hinzugefügt, bei der anderen
+	 * werden die zu setzenden Panels dem content_left, also der linken Seite
+	 * der Applikation und dem content_right, also der rechten Seite der
+	 * Applikation hinzugefügt. So können die unterschiedlichen Arten der zu
+	 * setzenden Panels verwirklicht werden.
+	 */
+
+	/**
+	 * Mit der Methode setzeInhalt wird das Panel das gesetzt werden soll im
+	 * Content gesetzt. Es wird der Inhalt gesäubert. Genauer gesagt wird der
+	 * linke Content, der rechte Content und der Content gesäubert und es wird
+	 * dem Content das zu setztendePanel hinzugefügt.
+	 * 
+	 * @param ZuSetzendesPanel
+	 */
 	public static void setzeInhalt(Widget ZuSetzendesPanel) {
 
 		RootPanel.get("ButtonBar").clear();
@@ -218,6 +296,16 @@ public class MenuBarEditor extends HorizontalPanel {
 		RootPanel.get("content").add(ZuSetzendesPanel);
 	}
 
+	/**
+	 * Mit der Methode setzeInhalt werden die Panels die gesetzt werden soll im
+	 * Content gesetzt. Es wird der Inhalt gesäubert. Genauer gesagt wird der
+	 * linke Content, der rechte Content und der Content gesäubert. Daraufhin
+	 * wird dem content_left und dem content_right das zu setzendesPanellinks
+	 * oder das ZuSetzendesPanel rechts hinzugefügt.
+	 * 
+	 * @param ZuSetzendesPanelLinks
+	 * @param ZuSetzendesPanelRechts
+	 */
 	public static void setzeInhalt(Widget ZuSetzendesPanelLinks,
 			Widget ZuSetzendesPanelRechts) {
 
