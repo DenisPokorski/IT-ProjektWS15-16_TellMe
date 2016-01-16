@@ -4,7 +4,12 @@ import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 
 import de.hdm.tellme.shared.bo.Nutzer;
-
+/**
+ * 
+ * TODO
+ * @author denispokorski
+ *
+ */
 public class NutzerZelle  {
 	public class ZellenObjekt {
 		public Nutzer nutzer;
