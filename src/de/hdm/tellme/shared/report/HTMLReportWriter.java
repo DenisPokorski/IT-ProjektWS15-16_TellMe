@@ -56,7 +56,7 @@ public class HTMLReportWriter {
 	 * @param n
 	 */
 
-	/*
+	/**
 	 * Report 6
 	 */
 	public void erstelleKopfdatenReport6(Nutzer n) {
@@ -103,8 +103,8 @@ public class HTMLReportWriter {
 		}
 	}
 
-	/*
-	 * Abschnitt Report 5
+	/**
+	 *  Report 5
 	 */
 	public void generateReport5(Vector<Nutzer> result, Nutzer n) {
 
@@ -178,7 +178,7 @@ public class HTMLReportWriter {
 
 	}
 
-	/*
+	/**
 	 * Report 1
 	 */
 	private Label ueberschrift1 = new Label("Report 1");
@@ -228,7 +228,7 @@ public class HTMLReportWriter {
 		buffer.append("</table>");
 	}
 
-	/*
+	/**
 	 * Report 2
 	 */
 

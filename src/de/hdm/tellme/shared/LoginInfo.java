@@ -4,6 +4,14 @@ import java.io.Serializable;
 
 import de.hdm.tellme.shared.bo.Nutzer;
 
+/**
+ * 
+ * Diese Klasse <class>LoginInfo</class> enthält alle Daten über die aktuelle
+ * Nutzerinstanz
+ * 
+ * @author denispokorski
+ *
+ */
 public class LoginInfo implements Serializable {
 
 	private static final long serialVersionUID = -5207880593956618550L;
@@ -13,7 +21,6 @@ public class LoginInfo implements Serializable {
 	private String emailAddress;
 	private String googleId;
 	private Nutzer user;
-	
 
 	public boolean isLoggedIn() {
 		return loggedIn;
