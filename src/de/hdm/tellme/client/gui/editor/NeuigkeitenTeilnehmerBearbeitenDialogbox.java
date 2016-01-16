@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.sun.java.swing.plaf.windows.resources.windows;
 
+import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Nutzer;
@@ -81,8 +82,9 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 
 				}
 			});
-
-			fpAusgewaehlteEmpfanger.add(btnLoescheEmpfaenger);
+			if (zuHinzuzufuegenderBenutzer.getId() != TellMe
+					.gibEingeloggterBenutzer().getUser().getId())
+				fpAusgewaehlteEmpfanger.add(btnLoescheEmpfaenger);
 		}
 
 		return gibDialogBox();
@@ -234,7 +236,7 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 
 							}
 						});
-				
+
 				db.hide();
 			}
 		});

@@ -225,7 +225,7 @@ public class UnterhaltungMapper {
 					+ Sichtbarkeit
 					+ "' WHERE `NutzerId`='"
 					+ TeilnehmerID
-					+ "' and`UnterhaltungId`='" + UnterhaltungsID + "';";
+					+ "' AND `UnterhaltungId`='" + UnterhaltungsID + "';";
 			int anzahlBetroffenerZeilen = state.executeUpdate(sqlquery);
 			if (anzahlBetroffenerZeilen > 0)
 				erfolgreich = true;
@@ -345,7 +345,7 @@ public class UnterhaltungMapper {
 			String sql = "SELECT * FROM NutzerUnterhaltung JOIN Nutzer ON NutzerUnterhaltung.NutzerId = Nutzer.Id WHERE UnterhaltungId = '"
 					+ unterhaltungsId
 					+ "' AND Nutzer.Status = '"
-					+ eStatus.aktiv.ordinal() + "';";
+					+ eStatus.aktiv.ordinal() + "' AND Sichtbarkeit = 1;";
 			ResultSet rs = state.executeQuery(sql);
 			while (rs.next()) {
 				teilnehmer.add(rs.getInt("NutzerId"));

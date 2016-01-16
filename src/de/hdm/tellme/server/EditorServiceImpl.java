@@ -88,8 +88,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 			Nutzer n = new Nutzer();
 			n.setId(-1);
 			n.setMailadresse("unknown@unknown.de");
-			n.setVorname("Unknown");
-			n.setNachname("User");
+			n.setVorname("Gelöschter");
+			n.setNachname("Nutzer");
 			return n;
 
 		}
@@ -110,8 +110,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 		return alleNutzeAuserMir;
 	}
-	
-	
+
 	@Override
 	public Vector<Nutzer> getAlleNutzer(boolean zwingeNeuladen) {
 		if (alleUser == null || zwingeNeuladen)
@@ -639,7 +638,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 			unterhaltungMapper.teilnehmerHinzufuegen(unterhaltungsID, nutzerID);
 		return erfolgreich;
 	}
-@Override
+
+	@Override
 	public boolean UnterhaltungAktualisieren(Unterhaltung original,
 			Unterhaltung neu) {
 		boolean erfolgreich = true;
