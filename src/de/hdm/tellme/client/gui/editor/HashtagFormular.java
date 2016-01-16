@@ -71,7 +71,7 @@ public class HashtagFormular extends Composite {
 				htl = HashtagDataProvider.gebeHashtagListe();
 
 				if (schlagwortBox.getValue() == "") {
-					Window.alert("Bitte geben Sie einen Wert ein");
+					Window.alert("Bitte gib einen Wert ein");
 				} else {
 
 					boolean existiertBereits = false;
@@ -130,7 +130,7 @@ public class HashtagFormular extends Composite {
 		HTML subtext = new HTML(
 				" <div class='"
 						+ "subtext"
-						+ "'><h4>Hier können Sie Hashtags abonnieren. Zudem können Sie bereits vorhandene Abonnoments löschen. Hinweis: Um Hashtags bearbeiten zu können so klicken Sie im Hauptmenü bitte auf Einstellungen und weiter auf Hastagverwaltung.  </h4></div> ");
+						+ "'><h4>Hier kannst du Hashtags abonnieren oder bereits vorhandene Hashtags löschen. Hinweis: Um Hashtags bearbeiten zu können, klickst du im Hauptmenü auf Einstellungen und weiter auf Hashtagverwaltung.  </h4></div> ");
 		vpForm.add(subtext);
 
 //		vpForm.add(gibAnlegenFormular());
@@ -148,7 +148,7 @@ public class HashtagFormular extends Composite {
 		HTML subtext = new HTML(
 				" <div class='"
 						+ "subtext"
-						+ "'><h4>Hier können Sie Hashtags neu im System anlegen, bearbeiten und löschen. Bitte geben Sie zum anlegen das entsprechende Hashtag ein und klicken auf den Button-Anlegen oder wählen Sie hier in der Liste aller Hastags auf der rechten Seite aus, um es zu bearbeiten oder zu löschen.  </h4></div> ");
+						+ "'><h4>Hier kannst du neue Hashtags im System anlegen, bearbeiten oder löschen. Bitte gib zum anlegen das entsprechende Hashtag ein und klicke auf Anlegen oder wähle einen Hashtag aus der linken Liste aus, um es dann zu bearbeiten oder zu löschen.  </h4></div> ");
 		vpForm.add(subtext);
 
 		

@@ -38,7 +38,7 @@ public class NeuigkeitenJaNeinDialogbox {
 
 	public DialogBox getNachrichtLoeschenDialogBox(Nachricht _zuLoeschendeNachricht) {
 		textTitel = "Nachricht löschen";
-		textFrage = "Möchten Sie die Nachricht wirklich löschen?";
+		textFrage = "Möchtest du die Nachricht wirklich löschen?";
 
 		zuLoeschendeNachricht = _zuLoeschendeNachricht;
 
@@ -49,7 +49,7 @@ public class NeuigkeitenJaNeinDialogbox {
 
 	public DialogBox getUnterhaltungVerlassenDialogBox(Unterhaltung _zuVerlassendeUnterhaltung) {
 		textTitel = "Unterhaltung verlassen";
-		textFrage = "Möchten Sie die Unterhaltung wirklich verlassen?";
+		textFrage = "Möchtest du die Unterhaltung wirklich verlassen?";
 
 		zuVerlassendeUnterhaltung = _zuVerlassendeUnterhaltung;
 
@@ -104,13 +104,13 @@ public class NeuigkeitenJaNeinDialogbox {
 							if (result)
 								Window.alert("Nachricht erfolgreich gelöscht");
 							else
-								Window.alert("Fehler beim löschen der Nachricht, bitte wenden Sie sich an den Administrator");
+								Window.alert("Fehler beim löschen der Nachricht, bitte wende dich an den Administrator");
 
 						}
 
 						@Override
 						public void onFailure(Throwable caught) {
-							Window.alert("Fehler beim löschen der Nachricht, bitte wenden Sie sich an den Administrator");
+							Window.alert("Fehler beim löschen der Nachricht, bitte wende dich an den Administrator");
 
 						}
 					});
@@ -124,13 +124,13 @@ public class NeuigkeitenJaNeinDialogbox {
 							if (result)
 								Window.alert("Unterhaltung erfolgreich verlassen");
 							else
-								Window.alert("Fehler beim verlassen der Unterhaltung, bitte wenden Sie sich an den Administrator");
+								Window.alert("Fehler beim verlassen der Unterhaltung, bitte wende dich an den Administrator");
 
 						}
 
 						@Override
 						public void onFailure(Throwable caught) {
-							Window.alert("Fehler beim löschen der Nachricht, bitte wenden Sie sich an den Administrator");
+							Window.alert("Fehler beim löschen der Nachricht, bitte wende dich an den Administrator");
 
 						}
 					});break;

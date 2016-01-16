@@ -109,7 +109,7 @@ public class NutzerCellList {
 							HTML subtext = new HTML(
 									" <div class='"
 											+ "subtext"
-											+ "'><h4> 		Um einen Report auszugeben, der alle Nachrichten von<b> einem bestimmten Nutzer</b>" + " darstellt, musst du <b>einen Nutzer </b>auswählen und darfst <b>keinen Zeitraum  </h4></div> ");
+											+ "'><h4> 		Um einen Report auszugeben, der alle Nachrichten von<b> einem bestimmten Nutzer</b>" + " darstellt, musst du <b>einen Nutzer </b>auswählen und darfst <b>keinen Zeitraum </b> auswählen. </h4></div> ");
 
 
 							vP.add(headline);
@@ -175,7 +175,7 @@ public class NutzerCellList {
 							HTML subtext = new HTML(
 									" <div class='"
 											+ "subtext"
-											+ "'><h4> Der Report 6 gibt alle Hashtagabonnoments eines Nutzers in einen bestimmten Zeitraum zurück.   </h4></div> ");
+											+ "'><h4> Der Report 6 gibt alle Hashtagabonnements eines Nutzers in einem bestimmten Zeitraum zurück.   </h4></div> ");
 
 							vP.add(headline);
 							vP.add(subtext);

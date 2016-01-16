@@ -55,7 +55,7 @@ public class HashtagVerwaltungFomular extends Composite {
 				htl = HashtagDataProvider.gebeHashtagListe();
 
 				if (schlagwortBox.getValue() == "") {
-					Window.alert("Bitte geben Sie einen Wert ein");
+					Window.alert("Bitte gib einen Wert ein");
 				} else {
 
 					boolean existiertBereits = false;
@@ -93,7 +93,7 @@ public class HashtagVerwaltungFomular extends Composite {
 
 
 				if (schlagwortBox.getValue() == "") {
-					Window.alert("Bitte geben Sie einen Wert ein");
+					Window.alert("Bitte gib einen Wert ein");
 				} else {
 
 					boolean existiertBereits = false;

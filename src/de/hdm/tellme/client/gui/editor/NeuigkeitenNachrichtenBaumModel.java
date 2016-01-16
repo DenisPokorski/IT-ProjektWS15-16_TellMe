@@ -169,7 +169,7 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 						UnterhaltungsNachicht un = new UnterhaltungsNachicht(unterhaltung);
 						alleUnterhaltungen.addElement(un);
 					} catch (Exception ex) {
-						Window.alert("Fehler beim hinzufuegen einer Nachricht" + ex.toString());
+						Window.alert("Fehler beim hinzufügen einer Nachricht" + ex.toString());
 						ex.printStackTrace();
 					}
 				}

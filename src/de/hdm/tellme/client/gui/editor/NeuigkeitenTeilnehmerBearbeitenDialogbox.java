@@ -159,7 +159,7 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 					Window.alert("Der Empfänger kann nicht hinzugefügt werden, da dieser bereits hinzugefügt wurde.");
 
 				} else if (zuHinzuzufuegenderBenutzer == null) {
-					Window.alert("Kein vorhandener Benutzer ausgewaehlt.");
+					Window.alert("Keinen vorhandenen Benutzer ausgewählt.");
 				} else {
 					AusgewaehlteEmpfaenger.addElement(zuHinzuzufuegenderBenutzer);
 					final Button btnLoescheEmpfaenger = new Button(gibVorschlageTextFuerNutzer(zuHinzuzufuegenderBenutzer) + "(X)");

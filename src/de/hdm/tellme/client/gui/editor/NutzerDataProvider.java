@@ -158,7 +158,7 @@ public class NutzerDataProvider {
 			public void onSuccess(Void result) {
 
 				fuelleListe();
-				Window.alert("Erfolgreich aboniert");
+				Window.alert("Erfolgreich abonniert");
 
 			}
 		});
@@ -179,7 +179,7 @@ public class NutzerDataProvider {
 					public void onSuccess(Void result) {
 
 						fuelleListe();
-						Window.alert("Erfolgreich deaboniert");
+						Window.alert("Erfolgreich deabonniert");
 
 					}
 				});

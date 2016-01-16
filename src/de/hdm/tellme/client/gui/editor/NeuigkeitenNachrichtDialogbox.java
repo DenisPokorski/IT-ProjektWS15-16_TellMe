@@ -185,7 +185,7 @@ public class NeuigkeitenNachrichtDialogbox {
 						Window.alert("Der Empfänger kann nicht hinzugefügt werden, da dieser bereits hinzugefügt wurde.");
 
 					} else if (zuHinzuzufuegenderBenutzer == null) {
-						Window.alert("Kein vorhandener Benutzer ausgewaehlt.");
+						Window.alert("Keinen vorhandenen Benutzer ausgewählt.");
 					} else {
 						AusgewaehlteEmpfaenger.addElement(zuHinzuzufuegenderBenutzer);
 						final Button btnLoescheEmpfaenger = new Button(gibVorschlageTextFuerNutzer(zuHinzuzufuegenderBenutzer) + "(X)");
@@ -268,7 +268,7 @@ public class NeuigkeitenNachrichtDialogbox {
 				if (bereitsHinzugefuegt) {
 					Window.alert("Der Hashtag kann nicht hinzugefügt werden, da dieser bereits hinzugefügt wurde.");
 				} else if (zuHinzuzufuegenderHashtag == null) {
-					Window.alert("Kein vorhandener Hashtag ausgewaehlt.");
+					Window.alert("Keinen vorhandenen Hashtag ausgewaehlt.");
 				} else {
 					AusgewaehlteHashtags.addElement(zuHinzuzufuegenderHashtag);
 					final Button btnLoescheHashtag = new Button("#" + zuHinzuzufuegenderHashtag.getSchlagwort() + "(X)");
@@ -318,7 +318,7 @@ public class NeuigkeitenNachrichtDialogbox {
 				case NeueNachricht:
 				default:
 					if (textArea.getValue() == "") {
-						Window.alert("Bitte geben Sie einen Text ein um die Nachricht versenden zu können.");
+						Window.alert("Bitte gib einen Text ein, um die Nachricht versenden zu können.");
 
 					} else {
 						Nachricht neueNachricht = new Nachricht();
@@ -349,13 +349,13 @@ public class NeuigkeitenNachrichtDialogbox {
 								if (result)
 									Window.alert("Nachricht erfolgreich erstellt");
 								else
-									Window.alert("Fehler beim erstellen der Nachricht, bitte an Administrator wenden.");
+									Window.alert("Fehler beim erstellen der Nachricht, bitte wende dich an den Administrator.");
 							}
 
 							@Override
 							public void onFailure(Throwable caught) {
 								// TODO Auto-generated method stub
-								Window.alert("Fehler beim erstellen der Nachricht, bitte an Administrator wenden.");
+								Window.alert("Fehler beim erstellen der Nachricht, bitte wende dich an den Administrator.");
 							}
 						});
 					}
@@ -363,7 +363,7 @@ public class NeuigkeitenNachrichtDialogbox {
 
 				case AntwortNachricht:
 					if (textArea.getValue() == "") {
-						Window.alert("Bitte geben Sie einen Text ein um die Unterhaltung zu beantworten.");
+						Window.alert("Bitte gib einen Text ein um die Unterhaltung zu beantworten.");
 					} else {
 						Nachricht antwortNachricht = new Nachricht();
 						antwortNachricht.setSender(TellMe.gibEingeloggterBenutzer().getUser());
@@ -378,13 +378,13 @@ public class NeuigkeitenNachrichtDialogbox {
 								if (result)
 									Window.alert("Nachricht erfolgreich gesendet.");
 								else
-									Window.alert("Fehler beim erstellen der Nachricht, bitte an Administrator wenden.");
+									Window.alert("Fehler beim erstellen der Nachricht, bitte wende dich an den Administrator.");
 								
 							}
 							
 							@Override
 							public void onFailure(Throwable caught) {
-								Window.alert("Fehler beim erstellen der Nachricht, bitte an Administrator wenden.");
+								Window.alert("Fehler beim erstellen der Nachricht, bitte wende dich an den Administrator.");
 								
 							}
 						});
@@ -394,7 +394,7 @@ public class NeuigkeitenNachrichtDialogbox {
 					break;
 				case BearbeitenNachricht:
 					if (textArea.getValue() == "") {
-						Window.alert("Bitte geben Sie einen Text ein um die Nachricht speichern zu können.");
+						Window.alert("Bitte gib einen Text ein um die Nachricht speichern zu können.");
 					} else {
 
 						Nachricht bearbeiteteNachricht = new Nachricht();
@@ -411,13 +411,13 @@ public class NeuigkeitenNachrichtDialogbox {
 								if (result)
 									Window.alert("Nachricht erfolgreich aktualisiert");
 								else
-									Window.alert("Fehler beim bearbeiten der Nachricht, bitte an Administrator wenden.");
+									Window.alert("Fehler beim bearbeiten der Nachricht, bitte wende dich an den Administrator.");
 
 							}
 
 							@Override
 							public void onFailure(Throwable caught) {
-								Window.alert("Fehler beim bearbeiten der Nachricht, bitte an Administrator wenden.");
+								Window.alert("Fehler beim bearbeiten der Nachricht, bitte wende dich an den Administrator.");
 
 							}
 						});

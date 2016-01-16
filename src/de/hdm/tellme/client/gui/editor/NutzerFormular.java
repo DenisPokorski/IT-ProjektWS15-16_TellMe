@@ -87,7 +87,7 @@ public class NutzerFormular extends Composite {
 		HTML subtext = new HTML(
 				" <div class='"
 						+ "subtext"
-						+ "'><h4>Hier können Sie andere Nutzer abonieren. Wenn Sie dies getan haben, werden alle öffentlichen und privaten nachrichten in den Sie als Empfänger asugewählt sind, in dem Menüpunkt Neuigkeiten angezeigt. <br /> Zudem können Sie bereits vorhandene abonnoments löschen. </h4></div> ");
+						+ "'><h4>Hier kannst du andere Nutzer abonnieren. Danach werden alle öffentlichen und privaten Nachrichten die an dich vom abonnierten Nutzer gesendet wurden, im Menüpunkt Neuigkeiten angezeigt. <br /> Zudem kannst du bereits vorhandene Abonnements löschen. </h4></div> ");
 		vpForm.add(subtext);
 
 		
