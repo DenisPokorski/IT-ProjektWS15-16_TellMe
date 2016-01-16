@@ -3,6 +3,7 @@ package de.hdm.tellme.shared;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
+
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
@@ -99,5 +100,8 @@ public interface EditorServiceAsync {
 
 	void getAlleNutzer(boolean zwingeNeuladen,
 			AsyncCallback<Vector<Nutzer>> callback);
+
+	void UnterhaltungAktualisieren(Unterhaltung original, Unterhaltung neu,
+			AsyncCallback<Boolean> callback);
 
 }

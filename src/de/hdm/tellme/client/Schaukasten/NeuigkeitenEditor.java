@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.TreeViewModel;
 
+import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.HashtagCellList;
 import de.hdm.tellme.client.gui.editor.HashtagZelle;
@@ -24,6 +25,7 @@ import de.hdm.tellme.client.gui.editor.NeuigkeitenTeilnehmerBearbeitenDialogbox;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
 import de.hdm.tellme.client.gui.editor.NutzerZelle;
 import de.hdm.tellme.shared.bo.Nachricht;
+import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Unterhaltung;
 
 /**
@@ -205,7 +207,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		btnNachrichtLoeaschen.addClickHandler(btnNachrichtLoeschenClickHandler);
 		hpOptionen.add(btnNachrichtLoeaschen);
 
-		/*
+		/**
 		 * Wenn keine Nachricht ausgewählt wurde, dann kann keine Nachricht
 		 * bearbeitet oder gelöscht werden.
 		 */
@@ -214,7 +216,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 			btnNachrichtBearbeiten.setEnabled(false);
 			btnNachrichtLoeaschen.setEnabled(false);
 
-			/*
+			/**
 			 * Wurde eine Nachricht ausgewählt, dann kann eine Nachricht
 			 * bearbeitet und gelöscht weden.
 			 */
@@ -224,7 +226,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 			btnNachrichtLoeaschen.setEnabled(true);
 		}
 
-		/*
+		/**
 		 * Wenn keine Unterhaltung ausgewählt wurde, dann kann keine
 		 * Unterhaltung bearbeitet oder gelöscht werden.
 		 */
@@ -234,16 +236,28 @@ public class NeuigkeitenEditor extends VerticalPanel {
 			btnTeilnehmerBearbeiten.setEnabled(false);
 			btnUnterhaltungVerlassen.setEnabled(false);
 
-			/*
+			/**
 			 * Wurde eine Unterhaltung ausgewählt, dann kann eine Unterhaltung
-			 * bearbeitet und gelöscht weden.
+			 * bearbeitet und gelöscht weden. Wenn man Teilnehmer einer
+			 * Unterhaltung ist, kann man diese verlassen. Ansonsten wird der
+			 * Button ausgegraut
 			 */
 		} else {
 			ausgewaehlteUnterhaltung = _ausgewaehlteUnterhaltung;
+			boolean istTeilnehmerInUnterhaltung = false;
 			btnAntworten.setEnabled(true);
 			btnTeilnehmerBearbeiten.setEnabled(true);
-			btnUnterhaltungVerlassen.setEnabled(true);
-
+			for (Nutzer nutzer : ausgewaehlteUnterhaltung.getTeilnehmer()) {
+				if (nutzer.getId() == TellMe.gibEingeloggterBenutzer()
+						.getUser().getId())
+					istTeilnehmerInUnterhaltung = true;
+				break;
+			}
+			if (istTeilnehmerInUnterhaltung) {
+				btnUnterhaltungVerlassen.setEnabled(true);
+			} else {
+				btnUnterhaltungVerlassen.setEnabled(false);
+			}
 		}
 
 		/**

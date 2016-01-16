@@ -308,4 +308,6 @@ public interface EditorService extends RemoteService {
 
 	boolean UnterhaltungVerlassen(Unterhaltung u, int nutzerId);
 
+	boolean UnterhaltungAktualisieren(Unterhaltung original, Unterhaltung neu);
+
 }

@@ -17,6 +17,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TextArea;
+import com.sun.java.swing.plaf.windows.resources.windows;
 
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
@@ -26,8 +27,6 @@ import de.hdm.tellme.shared.bo.Unterhaltung;
 public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 
 	final DialogBox db = new DialogBox();
-	TextArea textArea = new TextArea();
-	private String textAreaInhalt = "";
 
 	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
 
@@ -46,19 +45,22 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 
 	private Unterhaltung zuBearbeitendeUnterhaltung;
 
-	public DialogBox getTeilnehmerBearbeiten(Unterhaltung _unterhaltungZumBearbeiten) {
+	public DialogBox getTeilnehmerBearbeiten(
+			Unterhaltung _unterhaltungZumBearbeiten) {
 		boxTitel = "Teilnehmer bearbeiten";
 		textFunktionsbutton = "Speichern";
 
 		zuBearbeitendeUnterhaltung = _unterhaltungZumBearbeiten;
-
-		
 		// Fuelle TeilehmerPanel
-		for (Nutzer zuHinzuzufuegenderBenutzer : _unterhaltungZumBearbeiten.getTeilnehmer()) {
+		for (Nutzer zuHinzuzufuegenderBenutzer : _unterhaltungZumBearbeiten
+				.getTeilnehmer()) {
 
 			AusgewaehlteEmpfaenger.addElement(zuHinzuzufuegenderBenutzer);
-			final Button btnLoescheEmpfaenger = new Button(gibVorschlageTextFuerNutzer(zuHinzuzufuegenderBenutzer) + "(X)");
-			btnLoescheEmpfaenger.setStylePrimaryName("ButtonX-Nachrichtenverwaltung");
+			final Button btnLoescheEmpfaenger = new Button(
+					gibVorschlageTextFuerNutzer(zuHinzuzufuegenderBenutzer)
+							+ "(X)");
+			btnLoescheEmpfaenger
+					.setStylePrimaryName("ButtonX-Nachrichtenverwaltung");
 
 			btnLoescheEmpfaenger.addClickHandler(new ClickHandler() {
 				public void onClick(ClickEvent event) {
@@ -69,7 +71,8 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 					// Liste
 					// der Ausgewählten Empfänger
 					for (Nutzer nutzer : AusgewaehlteEmpfaenger) {
-						if (btnLoescheEmpfaenger.getText().equals(gibVorschlageTextFuerNutzer(nutzer) + "(X)")) {
+						if (btnLoescheEmpfaenger.getText().equals(
+								gibVorschlageTextFuerNutzer(nutzer) + "(X)")) {
 							AusgewaehlteEmpfaenger.remove(nutzer);
 							btnLoescheEmpfaenger.removeFromParent();
 							continue;
@@ -88,9 +91,6 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 	private DialogBox gibDialogBox() {
 		ladVorschlagListen();
 
-	
-		
-		
 		// Dialog und FlowPanel definition
 		db.setText(boxTitel);
 		db.setAnimationEnabled(true);
@@ -99,9 +99,9 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 		FlowPanel fpDialog = new FlowPanel();
 		// fpDialog.setHeight("500px");
 		// fpDialog.setWidth("500px");
-		
+
 		fpDialog.setWidth("100%");
-		
+
 		Image btnAbbrechen = new Image("xbtn.png");
 
 		btnAbbrechen.setStylePrimaryName("xbtn");
@@ -111,25 +111,22 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 				db.hide();
 			}
 		});
-		
+
 		fpDialog.add(btnAbbrechen);
-		
 
 		// ############################################## Empfaenger Panele
 		// ##############################################
 
-	
-		
-
-		final SuggestBox EmpfaengerHinzufuegenSug = new SuggestBox(suggestOracleEmpfaenger);
+		final SuggestBox EmpfaengerHinzufuegenSug = new SuggestBox(
+				suggestOracleEmpfaenger);
 		hpEmpfaenger.add(EmpfaengerHinzufuegenSug);
 
 		final Button btnEmpfaengerHinzufuegen = new Button("+ Empfänger");
 		btnEmpfaengerHinzufuegen.setStylePrimaryName("EmpfaengerPlusBtn");
 		hpEmpfaenger.add(btnEmpfaengerHinzufuegen);
-		
+
 		btnEmpfaengerHinzufuegen.addClickHandler(new ClickHandler() {
-		
+
 			public void onClick(ClickEvent event) {
 				Nutzer zuHinzuzufuegenderBenutzer = null;
 				boolean bereitsHinzugefuegt = false;
@@ -139,7 +136,8 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 				// übereinstimmt. Falls ja setzte speichere Nutzerobjekt in
 				// zuHinzuzufuegenderBenutzer
 				for (Nutzer einzelnerNutzer : moeglicheEmpfaenger) {
-					if (EmpfaengerHinzufuegenSug.getText().equals(gibVorschlageTextFuerNutzer(einzelnerNutzer))) {
+					if (EmpfaengerHinzufuegenSug.getText().equals(
+							gibVorschlageTextFuerNutzer(einzelnerNutzer))) {
 						zuHinzuzufuegenderBenutzer = einzelnerNutzer;
 						continue;
 					}
@@ -161,9 +159,13 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 				} else if (zuHinzuzufuegenderBenutzer == null) {
 					Window.alert("Keinen vorhandenen Benutzer ausgewählt.");
 				} else {
-					AusgewaehlteEmpfaenger.addElement(zuHinzuzufuegenderBenutzer);
-					final Button btnLoescheEmpfaenger = new Button(gibVorschlageTextFuerNutzer(zuHinzuzufuegenderBenutzer) + "(X)");
-					btnLoescheEmpfaenger.setStylePrimaryName("ButtonX-Nachrichtenverwaltung");
+					AusgewaehlteEmpfaenger
+							.addElement(zuHinzuzufuegenderBenutzer);
+					final Button btnLoescheEmpfaenger = new Button(
+							gibVorschlageTextFuerNutzer(zuHinzuzufuegenderBenutzer)
+									+ "(X)");
+					btnLoescheEmpfaenger
+							.setStylePrimaryName("ButtonX-Nachrichtenverwaltung");
 
 					btnLoescheEmpfaenger.addClickHandler(new ClickHandler() {
 						public void onClick(ClickEvent event) {
@@ -174,7 +176,9 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 							// Liste
 							// der Ausgewählten Empfänger
 							for (Nutzer nutzer : AusgewaehlteEmpfaenger) {
-								if (btnLoescheEmpfaenger.getText().equals(gibVorschlageTextFuerNutzer(nutzer) + "(X)")) {
+								if (btnLoescheEmpfaenger.getText().equals(
+										gibVorschlageTextFuerNutzer(nutzer)
+												+ "(X)")) {
 									AusgewaehlteEmpfaenger.remove(nutzer);
 									btnLoescheEmpfaenger.removeFromParent();
 									continue;
@@ -193,18 +197,7 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 		});
 		fpDialog.add(hpEmpfaenger);
 		fpDialog.add(fpAusgewaehlteEmpfanger);
-		
-		
-		// ############################################## Textarea
-				// ##############################################
-				textArea.setWidth("100%");
-				textArea.setVisibleLines(10);
-				textArea.setText(textAreaInhalt);
-				textArea.setStylePrimaryName("dialogtextArea");
 
-				// maxlength="50"
-				fpDialog.add(textArea);
-		
 		HorizontalPanel hpButtons = new HorizontalPanel();
 		hpButtons.setWidth("100%");
 		hpButtons.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
@@ -215,14 +208,37 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
-				Window.alert("Teilnehmer bearbeitet!");
+				Unterhaltung aktualisierteTeilnehmerUnterhaltung = new Unterhaltung();
+				aktualisierteTeilnehmerUnterhaltung
+						.setId(zuBearbeitendeUnterhaltung.getId());
+				aktualisierteTeilnehmerUnterhaltung
+						.setTeilnehmer(AusgewaehlteEmpfaenger);
+				aktualisierteTeilnehmerUnterhaltung
+						.setUnterhaltungstyp(zuBearbeitendeUnterhaltung
+								.getUnterhaltungstyp());
+				aktualisierteTeilnehmerUnterhaltung
+						.setSichtbarkeit(zuBearbeitendeUnterhaltung
+								.getSichtbarkeit());
+				asyncObj.UnterhaltungAktualisieren(zuBearbeitendeUnterhaltung,
+						aktualisierteTeilnehmerUnterhaltung,
+						new AsyncCallback<Boolean>() {
 
+							@Override
+							public void onFailure(Throwable caught) {
+								Window.alert("Fehler beim bearbeiten der Teilnehmer. Bitte wenden Sie sich an den Systemadministrator.");
+							}
+
+							@Override
+							public void onSuccess(Boolean result) {
+								Window.alert("Teilnehmer bearbeitet!");
+
+							}
+						});
+				
 				db.hide();
 			}
 		});
 
-		
 		hpButtons.add(btnFunktionsbutton);
 		fpDialog.add(hpButtons);
 
@@ -231,9 +247,8 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 	}
 
 	private void ladVorschlagListen() {
-		
-		
-		asyncObj.getAlleNutzer(false,new AsyncCallback<Vector<Nutzer>>() {
+
+		asyncObj.getAlleNutzer(false, new AsyncCallback<Vector<Nutzer>>() {
 			@Override
 			public void onFailure(Throwable caught) {
 			}
@@ -242,7 +257,8 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 			public void onSuccess(Vector<Nutzer> resultListe) {
 				moeglicheEmpfaenger = resultListe;
 				for (Nutzer einzelnerUser : moeglicheEmpfaenger) {
-					suggestOracleEmpfaenger.add(gibVorschlageTextFuerNutzer(einzelnerUser));
+					suggestOracleEmpfaenger
+							.add(gibVorschlageTextFuerNutzer(einzelnerUser));
 				}
 
 			}
@@ -251,7 +267,8 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 	}
 
 	private String gibVorschlageTextFuerNutzer(Nutzer _nutzer) {
-		return _nutzer.getVorname() + " " + _nutzer.getNachname() + " (" + _nutzer.getMailadresse() + ")";
+		return _nutzer.getVorname() + " " + _nutzer.getNachname() + " ("
+				+ _nutzer.getMailadresse() + ")";
 	}
 
 }

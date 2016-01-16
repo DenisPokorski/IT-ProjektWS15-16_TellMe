@@ -639,7 +639,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 			unterhaltungMapper.teilnehmerHinzufuegen(unterhaltungsID, nutzerID);
 		return erfolgreich;
 	}
-
+@Override
 	public boolean UnterhaltungAktualisieren(Unterhaltung original,
 			Unterhaltung neu) {
 		boolean erfolgreich = true;
