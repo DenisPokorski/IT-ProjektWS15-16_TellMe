@@ -150,24 +150,12 @@ public class NutzerMapper {
 	}
 
 	/**
-	 * Die Methode suchenNutzerIdMitMailadresse stellt eine Verbindung zur
-	 * Datenbank her. Dazu wird die Methode "connection()" aus der Klasse
-	 * DatenbankVerbindung dem Objekt con übergeben. Anschließend wird ein neues
-	 * Objekt von dem Typ Nutzer erstellt (na). Im Anschluss wird im "try-Block"
-	 * ein Statement erstellt. Nun legen wir über ResultSet fest, dass der
-	 * Nutzer über die Mailadresse gesucht werden soll. Danach wird für jeder
-	 * Eintrag in das Objekt na geschrieben. Jetzt wird über die Methode
-	 * "state.executeUpdate(sqlquery);" ausgeführt und der SQL String an die
-	 * Datenbank übergeben. Sollte der "try-Block" Fehler aufweisen, wird der
-	 * "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
-	 * ausgeführt. Über "return" wird der Nutzer mit allen Attributen
-	 * ausgegeben.
-	 */
-	/**
-	 * TODO
+	 * Durch diese Methode werden alle Nutzer in einem Vektor ausgegeben, außer
+	 * der eingeloggte Nutzer. Dies wird über die NutzerId meineid verwirklicht.
 	 * 
 	 * @param meineid
-	 * @return
+	 * @return Ein Vektor mit Nutzer-Objekten, der alle Nutzer enthält, außer
+	 *         den vom angemeldeten Nutzer.
 	 */
 	public Vector<Nutzer> alleNutzerAusserMeineId(int meineid) {
 
@@ -198,15 +186,17 @@ public class NutzerMapper {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// Ergebnisvektor zur�ckgeben
+		// Ergebnisvektor zurückgeben
 		return alleNutzerAusserMeinNutzerListe;
 	}
 
 	/**
-	 * TODO
+	 * Durch diese Methode werden alle Nutzer in einem Vektor ausgegeben, auch
+	 * der eingeloggte Nutzer. Dies wird über die NutzerId meineid verwirklicht.
 	 * 
 	 * @param meineid
-	 * @return
+	 * @return Ein Vektor mit Nutzer-Objekten, der alle Nutzer enthält, auch den
+	 *         angemeldeten Nutzer.
 	 */
 	public Vector<Nutzer> alleNutzer(int meineid) {
 
@@ -238,10 +228,12 @@ public class NutzerMapper {
 	}
 
 	/**
-	 * TODO
+	 * Ein Vektor mit Nutzer-Objekten, der alle Nutzer enthält, die vom
+	 * eingeloggten Nutzer abonniert sind.
 	 * 
 	 * @param meineId
-	 * @return
+	 * @return Ein Vektor mit Nutzer-Objekten, der alle Nutzer enthält, die vom
+	 *         eingeloggten Nutzer abonniert sind.
 	 */
 	public Vector<Integer> alleAbonniertenNutzer(int meineId) {
 		Vector<Integer> alleAbonniertenNutzer = new Vector<Integer>();
@@ -265,7 +257,9 @@ public class NutzerMapper {
 	}
 
 	/**
-	 * TODO
+	 * Diese Methode ermöglicht es, dass ein Hashtag alle Abonnenten verliert,
+	 * bzw. diese HashtagAbonnements aus der NutzerHashtag-Tabelle gelöscht
+	 * werden.
 	 * 
 	 * @param hashtag
 	 */
@@ -282,7 +276,7 @@ public class NutzerMapper {
 	}
 
 	/**
-	 * TODO
+	 * Diese Methode setzt den Status eines Nutzer auf aktiv.
 	 * 
 	 * @param id
 	 */
