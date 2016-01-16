@@ -3,11 +3,18 @@ package de.hdm.tellme.shared.bo;
 import java.sql.Timestamp;
 import java.util.Vector;
 
-public class Unterhaltung extends BusinessObject implements Comparable<Unterhaltung> {
+/**
+ * Die Klasse Nutzer erbt von der Superklasse BusinessObject. Es werden die get-
+ * und set-Methoden für AlleNachrichten, Teilnehmer und Unterhaltungstyp
+ * erstellt. Die Methode VergleichsDatum gibt das letzte Datum und die
+ * compareTo()-Methode vergleicht das Datum der Unterhaltungen
+ * 
+ * @author denispokorski
+ *
+ */
+public class Unterhaltung extends BusinessObject implements
+		Comparable<Unterhaltung> {
 
-	/**
-  * 
-  */
 	private static final long serialVersionUID = 1L;
 	private Vector<Nachricht> alleNachrichten = new Vector<Nachricht>();
 
@@ -53,7 +60,8 @@ public class Unterhaltung extends BusinessObject implements Comparable<Unterhalt
 		if (this.getAlleNachrichten() != null) {
 			if (this.getAlleNachrichten().size() > 0) {
 				if (this.getAlleNachrichten().get(0) != null) {
-					rueckgabeWert = this.getAlleNachrichten().get(0).getErstellungsDatum();
+					rueckgabeWert = this.getAlleNachrichten().get(0)
+							.getErstellungsDatum();
 				}
 			}
 		}
@@ -61,9 +69,15 @@ public class Unterhaltung extends BusinessObject implements Comparable<Unterhalt
 		return rueckgabeWert;
 	}
 
+	/**
+	 * Mit der Methode <code>compareTo()</code> werden die Unterhaltungen
+	 * zeitlich in eine Reihenfolge gebracht
+	 */
 	@Override
 	public int compareTo(Unterhaltung arg0) {
-		if (arg0.getVergleichsDatum() == null || this.getVergleichsDatum() == null)
+
+		if (arg0.getVergleichsDatum() == null
+				|| this.getVergleichsDatum() == null)
 			return 0;
 		if (arg0.getVergleichsDatum().before(this.getVergleichsDatum()))
 			return -1;

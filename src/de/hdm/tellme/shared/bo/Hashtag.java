@@ -17,12 +17,11 @@ public class Hashtag extends BusinessObject {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Die Variable hashtagId ist vom Typ Integer 
-	 * Die Variable Schlagwort ist vom Typ String
+	 * Die Variable hashtagId ist vom Typ Integer Die Variable Schlagwort ist
+	 * vom Typ String
 	 */
 
 	private String schlagwort;
-
 
 	/**
 	 * Mit dieser Methode wird das Schlagwort ausgelesen

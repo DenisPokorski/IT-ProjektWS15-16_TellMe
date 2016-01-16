@@ -97,7 +97,7 @@ public class Report1Gui extends VerticalPanel {
 		reportPanel.add(ueberSchrift1);
 		reportPanel1.add(reportPanel1_left);
 		reportPanel1.add(reportPanel1_right);
-		reportPanel1_left.add(subSchrift1);
+		//reportPanel1_left.add(subSchrift1);
 
 		/**
 		 * Dem <code>reportPanel1_left</code> wird die
