@@ -32,9 +32,9 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 		String strTeilnehmer = "";
 
 		if (u.getUnterhaltungstyp() == eUnterhaltungsTyp.oeffentlich) {
-			strUnterhaltungsTyp = "OE";
+			strUnterhaltungsTyp = "öffentlich";
 		} else {
-			strUnterhaltungsTyp = "PR";
+			strUnterhaltungsTyp = "privat";
 		}
 
 		strDatum = dF.format(value.getErstellungsDatum()).toString();

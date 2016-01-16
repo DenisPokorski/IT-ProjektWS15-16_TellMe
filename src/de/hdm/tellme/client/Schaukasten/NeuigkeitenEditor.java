@@ -203,7 +203,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	public static VerticalPanel gibFilterPanel(){
 		
 
-HTML infbox = new HTML("<div class='"+"infobox"+"'> <h3> Infobox:</h3><b> Die Kürzel PR, OE stehen für: </b><br /> PR = Private Nachricht<br /> OE = Öffentliche Nachricht<br /> </div>" );
+//HTML infbox = new HTML("<div class='"+"infobox"+"'> <h3> Infobox:</h3><b> Die Kürzel PR, OE stehen für: </b><br /> PR = Private Nachricht<br /> OE = Öffentliche Nachricht<br /> </div>" );
 
 		VerticalPanel vpFilterPanel = new VerticalPanel();
 
@@ -211,7 +211,7 @@ HTML infbox = new HTML("<div class='"+"infobox"+"'> <h3> Infobox:</h3><b> Die K�
 		vpFilterPanel.add(hsCL.generiereCellList(CellListModus.Nachrichtenuebersicht));
 		
 		Button btnFilterZuruecksetzen = new Button("Filter zurücksetzen");
-		vpFilterPanel.add(infbox);
+//		vpFilterPanel.add(infbox);
 
 		
 		btnFilterZuruecksetzen.setStylePrimaryName("filterBtn");
