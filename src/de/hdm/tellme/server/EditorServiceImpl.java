@@ -555,6 +555,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 						}
 
 						UnterhaltungMitAboniertemHashtag.setTeilnehmer(alleTeilnehmer);
+						
+						UnterhaltungMitAboniertemHashtag.setAnzeigeHerkunft("Hashtagabonement");
 
 						// füge Unterhaltung der Liste hinzu
 						alleOeffentlichenUnterhaltungenAbonnierterHashtags.add(UnterhaltungMitAboniertemHashtag);
@@ -825,7 +827,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 						}
 
 						uH.setTeilnehmer(alleTeilnehmer);
-
+						
+						uH.setAnzeigeHerkunft("Nutzerabonement");
+						
 						// füge Unterhaltung der Liste hinzu
 						alleOeffentlichenUnterhaltungenAbonnierterNutzer.add(uH);
 
@@ -894,7 +898,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			}
 
 			unterhaltung.setTeilnehmer(alleTeilnehmer);
-
+			
+			unterhaltung.setAnzeigeHerkunft("Unterhaltungsteilnehmer");
 		}
 
 		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;

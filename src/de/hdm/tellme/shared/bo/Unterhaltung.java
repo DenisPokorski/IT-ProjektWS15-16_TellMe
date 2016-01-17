@@ -21,6 +21,16 @@ public class Unterhaltung extends BusinessObject implements
 	private Vector<Nutzer> teilnehmer = new Vector<Nutzer>();
 
 	private eUnterhaltungsTyp Unterhaltungstyp;
+	
+	private String anzeigeHerkunft = "";
+
+	public String getAnzeigeHerkunft() {
+		return anzeigeHerkunft;
+	}
+
+	public void setAnzeigeHerkunft(String anzeigeHerkunft) {
+		this.anzeigeHerkunft = anzeigeHerkunft;
+	}
 
 	public enum eUnterhaltungsTyp {
 		privat, oeffentlich;

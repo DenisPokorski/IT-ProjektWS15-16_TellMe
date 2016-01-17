@@ -16,6 +16,7 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 
 	public NeuigkeitenNachrichtenZelle(Unterhaltung _u) {
 		u = _u;
+		
 	}
 
 	public void render(Context context, Nachricht value, SafeHtmlBuilder sb) {
@@ -51,13 +52,13 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 			} else
 				strHashtags += "keine Hashtags vorhanden";
 		}
-		
+
 		if (u.getTeilnehmer() != null) {
 			if (u.getTeilnehmer().size() != 0) {
 				for (Nutzer teilnehmer : u.getTeilnehmer()) {
-					strTeilnehmer += teilnehmer.getVorname() + " " + teilnehmer.getNachname()+ ", ";
+					strTeilnehmer += teilnehmer.getVorname() + " " + teilnehmer.getNachname() + ", ";
 				}
-				strTeilnehmer = strTeilnehmer.substring(0, strTeilnehmer.length()-2);
+				strTeilnehmer = strTeilnehmer.substring(0, strTeilnehmer.length() - 2);
 			} else
 				strTeilnehmer += "keine Teilnehmer";
 		}
@@ -75,7 +76,11 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 		sb.appendHtmlConstant("</td></tr><tr><td colspan='3'>");
 		sb.appendHtmlConstant(strText.replace("\n", "<br>"));
 		sb.appendHtmlConstant("</td>");
-		sb.appendHtmlConstant("</tr><tr><td colspan='2'>" + "Teilnehmer: " + strTeilnehmer + "</td><td>" + "Hashtags: " + strHashtags + "</td></tr>" + "</table>");
+		sb.appendHtmlConstant("</tr><tr><td colspan='2'>" + "Teilnehmer: " + strTeilnehmer + "</td><td>" + "Hashtags: " + strHashtags + "</td></tr>");
+		sb.appendHtmlConstant("<tr><td colspan='3'>");
+		sb.appendHtmlConstant("Herkunft: " + u.getAnzeigeHerkunft());
+		sb.appendHtmlConstant("</td></tr>");
+		sb.appendHtmlConstant("</table>");
 		sb.appendHtmlConstant("</div>");
 
 	}
