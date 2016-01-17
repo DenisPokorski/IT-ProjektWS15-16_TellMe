@@ -42,34 +42,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 	private NutzerMapper nutzerMapper = null;
 
 	@Override
-	public Vector<Nachricht> report1Generieren(int nutzerId, Date vonDatum,
-			Date bisDatum) {
-		Vector<Nachricht> report1 = nachrichtMapper.report1Mapper(nutzerId,
-				vonDatum, bisDatum);
-		return report1;
-	}
-
-	@Override
-	public Vector<Nachricht> report2Generieren(Timestamp vonDatum,
-			Timestamp bisDatum) {
-		Vector<Nachricht> report2 = nachrichtMapper.report2Mapper(vonDatum,
-				bisDatum);
-		return report2;
-	}
-
-	@Override
-	public Vector<Nachricht> report3Generieren(int i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Vector<Nachricht> report4Generieren() {
-		Vector<Nachricht> report4 = nachrichtMapper.report4Mapper();
-		return report4;
-	}
-
-	@Override
 	public Vector<Nutzer> report5GenerierenListe(int i) {
 		Vector<Nutzer> report5 = nutzeraboMapper.ladeAbonnierendeNutzerListe(i);
 		return report5;
@@ -140,7 +112,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 			int AutorId, Timestamp vonDate, Timestamp bisDate) {
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungen = new Vector<Unterhaltung>();
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungenMitSichtbarenNachrichten = new Vector<Unterhaltung>();
-		System.out.println("" + vonDate + bisDate);
 		alleSichtbarenUnterhaltungen = unterhaltungMapper
 				.alleUnterhaltungenFuerAutorOhneNachrichten(AutorId);
 

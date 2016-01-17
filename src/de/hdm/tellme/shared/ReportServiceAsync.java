@@ -20,16 +20,6 @@ import de.hdm.tellme.shared.bo.Unterhaltung;
  *
  */
 public interface ReportServiceAsync {
-	void report1Generieren(int nutzerId, Date vonDatum, Date bisDatum,
-			AsyncCallback<Vector<Nachricht>> asyncCallback);
-
-	void report2Generieren(Timestamp vonDatum, Timestamp bisDatum,
-			AsyncCallback<Vector<Nachricht>> asyncCallback);
-
-	void report3Generieren(int i, AsyncCallback<Vector<Nachricht>> asyncCallback);
-
-	void report4Generieren(AsyncCallback<Vector<Nachricht>> asyncCallback);
-
 	void report5GenerierenListe(int i, AsyncCallback<Vector<Nutzer>> callback);
 
 	void report6Generieren(int i, AsyncCallback<Vector<Hashtag>> asyncCallback);

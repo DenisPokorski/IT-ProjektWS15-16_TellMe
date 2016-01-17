@@ -328,31 +328,6 @@ public class UnterhaltungMapper {
 		return uH;
 	}
 
-	// @Deprecated: name... use alleUnterhaltungenFuerAktivenTeilnehmer
-	@Deprecated
-	/**
-	 * TODO
-	 * TODO Deprecated weil nichtmehr verwendet. Kann man löschen??
-	 * @param meineId
-	 * @return
-	 */
-	public Vector<Integer> meineUnterhaltungen(int meineId) {
-		Vector<Integer> meineUnterhaltungen = new Vector<Integer>();
-		Connection con = DatenbankVerbindung.connection();
-		try {
-			Statement state = con.createStatement();
-			String sql = "SELECT * FROM NutzerUnterhaltung WHERE NutzerId = '"
-					+ meineId + "' AND Sichtbarkeit = 1";
-			ResultSet rs = state.executeQuery(sql);
-			while (rs.next()) {
-				meineUnterhaltungen.add(rs.getInt("UnterhaltungId"));
-
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return meineUnterhaltungen;
-	}
 
 	/**
 	 * Diese Methode zeigt alle aktiven Nachrichten einer Unterhaltung an.

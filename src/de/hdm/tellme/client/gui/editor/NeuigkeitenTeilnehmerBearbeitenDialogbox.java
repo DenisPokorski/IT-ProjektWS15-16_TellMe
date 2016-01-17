@@ -66,7 +66,7 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 	HorizontalPanel hpEmpfaenger = new HorizontalPanel();
 
 	/**
-	 *  Elemente, die von jedem Nachrichtemodus unterschiedlich befüllt werden
+	 * Elemente, die von jedem Nachrichtemodus unterschiedlich befüllt werden
 	 */
 	private String boxTitel;
 	private String textFunktionsbutton = "";
@@ -367,8 +367,10 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 			public void onSuccess(Vector<Nutzer> resultListe) {
 				moeglicheEmpfaenger = resultListe;
 				for (Nutzer einzelnerUser : moeglicheEmpfaenger) {
-					suggestOracleEmpfaenger
-							.add(gibVorschlageTextFuerNutzer(einzelnerUser));
+					if (einzelnerUser.getId() != TellMe
+							.gibEingeloggterBenutzer().getUser().getId())
+						suggestOracleEmpfaenger
+								.add(gibVorschlageTextFuerNutzer(einzelnerUser));
 				}
 
 			}

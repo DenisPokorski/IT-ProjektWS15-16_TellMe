@@ -159,7 +159,7 @@ public class ReportWillkommenSeite extends VerticalPanel {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				setzeInhalt(new Report5Gui());
+				setzeInhalt(new Report2Gui());
 
 			}
 
@@ -169,7 +169,7 @@ public class ReportWillkommenSeite extends VerticalPanel {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				setzeInhalt(new Report6Gui());
+				setzeInhalt(new Report3Gui());
 
 			}
 

@@ -335,7 +335,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 
 	/**
-	 * @Deprecated bitte benutzen!
+	 * Hole alle abonnierten Nutzer
 	 */
 	@Override
 	public Vector<Integer> holeAlleAbonniertenNutzer(int meineId) {
@@ -344,31 +344,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return alleAbonniertenNutzer;
 	}
 
-	/**
-	 * Auslesen aller abonnierten Nutzer
-	 * 
-	 * @param aboNehmerID
-	 * @return Vektor mit Nutzer-Objekten, die vom eingeloggten Nutzer abonniert
-	 *         sind.
-	 */
-	public Vector<Nutzer> getAbonierteNutzer(int aboNehmerID) {
-		// TODO: Implementieren - aus DB liste an ID's laden und anschließend
-		// auf user der alleUse liste mappen
-		return null;
-	}
-
-	/**
-	 * Auslesen aller nicht abonnierten Nuzter
-	 * 
-	 * @param aboNehmerID
-	 * @return Vektor mit Nutzer-Objekten, die vom eingeloggten Nutzer nicht
-	 *         abonniert sind.
-	 */
-	public Vector<Nutzer> getNichtAbonierteNutzer(int aboNehmerID) {
-		// TODO: Implementieren, einfach getAlleNutzer und getAbonierteNutzer
-		// ausführen und voneinander abziehen
-		return null;
-	}
 
 	/*
 	 * ***************************************************************************
@@ -727,23 +702,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		boolean ergebnis = false;
 		ergebnis = unterhaltungMapper.loescheUnterhaltungAnhandID(unterhaltungsID);
 		return ergebnis;
-	}
-
-	/**
-	 * @Deprecated namensgeb?!
-	 */
-	@Deprecated
-	@Override
-	public Vector<Unterhaltung> meineUnterhaltungenMitSichtbarkeit(int meineId) {
-		Vector<Unterhaltung> meineUnterhaltungen = new Vector<Unterhaltung>();
-		Vector<Integer> meineUnterhaltungenIds = unterhaltungMapper.meineUnterhaltungen(meineId);
-
-		for (Integer unterhaltungsId : meineUnterhaltungenIds) {
-			System.out.println("meineUnterhaltungenMitSichtbarkeit - geladene Unterhaltung: " + unterhaltungsId);
-			meineUnterhaltungen.add(unterhaltungMapper.gibNachrichtenIdsZuUnterhaltungsId(unterhaltungsId));
-		}
-
-		return meineUnterhaltungen;
 	}
 
 	/**

@@ -31,9 +31,9 @@ public class HashtagMapper {
 	private static HashtagMapper hashtagMapper = null;
 
 	/**
-	 * Damit der HashtagMapper nicht durch <code>new</code> neue
-	 * Instanzen in der Klasse erzeugen kann, wird der Konstruktor mit
-	 * <code>protected</code> geschützt.
+	 * Damit der HashtagMapper nicht durch <code>new</code> neue Instanzen in
+	 * der Klasse erzeugen kann, wird der Konstruktor mit <code>protected</code>
+	 * geschützt.
 	 */
 
 	protected HashtagMapper() {
@@ -198,8 +198,8 @@ public class HashtagMapper {
 	 * "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
 	 * ausgeführt.
 	 * 
-	 * TODO so ausführlich?
 	 */
+
 	/**
 	 * Dieser Mapper wird benötigt um ein Hashtag zu aktualisieren, hierfür wird
 	 * das Schlagwort verändert, während die Id des Hashtags gleich bleibt.

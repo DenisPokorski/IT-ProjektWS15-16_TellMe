@@ -29,51 +29,6 @@ import de.hdm.tellme.shared.bo.Unterhaltung;
 @RemoteServiceRelativePath("reportservice")
 public interface ReportService extends RemoteService {
 
-	/**
-	 * Den Report 1 erstellen
-	 * 
-	 * @param nutzerId
-	 * @param vonDatum
-	 * @param bisDatum
-	 * @return
-	 */
-	Vector<Nachricht> report1Generieren(int nutzerId, Date vonDatum,
-			Date bisDatum);
-
-	/**
-	 * Den Report 2 erstellen
-	 * 
-	 * @param vonDatum
-	 * @param bisDatum
-	 * @return
-	 */
-
-	Vector<Nachricht> report2Generieren(Timestamp vonDatum, Timestamp bisDatum);
-
-	/**
-	 * Den Report 3 erstellen
-	 * 
-	 * @param i
-	 * @return
-	 */
-
-	Vector<Nachricht> report3Generieren(int i);
-
-	/**
-	 * Den Report4 erstellen
-	 * 
-	 * @return
-	 */
-
-	Vector<Nachricht> report4Generieren();
-
-	/**
-	 * Den Report 5 erstellen
-	 * 
-	 * @param i
-	 * @return
-	 */
-
 	Vector<Nutzer> report5GenerierenListe(int i);
 
 	/**

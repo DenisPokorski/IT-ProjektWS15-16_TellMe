@@ -55,9 +55,9 @@ public class NutzerAbonnementMapper {
 	 * AbonnentBenutzer.VonId verglichen um zu erkennen, welche Nutzer bereits
 	 * abonniert sind.
 	 * 
-	 * @param nutze
+	 * @param nutzer
 	 * @return Ein Vektor mit Nutzer-Objekten, dass alle abonnierten Nutzer
-	 *         eines Nutzers anzeigt. TODO stimmt das?
+	 *         eines Nutzers anzeigt. 
 	 */
 
 	public Vector<Nutzer> ladeAbonnierendeNutzerListe(int nutzer) {

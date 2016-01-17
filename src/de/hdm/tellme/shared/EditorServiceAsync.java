@@ -62,9 +62,6 @@ public interface EditorServiceAsync {
 	void ladeAlleNachrichtenZuUnterhaltung(int UnterhaltungsID,
 			AsyncCallback<Vector<Nachricht>> callback);
 
-	void meineUnterhaltungenMitSichtbarkeit(int meineId,
-			AsyncCallback<Vector<Unterhaltung>> callback);
-
 	void oeffentlicheUnterhaltungenAbonnierterNutzer(int meineId,
 			AsyncCallback<Vector<Unterhaltung>> callback);
 

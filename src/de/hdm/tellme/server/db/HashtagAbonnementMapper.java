@@ -187,7 +187,7 @@ public class HashtagAbonnementMapper {
 
 	/**
 	 * Dieser Mapper soll alle bereits abonnierten Hashtags vom angemeldeten
-	 * Nutzer anzeigen. TODO wird der Mapper noch verwendet?
+	 * Nutzer anzeigen. 
 	 * 
 	 * @param nutzerId
 	 * @return Ein Vektor mit Integer-Objekten, dass die HashtagId's beinhaltet,

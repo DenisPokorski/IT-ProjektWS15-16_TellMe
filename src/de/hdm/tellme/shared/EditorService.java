@@ -167,15 +167,6 @@ public interface EditorService extends RemoteService {
 			Vector<Nutzer> teilnehmer);
 
 	/**
-	 * Alle Unterhaltungen von sich selbst mit der jeweiligen Sichtbarkeit
-	 * anzeigen
-	 *
-	 * @param meineId
-	 * @return
-	 */
-	Vector<Unterhaltung> meineUnterhaltungenMitSichtbarkeit(int meineId);
-
-	/**
 	 * 
 	 * Alle Nachrichten von jeweilgen Unterhaltung auslesen
 	 * 
