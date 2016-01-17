@@ -4,7 +4,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellTree;
 import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSelectionPolicy;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
@@ -31,13 +30,22 @@ import de.hdm.tellme.shared.bo.Unterhaltung;
 
 /**
  * 
- * Die Klasse <class> NeuigkeitenEditor </class> TODO
+ * Die Klasse <class> NeuigkeitenEditor </class> zeigt alle aktuellen
+ * Unterhaltungen, genauer gesagt Nachrichten, die Nutzer-Celllist, die
+ * Hashtag-Celllist und ein ein AuswahlPanel der für die jeweiligen Nachrichten
+ * enstprechende Buttons (Unterhaltung beantworten, Teilnehmer bearbeiten,
+ * Unterhaltung verlassen, Nachricht bearbeiten, Nachricht löschen) zur
+ * Verfügung stellt. Außerdem gibt es gesondert positioniert zwei weitere
+ * Buttons (Neue Nachricht, Aktualisieren).
  * 
  * @author denispokorski
  *
  */
 public class NeuigkeitenEditor extends VerticalPanel {
 
+	/**
+	 * 
+	 */
 	private static Unterhaltung ausgewaehlteUnterhaltung;
 	private static Nachricht ausgewaehlteNachricht;
 
@@ -54,8 +62,11 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	}
 
 	/**
-	 * 
-	 * TODO
+	 * Die onLoad Methode wird ausgeführt, wenn ein neues Objekt der Klasse
+	 * "NutzerBearbeiten" erstellt wird. Es werden in den Textboxen die Daten
+	 * des eingeloggten Nutzers gesetzt. Des Weiteren werden die Widgets den
+	 * Paneln zugeordnet. In diesem Bereich werden den Widgets zusätzlich
+	 * CSS-Styles zugeordnet.
 	 */
 	public void onLoad() {
 
@@ -63,10 +74,6 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 * 
 		 */
 		setzeOptionenButton(null, null);
-
-		// Button btnNeueNachricht = new Button("+ Nachricht");
-		//
-		// btnNeueNachricht.setStylePrimaryName("neueNchrichtBtn");
 
 		TreeViewModel model = new NeuigkeitenNachrichtenBaumModel();
 		/*
@@ -92,7 +99,8 @@ public class NeuigkeitenEditor extends VerticalPanel {
 
 	/**
 	 * 
-	 * TODO
+	 * Die Methode <code>setzeOptionenButton </code> gibt die Auswahlbuttons
+	 * frei wenn eine Unterhaltung/Nachricht angeklickt worden ist
 	 * 
 	 * @param _ausgewaehlteUnterhaltung
 	 * @param _ausgewaehlteNachricht
@@ -104,7 +112,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 
 		// ###################### Nachrichtenoptionen
 
-		/*
+		/**
 		 * Es wird ein neues Horizontal Panel erstellt und
 		 */
 		HorizontalPanel hpHeadline = new HorizontalPanel();
@@ -139,6 +147,8 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		hpHeadline.add(btnAktualisieren);
 
 		/**
+		 * Ein neues HorziontalPanel wird hinzugefügt "hpOptionen" und durch ein
+		 * CSS-Style optisch verändert. Die Position wird auf links verschoben.
 		 * TODO
 		 */
 		HorizontalPanel hpOptionen = new HorizontalPanel();
@@ -247,7 +257,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 			ausgewaehlteUnterhaltung = _ausgewaehlteUnterhaltung;
 			boolean istTeilnehmerInUnterhaltung = false;
 			btnAntworten.setEnabled(true);
-			
+
 			for (Nutzer nutzer : ausgewaehlteUnterhaltung.getTeilnehmer()) {
 				if (nutzer.getId() == TellMe.gibEingeloggterBenutzer()
 						.getUser().getId())
@@ -263,7 +273,8 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		}
 
 		/**
-		 * TODO
+		 * 
+		 * Der ButtonBar wird der hpHeadline und der hpOptionen hinzugefügt TODO
 		 */
 		RootPanel.get("ButtonBar").add(hpHeadline);
 
@@ -272,20 +283,22 @@ public class NeuigkeitenEditor extends VerticalPanel {
 
 	/**
 	 * 
-	 * TODO
+	 * Die Methode <code> gibFilterPanel()</code> ordnet in einem VerticalPanel
+	 * zwei Celllisten und ein Button an
 	 * 
-	 * @return
+	 * @return vpFilterPanel
 	 */
 
 	public static VerticalPanel gibFilterPanel() {
 
-		/*
+		/**
 		 * Ein neues VerticalPanel wird erstellt
 		 */
 		VerticalPanel vpFilterPanel = new VerticalPanel();
 
 		/**
-		 * Dem VerticalPanel vpFilterPanel wird die NutzerCelllist hinzugefügt
+		 * Dem VerticalPanel vpFilterPanel wird die NutzerCelllist und
+		 * HashtagCelllist hinzugefügt
 		 */
 		vpFilterPanel.add(nuCL.generiereCellList(
 				CellListModus.Nachrichtenuebersicht, 0));
