@@ -80,17 +80,19 @@ public class Report4Gui extends VerticalPanel {
 				RootPanel.get("content").clear();
  				RootPanel.get("content_right").clear();
  				
- 				VerticalPanel ladenPanel = new VerticalPanel();
- 				ladenPanel.setStylePrimaryName("ladenPanel");
-
- 				Image ladenImg = new Image("laden.gif");
- 				ladenPanel.setStylePrimaryName("ladenImg");
- 				ladenPanel.add(ladenImg);
-
- 				HTML ladenLabel = new HTML("<h1> Bitte warten <h1><br /><h3>Bitte warten Sie einen Augenblick bis der Report generiert wurde. Vielen Dank.</h3>");
- 				ladenPanel.add(ladenLabel);
  				
- 				RootPanel.get("content").add(ladenPanel);
+				VerticalPanel ladenPanel = new VerticalPanel();
+				ladenPanel.setStylePrimaryName("ladenPanel");
+
+				Image ladenImg = new Image("laden.gif");
+				ladenImg.setStylePrimaryName("ladenImg");
+				ladenPanel.add(ladenImg);
+
+				HTML ladenLabel = new HTML("<h1> Bitte warten <h1><br /><h3>Bitte warten Sie einen Augenblick bis der Report generiert wurde. Vielen Dank.</h3>");
+				ladenPanel.add(ladenLabel);
+				
+				RootPanel.get("content").add(ladenPanel);
+				
 
  				
 				nutzer = TellMe.gibEingeloggterBenutzer().getUser();

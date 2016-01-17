@@ -175,24 +175,24 @@ public class HTMLReportWriter {
 	/**
 	 * Report 1
 	 */
-	private Label ueberschrift1 = new Label("Report 1");
-	private Label subtext1 = new Label(
-			"Report 1 gibt alle Nachrichten eines Nutzers aus.");
 
 	public void generateReport1(Vector<Unterhaltung> result, Nutzer b) {
 		RootPanel.get("content").clear();
+		
+		Label ueberschrift1 = new Label("Report 1 gibt alle Nachrichten eines Nutzers aus.");
 		ueberschrift1.setStylePrimaryName("ueberschrift_report");
-		subtext1.setStylePrimaryName("subtext_report");
 
 		erstelleKopfDatenReport1(b);
 		erstelleKoerperDatenReport1(result, b);
 
 		this.reportText = buffer.toString();
 
-		RootPanel.get("content_right").add(ueberschrift1);
-		RootPanel.get("content_right").add(subtext1);
 
-		RootPanel.get("content_right").add(new HTML(reportText));
+		HTML html = new HTML(reportText);
+		html.setStylePrimaryName("report_inhalt_volle_breite");
+		
+		RootPanel.get("content").add(ueberschrift1);
+		RootPanel.get("content").add(html);
 	}
 
 	public void erstelleKopfDatenReport1(Nutzer n) {
@@ -254,24 +254,23 @@ public class HTMLReportWriter {
 	 * Report 2
 	 */
 
-	private Label ueberschrift2 = new Label("Report 2");
-	private Label subtext2 = new Label(
-			"Report 2 gibt alle Nachrichten in einem bestimmten Zeitraum aus.");
-
+ 
 	public void generateReport2(Vector<Unterhaltung> result, Nutzer b) {
-		RootPanel.get("content").clear();
+		
+		Label ueberschrift2 = new Label("Report 2: Gibt alle Nachrichten in einem bestimmten Zeitraum aus.");
 		ueberschrift2.setStylePrimaryName("ueberschrift_report");
-		subtext2.setStylePrimaryName("subtext_report");
 
 		erstelleKopfDatenReport2(b);
 		erstelleKoerperDatenReport2(result);
 
 		this.reportText = buffer.toString();
 
-		RootPanel.get("content_right").add(ueberschrift2);
-		RootPanel.get("content_right").add(subtext2);
-
-		RootPanel.get("content_right").add(new HTML(reportText));
+		HTML html = new HTML(reportText);
+		html.setStylePrimaryName("report_inhalt_volle_breite");
+		
+		RootPanel.get("content").clear();
+		RootPanel.get("content").add(ueberschrift2);
+		RootPanel.get("content").add(html);
 	}
 
 	private void erstelleKoerperDatenReport2(Vector<Unterhaltung> result) {

@@ -88,7 +88,6 @@ public class NutzerCellList {
 		 * NeuigkeitenNachrichtenBaum des jeweiligen Nutzers angezeigt werden.
 		 */
 		case Nachrichtenuebersicht:
-
 			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
 							NeuigkeitenNachrichtenBaumModel.setzeNutzerFilter(selectionModel.getSelectedObject().nutzer,selectionModel);
@@ -108,6 +107,7 @@ public class NutzerCellList {
 							rF.report1Generieren(selectionModel.getSelectedObject());
 						}
 					});
+			break;
 
 			/**
 			 * Der Fall Report3_NachrichtNutzer wird genutzt, falls ein

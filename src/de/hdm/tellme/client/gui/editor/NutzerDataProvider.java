@@ -60,13 +60,11 @@ public class NutzerDataProvider {
 	public void fuelleListeReport() {
 		if (dataList != null)
 			dataList.clear();
-		_editorAsyncObj.getAlleNutzer(true,
-				new AsyncCallback<Vector<Nutzer>>() {
+		_editorAsyncObj.getAlleNutzer(true,new AsyncCallback<Vector<Nutzer>>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
-						// TODO Auto-generated method stub
-
+						Window.alert("Fehler bei der Reportgenerierung. Bitte wenden Sie sich an den Administrator des Systems.");
 					}
 
 					@Override

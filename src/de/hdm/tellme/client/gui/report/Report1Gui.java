@@ -91,7 +91,7 @@ public class Report1Gui extends VerticalPanel {
 		 * zugewiesen, dies geschieht im Modus 1, da 1 den Report darstellt.
 		 */
 
-		reportPanel1_left.add(new NutzerCellList().generiereCellList(CellListModus.Report1_NachrichtNutzerZeitraum, 1));
+		reportPanel1_left.add(new NutzerCellList().generiereCellList(CellListModus.Report1_NachrichtNutzerZeitraum,1));
 		reportPanel1_left.add(subSchrift2);
 		reportPanel1_left.add(vonDateBox);
 		reportPanel1_left.add(bisDateBox);
