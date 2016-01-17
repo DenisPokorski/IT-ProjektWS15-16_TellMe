@@ -35,7 +35,7 @@ public class HashtagCellList {
 		CellList<HashtagZelle.ZellenObjekt> cellList = new CellList<HashtagZelle.ZellenObjekt>(
 				new HashtagZelle().new ZellenElement());
 		/**
-		 * Der
+		 * Der HashtagDataProvider stellt die HashtagCellList zur Verfügung.
 		 */
 		HashtagDataProvider.gib().addDataDisplay(cellList);
 		/**
@@ -48,7 +48,7 @@ public class HashtagCellList {
 		switch (modi) {
 
 		/**
-		 * Der Fall Einstellungen wird genutzt, falls ein Hashtag in den
+		 * Der Fall Einstellungen wird genutzt, falls ein Hashtag-Objekt in den
 		 * Einstellungen ausgewählt wird. Wenn ein Hashtag angeklickt wird, wird
 		 * auf der rechten Seite der Content gecleart, also gelöscht und es
 		 * werden die Formulare gibBeschreibungHtAbo() und
@@ -145,7 +145,7 @@ public class HashtagCellList {
 
 		/**
 		 * Hier wird ein FlowPanel hinzugefügt, dass die Überschrift
-		 * "Liste aller Hasthags:" in Form eines HTML-Codes erhält.
+		 * "Liste aller Hashtags:" in Form eines HTML-Codes erhält.
 		 */
 		FlowPanel fP = new FlowPanel();
 		fP.add(new HTML("Liste aller Hashtags:"));

@@ -11,8 +11,7 @@ import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Unterhaltung;
 
 /**
- * Das ist das synchrone Interface für eine RPC-fähige Klasse zur....
- * *********** TODO
+ * Das ist das synchrone Interface für eine RPC-fähige Klasse um die Applikation zu verwalten.
  * 
  * 
  * <p>
