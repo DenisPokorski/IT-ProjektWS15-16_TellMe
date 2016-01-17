@@ -53,8 +53,7 @@ public class Report2Gui extends VerticalPanel {
 
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift2 = new Label("Report2: Nachrichten abfragen");
-	HTML subSchrift2 = new HTML("<div class='" + "subline_report"
-			+ "'><b>Bitte wählen Sie den Zeitraum aus:</b></div>");
+	HTML subSchrift2 = new HTML("<div class='" + "subline_report"+ "'><b>Bitte wählen Sie den Zeitraum aus:</b></div>");
 
 	private HorizontalPanel reportPanel2 = new HorizontalPanel();
 	private VerticalPanel reportPanel2_left = new VerticalPanel();
@@ -65,10 +64,7 @@ public class Report2Gui extends VerticalPanel {
 	private Button report2Generieren = new Button("Report 2 generieren");
 	DateTimeFormat dF = DateTimeFormat.getFormat("dd.MM.yyyy");
 
-	private HTML beschreibung2 = new HTML(
-			"<ul><b>Der Report 2 gibt alle Nachrichten in einen bestimmten Zeitraum aus</b>"
-					+ "<li>Um einen Report auszugeben, der alle Nachrichten in <b>einem bestimmten Zeitraum</b>"
-					+ " darstellt <b>musst einen Zeitraum </b>auswählen.</li></ul>");
+	private HTML beschreibung2 = new HTML("<ul><b>Der Report 2 gibt alle Nachrichten in einen bestimmten Zeitraum aus</b>"+ "<li>Um einen Report auszugeben, der alle Nachrichten in <b>einem bestimmten Zeitraum</b>"+ " darstellt <b>musst einen Zeitraum </b>auswählen.</li></ul>");
 
 
 	/**
@@ -80,14 +76,8 @@ public class Report2Gui extends VerticalPanel {
 	public void onLoad() {
 		vonDateBox.setFormat(new DateBox.DefaultFormat(dF));
 		bisDateBox.setFormat(new DateBox.DefaultFormat(dF));
-		final HTML headline = new HTML(
-				" <div class='"
-						+ "subline"
-						+ "'><h2>Reportgenerator 2: Alle Nachrichten je Zeitraum anzeigen </h2></div> ");
-		final HTML subtext = new HTML(
-				" <div class='"
-						+ "subtext"
-						+ "'><h4> Der Report 2 gibt alle Nachrichten in einen bestimmten Zeitraum aus  </h4></div> ");
+		final HTML headline = new HTML(" <div class='"+ "subline"+ "'><h2>Reportgenerator 2: Alle Nachrichten je Zeitraum anzeigen </h2></div> ");
+		final HTML subtext = new HTML(" <div class='"+ "subtext"+ "'><h4> Der Report 2 gibt alle Nachrichten in einen bestimmten Zeitraum aus  </h4></div> ");
 
 		/*
 		 * Die Panels werden anschaulich angeordnet.
@@ -128,7 +118,6 @@ public class Report2Gui extends VerticalPanel {
 			@Override
 			public void onValueChange(ValueChangeEvent<Date> event) {
 				// TODO Auto-generated method stub
-
 			}
 		});
 
@@ -137,7 +126,6 @@ public class Report2Gui extends VerticalPanel {
 			@Override
 			public void onValueChange(ValueChangeEvent<Date> event) {
 				// TODO Auto-generated method stub
-
 			}
 
 		});
@@ -153,9 +141,11 @@ public class Report2Gui extends VerticalPanel {
 						|| bisDateBox.getValue() == null) {
 					Window.alert("Bitte beide Datumfelder befüllen");
 				} else {
+					
 					RootPanel.get("content_left").clear();
 					RootPanel.get("content_right").clear();
 					RootPanel.get("content_right").add(headline);
+
 					nutzer = TellMe.gibEingeloggterBenutzer().getUser();
 					NutzerDataProvider.gib(1).report2Generieren(nutzer,
 							new Timestamp(vonDateBox.getValue().getTime()),

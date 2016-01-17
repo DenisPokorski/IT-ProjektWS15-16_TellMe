@@ -33,30 +33,25 @@ public class HTMLReportWriter {
 	private Label subtext = new Label(
 			"Ausgabe aller Hashtagabonnoments eines Nutzers");
 
-	public void generateReport6(Vector<Hashtag> result, Nutzer n) {
+	public void generateReport6(Vector<Hashtag> hashtagliste, Nutzer nutzer) {
+		
 		RootPanel.get("content_right").clear();
-
 		ueberrschrift1.setStylePrimaryName("ueberschrift_report");
 		subtext.setStylePrimaryName("subtext_report");
-		// reportText.setStylePrimaryName("report_inhalt");
 
-		erstelleKopfdatenReport6(n);
-		erstelleKoerperDatenReport6(result);
+		erstelleKopfdatenReport6(nutzer);
+		erstelleKoerperDatenReport6(hashtagliste);
 
 		this.reportText = buffer.toString();
 		HTML html = new HTML(reportText);
 		html.setStylePrimaryName("report_inhalt");
+		html.setStylePrimaryName("report_inhalt_ganze_breite");
 
 		RootPanel.get("content_right").add(ueberrschrift1);
 		RootPanel.get("content_right").add(subtext);
-
 		RootPanel.get("content_right").add(html);
 	}
 
-	/**
-	 * 
-	 * @param n
-	 */
 
 	/**
 	 * Report 6
@@ -85,12 +80,12 @@ public class HTMLReportWriter {
 
 	public void erstelleKoerperDatenReport6(Vector<Hashtag> result) {
 		if (result.size() <= 0) {
-			buffer.append("<table>");
+			buffer.append("<table class ='" +"report_kein_inhalt"+"'>");
 			buffer.append("<tr> <th>FÜR DEN AUSGEWÄHLTEN NUTZER"
 					+ " IST ZUR ZEIT KEIN REPORT 6 VERFÜGBAR, DA DER NUTZER KEINE "
 					+ "HASHTAGS ABONNIERT HAT!</th></tr>");
 			buffer.append("</table>");
-
+			
 		} else {
 
 			buffer.append("<table class='reportkoerper'>");
@@ -353,10 +348,10 @@ public class HTMLReportWriter {
 
 		this.reportText = buffer.toString();
 
-		RootPanel.get("content_right").add(ueberschrift4);
-		RootPanel.get("content_right").add(subtext4);
+		RootPanel.get("content").add(ueberschrift4);
+		RootPanel.get("content").add(subtext4);
 
-		RootPanel.get("content_right").add(new HTML(reportText));
+		RootPanel.get("content").add(new HTML(reportText));
 	}
 
 	private void erstelleKoerperDatenReport4(Vector<Unterhaltung> result) {

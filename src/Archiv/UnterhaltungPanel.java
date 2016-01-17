@@ -65,7 +65,7 @@ public class UnterhaltungPanel {
 	    private final String address;
 	    private final String name;
 
-	    public Contact(String name, String address) {
+	    public Contact(final String name, final String address) {
 	      this.name = name;
 	      this.address = address;
 	    }

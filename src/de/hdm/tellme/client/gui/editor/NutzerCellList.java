@@ -1,9 +1,6 @@
 package de.hdm.tellme.client.gui.editor;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellList;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -13,16 +10,11 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 
-import de.hdm.tellme.client.TellMe;
-import de.hdm.tellme.client.Schaukasten.NeuigkeitenEditor;
-import de.hdm.tellme.client.gui.editor.NutzerZelle.ZellenObjekt;
 import de.hdm.tellme.client.gui.report.Report1Gui;
-import de.hdm.tellme.client.gui.report.ReportFormular1;
 import de.hdm.tellme.client.gui.report.ReportFormular3;
 import de.hdm.tellme.client.gui.report.ReportFormular5;
 import de.hdm.tellme.client.gui.report.ReportFormular6;
 import de.hdm.tellme.shared.bo.Nutzer;
-import de.hdm.tellme.shared.bo.NutzerAbonnement;
 
 /**
  * Die Klasse <class>NutzerCellList</class> wird benötigt um die Nutzer in einer

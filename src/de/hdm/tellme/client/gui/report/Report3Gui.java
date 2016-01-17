@@ -1,28 +1,14 @@
 package de.hdm.tellme.client.gui.report;
 
-import java.util.Date;
-
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.datepicker.client.DateBox;
-import com.google.gwt.view.client.SingleSelectionModel;
 
-import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
 import de.hdm.tellme.client.gui.editor.NutzerZelle;
-import de.hdm.tellme.client.gui.editor.NutzerZelle.ZellenObjekt;
-import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
@@ -49,16 +35,13 @@ public class Report3Gui extends VerticalPanel {
 	 * eine Überschrift und eine Beschreibung für den Report 3.
 	 */
 
-	private Nutzer nutzer = null;
-
+ 	private Nutzer nutzer = null;
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift3 = new Label("Report3: Nachrichten abfragen");
 	private HorizontalPanel reportPanel3 = new HorizontalPanel();
 	private VerticalPanel reportPanel3_left = new VerticalPanel();
 	private VerticalPanel reportPanel3_right = new VerticalPanel();
 	VerticalPanel vP = new VerticalPanel();
-
-	private Button report3Generieren = new Button("Report 3 generieren");
 
 	public void report1Generieren(NutzerZelle.ZellenObjekt ZellenObjekt) {
 		this.nutzer = ZellenObjekt.nutzer;
@@ -108,9 +91,6 @@ public class Report3Gui extends VerticalPanel {
 		 * Report 3 zugeordnet.
 		 */
 
-		// reportPanel3_right.add(headline);
-		// reportPanel3_right.add(subtext);
-
 		vP.add(headline);
 		vP.add(subtext);
 
@@ -119,7 +99,6 @@ public class Report3Gui extends VerticalPanel {
 		RootPanel.get("content_right").clear();
 		RootPanel.get("content_right").add(reportPanel3_right);
 		RootPanel.get("content_right").add(vP);
-
 		RootPanel.get("content_left").add(reportPanel3_left);
 
 		/*

@@ -2,7 +2,6 @@ package de.hdm.tellme.client.gui.report;
 
 import java.sql.Timestamp;
 import java.util.Date;
-
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
@@ -10,23 +9,16 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
-import com.google.gwt.user.datepicker.client.DateBox.Format;
-import com.google.gwt.user.datepicker.client.DatePicker;
-import com.google.gwt.view.client.SingleSelectionModel;
-
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
 import de.hdm.tellme.client.gui.editor.NutzerDataProvider;
 import de.hdm.tellme.client.gui.editor.NutzerZelle;
-import de.hdm.tellme.client.gui.editor.NutzerZelle.ZellenObjekt;
-import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
@@ -88,14 +80,8 @@ public class Report1Gui extends VerticalPanel {
 	public void onLoad() {
 		vonDateBox.setFormat(new DateBox.DefaultFormat(dF));
 		bisDateBox.setFormat(new DateBox.DefaultFormat(dF));
-		final HTML headline = new HTML(
-				" <div class='"
-						+ "subline"
-						+ "'><h2>Reportgenerator 1: Alle Nachrichten je Nutzer anzeigen</h2></div> ");
-		final HTML subtext = new HTML(
-				" <div class='"
-						+ "subtext"
-						+ "'><h4> Der Report 1 gibt alle Nachrichten eines Nutzers in einen bestimmten Zeitraum aus  </h4></div> ");
+		final HTML headline = new HTML(" <div class='"+ "subline"+ "'><h2>Reportgenerator 1: Alle Nachrichten je Nutzer anzeigen</h2></div> ");
+		final HTML subtext = new HTML(" <div class='"+ "subtext"+ "'><h4> Der Report 1 gibt alle Nachrichten eines Nutzers in einen bestimmten Zeitraum aus  </h4></div> ");
 
 		/**
 		 * Die Panels werden anschaulich angeordnet.

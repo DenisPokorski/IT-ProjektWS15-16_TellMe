@@ -140,7 +140,7 @@ public class NachrichtenPanel {
 							oracle.add(resultListe2.get(i).getId() +"---"+resultListe2.get(i).getVorname() + " " + resultListe2.get(i).getNachname());
 						}
 	 			}
-				});
+				}); 
 			
 			// GET ALLE HASHSTAGS
 			

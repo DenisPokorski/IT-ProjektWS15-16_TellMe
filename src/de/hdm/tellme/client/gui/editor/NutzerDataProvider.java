@@ -1,7 +1,6 @@
 package de.hdm.tellme.client.gui.editor;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -14,11 +13,9 @@ import com.google.gwt.view.client.ListDataProvider;
 import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
-import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.ReportService;
 import de.hdm.tellme.shared.ReportServiceAsync;
 import de.hdm.tellme.shared.bo.Hashtag;
-import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Unterhaltung;
 import de.hdm.tellme.shared.report.HTMLReportWriter;

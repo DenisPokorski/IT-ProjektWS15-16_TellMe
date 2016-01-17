@@ -437,7 +437,6 @@ body {
 
 html {
 	height: 100%;
-	background-image: url("balken.png") !Important;
 	background-repeat: repeat-x !Important;
 }
 
@@ -723,6 +722,17 @@ height: 30px;
     margin-top: 13px;
     padding: 15px;
     padding-top: 5px;
+	
+}
+
+.report_kein_inhalt{
+	background: #f3f3f3;
+	color:red; 
+	border: 1px solid #ccc;
+	font-weight:bold;
+	padding-top:10px;
+	padding-bottom:15px;
+	
 	
 }
 

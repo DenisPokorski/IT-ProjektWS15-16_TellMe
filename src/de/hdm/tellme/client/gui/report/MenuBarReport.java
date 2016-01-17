@@ -28,7 +28,7 @@ import de.hdm.tellme.shared.LoginInfo;
 
 public class MenuBarReport extends HorizontalPanel {
 
-	private HorizontalPanel menuePanel = new HorizontalPanel();
+	  HorizontalPanel menuePanel = new HorizontalPanel();
 
 	/**
 	 * Definition von leerem Konstruktor

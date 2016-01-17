@@ -1,6 +1,5 @@
 package de.hdm.tellme.shared.bo;
 
-import de.hdm.tellme.shared.bo.Unterhaltung.eUnterhaltungsTyp;
 
 /**
  * Die Klasse Nutzer erbt von der Superklasse BusinessObject. Es werden die get-
