@@ -57,7 +57,7 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 				for (Nutzer teilnehmer : u.getTeilnehmer()) {
 					strTeilnehmer += teilnehmer.getVorname() + " " + teilnehmer.getNachname()+ ", ";
 				}
-				strTeilnehmer = strTeilnehmer.substring(0, strTeilnehmer.length()-3);
+				strTeilnehmer = strTeilnehmer.substring(0, strTeilnehmer.length()-2);
 			} else
 				strTeilnehmer += "keine Teilnehmer";
 		}
