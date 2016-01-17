@@ -43,7 +43,7 @@ public class ReportFormular3 extends Composite {
 				RootPanel.get("content_right").clear();
 				
 				/**
-				 * Die folgenden Zeilen beschreiben die Ladeanzeige. Diese wird bei der Betätgiung ders Clickhandlers ausgefürt.
+				 * Die folgenden Zeilen beschreiben die Ladeanzeige. Diese wird bei der Betätgiung ders Clickhandlers ausgeführt.
 				 * Ziel ist es dem Nutzer Informationen über das aktuelle Programmverhalten zu liefern.
 				 * */
 				VerticalPanel ladenPanel = new VerticalPanel();

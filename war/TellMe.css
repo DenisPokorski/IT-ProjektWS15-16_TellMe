@@ -182,31 +182,18 @@ h3 {
  	background: #13f5b8;
 }
 
-.btnPositiv:[disabled] {
+.btnPositiv[disabled] {
 	background: #f3f3f3;
-	border: 1px outset #ccc;
+    color: #ccc;
  }
-
-.btnPositiv[disabled]:hover {
- 	background: #f3f3f3;
-}
-
-.btnNegativ:active {
-	
-}
 
 .btnNegativ:hover {
  	background: #c28090;
 }
 
-.btnNegativ:[disabled] {
-	background: #c28090;
-	border: 1px outset #ccc;
-	
-}
-
-.btnNegativ[disabled]:hover {
-	border: 1px outset #ccc;
+.btnNegativ[disabled] {
+    background: #f3f3f3;
+    color: #ccc;
 }
 
 .btnAntworten:active, .neueNchrichtBtn:active, .btnTeilnehmerBearbeiten:active, btnUnterhaltungVerlassen:active {

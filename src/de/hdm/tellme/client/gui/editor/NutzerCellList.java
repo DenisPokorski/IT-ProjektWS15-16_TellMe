@@ -89,15 +89,11 @@ public class NutzerCellList {
 		 */
 		case Nachrichtenuebersicht:
 
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
-							NeuigkeitenNachrichtenBaumModel.setzeNutzerFilter(
-									selectionModel.getSelectedObject().nutzer,
-									selectionModel);
+							NeuigkeitenNachrichtenBaumModel.setzeNutzerFilter(selectionModel.getSelectedObject().nutzer,selectionModel);
 						}
 					});
-
 			break;
 
 		/**
@@ -106,16 +102,11 @@ public class NutzerCellList {
 		 * angeklickt wird, wird das ReportFormular1 angezeigt.
 		 */
 		case Report1_NachrichtNutzerZeitraum:
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
-
 							Report1Gui rF = new Report1Gui();
-							rF.report1Generieren(selectionModel
-									.getSelectedObject());
-
+							rF.report1Generieren(selectionModel.getSelectedObject());
 						}
-
 					});
 
 			/**

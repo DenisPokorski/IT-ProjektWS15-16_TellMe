@@ -2,7 +2,6 @@ package de.hdm.tellme.client.gui.report;
 
 import java.sql.Timestamp;
 import java.util.Date;
-
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
@@ -17,7 +16,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
-
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
 import de.hdm.tellme.client.gui.editor.NutzerDataProvider;
@@ -25,9 +23,6 @@ import de.hdm.tellme.client.gui.editor.NutzerZelle;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
- * 
- * 
- * 
  * 
  * Dieser Report zeigt alle Nachrichten eines Nutzer in einem bestimmten
  * Zeitraum an. Deshalb benötigt die GUI von Report 1 eine NutzerCellList um
@@ -51,10 +46,8 @@ public class Report1Gui extends VerticalPanel {
 
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift1 = new Label("Report1: Nachrichten abfragen");
-	HTML subSchrift1 = new HTML("<div class='" + "subline_report"
-			+ "'><b>Bitte wählen Sie einen Nutzer aus:</b></div>");
-	HTML subSchrift2 = new HTML("<div class='" + "subline_report"
-			+ "'><b>Bitte wählen Sie den Zeitraum aus:</b></div>");
+	HTML subSchrift1 = new HTML("<div class='" + "subline_report" + "'><b>Bitte wählen Sie einen Nutzer aus:</b></div>");
+	HTML subSchrift2 = new HTML("<div class='" + "subline_report" + "'><b>Bitte wählen Sie den Zeitraum aus:</b></div>");
 
 	private HorizontalPanel reportPanel1 = new HorizontalPanel();
 	private VerticalPanel reportPanel1_left = new VerticalPanel();
@@ -65,10 +58,9 @@ public class Report1Gui extends VerticalPanel {
 	private DateBox bisDateBox = new DateBox();
 	private Button report1Generieren = new Button("Report 1 generieren");
 
-	private HTML beschreibung1 = new HTML(
-			"<ul><b></b>"
-					+ "<li>Um einen Report auszugeben, der  alle Nachrichten <b>eines Nutzers</b> "
-					+ "in <b>einem bestimmten Zeitraum</b> darstellt, musst du einen Nutzer<b> UND</b> einen Zeitraum auswählen</li>");
+	private HTML beschreibung1 = new HTML("<ul><b></b>"
+	+ "<li>Um einen Report auszugeben, der  alle Nachrichten <b>eines Nutzers</b> "
+	+ "in <b>einem bestimmten Zeitraum</b> darstellt, musst du einen Nutzer<b> UND</b> einen Zeitraum auswählen</li>");
 
 	/**
 	 * Die onLoad-Methode wird verwendet um in der Seite die verschiedenen
@@ -99,20 +91,17 @@ public class Report1Gui extends VerticalPanel {
 		 * zugewiesen, dies geschieht im Modus 1, da 1 den Report darstellt.
 		 */
 
-		reportPanel1_left.add(new NutzerCellList().generiereCellList(
-				CellListModus.Report1_NachrichtNutzerZeitraum, 1));
+		reportPanel1_left.add(new NutzerCellList().generiereCellList(CellListModus.Report1_NachrichtNutzerZeitraum, 1));
 		reportPanel1_left.add(subSchrift2);
 		reportPanel1_left.add(vonDateBox);
 		reportPanel1_left.add(bisDateBox);
 		reportPanel1_left.add(report1Generieren);
 		report1Generieren.setStylePrimaryName("neueNchrichtBtn");
-
 		reportPanel1_right.add(headline);
 		reportPanel1_right.add(subtext);
-
 		reportPanel1_right.add(beschreibung1);
-
 		reportPanel.add(reportPanel1);
+		
 		/**
 		 * Das RootPanel wird gesäubert und die verschiedenen Elemente für
 		 * Report 1 zugeordnet.
@@ -136,9 +125,7 @@ public class Report1Gui extends VerticalPanel {
 
 			@Override
 			public void onValueChange(ValueChangeEvent<Date> event) {
-
 			}
-
 		});
 		/**
 		 * Der Button <code>report1Generieren</code> bekommt eine Funktion,
@@ -167,14 +154,10 @@ public class Report1Gui extends VerticalPanel {
 				RootPanel.get("content").add(ladenPanel);
 				
 				NutzerDataProvider.gib(1).report1Generieren(nutzer,
-						new Timestamp(vonDateBox.getValue().getTime()),
-						new Timestamp(bisDateBox.getValue().getTime()));
-}
-
+				new Timestamp(vonDateBox.getValue().getTime()),
+				new Timestamp(bisDateBox.getValue().getTime()));
+				}
 			}
 		});
 	}
-
-	
-
 }
