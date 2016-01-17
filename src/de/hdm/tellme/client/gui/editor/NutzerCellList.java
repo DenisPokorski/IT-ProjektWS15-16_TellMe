@@ -16,8 +16,8 @@ import com.google.gwt.view.client.SingleSelectionModel;
 import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.client.Schaukasten.NeuigkeitenEditor;
 import de.hdm.tellme.client.gui.editor.NutzerZelle.ZellenObjekt;
+import de.hdm.tellme.client.gui.report.Report1Gui;
 import de.hdm.tellme.client.gui.report.ReportFormular1;
-import de.hdm.tellme.client.gui.report.ReportFormular2;
 import de.hdm.tellme.client.gui.report.ReportFormular3;
 import de.hdm.tellme.client.gui.report.ReportFormular5;
 import de.hdm.tellme.client.gui.report.ReportFormular6;
@@ -118,7 +118,7 @@ public class NutzerCellList {
 					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
 
-							ReportFormular1 rF = new ReportFormular1();
+							Report1Gui rF = new Report1Gui();
 							rF.report1Generieren(selectionModel
 									.getSelectedObject());
 
