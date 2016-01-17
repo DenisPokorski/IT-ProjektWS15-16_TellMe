@@ -1,0 +1,746 @@
+//TODO NUR DIE FÜR REPORT BENÖTIGTEN ELEMENTE BEHALTEN!!!! 
+/** TODO
+
+/** Add css rules here for your application. */
+/** Example rules used by the template application (remove for your app) */
+h1 {
+	font-size: 18px;
+	font-weight: 100;
+	color: #777777;
+	/*margin: 40px 0px 70px;*/
+	text-align: left;
+}
+
+h2 {
+	width: 485px;
+}
+
+h3 {
+	font-size: 13px;
+}
+.nutzerButtonPanel{
+	margin-top:10px;
+}
+
+.sendButton {
+	display: block;
+	font-size: 16pt;
+}
+
+/** Most GWT widgets already have a style name defined */
+.gwt-DialogBox {
+	width: 400px;
+}
+
+.gwt-DialogBox .dialogMiddleCenter {
+	padding: 0px !Important;
+}
+
+.dialogVPanel {
+	margin: 5px;
+}
+
+.serverResponseLabelError {
+	color: red;
+}
+
+/** Set ids using widget.getElement().setId("idOfElement") */
+#closeButton {
+	margin: 15px 6px 6px;
+}
+
+.mainmenu {
+	float: right;
+	outline: 0px;
+	margin-top: 15px;
+	margin-right: 15px;
+}
+
+.gwt-MenuItem {
+	width: 96px;
+	font-size: small;
+	text-align: left;
+}
+
+.gwt-MenuItem-selected {
+	width: 96px;
+	font-size: small;
+	text-align: left;
+	background: #628cd5;
+	color: white;
+}
+
+.xbtn {
+	margin-top: -38px;
+	height: 20px;
+	float: right;
+	padding: 0px;
+}
+
+.subBtnEmpfaenger {
+	background: #505050;
+}
+
+.subBtnHashtag {
+	background: #628CD5;
+}
+
+.neueNchrichtBtn, .btnUnterhaltungVerlassen, .btnTeilnehmerBearbeiten,
+	.neueNchrichtBtn {
+	background: #628cd5;
+	color: #fff;
+	font-size: 12px;
+	border: none;
+	height: 22px;
+	min-width: 91px;
+	margin-right: 1px;
+	width: 100%;
+}
+
+.filterBtn {
+	background: #628cd5;
+	color: #fff;
+	font-size: 12px;
+	border: none;
+	height: 22px;
+	min-width: 91px;
+	margin-right: 1px;
+	width: 100%;
+}
+.filterBtn:hover {
+	background: #ccc;
+	color: #fff;
+	font-size: 12px;
+	border: none;
+	height: 22px;
+	min-width: 91px;
+	margin-right: 1px;
+	width: 100%;
+}
+
+	.reportBtn {
+    background: #628cd5;
+    color: #fff;
+    font-size: 12px;
+    border: none;
+    height: 22px;
+    min-width: 91px;
+    margin-right: 1px;
+    width: 200px;
+}
+
+/*Celllist*/
+.GPBYFDEAG {
+	width: 681px;
+}
+
+.aktualisierenBtn {
+	background: green;
+	color: #fff;
+	font-size: 12px;
+	border: none;
+	height: 30px;
+	width: 91px;
+	margin-right: 1px;
+	margin-top: 15px;
+}
+
+#ButtonBar table tbody tr td {
+	
+}
+
+.selectionLabel {
+	background: #f1f1f1;
+	padding: 14px;
+	font-size: 14px;
+    width: 500px;
+   	margin-bottom: 20px;
+}
+
+.hpOptionenButtonbar {
+	min-height: 28px;
+	width: 681px;
+	background: #F0F0F0;
+	border: 1px solid #ccc;
+	color: #000;
+	border-top: none;
+	padding: 5px;
+}
+
+.hpOptionenButtonbar td {
+	padding-right: 3px;
+	margin-top: 5px;
+}
+
+.hpHeadline {
+	width: 100%;
+	padding-right: 9px;
+	padding-top: 5px;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 15px;
+}
+
+.subline {
+	padding-bottom: 0px;
+	padding-top: 5px;
+}
+
+.celllistPanel {
+	padding: 12px;
+	width: 250px;
+}
+
+.neueNchrichtBtn {
+	float: right;
+	width: 91px;
+	height: 30px;
+	margin-right: 10px;
+	margin-top: 15px;
+	width: 100%;
+}
+
+.subBtnHashtag, .subBtnEmpfaenger {
+	color: #fff;
+	font-size: 11px;
+	border-top: 1px;
+	margin-top: 2px;
+	margin-right: 1px;
+	margin-bottom: 1px;
+}
+
+.btnPositiv {
+	background: green;
+	margin-right: 15px;
+}
+
+.btnPositivBereitsAbooniert{
+		background: grey;
+	margin-right: 15px;
+}
+
+
+.btnNegativ {
+	background: red;
+}
+
+.btnSpeichern{
+ 	background: #628cd5;
+ 
+}
+.btnNegativ, .btnPositiv, .btnSpeichern{
+	height: 30px;
+	width: 100%;
+	border: none;
+	color: #fff;
+}
+
+.btnPositiv:active {
+	
+}
+
+.btnPositiv:hover {
+ 		background: #13f5b8;
+	
+}
+
+.btnPositiv:[disabled] {
+	background: #f3f3f3;
+		border: 1px outset #ccc;
+	
+ }
+
+.btnPositiv[disabled]:hover {
+ 		background: #f3f3f3;
+	
+}
+
+.btnNegativ:active {
+	
+}
+
+.btnNegativ:hover {
+ 			background: #c28090;
+	
+}
+
+.btnNegativ:[disabled] {
+	background: #c28090;
+			border: 1px outset #ccc;
+	
+}
+
+.btnNegativ[disabled]:hover {
+	border: 1px outset #ccc;
+}
+
+.btnAntworten:active, .neueNchrichtBtn:active, .btnTeilnehmerBearbeiten:active,
+	btnUnterhaltungVerlassen:active {
+	border: 1px inset #ccc;
+}
+
+.btnAntworten:hover, neueNchrichtBtn:hover, btnTeilnehmerBearbeiten:hover,
+	btnUnterhaltungVerlassen:hover {
+	border-color: #939393;
+}
+
+.btnAntworten[disabled], .neueNchrichtBtn[disabled],
+	.btnTeilnehmerBearbeiten[disabled], .btnUnterhaltungVerlassen[disabled] {
+	cursor: default;
+	color: #888;
+	background: #e7dfec;
+}
+
+.btnAntworten[disabled]:hover, .neueNchrichtBtn[disabled]:hover,
+	.btnTeilnehmerBearbeiten[disabled]:hover, .btnUnterhaltungVerlassen[disabled]:hover
+	{
+ }
+
+.dialogTop, .dialogTopCenter {
+	font-size: 15px;
+	line-height: 27px;
+}
+
+.dialogBottom {
+	background: #408233;
+}
+
+.gwt-SuggestBox {
+	width: 255px;
+}
+
+.dialogMiddleCenterInner .dialogContent {
+	width: 360px;
+}
+
+.dialogtextArea {
+	width: 350px;
+	margin-top: 10px;
+	margin-bottom: -1px;
+}
+
+.gwt-DialogBox .dialogContent {
+	background: #F1F1F1;
+	width: 356px;
+	margin-top: 10px;
+}
+
+div.GPBYFDEFF.GPBYFDEKF.GPBYFDENF.GPBYFDELF {
+	/*background: #f0f0f0;*/
+}
+
+div.GPBYFDEFF{	 
+	
+}
+
+/*.GPBYFDELF{background:#f0f0f0;}*/
+div.GPBYFDEFF.GPBYFDEHF {
+	border: 1px solid #ccc;
+}
+
+/*Hover
+	div.GPBYFDEFF.GPBYFDENF.GPBYFDELF, div.GPBYFDEFF.GPBYFDEHF{ 	background: #628cd5 !Important;}
+*/
+.GPBYFDEPF {
+	border: none !Important;
+}
+
+.GPBYFDENF {
+	border: 1px #ccc solid !Important;
+}
+
+.gwt-DialogBox .dialogMiddleCenter {
+	background: #F1F1F1 !Important;
+}
+
+.EmpfaengerPlusBtn {
+	background: #505050;
+	color: #fff;
+	border: none;
+	height: 30px;
+	padding-top: 5px;
+	width: 91px;
+}
+
+.HashtagPlusBtn {
+	background: #628cd5;
+	color: #fff;
+	border: none;
+	height: 30px;
+	padding-top: 5px;
+	width: 91px;
+}
+
+.NeuigkeitenDialogboxAbbrechenBtn {
+	background: #c31c1c;
+	color: #fff;
+	border: none;
+}
+
+.ButtonX-Nachrichtenverwaltung {
+	background: #505050;
+	    color: #fff;
+    border: 1px #f1f1f1 solid;
+    line-height: 15px;
+    font-size: 13px;
+}
+.ButtonX-Hashtagverwaltung{
+	background: #628cd5;
+	    color: #fff;
+    border: 1px #f1f1f1 solid;
+    line-height: 15px;
+    font-size: 13px;
+}
+
+.NeuigkeitenDialogboxSendenBtn {
+	width: 378px;
+	background: #408233;
+	color: #fff;
+	border: none;
+	height: 42px;
+	margin-top: 15px;
+	margin-left: -10px;
+	margin-bottom: -10px;
+	margin-right: -10px;
+	font-size: 15px;
+	padding-top: 4px;
+}
+
+.LabelX-Nachrichtenverwaltung {
+	margin-right: 31px;
+	line-height: 20px;
+}
+
+#content_left { .
+	max-width: 252px;
+	float: left;
+	padding: 10px;
+	padding-right: 0px;
+}
+
+#footer {
+	margin-top: -520px;
+	height: 13px !IMPORTANT;
+}
+/** 
+*
+*Styleschablone für Layoutbausteine
+*/
+body {
+	color: black;
+	margin: 0px !Important;
+	border: 0px;
+	padding: 0px;
+	background-image: url("balken.png") !Important;
+	background-repeat: repeat-x !Important;
+	height: 100% !Important;
+	background: #f3f3f3 !Important;
+}
+
+html {
+	height: 100%;
+	background-image: url("balken.png") !Important;
+	background-repeat: repeat-x !Important;
+}
+
+#wrap {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 960px;
+	width: auto;
+	height: 100%;
+	padding-bottom: 30px;
+}
+
+#header {
+	width: 100%;
+}
+
+#header .gwt-Image {
+	width: 75px;
+	padding: 5px;
+	margin-top: 3px;
+}
+
+.gwt-MenuBar .gwt-MenuBar-vertical {
+	margin-top: 5px;
+}
+
+#content {
+	height: 100%;
+	background: #fff;
+	margin-top: 1px;
+}
+
+#footer {
+	/*Todo vervollständigen*/
+	
+}
+
+/*Unterhaltung Nachrichten anzeigen **/
+.NachrichtFlowPanel {
+	background: #0A64BF;
+	width: 480px;
+	color: white;
+	margin-bottom: 4px;
+	padding: 5px;
+	border: 1px solid #999;
+	border-radius: 8px;
+}
+
+.NachrichtText {
+	font-size: 14px;
+	margin-top: -3px;
+}
+
+.NachrichtSenderName {
+	
+}
+
+.NachrichtDatum {
+	
+}
+
+.NachrichtButton {
+	line-height: 12px;
+	float: right;
+}
+
+.NachrichtButton, .NachrichtDatum, .NachrichtSenderName {
+	display: inline;
+	font-size: 11px;
+}
+
+.textAreaNachrichtSendenButton {
+	height: 55px;
+}
+
+.textAreaNachrichtSenden {
+	width: 417px;
+	height: 55px;
+	max-height: 100px;
+}
+
+.NachrichtSendeBtnWrap {
+	
+}
+
+/** 
+*
+*Styleschablone für css-Klassen 
+*/
+.nachrichtBtn {
+	/*Todo vervollständigen*/
+	
+}
+
+.unterhaltungBtn {
+	/*Todo vervollständigen*/
+	
+}
+
+.aboverwaltungBtn {
+	/*Todo vervollständigen*/
+	
+}
+
+.profilBtn {
+	/*Todo vervollständigen*/
+	
+}
+
+/*Report CSS Settings*/
+#wrap_report {
+	
+}
+
+#header_report {
+	
+}
+
+#header_report_left {
+	float: left;
+}
+
+#header_report_right {
+	float: right;
+}
+
+#content_report {
+	
+}
+
+#content_right {
+	width: 688px;
+	float: right;
+	background: #fff;
+	border-radius: 22px;
+}
+
+#footer {
+	
+}
+
+.kopfZeileKoerper {
+	background-color: #628cd5;
+	color: white;
+	height: 50px;
+}
+
+.reportkoerper {
+	border-collapse: collapse;
+	width: 100%;
+	border: 1px solid black;
+	padding: 15px;
+	text-align: left;
+}
+
+.ergebnisZeileReport:nth-child(even) {
+	background-color: #f2f2f2
+}
+
+.ergebnisZeileReport {
+	border-top: 1px solid #ddd;
+	height: 35px;
+}
+
+.reportkoerper:hover {
+	background-color: #B0C4DE;
+}
+
+.reportTabelle {
+	border-collapse: collapse;
+	width: 100%;
+	border: 1px solid black;
+	padding: 15px;
+	text-align: center;
+}
+
+.reportTabelle:hover {
+	background-color: #B0C4DE;
+}
+
+.reportKopfzeile {
+	background-color: #628cd5;
+	color: white;
+	height: 32px;
+}
+
+.kopfdatenbox_rechts {
+	vertical-align: top;
+}
+/*Headline Reportgenerator*/
+.ueberschrift_report {
+	font-size: 20px;
+	line-height: 30px;
+	padding-top: 15px;
+}
+
+.subtext_report {
+	font-size: 14px;
+	line-height: 18px;
+	padding-bottom: 15px;
+}
+
+.kopfdatenbox_rechts, .kopfdatenbox_links {
+	vertical-align: top !Important;
+}
+
+.kopfdatenbox_links, .kopfdatenbox_rechts {
+	border-collapse: collapse;
+	border: 1px solid black;
+	padding: 15px;
+	text-align: left
+}
+
+.kopfdatenbox_rechts h2 {
+	font-size: 14px;
+}
+
+.kopfdatenbox_links, .kopfdatenbox_rechts {
+	background-color: #B0C4DE;
+}
+
+.reportUebersichtPanel {
+	width: 100%;
+}
+
+.reportUebersichtPanel h2 {
+	width: 100%;
+	padding: 5px;
+}
+
+/*Pagerpanel Celllist*/
+.pagerStyleGrey {
+	background: #d0d7e5;
+}
+.pagerStyleBlue {
+	background: #e3e8f4;
+}
+
+.subline_report {
+	margin-top: 35px;
+	margin-bottom: 10px;
+}
+
+.reportUebersichtPanel td {
+	width: 33%;
+	padding: 5px;
+}
+.HashtagPlusBtn {
+    background: #628cd5;
+    color: #fff;
+}
+.gwt-MenuBar-horizontal .gwt-MenuItem {
+	/* padding: 5px 10px; */
+	vertical-align: middle !Important;
+}
+.vertical-box{
+		padding:15px;
+	
+}
+.btnAnlegen{ background: #000; color: #fff; 
+height: 30px;
+    width: 100%;
+    border: none;
+     }
+     
+     .btnAnlegen:hover{ background: #ccc; color: #000; 
+     }
+
+.top-margin{margin-top:15px !Important;}
+.bezeichnungVornameTextBox, .bezeichnungNachnameTextBox{margin-top:10px;}
+
+.Impressum{
+	padding:15px;
+	max-width: 328px;
+}
+.nutzerButtonPanel{margin-top:15px;}
+.report_inhalt{margin-right:10px;}
+
+.infobox{
+    background: #f3f3f3;
+    border: 1px solid #ccc;
+    width: 217px;
+    margin-top: 13px;
+    padding: 15px;
+    padding-top: 5px;
+	
+}
+
+/*table, th, td {
+border: 1px solid black;
+}
+th{
+background-color: #628cd5;
+color: white;
+height: 35px;
+}
+th, td{
+padding: 15px;
+text-align: left
+}
+tr:nth-child(even) {background-color: #f2f2f2}
+tr:hover{
+background-color: #B0C4DE;
+}*/
+}
