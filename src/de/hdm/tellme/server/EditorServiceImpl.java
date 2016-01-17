@@ -18,11 +18,165 @@ import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Unterhaltung;
 import de.hdm.tellme.shared.bo.Unterhaltung.eUnterhaltungsTyp;
 
+/**
+ * <p>
+ * Implementierungsklasse des Interface <code>EditorService</code>. Diese Klasse
+ * ist <em>die</em> Klasse, die neben {@link ReportServiceImpl} sämtliche
+ * Applikationslogik (oder engl. Business Logic) aggregiert. Sie ist wie eine
+ * Spinne, die sämtliche Zusammenhänge in ihrem Netz (in unserem Fall die Daten
+ * der Applikation) überblickt und für einen geordneten Ablauf und dauerhafte
+ * Konsistenz der Daten und Abläufe sorgt.
+ * </p>
+ * <p>
+ * Die Applikationslogik findet sich in den Methoden dieser Klasse. Jede dieser
+ * Methoden kann als <em>Transaction Script</em> bezeichnet werden. Dieser Name
+ * lässt schon vermuten, dass hier analog zu Datenbanktransaktion pro
+ * Transaktion gleiche mehrere Teilaktionen durchgeführt werden, die das System
+ * von einem konsistenten Zustand in einen anderen, auch wieder konsistenten
+ * Zustand überführen. Wenn dies zwischenzeitig scheitern sollte, dann ist das
+ * jeweilige Transaction Script dafür verwantwortlich, eine Fehlerbehandlung
+ * durchzuführen.
+ * </p>
+ * <p>
+ * Diese Klasse steht mit einer Reihe weiterer Datentypen in Verbindung. Dies
+ * sind:
+ * <ol>
+ * <li>{@link EditorService}: Dies ist das <em>lokale</em> - also Server-seitige
+ * - Interface, das die im System zur Verfügung gestellten Funktionen
+ * deklariert.</li>
+ * <li>{@link EditorServiceAsync}: <code>EditorServiceImpl</code> und
+ * <code>EditorService</code> bilden nur die Server-seitige Sicht der
+ * Applikationslogik ab. Diese basiert vollständig auf synchronen
+ * Funktionsaufrufen. Wir müssen jedoch in der Lage sein, Client-seitige
+ * asynchrone Aufrufe zu bedienen. Dies bedingt ein weiteres Interface, das in
+ * der Regel genauso benannt wird, wie das synchrone Interface, jedoch mit dem
+ * zusätzlichen Suffix "Async". Es steht nur mittelbar mit dieser Klasse in
+ * Verbindung. Die Erstellung und Pflege der Async Interfaces wird durch das
+ * Google Plugin semiautomatisch unterstützt. Weitere Informationen unter
+ * {@link EditorServiceAsync}.</li>
+ * <li> {@link RemoteServiceServlet}: Jede Server-seitig instantiierbare und
+ * Client-seitig über GWT RPC nutzbare Klasse muss die Klasse
+ * <code>RemoteServiceServlet</code> implementieren. Sie legt die funktionale
+ * Basis für die Anbindung von <code>EditorServiceImpl</code> an die Runtime des
+ * GWT RPC-Mechanismus.</li>
+ * </ol>
+ * </p>
+ * <p>
+ * <b>Wichtiger Hinweis:</b> Diese Klasse bedient sich sogenannter
+ * Mapper-Klassen. Sie gehören der Datenbank-Schicht an und bilden die
+ * objektorientierte Sicht der Applikationslogik auf die relationale
+ * organisierte Datenbank ab. Zuweilen kommen "kreative" Zeitgenossen auf die
+ * Idee, in diesen Mappern auch Applikationslogik zu realisieren. Einzig
+ * nachvollziehbares Argument für einen solchen Ansatz ist die Steigerung der
+ * Performance umfangreicher Datenbankoperationen. Doch auch dieses Argument
+ * zieht nur dann, wenn wirklich große Datenmengen zu handhaben sind. In einem
+ * solchen Fall würde man jedoch eine entsprechend erweiterte Architektur
+ * realisieren, die wiederum sämtliche Applikationslogik in der
+ * Applikationsschicht isolieren würde. Also, keine Applikationslogik in die
+ * Mapper-Klassen "stecken" sondern dies auf die Applikationsschicht
+ * konzentrieren!
+ * </p>
+ * <p>
+ * Beachten Sie, dass sämtliche Methoden, die mittels GWT RPC aufgerufen werden
+ * können ein <code>throws IllegalArgumentException</code> in der
+ * Methodendeklaration aufweisen. Diese Methoden dürfen also Instanzen von
+ * {@link IllegalArgumentException} auswerfen. Mit diesen Exceptions können z.B.
+ * Probleme auf der Server-Seite in einfacher Weise auf die Client-Seite
+ * transportiert und dort systematisch in einem Catch-Block abgearbeitet werden.
+ * </p>
+ * <p>
+ * Es gibt sicherlich noch viel mehr über diese Klasse zu schreiben. Weitere
+ * Infos erhalten Sie in der Lehrveranstaltung.
+ * </p>
+ * 
+ * @see EditorService
+ * @see EditorServiceAsync
+ * @see RemoteServiceServlet
+ * @author Thies, Alex Homann, Denis Pokorski
+ */
 @SuppressWarnings("serial")
 public class EditorServiceImpl extends RemoteServiceServlet implements
 		EditorService {
-	public EditorServiceImpl() throws IllegalArgumentException {
 
+	// ################### MAPPER #####################
+
+	/**
+	 * Referenz auf den NutzerMapper, der Nutzerobjekte mit der Datenbank
+	 * abgleicht.
+	 */
+	private NutzerMapper nutzerMapper = null;
+
+	/**
+	 * Referenz auf den NutzerAbonnementMapper, der NutzeraAbonnementobjekte mit
+	 * der Datenbank abgleicht.
+	 */
+	private NutzerAbonnementMapper nutzeraboMapper = null;
+
+	/**
+	 * Referenz auf den NachrichtMapper, der Nachrichtobjekte mit der Datenbank
+	 * abgleicht.
+	 */
+	private NachrichtMapper nachrichtMapper = null;
+
+	/**
+	 * Referenz auf den UnterhaltungMapper, der Unterhaltungsobjekte mit der
+	 * Datenbank abgleicht.
+	 */
+	private UnterhaltungMapper unterhaltungMapper = null;
+
+	/**
+	 * Referenz auf den HashtagAbonnementtMapper, der Hashtagabonnementobjekte
+	 * mit der Datenbank abgleicht.
+	 */
+	private HashtagAbonnementMapper hashtagAboMapper = null;
+
+	/**
+	 * Referenz auf den HashtagMapper, der Hashtagobjekte mit der Datenbank
+	 * abgleicht.
+	 */
+	private HashtagMapper hashtagMapper = null;
+
+	// ################### LISTEN #####################
+
+	private static Vector<Nutzer> alleUser = null;
+
+	/*
+	 * Da diese Klasse ein gewisse Größe besitzt - dies ist eigentlich ein
+	 * Hinweise, dass hier eine weitere Gliederung sinnvoll ist - haben wir zur
+	 * besseren Übersicht Abschnittskomentare eingefügt. Sie leiten ein Cluster
+	 * in irgeneinerweise zusammengehöriger Methoden ein. Ein entsprechender
+	 * Kommentar steht am Ende eines solchen Clusters.
+	 */
+
+	/*
+	 * ***************************************************************************
+	 * ABSCHNITT, Beginn: Initialisierung
+	 * ***************************************
+	 * ************************************
+	 */
+	/**
+	 * <p>
+	 * Ein <code>RemoteServiceServlet</code> wird unter GWT mittels
+	 * <code>GWT.create(Klassenname.class)</code> Client-seitig erzeugt. Hierzu
+	 * ist ein solcher No-Argument-Konstruktor anzulegen. Ein Aufruf eines
+	 * anderen Konstruktors ist durch die Client-seitige Instantiierung durch
+	 * <code>GWT.create(Klassenname.class)</code> nach derzeitigem Stand nicht
+	 * möglich.
+	 * </p>
+	 * <p>
+	 * Es bietet sich also an, eine separate Instanzenmethode zu erstellen, die
+	 * Client-seitig direkt nach <code>GWT.create(Klassenname.class)</code>
+	 * aufgerufen wird, um eine Initialisierung der Instanz vorzunehmen.
+	 * </p>
+	 * 
+	 * @see #init()
+	 */
+
+	public EditorServiceImpl() throws IllegalArgumentException {
+		/*
+		 * Eine weitergehende Funktion muss der No-Argument-Constructor nicht
+		 * haben. Er muss einfach vorhanden sein.
+		 */
 	}
 
 	public void init() throws IllegalArgumentException {
@@ -31,6 +185,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		else
 			Helper.LogDebug("HELLO TELLME! - DEBUG MODE OFF");
 
+		/**
+		 * Es ist wichtig, dass die <code>EditorServiceImpl</code> einen
+		 * vollständigen Satz an Mappern besitzt, damit sie vollständig mit der
+		 * Datenbank kommunizieren kann.
+		 */
 		this.nutzerMapper = NutzerMapper.nutzerMapper();
 		this.nutzeraboMapper = NutzerAbonnementMapper.nutzerAbonnementMapper();
 		this.nachrichtMapper = NachrichtMapper.nachrichtMapper();
@@ -41,35 +200,52 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 	}
 
-	// ################### MAPPER #####################
-	private NutzerMapper nutzerMapper = null;
-	private NutzerAbonnementMapper nutzeraboMapper = null;
+	/*
+	 * ***************************************************************************
+	 * ABSCHNITT, Ende: Initialisierung
+	 * *****************************************
+	 * **********************************
+	 */
 
-	private NachrichtMapper nachrichtMapper = null;
-	private UnterhaltungMapper unterhaltungMapper = null;
-
-	private HashtagAbonnementMapper hashtagAboMapper = null;
-	private HashtagMapper hashtagMapper = null;
-
-	// ################### LISTEN #####################
-
-	private static Vector<Nutzer> alleUser = null;
-
-	// ################### NUTZER #####################
-
+	/*
+	 * ***************************************************************************
+	 * ABSCHNITT, Beginn: Methoden für Nutzer-Objekte
+	 * ***************************
+	 * ************************************************
+	 */
+	/**
+	 * Anlegen eines Nutzes.
+	 * 
+	 * @param nutzer
+	 * @return int Wert, der die Id von angelegtem Nutzer darstellt.
+	 */
 	public int nutzerAnlegen(Nutzer nutzer) {
 		int ergebnis = nutzerMapper.anlegen(nutzer);
 		return ergebnis;
 	}
 
+	/**
+	 * Der Nutzer wird aktualisiert
+	 * 
+	 */
 	public void nutzerAktualisieren(Nutzer nutzer) {
 		nutzerMapper.aktualisieren(nutzer);
 	}
 
+	/**
+	 * Der Nutzer wird aktualisiert
+	 * 
+	 */
 	public void nutzerLoeschen(Nutzer nutzer) {
 		nutzerMapper.entfernen(nutzer);
 	}
 
+	/**
+	 * Den Nutzer anhand der ID ausfindig machen
+	 * 
+	 * @param nutzerID
+	 * @return Nutzer-Objekt, dass durch die Id gefunden wurde.
+	 */
 	public Nutzer getNutzerAnhandID(int nutzerID) {
 
 		Vector<Nutzer> alleNutzer = getAlleNutzer(false);
@@ -98,6 +274,13 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 	}
 
+	/**
+	 * Den Nutzer anhand der ID ausfindig machen
+	 * 
+	 * @param nutzerID
+	 * @return Vektor mit Nutzer-Objekten, der alle Nutzer außer den
+	 *         eingeloggten Nutzer zurück gibt.
+	 */
 	@Override
 	public Vector<Nutzer> getAlleNutzerAußerMeineId(int meineId) {
 
@@ -111,6 +294,10 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return alleNutzeAuserMir;
 	}
 
+	/**
+	 * Auslesen aller Nutzer
+	 */
+
 	@Override
 	public Vector<Nutzer> getAlleNutzer(boolean zwingeNeuladen) {
 		if (alleUser == null || zwingeNeuladen)
@@ -120,13 +307,31 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 	}
 
-	// ################### NutzerABO #####################
+	/*
+	 * ***************************************************************************
+	 * ABSCHNITT, Ende: Methoden für Nutzer-Objekte
+	 * *****************************
+	 * **********************************************
+	 */
 
+	/*
+	 * ***************************************************************************
+	 * ABSCHNITT, Beginn: Methoden für NutzerAbonnement-Objekte
+	 * *****************
+	 * **********************************************************
+	 */
+
+	/**
+	 * Löschen eines Nutzer-Abonnements
+	 */
 	@Override
 	public void nutzerAbonnementLoeschen(int aboNehmerID, Nutzer aboGeber) {
 		nutzeraboMapper.loescheNutzeraboById(aboNehmerID, aboGeber);
 	}
 
+	/**
+	 * Erstellen eines Nutzer-Abonnements
+	 */
 	@Override
 	public void nutzerAbonnementErstellen(int aboNehmerID, Nutzer aboGeber) {
 		nutzeraboMapper.nutzerAboErstellen(aboNehmerID, aboGeber);
@@ -144,27 +349,59 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return alleAbonniertenNutzer;
 	}
 
+	/**
+	 * Auslesen aller abonnierten Nutzer
+	 * 
+	 * @param aboNehmerID
+	 * @return Vektor mit Nutzer-Objekten, die vom eingeloggten Nutzer abonniert
+	 *         sind.
+	 */
 	public Vector<Nutzer> getAbonierteNutzer(int aboNehmerID) {
 		// TODO: Implementieren - aus DB liste an ID's laden und anschließend
 		// auf user der alleUse liste mappen
 		return null;
 	}
 
+	/**
+	 * Auslesen aller nicht abonnierten Nuzter
+	 * 
+	 * @param aboNehmerID
+	 * @return Vektor mit Nutzer-Objekten, die vom eingeloggten Nutzer nicht
+	 *         abonniert sind.
+	 */
 	public Vector<Nutzer> getNichtAbonierteNutzer(int aboNehmerID) {
 		// TODO: Implementieren, einfach getAlleNutzer und getAbonierteNutzer
 		// ausführen und voneinander abziehen
 		return null;
 	}
 
-	// ################### HASHTAG #####################
+	/*
+	 * ***************************************************************************
+	 * ABSCHNITT, Ende: Methoden für Nutzerabonnement-Objekte
+	 * *******************
+	 * ********************************************************
+	 */
 
+	/*
+	 * ***************************************************************************
+	 * ABSCHNITT, Beginn: Methoden für Hashtag-Objekte
+	 * **************************
+	 * *************************************************
+	 */
+
+	/**
+	 * Auslesen aller Hashtags
+	 */
 	@Override
 	public Vector<Hashtag> gibAlleHashtags() {
 		Vector<Hashtag> alleHashtags = hashtagAboMapper.gibALleHashtags();
 		return alleHashtags;
 	}
 
-	// TODO: Ovverride
+	/**
+	 * Das jeweilige Hashtag entfernen
+	 */
+
 	@Override
 	public void hashtagEntfernen(Hashtag hashtag) {
 		nachrichtMapper.alleHashtagZuordnungLoeschen(hashtag.getId());
@@ -172,18 +409,39 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		hashtagMapper.entfernen(hashtag);
 	}
 
+	/**
+	 * Es wird ein neues Hashtag erstellt
+	 */
 	@Override
 	public void hashtagAktualisieren(Hashtag hashtag) {
 		hashtagMapper.aktualisieren(hashtag);
 	}
 
+	/**
+	 * Es wird ein neues Hashtag erstellt
+	 */
 	@Override
 	public void hashtagErstellen(Hashtag hashtag) {
 		hashtagMapper.erstellen(hashtag);
 	}
 
-	// ################### HashtagABO #####################
+	/*
+	 * ***************************************************************************
+	 * ABSCHNITT, Ende: Methoden für Hashtag-Objekte
+	 * ****************************
+	 * ***********************************************
+	 */
 
+	/*
+	 * ***************************************************************************
+	 * ABSCHNITT, Beginn: Methoden für HashtagAbonnement-Objekte
+	 * ****************
+	 * ***********************************************************
+	 */
+
+	/**
+	 * Auslesen aller abonnierten Hashtags
+	 */
 	@Override
 	public Vector<Integer> getAlleAbonniertenHashtagsfuerAbonehmer(
 			int aboNehmerId) {
@@ -192,11 +450,17 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return alleAbboniertenNutzer;
 	}
 
+	/**
+	 * Ein HashtagAbonnement wird erstellt
+	 */
 	@Override
 	public void erstellenHashtagAbo(int NutzerId, int HashtagId) {
 		hashtagAboMapper.hashtagAboErstellen(NutzerId, HashtagId);
 	}
 
+	/**
+	 * Auslesen aller bereits abonnierten Hashtags
+	 */
 	@Override
 	public Vector<Hashtag> getAbonnierteHashtags(int aboNehmerID) {
 		Vector<Hashtag> alleHashtags = hashtagAboMapper
@@ -204,18 +468,39 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return alleHashtags;
 	}
 
+	/**
+	 * Ein Hashtag-Abonnement wird erstellt
+	 */
 	@Override
 	public void hashtagAboErstellen(int nutzerId, int hashtagId) {
 		hashtagAboMapper.hashtagAboErstellen(nutzerId, hashtagId);
 	}
 
+	/**
+	 * Das jeweilige Hashtag-Abonnement wird gelöscht
+	 */
 	@Override
 	public void hashtagAboEntfernen(int nutzerId, int hashtagId) {
 		hashtagAboMapper.HashtagAboEntfernen(nutzerId, hashtagId);
 	}
 
-	// ################### NACHRICHT #####################
+	/*
+	 * ***************************************************************************
+	 * ABSCHNITT, Ende: Methoden für HashtagAbonnement-Objekte
+	 * ******************
+	 * *********************************************************
+	 */
 
+	/*
+	 * ***************************************************************************
+	 * ABSCHNITT, Beginn: Methoden für Nachricht-Objekte
+	 * ************************
+	 * ***************************************************
+	 */
+
+	/**
+	 * Auslesen aller Nachrichten die zu einer Unterhaltung gehören
+	 */
 	@Override
 	public Vector<Nachricht> ladeAlleNachrichtenZuUnterhaltung(
 			int UnterhaltungsID) {
@@ -238,6 +523,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return alleNachrichten;
 	}
 
+	/**
+	 * Auslesen aller Unterhaltungen über ein Hashtag-Abonnement
+	 */
 	@Override
 	public Vector<Unterhaltung> alleUnterhaltungenVonAbonniertemHashtagUeberNutzerId(
 			int nutzerId) {
@@ -284,6 +572,12 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return unterhaltungsListe;
 	}
 
+	/**
+	 * Eine neue Nachricht wird erstellt
+	 * 
+	 * @param n
+	 * @return int Wert mit mit NachrichtId
+	 */
 	private int nachricht_erstellen(Nachricht n) {
 		int neueNachrichtID = -1;
 		neueNachrichtID = nachrichtMapper.anlegen(n);
@@ -297,6 +591,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return neueNachrichtID;
 	}
 
+	/**
+	 * Nachricht wurde aktualisiert
+	 * 
+	 * @return boolean zur Überprüfung
+	 */
 	@Override
 	public boolean NachrichtAktualisieren(Nachricht original, Nachricht neu) {
 		boolean erfolgreich = true;
@@ -348,6 +647,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return erfolgreich;
 	}
 
+	/**
+	 * Nachricht wurde gelöscht
+	 * 
+	 * @return boolean zur Überprüfung
+	 */
 	@Override
 	public boolean NachrichtLoeschen(Nachricht n) {
 		boolean erfolgreich = true;
@@ -355,8 +659,25 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return erfolgreich;
 	}
 
-	// ################### UNTERHALTUNG #####################
+	/*
+	 * ***************************************************************************
+	 * ABSCHNITT, Ende: Methoden für Nachricht-Objekte
+	 * **************************
+	 * *************************************************
+	 */
 
+	/*
+	 * ***************************************************************************
+	 * ABSCHNITT, Beginn: Methoden für Unterhaltung-Objekte
+	 * *********************
+	 * ******************************************************
+	 */
+
+	/**
+	 * Unterhaltung wurde gelöscht.
+	 * 
+	 * @return boolean zur Überprüfung
+	 */
 	@Override
 	public boolean unterhaltung_loeschen(int unterhaltungsID) {
 		boolean ergebnis = false;
@@ -386,6 +707,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return meineUnterhaltungen;
 	}
 
+	/**
+	 * Auslesen aller Unterhaltungen für einen Teilnehmer, der noch keine
+	 * Nachrichten besitzt.
+	 * 
+	 */
 	@Override
 	public Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(
 			int teilnehmerID) {
@@ -395,6 +721,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return Unterhaltungen;
 	}
 
+	/**
+	 * Unterhaltung starten.
+	 * 
+	 * @return boolean zur Überprüfung
+	 */
 	@Override
 	public boolean unterhaltungStarten(Nachricht ersteNachricht,
 			Vector<Nutzer> teilnehmer) {
@@ -430,6 +761,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return erfolgreich;
 	}
 
+	/**
+	 * Unterhaltung beantworten.
+	 * 
+	 * @return boolean zur Überprüfung
+	 */
 	@Override
 	public boolean unterhaltungBeantworten(Nachricht antwortNachricht,
 			Unterhaltung unterhaltung) {
@@ -452,6 +788,10 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return erfolgreich;
 	}
 
+	/**
+	 * Anzeigen der öffentlichen Unterhaltungen der Nutzer, die der eingeloggte
+	 * Nutzer abonniert hat.
+	 */
 	@Override
 	public Vector<Unterhaltung> oeffentlicheUnterhaltungenAbonnierterNutzer(
 			int meineId) {
@@ -493,6 +833,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return unterhaltungsListe;
 	}
 
+	/**
+	 * Unterhaltung verlassen.
+	 * 
+	 * @return boolean zur Überprüfung
+	 */
 	@Override
 	public boolean UnterhaltungVerlassen(Unterhaltung u, int nutzerId) {
 		// TODO: letzter Telnehmer? -> Unterhaltung als inaktiv makieren
@@ -502,6 +847,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return erfolgreich;
 	}
 
+	/**
+	 * Auslesen aller sichtbaren Unterhaltung für Teilnehmer
+	 */
 	@Override
 	public Vector<Unterhaltung> getAlleSichtbarenUnterhaltungenFuerTeilnehmer(
 			int aktiverTeilnehmerID) {
@@ -552,6 +900,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;
 	}
 
+	/**
+	 * Auslesen aller relevanten Unterhaltungen
+	 */
 	@Override
 	public Vector<Unterhaltung> getAlleRelevantenUnterhaltungen(int UserID) {
 		Helper.LogInformation("getAlleRelevantenUnterhaltungen - Start");
@@ -628,6 +979,14 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return alleUnterhaltungen;
 	}
 
+	/**
+	 * 
+	 * Nutzer zu der Unterhaltung hinzufügen
+	 * 
+	 * @param nutzerID
+	 * @param unterhaltungsID
+	 * @return boolean zur Überprüfung
+	 */
 	private boolean nutzerEinerUnterhaltungZuordnen(int nutzerID,
 			int unterhaltungsID) {
 		boolean erfolgreich = true;
@@ -639,6 +998,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return erfolgreich;
 	}
 
+	/**
+	 * Unterhaltung aktualisieren.
+	 * 
+	 * @return boolean zur Überprüfung
+	 */
 	@Override
 	public boolean UnterhaltungAktualisieren(Unterhaltung original,
 			Unterhaltung neu) {
@@ -688,6 +1052,12 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 		return erfolgreich;
 	}
+	/*
+	 * ***************************************************************************
+	 * ABSCHNITT, Ende: Methoden für Unterhaltung-Objekte
+	 * ***********************
+	 * ****************************************************
+	 */
 
-	// ################### NEU #####################
+
 }

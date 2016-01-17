@@ -11,15 +11,20 @@ import de.hdm.tellme.shared.LoginService;
 import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Nutzer.eStatus;
 
+/**
+ * Die Klasse <class>LoginServiceImpl</class> implementiert das Interface
+ * <code>LoginService</code>. Die Realisierung für ein GWT RPC erfolgt analog zu @
+ * link EditorServiceImpl} . Für Details muss man es dort überprüfen.
+ * 
+ * @author Feltrin, Zimmermann
+ * @version 1.0
+ * @since 26.11.2015
+ * 
+ */
+
 public class LoginServiceImpl extends RemoteServiceServlet implements
 		LoginService {
-	/**
-	 * 
-	 * @author Feltrin, Zimmermann
-	 * @version
-	 * @since 26.11.2015
-	 * 
-	 */
+
 	private String uri_;
 
 	public LoginServiceImpl() throws IllegalArgumentException {
@@ -47,6 +52,10 @@ public class LoginServiceImpl extends RemoteServiceServlet implements
 
 	private static final long serialVersionUID = -1L;
 
+	/**
+	 * Die Email-Adresse wird durch den GoogleUserService bezogen.
+	 * 
+	 */
 	@Override
 	public LoginInfo getNutzerInfo() {
 

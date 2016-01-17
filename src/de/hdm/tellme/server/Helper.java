@@ -1,7 +1,14 @@
 package de.hdm.tellme.server;
 
+/**
+ * Die Klasse <class> Helper </class> ist ein Logger, um in dem
+ * Konsolenfenster bestimmte Verhaltensweisen abzubilden, der die aufgerufenen
+ * Methoden mitloggt
 
-
+ * 
+ * @author denispokorski
+ *
+ */
 public class Helper {
 
 	public static boolean debugModus = true;
@@ -13,6 +20,7 @@ public class Helper {
 	// Helper.LogWarning("getAlleSichtbarenUnterhaltungenFuerTeilnehmer - sichtbare Unterhaltung ohne Sichtbare Nachricht entdeckt. UnterhaltungsID: "
 	// + unterhaltung.getId());
 
+	
 	public static void LogInformation(String _nachricht) {
 		Helper.Log("INFO - " + _nachricht);
 	}
@@ -48,7 +56,7 @@ public class Helper {
 	}
 
 	private static void Log(String _nachricht) {
-		System.out.println( _nachricht);
+		System.out.println(_nachricht);
 
 	}
 
