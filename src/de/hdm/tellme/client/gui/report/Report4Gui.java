@@ -1,12 +1,10 @@
 package de.hdm.tellme.client.gui.report;
 
-import java.util.Date;
-
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import de.hdm.tellme.client.TellMe;
@@ -35,14 +33,8 @@ public class Report4Gui extends VerticalPanel {
 	 * den Report 4.
 	 */
 	private static Nutzer nutzer = null;
-
-	private VerticalPanel reportPanel = new VerticalPanel();
-	private Label ueberSchrift1 = new Label("Report4: Nachrichten abfragen");
-
 	private VerticalPanel reportPanel1_right = new VerticalPanel();
-
 	private Button report4Generieren = new Button("Report 4 generieren");
-
 	private HTML beschreibung1 = new HTML("<ul><b>Der Report 4 gibt alle Nachrichten aus</b>" + "<li>Um einen Report auszugeben, der  alle Nachrichten darstellt, musst du den Button drücken</li></ul>");
 
 	/**
@@ -69,7 +61,8 @@ public class Report4Gui extends VerticalPanel {
 		 * Das RootPanel wird gesäubert und die verschiedenen Elemente für
 		 * Report 4 zugeordnet.
 		 */
-
+	
+		
 		RootPanel.get("content").clear();
  		RootPanel.get("content_right").clear();
 		RootPanel.get("content_right").add(reportPanel1_right);
@@ -86,6 +79,19 @@ public class Report4Gui extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				RootPanel.get("content").clear();
  				RootPanel.get("content_right").clear();
+ 				
+ 				VerticalPanel ladenPanel = new VerticalPanel();
+ 				ladenPanel.setStylePrimaryName("ladenPanel");
+
+ 				Image ladenImg = new Image("laden.gif");
+ 				ladenPanel.setStylePrimaryName("ladenImg");
+ 				ladenPanel.add(ladenImg);
+
+ 				HTML ladenLabel = new HTML("<h1> Bitte warten <h1><br /><h3>Bitte warten Sie einen Augenblick bis der Report generiert wurde. Vielen Dank.</h3>");
+ 				ladenPanel.add(ladenLabel);
+ 				
+ 				RootPanel.get("content").add(ladenPanel);
+
  				
 				nutzer = TellMe.gibEingeloggterBenutzer().getUser();
 				NutzerDataProvider.gib(1).report4Generieren(nutzer);

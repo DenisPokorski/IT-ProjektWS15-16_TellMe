@@ -2,6 +2,7 @@ package de.hdm.tellme.client.gui.report;
 
 import java.sql.Timestamp;
 import java.util.Date;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
@@ -11,10 +12,12 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
+
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
 import de.hdm.tellme.client.gui.editor.NutzerDataProvider;
@@ -145,12 +148,24 @@ public class Report1Gui extends VerticalPanel {
 
 			@Override
 			public void onClick(ClickEvent event) {
-if(vonDateBox.getValue() == null || bisDateBox.getValue() == null) {
-	Window.alert("Bitte beide Datumfelder befüllen");
-} else {
+			if(vonDateBox.getValue() == null || bisDateBox.getValue() == null) {
+				Window.alert("Bitte beide Datumfelder befüllen");
+			} else {
 				RootPanel.get("content_left").clear();
 				RootPanel.get("content_right").clear();
-				RootPanel.get("content_right").add(headline);
+				
+				VerticalPanel ladenPanel = new VerticalPanel();
+				ladenPanel.setStylePrimaryName("ladenPanel");
+
+				Image ladenImg = new Image("laden.gif");
+				ladenImg.setStylePrimaryName("ladenImg");
+				ladenPanel.add(ladenImg);
+
+				HTML ladenLabel = new HTML("<h1> Bitte warten <h1><br /><h3>Bitte warten Sie einen Augenblick bis der Report generiert wurde. Vielen Dank.</h3>");
+				ladenPanel.add(ladenLabel);
+				
+				RootPanel.get("content").add(ladenPanel);
+				
 				NutzerDataProvider.gib(1).report1Generieren(nutzer,
 						new Timestamp(vonDateBox.getValue().getTime()),
 						new Timestamp(bisDateBox.getValue().getTime()));

@@ -43,7 +43,7 @@ public class Report6Gui extends VerticalPanel {
 	 */
 	public void onLoad() {
 
-		final HTML headline = new HTML(" <div class='" + "subline" + "'><h2>Reportgenerator 6: Alle Hashtagabos je anzeigen</h2></div> ");
+		final HTML headline = new HTML(" <div class='" + "subline" + "'><h2>Reportgenerator 6: Alle Hashtagabos je Nutzer anzeigen</h2></div> ");
 		final HTML subtext = new HTML(" <div class='" + "subtext" + "'><h4> Der Report 6 gibt alle Hashtagabonnoments eines Nutzers in einen bestimmten Zeitraum zurück.   </h4></div> ");
 
 		vP.add(headline);

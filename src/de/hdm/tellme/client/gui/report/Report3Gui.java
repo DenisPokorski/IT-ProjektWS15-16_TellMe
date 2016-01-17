@@ -57,20 +57,12 @@ public class Report3Gui extends VerticalPanel {
 
 	public void onLoad() {
 
-		HTML headline = new HTML(
-				" <div class='"
-						+ "subline"
-						+ "'><h2>Reportgenerator 3: Alle Nachrichten je Nutzer anzeigen \n </h2></div> ");
-		HTML subtext = new HTML(
-				" <div class='"
-						+ "subtext"
-						+ "'><h4> 		Um einen Report auszugeben, der alle Nachrichten von<b> einem bestimmten Nutzer</b>"
-						+ " darstellt, musst du <b>einen Nutzer </b>auswählen und darfst <b>keinen Zeitraum  </h4></div> ");
+		HTML headline = new HTML(" <div class='"+ "subline"+ "'><h2>Reportgenerator 3: Alle Nachrichten je Nutzer anzeigen \n </h2></div> ");
+		HTML subtext = new HTML(" <div class='"+ "subtext"+ "'><h4> 		Um einen Report auszugeben, der alle Nachrichten von<b> einem bestimmten Nutzer</b>"+ " darstellt, musst du <b>einen Nutzer </b>auswählen und darfst <b>keinen Zeitraum  </h4></div> ");
 
 		/*
 		 * Die Panels werden anschaulich angeordnet.
 		 */
-
 		RootPanel.get().clear();
 		reportPanel.add(ueberSchrift3);
 		reportPanel3.add(reportPanel3_left);
@@ -81,10 +73,7 @@ public class Report3Gui extends VerticalPanel {
 		 * <code>NutzerCellList</code> im modi Report3_NachrichtNutzer
 		 * zugewiesen, dies geschieht im Modus 1, da 1 den Report darstellt.
 		 */
-
-		reportPanel3_left.add(new NutzerCellList().generiereCellList(
-				CellListModus.Report3_NachrichtNutzer, 1));
-
+		reportPanel3_left.add(new NutzerCellList().generiereCellList(CellListModus.Report3_NachrichtNutzer, 1));
 		reportPanel.add(reportPanel3);
 		/*
 		 * Das RootPanel wird gesäubert und die verschiedenen Elemente für

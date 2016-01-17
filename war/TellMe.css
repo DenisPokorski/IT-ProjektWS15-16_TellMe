@@ -35,8 +35,17 @@ h3 {
 	padding-bottom: 15px;
 }
 
-.report_inhalt{margin-right:10px;}
- 
+.report_inhalt{
+	margin-right:10px;
+}
+
+.report_inhalt_volle_breite{
+	padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    background: #fff;
+}
+
 .report_kein_inhalt{
 	background: #f3f3f3;
 	color:red; 
@@ -44,7 +53,6 @@ h3 {
 	font-weight:bold;
 	padding-top:10px;
 	padding-bottom:15px;
-	
 }
 
 /*
@@ -537,6 +545,28 @@ div.GPBYFDEFF{
 
 div.GPBYFDEFF.GPBYFDEHF {
 	border: 1px solid #ccc;
+}
+
+.ladenImg{
+	width: 75px; 
+}
+
+.ladenPanel{
+	width: 400px; 
+}
+
+.ladenPanel h1,.ladenPanel h2, .ladenPanel h3  {
+	padding-top: 0px;
+    margin-top: -20px;
+    text-align: center;
+}
+
+.ladenPanel td {
+    text-align: center !Important;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 44px;
+    padding-bottom: 0px;
 }
 
 /*Hover Cellist

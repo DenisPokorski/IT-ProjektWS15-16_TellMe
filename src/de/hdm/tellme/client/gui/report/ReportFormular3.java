@@ -4,6 +4,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -39,6 +41,23 @@ public class ReportFormular3 extends Composite {
 			public void onClick(ClickEvent event) {
 				RootPanel.get("content_left").clear();
 				RootPanel.get("content_right").clear();
+				
+				/**
+				 * Die folgenden Zeilen beschreiben die Ladeanzeige. Diese wird bei der Betätgiung ders Clickhandlers ausgefürt.
+				 * Ziel ist es dem Nutzer Informationen über das aktuelle Programmverhalten zu liefern.
+				 * */
+				VerticalPanel ladenPanel = new VerticalPanel();
+				ladenPanel.setStylePrimaryName("ladenPanel");
+				
+				Image ladenImg = new Image("laden.gif");
+				ladenImg.setStylePrimaryName("ladenImg");
+				ladenPanel.add(ladenImg);
+
+				HTML ladenLabel = new HTML("<h1> Bitte warten <h1><br /><h3>Bitte warten Sie einen Augenblick bis der Report generiert wurde. Vielen Dank.</h3>");
+				ladenPanel.add(ladenLabel);
+				
+				RootPanel.get("content").add(ladenPanel);
+				
 				
 				NutzerDataProvider.gib(1).report3Generieren(nutzer);
 			}

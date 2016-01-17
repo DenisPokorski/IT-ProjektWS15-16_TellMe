@@ -16,8 +16,6 @@ public class ReportFormular1 extends Composite {
 	public ReportFormular1() {
 	}
 	public void reportGenerieren(Nutzer n, Timestamp vonDate, Timestamp bisDate) {
-//		NutzerDataProvider.gib(1).report1Generieren(n, vonDate, bisDate);
-		Window.alert(""+n.getVorname());
 		
 	}
 

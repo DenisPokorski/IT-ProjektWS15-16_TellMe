@@ -29,26 +29,23 @@ public class HTMLReportWriter {
 	private String reportText = "";
 
 	private StringBuffer buffer = new StringBuffer();
-	private Label ueberrschrift1 = new Label("Reportgenerator 3: ");
-	private Label subtext = new Label(
-			"Ausgabe aller Hashtagabonnoments eines Nutzers");
+
 
 	public void generateReport6(Vector<Hashtag> hashtagliste, Nutzer nutzer) {
 		
-		RootPanel.get("content_right").clear();
+		Label ueberrschrift1 = new Label("Reportgenerator 6: Ausgabe aller Hashtagabonnoments eines Nutzers");
 		ueberrschrift1.setStylePrimaryName("ueberschrift_report");
-		subtext.setStylePrimaryName("subtext_report");
-
+		
+		RootPanel.get("content_right").clear();
 		erstelleKopfdatenReport6(nutzer);
 		erstelleKoerperDatenReport6(hashtagliste);
 
 		this.reportText = buffer.toString();
 		HTML html = new HTML(reportText);
 		html.setStylePrimaryName("report_inhalt");
-		html.setStylePrimaryName("report_inhalt_ganze_breite");
+		//html.setStylePrimaryName("report_inhalt_ganze_breite");
 
 		RootPanel.get("content_right").add(ueberrschrift1);
-		RootPanel.get("content_right").add(subtext);
 		RootPanel.get("content_right").add(html);
 	}
 
@@ -153,7 +150,7 @@ public class HTMLReportWriter {
 	public void erstelleKoerperDatenReport5(Vector<Nutzer> result) {
 
 		if (result.size() <= 0) {
-			buffer.append("<table>");
+			buffer.append("<table class ='" +"report_kein_inhalt"+"'>");
 			buffer.append("<tr> <th>FÜR DEN AUSGEWÄHLTEN NUTZER"
 					+ " IST ZUR ZEIT KEIN REPORT 2 VERFÜGBAR, DA DER NUTZER KEINE "
 					+ "ANDEREN NUTZER ABONNIERT HAT!</th></tr>");
@@ -335,13 +332,13 @@ public class HTMLReportWriter {
 	/**
 	 * Report 4
 	 */
-	private Label ueberschrift4 = new Label("Report 4");
-	private Label subtext4 = new Label("Report 4 gibt alle Nachrichten aus.");
 
 	public void generateReport4(Vector<Unterhaltung> result, Nutzer b) {
+		
 		RootPanel.get("content").clear();
+		
+		Label ueberschrift4 = new Label("Report 4: Gibt alle Nachrichten aus.");
 		ueberschrift4.setStylePrimaryName("ueberschrift_report");
-		subtext4.setStylePrimaryName("subtext_report");
 
 		erstelleKopfDatenReport4(b);
 		erstelleKoerperDatenReport4(result);
@@ -349,9 +346,10 @@ public class HTMLReportWriter {
 		this.reportText = buffer.toString();
 
 		RootPanel.get("content").add(ueberschrift4);
-		RootPanel.get("content").add(subtext4);
-
-		RootPanel.get("content").add(new HTML(reportText));
+		HTML html = new HTML(reportText);
+		html.setStylePrimaryName("report_inhalt_volle_breite");
+		
+		RootPanel.get("content").add(html);
 	}
 
 	private void erstelleKoerperDatenReport4(Vector<Unterhaltung> result) {
@@ -411,24 +409,23 @@ public class HTMLReportWriter {
 	/**
 	 * Report 3
 	 */
-	private Label ueberschrift3 = new Label("Report 3");
-	private Label subtext3 = new Label(
-			"Report 3 gibt alle Nachrichten eines Nutzers aus.");
 
 	public void generateReport3(Vector<Unterhaltung> result, Nutzer b) {
-		RootPanel.get("content").clear();
+		
+		Label ueberschrift3 = new Label("Report 3:gibt alle Nachrichten eines Nutzers aus");
 		ueberschrift3.setStylePrimaryName("ueberschrift_report");
-		subtext3.setStylePrimaryName("subtext_report");
 
 		erstelleKopfDatenReport3(b);
 		erstelleKoerperDatenReport3(result, b);
 
 		this.reportText = buffer.toString();
-
-		RootPanel.get("content_right").add(ueberschrift3);
-		RootPanel.get("content_right").add(subtext3);
-
-		RootPanel.get("content_right").add(new HTML(reportText));
+		
+		HTML html = new HTML(reportText);
+		html.setStylePrimaryName("report_inhalt_volle_breite");
+		
+		RootPanel.get("content").clear();
+		RootPanel.get("content").add(ueberschrift3);
+		RootPanel.get("content").add(html);
 	}
 
 	private void erstelleKoerperDatenReport3(Vector<Unterhaltung> result,

@@ -10,22 +10,15 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
-import com.google.gwt.view.client.SingleSelectionModel;
-
 import de.hdm.tellme.client.TellMe;
-import de.hdm.tellme.client.gui.editor.CellListModus;
-import de.hdm.tellme.client.gui.editor.NutzerCellList;
 import de.hdm.tellme.client.gui.editor.NutzerDataProvider;
-import de.hdm.tellme.client.gui.editor.NutzerZelle;
-import de.hdm.tellme.client.gui.editor.NutzerZelle.ZellenObjekt;
-import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
@@ -144,7 +137,18 @@ public class Report2Gui extends VerticalPanel {
 					
 					RootPanel.get("content_left").clear();
 					RootPanel.get("content_right").clear();
-					RootPanel.get("content_right").add(headline);
+					
+					VerticalPanel ladenPanel = new VerticalPanel();
+					ladenPanel.setStylePrimaryName("ladenPanel");
+
+					Image ladenImg = new Image("laden.gif");
+					ladenImg.setStylePrimaryName("ladenImg");
+					ladenPanel.add(ladenImg);
+
+					HTML ladenLabel = new HTML("<h1> Bitte warten <h1><br /><h3>Bitte warten Sie einen Augenblick bis der Report generiert wurde. Vielen Dank.</h3>");
+					ladenPanel.add(ladenLabel);
+					
+					RootPanel.get("content").add(ladenPanel);
 
 					nutzer = TellMe.gibEingeloggterBenutzer().getUser();
 					NutzerDataProvider.gib(1).report2Generieren(nutzer,

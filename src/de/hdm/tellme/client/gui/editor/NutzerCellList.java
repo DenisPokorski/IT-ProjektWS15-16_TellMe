@@ -132,27 +132,17 @@ public class NutzerCellList {
 							RootPanel.get("content_right").clear();
 
 							ReportFormular3 rF = new ReportFormular3();
-							rF.report3Generieren(selectionModel
-									.getSelectedObject());
+							rF.report3Generieren(selectionModel.getSelectedObject());
 
-							HTML headline = new HTML(
-									" <div class='"
-											+ "subline"
-											+ "'><h2>Reportgenerator 3: Alle Nachrichten je Nutzer anzeigen </h2></div> ");
-							HTML subtext = new HTML(
-									" <div class='"
-											+ "subtext"
-											+ "'><h4> 		Um einen Report auszugeben, der alle Nachrichten von<b> einem bestimmten Nutzer</b>"
-											+ " darstellt, musst du <b>einen Nutzer </b>auswählen und darfst <b>keinen Zeitraum </b> auswählen. </h4></div> ");
+							HTML headline = new HTML(" <div class='"+ "subline"+ "'><h2>Reportgenerator 3: Alle Nachrichten je Nutzer anzeigen </h2></div> ");
+							HTML subtext = new HTML(" <div class='"+ "subtext"+ "'><h4>Um einen Report auszugeben, der alle Nachrichten von<b> einem bestimmten Nutzer</b>"+ " darstellt, musst du <b>einen Nutzer </b>auswählen und darfst <b>keinen Zeitraum </b> auswählen. </h4></div> ");
 
 							vP.add(headline);
 							vP.add(subtext);
 							vP.add(rF.gibFormular());
 
 							RootPanel.get("content_right").add(vP);
-
 						}
-
 					});
 			break;
 
@@ -166,29 +156,20 @@ public class NutzerCellList {
 					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
 							ReportFormular5 rF = new ReportFormular5();
-							rF.report5Generieren(selectionModel
-									.getSelectedObject());
+							rF.report5Generieren(selectionModel.getSelectedObject());
+							
 							VerticalPanel vP = new VerticalPanel();
-
 							RootPanel.get("content_right").clear();
 
-							HTML headline = new HTML(
-									" <div class='"
-											+ "subline"
-											+ "'><h2>Reportgenerator 5: Alle Nachrichten je Nutzer anzeigen</h2></div> ");
-							HTML subtext = new HTML(
-									" <div class='"
-											+ "subtext"
-											+ "'><h4> Der Report 5 gibt alle Nutzerabonnements aus.   </h4></div> ");
+							HTML headline = new HTML(" <div class='"+ "subline"+ "'><h2>Reportgenerator 5: Alle Nachrichten je Nutzer anzeigen</h2></div> ");
+							HTML subtext = new HTML(" <div class='"+ "subtext"+ "'><h4> Der Report 5 gibt alle Nutzerabonnements aus.   </h4></div> ");
 
 							vP.add(headline);
 							vP.add(subtext);
 							vP.add(rF.gibFormular());
 							RootPanel.get("content_right").add(vP);
-
 						}
 					});
-
 			break;
 
 		/**
@@ -205,17 +186,10 @@ public class NutzerCellList {
 							RootPanel.get("content_right").clear();
 
 							ReportFormular6 rF = new ReportFormular6();
-							rF.report6Generieren(selectionModel
-									.getSelectedObject());
+							rF.report6Generieren(selectionModel.getSelectedObject());
 
-							HTML headline = new HTML(
-									" <div class='"
-											+ "subline"
-											+ "'><h2>Reportgenerator 6: Alle Hashtagabos je anzeigen</h2></div> ");
-							HTML subtext = new HTML(
-									" <div class='"
-											+ "subtext"
-											+ "'><h4> Der Report 6 gibt alle Hashtagabonnements eines Nutzers in einem bestimmten Zeitraum zurück.   </h4></div> ");
+							HTML headline = new HTML(" <div class='"+ "subline"+ "'><h2>Reportgenerator 6: Alle Hashtagabos je Nutzer anzeigen</h2></div> ");
+							HTML subtext = new HTML(" <div class='"+ "subtext"+ "'><h4> Der Report 6 gibt alle Hashtagabonnements eines Nutzers in einem bestimmten Zeitraum zurück.   </h4></div> ");
 
 							vP.add(headline);
 							vP.add(subtext);
@@ -224,7 +198,6 @@ public class NutzerCellList {
 							RootPanel.get("content_right").add(vP);
 						}
 					});
-
 			break;
 
 		default:
