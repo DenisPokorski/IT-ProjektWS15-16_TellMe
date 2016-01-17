@@ -18,7 +18,6 @@ import de.hdm.tellme.shared.bo.Hashtag;
  * switchs verwendet.
  * 
  * @author Alex
- *
  */
 
 public class HashtagCellList {
@@ -26,25 +25,33 @@ public class HashtagCellList {
 	Hashtag selektiertesHashstag = null;
 
 	public FlowPanel generiereCellList(CellListModus modi) {
+		
 		/**
 		 * Um ein bestimmtes Objekt aus der HashtagCellList auszuwählen wird die
 		 * CellList aufgerufen. Der Rückgabewert ist ein vom Typ ZellenObjekt
 		 * der Klasse <class>ZellenObjekt</class>, dass eine Nested-Class in der
 		 * Klasse <class>HashtagZelle</class> darstellt.
 		 */
-		CellList<HashtagZelle.ZellenObjekt> cellList = new CellList<HashtagZelle.ZellenObjekt>(
-				new HashtagZelle().new ZellenElement());
+		CellList<HashtagZelle.ZellenObjekt> cellList = new CellList<HashtagZelle.ZellenObjekt>(new HashtagZelle().new ZellenElement());
+		
 		/**
 		 * Der HashtagDataProvider stellt die HashtagCellList zur Verfügung.
 		 */
 		HashtagDataProvider.gib().addDataDisplay(cellList);
+		
 		/**
 		 * Hier wird ein Selection Model hinzugefügt, damit man Zellen auswählen
 		 * kann.
 		 */
-		// Add a selection model so we can select cells.
 		final SingleSelectionModel<HashtagZelle.ZellenObjekt> selectionModel = new SingleSelectionModel<HashtagZelle.ZellenObjekt>();
 		cellList.setSelectionModel(selectionModel);
+		
+		/**
+		 * Das Switch-Case Konstrukt nimmt einen in der Enumklasse: CellListModus vordefinierten entgegen.
+		 * Anschließend wird der übergebene Fall abgearbeitet. Ziel dieses Konstrukts ist verschiedene SelektionsModele von in den
+		 * GUI verwendendeten Celllist Komponenten zu bestimmen. Dies ist notwenig da bei Interaktion mit einer Celllist Komponente, diese oftmals  da diese an vielen Stellen des Programm
+		 * verschieden Reagieren müssen
+		 */
 		switch (modi) {
 
 		/**
@@ -55,20 +62,17 @@ public class HashtagCellList {
 		 * gibBearbeitenFormular() geladen.
 		 */
 		case Einstellungen:
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-						public void onSelectionChange(SelectionChangeEvent event) {
-							HashtagFormular nf = new HashtagFormular();
-							nf.setzeHashtagAbo(selectionModel
-									.getSelectedObject());
-							RootPanel.get("content_right").clear();
-							RootPanel.get("content_right").add(
-									nf.gibBeschreibungHtAbo());
-							RootPanel.get("content_right").add(
-									nf.gibBearbeitenFormular());
-
-						}
-					});
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+				public void onSelectionChange(SelectionChangeEvent event) {
+					
+					HashtagFormular nf = new HashtagFormular();
+					nf.setzeHashtagAbo(selectionModel.getSelectedObject());
+					RootPanel.get("content_right").clear();
+					RootPanel.get("content_right").add(nf.gibBeschreibungHtAbo());
+					RootPanel.get("content_right").add(nf.gibBearbeitenFormular());
+					
+				}
+			});
 			break;
 
 		/**
@@ -80,16 +84,12 @@ public class HashtagCellList {
 		 */
 
 		case Nachrichtenuebersicht:
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-						public void onSelectionChange(SelectionChangeEvent event) {
-							NeuigkeitenNachrichtenBaumModel.setzeHashtagFilter(
-									selectionModel.getSelectedObject().hashtag,
-									selectionModel);
-
-						}
-					});
-
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+				public void onSelectionChange(SelectionChangeEvent event) {
+					
+					NeuigkeitenNachrichtenBaumModel.setzeHashtagFilter(selectionModel.getSelectedObject().hashtag,selectionModel);
+					}
+			});
 			break;
 
 		/**
@@ -106,23 +106,18 @@ public class HashtagCellList {
 			selectionModel
 					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
+							
 							HashtagVerwaltungFomular nvf = new HashtagVerwaltungFomular();
 							nvf.setzeHashtag(selectionModel.getSelectedObject());
-
 							RootPanel.get("content_right").clear();
-							RootPanel.get("content_right").add(
-									new HashtagFormular()
-											.gibBeschreibungHtVerwaltung());
-							RootPanel.get("content_right").add(
-									nvf.gibFormular());
-
+							RootPanel.get("content_right").add(new HashtagFormular().gibBeschreibungHtVerwaltung());
+							RootPanel.get("content_right").add(nvf.gibFormular());
 						}
 					});
-
 			break;
 
 		default:
-			break;
+		break;
 		}
 
 		/**
@@ -161,7 +156,6 @@ public class HashtagCellList {
 		 */
 		RootPanel.get("content_left").clear();
 		return fP;
-
 	}
 
 }

@@ -9,8 +9,8 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 
-import de.hdm.tellme.client.Impressum;
 import de.hdm.tellme.client.TellMe;
+import de.hdm.tellme.client.Schaukasten.Impressum;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;

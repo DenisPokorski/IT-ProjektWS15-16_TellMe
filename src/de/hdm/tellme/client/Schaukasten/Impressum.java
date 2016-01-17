@@ -1,4 +1,4 @@
-package de.hdm.tellme.client;
+package de.hdm.tellme.client.Schaukasten;
 
 import com.google.gwt.user.client.ui.HTML;
 

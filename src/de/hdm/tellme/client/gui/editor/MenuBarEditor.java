@@ -8,8 +8,8 @@ import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-import de.hdm.tellme.client.Impressum;
 import de.hdm.tellme.client.TellMe;
+import de.hdm.tellme.client.Schaukasten.Impressum;
 import de.hdm.tellme.client.Schaukasten.NeuigkeitenEditor;
 import de.hdm.tellme.client.Schaukasten.NutzerBearbeitenEditor;
 import de.hdm.tellme.client.gui.report.Report1Gui;

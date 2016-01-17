@@ -1,6 +1,6 @@
 package de.hdm.tellme.shared.report;
 
-import de.hdm.tellme.client.Impressum;
+import de.hdm.tellme.client.Schaukasten.Impressum;
 /**
  * Die Klasse <class>ReportPanel</class> zeigt die Kopfdaten jeden Reports an. Dieser besteht aus einer Überschrift, den
  *  Impressums-Daten, den Daten des ausgewählten Nutzers und dem Erstellungsdatum des Reports.

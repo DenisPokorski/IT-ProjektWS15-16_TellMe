@@ -4,13 +4,19 @@ package de.hdm.tellme.server;
  * Die Klasse <class> Helper </class> ist ein Logger, um in dem
  * Konsolenfenster bestimmte Verhaltensweisen abzubilden, der die aufgerufenen
  * Methoden mitloggt
-
- * 
+ *
  * @author denispokorski
  *
  */
 public class Helper {
 
+	/**
+	 * Anleitung: 
+	 * 
+	 * 
+	 */
+	
+	
 	public static boolean debugModus = true;
 
 	// ANLEITUNG: LOGGER

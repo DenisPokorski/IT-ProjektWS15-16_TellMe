@@ -259,9 +259,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 			btnAntworten.setEnabled(true);
 
 			for (Nutzer nutzer : ausgewaehlteUnterhaltung.getTeilnehmer()) {
-				if (nutzer.getId() == TellMe.gibEingeloggterBenutzer()
-						.getUser().getId())
-					istTeilnehmerInUnterhaltung = true;
+				if (nutzer.getId() == TellMe.gibEingeloggterBenutzer().getUser().getId())istTeilnehmerInUnterhaltung = true;
 			}
 			if (istTeilnehmerInUnterhaltung) {
 				btnTeilnehmerBearbeiten.setEnabled(true);
@@ -277,7 +275,6 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 * Der ButtonBar wird der hpHeadline und der hpOptionen hinzugefügt TODO
 		 */
 		RootPanel.get("ButtonBar").add(hpHeadline);
-
 		RootPanel.get("ButtonBar").add(hpOptionen);
 	}
 
@@ -300,10 +297,8 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 * Dem VerticalPanel vpFilterPanel wird die NutzerCelllist und
 		 * HashtagCelllist hinzugefügt
 		 */
-		vpFilterPanel.add(nuCL.generiereCellList(
-				CellListModus.Nachrichtenuebersicht, 0));
-		vpFilterPanel.add(hsCL
-				.generiereCellList(CellListModus.Nachrichtenuebersicht));
+		vpFilterPanel.add(nuCL.generiereCellList(CellListModus.Nachrichtenuebersicht, 0));
+		vpFilterPanel.add(hsCL.generiereCellList(CellListModus.Nachrichtenuebersicht));
 
 		/**
 		 * Ein neuer Button mit dem Namen "Filter zurücksetzen" wird erstellt
@@ -312,7 +307,6 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 */
 
 		Button btnFilterZuruecksetzen = new Button("Filter zurücksetzen");
-
 		btnFilterZuruecksetzen.setStylePrimaryName("filterBtn");
 		btnFilterZuruecksetzen.addClickHandler(new ClickHandler() {
 
@@ -322,7 +316,6 @@ public class NeuigkeitenEditor extends VerticalPanel {
 			}
 		});
 		vpFilterPanel.add(btnFilterZuruecksetzen);
-
 		return vpFilterPanel;
 	}
 
