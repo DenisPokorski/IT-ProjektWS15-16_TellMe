@@ -1,11 +1,13 @@
 package de.hdm.tellme.client.gui.report;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -17,8 +19,10 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.view.client.SingleSelectionModel;
 
+import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
+import de.hdm.tellme.client.gui.editor.NutzerDataProvider;
 import de.hdm.tellme.client.gui.editor.NutzerZelle;
 import de.hdm.tellme.client.gui.editor.NutzerZelle.ZellenObjekt;
 import de.hdm.tellme.shared.LoginInfo;
@@ -45,7 +49,7 @@ public class Report2Gui extends VerticalPanel {
 	 * eine Überschrift und eine Beschreibung für den Report 2.
 	 */
 
-	private Nutzer nutzer = null;
+	private static Nutzer nutzer = null;
 
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift2 = new Label("Report2: Nachrichten abfragen");
@@ -59,23 +63,13 @@ public class Report2Gui extends VerticalPanel {
 	private DateBox vonDateBox = new DateBox();
 	private DateBox bisDateBox = new DateBox();
 	private Button report2Generieren = new Button("Report 2 generieren");
+	DateTimeFormat dF = DateTimeFormat.getFormat("dd.MM.yyyy");
 
 	private HTML beschreibung2 = new HTML(
 			"<ul><b>Der Report 2 gibt alle Nachrichten in einen bestimmten Zeitraum aus</b>"
 					+ "<li>Um einen Report auszugeben, der alle Nachrichten in <b>einem bestimmten Zeitraum</b>"
 					+ " darstellt <b>musst einen Zeitraum </b>auswählen.</li></ul>");
 
-	/**
-	 * Dies ist die Methode, die den report2Generieren soll. Es wird ein
-	 * ZellenObjekt aus der NutzerCellList übergeben. TODO report2 braucht kein
-	 * NutzerObjekt?! METHODE FALSCH!
-	 * 
-	 * @param ZellenObjekt
-	 */
-	public void report2Generieren(NutzerZelle.ZellenObjekt ZellenObjekt) {
-		this.nutzer = ZellenObjekt.nutzer;
-
-	}
 
 	/**
 	 * Die onLoad-Methode wird verwendet um in der Seite die verschiedenen
@@ -84,11 +78,13 @@ public class Report2Gui extends VerticalPanel {
 	 * darstellt
 	 */
 	public void onLoad() {
-		HTML headline = new HTML(
+		vonDateBox.setFormat(new DateBox.DefaultFormat(dF));
+		bisDateBox.setFormat(new DateBox.DefaultFormat(dF));
+		final HTML headline = new HTML(
 				" <div class='"
 						+ "subline"
 						+ "'><h2>Reportgenerator 2: Alle Nachrichten je Zeitraum anzeigen </h2></div> ");
-		HTML subtext = new HTML(
+		final HTML subtext = new HTML(
 				" <div class='"
 						+ "subtext"
 						+ "'><h4> Der Report 2 gibt alle Nachrichten in einen bestimmten Zeitraum aus  </h4></div> ");
@@ -153,6 +149,19 @@ public class Report2Gui extends VerticalPanel {
 
 			@Override
 			public void onClick(ClickEvent event) {
+				if (vonDateBox.getValue() == null
+						|| bisDateBox.getValue() == null) {
+					Window.alert("Bitte beide Datumfelder befüllen");
+				} else {
+					RootPanel.get("content_left").clear();
+					RootPanel.get("content_right").clear();
+					RootPanel.get("content_right").add(headline);
+					nutzer = TellMe.gibEingeloggterBenutzer().getUser();
+					NutzerDataProvider.gib(1).report2Generieren(nutzer,
+							new Timestamp(vonDateBox.getValue().getTime()),
+							new Timestamp(bisDateBox.getValue().getTime()));
+				}
+
 			}
 		});
 	}

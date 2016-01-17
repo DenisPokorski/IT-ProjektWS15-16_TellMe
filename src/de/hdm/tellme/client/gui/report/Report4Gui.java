@@ -17,6 +17,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.view.client.SingleSelectionModel;
 
+import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
 import de.hdm.tellme.client.gui.editor.NutzerDataProvider;
@@ -40,13 +41,13 @@ import de.hdm.tellme.shared.bo.Nutzer;
  */
 
 public class Report4Gui extends VerticalPanel {
-	/*
+	/**
 	 * Es werden in einem Vertical Panel die verschiedenen benötigten Elemente
 	 * dargestellt. Dies ist ein Button der die Funktion ReportGenerieren
 	 * beinhaltet. Außerdem gibt es eine Überschrift und eine Beschreibung für
 	 * den Report 4.
 	 */
-	private Nutzer nutzer = null;
+	private static Nutzer nutzer = null;
 
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift1 = new Label("Report4: Nachrichten abfragen");
@@ -78,7 +79,7 @@ public class Report4Gui extends VerticalPanel {
 						+ "subtext"
 						+ "'><h4> Der Report 4 gibt alle Nachrichten des gesamten System aus  </h4></div> ");
 
-		/*
+		/**
 		 * Die Panels werden anschaulich angeordnet.
 		 */
 
@@ -93,7 +94,7 @@ public class Report4Gui extends VerticalPanel {
 		reportPanel1_right.add(beschreibung1);
 		reportPanel.add(reportPanel1);
 
-		/*
+		/**
 		 * Das RootPanel wird gesäubert und die verschiedenen Elemente für
 		 * Report 4 zugeordnet.
 		 */
@@ -104,7 +105,7 @@ public class Report4Gui extends VerticalPanel {
 		RootPanel.get("content_right").add(reportPanel1_right);
 		RootPanel.get("content_left").add(reportPanel1_left);
 
-		/*
+		/**
 		 * Der Button <code>report3Generieren</code> bekommt eine Funktion,
 		 * damit der Report 4 generiert werden kann.
 		 */
@@ -115,8 +116,9 @@ public class Report4Gui extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 
 				RootPanel.get("content_left").clear();
+				RootPanel.get("content_right").clear();
 				RootPanel.get("content_left").add(headline);
-
+				nutzer = TellMe.gibEingeloggterBenutzer().getUser();
 				NutzerDataProvider.gib(1).report4Generieren(nutzer);
 
 			}

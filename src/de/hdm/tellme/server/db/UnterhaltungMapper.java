@@ -32,13 +32,14 @@ public class UnterhaltungMapper {
 	 * Instanzen in der Klasse erzeugen kann, wird der Konstruktor mit
 	 * <code>protected</code> geschützt.
 	 */
-	
+
 	protected UnterhaltungMapper() {
 	}
 
 	/**
-	 * Die statische Methode wird über UnterhaltungMapper unterhaltungMapper aufgerufen.
-	 * Diese überprüft, dass nur eine Instanz von UnterhaltungMapper besteht.
+	 * Die statische Methode wird über UnterhaltungMapper unterhaltungMapper
+	 * aufgerufen. Diese überprüft, dass nur eine Instanz von UnterhaltungMapper
+	 * besteht.
 	 */
 
 	public static UnterhaltungMapper unterhaltungMapper() {
@@ -48,9 +49,9 @@ public class UnterhaltungMapper {
 		return unterhaltungMapper;
 	}
 
-
 	/**
-	 * Diese Methode legt eine Unterhaltung an, gibt eine ID neuer Unterhaltung zurück oder -1 wenn nicht erfolgreich
+	 * Diese Methode legt eine Unterhaltung an, gibt eine ID neuer Unterhaltung
+	 * zurück oder -1 wenn nicht erfolgreich
 	 * 
 	 * @param unterHaltungsTyp
 	 * @return
@@ -160,6 +161,60 @@ public class UnterhaltungMapper {
 							+ teilnehmerID
 							+ "' AND NutzerUnterhaltung.Sichtbarkeit = 1 AND Unterhaltung.Sichtbarkeit = 1 AND Nutzer.Status = '"
 							+ eStatus.aktiv.ordinal() + "'");
+
+			while (rs.next()) {
+				Unterhaltung u = new Unterhaltung();
+				u.setId(rs.getInt("Unterhaltung.Id"));
+				u.setSichtbarkeit(1);
+				int typ = rs.getInt("Unterhaltung.Typ");
+				u.setUnterhaltungstyp(Unterhaltung.eUnterhaltungsTyp.values()[typ]);
+				u.setErstellungsDatum(rs
+						.getTimestamp("Unterhaltung.ErstellungsDatum"));
+				alleUnterhaltungen.add(u);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return alleUnterhaltungen;
+	}
+
+	public Vector<Unterhaltung> alleUnterhaltungenFuerAutorOhneNachrichten(int AutorId) {
+		Vector<Unterhaltung> alleUnterhaltungen = new Vector<Unterhaltung>();
+
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			ResultSet rs = state
+					.executeQuery("SELECT * FROM Nachricht JOIN NachrichtUnterhaltung ON Nachricht.Id = NachrichtUnterhaltung.NachrichtId JOIN Unterhaltung ON NachrichtUnterhaltung.UnterhaltungId = Unterhaltung.Id WHERE Nachricht.AutorId = '"
+							+ AutorId + "' ORDER BY Nachricht.ErstellungsDatum DESC");
+
+			while (rs.next()) {
+				Unterhaltung u = new Unterhaltung();
+				u.setId(rs.getInt("Unterhaltung.Id"));
+				u.setSichtbarkeit(1);
+				int typ = rs.getInt("Unterhaltung.Typ");
+				u.setUnterhaltungstyp(Unterhaltung.eUnterhaltungsTyp.values()[typ]);
+				u.setErstellungsDatum(rs
+						.getTimestamp("Unterhaltung.ErstellungsDatum"));
+				alleUnterhaltungen.add(u);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return alleUnterhaltungen;
+	}
+	public Vector<Unterhaltung> alleUnterhaltungenOhneNachrichten() {
+		Vector<Unterhaltung> alleUnterhaltungen = new Vector<Unterhaltung>();
+
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			ResultSet rs = state
+					.executeQuery("SELECT * FROM Nachricht JOIN NachrichtUnterhaltung ON Nachricht.Id = NachrichtUnterhaltung.NachrichtId JOIN Unterhaltung ON NachrichtUnterhaltung.UnterhaltungId = Unterhaltung.Id ORDER BY Nachricht.ErstellungsDatum DESC");
 
 			while (rs.next()) {
 				Unterhaltung u = new Unterhaltung();

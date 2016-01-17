@@ -1,5 +1,6 @@
 package de.hdm.tellme.client.gui.report;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -22,48 +23,12 @@ import de.hdm.tellme.shared.bo.Nutzer;
  */
 public class ReportFormular1 extends Composite {
 
-	public void reportGenerieren(Nutzer n, Date vonDate, Date bisDate) {
-		NutzerDataProvider.gib(1).report1Generieren(n, vonDate, bisDate);
-	}
-
-	private Nutzer nutzer = null;
-	Button report3GenerierenButton = new Button("Report 3 erstellen");
-
 	public ReportFormular1() {
-		report3GenerierenButton.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				if (nutzer == null) {
-					return;
-				}
-				Window.alert(""+nutzer.getVorname());
-			}
-		});
+	}
+	public void reportGenerieren(Nutzer n, Timestamp vonDate, Timestamp bisDate) {
+//		NutzerDataProvider.gib(1).report1Generieren(n, vonDate, bisDate);
+		Window.alert(""+n.getVorname());
+		
 	}
 
-	public VerticalPanel gibFormular() {
-		VerticalPanel vpForm = new VerticalPanel();
-
-		vpForm.add(new Label(nutzer.getVorname() + nutzer.getNachname()));
-		vpForm.add(report3GenerierenButton);
-		return vpForm;
-	}
-
-	public void report1Generieren(NutzerZelle.ZellenObjekt ZellenObjekt) {
-		this.nutzer = ZellenObjekt.nutzer;
-
-	}
-	
-	
-	
-//	public VerticalPanel gibFormular(){
-//	VerticalPanel vpForm = new VerticalPanel();
-//	
-//	vpForm.add(new Label(nutzer.getVorname() + nutzer.getNachname()));
-//	vpForm.add(report1_1GenerierenButton);
-//	return vpForm;
-//}
-//public void report1_1Generieren(NutzerZelle.ZellenObjekt ZellenObjekt){
-//	this.nutzer = ZellenObjekt.nutzer;
-//
-//}
 }

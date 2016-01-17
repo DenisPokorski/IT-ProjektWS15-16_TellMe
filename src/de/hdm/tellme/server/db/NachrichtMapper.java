@@ -10,6 +10,7 @@ import java.util.Vector;
 
 import de.hdm.tellme.shared.bo.BusinessObject.eSichtbarkeit;
 import de.hdm.tellme.shared.bo.Nachricht;
+import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Nutzer.eStatus;
 
 /**
@@ -349,12 +350,12 @@ public class NachrichtMapper {
 		try {
 			Statement state = con.createStatement();
 			ResultSet rs = state
-					.executeQuery(("SELECT * FROM Nachricht ORDER BY ErstellungsDatum DESC;"));
+					.executeQuery("SELECT * FROM Nachricht ORDER BY ErstellungsDatum DESC;");
 			while (rs.next()) {
 				Nachricht nA = new Nachricht();
 				nA.setId(rs.getInt("Id"));
 				nA.setText(rs.getString("Text"));
-				nA.setSenderId(rs.getInt("AutoId"));
+				nA.setSenderId(rs.getInt("AutorId"));
 				nA.setErstellungsDatum(rs.getTimestamp("Erstellungsdatum"));
 				alleNachrichten.add(nA);
 
@@ -444,6 +445,72 @@ public class NachrichtMapper {
 						.getTimestamp("Nachricht.ErstellungsDatum"));
 				nA.setSichtbarkeit(1);
 				nA.setSenderId(rs.getInt("AutorId"));
+
+				Nachrichten.add(nA);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Nachrichten;
+	}
+
+	public Vector<Nachricht> gibAlleNachrichtenVonUnterhaltungReportMitZeitraum(
+			int unterhaltungsID, Timestamp vonDate, Timestamp bisDate) {
+		Connection con = DatenbankVerbindung.connection();
+		Vector<Nachricht> Nachrichten = new Vector<Nachricht>();
+		try {
+			Statement state = con.createStatement();
+			String sqlquery = "SELECT * FROM NachrichtUnterhaltung JOIN Nachricht ON NachrichtUnterhaltung.NachrichtId = Nachricht.Id JOIN Nutzer ON Nachricht.AutorId = Nutzer.Id WHERE NachrichtUnterhaltung.UnterhaltungId = '"
+					+ unterhaltungsID
+					+ "' AND Nutzer.Status = '"
+					+ eStatus.aktiv.ordinal()
+					+ "' AND Nachricht.ErstellungsDatum BETWEEN '"
+					+ vonDate
+					+ "' AND '"
+					+ bisDate
+					+ "' ORDER BY Nachricht.ErstellungsDatum DESC";
+			ResultSet rs = state.executeQuery(sqlquery);
+			while (rs.next()) {
+				Nutzer n = new Nutzer();
+				Nachricht nA = new Nachricht();
+				n.setVorname(rs.getString("Nutzer.Vorname"));
+				n.setNachname(rs.getString("Nutzer.Nachname"));
+				n.setId(rs.getInt("Nutzer.Id"));
+				nA.setId(rs.getInt("Nachricht.Id"));
+				nA.setText(rs.getString("Nachricht.Text"));
+				nA.setErstellungsDatum(rs
+						.getTimestamp("Nachricht.ErstellungsDatum"));
+				nA.setSichtbarkeit(rs.getInt("Nachricht.Sichtbarkeit"));
+				nA.setSenderId(rs.getInt("Nachricht.AutorId"));
+				nA.setSender(n);
+				Nachrichten.add(nA);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Nachrichten;
+	}
+
+	public Vector<Nachricht> gibAlleNachrichtenVonUnterhaltungReport(
+			int unterhaltungsID) {
+		Connection con = DatenbankVerbindung.connection();
+		Vector<Nachricht> Nachrichten = new Vector<Nachricht>();
+		try {
+			Statement state = con.createStatement();
+			String sqlquery = "SELECT * FROM NachrichtUnterhaltung JOIN Nachricht ON NachrichtUnterhaltung.NachrichtId = Nachricht.Id JOIN Nutzer ON Nachricht.AutorId = Nutzer.Id WHERE NachrichtUnterhaltung.UnterhaltungId = '"
+					+ unterhaltungsID
+					+ "' AND Nutzer.Status = '"
+					+ eStatus.aktiv.ordinal()
+					+ "' ORDER BY Nachricht.ErstellungsDatum DESC";
+			ResultSet rs = state.executeQuery(sqlquery);
+			while (rs.next()) {
+				Nachricht nA = new Nachricht();
+				nA.setId(rs.getInt("Nachricht.Id"));
+				nA.setText(rs.getString("Nachricht.Text"));
+				nA.setErstellungsDatum(rs
+						.getTimestamp("Nachricht.ErstellungsDatum"));
+				nA.setSichtbarkeit(rs.getInt("Nachricht.Sichtbarkeit"));
+				nA.setSenderId(rs.getInt("Nachricht.AutorId"));
 
 				Nachrichten.add(nA);
 			}

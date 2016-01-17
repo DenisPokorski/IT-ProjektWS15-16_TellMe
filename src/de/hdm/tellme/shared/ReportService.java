@@ -10,6 +10,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
+import de.hdm.tellme.shared.bo.Unterhaltung;
 
 /**
  * <p>
@@ -83,5 +84,24 @@ public interface ReportService extends RemoteService {
 	 */
 
 	Vector<Hashtag> report6Generieren(int i);
+
+	Vector<Unterhaltung> alleUnterhaltungenFuerAutor(
+			int aktiverTeilnehmerID);
+
+	Vector<Nachricht> ladeAlleNachrichtenZuUnterhaltung(int UnterhaltungsID);
+
+	Vector<Nutzer> getAlleNutzer(boolean zwingeNeuladen);
+
+	Vector<Unterhaltung> alleUnterhaltungenFuerAutorMitZeitraum(int AutorId,
+			Timestamp vonDate, Timestamp bisDate);
+
+	Vector<Nachricht> ladeAlleNachrichtenZuUnterhaltungMitZeitraum(
+			int UnterhaltungsID, Timestamp vonDate, Timestamp bisDate);
+
+	Vector<Unterhaltung> alleUnterhaltungenMitZeitraum(Timestamp vonDate,
+			Timestamp bisDate);
+
+	Vector<Unterhaltung> alleUnterhaltungen();
+
 
 }

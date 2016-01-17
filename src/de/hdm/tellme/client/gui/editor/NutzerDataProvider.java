@@ -1,5 +1,6 @@
 package de.hdm.tellme.client.gui.editor;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -19,6 +20,7 @@ import de.hdm.tellme.shared.ReportServiceAsync;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
+import de.hdm.tellme.shared.bo.Unterhaltung;
 import de.hdm.tellme.shared.report.HTMLReportWriter;
 
 /**
@@ -34,8 +36,6 @@ public class NutzerDataProvider {
 			.create(EditorService.class);
 	private final ReportServiceAsync _reportAsyncObj = GWT
 			.create(ReportService.class);
-	private final ReportServiceAsync _report2AsyncObj = GWT
-			.create(ReportService.class);
 
 	private static NutzerDataProvider instanz = null;
 	private static Vector<Nutzer> alleNutzer = null;
@@ -50,7 +50,7 @@ public class NutzerDataProvider {
 	}
 
 	private NutzerDataProvider(int i) {
-		
+
 		if (i == 0)
 			fuelleListe();
 		else
@@ -187,8 +187,8 @@ public class NutzerDataProvider {
 
 	public void report3Generieren(Nutzer n) {
 		final Nutzer b = n;
-		_reportAsyncObj.report3Generieren(n.getId(),
-				new AsyncCallback<Vector<Nachricht>>() {
+		_reportAsyncObj.alleUnterhaltungenFuerAutor(n.getId(),
+				new AsyncCallback<Vector<Unterhaltung>>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
@@ -197,9 +197,8 @@ public class NutzerDataProvider {
 					}
 
 					@Override
-					public void onSuccess(Vector<Nachricht> result) {
+					public void onSuccess(Vector<Unterhaltung> result) {
 
-						Window.alert("Soweitsogut");
 						HTMLReportWriter hRW = new HTMLReportWriter();
 
 						hRW.generateReport3(result, b);
@@ -221,7 +220,6 @@ public class NutzerDataProvider {
 
 					@Override
 					public void onSuccess(Vector<Hashtag> result) {
-						Window.alert("Erfolgreich generiert");
 
 						HTMLReportWriter hRW = new HTMLReportWriter();
 
@@ -234,7 +232,7 @@ public class NutzerDataProvider {
 
 	public void report5Generieren(Nutzer n) {
 		final Nutzer b = n;
-		_report2AsyncObj.report5GenerierenListe(n.getId(),
+		_reportAsyncObj.report5GenerierenListe(n.getId(),
 				new AsyncCallback<Vector<Nutzer>>() {
 
 					@Override
@@ -244,7 +242,6 @@ public class NutzerDataProvider {
 
 					@Override
 					public void onSuccess(Vector<Nutzer> result) {
-						Window.alert("Erfolgreich generiert");
 
 						HTMLReportWriter hRW = new HTMLReportWriter();
 
@@ -252,20 +249,18 @@ public class NutzerDataProvider {
 					}
 				});
 	}
-	
+
 	public void report4Generieren(Nutzer n) {
 		final Nutzer b = n;
-		_reportAsyncObj.report4Generieren(
-				new AsyncCallback<Vector<Nachricht>>() {
+		_reportAsyncObj
+				.alleUnterhaltungen(new AsyncCallback<Vector<Unterhaltung>>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
 						Window.alert("Fehler bei der Generierung");
 					}
 
-					public void onSuccess(Vector<Nachricht> result) {
-						Window.alert("Erfolgreich generiert");
-
+					public void onSuccess(Vector<Unterhaltung> result) {
 						HTMLReportWriter hRW = new HTMLReportWriter();
 
 						hRW.generateReport4(result, b);
@@ -273,13 +268,12 @@ public class NutzerDataProvider {
 				});
 	}
 
-
-	public void report1Generieren(Nutzer n, Date vonDate, Date bisDate) {
+	public void report1Generieren(Nutzer n, Timestamp vonDate, Timestamp bisDate) {
 		final Nutzer b = n;
-		final Date vD = vonDate;
-		final Date bD = bisDate;
-		_reportAsyncObj.report1Generieren(b.getId(), vD, bD,
-				new AsyncCallback<Vector<Nachricht>>() {
+		final Timestamp vD = vonDate;
+		final Timestamp bD = bisDate;
+		_reportAsyncObj.alleUnterhaltungenFuerAutorMitZeitraum(b.getId(), vD,
+				bD, new AsyncCallback<Vector<Unterhaltung>>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
@@ -287,12 +281,31 @@ public class NutzerDataProvider {
 					}
 
 					@Override
-					public void onSuccess(Vector<Nachricht> result) {
-						Window.alert("Report 1 wird erstellt");
-
+					public void onSuccess(Vector<Unterhaltung> result) {
 						HTMLReportWriter hRW = new HTMLReportWriter();
 
 						hRW.generateReport1(result, b);
+					}
+				});
+	}
+
+	public void report2Generieren(Nutzer n, Timestamp vonDate, Timestamp bisDate) {
+		final Nutzer b = n;
+		final Timestamp vD = vonDate;
+		final Timestamp bD = bisDate;
+		_reportAsyncObj.alleUnterhaltungenMitZeitraum(vD, bD,
+				new AsyncCallback<Vector<Unterhaltung>>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert("Fehler");
+					}
+
+					@Override
+					public void onSuccess(Vector<Unterhaltung> result) {
+						HTMLReportWriter hRW = new HTMLReportWriter();
+
+						hRW.generateReport2(result, b);
 					}
 				});
 	}

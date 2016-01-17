@@ -17,6 +17,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.view.client.SingleSelectionModel;
 
+import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
 import de.hdm.tellme.client.gui.editor.NutzerZelle;
