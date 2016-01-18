@@ -136,8 +136,6 @@ public class HTMLReportWriter {
 						+ nachricht.getText() + "</td>");
 				buffer.append("<td>");
 				for (Nutzer nutzer : unterhaltung.getTeilnehmer()) {
-					if (nutzer.getId() != TellMe.gibEingeloggterBenutzer()
-							.getUser().getId())
 						buffer.append("" + nutzer.getVorname() + " "
 								+ nutzer.getNachname() + "<br />");
 
@@ -226,8 +224,6 @@ public class HTMLReportWriter {
 						+ nachricht.getText() + "</td>");
 				buffer.append("<td>");
 				for (Nutzer nutzer : unterhaltung.getTeilnehmer()) {
-					if (nutzer.getId() != TellMe.gibEingeloggterBenutzer()
-							.getUser().getId())
 						buffer.append("" + nutzer.getVorname() + " "
 								+ nutzer.getNachname() + "<br />");
 
@@ -338,8 +334,6 @@ public class HTMLReportWriter {
 						+ nachricht.getText() + "</td>");
 				buffer.append("<td>");
 				for (Nutzer nutzer : unterhaltung.getTeilnehmer()) {
-					if (nutzer.getId() != TellMe.gibEingeloggterBenutzer()
-							.getUser().getId())
 						buffer.append("" + nutzer.getVorname() + " "
 								+ nutzer.getNachname() + "<br />");
 
@@ -448,8 +442,6 @@ public class HTMLReportWriter {
 						+ nachricht.getText() + "</td>");
 				buffer.append("<td>");
 				for (Nutzer nutzer : unterhaltung.getTeilnehmer()) {
-					if (nutzer.getId() != TellMe.gibEingeloggterBenutzer()
-							.getUser().getId())
 						buffer.append("" + nutzer.getVorname() + " "
 								+ nutzer.getNachname() + "<br />");
 
@@ -641,7 +633,6 @@ public class HTMLReportWriter {
 		this.reportText = buffer.toString();
 		HTML html = new HTML(reportText);
 		html.setStylePrimaryName("report_inhalt");
-		// html.setStylePrimaryName("report_inhalt_ganze_breite");
 
 		RootPanel.get("content_right").add(ueberrschrift1);
 		RootPanel.get("content_right").add(html);
