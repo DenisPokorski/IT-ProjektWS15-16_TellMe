@@ -64,7 +64,7 @@ public class HTMLReportWriter {
 
 		// Nutzerabo Klasse Format
 		buffer.append("<table class='reportTabelle'>");
-		buffer.append("<th colspan='2' class='reportKopfzeile'> Report 6 </th>");
+		buffer.append("<td colspan='2' class='reportKopfzeile'> Report 6 </td>");
 
 		buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"
 				+ ausgangsnutzer
@@ -78,15 +78,15 @@ public class HTMLReportWriter {
 	public void erstelleKoerperDatenReport6(Vector<Hashtag> result) {
 		if (result.size() <= 0) {
 			buffer.append("<table class ='" +"report_kein_inhalt"+"'>");
-			buffer.append("<tr> <th>FÜR DEN AUSGEWÄHLTEN NUTZER"
+			buffer.append("<tr> <td>FÜR DEN AUSGEWÄHLTEN NUTZER"
 					+ " IST ZUR ZEIT KEIN REPORT 6 VERFÜGBAR, DA DER NUTZER KEINE "
-					+ "HASHTAGS ABONNIERT HAT!</th></tr>");
+					+ "HASHTAGS ABONNIERT HAT!</td></tr>");
 			buffer.append("</table>");
 			
 		} else {
 
-			buffer.append("<table class='reportkoerper'>");
-			buffer.append("<tr class='kopfZeileKoerper'> <th>Hashtag</th><th>Erstellungsdatum</th></tr>");
+			buffer.append("<table class='reportkoerper_vollbild'>");
+			buffer.append("<tr class='kopfZeileKoerper'> <td>Hashtag</td><td>Erstellungsdatum</td></tr>");
 			for (int i = 0; i < result.size(); i++) {
 				buffer.append("<tr class='ergebnisZeileReport'>" + "<td>#"
 						+ result.get(i).getSchlagwort() + "</td>" + "<td>"
@@ -130,7 +130,7 @@ public class HTMLReportWriter {
 				+ dF.format(new Timestamp(currentTime.getTime())));
 		// Nutzerabo Klasse Format
 		buffer.append("<table class='reportTabelle'>");
-		buffer.append("<th colspan='2' class='reportKopfzeile'> Report 2 </th>");
+		buffer.append("<td colspan='2' class='reportKopfzeile'> Report 2 </td>");
 
 		buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"
 				+ ausgangsnutzer
@@ -151,14 +151,14 @@ public class HTMLReportWriter {
 
 		if (result.size() <= 0) {
 			buffer.append("<table class ='" +"report_kein_inhalt"+"'>");
-			buffer.append("<tr> <th>FÜR DEN AUSGEWÄHLTEN NUTZER"
+			buffer.append("<tr> <td>FÜR DEN AUSGEWÄHLTEN NUTZER"
 					+ " IST ZUR ZEIT KEIN REPORT 2 VERFÜGBAR, DA DER NUTZER KEINE "
-					+ "ANDEREN NUTZER ABONNIERT HAT!</th></tr>");
+					+ "ANDEREN NUTZER ABONNIERT HAT!</td></tr>");
 			buffer.append("</table>");
 		} else {
 
-			buffer.append("<table class='reportkoerper'>");
-			buffer.append("<tr class='kopfZeileKoerper'> <th>Nutzer</th><th>Erstellungsdatum</th></tr>");
+			buffer.append("<table class='reportkoerper_vollbild'>");
+			buffer.append("<tr class='kopfZeileKoerper'> <td>Nutzer</td><td>Erstellungsdatum</td></tr>");
 			for (int i = 0; i < result.size(); i++) {
 				buffer.append("<tr class='ergebnisZeileReport'>" + "<td>"
 						+ result.get(i).getVorname() + " "
@@ -203,7 +203,7 @@ public class HTMLReportWriter {
 				+ dF.format(new Timestamp(currentTime.getTime())));
 		// Nutzerabo Klasse Format
 		buffer.append("<table class='reportTabelle'>");
-		buffer.append("<th colspan='2' class='reportKopfzeile'> Report 1 </th>");
+		buffer.append("<td colspan='2' class='reportKopfzeile'> Report 1 </td>");
 
 		buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"
 				+ ausgangsnutzer
@@ -217,14 +217,14 @@ public class HTMLReportWriter {
 
 	public void erstelleKoerperDatenReport1(Vector<Unterhaltung> result, Nutzer b) {
 
-		buffer.append("<table class='reportkoerper'>");
-		buffer.append("<tr class='kopfZeileKoerper'> <th>Autor</th><th>Nachricht</th><th>Empfänger</th><th>Erstellungsdatum</th><th>Hashtag</th><th>Sichtbarkeit</th></tr>");
+		buffer.append("<table class='reportkoerper_vollbild'>");
+		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Empfänger</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
 		for (Unterhaltung unterhaltung : result) {
 			for (Nachricht nachricht : unterhaltung.getAlleNachrichten()) {
-				buffer.append("<tr class='reportKoerper'> <th>"
-						+ b.getVorname() + " " + b.getNachname() + "</th><th>"
-						+ nachricht.getText() + "</th>");
-				buffer.append("<th>");
+				buffer.append("<tr class='reportKoerper'> <td>"
+						+ b.getVorname() + " " + b.getNachname() + "</td><td>"
+						+ nachricht.getText() + "</td>");
+				buffer.append("<td>");
 				for (Nutzer nutzer : unterhaltung.getTeilnehmer()) {
 					if (nutzer.getId() != TellMe.gibEingeloggterBenutzer()
 							.getUser().getId())
@@ -232,18 +232,18 @@ public class HTMLReportWriter {
 								+ nutzer.getNachname() + "<br />");
 
 				}
-				buffer.append("</th><th>"
+				buffer.append("</td><td>"
 						+ dF.format(nachricht.getErstellungsDatum())
-						+ "</th><th>");
+						+ "</td><td>");
 
 				for (Hashtag hashtag : nachricht.getVerknuepfteHashtags()) {
 					buffer.append("#" + hashtag.getSchlagwort() + " <br />");
 
 				}
 				if (nachricht.getSichtbarkeit() == 0)
-					buffer.append("</th><th>inaktiv</th>");
+					buffer.append("</td><td>inaktiv</td>");
 				else
-					buffer.append("</th><th>aktiv</th>");
+					buffer.append("</td><td>aktiv</td>");
 			}
 
 		}
@@ -274,14 +274,14 @@ public class HTMLReportWriter {
 	}
 
 	private void erstelleKoerperDatenReport2(Vector<Unterhaltung> result) {
-		buffer.append("<table class='reportkoerper'>");
-		buffer.append("<tr class='kopfZeileKoerper'> <th>Autor</th><th>Nachricht</th><th>Empfänger</th><th>Erstellungsdatum</th><th>Hashtag</th><th>Sichtbarkeit</th></tr>");
+		buffer.append("<table class='reportkoerper_vollbild'>");
+		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Empfänger</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
 		for (Unterhaltung unterhaltung : result) {
 			for (Nachricht nachricht : unterhaltung.getAlleNachrichten()) {
-				buffer.append("<tr class='reportKoerper'> <th>"
-						+ nachricht.getSender().getVorname() + " " + nachricht.getSender().getNachname() + "</th><th>"
-						+ nachricht.getText() + "</th>");
-				buffer.append("<th>");
+				buffer.append("<tr class='reportKoerper'> <td>"
+						+ nachricht.getSender().getVorname() + " " + nachricht.getSender().getNachname() + "</td><td>"
+						+ nachricht.getText() + "</td>");
+				buffer.append("<td>");
 				for (Nutzer nutzer : unterhaltung.getTeilnehmer()) {
 					if (nutzer.getId() != TellMe.gibEingeloggterBenutzer()
 							.getUser().getId())
@@ -289,18 +289,18 @@ public class HTMLReportWriter {
 								+ nutzer.getNachname() + "<br />");
 
 				}
-				buffer.append("</th><th>"
+				buffer.append("</td><td>"
 						+ dF.format(nachricht.getErstellungsDatum())
-						+ "</th><th>");
+						+ "</td><td>");
 
 				for (Hashtag hashtag : nachricht.getVerknuepfteHashtags()) {
 					buffer.append("#" + hashtag.getSchlagwort() + " <br />");
 
 				}
 				if (nachricht.getSichtbarkeit() == 0)
-					buffer.append("</th><th>inaktiv</th>");
+					buffer.append("</td><td>inaktiv</td>");
 				else
-					buffer.append("</th><th>aktiv</th>");
+					buffer.append("</td><td>aktiv</td>");
 			}
 
 		}
@@ -317,7 +317,7 @@ public class HTMLReportWriter {
 				+ dF.format(new Timestamp(currentTime.getTime())));
 		// Nutzerabo Klasse Format
 		buffer.append("<table class='reportTabelle'>");
-		buffer.append("<th colspan='2' class='reportKopfzeile'> Report 2 </th>");
+		buffer.append("<td colspan='2' class='reportKopfzeile'> Report 2 </td>");
 
 		buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"
 				+ ausgangsnutzer
@@ -352,14 +352,14 @@ public class HTMLReportWriter {
 	}
 
 	private void erstelleKoerperDatenReport4(Vector<Unterhaltung> result) {
-		buffer.append("<table class='reportkoerper'>");
-		buffer.append("<tr class='kopfZeileKoerper'> <th>Autor</th><th>Nachricht</th><th>Empfänger</th><th>Erstellungsdatum</th><th>Hashtag</th><th>Sichtbarkeit</th></tr>");
+		buffer.append("<table class='reportkoerper_vollbild'>");
+		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Empfänger</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
 		for (Unterhaltung unterhaltung : result) {
 			for (Nachricht nachricht : unterhaltung.getAlleNachrichten()) {
-				buffer.append("<tr class='reportKoerper'> <th>"
-						+ nachricht.getSender().getVorname() + " " + nachricht.getSender().getNachname() + "</th><th>"
-						+ nachricht.getText() + "</th>");
-				buffer.append("<th>");
+				buffer.append("<tr class='reportKoerper'> <td>"
+						+ nachricht.getSender().getVorname() + " " + nachricht.getSender().getNachname() + "</td><td>"
+						+ nachricht.getText() + "</td>");
+				buffer.append("<td>");
 				for (Nutzer nutzer : unterhaltung.getTeilnehmer()) {
 					if (nutzer.getId() != TellMe.gibEingeloggterBenutzer()
 							.getUser().getId())
@@ -367,18 +367,18 @@ public class HTMLReportWriter {
 								+ nutzer.getNachname() + "<br />");
 
 				}
-				buffer.append("</th><th>"
+				buffer.append("</td><td>"
 						+ dF.format(nachricht.getErstellungsDatum())
-						+ "</th><th>");
+						+ "</td><td>");
 
 				for (Hashtag hashtag : nachricht.getVerknuepfteHashtags()) {
 					buffer.append("#" + hashtag.getSchlagwort() + " <br />");
 
 				}
 				if (nachricht.getSichtbarkeit() == 0)
-					buffer.append("</th><th>inaktiv</th>");
+					buffer.append("</td><td>inaktiv</td>");
 				else
-					buffer.append("</th><th>aktiv</th>");
+					buffer.append("</td><td>aktiv</td>");
 			}
 
 		}
@@ -394,7 +394,7 @@ public class HTMLReportWriter {
 				+ dF.format(new Timestamp(currentTime.getTime())));
 		// Nutzerabo Klasse Format
 		buffer.append("<table class='reportTabelle'>");
-		buffer.append("<th colspan='2' class='reportKopfzeile'> Report 4 </th>");
+		buffer.append("<td colspan='2' class='reportKopfzeile'> Report 4 </td>");
 
 		buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"
 				+ ausgangsnutzer
@@ -429,14 +429,14 @@ public class HTMLReportWriter {
 
 	private void erstelleKoerperDatenReport3(Vector<Unterhaltung> result,
 			Nutzer b) {
-		buffer.append("<table class='reportkoerper'>");
-		buffer.append("<tr class='kopfZeileKoerper'> <th>Autor</th><th>Nachricht</th><th>Empfänger</th><th>Erstellungsdatum</th><th>Hashtag</th><th>Sichtbarkeit</th></tr>");
+		buffer.append("<table class='reportkoerper_vollbild'>");
+		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Empfänger</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
 		for (Unterhaltung unterhaltung : result) {
 			for (Nachricht nachricht : unterhaltung.getAlleNachrichten()) {
-				buffer.append("<tr class='reportKoerper'> <th>"
-						+ b.getVorname() + " " + b.getNachname() + "</th><th>"
-						+ nachricht.getText() + "</th>");
-				buffer.append("<th>");
+				buffer.append("<tr class='reportKoerper'> <td>"
+						+ b.getVorname() + " " + b.getNachname() + "</td><td>"
+						+ nachricht.getText() + "</td>");
+				buffer.append("<td>");
 				for (Nutzer nutzer : unterhaltung.getTeilnehmer()) {
 					if (nutzer.getId() != TellMe.gibEingeloggterBenutzer()
 							.getUser().getId())
@@ -444,18 +444,18 @@ public class HTMLReportWriter {
 								+ nutzer.getNachname() + "<br />");
 
 				}
-				buffer.append("</th><th>"
+				buffer.append("</td><td>"
 						+ dF.format(nachricht.getErstellungsDatum())
-						+ "</th><th>");
+						+ "</td><td>");
 
 				for (Hashtag hashtag : nachricht.getVerknuepfteHashtags()) {
 					buffer.append("#" + hashtag.getSchlagwort() + " <br />");
 
 				}
 				if (nachricht.getSichtbarkeit() == 0)
-					buffer.append("</th><th>inaktiv</th>");
+					buffer.append("</td><td>inaktiv</td>");
 				else
-					buffer.append("</th><th>aktiv</th>");
+					buffer.append("</td><td>aktiv</td>");
 			}
 
 		}
@@ -471,7 +471,7 @@ public class HTMLReportWriter {
 				+ dF.format(new Timestamp(currentTime.getTime())));
 		// Nutzerabo Klasse Format
 		buffer.append("<table class='reportTabelle'>");
-		buffer.append("<th colspan='2' class='reportKopfzeile'> Report 3 </th>");
+		buffer.append("<td colspan='2' class='reportKopfzeile'> Report 3 </td>");
 
 		buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"
 				+ ausgangsnutzer
