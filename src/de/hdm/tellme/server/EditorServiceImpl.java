@@ -137,8 +137,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	// ################### LISTEN #####################
 
-	private static Vector<Nutzer> alleUser = null;
-
 	/*
 	 * Da diese Klasse ein gewisse Größe besitzt - dies ist eigentlich ein
 	 * Hinweise, dass hier eine weitere Gliederung sinnvoll ist - haben wir zur
@@ -296,10 +294,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	@Override
 	public Vector<Nutzer> getAlleNutzer(boolean zwingeNeuladen) {
-		if (alleUser == null || zwingeNeuladen)
-			alleUser = nutzerMapper.alleNutzer(0);
-
-		return alleUser;
+		return nutzerMapper.alleNutzer(0);
 
 	}
 

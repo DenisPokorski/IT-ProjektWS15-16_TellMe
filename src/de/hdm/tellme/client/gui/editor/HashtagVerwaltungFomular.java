@@ -41,12 +41,10 @@ public class HashtagVerwaltungFomular extends Composite {
 	Button htLoeschen = new Button("Hashtag löschen");
 	Button htAnlegen = new Button("Hashtag neu erstellen");
 	Button btnAbonieren = new Button("Abonnement hinzufügen");
-	Button btnDeabonieren = new Button ("Abonnement löschen");
+	Button btnDeabonieren = new Button("Abonnement löschen");
 	TextBox schlagwortBox = new TextBox();
 	Vector<Hashtag> htl;
 
-	
-	
 	public HashtagVerwaltungFomular() {
 
 		// Handle events.
@@ -58,21 +56,8 @@ public class HashtagVerwaltungFomular extends Composite {
 					Window.alert("Bitte gib einen Wert ein");
 				} else {
 
-					boolean existiertBereits = false;
-
-					for (Hashtag hashtag : htl) {
-						if (schlagwortBox.getValue() == hashtag.getSchlagwort()) {
-							existiertBereits = true;
-						}
-					}
-
-
-					if (existiertBereits == true) {
-						Window.alert("Hashtag existiert bereits");
-					} else {
-						hashtag.setSchlagwort(schlagwortBox.getText());
-						HashtagDataProvider.gib().hashtagSpeichern(hashtag);
-					}
+					hashtag.setSchlagwort(schlagwortBox.getText());
+					HashtagDataProvider.gib().hashtagSpeichern(hashtag);
 
 				}
 			}
@@ -91,7 +76,6 @@ public class HashtagVerwaltungFomular extends Composite {
 			public void onClick(ClickEvent event) {
 				htl = HashtagDataProvider.gebeHashtagListe();
 
-
 				if (schlagwortBox.getValue() == "") {
 					Window.alert("Bitte gib einen Wert ein");
 				} else {
@@ -99,12 +83,11 @@ public class HashtagVerwaltungFomular extends Composite {
 					boolean existiertBereits = false;
 
 					for (Hashtag hashtag : htl) {
-						if (schlagwortBox.getValue() == hashtag.getSchlagwort()) {
+						if (schlagwortBox.getValue().toUpperCase().equals(hashtag.getSchlagwort().toUpperCase())) {
 							existiertBereits = true;
 						}
 					}
 
-				
 					if (existiertBereits == true) {
 						Window.alert("Hashtag existiert bereits");
 					} else {
@@ -113,15 +96,15 @@ public class HashtagVerwaltungFomular extends Composite {
 					}
 
 				}
- 
+
 			}
 		});
 	}
 
 	// Panel Rückgabe
 	public VerticalPanel gibFormular() {
-		
-		VerticalPanel vpForm = new VerticalPanel();	
+
+		VerticalPanel vpForm = new VerticalPanel();
 		vpForm.setStylePrimaryName("top-margin");
 		vpForm.clear();
 		vpForm.add(schlagwortBox);
@@ -141,33 +124,30 @@ public class HashtagVerwaltungFomular extends Composite {
 		return vpForm;
 	}
 
-	public VerticalPanel gibInfoFormular(){
+	public VerticalPanel gibInfoFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
-		
+
 		vpForm.clear();
 		vpForm.add(new HTML("Hier kannst du ein <b>Hashtagabonnement</b> erstellen oder löschen. </br>"
 				+ "Wähle dazu das gewünschte Hashtag aus und drücke dann den Button zum <b>abonnieren</b> oder zum <b>deabonnieren</b>."));
 		return vpForm;
 	}
-	
- 
+
 	// Setze Buttons
 	public void setzeHashtag(HashtagZelle.ZellenObjekt ZellenObjekt) {
 		this.hashtag = ZellenObjekt.hashtag;
 
 		this.schlagwortBox.setText(ZellenObjekt.hashtag.getSchlagwort());
 
-		 if (ZellenObjekt.aboniert) {
-		 btnAbonieren.setEnabled(false);
-		 btnDeabonieren.setEnabled(true);
-		
-		 } else {
-		 btnAbonieren.setEnabled(true);
-		 btnDeabonieren.setEnabled(false);
-		
-		
-		
-		 }
+		if (ZellenObjekt.aboniert) {
+			btnAbonieren.setEnabled(false);
+			btnDeabonieren.setEnabled(true);
+
+		} else {
+			btnAbonieren.setEnabled(true);
+			btnDeabonieren.setEnabled(false);
+
+		}
 
 	}
 }

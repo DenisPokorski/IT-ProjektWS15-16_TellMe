@@ -118,9 +118,13 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 
 			// Erste Nachricht aus Liste aller Nachrichten entfernen,
 			// da diese schon als Unterhaltungs Rahmen ausgegeben wird
-			Vector<Nachricht> alleNachrichtenAusserErste = ((UnterhaltungsNachicht) value).u.getAlleNachrichten();
-			if (alleNachrichtenAusserErste.size() > 1) {
-				alleNachrichtenAusserErste.remove(0);
+			if (((UnterhaltungsNachicht) value).u.getAlleNachrichten().size() > 1) {
+
+				Vector<Nachricht> alleNachrichtenAusserErste = new Vector<Nachricht>();
+				for (int i = 1; i < ((UnterhaltungsNachicht) value).u.getAlleNachrichten().size(); i++) {
+					alleNachrichtenAusserErste.add(((UnterhaltungsNachicht) value).u.getAlleNachrichten().get(i));
+				}
+				
 
 				ListDataProvider<Nachricht> dataProvider = new ListDataProvider<Nachricht>(alleNachrichtenAusserErste);
 				Cell<Nachricht> cell = new NeuigkeitenNachrichtenZelle(((UnterhaltungsNachicht) value).u);
@@ -139,20 +143,24 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 	public boolean isLeaf(Object value) {
 
 		// The leaf nodes are the songs, which are Strings.
-		if (value instanceof Nachricht) {
+			if (value instanceof Nachricht) {
 			// Wenn value eine Nachricht ist, return true -> knoten ist ein
 			// "Blatt" und hat keine Kinder
 			return true;
 		}
 
 		if (value instanceof UnterhaltungsNachicht) {
-			if (((UnterhaltungsNachicht) value).u.getAlleNachrichten().size() == 1) {
-				// Wenn value eine Unterhaltungsnachricht ist aber nicht mehr
-				// als eine Nachricht enthält,
-				// return true -> knoten ist ein "Blatt" und hat keine Kinder
-				return true;
-			}
+		
+				if (((UnterhaltungsNachicht) value).u.getAlleNachrichten().
+						size() == 1) {
+					// Wenn value eine Unterhaltungsnachricht ist aber nicht mehr
+					// als eine Nachricht enthält,
+					// return true -> knoten ist ein "Blatt" und hat keine Kinder
+					return true;
+				}
+
 		}
+
 		return false;
 	}
 
