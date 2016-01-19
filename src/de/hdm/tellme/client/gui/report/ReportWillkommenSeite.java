@@ -22,13 +22,15 @@ public class ReportWillkommenSeite extends VerticalPanel {
 	VerticalPanel willkommenPanel = new VerticalPanel();
 
 	HorizontalPanel anordnungsPanelOben = new HorizontalPanel();
+	HorizontalPanel anordnungsPanelMitte = new HorizontalPanel();
 	HorizontalPanel anordnungsPanelUnten = new HorizontalPanel();
+
 	VerticalPanel left_Panel = new VerticalPanel();
-	VerticalPanel center_Panel = new VerticalPanel();
 	VerticalPanel right_Panel = new VerticalPanel();
 	HorizontalPanel report1Panel = new HorizontalPanel();
 	HorizontalPanel report2Panel = new HorizontalPanel();
 	HorizontalPanel report3Panel = new HorizontalPanel();
+	HorizontalPanel report4Panel = new HorizontalPanel(); 
 	
 	/*
 	 * Die verschiedenen Reportuntertitel werden als Labels erstellt.
@@ -39,22 +41,28 @@ public class ReportWillkommenSeite extends VerticalPanel {
 	Label report4Untertitel = new Label("Report 4");
 	Label report5Untertitel = new Label("Report 5");
 	Label report6Untertitel = new Label("Report 6");
-	
+	Label report7Untertitel = new Label("Report 7");
+	Label report8Untertitel = new Label("Report 8");
+
 	/*
 	 * Die verschiedenen Reportbeschreibungen werden als Labels erstellt.
 	 */
 	Label report1Beschreibung = new Label(
-			"Der Report 1 gibt alle Nachrichten eines Nutzers in einen bestimmten Zeitraum aus");
+			"Report 1 gibt alle Nachrichten eines Nutzers in einen bestimmten Zeitraum aus");
 	Label report2Beschreibung = new Label(
-			"Der Report 2 gibt alle Nachrichten in einen bestimmten Zeitraum \n");
+			"Report 2 gibt alle Nachrichten in einen bestimmten Zeitraum \n");
 	Label report3Beschreibung = new Label(
-			"Der Report 3 gibt alle Nachrichten eines Nutzers aus");
+			"Report 3 gibt alle Nachrichten eines Nutzers aus");
 	Label report4Beschreibung = new Label(
-			"Der Report 4 gibt die gesamten Nachrichten des Systems aus");
+			"Report 4 gibt die gesamten Nachrichten des Systems aus");
 	Label report5Beschreibung = new Label(
-			"Der Report 5 gibt alle Nutzerabonnemonts eines Nutzers aus");
+			"Report 5 gibt alle Nutzerabonnemonts eines Nutzers aus");
 	Label report6Beschreibung = new Label(
-			"Der Report 6 gibt alle Hashtagabonnements eines Nutzers aus");
+			"Report 6 gibt alle Hashtagabonnements eines Nutzers aus");
+	Label report7Beschreibung = new Label(
+			"Report 7 gibt alle Follower eines Nutzers aus.");
+	Label report8Beschreibung = new Label(
+			"Report 8 gibt alle Follower eines Hashtags aus.");
 	
 /**
  * Die onLoad-Methode wird verwendet um in der Seite die verschiedenen Panels anzuordnen.
@@ -73,6 +81,9 @@ public class ReportWillkommenSeite extends VerticalPanel {
 		Button report4Button = new Button("Zu Report 4");
 		Button report5Button = new Button("Zu Report 5");
 		Button report6Button = new Button("Zu Report 6");
+		Button report7Button = new Button("Zu Report 7");
+		Button report8Button = new Button("Zu Report 8");
+
 		/*
 		 * CSS-Styles werden angebunden
 		 */
@@ -82,6 +93,9 @@ public class ReportWillkommenSeite extends VerticalPanel {
 		report4Button.setStylePrimaryName("neueNchrichtBtn");
 		report5Button.setStylePrimaryName("neueNchrichtBtn");
 		report6Button.setStylePrimaryName("neueNchrichtBtn");
+		report7Button.setStylePrimaryName("neueNchrichtBtn");
+		report8Button.setStylePrimaryName("neueNchrichtBtn");
+
 		
 		HorizontalPanel hpHeadline = new HorizontalPanel();
 		hpHeadline.setStylePrimaryName("hpHeadline");
@@ -103,38 +117,49 @@ public class ReportWillkommenSeite extends VerticalPanel {
 		willkommenPanel.setStylePrimaryName("reportUebersichtPanel");
 
 		anordnungsPanelOben.add(left_Panel);
-		anordnungsPanelOben.add(center_Panel);
 		anordnungsPanelOben.add(right_Panel);
 		
+		anordnungsPanelMitte.add(left_Panel);
+		anordnungsPanelMitte.add(right_Panel);
+		
 		anordnungsPanelUnten.add(left_Panel);
-		anordnungsPanelUnten.add(center_Panel);
 		anordnungsPanelUnten.add(right_Panel);
-/*
- * Den unterschiedlichen Anordnungspanel für die drei Bereiche werden die jeweiligen Report-Elemente hinzugefügt.
+
+		/*
+ * Den unterschiedlichen Anordnungspanel für die vier Bereiche werden die jeweiligen Report-Elemente hinzugefügt.
  */
 		left_Panel.add(report1Untertitel);
 		left_Panel.add(report1Beschreibung);
 		left_Panel.add(report1Button);
 		
-		left_Panel.add(report4Untertitel);
-		left_Panel.add(report4Beschreibung);
-		left_Panel.add(report4Button);
-
-		center_Panel.add(report2Untertitel);
-		center_Panel.add(report2Beschreibung);
-		center_Panel.add(report2Button);
+		left_Panel.add(report3Untertitel);
+		left_Panel.add(report3Beschreibung);
+		left_Panel.add(report3Button);
 		
-		center_Panel.add(report5Untertitel);
-		center_Panel.add(report5Beschreibung);
-		center_Panel.add(report5Button);
-
-		right_Panel.add(report3Untertitel);
-		right_Panel.add(report3Beschreibung);
-		right_Panel.add(report3Button);
+		left_Panel.add(report5Untertitel);
+		left_Panel.add(report5Beschreibung);
+		left_Panel.add(report5Button);
 		
-		right_Panel.add(report6Untertitel);
-		right_Panel.add(report6Beschreibung);
-		right_Panel.add(report6Button);
+		left_Panel.add(report7Untertitel);
+		left_Panel.add(report7Beschreibung);
+		left_Panel.add(report7Button);
+
+		right_Panel.add(report2Untertitel);
+		right_Panel.add(report2Beschreibung);
+		right_Panel.add(report2Button);
+		
+		right_Panel.add(report4Untertitel);
+		right_Panel.add(report4Beschreibung);
+		right_Panel.add(report4Button);
+		
+		right_Panel.add(report6Untertitel); 
+		right_Panel.add(report6Beschreibung); 
+		right_Panel.add(report6Button); 
+		
+		right_Panel.add(report8Untertitel); 
+		right_Panel.add(report8Beschreibung); 
+		right_Panel.add(report8Button);
+
 
 /*
  * Der RootPanel wird gesäubert und das WillkommenPanel wird hinzugefügt.
@@ -205,9 +230,25 @@ public class ReportWillkommenSeite extends VerticalPanel {
 
 			}
 
-		});
+		});}
+		
+	/*	report7Button.addClickHandler(new ClickHandler() {
 
-	}
+			@Override
+			public void onClick(ClickEvent event) {
+				setzeInhalt(new Report7Gui());
+
+			}
+			
+		});
+		
+		report8Button.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				setzeInhalt(new Report8Gui());
+
+			}*/
 /**
  * Die Methode <code>setzeInhalt</code> wird den ClickHandlern aufgerufen um den Inhalt der Seite zu säubern und auf die neue Seite 
  * @param ZuSetzendesPanel
