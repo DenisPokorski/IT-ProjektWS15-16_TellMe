@@ -230,9 +230,9 @@ public class ReportWillkommenSeite extends VerticalPanel {
 
 			}
 
-		});}
+		});
 		
-	/*	report7Button.addClickHandler(new ClickHandler() {
+		report7Button.addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
@@ -248,7 +248,10 @@ public class ReportWillkommenSeite extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				setzeInhalt(new Report8Gui());
 
-			}*/
+			}
+		});
+		
+	}
 /**
  * Die Methode <code>setzeInhalt</code> wird den ClickHandlern aufgerufen um den Inhalt der Seite zu säubern und auf die neue Seite 
  * @param ZuSetzendesPanel
