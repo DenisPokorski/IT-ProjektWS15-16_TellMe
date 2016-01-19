@@ -118,11 +118,13 @@ public class HTMLReportWriter {
 	 * Im Report 1 werden alle Nachrichten eines Nutzers während eines
 	 * bestimmten Zeitpunkts dargestellt. Deshalb gibt es die Spalten Autor,
 	 * Nachricht, Teilnehmer der Unterhaltung, Erstellungsdatum, Hashtags und
-	 * Sichtbarkeit.
-	 * TODO
+	 * Sichtbarkeit. In den jeweiligen Spalten werden die Ergebnisse der
+	 * Unterhaltung hinzugefügt.
 	 * 
 	 * @param result
+	 *            , die gesuchten Unterhaltungen
 	 * @param b
+	 *            , Nutzer-Objekt
 	 */
 	public void erstelleKoerperDatenReport1(Vector<Unterhaltung> result,
 			Nutzer b) {
@@ -205,14 +207,17 @@ public class HTMLReportWriter {
 	}
 
 	/**
-	 * Die Methode <code>erstelleKopfDatenReport2</code> stellt den
-	 * Ausgangsnutzer und das aktuelle Datum bzw, den Zeitpunkt dar, wann der
-	 * Report erstellt wurde. Außerdem wird auf der rechten Tabellenspalte das
-	 * Impressum des Programms dargestellt.
+	 * Im Report 2 werden alle Nachrichten während eines bestimmten Zeitpunkts
+	 * dargestellt. Deshalb gibt es die Spalten Autor, Nachricht, Teilnehmer der
+	 * Unterhaltung, Erstellungsdatum, Hashtags und Sichtbarkeit. In den
+	 * jeweiligen Spalten werden die Ergebnisse der Unterhaltung hinzugefügt.
 	 * 
-	 * @param n
-	 *            , das Nutzer-Objekt, dass den Autor darstellt.
+	 * @param result
+	 *            , die gesuchten Unterhaltungen
+	 * @param b
+	 *            , Nutzer-Objekt
 	 */
+
 	private void erstelleKoerperDatenReport2(Vector<Unterhaltung> result) {
 		buffer.append("<table class='reportkoerper_vollbild'>");
 		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Empfänger</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
@@ -247,6 +252,15 @@ public class HTMLReportWriter {
 
 	}
 
+	/**
+	 * Die Methode <code>erstelleKopfDatenReport2</code> stellt den
+	 * Ausgangsnutzer und das aktuelle Datum bzw, den Zeitpunkt dar, wann der
+	 * Report erstellt wurde. Außerdem wird auf der rechten Tabellenspalte das
+	 * Impressum des Programms dargestellt.
+	 * 
+	 * @param n
+	 *            , das Nutzer-Objekt, dass den Autor darstellt.
+	 */
 	private void erstelleKopfDatenReport2(Nutzer b) {
 		String ausgangsnutzer = "Ausgangsnutzer:<div></div>" + b.getVorname()
 				+ " " + b.getNachname();
@@ -315,13 +329,15 @@ public class HTMLReportWriter {
 	}
 
 	/**
-	 * Die Methode <code>erstelleKopfDatenReport2</code> stellt den
-	 * Ausgangsnutzer und das aktuelle Datum bzw, den Zeitpunkt dar, wann der
-	 * Report erstellt wurde. Außerdem wird auf der rechten Tabellenspalte das
-	 * Impressum des Programms dargestellt.
+	 * Im Report 3 werden alle Nachrichten eines Nutzers dargestellt. Deshalb
+	 * gibt es die Spalten Autor, Nachricht, Teilnehmer der Unterhaltung,
+	 * Erstellungsdatum, Hashtags und Sichtbarkeit. In den jeweiligen Spalten
+	 * werden die Ergebnisse der Unterhaltung hinzugefügt.
 	 * 
-	 * @param n
-	 *            , das Nutzer-Objekt, dass den Autor darstellt.
+	 * @param result
+	 *            , die gesuchten Unterhaltungen
+	 * @param b
+	 *            , Nutzer-Objekt
 	 */
 	private void erstelleKoerperDatenReport3(Vector<Unterhaltung> result,
 			Nutzer b) {
@@ -357,6 +373,15 @@ public class HTMLReportWriter {
 
 	}
 
+	/**
+	 * Die Methode <code>erstelleKopfDatenReport2</code> stellt den
+	 * Ausgangsnutzer und das aktuelle Datum bzw, den Zeitpunkt dar, wann der
+	 * Report erstellt wurde. Außerdem wird auf der rechten Tabellenspalte das
+	 * Impressum des Programms dargestellt.
+	 * 
+	 * @param n
+	 *            , das Nutzer-Objekt, dass den Autor darstellt.
+	 */
 	private void erstelleKopfDatenReport3(Nutzer b) {
 		String ausgangsnutzer = "Ausgangsnutzer:<div></div>" + b.getVorname()
 				+ " " + b.getNachname();
@@ -423,17 +448,20 @@ public class HTMLReportWriter {
 	}
 
 	/**
-	 * Die Methode <code>erstelleKopfDatenReport4</code> stellt den
-	 * Ausgangsnutzer und das aktuelle Datum bzw, den Zeitpunkt dar, wann der
-	 * Report erstellt wurde. Außerdem wird auf der rechten Tabellenspalte das
-	 * Impressum des Programms dargestellt.
+	 * Im Report 4 werden alle Nachrichten dargestellt. Deshalb gibt es die
+	 * Spalten Autor, Nachricht, Teilnehmer der Unterhaltung, Erstellungsdatum,
+	 * Hashtags und Sichtbarkeit. In den jeweiligen Spalten werden die
+	 * Ergebnisse der Unterhaltung hinzugefügt.
 	 * 
-	 * @param n
-	 *            , das Nutzer-Objekt, dass den Autor darstellt.
+	 * @param result
+	 *            , die gesuchten Unterhaltungen
+	 * @param b
+	 *            , Nutzer-Objekt
 	 */
 	private void erstelleKoerperDatenReport4(Vector<Unterhaltung> result) {
 		buffer.append("<table class='reportkoerper_vollbild'>");
-		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Empfänger</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
+		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td>"
+				+ "<td>Empfänger</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
 		for (Unterhaltung unterhaltung : result) {
 			for (Nachricht nachricht : unterhaltung.getAlleNachrichten()) {
 				buffer.append("<tr class='reportKoerper'> <td>"
@@ -465,6 +493,15 @@ public class HTMLReportWriter {
 
 	}
 
+	/**
+	 * Die Methode <code>erstelleKopfDatenReport4</code> stellt den
+	 * Ausgangsnutzer und das aktuelle Datum bzw, den Zeitpunkt dar, wann der
+	 * Report erstellt wurde. Außerdem wird auf der rechten Tabellenspalte das
+	 * Impressum des Programms dargestellt.
+	 * 
+	 * @param n
+	 *            , das Nutzer-Objekt, dass den Autor darstellt.
+	 */
 	private void erstelleKopfDatenReport4(Nutzer b) {
 		String ausgangsnutzer = "Ausgangsnutzer:<div></div>" + b.getVorname()
 				+ " " + b.getNachname();
@@ -515,7 +552,7 @@ public class HTMLReportWriter {
 
 		RootPanel.get("content_right").clear();
 		Label ueberrschrift1 = new Label("Reportgenerator 5: ");
-		Label subtext = new Label("Ausgabe aller Nachrichten eines Nutzers");
+		Label subtext = new Label("Ausgabe aller Nutzer, die der ausgewählte Nutzer abonniert hat.");
 		ueberrschrift1.setStylePrimaryName("ueberschrift_report");
 		subtext.setStylePrimaryName("subtext_report");
 
@@ -550,7 +587,7 @@ public class HTMLReportWriter {
 				+ dF.format(new Timestamp(currentTime.getTime())));
 		// Nutzerabo Klasse Format
 		buffer.append("<table class='reportTabelle'>");
-		buffer.append("<td colspan='2' class='reportKopfzeile'> Report 2 </td>");
+		buffer.append("<td colspan='2' class='reportKopfzeile'> Report 5 </td>");
 
 		buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"
 				+ ausgangsnutzer
@@ -563,16 +600,20 @@ public class HTMLReportWriter {
 	}
 
 	/**
-	 * TODO Erstellungsdatum zeigt NULL an.
+	 * Im Report 5 werden alle Nutzerabonnements eines ausgwählten Nutzer
+	 * angezeigt, deshalb hat die Ergebnistabelle 2 Spalten. In der ersten
+	 * Spalte steht der Nutzer der abonniert ist und in der zweiten Spalte steht
+	 * das Erstellungsdatum des Abonnements.
 	 * 
 	 * @param result
+	 *            , Vektor mit Nutzer-Objekten
 	 */
 	public void erstelleKoerperDatenReport5(Vector<Nutzer> result) {
 
 		if (result.size() <= 0) {
 			buffer.append("<table class ='" + "report_kein_inhalt" + "'>");
 			buffer.append("<tr> <td>FÜR DEN AUSGEWÄHLTEN NUTZER"
-					+ " IST ZUR ZEIT KEIN REPORT 2 VERFÜGBAR, DA DER NUTZER KEINE "
+					+ " IST ZUR ZEIT KEIN REPORT 5 VERFÜGBAR, DA DER NUTZER KEINE "
 					+ "ANDEREN NUTZER ABONNIERT HAT!</td></tr>");
 			buffer.append("</table>");
 		} else {
@@ -669,6 +710,15 @@ public class HTMLReportWriter {
 		buffer.append("</table>");
 	}
 
+	/**
+	 * Im Report 6 werden alle Hashtagabonnements eines ausgwählten Nutzer
+	 * angezeigt, deshalb hat die Ergebnistabelle 2 Spalten. In der ersten
+	 * Spalte steht das Hashtag das der Nutzer abonniert hat und in der zweiten
+	 * Spalte steht das Erstellungsdatum des Abonnements.
+	 * 
+	 * @param result
+	 *            , Vektor mit Hashtag-Objekten
+	 */
 	public void erstelleKoerperDatenReport6(Vector<Hashtag> result) {
 		if (result.size() <= 0) {
 			buffer.append("<table class ='" + "report_kein_inhalt" + "'>");
@@ -703,8 +753,106 @@ public class HTMLReportWriter {
 	 * ************************************
 	 */
 	/**
-	 * TODO
+	 * Die Methode <code>generateReport7</code> säubert den Content, setzt dann
+	 * die Überschrift des Report 7. Darauffolgend erstellt sie für den
+	 * ausgewählten Nutzer die Kopfdaten und die Körperdaten des Reports durch
+	 * die Methoden <code>erstelleKopfDatenReport7</code>
+	 * <code>erstelleKoerperDatenReport7</code>. Der Text der dem StringBuffer
+	 * angehängt wurde wird durch die <code>toString</code>-Methode in einen
+	 * String umgewandelt und in HTML-Code formatiert. Anschließend wird die
+	 * <code>überschrift</code> und der Report als <code>html</code> dem Content
+	 * hinzugefügt.
+	 * 
+	 * @param result
+	 *            , die benötigten Nutzer-Objekte
+	 * @param b
+	 *            , das übergebene NutzerObjekt
 	 */
+	public void generateReport7(Vector<Nutzer> result, Nutzer n) {
+
+		RootPanel.get("content_right").clear();
+		Label ueberrschrift1 = new Label("Reportgenerator 7: ");
+		Label subtext = new Label(
+				"Ausgabe aller Nutzer, die diesen Nutzer abonniert haben:");
+		ueberrschrift1.setStylePrimaryName("ueberschrift_report");
+		subtext.setStylePrimaryName("subtext_report");
+
+		RootPanel.get("content_right").add(ueberrschrift1);
+		RootPanel.get("content_right").add(subtext);
+
+		erstelleKopfDatenReport7(n);
+		erstelleKoerperDatenReport7(result);
+
+		this.reportText = buffer.toString();
+		HTML html = new HTML(reportText);
+		html.setStylePrimaryName("report_inhalt");
+
+		RootPanel.get("content_right").add(html);
+	}
+
+	/**
+	 * Die Methode <code>erstelleKopfDatenReport7</code> stellt den
+	 * Ausgangsnutzer und das aktuelle Datum bzw, den Zeitpunkt dar, wann der
+	 * Report erstellt wurde. Außerdem wird auf der rechten Tabellenspalte das
+	 * Impressum des Programms dargestellt.
+	 * 
+	 * @param n
+	 *            , das Nutzer-Objekt, dass den Autor darstellt.
+	 */
+	public void erstelleKopfDatenReport7(Nutzer n) {
+		String ausgangsnutzer = "Ausgangsnutzer:<div></div>" + n.getVorname()
+				+ " " + n.getNachname();
+		Date currentTime = new Date(System.currentTimeMillis());
+
+		HTML Erstellungsdatum = new HTML(""
+				+ dF.format(new Timestamp(currentTime.getTime())));
+		// Nutzerabo Klasse Format
+		buffer.append("<table class='reportTabelle'>");
+		buffer.append("<td colspan='2' class='reportKopfzeile'> Report 7 </td>");
+
+		buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"
+				+ ausgangsnutzer
+				+ "</div><div> Datum: "
+				+ Erstellungsdatum
+				+ "</div></td><td class='kopfdatenbox_rechts'>"
+				+ new Impressum().getHtmlImpressum() + "</td></tr>");
+		buffer.append("</table>");
+
+	}
+
+	/**
+	 * Im Report 7 werden alle Nutzer dargestellt, die den ausgwählten Nutzer
+	 * abonniert haben. Deshalb hat die Ergebnistabelle 2 Spalten. In der ersten
+	 * Spalte steht der Nutzer der den ausgewählten Nutzer abonniert hat. In
+	 * der zweiten Spalte steht das Erstellungsdatum des Abonnements.
+	 * 
+	 * @param result
+	 *            ,Vektor mit Nutzer-Objekten
+	 */
+	public void erstelleKoerperDatenReport7(Vector<Nutzer> result) {
+
+		if (result.size() <= 0) {
+			buffer.append("<table class ='" + "report_kein_inhalt" + "'>");
+			buffer.append("<tr> <td>FÜR DEN AUSGEWÄHLTEN NUTZER"
+					+ " IST ZUR ZEIT KEIN REPORT 7 VERFÜGBAR, DA KEIN ANDERER NUTZER DIESEN"
+					+ " NUTZER ABONNIERT HAT!</td></tr>");
+			buffer.append("</table>");
+		} else {
+
+			buffer.append("<table class='reportkoerper_vollbild'>");
+			buffer.append("<tr class='kopfZeileKoerper'> <td>Nutzer</td><td>Erstellungsdatum</td></tr>");
+			for (int i = 0; i < result.size(); i++) {
+				buffer.append("<tr class='ergebnisZeileReport'>" + "<td>"
+						+ result.get(i).getVorname() + " "
+						+ result.get(i).getNachname() + "</td>" + "<td>"
+						+ dF.format(result.get(i).getErstellungsDatum())
+						+ "</td>" + "</tr>");
+			}
+			buffer.append("</table>");
+
+		}
+
+	}
 	/*
 	 * ***************************************************************************
 	 * ABSCHNITT, Ende: Report 7 *****************************************
@@ -717,8 +865,106 @@ public class HTMLReportWriter {
 	 * ************************************
 	 */
 	/**
-	 * TODO
+	 * Die Methode <code>generateReport8</code> säubert den Content, setzt dann
+	 * die Überschrift des Report 8. Darauffolgend erstellt sie für den
+	 * ausgewählten Nutzer die Kopfdaten und die Körperdaten des Reports durch
+	 * die Methoden <code>erstelleKopfDatenReport8</code>
+	 * <code>erstelleKoerperDatenReport8</code>. Der Text der dem StringBuffer
+	 * angehängt wurde wird durch die <code>toString</code>-Methode in einen
+	 * String umgewandelt und in HTML-Code formatiert. Anschließend wird die
+	 * <code>überschrift</code> und der Report als <code>html</code> dem Content
+	 * hinzugefügt.
+	 * 
+	 * @param result
+	 *            , die benötigten Nutzer-Objekte
+	 * @param b
+	 *            , das übergebene NutzerObjekt
 	 */
+	public void generateReport8(Vector<Nutzer> result, Hashtag h) {
+
+		RootPanel.get("content_right").clear();
+		Label ueberrschrift1 = new Label("Reportgenerator 8: ");
+		Label subtext = new Label(
+				"Ausgabe aller Nutzer, die dieses Hashtag abonniert haben:");
+		ueberrschrift1.setStylePrimaryName("ueberschrift_report");
+		subtext.setStylePrimaryName("subtext_report");
+
+		RootPanel.get("content_right").add(ueberrschrift1);
+		RootPanel.get("content_right").add(subtext);
+
+		erstelleKopfDatenReport8(h);
+		erstelleKoerperDatenReport8(result);
+
+		this.reportText = buffer.toString();
+		HTML html = new HTML(reportText);
+		html.setStylePrimaryName("report_inhalt");
+
+		RootPanel.get("content_right").add(html);
+	}
+
+	/**
+	 * Die Methode <code>erstelleKopfDatenReport8</code> stellt den
+	 * Ausgangsnutzer und das aktuelle Datum bzw, den Zeitpunkt dar, wann der
+	 * Report erstellt wurde. Außerdem wird auf der rechten Tabellenspalte das
+	 * Impressum des Programms dargestellt.
+	 * 
+	 * @param n
+	 *            , das Nutzer-Objekt, dass den Autor darstellt.
+	 */
+	public void erstelleKopfDatenReport8(Hashtag h) {
+		String ausgewaehltesHashtag = "gewähltes Hashtag:<div></div>" + h.getSchlagwort()
+				;
+		Date currentTime = new Date(System.currentTimeMillis());
+
+		HTML Erstellungsdatum = new HTML(""
+				+ dF.format(new Timestamp(currentTime.getTime())));
+		// Nutzerabo Klasse Format
+		buffer.append("<table class='reportTabelle'>");
+		buffer.append("<td colspan='2' class='reportKopfzeile'> Report 8 </td>");
+
+		buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"
+				+ ausgewaehltesHashtag
+				+ "</div><div> Datum: "
+				+ Erstellungsdatum
+				+ "</div></td><td class='kopfdatenbox_rechts'>"
+				+ new Impressum().getHtmlImpressum() + "</td></tr>");
+		buffer.append("</table>");
+
+	}
+
+	/**
+	 * Im Report 7 werden alle Nutzer dargestellt, die den ausgwählten Nutzer
+	 * abonniert haben. Deshalb hat die Ergebnistabelle 2 Spalten. In der ersten
+	 * Spalte steht der Nutzer der den ausgewählten Nutzer abonniert hat. In
+	 * der zweiten Spalte steht das Erstellungsdatum des Abonnements.
+	 * 
+	 * @param result
+	 *            ,Vektor mit Nutzer-Objekten
+	 */
+	public void erstelleKoerperDatenReport8(Vector<Nutzer> result) {
+
+		if (result.size() <= 0) {
+			buffer.append("<table class ='" + "report_kein_inhalt" + "'>");
+			buffer.append("<tr> <td>FÜR DEN AUSGEWÄHLTEN NUTZER"
+					+ " IST ZUR ZEIT KEIN REPORT 8 VERFÜGBAR, DA KEIN NUTZER DIESES"
+					+ " HASHTAG ABONNIERT HAT!</td></tr>");
+			buffer.append("</table>");
+		} else {
+
+			buffer.append("<table class='reportkoerper_vollbild'>");
+			buffer.append("<tr class='kopfZeileKoerper'> <td>Nutzer</td><td>Erstellungsdatum</td></tr>");
+			for (int i = 0; i < result.size(); i++) {
+				buffer.append("<tr class='ergebnisZeileReport'>" + "<td>"
+						+ result.get(i).getVorname() + " "
+						+ result.get(i).getNachname() + "</td>" + "<td>"
+						+ dF.format(result.get(i).getErstellungsDatum())
+						+ "</td>" + "</tr>");
+			}
+			buffer.append("</table>");
+
+		}
+
+	}
 	/*
 	 * ***************************************************************************
 	 * ABSCHNITT, Ende: Report 8 *****************************************

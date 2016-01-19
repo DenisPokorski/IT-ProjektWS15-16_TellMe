@@ -58,5 +58,9 @@ public interface ReportService extends RemoteService {
 
 	Vector<Unterhaltung> alleUnterhaltungen();
 
+	Vector<Nutzer> report7Generieren(int i);
+
+	Vector<Nutzer> report8Generieren(int i);
+
 
 }

@@ -13,7 +13,11 @@ import com.google.gwt.view.client.ListDataProvider;
 import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
+import de.hdm.tellme.shared.ReportService;
+import de.hdm.tellme.shared.ReportServiceAsync;
 import de.hdm.tellme.shared.bo.Hashtag;
+import de.hdm.tellme.shared.bo.Nutzer;
+import de.hdm.tellme.shared.report.HTMLReportWriter;
 
 /**
  * 
@@ -27,6 +31,9 @@ public class HashtagDataProvider {
 
 	private final EditorServiceAsync _asyncObj = GWT
 			.create(EditorService.class);
+	
+	private final ReportServiceAsync _reportAsyncObj = GWT
+			.create(ReportService.class);
 
 	private ListDataProvider<HashtagZelle.ZellenObjekt> dataProvider = new ListDataProvider<HashtagZelle.ZellenObjekt>();
 
@@ -301,6 +308,27 @@ public class HashtagDataProvider {
 
 					}
 				});
+	}
+	
+	public void report8Generieren( Hashtag n){
+		final Hashtag b = n;
+		
+		_reportAsyncObj.report8Generieren(n.getId(), new AsyncCallback<Vector<Nutzer>>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fehler bei der Generierung");				
+			}
+
+			@Override
+			public void onSuccess(Vector<Nutzer> result) {
+				
+				HTMLReportWriter hRW = new HTMLReportWriter();
+
+				hRW.generateReport8(result, b);		
+			}
+		});
+	
 	}
 
 }

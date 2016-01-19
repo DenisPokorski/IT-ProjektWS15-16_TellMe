@@ -18,6 +18,8 @@ import de.hdm.tellme.client.gui.report.Report3Gui;
 import de.hdm.tellme.client.gui.report.Report4Gui;
 import de.hdm.tellme.client.gui.report.Report5Gui;
 import de.hdm.tellme.client.gui.report.Report6Gui;
+import de.hdm.tellme.client.gui.report.Report7Gui;
+import de.hdm.tellme.client.gui.report.Report8Gui;
 import de.hdm.tellme.client.gui.report.ReportWillkommenSeite;
 
 /**
@@ -259,6 +261,22 @@ public class MenuBarEditor extends HorizontalPanel {
 		});
 
 		tempReports.addItem("Report 6", new Command() {
+			@Override
+			public void execute() {
+				setzeInhalt(new Report6Gui());
+
+			}
+		});
+		
+		tempReports.addItem("Report 7", new Command() {
+			@Override
+			public void execute() {
+				setzeInhalt(new Report6Gui());
+
+			}
+		});
+		
+		tempReports.addItem("Report 8", new Command() {
 			@Override
 			public void execute() {
 				setzeInhalt(new Report6Gui());

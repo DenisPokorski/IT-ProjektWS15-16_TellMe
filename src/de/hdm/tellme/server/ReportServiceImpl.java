@@ -333,4 +333,16 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 
 	}
 
+	@Override
+	public Vector<Nutzer> report7Generieren(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector<Nutzer> report8Generieren(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

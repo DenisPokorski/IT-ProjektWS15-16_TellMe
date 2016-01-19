@@ -13,7 +13,7 @@ import de.hdm.tellme.client.gui.editor.NutzerZelle;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
- * Die Klasse ReportForumlar6 beeinhaltet den Report-Generierungs-Button "Report 6 erstellen", sowie eine Methode,
+ * Die Klasse <class>ReportFormular6</class> beeinhaltet den Report-Generierungs-Button "Report 6 erstellen", sowie eine Methode,
  * um den Button zurückzugeben.
  *
  * 

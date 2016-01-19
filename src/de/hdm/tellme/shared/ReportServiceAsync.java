@@ -20,9 +20,14 @@ import de.hdm.tellme.shared.bo.Unterhaltung;
  *
  */
 public interface ReportServiceAsync {
+	
+	void report8Generieren(int i, AsyncCallback<Vector<Nutzer>> callback);
+	
 	void report5GenerierenListe(int i, AsyncCallback<Vector<Nutzer>> callback);
 
 	void report6Generieren(int i, AsyncCallback<Vector<Hashtag>> asyncCallback);
+	
+	void report7Generieren(int i, AsyncCallback<Vector<Nutzer>> callback);
 
 	void getAlleNutzer(boolean zwingeNeuladen,
 			AsyncCallback<Vector<Nutzer>> callback);
@@ -44,6 +49,7 @@ public interface ReportServiceAsync {
 			AsyncCallback<Vector<Unterhaltung>> callback);
 
 	void alleUnterhaltungen(AsyncCallback<Vector<Unterhaltung>> asyncCallback);
+
 
 
 }

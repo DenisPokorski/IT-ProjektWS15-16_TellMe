@@ -173,6 +173,21 @@ public class MenuBarReport extends HorizontalPanel {
 			}
 		});
 
+		reports.addItem("Report 7", new Command() {
+			@Override
+			public void execute() {
+				setzeInhalt(new Report7Gui());
+
+			}
+		});
+		
+		reports.addItem("Report 8", new Command() {
+			@Override
+			public void execute() {
+				setzeInhalt(new Report8Gui());
+
+			}
+		});
 		RootPanel.get("header").add(HauptMenue);
 
 	}

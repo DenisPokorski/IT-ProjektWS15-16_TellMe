@@ -115,6 +115,14 @@ public class HashtagCellList {
 						}
 					});
 			break;
+			
+		case Report8_AlleNutzerDieDemAusgewaehltenHashtagFolgen:
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+				public void onSelectionChange(SelectionChangeEvent event) {
+					
+					
+				}
+			});
 
 		default:
 		break;
