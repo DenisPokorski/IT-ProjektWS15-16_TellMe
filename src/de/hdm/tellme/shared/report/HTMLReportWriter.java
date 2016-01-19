@@ -889,7 +889,7 @@ public class HTMLReportWriter {
 	 * @param b
 	 *            , das übergebene NutzerObjekt
 	 */
-	public void generateReport8(Vector<Nutzer> result, Nutzer n) {
+	public void generateReport8(Vector<Nutzer> result, Hashtag h) {
 
 		RootPanel.get("content_right").clear();
 		Label ueberrschrift1 = new Label("Reportgenerator 8: ");
@@ -901,7 +901,7 @@ public class HTMLReportWriter {
 		RootPanel.get("content_right").add(ueberrschrift1);
 		RootPanel.get("content_right").add(subtext);
 
-		erstelleKopfDatenReport8(n);
+		erstelleKopfDatenReport8(h);
 		erstelleKoerperDatenReport8(result);
 
 		this.reportText = buffer.toString();
@@ -920,9 +920,9 @@ public class HTMLReportWriter {
 	 * @param n
 	 *            , das Nutzer-Objekt, dass den Autor darstellt.
 	 */
-	public void erstelleKopfDatenReport8(Nutzer n) {
-		String ausgangsnutzer = "Ausgangsnutzer:<div></div>" + n.getVorname()
-				+ " " + n.getNachname();
+	public void erstelleKopfDatenReport8(Hashtag h) {
+		String ausgewaehltesHashtag = "gewähltes Hashtag:<div></div>" + h.getSchlagwort()
+				;
 		Date currentTime = new Date(System.currentTimeMillis());
 
 		HTML Erstellungsdatum = new HTML(""
@@ -932,7 +932,7 @@ public class HTMLReportWriter {
 		buffer.append("<td colspan='2' class='reportKopfzeile'> Report 8 </td>");
 
 		buffer.append("<tr><td class='kopfdatenbox_links'> <div>Ausgewählte(s) Element(e)"
-				+ ausgangsnutzer
+				+ ausgewaehltesHashtag
 				+ "</div><div> Datum: "
 				+ Erstellungsdatum
 				+ "</div></td><td class='kopfdatenbox_rechts'>"

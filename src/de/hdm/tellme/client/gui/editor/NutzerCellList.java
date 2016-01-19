@@ -222,7 +222,28 @@ public class NutzerCellList {
 			selectionModel
 					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
+							VerticalPanel vP = new VerticalPanel();
+							RootPanel.get("content_right").clear();
 
+							ReportFormular6 rF = new ReportFormular6();
+							rF.report6Generieren(selectionModel
+									.getSelectedObject());
+
+							HTML headline = new HTML(
+									" <div class='"
+											+ "subline"
+											+ "'><h2>Reportgenerator 6: Alle Hashtagabos je Nutzer anzeigen</h2></div> ");
+							HTML subtext = new HTML(
+									" <div class='"
+											+ "subtext"
+											+ "'><h4> Der Report 6 gibt alle Hashtagabonnements eines Nutzers in einem bestimmten Zeitraum zurück.   </h4></div> ");
+
+							vP.add(headline);
+							vP.add(subtext);
+							vP.add(rF.gibFormular());
+
+							RootPanel.get("content_right").add(vP);
+						
 						}
 					});
 
