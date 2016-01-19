@@ -23,6 +23,8 @@ public interface ReportServiceAsync {
 	void report5GenerierenListe(int i, AsyncCallback<Vector<Nutzer>> callback);
 
 	void report6Generieren(int i, AsyncCallback<Vector<Hashtag>> asyncCallback);
+	
+	void report7Generieren(int i, AsyncCallback<Vector<Nutzer>> callback);
 
 	void getAlleNutzer(boolean zwingeNeuladen,
 			AsyncCallback<Vector<Nutzer>> callback);

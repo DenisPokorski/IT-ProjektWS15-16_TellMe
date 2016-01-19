@@ -60,7 +60,8 @@ public class NutzerDataProvider {
 	public void fuelleListeReport() {
 		if (dataList != null)
 			dataList.clear();
-		_editorAsyncObj.getAlleNutzer(true,new AsyncCallback<Vector<Nutzer>>() {
+		_editorAsyncObj.getAlleNutzer(true,
+				new AsyncCallback<Vector<Nutzer>>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
@@ -201,6 +202,27 @@ public class NutzerDataProvider {
 
 				});
 
+	}
+
+	public void report7Generieren(Nutzer n) {
+		final Nutzer b = n;
+
+		_reportAsyncObj.report7Generieren(n.getId(),
+				new AsyncCallback<Vector<Nutzer>>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert("Fehler bei der Generierung");
+					}
+
+					@Override
+					public void onSuccess(Vector<Nutzer> result) {
+						HTMLReportWriter hRW = new HTMLReportWriter();
+
+						hRW.generateReport7(result, b);
+					}
+
+				});
 	}
 
 	public void report6Generieren(Nutzer n) {
