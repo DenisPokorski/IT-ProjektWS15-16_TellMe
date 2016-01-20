@@ -30,7 +30,7 @@ import de.hdm.tellme.shared.bo.Nutzer;
  * 
  */
 
-public class NutzerBearbeitenEditor extends VerticalPanel {
+public class NutzerBearbeitenEditor  {
 
 	/**
 	 * Deklarationen der einzelnen Widgets wie beispielsweise den Panels,
@@ -45,25 +45,17 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 	private TextBox emailTextBox = new TextBox();
 	private Nutzer n = new Nutzer();
 
-	private MenuBarEditor a = new MenuBarEditor();
-	
 	private HorizontalPanel ButtonPanel = new HorizontalPanel();
-	private Button aenderungenSpeichernButton = new Button(
-			"Änderungen speichern");
+	private Button aenderungenSpeichernButton = new Button("Änderungen speichern");
 
 	private Button profilloeschenButton = new Button("Profil deaktivieren");
 	private VerticalPanel profilPanel = new VerticalPanel();
 	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
 
-	private VerticalPanel vP = new VerticalPanel();
-
 	private Label subline = new Label("Profildaten");
-	HTML headline = new HTML(" <div class='" + "subline"
-			+ "'><h2>Meine Nutzerdaten bearbeiten</h2></div> ");
-	HTML subtext = new HTML(
-			" <div class='"
-					+ "subtext"
-					+ "'><h4>  Auf dieser Oberfläche kannst du deine Nutzerdaten bearbeiten und speichern oder vollständig löschen.  </h4></div> ");
+	HTML headline = new HTML(" <div class='" + "subline" + "'><h2>Meine Nutzerdaten bearbeiten</h2></div> ");
+	HTML subtext = new HTML(" <div class='" + "subtext"
+			+ "'><h4>  Auf dieser Oberfläche kannst du deine Nutzerdaten bearbeiten und speichern oder vollständig löschen.  </h4></div> ");
 
 	/**
 	 * Die Methode des AsyncCallbacks, um die Daten zum Nutzer bearbeiten an die
@@ -82,11 +74,10 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 
 			@Override
 			public void onSuccess(Void result) {
-				RootPanel.get("content").clear();
-				RootPanel.get("header").clear();
-				RootPanel.get("header").add(a);
 				Window.alert("Profil erfolgreich editiert.");
-
+				RootPanel.get("content").clear();
+				NeuigkeitenEditor nE = new NeuigkeitenEditor();
+				MenuBarEditor.setzeInhalt(nE.gibFilterPanel(),nE);
 
 			}
 		});
@@ -101,22 +92,20 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 	 * löschen genutzt.
 	 */
 	public void nutzerLoeschen() {
-		asyncObj.nutzerLoeschen(TellMe.eingeloggterBenutzer.getUser(),
-				new AsyncCallback<Void>() {
+		asyncObj.nutzerLoeschen(TellMe.gibEingeloggterBenutzer().getUser(), new AsyncCallback<Void>() {
 
-					@Override
-					public void onFailure(Throwable caught) {
-						// TODO Auto-generated method stub
-					}
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+			}
 
-					@Override
-					public void onSuccess(Void result) {
-						Window.alert("Profil gelöscht");
-						Window.Location.assign(TellMe.eingeloggterBenutzer
-								.getLogoutUrl());
-						RootPanel.get("content").clear();
-					}
-				});
+			@Override
+			public void onSuccess(Void result) {
+				Window.alert("Profil gelöscht");
+				Window.Location.assign(TellMe.gibEingeloggterBenutzer().getLogoutUrl());
+				RootPanel.get("content").clear();
+			}
+		});
 	}
 
 	/**
@@ -126,22 +115,18 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 	 * Paneln zugeordnet. In diesem Bereich werden den Widgets zusätzlich
 	 * CSS-Styles zugeordnet.
 	 */
-	public void gibNutzerBearbeitenEditor() {
+	public VerticalPanel gibNutzerBearbeitenFormular() {
 
-		if (TellMe.eingeloggterBenutzer.getUser().getVorname() == "undefined"
-				|| TellMe.eingeloggterBenutzer.getUser().getNachname() == "undefined") {
+		if (TellMe.gibEingeloggterBenutzer().getUser().getVorname() == "undefined" || TellMe.gibEingeloggterBenutzer().getUser().getNachname() == "undefined") {
 			vornameTextBox.setText("");
 			nachnameTextBox.setText("");
-			
+
 		} else {
-			vornameTextBox.setText(TellMe.eingeloggterBenutzer.getUser()
-					.getVorname());
-			nachnameTextBox.setText(TellMe.eingeloggterBenutzer.getUser()
-					.getNachname());
+			vornameTextBox.setText(TellMe.gibEingeloggterBenutzer().getUser().getVorname());
+			nachnameTextBox.setText(TellMe.gibEingeloggterBenutzer().getUser().getNachname());
 		}
 
-		emailTextBox.setText(TellMe.eingeloggterBenutzer.getUser()
-				.getMailadresse());
+		emailTextBox.setText(TellMe.gibEingeloggterBenutzer().getUser().getMailadresse());
 
 		profilPanel.add(subline);
 		profilPanel.add(bezeichnungEmailTextBox);
@@ -150,9 +135,9 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 		profilPanel.add(vornameTextBox);
 		profilPanel.add(bezeichnungNachnameTextBox);
 		profilPanel.add(nachnameTextBox);
-		
+
 		emailTextBox.setReadOnly(true);
-		
+
 		ButtonPanel.add(aenderungenSpeichernButton);
 		ButtonPanel.add(profilloeschenButton);
 
@@ -165,16 +150,9 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 		bezeichnungEmailTextBox.addStyleName("bezeichnungEmailTextBox");
 		emailTextBox.addStyleName("emailTextBox");
 		ButtonPanel.setStylePrimaryName("nutzerButtonPanel");
-		vP.addStyleName("vertical-box");
+
 		aenderungenSpeichernButton.addStyleName("aenderungenSpeichernButton");
 		profilloeschenButton.addStyleName("profilloeschenButton");
-
-		vP.add(headline);
-		vP.add(subtext);
-		vP.add(profilPanel);
-		vP.add(ButtonPanel);
-		RootPanel.get("content_left").add(vP);
-
 
 		/**
 		 * Der ClickHandler des Speichern-Buttons. Zuerst wird eine if-Abfrage
@@ -187,21 +165,18 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				if (vornameTextBox.getValue().isEmpty()
-						|| nachnameTextBox.getValue().isEmpty()) {
+				if (vornameTextBox.getValue().isEmpty() || nachnameTextBox.getValue().isEmpty()) {
 					Window.alert("Bitte alle Felder richtig befüllen");
 				} else {
 
-					n.setId(TellMe.eingeloggterBenutzer.getUser().getId());
+					n.setId(TellMe.gibEingeloggterBenutzer().getUser().getId());
 					n.setMailadresse(emailTextBox.getText());
 					n.setVorname(vornameTextBox.getText());
 					n.setNachname(nachnameTextBox.getText());
-					TellMe.eingeloggterBenutzer.getUser().setVorname(
-							n.getVorname());
-					TellMe.eingeloggterBenutzer.getUser().setNachname(
-							n.getNachname());
+					TellMe.gibEingeloggterBenutzer().getUser().setVorname(n.getVorname());
+					TellMe.gibEingeloggterBenutzer().getUser().setNachname(n.getNachname());
 					nutzerBearbeiten(n);
-					new TellMe().ladeTellMe();
+					
 
 				}
 
@@ -219,6 +194,17 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 
 			}
 		});
+
+		VerticalPanel vP = new VerticalPanel();
+		vP.addStyleName("vertical-box");
+		vP.add(headline);
+		vP.add(subtext);
+		vP.add(profilPanel);
+		vP.add(ButtonPanel);
+
+
+		return vP;
 	}
+
 
 }

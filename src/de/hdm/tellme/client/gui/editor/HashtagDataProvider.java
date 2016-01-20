@@ -76,7 +76,7 @@ public class HashtagDataProvider {
 			public void onSuccess(Vector<Hashtag> hashTagListe) {
 
 				hashTagListeTemp = hashTagListe;
-				int NutzerId = TellMe.eingeloggterBenutzer.getUser().getId();
+				int NutzerId = TellMe.gibEingeloggterBenutzer().getUser().getId();
 
 				_asyncObj.getAlleAbonniertenHashtagsfuerAbonehmer(NutzerId,
 						new AsyncCallback<Vector<Integer>>() {
@@ -241,7 +241,7 @@ public class HashtagDataProvider {
 	 */
 	public void abonieren(Hashtag hashtag) {
 
-		int NutzerId = TellMe.eingeloggterBenutzer.getUser().getId();
+		int NutzerId = TellMe.gibEingeloggterBenutzer().getUser().getId();
 		int HashtagId = hashtag.getId();
 
 		/**
@@ -280,7 +280,7 @@ public class HashtagDataProvider {
 	 */
 	public void deabonieren(Hashtag hashtag) {
 
-		int NutzerId = TellMe.eingeloggterBenutzer.getUser().getId();
+		int NutzerId = TellMe.gibEingeloggterBenutzer().getUser().getId();
 		int HashtagId = hashtag.getId();
 
 		/**

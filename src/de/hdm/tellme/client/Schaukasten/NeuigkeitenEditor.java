@@ -49,17 +49,8 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	private static Unterhaltung ausgewaehlteUnterhaltung;
 	private static Nachricht ausgewaehlteNachricht;
 
-	private static HashtagCellList hsCL = new HashtagCellList();
-	private static NutzerCellList nuCL = new NutzerCellList();
-
-	public NeuigkeitenEditor() {
-	}
-
-	public void FilterNachBenutzer(NutzerZelle.ZellenObjekt nah) {
-	}
-
-	public void FilterNachHashtag(HashtagZelle.ZellenObjekt nah) {
-	}
+	private HashtagCellList hsCL = new HashtagCellList();
+	private NutzerCellList nuCL = new NutzerCellList();
 
 	/**
 	 * Die onLoad Methode wird ausgeführt, wenn ein neues Objekt der Klasse
@@ -71,7 +62,8 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	public void onLoad() {
 
 		/*
-		 * 
+		 * Setze Optionenbuttons mit den Werten Null, damit alle Optionen
+		 * ausgegraut sind
 		 */
 		setzeOptionenButton(null, null);
 
@@ -82,9 +74,10 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 * CustomTreeModel#getNodeInfo();
 		 */
 		CellTree tree = new CellTree(model, null);
-		tree.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
+		tree.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.DISABLED);
 
 		ScrollPanel scPanel = new ScrollPanel();
+		// scPanel.setHeight("800px");
 		scPanel.setHeight("100%");
 		scPanel.add(tree);
 
@@ -92,6 +85,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 
 	}
 
+	// Statisch, damit auch andere
 	public static void showDialogBox(DialogBox anzuzeigendeBox) {
 		anzuzeigendeBox.center();
 		anzuzeigendeBox.show();
@@ -105,9 +99,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	 * @param _ausgewaehlteUnterhaltung
 	 * @param _ausgewaehlteNachricht
 	 */
-	public static void setzeOptionenButton(
-			Unterhaltung _ausgewaehlteUnterhaltung,
-			Nachricht _ausgewaehlteNachricht) {
+	public static void setzeOptionenButton(Unterhaltung _ausgewaehlteUnterhaltung, Nachricht _ausgewaehlteNachricht) {
 		RootPanel.get("ButtonBar").clear();
 
 		// ###################### Nachrichtenoptionen
@@ -142,8 +134,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 */
 		Button btnAktualisieren = new Button("Aktualisieren");
 		btnAktualisieren.setStylePrimaryName("aktualisierenBtn");
-		btnAktualisieren
-				.addClickHandler(btnUnterhaltungenAktualisierenClickHandler);
+		btnAktualisieren.addClickHandler(btnUnterhaltungenAktualisierenClickHandler);
 		hpHeadline.add(btnAktualisieren);
 
 		/**
@@ -176,8 +167,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 
 		Button btnTeilnehmerBearbeiten = new Button("Teilnehmer bearbeiten");
 		btnTeilnehmerBearbeiten.setStylePrimaryName("btnTeilnehmerBearbeiten");
-		btnTeilnehmerBearbeiten
-				.addClickHandler(btnTeilnehmerBearbeitenClickHandler);
+		btnTeilnehmerBearbeiten.addClickHandler(btnTeilnehmerBearbeitenClickHandler);
 		hpUnterhaltungsOptionen.add(btnTeilnehmerBearbeiten);
 		hpOptionen.add(btnTeilnehmerBearbeiten);
 
@@ -188,10 +178,8 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 */
 
 		Button btnUnterhaltungVerlassen = new Button("Unterhaltung verlassen");
-		btnUnterhaltungVerlassen
-				.setStylePrimaryName("btnUnterhaltungVerlassen");
-		btnUnterhaltungVerlassen
-				.addClickHandler(btnUnterhaltungVerlassenClickHandler);
+		btnUnterhaltungVerlassen.setStylePrimaryName("btnUnterhaltungVerlassen");
+		btnUnterhaltungVerlassen.addClickHandler(btnUnterhaltungVerlassenClickHandler);
 		hpOptionen.add(btnUnterhaltungVerlassen);
 
 		/**
@@ -202,8 +190,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 */
 
 		Button btnNachrichtBearbeiten = new Button("Nachricht bearbeiten");
-		btnNachrichtBearbeiten
-				.addClickHandler(btnNachrichtBearbeitenClickHandler);
+		btnNachrichtBearbeiten.addClickHandler(btnNachrichtBearbeitenClickHandler);
 		btnNachrichtBearbeiten.setStylePrimaryName("btnUnterhaltungVerlassen");
 		hpOptionen.add(btnNachrichtBearbeiten);
 
@@ -259,7 +246,8 @@ public class NeuigkeitenEditor extends VerticalPanel {
 			btnAntworten.setEnabled(true);
 
 			for (Nutzer nutzer : ausgewaehlteUnterhaltung.getTeilnehmer()) {
-				if (nutzer.getId() == TellMe.gibEingeloggterBenutzer().getUser().getId())istTeilnehmerInUnterhaltung = true;
+				if (nutzer.getId() == TellMe.gibEingeloggterBenutzer().getUser().getId())
+					istTeilnehmerInUnterhaltung = true;
 			}
 			if (istTeilnehmerInUnterhaltung) {
 				btnTeilnehmerBearbeiten.setEnabled(true);
@@ -286,7 +274,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	 * @return vpFilterPanel
 	 */
 
-	public static VerticalPanel gibFilterPanel() {
+	public VerticalPanel gibFilterPanel() {
 
 		/**
 		 * Ein neues VerticalPanel wird erstellt
@@ -327,8 +315,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	 */
 	static ClickHandler btnNeueNachrichtClickHandler = new ClickHandler() {
 		public void onClick(ClickEvent event) {
-			NeuigkeitenEditor.showDialogBox(new NeuigkeitenNachrichtDialogbox()
-					.getNeueNachrichtDialogbox());
+			NeuigkeitenEditor.showDialogBox(new NeuigkeitenNachrichtDialogbox().getNeueNachrichtDialogbox());
 		}
 	};
 
@@ -340,8 +327,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	 */
 	static ClickHandler btnAntwortenClickHandler = new ClickHandler() {
 		public void onClick(ClickEvent event) {
-			NeuigkeitenEditor.showDialogBox(new NeuigkeitenNachrichtDialogbox()
-					.getAntwortNachrichtDialogbox(ausgewaehlteUnterhaltung));
+			NeuigkeitenEditor.showDialogBox(new NeuigkeitenNachrichtDialogbox().getAntwortNachrichtDialogbox(ausgewaehlteUnterhaltung));
 		}
 	};
 
@@ -353,8 +339,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	 */
 	static ClickHandler btnNachrichtBearbeitenClickHandler = new ClickHandler() {
 		public void onClick(ClickEvent event) {
-			NeuigkeitenEditor.showDialogBox(new NeuigkeitenNachrichtDialogbox()
-					.getNachrichtBearbeitenDialogbox(ausgewaehlteNachricht));
+			NeuigkeitenEditor.showDialogBox(new NeuigkeitenNachrichtDialogbox().getNachrichtBearbeitenDialogbox(ausgewaehlteNachricht));
 		}
 	};
 
@@ -366,8 +351,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	 */
 	static ClickHandler btnNachrichtLoeschenClickHandler = new ClickHandler() {
 		public void onClick(ClickEvent event) {
-			NeuigkeitenEditor.showDialogBox(new NeuigkeitenJaNeinDialogbox()
-					.getNachrichtLoeschenDialogBox(ausgewaehlteNachricht));
+			NeuigkeitenEditor.showDialogBox(new NeuigkeitenJaNeinDialogbox().getNachrichtLoeschenDialogBox(ausgewaehlteNachricht));
 		}
 	};
 
@@ -379,9 +363,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	 */
 	static ClickHandler btnTeilnehmerBearbeitenClickHandler = new ClickHandler() {
 		public void onClick(ClickEvent event) {
-			NeuigkeitenEditor
-					.showDialogBox(new NeuigkeitenTeilnehmerBearbeitenDialogbox()
-							.getTeilnehmerBearbeiten(ausgewaehlteUnterhaltung));
+			NeuigkeitenEditor.showDialogBox(new NeuigkeitenTeilnehmerBearbeitenDialogbox().getTeilnehmerBearbeiten(ausgewaehlteUnterhaltung));
 		}
 	};
 
@@ -393,9 +375,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	 */
 	static ClickHandler btnUnterhaltungVerlassenClickHandler = new ClickHandler() {
 		public void onClick(ClickEvent event) {
-			NeuigkeitenEditor
-					.showDialogBox(new NeuigkeitenJaNeinDialogbox()
-							.getUnterhaltungVerlassenDialogBox(ausgewaehlteUnterhaltung));
+			NeuigkeitenEditor.showDialogBox(new NeuigkeitenJaNeinDialogbox().getUnterhaltungVerlassenDialogBox(ausgewaehlteUnterhaltung));
 		}
 	};
 

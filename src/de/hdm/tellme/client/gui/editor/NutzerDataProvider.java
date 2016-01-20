@@ -60,6 +60,9 @@ public class NutzerDataProvider {
 	public void fuelleListeReport() {
 		if (dataList != null)
 			dataList.clear();
+
+		dataList = dataProvider.getList();
+		
 		_editorAsyncObj.getAlleNutzer(true,
 				new AsyncCallback<Vector<Nutzer>>() {
 
@@ -87,7 +90,7 @@ public class NutzerDataProvider {
 		if (dataList != null)
 			dataList.clear();
 
-		_editorAsyncObj.getAlleNutzerAußerMeineId(TellMe.eingeloggterBenutzer
+		_editorAsyncObj.getAlleNutzerAußerMeineId(TellMe.gibEingeloggterBenutzer()
 				.getUser().getId(), new AsyncCallback<Vector<Nutzer>>() {
 
 			@Override
@@ -100,7 +103,7 @@ public class NutzerDataProvider {
 			public void onSuccess(Vector<Nutzer> result) {
 				alleNutzer = result;
 				_editorAsyncObj.holeAlleAbonniertenNutzer(
-						TellMe.eingeloggterBenutzer.getUser().getId(),
+						TellMe.gibEingeloggterBenutzer().getUser().getId(),
 						new AsyncCallback<Vector<Integer>>() {
 
 							@Override
@@ -141,7 +144,7 @@ public class NutzerDataProvider {
 
 	public void abonieren(Nutzer _nutzer) {
 
-		_editorAsyncObj.nutzerAbonnementErstellen(TellMe.eingeloggterBenutzer
+		_editorAsyncObj.nutzerAbonnementErstellen(TellMe.gibEingeloggterBenutzer()
 				.getUser().getId(), _nutzer, new AsyncCallback<Void>() {
 
 			@Override
@@ -161,7 +164,7 @@ public class NutzerDataProvider {
 	}
 
 	public void deabonieren(Nutzer _nutzerDeabonieren) {
-		_editorAsyncObj.nutzerAbonnementLoeschen(TellMe.eingeloggterBenutzer
+		_editorAsyncObj.nutzerAbonnementLoeschen(TellMe.gibEingeloggterBenutzer()
 				.getUser().getId(), _nutzerDeabonieren,
 				new AsyncCallback<Void>() {
 

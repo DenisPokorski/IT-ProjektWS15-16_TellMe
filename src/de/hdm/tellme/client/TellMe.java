@@ -40,11 +40,14 @@ public class TellMe implements EntryPoint {
 	 * durch die Referenz <code>static</code>.
 	 */
 
-	public static LoginInfo eingeloggterBenutzer = null;
+	private static LoginInfo eingeloggterBenutzer = null;
 	/**
 	 * LoginService wird erstellt.
 	 */
 	LoginServiceAsync loginService = GWT.create(LoginService.class);
+	
+
+	MenuBarEditor menuBar = new MenuBarEditor();
 
 	public static LoginInfo gibEingeloggterBenutzer() {
 		return eingeloggterBenutzer;
@@ -52,19 +55,18 @@ public class TellMe implements EntryPoint {
 
 	public Widget ladeTellMe() {
 
-		if (eingeloggterBenutzer.getUser().getVorname() == "undefined"
-				|| eingeloggterBenutzer.getUser().getNachname() == "undefined") {
-			new NutzerBearbeitenEditor().gibNutzerBearbeitenEditor();
+		RootPanel.get("header").add(menuBar);
+		if (eingeloggterBenutzer.getUser().getVorname() == "undefined" || eingeloggterBenutzer.getUser().getNachname() == "undefined") {
+
+			// Startseite anzeigen
+			MenuBarEditor.setzeInhalt(new NutzerBearbeitenEditor().gibNutzerBearbeitenFormular());
 
 		} else {
 
 			// Startseite anzeigen
-			MenuBarEditor menuBar = new MenuBarEditor();
 
-			RootPanel.get("header").add(menuBar);
-
-			MenuBarEditor.setzeInhalt(NeuigkeitenEditor.gibFilterPanel(),
-					MenuBarEditor.gibansichtNeuigkeiten());
+			NeuigkeitenEditor nE = new NeuigkeitenEditor();
+			MenuBarEditor.setzeInhalt(nE.gibFilterPanel(), nE);
 		}
 		return null;
 	}
@@ -87,7 +89,6 @@ public class TellMe implements EntryPoint {
 				 * TellMe-Applikation angezeigt.
 				 */
 				if (eingeloggterBenutzer.isLoggedIn()) {
-
 					ladeTellMe();
 				} else {
 					Window.Location.assign(eingeloggterBenutzer.getLoginUrl());

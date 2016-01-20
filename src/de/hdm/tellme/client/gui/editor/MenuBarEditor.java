@@ -37,40 +37,8 @@ import de.hdm.tellme.client.gui.report.ReportWillkommenSeite;
 
 public class MenuBarEditor extends HorizontalPanel {
 
-	/**
-	 * Damit die Klasse NeuigkeitenEditor nur einmal während der Laufzeit des
-	 * Programms bestehen kann, muss man sie als Singleton darstellen, dies
-	 * geschieht durch die Referenz <code>static</code>.
-	 */
-	private static NeuigkeitenEditor ansichtNeuigkeiten = null;
 
-	/**
-	 * Die statische Methode wird über NeuigkeitenEditor gibansichtNeuigkeiten()
-	 * aufgerufen. Sie überprüft, dass nur eine Instanz von NeuigkeitenEditor
-	 * besteht.
-	 */
-	public static NeuigkeitenEditor gibansichtNeuigkeiten() {
-		ansichtNeuigkeiten = new NeuigkeitenEditor();
-		return ansichtNeuigkeiten;
-	}
-
-	/**
-	 * Damit die Klasse NutzerBearbeitenEditor nur einmal während der Laufzeit
-	 * des Programms bestehen kann, muss man sie als Singleton darstellen, dies
-	 * geschieht durch die Referenz <code>static</code>.
-	 */
-	private static NutzerBearbeitenEditor ansichtEinstellungenBenutzereinstellungen = null;
-
-	/**
-	 * Die statische Methode wird über NutzerBearbeitenEditor
-	 * gibansichtEinstellungenBenutzereinstellungen() aufgerufen. Sie überprüft,
-	 * dass nur eine Instanz von NutzerBearbeitenEditor besteht.
-	 */
-	public static NutzerBearbeitenEditor gibansichtEinstellungenBenutzereinstellungen() {
-		// lade jedes mal neu um Listen aktuell zu halten
-		ansichtEinstellungenBenutzereinstellungen = new NutzerBearbeitenEditor();
-		return ansichtEinstellungenBenutzereinstellungen;
-	}
+	
 
 	/**
 	 * Definition von Konstruktor TODO LEERER KONSTRUKTOR BESCHREIBUNG
@@ -106,8 +74,8 @@ public class MenuBarEditor extends HorizontalPanel {
 		HauptMenue.addItem(new MenuItem(LogoLink, true, new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(NeuigkeitenEditor.gibFilterPanel(),
-						gibansichtNeuigkeiten());
+				NeuigkeitenEditor nE = new NeuigkeitenEditor();
+				MenuBarEditor.setzeInhalt(nE.gibFilterPanel(),nE);
 			}
 		}));
 		/**
@@ -117,9 +85,8 @@ public class MenuBarEditor extends HorizontalPanel {
 		HauptMenue.addItem("Neuigkeiten", new Command() {
 			@Override
 			public void execute() {
-
-				setzeInhalt(NeuigkeitenEditor.gibFilterPanel(),
-						gibansichtNeuigkeiten());
+				NeuigkeitenEditor nE = new NeuigkeitenEditor();
+				MenuBarEditor.setzeInhalt(nE.gibFilterPanel(),nE);
 			}
 		});
 
@@ -182,7 +149,7 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.addItem("Benutzereinstellungen", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(gibansichtEinstellungenBenutzereinstellungen());
+				setzeInhalt(new NutzerBearbeitenEditor().gibNutzerBearbeitenFormular());
 			}
 		});
 		/**
@@ -203,7 +170,7 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.addItem("Log out", new Command() {
 			@Override
 			public void execute() {
-				Window.Location.assign(TellMe.eingeloggterBenutzer
+				Window.Location.assign(TellMe.gibEingeloggterBenutzer()
 						.getLogoutUrl());
 
 			}

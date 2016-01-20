@@ -440,7 +440,7 @@ public class NeuigkeitenNachrichtDialogbox {
 	}
 
 	private void ladVorschlagListen() {
-		asyncObj.getAlleNutzerAußerMeineId(TellMe.eingeloggterBenutzer.getUser().getId(), new AsyncCallback<Vector<Nutzer>>() {
+		asyncObj.getAlleNutzerAußerMeineId(TellMe.gibEingeloggterBenutzer().getUser().getId(), new AsyncCallback<Vector<Nutzer>>() {
 			@Override
 			public void onFailure(Throwable caught) {
 			}
