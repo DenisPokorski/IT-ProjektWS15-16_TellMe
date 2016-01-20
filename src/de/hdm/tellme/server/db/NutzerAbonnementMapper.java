@@ -71,7 +71,7 @@ public class NutzerAbonnementMapper {
 					.executeQuery("SELECT AbonnentBenutzer.NachId, Nutzer.Id, Nutzer.Vorname, Nutzer.Nachname, Nutzer.Mailadresse, Nutzer.Status, AbonnentBenutzer.ErstellungsDatum FROM AbonnentBenutzer LEFT JOIN Nutzer ON AbonnentBenutzer.NachId = Nutzer.Id Where AbonnentBenutzer.VonId = '"
 							+ nutzer
 							+ "' AND Nutzer.Status = '"
-							+ eStatus.aktiv.ordinal() + "';");
+							+ eStatus.aktiv.ordinal() + "' ORDER BY AbonnentBenutzer.ErstellungsDatum;");
 
 			while (rs.next()) {
 				Nutzer na = new Nutzer();
