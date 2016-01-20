@@ -107,28 +107,6 @@ public class HashtagAbonnementMapper {
 	}
 
 	/**
-	 * Dieser Mapper wird genutzt, um ein Hashtag-Abonnement in die Datenbank zu
-	 * schreiben. Hierfür werden sowohl die NutzerId, als auch die HashtagId
-	 * übergeben.
-	 * 
-	 * @param h
-	 */
-	public void anlegen(HashtagAbonnement h) {
-		Connection con = DatenbankVerbindung.connection();
-		try {
-			Statement state = con.createStatement();
-			String sqlquery = "INSERT INTO NutzerHashtag (NutzerId, HashtagId) VALUES ("
-					+ "'"
-					+ h.getAbonnementErsteller().getId()
-					+ "','"
-					+ h.getHashtag().getId() + "') ;";
-			state.executeUpdate(sqlquery);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * Dieser Mapper wird genutzt, um ein Hashtag-Abonnement aus der Datenbank
 	 * zu löschen. Hierfür werden sowohl die NutzerId, als auch die HashtagId
 	 * übergeben.
@@ -170,7 +148,7 @@ public class HashtagAbonnementMapper {
 			while (rs.next()) {
 				Hashtag h = new Hashtag();
 				h.setId(rs.getInt("Id"));
-				h.setErstellungsDatum(rs.getTimestamp("ErstellungsDatum"));
+				h.setErstellungsDatum(rs.getTimestamp("NutzerHashtag.ErstellungsDatum"));
 				h.setSchlagwort(rs.getString("Schlagwort"));
 
 				System.out.println(h.getSchlagwort());
@@ -283,7 +261,7 @@ public class HashtagAbonnementMapper {
 					.executeQuery("SELECT * FROM NutzerHashtag JOIN Nutzer ON NutzerId = Nutzer.Id WHERE HashtagId = '"
 							+ hashtagId
 							+ "' AND Nutzer.Status = '"
-							+ eStatus.aktiv.ordinal() + "' AND ORDER BY Nutzer.ErstellungsDatum DESC");
+							+ eStatus.aktiv.ordinal() + "' ORDER BY Nutzer.ErstellungsDatum DESC");
 			while (rs.next()) {
 				Nutzer n = new Nutzer();
 				n.setId(rs.getInt("NutzerId"));

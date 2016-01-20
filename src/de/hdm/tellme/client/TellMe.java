@@ -24,25 +24,6 @@ import de.hdm.tellme.shared.LoginServiceAsync;
 public class TellMe implements EntryPoint {
 
 	/**
-	 * Damit die Klasse NeuigkeitenEditor nur einmal während der Laufzeit des
-	 * Programms bestehen kann, muss man sie als Singleton darstellen, dies
-	 * geschieht durch die Referenz <code>static</code>.
-	 */
-
-	private static NeuigkeitenEditor ansichtNeuigkeiten = null;
-
-	/**
-	 * Die statische Methode wird über NeuigkeitenEditor gibansichtNeugikeiten
-	 * aufgerufen. Sie überprüft, dass nur eine Instanz von NeuigkeitenEditor
-	 * besteht.
-	 */
-
-	public static NeuigkeitenEditor gibansichtNeuigkeiten() {
-		ansichtNeuigkeiten = new NeuigkeitenEditor();
-		return ansichtNeuigkeiten;
-	}
-
-	/**
 	 * Die Klasse implementiert das Interface <code> EntryPoint</code>. Dafür
 	 * wird die Methode <code> pubic void onModuleLoad()</code>. Das ist das
 	 * GWT-Gegenstück der <code>main()</code> einer normalen Java-Applikation
@@ -73,23 +54,14 @@ public class TellMe implements EntryPoint {
 
 		if (eingeloggterBenutzer.getUser().getVorname() == "undefined"
 				|| eingeloggterBenutzer.getUser().getNachname() == "undefined") {
-			NutzerBearbeitenEditor nE = new NutzerBearbeitenEditor();
-			RootPanel.get("content").add(nE);
+			new NutzerBearbeitenEditor().gibNutzerBearbeitenEditor();
 
 		} else {
 
 			// Startseite anzeigen
 			MenuBarEditor menuBar = new MenuBarEditor();
 
-			RootPanel.get("ButtonBar").clear();
-			RootPanel.get("content_left").clear();
-			RootPanel.get("content_right").clear();
-			RootPanel.get("content").clear();
-
 			RootPanel.get("header").add(menuBar);
-			RootPanel.get("content_left").add(
-					NeuigkeitenEditor.gibFilterPanel());
-			RootPanel.get("content_right").add(gibansichtNeuigkeiten());
 
 			MenuBarEditor.setzeInhalt(NeuigkeitenEditor.gibFilterPanel(),
 					MenuBarEditor.gibansichtNeuigkeiten());
@@ -125,9 +97,9 @@ public class TellMe implements EntryPoint {
 
 			@Override
 			public void onFailure(Throwable caught) {
-					/**
-					 * TODO
-					 */
+				/**
+				 * TODO
+				 */
 			}
 		});
 

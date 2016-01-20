@@ -217,7 +217,6 @@ public class NutzerDataProvider {
 
 					@Override
 					public void onSuccess(Vector<Nutzer> result) {
-						Window.alert(""+result.size());
 						HTMLReportWriter hRW = new HTMLReportWriter();
 
 						hRW.generateReport7(result, b);

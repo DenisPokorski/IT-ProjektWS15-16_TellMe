@@ -126,7 +126,7 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 	 * Paneln zugeordnet. In diesem Bereich werden den Widgets zusätzlich
 	 * CSS-Styles zugeordnet.
 	 */
-	public void onLoad() {
+	public void gibNutzerBearbeitenEditor() {
 
 		if (TellMe.eingeloggterBenutzer.getUser().getVorname() == "undefined"
 				|| TellMe.eingeloggterBenutzer.getUser().getNachname() == "undefined") {
@@ -173,7 +173,7 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 		vP.add(subtext);
 		vP.add(profilPanel);
 		vP.add(ButtonPanel);
-		RootPanel.get("content").add(vP);
+		RootPanel.get("content_left").add(vP);
 
 
 		/**
@@ -207,7 +207,7 @@ public class NutzerBearbeitenEditor extends VerticalPanel {
 
 			}
 		});
-		/*
+		/**
 		 * Der ClickHandler für den Profil-löschen Button. Es wird die Methode
 		 * nutzerLoeschen ausgeführt.
 		 */

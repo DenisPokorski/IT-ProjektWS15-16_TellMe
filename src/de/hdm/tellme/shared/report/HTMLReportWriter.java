@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Vector;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
+
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTML;
@@ -452,7 +454,15 @@ public class HTMLReportWriter {
 	 * Im Report 4 werden alle Nachrichten dargestellt. Deshalb gibt es die
 	 * Spalten Autor, Nachricht, Teilnehmer der Unterhaltung, Erstellungsdatum,
 	 * Hashtags und Sichtbarkeit. In den jeweiligen Spalten werden die
-	 * Ergebnisse der Unterhaltung hinzugefügt.
+	 * Ergebnisse der Unterhaltung hinzugefügt. Zuerst wird mithilfe einer
+	 * foreach-Schleife die Unterhaltungen durchgegangen. In dieser wird eine
+	 * weitere foreach-Schleife benutzt, um die Nachrichtenliste in dieser
+	 * Unterhaltung durchzugehen. Dann wird eine weitere foreach-Schleife
+	 * benutzt, um die Teilnehmer aus der Vectorliste vom Typ Nutzer, die in dem
+	 * Unterhaltungsobjekt gespeichert ist, durchzugehen. In den
+	 * Nachrichtenobjekten sind ebenfalls die dazugehörigen Hashtaglisten
+	 * gespeichert und es wird ebenfalls eine foreach-Schleife benutzt, um an
+	 * diese zu gelangen.
 	 * 
 	 * @param result
 	 *            , die gesuchten Unterhaltungen
