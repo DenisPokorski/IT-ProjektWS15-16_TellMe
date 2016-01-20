@@ -2,6 +2,7 @@ package de.hdm.tellme.client.gui.report;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -25,7 +26,7 @@ import de.hdm.tellme.shared.bo.Nutzer;
  */
 public class ReportFormular8 {
 	
-	private Hashtag hashtag = null;
+	private static Hashtag hashtag = null;
 	private Button report8GenerierenButton = new Button("Report 8 erstellen");
 
 	/**
@@ -81,7 +82,7 @@ public class ReportFormular8 {
 	 * @param ZellenObjekt
 	 */
 	public void report8Generieren(HashtagZelle.ZellenObjekt ZellenObjekt) {
-		this.hashtag = ZellenObjekt.hashtag;
+		ReportFormular8.hashtag = ZellenObjekt.hashtag;
 
 	}
 

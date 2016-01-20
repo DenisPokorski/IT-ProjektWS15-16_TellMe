@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -138,8 +139,8 @@ public class HTMLReportWriter {
 						+ nachricht.getText() + "</td>");
 				buffer.append("<td>");
 				for (Nutzer nutzer : unterhaltung.getTeilnehmer()) {
-						buffer.append("" + nutzer.getVorname() + " "
-								+ nutzer.getNachname() + "<br />");
+					buffer.append("" + nutzer.getVorname() + " "
+							+ nutzer.getNachname() + "<br />");
 
 				}
 				buffer.append("</td><td>"
@@ -229,8 +230,8 @@ public class HTMLReportWriter {
 						+ nachricht.getText() + "</td>");
 				buffer.append("<td>");
 				for (Nutzer nutzer : unterhaltung.getTeilnehmer()) {
-						buffer.append("" + nutzer.getVorname() + " "
-								+ nutzer.getNachname() + "<br />");
+					buffer.append("" + nutzer.getVorname() + " "
+							+ nutzer.getNachname() + "<br />");
 
 				}
 				buffer.append("</td><td>"
@@ -350,8 +351,8 @@ public class HTMLReportWriter {
 						+ nachricht.getText() + "</td>");
 				buffer.append("<td>");
 				for (Nutzer nutzer : unterhaltung.getTeilnehmer()) {
-						buffer.append("" + nutzer.getVorname() + " "
-								+ nutzer.getNachname() + "<br />");
+					buffer.append("" + nutzer.getVorname() + " "
+							+ nutzer.getNachname() + "<br />");
 
 				}
 				buffer.append("</td><td>"
@@ -470,8 +471,8 @@ public class HTMLReportWriter {
 						+ nachricht.getText() + "</td>");
 				buffer.append("<td>");
 				for (Nutzer nutzer : unterhaltung.getTeilnehmer()) {
-						buffer.append("" + nutzer.getVorname() + " "
-								+ nutzer.getNachname() + "<br />");
+					buffer.append("" + nutzer.getVorname() + " "
+							+ nutzer.getNachname() + "<br />");
 
 				}
 				buffer.append("</td><td>"
@@ -552,7 +553,8 @@ public class HTMLReportWriter {
 
 		RootPanel.get("content_right").clear();
 		Label ueberrschrift1 = new Label("Reportgenerator 5: ");
-		Label subtext = new Label("Ausgabe aller Nutzer, die der ausgewählte Nutzer abonniert hat.");
+		Label subtext = new Label(
+				"Ausgabe aller Nutzer, die der ausgewählte Nutzer abonniert hat.");
 		ueberrschrift1.setStylePrimaryName("ueberschrift_report");
 		subtext.setStylePrimaryName("subtext_report");
 
@@ -823,8 +825,8 @@ public class HTMLReportWriter {
 	/**
 	 * Im Report 7 werden alle Nutzer dargestellt, die den ausgwählten Nutzer
 	 * abonniert haben. Deshalb hat die Ergebnistabelle 2 Spalten. In der ersten
-	 * Spalte steht der Nutzer der den ausgewählten Nutzer abonniert hat. In
-	 * der zweiten Spalte steht das Erstellungsdatum des Abonnements.
+	 * Spalte steht der Nutzer der den ausgewählten Nutzer abonniert hat. In der
+	 * zweiten Spalte steht das Erstellungsdatum des Abonnements.
 	 * 
 	 * @param result
 	 *            ,Vektor mit Nutzer-Objekten
@@ -853,6 +855,7 @@ public class HTMLReportWriter {
 		}
 
 	}
+
 	/*
 	 * ***************************************************************************
 	 * ABSCHNITT, Ende: Report 7 *****************************************
@@ -881,7 +884,6 @@ public class HTMLReportWriter {
 	 *            , das übergebene NutzerObjekt
 	 */
 	public void generateReport8(Vector<Nutzer> result, Hashtag h) {
-
 		RootPanel.get("content_right").clear();
 		Label ueberrschrift1 = new Label("Reportgenerator 8: ");
 		Label subtext = new Label(
@@ -912,8 +914,8 @@ public class HTMLReportWriter {
 	 *            , das Nutzer-Objekt, dass den Autor darstellt.
 	 */
 	public void erstelleKopfDatenReport8(Hashtag h) {
-		String ausgewaehltesHashtag = "gewähltes Hashtag:<div></div>" + h.getSchlagwort()
-				;
+		String ausgewaehltesHashtag = "gewähltes Hashtag:<div></div>"
+				+ h.getSchlagwort();
 		Date currentTime = new Date(System.currentTimeMillis());
 
 		HTML Erstellungsdatum = new HTML(""
@@ -935,8 +937,8 @@ public class HTMLReportWriter {
 	/**
 	 * Im Report 7 werden alle Nutzer dargestellt, die den ausgwählten Nutzer
 	 * abonniert haben. Deshalb hat die Ergebnistabelle 2 Spalten. In der ersten
-	 * Spalte steht der Nutzer der den ausgewählten Nutzer abonniert hat. In
-	 * der zweiten Spalte steht das Erstellungsdatum des Abonnements.
+	 * Spalte steht der Nutzer der den ausgewählten Nutzer abonniert hat. In der
+	 * zweiten Spalte steht das Erstellungsdatum des Abonnements.
 	 * 
 	 * @param result
 	 *            ,Vektor mit Nutzer-Objekten

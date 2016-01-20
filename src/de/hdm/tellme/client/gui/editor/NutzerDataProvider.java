@@ -183,7 +183,7 @@ public class NutzerDataProvider {
 
 	public void report3Generieren(Nutzer n) {
 		final Nutzer b = n;
-		_reportAsyncObj.alleUnterhaltungenFuerAutor(n.getId(),
+		_reportAsyncObj.alleUnterhaltungenFuerAutor(b.getId(),
 				new AsyncCallback<Vector<Unterhaltung>>() {
 
 					@Override
@@ -207,7 +207,7 @@ public class NutzerDataProvider {
 	public void report7Generieren(Nutzer n) {
 		final Nutzer b = n;
 
-		_reportAsyncObj.report7Generieren(n.getId(),
+		_reportAsyncObj.report7Generieren(b.getId(),
 				new AsyncCallback<Vector<Nutzer>>() {
 
 					@Override
@@ -217,6 +217,7 @@ public class NutzerDataProvider {
 
 					@Override
 					public void onSuccess(Vector<Nutzer> result) {
+						Window.alert(""+result.size());
 						HTMLReportWriter hRW = new HTMLReportWriter();
 
 						hRW.generateReport7(result, b);
@@ -227,7 +228,7 @@ public class NutzerDataProvider {
 
 	public void report6Generieren(Nutzer n) {
 		final Nutzer b = n;
-		_reportAsyncObj.report6Generieren(n.getId(),
+		_reportAsyncObj.report6Generieren(b.getId(),
 				new AsyncCallback<Vector<Hashtag>>() {
 
 					@Override
@@ -249,7 +250,7 @@ public class NutzerDataProvider {
 
 	public void report5Generieren(Nutzer n) {
 		final Nutzer b = n;
-		_reportAsyncObj.report5GenerierenListe(n.getId(),
+		_reportAsyncObj.report5GenerierenListe(b.getId(),
 				new AsyncCallback<Vector<Nutzer>>() {
 
 					@Override

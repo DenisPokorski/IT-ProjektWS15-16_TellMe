@@ -8,7 +8,7 @@ import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.HashtagCellList;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
 
-public class Report8Gui extends VerticalPanel{
+public class Report8Gui extends VerticalPanel {
 
 	HTML subline = new HTML("<div class='" + "subline_report"
 			+ "'><b>Bitte wählen Sie ein Hashtag aus: </b></div>");
@@ -34,10 +34,12 @@ public class Report8Gui extends VerticalPanel{
 
 		vP.add(headline);
 		vP.add(subtext);
-
+		
 		RootPanel.get("content_right").add(vP);
-		RootPanel.get("content_left").add(
-				new HashtagCellList().generiereCellList(CellListModus.Report8_AlleNutzerDieDemAusgewaehltenHashtagFolgen));
+		RootPanel
+				.get("content_left")
+				.add(new HashtagCellList()
+						.generiereCellList(CellListModus.Report8_AlleNutzerDieDemAusgewaehltenHashtagFolgen));
 
 	}
 

@@ -21,7 +21,7 @@ import de.hdm.tellme.shared.bo.Nutzer;
  *
  */
 public class ReportFormular7 extends Composite {
-	private Nutzer nutzer = null;
+	private static Nutzer nutzer = null;
 	private Button report7GenerierenButton = new Button("Report 7 erstellen");
 
 	/**
@@ -76,8 +76,8 @@ public class ReportFormular7 extends Composite {
 	 * 
 	 * @param ZellenObjekt
 	 */
-	public void report6Generieren(NutzerZelle.ZellenObjekt ZellenObjekt) {
-		this.nutzer = ZellenObjekt.nutzer;
+	public void report7Generieren(NutzerZelle.ZellenObjekt ZellenObjekt) {
+		ReportFormular7.nutzer = ZellenObjekt.nutzer;
 
 	}
 

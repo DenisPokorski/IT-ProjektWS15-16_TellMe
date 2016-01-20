@@ -312,8 +312,7 @@ public class HashtagDataProvider {
 	
 	public void report8Generieren( Hashtag n){
 		final Hashtag b = n;
-		
-		_reportAsyncObj.report8Generieren(n.getId(), new AsyncCallback<Vector<Nutzer>>() {
+		_reportAsyncObj.report8Generieren(b.getId(), new AsyncCallback<Vector<Nutzer>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -322,7 +321,6 @@ public class HashtagDataProvider {
 
 			@Override
 			public void onSuccess(Vector<Nutzer> result) {
-				
 				HTMLReportWriter hRW = new HTMLReportWriter();
 
 				hRW.generateReport8(result, b);		

@@ -271,7 +271,7 @@ public class MenuBarEditor extends HorizontalPanel {
 		tempReports.addItem("Report 7", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(new Report6Gui());
+				setzeInhalt(new Report7Gui());
 
 			}
 		});
@@ -279,7 +279,7 @@ public class MenuBarEditor extends HorizontalPanel {
 		tempReports.addItem("Report 8", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(new Report6Gui());
+				setzeInhalt(new Report8Gui());
 
 			}
 		});

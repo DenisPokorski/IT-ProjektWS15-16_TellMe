@@ -46,7 +46,6 @@ public class Report1Gui extends VerticalPanel {
 
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift1 = new Label("Report1: Nachrichten abfragen");
-	HTML subSchrift1 = new HTML("<div class='" + "subline_report" + "'><b>Bitte wählen Sie einen Nutzer aus:</b></div>");
 	HTML subSchrift2 = new HTML("<div class='" + "subline_report" + "'><b>Bitte wählen Sie den Zeitraum aus:</b></div>");
 
 	private HorizontalPanel reportPanel1 = new HorizontalPanel();
@@ -135,8 +134,8 @@ public class Report1Gui extends VerticalPanel {
 
 			@Override
 			public void onClick(ClickEvent event) {
-			if(vonDateBox.getValue() == null || bisDateBox.getValue() == null) {
-				Window.alert("Bitte beide Datumfelder befüllen");
+			if(vonDateBox.getValue() == null || bisDateBox.getValue() == null || nutzer == null) {
+				Window.alert("Bitte beide Datumfelder befüllen und Nutzer auswählen");
 			} else {
 				RootPanel.get("content_left").clear();
 				RootPanel.get("content_right").clear();

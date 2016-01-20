@@ -6,9 +6,11 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 
+import de.hdm.tellme.client.gui.report.ReportFormular8;
 import de.hdm.tellme.shared.bo.Hashtag;
 
 /**
@@ -119,6 +121,13 @@ public class HashtagCellList {
 		case Report8_AlleNutzerDieDemAusgewaehltenHashtagFolgen:
 			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 				public void onSelectionChange(SelectionChangeEvent event) {
+					VerticalPanel vP = new VerticalPanel();
+					ReportFormular8 rF = new ReportFormular8();
+					rF.report8Generieren(selectionModel.getSelectedObject());
+					vP.add(rF.gibFormular());
+					RootPanel.get("content_right").clear();
+					RootPanel.get("content_right").add(vP);
+					
 					
 					
 				}

@@ -36,7 +36,6 @@ public class Report5Gui  extends VerticalPanel {
 	 * Selektionsverhalten im System zu verwenden.
 	 */
 	
-	private Button report5Generieren = new Button("Report 5 generieren");
 	private VerticalPanel vP =  new VerticalPanel(); 
  	
 	/**
@@ -49,7 +48,6 @@ public class Report5Gui  extends VerticalPanel {
 
  		final HTML headline = new HTML(" <div class='" + "subline"+ "'><h2>Reportgenerator 5: Alle Nachrichten je Nutzer anzeigen</h2></div> ");
  		final HTML subtext = new HTML(" <div class='"+ "subtext"+ "'><h4> Der Report 5 gibt alle Nutzerabonnements aus </h4></div> ");
- 		report5Generieren.setStylePrimaryName("neueNchrichtBtn");
 
 		vP.add(headline);
 		vP.add(subtext);

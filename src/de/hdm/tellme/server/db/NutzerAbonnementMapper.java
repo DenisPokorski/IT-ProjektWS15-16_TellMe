@@ -57,7 +57,7 @@ public class NutzerAbonnementMapper {
 	 * 
 	 * @param nutzer
 	 * @return Ein Vektor mit Nutzer-Objekten, dass alle abonnierten Nutzer
-	 *         eines Nutzers anzeigt. 
+	 *         eines Nutzers anzeigt.
 	 */
 
 	public Vector<Nutzer> ladeAbonnierendeNutzerListe(int nutzer) {
@@ -172,6 +172,35 @@ public class NutzerAbonnementMapper {
 			e.printStackTrace();
 		}
 		return abonnierteNutzerIds;
+	}
+
+	public Vector<Nutzer> followerEinesNutzers(int nutzerId) {
+		Vector<Nutzer> followerEinesNutzersListe = new Vector<Nutzer>();
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			String sqlquery = "SELECT * FROM AbonnentBenutzer JOIN Nutzer ON VonId = Nutzer.Id WHERE NachId = '"
+					+ nutzerId
+					+ "' AND Nutzer.Status = '"
+					+ eStatus.aktiv.ordinal()
+					+ "' ORDER BY AbonnentBenutzer.ErstellungsDatum DESC;";
+			ResultSet rs = state.executeQuery(sqlquery);
+			while (rs.next()) {
+				Nutzer n = new Nutzer();
+				n.setId(rs.getInt("Nutzer.Id"));
+				n.setVorname(rs.getString("Nutzer.Vorname"));
+				n.setNachname(rs.getString("Nutzer.Nachname"));
+				n.setMailadresse(rs.getString("Nutzer.Mailadresse"));
+				n.setErstellungsDatum(rs
+						.getTimestamp("AbonnentBenutzer.ErstellungsDatum"));
+				followerEinesNutzersListe.add(n);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return followerEinesNutzersListe;
+
 	}
 
 }

@@ -66,12 +66,12 @@ public class NutzerMapper {
 
 			PreparedStatement prepState = con
 					.prepareStatement(
-							"INSERT INTO Nutzer (Vorname, Nachname, Mailadresse, Status) VALUES (?,?,?,?) ;",
+							"INSERT INTO Nutzer (Vorname, Nachname, Mailadresse, Status, ErstellungsDatum) VALUES (?,?,?,?,'"+DateHelperClass.getCurrentTime()+"') ;",
 							Statement.RETURN_GENERATED_KEYS);
 			prepState.setString(1, n.getVorname());
 			prepState.setString(2, n.getNachname());
 			prepState.setString(3, n.getMailadresse());
-			prepState.setInt(4, 1);
+			prepState.setInt(4, eStatus.aktiv.ordinal());
 			prepState.executeUpdate();
 			ResultSet rs = prepState.getGeneratedKeys();
 			if (rs.next()) {

@@ -3,7 +3,6 @@ package de.hdm.tellme.server.db;
 import java.sql.Timestamp;
 import java.util.Date;
 
-//Klasse zum Erstellen des heutigen Datums
 /**
  * Diese Klasse wird benötigt um das heutige Datum zu erstellen
  * 

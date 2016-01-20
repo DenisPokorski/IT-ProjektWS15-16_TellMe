@@ -225,13 +225,13 @@ public class NachrichtMapper {
 					.executeQuery(("SELECT * FROM Nachricht JOIN Nutzer ON Nachricht.AutorId = Nutzer.Id WHERE Nutzer.Status = '"
 							+ eStatus.aktiv.ordinal()
 							+ "'AND AutorId = '"
-							+ meineId + "' AND Sichtbarkeit = 1 ORDER BY ErstellungsDatum DESC;"));
+							+ meineId + "' AND Sichtbarkeit = 1 ORDER BY Nachricht.ErstellungsDatum DESC;"));
 			while (rs.next()) {
 				Nachricht nA = new Nachricht();
 				nA.setId(rs.getInt("Id"));
 				nA.setText(rs.getString("Text"));
 				nA.setSenderId(rs.getInt("AutorId"));
-				nA.setErstellungsDatum(rs.getTimestamp("Erstellungsdatum"));
+				nA.setErstellungsDatum(rs.getTimestamp("Nachricht.Erstellungsdatum"));
 				nA.setSichtbarkeit(1);
 				meineNachrichten.add(nA);
 			}

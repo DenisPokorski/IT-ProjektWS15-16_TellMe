@@ -1,7 +1,6 @@
 package de.hdm.tellme.server;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -155,7 +154,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 
 		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;
 	}
-	
+
 	@Override
 	public Vector<Unterhaltung> alleUnterhaltungenMitZeitraum(
 			Timestamp vonDate, Timestamp bisDate) {
@@ -204,6 +203,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 
 		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;
 	}
+
 	@Override
 	public Vector<Unterhaltung> alleUnterhaltungen() {
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungen = new Vector<Unterhaltung>();
@@ -215,7 +215,8 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 		for (Unterhaltung unterhaltung : alleSichtbarenUnterhaltungen) {
 
 			// Nachrichten
-			Vector<Nachricht> alleNachrichten = ladeAlleNachrichtenZuUnterhaltung(unterhaltung.getId());
+			Vector<Nachricht> alleNachrichten = ladeAlleNachrichtenZuUnterhaltung(unterhaltung
+					.getId());
 			unterhaltung.setAlleNachrichten(alleNachrichten);
 
 			// fuege nur Unterhaltungen mit mind. 1 Nachricht hinzu.
@@ -334,15 +335,18 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public Vector<Nutzer> report7Generieren(int i) {
-		// TODO Auto-generated method stub
-		return null;
+	public Vector<Nutzer> report8Generieren(int i) {
+		Vector<Nutzer> alleFollowerEinesHashtagsListe = new Vector<Nutzer>();
+		alleFollowerEinesHashtagsListe = hashtagAboMapper
+				.alleFollowerEinesHashtags(i);
+		return alleFollowerEinesHashtagsListe;
 	}
 
 	@Override
-	public Vector<Nutzer> report8Generieren(int i) {
-		// TODO Auto-generated method stub
-		return null;
+	public Vector<Nutzer> report7Generieren(int i) {
+		Vector<Nutzer> alleFollowerEinesNutzersListe = new Vector<Nutzer>();
+		alleFollowerEinesNutzersListe = nutzeraboMapper.followerEinesNutzers(i);
+		return alleFollowerEinesNutzersListe;
 	}
 
 }

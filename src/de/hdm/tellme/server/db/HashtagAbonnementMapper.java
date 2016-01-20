@@ -7,6 +7,8 @@ import java.util.Vector;
 
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.HashtagAbonnement;
+import de.hdm.tellme.shared.bo.Nutzer;
+import de.hdm.tellme.shared.bo.Nutzer.eStatus;
 
 /**
  * Mapper-Klasse, die HashtagAbonnement-Objekte in der relationalen Datenbank
@@ -104,8 +106,6 @@ public class HashtagAbonnementMapper {
 		}
 	}
 
-
-
 	/**
 	 * Dieser Mapper wird genutzt, um ein Hashtag-Abonnement in die Datenbank zu
 	 * schreiben. Hierfür werden sowohl die NutzerId, als auch die HashtagId
@@ -187,7 +187,7 @@ public class HashtagAbonnementMapper {
 
 	/**
 	 * Dieser Mapper soll alle bereits abonnierten Hashtags vom angemeldeten
-	 * Nutzer anzeigen. 
+	 * Nutzer anzeigen.
 	 * 
 	 * @param nutzerId
 	 * @return Ein Vektor mit Integer-Objekten, dass die HashtagId's beinhaltet,
@@ -273,4 +273,31 @@ public class HashtagAbonnementMapper {
 		}
 		return hashtagIds;
 	}
+
+	public Vector<Nutzer> alleFollowerEinesHashtags(int hashtagId) {
+		Vector<Nutzer> alleFollowerListe = new Vector<Nutzer>();
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			ResultSet rs = state
+					.executeQuery("SELECT * FROM NutzerHashtag JOIN Nutzer ON NutzerId = Nutzer.Id WHERE HashtagId = '"
+							+ hashtagId
+							+ "' AND Nutzer.Status = '"
+							+ eStatus.aktiv.ordinal() + "' AND ORDER BY Nutzer.ErstellungsDatum DESC");
+			while (rs.next()) {
+				Nutzer n = new Nutzer();
+				n.setId(rs.getInt("NutzerId"));
+				n.setVorname(rs.getString("Nutzer.Vorname"));
+				n.setNachname(rs.getString("Nutzer.Nachname"));
+				n.setMailadresse(rs.getString("Nutzer.Mailadresse"));
+				n.setErstellungsDatum(rs
+						.getTimestamp("NutzerHashtag.ErstellungsDatum"));
+				alleFollowerListe.add(n);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return alleFollowerListe;
+	}
+
 }
