@@ -109,7 +109,7 @@ public class HashtagCellList {
 					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
 							
-							HashtagVerwaltungFomular nvf = new HashtagVerwaltungFomular();
+							HashtagVerwaltungFormular nvf = new HashtagVerwaltungFormular();
 							nvf.setzeHashtag(selectionModel.getSelectedObject());
 							RootPanel.get("content_right").clear();
 							RootPanel.get("content_right").add(new HashtagFormular().gibBeschreibungHtVerwaltung());

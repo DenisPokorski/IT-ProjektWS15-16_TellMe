@@ -33,9 +33,19 @@ import de.hdm.tellme.shared.bo.Hashtag;
 /**
  * A form used for editing contacts.
  */
-
-public class HashtagVerwaltungFomular extends Composite {
-
+/**
+ * Die Klasse <class>HashtagVerwaltungFormular</class> wird verwendet, falls ein
+ * Hashtag in der HashtagCellList aufgerufen wird und man sich im Modus
+ * <code>HashtagVerwaltung</code> befindet.
+ * 
+ * @author Alex
+ *
+ */
+public class HashtagVerwaltungFormular extends Composite {
+	/**
+	 * Ein leeres Hashtag-Objekt und sowohl die benötigten Buttons, als auch die
+	 * TextBox die benötigt wird um ein Hashtag zu editieren wird erstellt.
+	 */
 	private Hashtag hashtag = null;
 	Button htSpeichern = new Button("Hashtag speichern");
 	Button htLoeschen = new Button("Hashtag löschen");
@@ -43,11 +53,16 @@ public class HashtagVerwaltungFomular extends Composite {
 	Button btnAbonieren = new Button("Abonnement hinzufügen");
 	Button btnDeabonieren = new Button("Abonnement löschen");
 	TextBox schlagwortBox = new TextBox();
+	/**
+	 * Ein Vektor mit Hashtag-Objekten wird erstellt.
+	 */
 	Vector<Hashtag> htl;
 
-	public HashtagVerwaltungFomular() {
+	public HashtagVerwaltungFormular() {
 
-		// Handle events.
+		/**
+		 * ClickHandler um ein Hashtag zu speichern.
+		 */
 		htSpeichern.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				htl = HashtagDataProvider.gebeHashtagListe();
@@ -63,7 +78,9 @@ public class HashtagVerwaltungFomular extends Composite {
 			}
 		});
 
-		// Handle events.
+		/**
+		 * ClickHandler um ein Hashtag zu löschen.
+		 */
 		htLoeschen.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				HashtagDataProvider.gib().hashtagEntfernen(hashtag);
@@ -71,7 +88,9 @@ public class HashtagVerwaltungFomular extends Composite {
 			}
 		});
 
-		// Handle events.
+		/**
+		 * ClickHandler um ein neues Hashtag anzulegen.
+		 */
 		htAnlegen.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				htl = HashtagDataProvider.gebeHashtagListe();
@@ -83,7 +102,8 @@ public class HashtagVerwaltungFomular extends Composite {
 					boolean existiertBereits = false;
 
 					for (Hashtag hashtag : htl) {
-						if (schlagwortBox.getValue().toUpperCase().equals(hashtag.getSchlagwort().toUpperCase())) {
+						if (schlagwortBox.getValue().toUpperCase()
+								.equals(hashtag.getSchlagwort().toUpperCase())) {
 							existiertBereits = true;
 						}
 					}
@@ -101,7 +121,15 @@ public class HashtagVerwaltungFomular extends Composite {
 		});
 	}
 
-	// Panel Rückgabe
+	/**
+	 * Die Methode <code>gibFormular</code> gibt ein VerticalPanel zurück, das
+	 * die TextBox mit einem ausgewählten Hashtag beinhaltet, außerdem werden
+	 * die Buttons um ein Hashtag zu speichern, löschen der neu anzulegen an das
+	 * VerticalPanel angehängt.
+	 * 
+	 * @return VerticalPanel, das die Elemente beinhaltet, die nötig sind um ein
+	 *         Hashtag zu verwalten.
+	 */
 	public VerticalPanel gibFormular() {
 
 		VerticalPanel vpForm = new VerticalPanel();
@@ -124,16 +152,31 @@ public class HashtagVerwaltungFomular extends Composite {
 		return vpForm;
 	}
 
+	/**
+	 * Die Methode <code>gibInfoFormular</code> gibt ein VerticalPanel zurück,
+	 * das die Informationen für den Nutzer enthält, die er benötigt um ein
+	 * Hashtagabonnement hinzuzufügen oder zu löschen.
+	 * 
+	 * @return VerticalPanel, das Informationen darüber beinhaltet, wie ein
+	 *         Hashtag abonniert oder ein Hashtagabonnement gelöscht werden
+	 *         kann.
+	 */
 	public VerticalPanel gibInfoFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
 
 		vpForm.clear();
-		vpForm.add(new HTML("Hier kannst du ein <b>Hashtagabonnement</b> erstellen oder löschen. </br>"
-				+ "Wähle dazu das gewünschte Hashtag aus und drücke dann den Button zum <b>abonnieren</b> oder zum <b>deabonnieren</b>."));
+		vpForm.add(new HTML(
+				"Hier kannst du ein <b>Hashtagabonnement</b> erstellen oder löschen. </br>"
+						+ "Wähle dazu das gewünschte Hashtag aus und drücke dann den Button zum <b>abonnieren</b> oder zum <b>deabonnieren</b>."));
 		return vpForm;
 	}
 
-	// Setze Buttons
+	/**
+	 * In der Methode <code>setzeHashtag</code> wird das veränderte oder neue
+	 * Hashtag in der HashtagCellLost dargestellt.
+	 * 
+	 * @param ZellenObjekt
+	 */
 	public void setzeHashtag(HashtagZelle.ZellenObjekt ZellenObjekt) {
 		this.hashtag = ZellenObjekt.hashtag;
 

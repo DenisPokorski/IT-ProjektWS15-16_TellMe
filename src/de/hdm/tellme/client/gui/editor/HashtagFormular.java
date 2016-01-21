@@ -32,15 +32,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import de.hdm.tellme.shared.bo.Hashtag;
 
 /**
- * Die Klasse <class>NutzerFormular</class> wird aufgerufen, wenn in der
- * Nutzerabonnementverwaltung auf einen Nutzer geklickt wird. Bei Klick auf
- * einen Nutzer wird dieses Formular geladen. Es wird eine Beschreibung für
- * Nutzerabonnements dargestellt. Außerdem erscheinen Buttons um ein Abonnement
- * hinzuzufügen oder zu löschen. Bei Klick auf die jeweiligen Buttons wird ein
- * Nutzerabonnement hinzugefügt oder gelöscht.
- */
-
-/**
  * Die Klasse <class>HashtagFormular</class> wird aufgerufen, wenn ein Objekt
  * der HashtagCellList angeklickt wird. Bei einem Klick auf das Hashtag wird das
  * angeforderte Formular geladen. Durch die unterschiedlichen Methoden, werden
