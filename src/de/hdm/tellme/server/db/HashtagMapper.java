@@ -287,4 +287,35 @@ public class HashtagMapper {
 
 		return alleHashtags;
 	}
+
+	public Vector<Nachricht> gibAlleDummyNachrichtenMitDummyHashtags() {
+		Vector<Nachricht> alleDummyNachrichten = new Vector<Nachricht>();
+
+		Connection con = DatenbankVerbindung.connection();
+		try {
+			Statement state = con.createStatement();
+			ResultSet rs = state
+					.executeQuery("SELECT * FROM NachrichtHashtag;");
+
+			while (rs.next()) {
+				Nachricht n = new Nachricht();
+				n.setId(rs.getInt("NachrichtId"));
+				
+				Vector<Hashtag> hV = new Vector<Hashtag>();
+				
+				Hashtag h = new Hashtag();
+				h.setId(rs.getInt("HashtagId"));
+				
+				hV.add(h);
+
+				n.setVerknuepfteHashtags(hV);
+				alleDummyNachrichten.add(n);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return alleDummyNachrichten;
+	}
 }

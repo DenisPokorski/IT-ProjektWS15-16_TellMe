@@ -96,8 +96,7 @@ import de.hdm.tellme.shared.bo.Unterhaltung.eUnterhaltungsTyp;
  * @author Thies, Alex Homann, Denis Pokorski
  */
 @SuppressWarnings("serial")
-public class EditorServiceImpl extends RemoteServiceServlet implements
-		EditorService {
+public class EditorServiceImpl extends RemoteServiceServlet implements EditorService {
 
 	// ################### MAPPER #####################
 
@@ -191,8 +190,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		this.nutzeraboMapper = NutzerAbonnementMapper.nutzerAbonnementMapper();
 		this.nachrichtMapper = NachrichtMapper.nachrichtMapper();
 		this.unterhaltungMapper = UnterhaltungMapper.unterhaltungMapper();
-		this.hashtagAboMapper = HashtagAbonnementMapper
-				.hashtagAbonnementMapper();
+		this.hashtagAboMapper = HashtagAbonnementMapper.hashtagAbonnementMapper();
 		this.hashtagMapper = HashtagMapper.hashtagMapper();
 
 	}
@@ -359,8 +357,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public Vector<Integer> holeAlleAbonniertenNutzer(int meineId) {
-		Vector<Integer> alleAbonniertenNutzer = nutzerMapper
-				.alleAbonniertenNutzer(meineId);
+		Vector<Integer> alleAbonniertenNutzer = nutzerMapper.alleAbonniertenNutzer(meineId);
 
 		return alleAbonniertenNutzer;
 	}
@@ -451,10 +448,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 *         zurückgegeben
 	 */
 	@Override
-	public Vector<Integer> getAlleAbonniertenHashtagsfuerAbonehmer(
-			int aboNehmerId) {
-		Vector<Integer> alleAbboniertenNutzer = hashtagAboMapper
-				.ladeAbonnierteHashtagListe(aboNehmerId);
+	public Vector<Integer> getAlleAbonniertenHashtagsfuerAbonehmer(int aboNehmerId) {
+		Vector<Integer> alleAbboniertenNutzer = hashtagAboMapper.ladeAbonnierteHashtagListe(aboNehmerId);
 		return alleAbboniertenNutzer;
 	}
 
@@ -481,8 +476,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public Vector<Hashtag> getAbonnierteHashtags(int aboNehmerID) {
-		Vector<Hashtag> alleHashtags = hashtagAboMapper
-				.alleHashtagsEinesNutzers(aboNehmerID);
+		Vector<Hashtag> alleHashtags = hashtagAboMapper.alleHashtagsEinesNutzers(aboNehmerID);
 		return alleHashtags;
 	}
 
@@ -537,16 +531,13 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 *         zurückgegeben
 	 */
 	@Override
-	public Vector<Nachricht> ladeAlleNachrichtenZuUnterhaltung(
-			int UnterhaltungsID) {
-		Vector<Nachricht> alleNachrichten = nachrichtMapper
-				.gibAlleNachrichtenVonUnterhaltung(UnterhaltungsID);
+	public Vector<Nachricht> ladeAlleNachrichtenZuUnterhaltung(int UnterhaltungsID) {
+		Vector<Nachricht> alleNachrichten = nachrichtMapper.gibAlleNachrichtenVonUnterhaltung(UnterhaltungsID);
 
 		// lade zu jeder Nachricht den Sender und die Hashtags
 		if (alleNachrichten.size() > 0) {
 			for (Nachricht nachricht : alleNachrichten) {
-				Vector<Hashtag> alleHashtagsZuNachricht = hashtagMapper
-						.alleHashtagsZuNachrichtenID(nachricht.getId());
+				Vector<Hashtag> alleHashtagsZuNachricht = hashtagMapper.alleHashtagsZuNachrichtenID(nachricht.getId());
 				nachricht.setVerknuepfteHashtags(alleHashtagsZuNachricht);
 
 				Nutzer sender = null;
@@ -569,13 +560,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 *         abonnierten Hashtags zurück
 	 */
 	@Override
-	public Vector<Unterhaltung> alleUnterhaltungenVonAbonniertemHashtagUeberNutzerId(
-			int nutzerId) {
+	public Vector<Unterhaltung> alleUnterhaltungenVonAbonniertemHashtagUeberNutzerId(int nutzerId) {
 		Vector<Unterhaltung> alleOeffentlichenUnterhaltungenAbonnierterHashtags = new Vector<Unterhaltung>();
 
 		// Lade alle abonierten HashtagIDs
-		Vector<Integer> abonierteHashtagIDs = hashtagAboMapper
-				.selektiereAlleHashtagsNachAbonehmer(nutzerId);
+		Vector<Integer> abonierteHashtagIDs = hashtagAboMapper.selektiereAlleHashtagsNachAbonehmer(nutzerId);
 		Vector<Integer> alleNachrichtenIDsMiteinemAboniertemHashtag = new Vector<Integer>();
 
 		for (Integer abonierteHashtagID : abonierteHashtagIDs) {
@@ -584,8 +573,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 			Vector<Nachricht> NachrichtenMitAboniertemHashtag = new Vector<Nachricht>();
 
 			// Lade alle Nachrichten zu dem abonierten Hashtag
-			NachrichtenMitAboniertemHashtag = nachrichtMapper
-					.gibNachrichtenVonHashtagId(abonierteHashtagID);
+			NachrichtenMitAboniertemHashtag = nachrichtMapper.gibNachrichtenVonHashtagId(abonierteHashtagID);
 
 			for (Nachricht nachrichtMitAboniertemHashtag : NachrichtenMitAboniertemHashtag) {
 
@@ -603,20 +591,17 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 				// Wenn NachrichtenID noch nicht durch ein anderes Hashtagabo
 				// hinzugefügt wurde jetzt ID hinzufügen
 				if (bereitsInNachrichtenIDListe == false)
-					alleNachrichtenIDsMiteinemAboniertemHashtag
-							.add(nachrichtMitAboniertemHashtag.getId());
+					alleNachrichtenIDsMiteinemAboniertemHashtag.add(nachrichtMitAboniertemHashtag.getId());
 
 				// lade zu jeder Nachricht die Unterhaltung
-				Unterhaltung UnterhaltungMitAboniertemHashtag = unterhaltungMapper
-						.selektiereUnterhaltungenVonNachrichtId(nachrichtMitAboniertemHashtag);
+				Unterhaltung UnterhaltungMitAboniertemHashtag = unterhaltungMapper.selektiereUnterhaltungenVonNachrichtId(nachrichtMitAboniertemHashtag);
 
 				if (UnterhaltungMitAboniertemHashtag.getUnterhaltungstyp() == eUnterhaltungsTyp.oeffentlich) {
 					// Überprüfe ob Unterhaltung bereits in Liste ist
 					boolean bereitsInListe = false;
 
 					for (Unterhaltung unterhaltungInListe : alleOeffentlichenUnterhaltungenAbonnierterHashtags) {
-						if (unterhaltungInListe.getId() == UnterhaltungMitAboniertemHashtag
-								.getId()) {
+						if (unterhaltungInListe.getId() == UnterhaltungMitAboniertemHashtag.getId()) {
 							bereitsInListe = true;
 							continue;
 						}
@@ -627,30 +612,23 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 						// hinzugefügt, lade alle Nachrichten zu
 						// Unterhaltung
 						Vector<Nachricht> alleNachrichtenZuUnterhaltung = new Vector<Nachricht>();
-						alleNachrichtenZuUnterhaltung = ladeAlleNachrichtenZuUnterhaltung(UnterhaltungMitAboniertemHashtag
-								.getId());
+						alleNachrichtenZuUnterhaltung = ladeAlleNachrichtenZuUnterhaltung(UnterhaltungMitAboniertemHashtag.getId());
 
-						UnterhaltungMitAboniertemHashtag
-								.setAlleNachrichten(alleNachrichtenZuUnterhaltung);
+						UnterhaltungMitAboniertemHashtag.setAlleNachrichten(alleNachrichtenZuUnterhaltung);
 
 						// lade alle teilnehmer zu Unterhaltung
 						Vector<Nutzer> alleTeilnehmer = new Vector<Nutzer>();
-						Vector<Integer> alleTeilnehmerIDs = unterhaltungMapper
-								.gibTeilnehmerFuerUnterhaltung(UnterhaltungMitAboniertemHashtag
-										.getId());
+						Vector<Integer> alleTeilnehmerIDs = unterhaltungMapper.gibTeilnehmerFuerUnterhaltung(UnterhaltungMitAboniertemHashtag.getId());
 						for (Integer teilnehmerID : alleTeilnehmerIDs) {
 							alleTeilnehmer.add(getNutzerAnhandID(teilnehmerID));
 						}
 
-						UnterhaltungMitAboniertemHashtag
-								.setTeilnehmer(alleTeilnehmer);
+						UnterhaltungMitAboniertemHashtag.setTeilnehmer(alleTeilnehmer);
 
-						UnterhaltungMitAboniertemHashtag
-								.setAnzeigeHerkunft("Hashtagabonement");
+						UnterhaltungMitAboniertemHashtag.setAnzeigeHerkunft("Hashtagabonement");
 
 						// füge Unterhaltung der Liste hinzu
-						alleOeffentlichenUnterhaltungenAbonnierterHashtags
-								.add(UnterhaltungMitAboniertemHashtag);
+						alleOeffentlichenUnterhaltungenAbonnierterHashtags.add(UnterhaltungMitAboniertemHashtag);
 
 					}
 
@@ -664,8 +642,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		for (Unterhaltung unterhaltungMitAbonierterHashtagnachricht : alleOeffentlichenUnterhaltungenAbonnierterHashtags) {
 			Vector<Nachricht> alleNachrichtenDerUnterhaltunMitMindestensEinemAbonniertemHashtag = new Vector<Nachricht>();
 
-			for (Nachricht nachrichtInUnterhaltung : unterhaltungMitAbonierterHashtagnachricht
-					.getAlleNachrichten()) {
+			for (Nachricht nachrichtInUnterhaltung : unterhaltungMitAbonierterHashtagnachricht.getAlleNachrichten()) {
 				boolean nachrichtIstInListe = false;
 				for (Integer integer : alleNachrichtenIDsMiteinemAboniertemHashtag) {
 					if (nachrichtInUnterhaltung.getId() == integer) {
@@ -675,13 +652,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 				}
 
 				if (nachrichtIstInListe == true) {
-					alleNachrichtenDerUnterhaltunMitMindestensEinemAbonniertemHashtag
-							.add(nachrichtInUnterhaltung);
+					alleNachrichtenDerUnterhaltunMitMindestensEinemAbonniertemHashtag.add(nachrichtInUnterhaltung);
 				}
 			}
 
-			unterhaltungMitAbonierterHashtagnachricht
-					.setAlleNachrichten(alleNachrichtenDerUnterhaltunMitMindestensEinemAbonniertemHashtag);
+			unterhaltungMitAbonierterHashtagnachricht.setAlleNachrichten(alleNachrichtenDerUnterhaltunMitMindestensEinemAbonniertemHashtag);
 		}
 
 		return alleOeffentlichenUnterhaltungenAbonnierterHashtags;
@@ -700,8 +675,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		neueNachrichtID = nachrichtMapper.anlegen(n);
 		if (neueNachrichtID != -1) {
 			for (Hashtag hashtag : n.getVerknuepfteHashtags()) {
-				nachrichtMapper.hashtagEinerNachrichtZuordnen(hashtag.getId(),
-						neueNachrichtID);
+				nachrichtMapper.hashtagEinerNachrichtZuordnen(hashtag.getId(), neueNachrichtID);
 
 			}
 		}
@@ -758,12 +732,10 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 		if (erfolgreich) {
 			for (Hashtag hashtag : ZuLoeschendeHashtags) {
-				nachrichtMapper.hashtagZuordnungLoeschen(hashtag.getId(),
-						neu.getId());
+				nachrichtMapper.hashtagZuordnungLoeschen(hashtag.getId(), neu.getId());
 			}
 			for (Hashtag hashtag : ZuHinzuzufuegendeHashtags) {
-				nachrichtMapper.hashtagEinerNachrichtZuordnen(hashtag.getId(),
-						neu.getId());
+				nachrichtMapper.hashtagEinerNachrichtZuordnen(hashtag.getId(), neu.getId());
 			}
 
 		}
@@ -814,8 +786,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public boolean unterhaltung_loeschen(int unterhaltungsID) {
 		boolean ergebnis = false;
-		ergebnis = unterhaltungMapper
-				.loescheUnterhaltungAnhandID(unterhaltungsID);
+		ergebnis = unterhaltungMapper.loescheUnterhaltungAnhandID(unterhaltungsID);
 		return ergebnis;
 	}
 
@@ -831,8 +802,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 *         TODO ENTFERNEN?
 	 */
 	@Override
-	public Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(
-			int teilnehmerID) {
+	public Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(int teilnehmerID) {
 		// TODO: REMOVE
 		return null;
 	}
@@ -850,8 +820,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 * @return boolean zur Überprüfung
 	 */
 	@Override
-	public boolean unterhaltungStarten(Nachricht ersteNachricht,
-			Vector<Nutzer> teilnehmer) {
+	public boolean unterhaltungStarten(Nachricht ersteNachricht, Vector<Nutzer> teilnehmer) {
 		boolean erfolgreich = true;
 		int unterhaltungsID = -1;
 
@@ -864,15 +833,13 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		unterhaltungsID = unterhaltungMapper.anlegen(UnterhaltungsTyp);
 		if (unterhaltungsID != -1) {
 			for (Nutzer nutzer : teilnehmer) {
-				unterhaltungMapper.teilnehmerHinzufuegen(unterhaltungsID,
-						nutzer.getId());
+				unterhaltungMapper.teilnehmerHinzufuegen(unterhaltungsID, nutzer.getId());
 			}
 
 			int nachrichtenID = -1;
 			nachrichtenID = nachricht_erstellen(ersteNachricht);
 			if (nachrichtenID != -1) {
-				nachrichtMapper.nachrichtEinerUnterhaltungZuordnen(
-						nachrichtenID, unterhaltungsID);
+				nachrichtMapper.nachrichtEinerUnterhaltungZuordnen(nachrichtenID, unterhaltungsID);
 
 			} else {
 				erfolgreich = false;
@@ -896,18 +863,15 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 * @return boolean zur Überprüfung
 	 */
 	@Override
-	public boolean unterhaltungBeantworten(Nachricht antwortNachricht,
-			Unterhaltung unterhaltung) {
+	public boolean unterhaltungBeantworten(Nachricht antwortNachricht, Unterhaltung unterhaltung) {
 		boolean erfolgreich = true;
 
 		int nachrichtenID = -1;
 		nachrichtenID = nachricht_erstellen(antwortNachricht);
 		if (nachrichtenID != -1) {
-			if (nachrichtMapper.nachrichtEinerUnterhaltungZuordnen(
-					nachrichtenID, unterhaltung.getId())) {
+			if (nachrichtMapper.nachrichtEinerUnterhaltungZuordnen(nachrichtenID, unterhaltung.getId())) {
 				// Nachricht wurde erfolgreich zugeordnet
-				nutzerEinerUnterhaltungZuordnen(antwortNachricht.getSenderId(),
-						unterhaltung.getId());
+				nutzerEinerUnterhaltungZuordnen(antwortNachricht.getSenderId(), unterhaltung.getId());
 			}
 
 		} else {
@@ -928,8 +892,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	@Deprecated
-	public Vector<Unterhaltung> oeffentlicheUnterhaltungenAbonnierterNutzer(
-			int meineId) {
+	public Vector<Unterhaltung> oeffentlicheUnterhaltungenAbonnierterNutzer(int meineId) {
 		return null;
 	}
 
@@ -946,8 +909,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	public boolean UnterhaltungVerlassen(Unterhaltung u, int nutzerId) {
 		// TODO: letzter Telnehmer? -> Unterhaltung als inaktiv makieren
 		boolean erfolgreich = true;
-		erfolgreich = unterhaltungMapper.teilnehmerAktualisieren(u.getId(),
-				nutzerId, 0);
+		erfolgreich = unterhaltungMapper.teilnehmerAktualisieren(u.getId(), nutzerId, 0);
 		return erfolgreich;
 	}
 
@@ -958,20 +920,17 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	@Deprecated
-	public Vector<Unterhaltung> getAlleSichtbarenUnterhaltungenFuerTeilnehmerOhneNachrichten(
-			int aktiverTeilnehmerID) {
+	public Vector<Unterhaltung> getAlleSichtbarenUnterhaltungenFuerTeilnehmerOhneNachrichten(int aktiverTeilnehmerID) {
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungen = new Vector<Unterhaltung>();
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungenMitSichtbarenNachrichten = new Vector<Unterhaltung>();
 
-		alleSichtbarenUnterhaltungen = unterhaltungMapper
-				.alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(aktiverTeilnehmerID);
+		alleSichtbarenUnterhaltungen = unterhaltungMapper.alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(aktiverTeilnehmerID);
 
 		// lade Nachrichten und Teilnehmer zu Unterhaltungen
 		for (Unterhaltung unterhaltung : alleSichtbarenUnterhaltungen) {
 
 			// Nachrichten
-			Vector<Nachricht> alleNachrichten = ladeAlleNachrichtenZuUnterhaltung(unterhaltung
-					.getId());
+			Vector<Nachricht> alleNachrichten = ladeAlleNachrichtenZuUnterhaltung(unterhaltung.getId());
 			unterhaltung.setAlleNachrichten(alleNachrichten);
 
 			// fuege nur Unterhaltungen mit mind. 1 Nachricht hinzu.
@@ -979,23 +938,20 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 				boolean bereitsHinzugefuegt = false;
 				// Pruefe ob Unterhaltung bereits der Listehinzugefügt wurde
 				for (Unterhaltung unterhaltungInEntgueltigerListe : alleSichtbarenUnterhaltungenMitSichtbarenNachrichten) {
-					if (unterhaltungInEntgueltigerListe.getId() == unterhaltung
-							.getId())
+					if (unterhaltungInEntgueltigerListe.getId() == unterhaltung.getId())
 						bereitsHinzugefuegt = true;
 				}
 				// Fuege nur Unterhaltungen hinzu, die nicht bereits zur liste
 				// hinzuegfügt wurden
 				if (bereitsHinzugefuegt == false)
-					alleSichtbarenUnterhaltungenMitSichtbarenNachrichten
-							.add(unterhaltung);
+					alleSichtbarenUnterhaltungenMitSichtbarenNachrichten.add(unterhaltung);
 			} else
 				Helper.LogWarnung("getAlleSichtbarenUnterhaltungenFuerTeilnehmer - sichtbare Unterhaltung ohne Sichtbare Nachricht entdeckt. UnterhaltungsID: "
 						+ unterhaltung.getId());
 
 			// Teilnehmer
 			Vector<Nutzer> alleTeilnehmer = new Vector<Nutzer>();
-			Vector<Integer> alleTeilnehmerIDs = unterhaltungMapper
-					.gibTeilnehmerFuerUnterhaltung(unterhaltung.getId());
+			Vector<Integer> alleTeilnehmerIDs = unterhaltungMapper.gibTeilnehmerFuerUnterhaltung(unterhaltung.getId());
 			for (Integer teilnehmerID : alleTeilnehmerIDs) {
 				alleTeilnehmer.add(getNutzerAnhandID(teilnehmerID));
 			}
@@ -1008,42 +964,24 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;
 	}
 
-	Vector<Unterhaltung> alleUnterhaltungen;
-	Vector<Nachricht> alleNachrichten;
+	public Vector<Unterhaltung> getAlleUnterhaltungen() {
 
-	/**
-	 * Lade erst alle Nachrichten und Alle Unterhaltungen Erstelle Vector mit
-	 * allen Unterhaltungen in denen die Objektatribute Teilnehmer und
-	 * Nachrichten bereits befüllt sind
-	 * 
-	 * @param UserID
-	 *            - Die ID des eingeloggten Nutzer wird übergeben TODO
-	 * 
-	 * @return alleRelevantenUnterhaltungen - Ein Vektor von Unterhaltung der
-	 *         alle relevanten Unterhaltungen beinhaltet wird übergeben
-	 */
-	@Override
-	public Vector<Unterhaltung> getAlleRelevantenUnterhaltungen(int UserID) {
-		Vector<Unterhaltung> alleRelevantenUnterhaltungen = new Vector<Unterhaltung>();
-
-		Helper.LogInformation("getAlleRelevantenUnterhaltungen - Start");
+		Helper.LogInformation("getAlleUnterhaltungen - Start");
 
 		long startZeit = System.currentTimeMillis();
-		long startZeitTotal = System.currentTimeMillis();
 
 		// Lade alle Unterhaltungen und Nachrichten
-		alleUnterhaltungen = unterhaltungMapper
-				.alleUnterhaltungenOhneNachrichten();
-		alleNachrichten = nachrichtMapper.gibAlleSichtbarenNachrichten();
-
+		Vector<Unterhaltung> alleUnterhaltungen = unterhaltungMapper.alleUnterhaltungenOhneNachrichten();
+		Vector<Nachricht> alleNachrichten = nachrichtMapper.gibAlleSichtbarenNachrichten();
 		Vector<Nutzer> alleNutzer = getAlleNutzer(true);
+		Vector<Hashtag> alleHashtags = gibAlleHashtags();
 
-		// Dummylisten um NachrichtUnterhaltung und NutzerUnterhaltung
-		// zwischentabellen aufzulösen
-		// Für jeden teilnehmer einer Unterhaltung wird ein UnterhaltungsDummy
+		// Dummylisten um NachrichtUnterhaltung, NachrichtHashtag und
+		// NutzerUnterhaltung
+		// zwischentabellen aufzulösen Für jeden teilnehmer einer Unterhaltung
+		// wird ein UnterhaltungsDummy
 		// mit Teilnehmerdummy erstellt
-		Vector<Unterhaltung> alleDummyUnterhaltungenMitTeilnehmer = unterhaltungMapper
-				.gibAlleDummyUnterhaltungenMitDummyTeilnehmer();
+		Vector<Unterhaltung> alleDummyUnterhaltungenMitTeilnehmer = unterhaltungMapper.gibAlleDummyUnterhaltungenMitDummyTeilnehmer();
 
 		// zwischenliste der Teilnehmer auflösen
 		for (Unterhaltung dummyUnterhaltung : alleDummyUnterhaltungenMitTeilnehmer) {
@@ -1068,16 +1006,37 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 			}
 		}
 
+		// Für jedes Hashtag einer Nachricht wird ein NachrichtenDummy mit
+		// Hashtag erstellt
+		Vector<Nachricht> alleDummyNachrichtenMitHashtag = hashtagMapper.gibAlleDummyNachrichtenMitDummyHashtags();
+		// zwischenliste der Hashtags auflösen
+
+		for (Nachricht dummyNachricht : alleDummyNachrichtenMitHashtag) {
+			int NachrichtenID = dummyNachricht.getId();
+			int HashtagID = dummyNachricht.getVerknuepfteHashtags().get(0).getId();
+
+			for (Nachricht nachricht : alleNachrichten) {
+				if (NachrichtenID == nachricht.getId()) {
+					for (Hashtag hashtag : alleHashtags) {
+						if (HashtagID == hashtag.getId()) {
+							nachricht.getVerknuepfteHashtags().add(hashtag);
+							break;
+						}
+					}
+					break;
+				}
+			}
+
+		}
+
 		// Für jede Nachricht einer Unterhaltung wird ein UnterhaltungsDummy mit
 		// Nachricht erstellt
-		Vector<Unterhaltung> alleDummyUnterhaltungenMitNachrichten = unterhaltungMapper
-				.gibAlleDummyUnterhaltungenMitDummyNachrichten();
+		Vector<Unterhaltung> alleDummyUnterhaltungenMitNachrichten = unterhaltungMapper.gibAlleDummyUnterhaltungenMitDummyNachrichten();
 		// zwischenliste der Nachrichten auflösen
 
 		for (Unterhaltung dummyUnterhaltung : alleDummyUnterhaltungenMitNachrichten) {
 			int UnterhaltungsID = dummyUnterhaltung.getId();
-			int NachrichtenID = dummyUnterhaltung.getAlleNachrichten().get(0)
-					.getId();
+			int NachrichtenID = dummyUnterhaltung.getAlleNachrichten().get(0).getId();
 
 			for (Unterhaltung unterhaltung : alleUnterhaltungen) {
 				if (unterhaltung.getId() == UnterhaltungsID) {
@@ -1106,17 +1065,33 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 			if (unterhaltung.getAlleNachrichten().size() > 0)
 				alleUnterhaltungen.add(unterhaltung);
 			else
-				Helper.LogWarnung("Unterhaltung ohne Nachricht gefunden! UnterhaltungsID:"
-						+ unterhaltung.getId());
+				Helper.LogWarnung("Unterhaltung ohne Nachricht gefunden! UnterhaltungsID:" + unterhaltung.getId());
 		}
 
-		Helper.LogDebug("Alle Nachrichten und Unterhaltungen mit Nachrichten und Teilnehmerauflösung "
-				+ alleUnterhaltungen.size()
-				+ " "
-				+ alleNachrichten.size()
-				+ " "
-				+ getVerstricheneZeitAsString(System.currentTimeMillis()
-						- startZeit));
+		Helper.LogDebug("getAlleUnterhaltungen - Fertig. Alle Nachrichten und Unterhaltungen mit Nachrichten, Hashtag und Teilnehmerauflösung "
+				+ alleUnterhaltungen.size() + " " + alleNachrichten.size() + " " + getVerstricheneZeitAsString(System.currentTimeMillis() - startZeit));
+
+		return alleUnterhaltungen;
+	}
+
+	/**
+	 * Lade erst alle Nachrichten und Alle Unterhaltungen Erstelle Vector mit
+	 * allen Unterhaltungen in denen die Objektatribute Teilnehmer und
+	 * Nachrichten bereits befüllt sind
+	 * 
+	 * @param UserID
+	 *            - Die ID des eingeloggten Nutzer wird übergeben TODO
+	 * 
+	 * @return alleRelevantenUnterhaltungen - Ein Vektor von Unterhaltung der
+	 *         alle relevanten Unterhaltungen beinhaltet wird übergeben
+	 */
+	@Override
+	public Vector<Unterhaltung> getAlleRelevantenUnterhaltungen(int UserID) {
+		Vector<Unterhaltung> alleRelevantenUnterhaltungen = new Vector<Unterhaltung>();
+
+		Helper.LogInformation("getAlleRelevantenUnterhaltungen - Start");
+
+		Vector<Unterhaltung> alleUnterhaltungen = getAlleUnterhaltungen();
 
 		// ++++++++++++++++++++++++ Lade Unterhaltungen in denen User Teilnehmer
 		// istr ++++++++++++++++++++++++
@@ -1139,8 +1114,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		// Nutzer ++++++++++++++++++++++++
 
 		// Lade ID's abonierter Nutzer
-		Vector<Integer> abonnierteNutzerIDs = nutzeraboMapper
-				.vonMirabonnierteNutzerIds(UserID);
+		Vector<Integer> abonnierteNutzerIDs = nutzeraboMapper.vonMirabonnierteNutzerIds(UserID);
 		Vector<Unterhaltung> alleOeffentlichenUnterhaltungenAbonnierterNutzer = new Vector<Unterhaltung>();
 
 		for (Unterhaltung u : alleUnterhaltungen) {
@@ -1177,8 +1151,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 			}
 
 			if (bereitsHinzugefuegt == false) {
-				hinzuZuFuegendeUnterhaltung
-						.setAnzeigeHerkunft("Teilnehmerabonement");
+				hinzuZuFuegendeUnterhaltung.setAnzeigeHerkunft("Teilnehmerabonement");
 				alleRelevantenUnterhaltungen.add(hinzuZuFuegendeUnterhaltung);
 			}
 
@@ -1186,33 +1159,84 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 		// ++++++++++++++++++++++++ Lade unterhaltungen mit aboniertem Hashtag
 		// ++++++++++++++++++++++++
-		// TODO
-		// startZeit = System.currentTimeMillis();
-		// Vector<Unterhaltung> OeffentlicheUnterhaltungenAbonierterHashtags =
-		// alleUnterhaltungenVonAbonniertemHashtagUeberNutzerId(UserID);
-		// Helper.LogInformation("getAlleRelevantenUnterhaltungen - OeffentlicheUnterhaltungenAbonierterHashtags: "
-		// + OeffentlicheUnterhaltungenAbonierterHashtags.size());
-		//
-		// // Füge unterhaltungen mit aboniertem Hashtag dem Vector
-		// // alleUnterhaltungen zu (sofern nicht bereits geschehen)
-		// for (Unterhaltung unterhaltungAusHashtagAbo :
-		// OeffentlicheUnterhaltungenAbonierterHashtags) {
-		// boolean bereitsHinzugefuegt = false;
-		//
-		// for (Unterhaltung unterhaltungAusAllen :
-		// alleRelevantenUnterhaltungen) {
-		// if (unterhaltungAusHashtagAbo.getId() ==
-		// unterhaltungAusAllen.getId()) {
-		// bereitsHinzugefuegt = true;
-		// continue;
-		// }
-		// }
-		//
-		// if (bereitsHinzugefuegt == false)
-		// alleRelevantenUnterhaltungen.add(unterhaltungAusHashtagAbo);
-		// }
-		// Helper.LogDebug(getVerstricheneZeitAsString(System.currentTimeMillis()
-		// - startZeit));
+		Vector<Integer> vonMirAbonierteHashtagIDs = hashtagAboMapper.ladeAbonnierteHashtagListe(UserID);
+		Vector<Unterhaltung> alleOeffentlichenUnterhaltungenMitAboniertemHashtag = new Vector<Unterhaltung>();
+
+		for (Unterhaltung u : alleUnterhaltungen) {
+			if (u.getUnterhaltungstyp() == eUnterhaltungsTyp.privat)
+				continue;
+
+			boolean UnterhaltungEnthaeltNachrichtMitAboniertemHashtag = false;
+			for (Nachricht n : u.getAlleNachrichten()) {
+				boolean hatNachrichtAboniertenHashtag = false;
+				for (Hashtag h : n.getVerknuepfteHashtags()) {
+					boolean istHashtagAboniert = false;
+					for (Integer abonierterHashtagID : vonMirAbonierteHashtagIDs) {
+						if (h.getId() == abonierterHashtagID) {
+							istHashtagAboniert = true;
+							break;
+						}
+					}
+
+					if (istHashtagAboniert) {
+						hatNachrichtAboniertenHashtag = true;
+						break;
+					}
+				}
+
+				if (hatNachrichtAboniertenHashtag == true) {
+					UnterhaltungEnthaeltNachrichtMitAboniertemHashtag = true;
+					break;
+				}
+			}
+
+			if (UnterhaltungEnthaeltNachrichtMitAboniertemHashtag) {
+
+				alleOeffentlichenUnterhaltungenMitAboniertemHashtag.add(u);
+			}
+
+		}
+
+		for (Unterhaltung hinzuZuFuegendeUnterhaltung : alleOeffentlichenUnterhaltungenMitAboniertemHashtag) {
+			boolean bereitsHinzugefuegt = false;
+			for (Unterhaltung unterhaltung : alleRelevantenUnterhaltungen) {
+				if (unterhaltung.getId() == hinzuZuFuegendeUnterhaltung.getId()) {
+					bereitsHinzugefuegt = true;
+					break;
+				}
+			}
+
+			if (bereitsHinzugefuegt == false) {
+				
+				//Wird eine Unterhaltung aufgrund des Hashtagsabonement angezeigt,
+				//möchten wir nur die Nachrichten mit aboniertem Hashtag sehen
+				Vector<Nachricht> nurNachrichtenMitAboniertemHashtag = new Vector<Nachricht>();
+				for (Nachricht nachricht : hinzuZuFuegendeUnterhaltung.getAlleNachrichten()) {
+					boolean nachrichtEnthaeltAboniertenHashtag = false;
+					for (Hashtag hashtag : nachricht.getVerknuepfteHashtags()) {
+						for (Integer abonierteHashtagID : vonMirAbonierteHashtagIDs) {
+							if(abonierteHashtagID == hashtag.getId()){
+								nachrichtEnthaeltAboniertenHashtag = true;
+								break;
+							}
+						}
+						if(nachrichtEnthaeltAboniertenHashtag == true){
+							break;
+						}
+					}
+					
+					if(nachrichtEnthaeltAboniertenHashtag == true){
+						nurNachrichtenMitAboniertemHashtag.add(nachricht);
+					}
+				}
+				
+				hinzuZuFuegendeUnterhaltung.setAlleNachrichten(nurNachrichtenMitAboniertemHashtag);			
+				
+				hinzuZuFuegendeUnterhaltung.setAnzeigeHerkunft("Hashtagabonement");
+				alleRelevantenUnterhaltungen.add(hinzuZuFuegendeUnterhaltung);
+			}
+
+		}
 
 		// Sortiere Unterhaltungen nach dem Datum der letzten Nachricht
 		// die Sortierlogik dazu ist in
@@ -1253,12 +1277,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 		}
 
-		Helper.LogInformation("getAlleRelevantenUnterhaltungen - Fertig, "
-				+ alleRelevantenUnterhaltungen.size()
-				+ " Unterhaltung(en) gefunden.");
+		Helper.LogInformation("getAlleRelevantenUnterhaltungen - Fertig, " + alleRelevantenUnterhaltungen.size() + " Unterhaltung(en) gefunden.");
 
-		Helper.LogDebug(getVerstricheneZeitAsString(System.currentTimeMillis()
-				- startZeitTotal));
 		return alleRelevantenUnterhaltungen;
 	}
 
@@ -1272,12 +1292,10 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 *            - Die jeweilige Unterhaltungs-ID wird übergeben
 	 * @return boolean zur Überprüfung
 	 */
-	private boolean nutzerEinerUnterhaltungZuordnen(int nutzerID,
-			int unterhaltungsID) {
+	private boolean nutzerEinerUnterhaltungZuordnen(int nutzerID, int unterhaltungsID) {
 		boolean erfolgreich = true;
 		if (unterhaltungMapper.istNutzerTeilnehmer(unterhaltungsID, nutzerID))
-			unterhaltungMapper.teilnehmerAktualisieren(unterhaltungsID,
-					nutzerID, 1);
+			unterhaltungMapper.teilnehmerAktualisieren(unterhaltungsID, nutzerID, 1);
 		else
 			unterhaltungMapper.teilnehmerHinzufuegen(unterhaltungsID, nutzerID);
 		return erfolgreich;
@@ -1297,8 +1315,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 * @return boolean zur Überprüfung
 	 */
 	@Override
-	public boolean UnterhaltungAktualisieren(Unterhaltung original,
-			Unterhaltung neu) {
+	public boolean UnterhaltungAktualisieren(Unterhaltung original, Unterhaltung neu) {
 		boolean erfolgreich = true;
 
 		// Welche teilnehmer müssen deaktiviert werden?
@@ -1338,8 +1355,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 			}
 
 			for (Nutzer nutzer : zuLoeschendeTeilnehmer) {
-				unterhaltungMapper.teilnehmerAktualisieren(neu.getId(),
-						nutzer.getId(), 0);
+				unterhaltungMapper.teilnehmerAktualisieren(neu.getId(), nutzer.getId(), 0);
 			}
 		}
 
@@ -1360,15 +1376,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 * @return Die benötigite Zeit, um xxx wird zurückgegeben TODO
 	 */
 	private String getVerstricheneZeitAsString(long verstricheneZeit) {
-		String hms = String.format(
-				"%02d:%02d:%02d",
-				TimeUnit.MILLISECONDS.toHours(verstricheneZeit),
-				TimeUnit.MILLISECONDS.toMinutes(verstricheneZeit)
-						- TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS
-								.toHours(verstricheneZeit)),
-				TimeUnit.MILLISECONDS.toSeconds(verstricheneZeit)
-						- TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS
-								.toMinutes(verstricheneZeit)));
+		String hms = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(verstricheneZeit), TimeUnit.MILLISECONDS.toMinutes(verstricheneZeit)
+				- TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(verstricheneZeit)), TimeUnit.MILLISECONDS.toSeconds(verstricheneZeit)
+				- TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(verstricheneZeit)));
 		return "Benötigte Zeit: " + hms;
 
 	}

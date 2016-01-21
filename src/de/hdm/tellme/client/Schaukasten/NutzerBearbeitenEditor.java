@@ -51,6 +51,8 @@ public class NutzerBearbeitenEditor  {
 	private Button profilloeschenButton = new Button("Profil deaktivieren");
 	private VerticalPanel profilPanel = new VerticalPanel();
 	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
+	
+	public static boolean NutzerRuftTellMeErstesMalAuf = false;
 
 	private Label subline = new Label("Profildaten");
 	HTML headline = new HTML(" <div class='" + "subline" + "'><h2>Meine Nutzerdaten bearbeiten</h2></div> ");
@@ -76,8 +78,16 @@ public class NutzerBearbeitenEditor  {
 			public void onSuccess(Void result) {
 				Window.alert("Profil erfolgreich editiert.");
 				RootPanel.get("content").clear();
-				NeuigkeitenEditor nE = new NeuigkeitenEditor();
-				MenuBarEditor.setzeInhalt(nE.gibFilterPanel(),nE);
+				if(NutzerRuftTellMeErstesMalAuf == true){
+					NutzerBearbeitenEditor.NutzerRuftTellMeErstesMalAuf = false;
+					Window.Location.reload();
+				}
+				else{
+
+					NeuigkeitenEditor nE = new NeuigkeitenEditor();
+					MenuBarEditor.setzeInhalt(nE.gibFilterPanel(),nE);
+				}
+				
 
 			}
 		});

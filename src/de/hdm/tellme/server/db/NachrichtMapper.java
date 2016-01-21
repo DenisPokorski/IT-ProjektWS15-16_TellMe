@@ -459,7 +459,7 @@ public class NachrichtMapper {
 		Vector<Nachricht> Nachrichten = new Vector<Nachricht>();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "SELECT * FROM Nachricht WHERE Nachricht.Sichtbarkeit = 1";
+			String sqlquery = "SELECT * FROM Nachricht WHERE Nachricht.Sichtbarkeit = 1 ";
 			ResultSet rs = state.executeQuery(sqlquery);
 			while (rs.next()) {
 				Nachricht nA = new Nachricht();

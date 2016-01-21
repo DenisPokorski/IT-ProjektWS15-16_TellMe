@@ -55,14 +55,15 @@ public class TellMe implements EntryPoint {
 
 	public Widget ladeTellMe() {
 
-		RootPanel.get("header").add(menuBar);
 		if (eingeloggterBenutzer.getUser().getVorname() == "undefined" || eingeloggterBenutzer.getUser().getNachname() == "undefined") {
 
 			// Startseite anzeigen
+			NutzerBearbeitenEditor.NutzerRuftTellMeErstesMalAuf = true;
 			MenuBarEditor.setzeInhalt(new NutzerBearbeitenEditor().gibNutzerBearbeitenFormular());
 
 		} else {
 
+			RootPanel.get("header").add(menuBar);
 			// Startseite anzeigen
 
 			NeuigkeitenEditor nE = new NeuigkeitenEditor();

@@ -424,7 +424,7 @@ public class UnterhaltungMapper {
 		Vector<Unterhaltung> unterhaltungen = new Vector<Unterhaltung>();
 		try {
 			Statement state = con.createStatement();
-			String sql = "SELECT * FROM NachrichtUnterhaltung;";
+			String sql = "SELECT * FROM NachrichtUnterhaltung ORDER BY NachrichtId DESC";
 			ResultSet rs = state.executeQuery(sql);
 			while (rs.next()) {
 
