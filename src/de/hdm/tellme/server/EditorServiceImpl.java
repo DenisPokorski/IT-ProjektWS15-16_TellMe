@@ -1016,7 +1016,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 * allen Unterhaltungen in denen die Objektatribute Teilnehmer und
 	 * Nachrichten bereits befüllt sind
 	 * 
-	 * @param UserID - Die ID des eingeloggten Nutzer wird übergeben TODO
+	 * @param UserID
+	 *            - Die ID des eingeloggten Nutzer wird übergeben TODO
 	 * 
 	 * @return alleRelevantenUnterhaltungen - Ein Vektor von Unterhaltung der
 	 *         alle relevanten Unterhaltungen beinhaltet wird übergeben
@@ -1265,8 +1266,10 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 * 
 	 * Nutzer zu der Unterhaltung hinzufügen
 	 * 
-	 * @param nutzerID - Die jeweilige Nutzer-ID wird übergeben 
-	 * @param unterhaltungsID - Die jeweilige Unterhaltungs-ID wird übergeben
+	 * @param nutzerID
+	 *            - Die jeweilige Nutzer-ID wird übergeben
+	 * @param unterhaltungsID
+	 *            - Die jeweilige Unterhaltungs-ID wird übergeben
 	 * @return boolean zur Überprüfung
 	 */
 	private boolean nutzerEinerUnterhaltungZuordnen(int nutzerID,
@@ -1283,8 +1286,12 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	/**
 	 * Unterhaltung aktualisieren.
 	 * 
-	 * @param original - Ein Unterhaltungs-Objekt der das ursprüngliche Objekt  beinhaltet wird übergeben
-	 * @param neu - Ein Unterhaltungs-Objekt der das neue Unterhaltungsobjekt  beinhaltet wird übergeben
+	 * @param original
+	 *            - Ein Unterhaltungs-Objekt der das ursprüngliche Objekt
+	 *            beinhaltet wird übergeben
+	 * @param neu
+	 *            - Ein Unterhaltungs-Objekt der das neue Unterhaltungsobjekt
+	 *            beinhaltet wird übergeben
 	 * 
 	 * 
 	 * @return boolean zur Überprüfung
@@ -1348,7 +1355,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 	/**
 	 * 
-	 * @param verstricheneZeit - Die verstrichtene Zeit wird als Long-Objekt übergeben TODO
+	 * @param verstricheneZeit
+	 *            - Die verstrichtene Zeit wird als Long-Objekt übergeben TODO
 	 * @return Die benötigite Zeit, um xxx wird zurückgegeben TODO
 	 */
 	private String getVerstricheneZeitAsString(long verstricheneZeit) {
