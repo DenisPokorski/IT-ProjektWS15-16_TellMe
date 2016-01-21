@@ -14,7 +14,7 @@ import de.hdm.tellme.shared.bo.Nutzer.eStatus;
 /**
  * Die Klasse <class>LoginServiceImpl</class> implementiert das Interface
  * <code>LoginService</code>. Die Realisierung für ein GWT RPC erfolgt analog zu @
- * link EditorServiceImpl} . Für Details muss man es dort überprüfen.
+ * link {EditorServiceImpl} . Für Details muss man es dort überprüfen.
  * 
  * @author Feltrin, Zimmermann
  * @version 1.0

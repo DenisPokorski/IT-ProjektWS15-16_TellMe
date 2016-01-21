@@ -46,7 +46,10 @@ public class NeuigkeitenJaNeinDialogbox {
 	}
 
 	/**
-	 * Eine neue Dialogbox "db" wird erstellt. TODO
+	 * Eine neue Dialogbox "db" wird erstellt. Außerdem wird ein asyncObject
+	 * erstellt. Der Modus der Dialogbix wird anfangs auf null gesetzt. Es wird
+	 * eine Nachricht übergeben, die gelöscht werden soll, oder eine
+	 * Unterhaltung die verlassen werden soll.
 	 * 
 	 */
 	final DialogBox db = new DialogBox();
@@ -154,24 +157,30 @@ public class NeuigkeitenJaNeinDialogbox {
 		/**
 		 * Ein neuer Button wird erstellt "Ja" und mittels CSS-Style optisch
 		 * verändert und mit einem ClickHandler versehen.
-		 * TODO 
 		 */
 		Button btnJa = new Button("Ja");
 		btnJa.setStylePrimaryName("NeuigkeitenDialogboxSendenBtn");
 		btnJa.addClickHandler(new ClickHandler() {
 
+			/**
+			 * ClickHandler wird ausgeführt, falls die Nachricht gelöscht werden
+			 * soll oder eine Unterhaltung verlassen werden soll. Dies wird
+			 * durch das asyncObj mittels RPC durchgeführt.
+			 */
 			@Override
 			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
 				switch (DialogModus) {
+				/**
+				 * Der case /Fall Nachrichtloeschen tritt ein, wenn bei einer
+				 * ausgewählten Nachricht der Nachricht löschen gedruckt wurde.
+				 */
 				case NachrichtLoeschen:
 				default:
 					asyncObj.NachrichtLoeschen(zuLoeschendeNachricht,
 							new AsyncCallback<Boolean>() {
 
-						
 								/**
-								 *  Bei erfolgreichen Ausführen 
+								 * Bei erfolgreichen Ausführen
 								 */
 								@Override
 								public void onSuccess(Boolean result) {
@@ -190,6 +199,11 @@ public class NeuigkeitenJaNeinDialogbox {
 							});
 					break;
 
+				/**
+				 * Der case /Fall UnterhaltungVerlassen tritt ein, wenn bei
+				 * einer ausgewählten Unterhaltung der Button Unterhaltung
+				 * verlassen geklickt wurde.
+				 */
 				case UnterhaltungVerlassen:
 					asyncObj.UnterhaltungVerlassen(zuVerlassendeUnterhaltung,
 							TellMe.gibEingeloggterBenutzer().getUser().getId(),
@@ -217,7 +231,6 @@ public class NeuigkeitenJaNeinDialogbox {
 		});
 
 		hpButtons.add(btnJa);
-		// hpButtons.add(btnAbbrechen);
 		fpDialog.add(hpButtons);
 
 		db.setWidget(fpDialog);
