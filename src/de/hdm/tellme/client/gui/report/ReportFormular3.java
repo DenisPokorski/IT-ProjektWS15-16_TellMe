@@ -15,7 +15,7 @@ import de.hdm.tellme.client.gui.editor.NutzerZelle;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
- * Report 3 gibt den alle Nachrichten eines Nutzers aus, ohne den Zeitraumm zu
+ * Report 3 gibt den alle Nachrichten eines Nutzers aus, ohne den Zeitraum zu
  * beschränken
  * 
  * @author Alex
@@ -23,7 +23,7 @@ import de.hdm.tellme.shared.bo.Nutzer;
  */
 public class ReportFormular3 extends Composite {
 	/**
-	 * Wir benötigen ein Nutzer-Objekt, dass anfangs auf null gesetzt wird
+	 * Wir benötigen ein Nutzer-Objekt, das anfangs auf null gesetzt wird
 	 */
 	private Nutzer nutzer = null;
 
@@ -53,7 +53,7 @@ public class ReportFormular3 extends Composite {
 				ladenImg.setStylePrimaryName("ladenImg");
 				ladenPanel.add(ladenImg);
 
-				HTML ladenLabel = new HTML("<h1> Bitte warten <h1><br /><h3>Bitte warten Sie einen Augenblick bis der Report generiert wurde. Vielen Dank.</h3>");
+				HTML ladenLabel = new HTML("<h1> Bitte warten <h1><br /><h3>Bitte warte einen Augenblick bis der Report generiert wurde. Vielen Dank.</h3>");
 				ladenPanel.add(ladenLabel);
 				
 				RootPanel.get("content").add(ladenPanel);
@@ -63,12 +63,16 @@ public class ReportFormular3 extends Composite {
 			}
 		});
 	}
-
+/**
+ * 
+ * Die Methode <code>zeigeReportFormular</code> säubert die rechte Hälfte des rootPanels. Danach wird der Report 
+ * auf der rechten Seite generiert und angezeigt. 
+ */
 	public void zeigeReportFormular() {
 		RootPanel.get("content_right").clear();
 
-		NutzerDataProvider.gib(1).report3Generieren(nutzer); // TODO KLASSE
-																// BESCHREIBEN
+		NutzerDataProvider.gib(1).report3Generieren(nutzer); 
+																
 
 	}
 
@@ -90,7 +94,9 @@ public class ReportFormular3 extends Composite {
 		return vpForm;
 	}
 	/**
-	 * TODO Kommentar nachtragen
+	 * Die Methode <code>report3Generieren</code> übergibt das Nutzer-Objekt aus
+	 * der NutzerZelle.
+	 * 
 	 * @param ZellenObjekt
 	 */
 		public void report3Generieren(NutzerZelle.ZellenObjekt ZellenObjekt){

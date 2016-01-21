@@ -45,7 +45,11 @@ public class ReportFormular7 extends Composite {
 		});
 
 	}
-
+	/**
+	 * 
+	 * Die Methode <code>zeigeReportFormular</code> säubert die rechte Hälfte des rootPanels. 
+	 * Danach wird der Report auf der rechten Seite generiert und angezeigt. 
+	 */
 	public void zeigeReportFormular() {
 		RootPanel.get("content_right").clear();
 
@@ -71,7 +75,7 @@ public class ReportFormular7 extends Composite {
 	}
 
 	/**
-	 * Die Methode <code>report6Generieren</code> übergibt das Nutzer-Objekt aus
+	 * Die Methode <code>report7Generieren</code> übergibt das Nutzer-Objekt aus
 	 * der NutzerZelle.
 	 * 
 	 * @param ZellenObjekt

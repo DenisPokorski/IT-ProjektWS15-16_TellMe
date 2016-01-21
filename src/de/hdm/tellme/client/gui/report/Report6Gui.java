@@ -32,7 +32,7 @@ public class Report6Gui extends VerticalPanel {
 	 * Selektionsverhalten im System zu verwenden.
 	 */
 	
-	HTML subline = new HTML ("<div class='"+"subline_report"+"'><b>Bitte wählen Sie einen Nutzer aus:</b></div>");
+	HTML subline = new HTML ("<div class='"+"subline_report"+"'><b>Bitte wähle einen Nutzer aus:</b></div>");
  	VerticalPanel vP = new VerticalPanel(); 
 	
 	/**
@@ -44,7 +44,7 @@ public class Report6Gui extends VerticalPanel {
 	public void onLoad() {
 
 		final HTML headline = new HTML(" <div class='" + "subline" + "'><h2>Reportgenerator 6: Alle Hashtagabos je Nutzer anzeigen</h2></div> ");
-		final HTML subtext = new HTML(" <div class='" + "subtext" + "'><h4> Der Report 6 gibt alle Hashtagabonnoments eines Nutzers in einen bestimmten Zeitraum zurück.   </h4></div> ");
+		final HTML subtext = new HTML(" <div class='" + "subtext" + "'><h4> Der Report 6 gibt alle Hashtagabonnements eines Nutzers in einen bestimmten Zeitraum zurück.   </h4></div> ");
 
 		vP.add(headline);
 		vP.add(subtext);

@@ -12,15 +12,10 @@ import de.hdm.tellme.client.gui.editor.NutzerZelle;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
- * TODO
- */
-/**
- * 
- * 
- * 
- * 
- * Dieser Report zeigt alle Nachrichten eines Nutzers an. Deshalb benötigt die GUI
- * von Report 3 eine NutzerCellList um einen Nutzer auszuwählen.
+ *Diese Klasse wird durch einen Click auf den entsprechendne
+ * MenüBar-Report-Button instanziiert. Dieser Report gibt alle
+ * Nachrichten eines bestimmten Nutzers aus. Die Generierung des Reports
+ * erfolgt in der Klasse HTMLReportWriter.
  * 
  * @author Zimmerman & Alex Homann
  * @version 1.1
@@ -58,7 +53,8 @@ public class Report3Gui extends VerticalPanel {
 	public void onLoad() {
 
 		HTML headline = new HTML(" <div class='"+ "subline"+ "'><h2>Reportgenerator 3: Alle Nachrichten je Nutzer anzeigen \n </h2></div> ");
-		HTML subtext = new HTML(" <div class='"+ "subtext"+ "'><h4> 		Um einen Report auszugeben, der alle Nachrichten von<b> einem bestimmten Nutzer</b>"+ " darstellt, musst du <b>einen Nutzer </b>auswählen und darfst <b>keinen Zeitraum  </h4></div> ");
+		HTML subtext = new HTML(" <div class='"+ "subtext"+ "'><h4> 		Um einen Report auszugeben, der alle Nachrichten von<b> einem bestimmten Nutzer</b>"+ 
+		" darstellt, musst du <b>einen Nutzer </b> und darfst <b>keinen Zeitraum </b> auswählen.</h4></div> ");
 
 		/*
 		 * Die Panels werden anschaulich angeordnet.

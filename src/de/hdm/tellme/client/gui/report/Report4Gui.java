@@ -88,7 +88,7 @@ public class Report4Gui extends VerticalPanel {
 				ladenImg.setStylePrimaryName("ladenImg");
 				ladenPanel.add(ladenImg);
 
-				HTML ladenLabel = new HTML("<h1> Bitte warten <h1><br /><h3>Bitte warten Sie einen Augenblick bis der Report generiert wurde. Vielen Dank.</h3>");
+				HTML ladenLabel = new HTML("<h1> Bitte warten <h1><br /><h3>Bitte warte einen Augenblick bis der Report generiert wurde. Vielen Dank.</h3>");
 				ladenPanel.add(ladenLabel);
 				
 				RootPanel.get("content").add(ladenPanel);

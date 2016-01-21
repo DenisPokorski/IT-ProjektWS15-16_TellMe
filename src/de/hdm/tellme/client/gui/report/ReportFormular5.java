@@ -54,9 +54,11 @@ public class ReportFormular5 extends Composite {
 	}
 	
 	/**
-	 * TODO Kommentar nachtragen
+	 * Die Methode <code>report5Generieren</code> übergibt das Nutzer-Objekt aus
+	 * der NutzerZelle.
+	 * 
 	 * @param ZellenObjekt
-	 */	
+	 */
 
 	public void report5Generieren(NutzerZelle.ZellenObjekt ZellenObjekt) {
 		this.nutzer = ZellenObjekt.nutzer;

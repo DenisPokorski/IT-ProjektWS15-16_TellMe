@@ -8,10 +8,20 @@ import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.HashtagCellList;
 import de.hdm.tellme.client.gui.editor.NutzerCellList;
 
+/**
+* Diese Klasse wird durch Klick auf den Button Report 8 auf der
+* Willkommen-Seite geöffnet.  Diese Klasse wird durch einen Click auf den entsprechendne
+ * MenüBar-Report-Button instanziiert. Dieser Report gibt alle
+ * Follower eines Hashtags aus. Die Generierung des Reports
+ * erfolgt in der Klasse HTMLReportWriter.
+* * 
+* @author danathuering
+*
+*/
 public class Report8Gui extends VerticalPanel {
 
 	HTML subline = new HTML("<div class='" + "subline_report"
-			+ "'><b>Bitte wählen Sie ein Hashtag aus: </b></div>");
+			+ "'><b>Bitte wähle ein Hashtag aus: </b></div>");
 	VerticalPanel vP = new VerticalPanel();
 
 	/**

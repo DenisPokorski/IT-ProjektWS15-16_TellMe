@@ -50,7 +50,11 @@ public class ReportFormular8 {
 		});
 
 	}
-
+	/**
+	 * 
+	 * Die Methode <code>zeigeReportFormular</code> säubert die rechte Hälfte des rootPanels. 
+	 * Danach wird der Report auf der rechten Seite generiert und angezeigt. 
+	 */
 	public void zeigeReportFormular() {
 		RootPanel.get("content_right").clear();
 

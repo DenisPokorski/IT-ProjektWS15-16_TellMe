@@ -46,7 +46,7 @@ public class Report1Gui extends VerticalPanel {
 
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift1 = new Label("Report1: Nachrichten abfragen");
-	HTML subSchrift2 = new HTML("<div class='" + "subline_report" + "'><b>Bitte wählen Sie den Zeitraum aus:</b></div>");
+	HTML subSchrift2 = new HTML("<div class='" + "subline_report" + "'><b>Bitte wähle den Zeitraum aus:</b></div>");
 
 	private HorizontalPanel reportPanel1 = new HorizontalPanel();
 	private VerticalPanel reportPanel1_left = new VerticalPanel();
@@ -66,11 +66,13 @@ public class Report1Gui extends VerticalPanel {
 	 * Panels anzuordnen. Sie startet beim Ausführen der Seite, da sie das
 	 * Pendant zur <code>main()</code>-Methode einer normalen Java Applikation
 	 * darstellt
+	 * @param Zellenobjekt 
+	 * 
 	 */
 	public void report1Generieren(NutzerZelle.ZellenObjekt ZellenObjekt) {
 		Report1Gui.nutzer = ZellenObjekt.nutzer;
 	}
-	
+
 	public void onLoad() {
 		vonDateBox.setFormat(new DateBox.DefaultFormat(dF));
 		bisDateBox.setFormat(new DateBox.DefaultFormat(dF));
@@ -147,7 +149,7 @@ public class Report1Gui extends VerticalPanel {
 				ladenImg.setStylePrimaryName("ladenImg");
 				ladenPanel.add(ladenImg);
 
-				HTML ladenLabel = new HTML("<h1> Bitte warten <h1><br /><h3>Bitte warten Sie einen Augenblick bis der Report generiert wurde. Vielen Dank.</h3>");
+				HTML ladenLabel = new HTML("<h1> Bitte warten <h1><br /><h3>Bitte warte einen Augenblick bis der Report generiert wurde. Vielen Dank.</h3>");
 				ladenPanel.add(ladenLabel);
 				
 				RootPanel.get("content").add(ladenPanel);

@@ -11,9 +11,10 @@ import de.hdm.tellme.client.gui.editor.NutzerCellList;
 
 /**
  * Diese Klasse wird durch Klick auf den Button Report 7 auf der
- * Willkommen-Seite geöffnet. Der linken Seite des Contents wird durch die
- * Methode <code>generiereCellListModus</code>
- * TODO
+ * Willkommen-Seite geöffnet. Dieser Report gibt alle
+ * Follower eines bestimmten Nutzers aus. Die Generierung des Reports
+ * erfolgt in der Klasse HTMLReportWriter.
+ * 
  * 
  * @author danathuering
  *
@@ -22,7 +23,7 @@ import de.hdm.tellme.client.gui.editor.NutzerCellList;
 public class Report7Gui extends VerticalPanel {
 
 	HTML subline = new HTML("<div class='" + "subline_report"
-			+ "'><b>Bitte wählen Sie einen Nutzer aus:</b></div>");
+			+ "'><b>Bitte wähle einen Nutzer aus:</b></div>");
 	VerticalPanel vP = new VerticalPanel();
 
 	/**

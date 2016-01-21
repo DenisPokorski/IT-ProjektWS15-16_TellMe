@@ -36,25 +36,30 @@ public class ReportFormular6 extends Composite{
 				RootPanel.get("content_left").clear();
 				RootPanel.get("content_right").clear();
 
- 				NutzerDataProvider.gib(1).report6Generieren(nutzer ); // TODO KLASSE BESCHREIBEN
+ 				NutzerDataProvider.gib(1).report6Generieren(nutzer );
 
 				}		
 			
 		});
 	}
 	
-	
+	/**
+	 * 
+	 * Die Methode <code>zeigeReportFormular</code> säubert die rechte Hälfte des rootPanels. 
+	 * Danach wird der Report auf der rechten Seite generiert und angezeigt. 
+	 */	
 	
 	public void zeigeReportFormular () {
 		RootPanel.get("content_right").clear();
 
-			NutzerDataProvider.gib(1).report6Generieren(nutzer ); // TODO KLASSE BESCHREIBEN
+			NutzerDataProvider.gib(1).report6Generieren(nutzer );
 		
 	}
 	
 	/**
 	 * 
-	 * Die Methode <code>gibFormular()</code> instanziert ein VerticalPanel und fügt diesem dem Button hinzu. Als Rückgabe Wert gibt die Methode das VerticalPanel zurück.  
+	 * Die Methode <code>gibFormular()</code> instanziert ein VerticalPanel und fügt 
+	 * diesem dem Button hinzu. Als Rückgabe Wert gibt die Methode das VerticalPanel zurück.  
 	 */
 	public VerticalPanel gibFormular(){
 		VerticalPanel vpForm = new VerticalPanel();
@@ -68,10 +73,12 @@ public class ReportFormular6 extends Composite{
 	}
 	
 	
-/**
- * TODO Kommentar nachtragen
- * @param ZellenObjekt
- */
+	/**
+	 * Die Methode <code>report6Generieren</code> übergibt das Nutzer-Objekt aus
+	 * der NutzerZelle.
+	 * 
+	 * @param ZellenObjekt
+	 */
 	public void report6Generieren(NutzerZelle.ZellenObjekt ZellenObjekt){
 		this.nutzer = ZellenObjekt.nutzer;
 

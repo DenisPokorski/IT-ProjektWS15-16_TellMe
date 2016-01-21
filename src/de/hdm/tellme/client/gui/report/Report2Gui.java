@@ -22,10 +22,10 @@ import de.hdm.tellme.client.gui.editor.NutzerDataProvider;
 import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
- * 
- *
- * Dieser Report zeigt alle Nachrichten in einem Zeitraum an. Deshalb benötigt
- * die GUI von Report 2 zwei DatePicker um einen Zeitraum auszuwählen.
+ * Diese Klasse wird durch einen Click auf den entsprechendne
+ * MenüBar-Report-Button instanziiert. Dieser Report gibt alle
+ * Nacchrichten in einem bestimmten Zeitraum aus. Die Generierung des Reports
+ * erfolgt in der Klasse HTMLReportWriter.
  * 
  * 
  * @author Zimmerman & Alex Homann
@@ -46,7 +46,7 @@ public class Report2Gui extends VerticalPanel {
 
 	private VerticalPanel reportPanel = new VerticalPanel();
 	private Label ueberSchrift2 = new Label("Report2: Nachrichten abfragen");
-	HTML subSchrift2 = new HTML("<div class='" + "subline_report"+ "'><b>Bitte wählen Sie den Zeitraum aus:</b></div>");
+	HTML subSchrift2 = new HTML("<div class='" + "subline_report"+ "'><b>Bitte wähle den Zeitraum aus:</b></div>");
 
 	private HorizontalPanel reportPanel2 = new HorizontalPanel();
 	private VerticalPanel reportPanel2_left = new VerticalPanel();
@@ -145,7 +145,7 @@ public class Report2Gui extends VerticalPanel {
 					ladenImg.setStylePrimaryName("ladenImg");
 					ladenPanel.add(ladenImg);
 
-					HTML ladenLabel = new HTML("<h1> Bitte warten <h1><br /><h3>Bitte warten Sie einen Augenblick bis der Report generiert wurde. Vielen Dank.</h3>");
+					HTML ladenLabel = new HTML("<h1> Bitte warten <h1><br /><h3>Bitte warte einen Augenblick bis der Report generiert wurde. Vielen Dank.</h3>");
 					ladenPanel.add(ladenLabel);
 					
 					RootPanel.get("content").add(ladenPanel);
