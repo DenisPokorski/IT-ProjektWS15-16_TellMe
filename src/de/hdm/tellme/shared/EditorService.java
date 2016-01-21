@@ -253,7 +253,7 @@ public interface EditorService extends RemoteService {
 	 * @return
 	 */
 
-	Vector<Unterhaltung> getAlleSichtbarenUnterhaltungenFuerTeilnehmer(
+	Vector<Unterhaltung> getAlleSichtbarenUnterhaltungenFuerTeilnehmerOhneNachrichten(
 			int aktiverTeilnehmerID);
 
 	/**

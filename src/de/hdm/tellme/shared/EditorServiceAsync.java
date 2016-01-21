@@ -89,7 +89,7 @@ public interface EditorServiceAsync {
 	void getAbonnierteHashtags(int aboNehmerID,
 			AsyncCallback<Vector<Hashtag>> callback);
 
-	void getAlleSichtbarenUnterhaltungenFuerTeilnehmer(int aktiverTeilnehmerID,
+	void getAlleSichtbarenUnterhaltungenFuerTeilnehmerOhneNachrichten(int aktiverTeilnehmerID,
 			AsyncCallback<Vector<Unterhaltung>> callback);
 
 	void unterhaltungBeantworten(Nachricht antwortNachricht,

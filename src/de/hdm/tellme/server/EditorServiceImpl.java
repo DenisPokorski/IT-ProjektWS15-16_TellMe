@@ -2,6 +2,7 @@ package de.hdm.tellme.server;
 
 import java.util.Collections;
 import java.util.Vector;
+import java.util.concurrent.TimeUnit;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -339,7 +340,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return alleAbonniertenNutzer;
 	}
 
-
 	/*
 	 * ***************************************************************************
 	 * ABSCHNITT, Ende: Methoden für Nutzerabonnement-Objekte
@@ -550,7 +550,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 						}
 
 						UnterhaltungMitAboniertemHashtag.setTeilnehmer(alleTeilnehmer);
-						
+
 						UnterhaltungMitAboniertemHashtag.setAnzeigeHerkunft("Hashtagabonement");
 
 						// füge Unterhaltung der Liste hinzu
@@ -708,9 +708,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 */
 	@Override
 	public Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(int teilnehmerID) {
-		Vector<Unterhaltung> Unterhaltungen = null;
-		Unterhaltungen = unterhaltungMapper.alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(teilnehmerID);
-		return Unterhaltungen;
+		// TODO: REMOVE
+		return null;
 	}
 
 	/**
@@ -779,64 +778,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * Nutzer abonniert hat.
 	 */
 	@Override
+	@Deprecated
 	public Vector<Unterhaltung> oeffentlicheUnterhaltungenAbonnierterNutzer(int meineId) {
-		Vector<Unterhaltung> alleOeffentlichenUnterhaltungenAbonnierterNutzer = new Vector<Unterhaltung>();
-
-		// Lade ID's abonierter Nutzer
-		Vector<Integer> abonnierteNutzerIDs = nutzeraboMapper.vonMirabonnierteNutzerIds(meineId);
-
-		for (Integer abonierterNutzerID : abonnierteNutzerIDs) {
-			Vector<Nachricht> alleGesenetenNachrichtenDesBenutzers = new Vector<Nachricht>();
-
-			// Lade alle Nachrichten der Nutzer
-			alleGesenetenNachrichtenDesBenutzers = nachrichtMapper.selektiereNachrichtenVonId(abonierterNutzerID);
-
-			for (Nachricht nachricht : alleGesenetenNachrichtenDesBenutzers) {
-				Unterhaltung uH = new Unterhaltung();
-				// Lade Unterhaltung zu Nachricht
-				uH = unterhaltungMapper.selektiereUnterhaltungenVonNachrichtId(nachricht);
-				if (uH.getUnterhaltungstyp() == eUnterhaltungsTyp.oeffentlich) {
-					boolean bereitsInListe = false;
-
-					for (Unterhaltung unterhaltungInListe : alleOeffentlichenUnterhaltungenAbonnierterNutzer) {
-						if (unterhaltungInListe.getId() == uH.getId()) {
-							bereitsInListe = true;
-							continue;
-						}
-					}
-
-					if (bereitsInListe == false) {
-						// Wenn Unterhaltung öffentlich und noch nicht
-						// hinzugefügt, lade alle Nachrichten zu
-						// Unterhaltung
-						Vector<Nachricht> alleNachrichtenZuUnterhaltung = new Vector<Nachricht>();
-						alleNachrichtenZuUnterhaltung = ladeAlleNachrichtenZuUnterhaltung(uH.getId());
-
-						uH.setAlleNachrichten(alleNachrichtenZuUnterhaltung);
-
-						// lade alle teilnehmer zu Unterhaltung
-						Vector<Nutzer> alleTeilnehmer = new Vector<Nutzer>();
-						Vector<Integer> alleTeilnehmerIDs = unterhaltungMapper.gibTeilnehmerFuerUnterhaltung(uH.getId());
-						for (Integer teilnehmerID : alleTeilnehmerIDs) {
-							alleTeilnehmer.add(getNutzerAnhandID(teilnehmerID));
-						}
-
-						uH.setTeilnehmer(alleTeilnehmer);
-						
-						uH.setAnzeigeHerkunft("Nutzerabonement");
-						
-						// füge Unterhaltung der Liste hinzu
-						alleOeffentlichenUnterhaltungenAbonnierterNutzer.add(uH);
-
-					}
-
-				}
-
-			}
-
-		}
-
-		return alleOeffentlichenUnterhaltungenAbonnierterNutzer;
+		return null;
 	}
 
 	/**
@@ -856,7 +800,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * Auslesen aller sichtbaren Unterhaltung für Teilnehmer
 	 */
 	@Override
-	public Vector<Unterhaltung> getAlleSichtbarenUnterhaltungenFuerTeilnehmer(int aktiverTeilnehmerID) {
+	@Deprecated
+	public Vector<Unterhaltung> getAlleSichtbarenUnterhaltungenFuerTeilnehmerOhneNachrichten(int aktiverTeilnehmerID) {
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungen = new Vector<Unterhaltung>();
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungenMitSichtbarenNachrichten = new Vector<Unterhaltung>();
 
@@ -893,90 +838,204 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			}
 
 			unterhaltung.setTeilnehmer(alleTeilnehmer);
-			
+
 			unterhaltung.setAnzeigeHerkunft("Unterhaltungsteilnehmer");
 		}
 
 		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;
 	}
 
-	private static boolean avoidDoubleCall = false;
+	
+	Vector<Unterhaltung> alleUnterhaltungen;
+	Vector<Nachricht> alleNachrichten;
 
 	/**
-	 * Auslesen aller relevanten Unterhaltungen
+	 * Lade erst alle Nachrichten und Alle Unterhaltungen Erstelle Vector mit
+	 * allen Unterhaltungen in denen die Objektatribute Teilnehmer und
+	 * Nachrichten bereits befüllt sind
 	 */
 	@Override
 	public Vector<Unterhaltung> getAlleRelevantenUnterhaltungen(int UserID) {
-
-		// TODO: BUG ENTFERNEN! getAlleRelevantenUnterhaltungen wird 2 mal
-		// aufgerufen zum start
-		// mit static bool erstmal unterdrücken...
-		if (avoidDoubleCall)
-			return null;
-		avoidDoubleCall = true;
-
+		Vector<Unterhaltung> alleRelevantenUnterhaltungen = new Vector<Unterhaltung>();
+		
 		Helper.LogInformation("getAlleRelevantenUnterhaltungen - Start");
-		Vector<Unterhaltung> alleUnterhaltungen = new Vector<Unterhaltung>();
 
-		// Lade Unterhaltungen in denen User Teilnehmer ist
-		Vector<Unterhaltung> TeilnehmendeUnterhaltungen = getAlleSichtbarenUnterhaltungenFuerTeilnehmer(UserID);
-		Helper.LogInformation("getAlleRelevantenUnterhaltungen - TeilnehmendeUnterhaltungen: " + TeilnehmendeUnterhaltungen.size());
-		alleUnterhaltungen = TeilnehmendeUnterhaltungen;
+		long startZeit = System.currentTimeMillis();
+		long startZeitTotal = System.currentTimeMillis();
 
-		// Lade öffentliche Unterhaltungen Abonierter Nutzer
-		Vector<Unterhaltung> OeffentlicheUnterhaltungenAbonierterNutzer = oeffentlicheUnterhaltungenAbonnierterNutzer(UserID);
-		Helper.LogInformation("getAlleRelevantenUnterhaltungen - OeffentlicheUnterhaltungenAbonierterNutzer: "
-				+ OeffentlicheUnterhaltungenAbonierterNutzer.size());
+		// Lade alle Unterhaltungen und Nachrichten
+		alleUnterhaltungen = unterhaltungMapper.alleUnterhaltungenOhneNachrichten();
+		alleNachrichten = nachrichtMapper.gibAlleSichtbarenNachrichten();
 
-		// Füge öffentliche Unterhaltungen Abonierter Nutzer dem Vector
-		// alleUnterhaltungen zu (sofern nicht bereits geschehen)
-		for (Unterhaltung unterhaltungAusNutzerAbo : OeffentlicheUnterhaltungenAbonierterNutzer) {
-			boolean bereitsHinzugefuegt = false;
+		Vector<Nutzer> alleNutzer = getAlleNutzer(true);
 
-			for (Unterhaltung unterhaltungAusAllen : alleUnterhaltungen) {
-				if (unterhaltungAusNutzerAbo.getId() == unterhaltungAusAllen.getId()) {
-					bereitsHinzugefuegt = true;
-					continue;
+		// Dummylisten um NachrichtUnterhaltung und NutzerUnterhaltung
+		// zwischentabellen aufzulösen
+		// Für jeden teilnehmer einer Unterhaltung wird ein UnterhaltungsDummy
+		// mit Teilnehmerdummy erstellt
+		Vector<Unterhaltung> alleDummyUnterhaltungenMitTeilnehmer = unterhaltungMapper.gibAlleDummyUnterhaltungenMitDummyTeilnehmer();
+
+		// zwischenliste der Teilnehmer auflösen
+		for (Unterhaltung dummyUnterhaltung : alleDummyUnterhaltungenMitTeilnehmer) {
+			int UnterhaltungsID = dummyUnterhaltung.getId();
+			int TeilnehmerID = dummyUnterhaltung.getTeilnehmer().get(0).getId();
+
+			for (Unterhaltung unterhaltung : alleUnterhaltungen) {
+				if (unterhaltung.getId() == UnterhaltungsID) {
+					for (Nutzer nutzer : alleNutzer) {
+						if (nutzer.getId() == TeilnehmerID) {
+							unterhaltung.getTeilnehmer().add(nutzer);
+							break;// Nutzer, der der Unterhaltung zugeordnet
+									// werden muss wurde gefunden
+							// foreach hier beeenden
+						}
+
+					}
+					break; // Unterhaltung, der der Teilnehmer zugeordnet werden
+							// muss wurde gefunden
+					// foreach hier beeenden
+				}
+			}
+		}
+
+		// Für jede Nachricht einer Unterhaltung wird ein UnterhaltungsDummy mit
+		// Nachricht erstellt
+		Vector<Unterhaltung> alleDummyUnterhaltungenMitNachrichten = unterhaltungMapper.gibAlleDummyUnterhaltungenMitDummyNachrichten();
+		// zwischenliste der Nachrichten auflösen
+
+		for (Unterhaltung dummyUnterhaltung : alleDummyUnterhaltungenMitNachrichten) {
+			int UnterhaltungsID = dummyUnterhaltung.getId();
+			int NachrichtenID = dummyUnterhaltung.getAlleNachrichten().get(0).getId();
+
+			for (Unterhaltung unterhaltung : alleUnterhaltungen) {
+				if (unterhaltung.getId() == UnterhaltungsID) {
+					for (Nachricht nachricht : alleNachrichten) {
+						if (nachricht.getId() == NachrichtenID) {
+//							nachricht.setVerknuepfteHashtags(hashtagMapper.alleHashtagsZuNachrichtenID(nachricht.getId()));
+							unterhaltung.getAlleNachrichten().add(nachricht);
+							break;// Nutzer, der der Unterhaltung zugeordnet
+									// werden muss wurde gefunden
+							// foreach hier beeenden
+						}
+
+					}
+					break; // Unterhaltung, der der Teilnehmer zugeordnet werden
+							// muss wurde gefunden
+					// foreach hier beeenden
 				}
 			}
 
-			if (bereitsHinzugefuegt == false)
-				alleUnterhaltungen.add(unterhaltungAusNutzerAbo);
 		}
 
-		 // Lade unterhaltungen mit aboniertem Hashtag
-		 Vector<Unterhaltung> OeffentlicheUnterhaltungenAbonierterHashtags =
-		 alleUnterhaltungenVonAbonniertemHashtagUeberNutzerId(UserID);
-		 Helper.LogInformation("getAlleRelevantenUnterhaltungen - OeffentlicheUnterhaltungenAbonierterHashtags: "
-		 + OeffentlicheUnterhaltungenAbonierterHashtags.size());
+		// Aussortieren der Unterhaltungen ohne Nachricht
+		Vector<Unterhaltung> alleUnterhaltungenVorAussortierung = alleUnterhaltungen;
+		alleUnterhaltungen = new Vector<Unterhaltung>();
+		for (Unterhaltung unterhaltung : alleUnterhaltungenVorAussortierung) {
+			if (unterhaltung.getAlleNachrichten().size() > 0)
+				alleUnterhaltungen.add(unterhaltung);
+			else
+				Helper.LogWarnung("Unterhaltung ohne Nachricht gefunden! UnterhaltungsID:" + unterhaltung.getId());
+		}
+
+		Helper.LogDebug("Alle Nachrichten und Unterhaltungen mit Nachrichten und Teilnehmerauflösung " + alleUnterhaltungen.size() + " "
+				+ alleNachrichten.size() + " " + getVerstricheneZeitAsString(System.currentTimeMillis() - startZeit));
+
+		// ++++++++++++++++++++++++ Lade Unterhaltungen in denen User Teilnehmer istr  ++++++++++++++++++++++++ 
+		for (Unterhaltung unterhaltung : alleUnterhaltungen) {
+			boolean istTeilnehmer = false;
+			for (Nutzer teilnehmer : unterhaltung.getTeilnehmer()) {
+				if (teilnehmer.getId() == UserID) {
+					istTeilnehmer = true;
+					break;
+				}
+			}
+			
+			if(istTeilnehmer){
+				unterhaltung.setAnzeigeHerkunft("Unterhaltungsteilnehmer");
+				alleRelevantenUnterhaltungen.add(unterhaltung);
+			}
+		}
 		
-		 // Füge unterhaltungen mit aboniertem Hashtag dem Vector
-		 // alleUnterhaltungen zu (sofern nicht bereits geschehen)
-		 for (Unterhaltung unterhaltungAusHashtagAbo :
-		 OeffentlicheUnterhaltungenAbonierterHashtags) {
-		 boolean bereitsHinzugefuegt = false;
+		// ++++++++++++++++++++++++ Lade öffentliche Unterhaltungen Abonierter Nutzer  ++++++++++++++++++++++++ 
+
+		// Lade ID's abonierter Nutzer
+		Vector<Integer> abonnierteNutzerIDs = nutzeraboMapper.vonMirabonnierteNutzerIds(UserID);
+		Vector<Unterhaltung> alleOeffentlichenUnterhaltungenAbonnierterNutzer = new Vector<Unterhaltung>();
+
+		for (Unterhaltung u : alleUnterhaltungen) {
+			if(u.getUnterhaltungstyp() ==eUnterhaltungsTyp.privat )
+				continue;
+			
+			boolean UnterhaltungEnthaeltMindestensEineNachrichtEinesAboniertenNutzers = false;
+			for (Nachricht n : u.getAlleNachrichten()) {
+				boolean istNachrichtensenderAbonierterNutzer = false;
+				for (Integer abonnierterNutzerID : abonnierteNutzerIDs) {
+					if(n.getSenderId() == abonnierterNutzerID){
+						istNachrichtensenderAbonierterNutzer = true;
+						break;
+					}
+				}
+				
+				if(istNachrichtensenderAbonierterNutzer == true){
+					UnterhaltungEnthaeltMindestensEineNachrichtEinesAboniertenNutzers = true;
+					break;
+				}				
+			}
+			
+
+			if(UnterhaltungEnthaeltMindestensEineNachrichtEinesAboniertenNutzers == true)
+				alleOeffentlichenUnterhaltungenAbonnierterNutzer.add(u);
+		}		
 		
-		 for (Unterhaltung unterhaltungAusAllen : alleUnterhaltungen) {
-		 if (unterhaltungAusHashtagAbo.getId() ==
-		 unterhaltungAusAllen.getId()) {
-		 bereitsHinzugefuegt = true;
-		 continue;
-		 }
-		 }
-		
-		 if (bereitsHinzugefuegt == false)
-		 alleUnterhaltungen.add(unterhaltungAusHashtagAbo);
-		 }
+		for (Unterhaltung hinzuZuFuegendeUnterhaltung : alleOeffentlichenUnterhaltungenAbonnierterNutzer) {
+			boolean bereitsHinzugefuegt = false;
+			for (Unterhaltung unterhaltung : alleRelevantenUnterhaltungen) {
+				if(unterhaltung.getId() == hinzuZuFuegendeUnterhaltung.getId()){
+					bereitsHinzugefuegt = true;
+					break;
+				}
+			}
+			
+			if(bereitsHinzugefuegt == false){
+				hinzuZuFuegendeUnterhaltung.setAnzeigeHerkunft("Teilnehmerabonement");
+				alleRelevantenUnterhaltungen.add(hinzuZuFuegendeUnterhaltung);
+			}
+			
+		}
+
+		// ++++++++++++++++++++++++ Lade unterhaltungen mit aboniertem Hashtag  ++++++++++++++++++++++++ 
+		//TODO
+//		startZeit = System.currentTimeMillis();
+//		Vector<Unterhaltung> OeffentlicheUnterhaltungenAbonierterHashtags = alleUnterhaltungenVonAbonniertemHashtagUeberNutzerId(UserID);
+//		Helper.LogInformation("getAlleRelevantenUnterhaltungen - OeffentlicheUnterhaltungenAbonierterHashtags: "
+//				+ OeffentlicheUnterhaltungenAbonierterHashtags.size());
+//
+//		// Füge unterhaltungen mit aboniertem Hashtag dem Vector
+//		// alleUnterhaltungen zu (sofern nicht bereits geschehen)
+//		for (Unterhaltung unterhaltungAusHashtagAbo : OeffentlicheUnterhaltungenAbonierterHashtags) {
+//			boolean bereitsHinzugefuegt = false;
+//
+//			for (Unterhaltung unterhaltungAusAllen : alleRelevantenUnterhaltungen) {
+//				if (unterhaltungAusHashtagAbo.getId() == unterhaltungAusAllen.getId()) {
+//					bereitsHinzugefuegt = true;
+//					continue;
+//				}
+//			}
+//
+//			if (bereitsHinzugefuegt == false)
+//				alleRelevantenUnterhaltungen.add(unterhaltungAusHashtagAbo);
+//		}
+//		Helper.LogDebug(getVerstricheneZeitAsString(System.currentTimeMillis() - startZeit));
 
 		// Sortiere Unterhaltungen nach dem Datum der letzten Nachricht
 		// die Sortierlogik dazu ist in
 		// de.hdm.tellme.shared.bo.Unterhaltung.java implementiert
-		Collections.sort(alleUnterhaltungen);
+		Collections.sort(alleRelevantenUnterhaltungen);
 
 		// Lade Sender-User anhand ID
 		// Und weise die Sende-User-Objekte den Nachrichten zu
 		Vector<Nutzer> alleUser = getAlleNutzer(false);
-		for (Unterhaltung unterhaltung : alleUnterhaltungen) {
+		for (Unterhaltung unterhaltung : alleRelevantenUnterhaltungen) {
 			for (Nachricht nachricht : unterhaltung.getAlleNachrichten()) {
 				for (Nutzer nutzer : alleUser) {
 					if (nachricht.getSenderId() == nutzer.getId()) {
@@ -1007,10 +1066,10 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 		}
 
-		Helper.LogInformation("getAlleRelevantenUnterhaltungen - Fertig, " + alleUnterhaltungen.size() + " Unterhaltung(en) gefunden.");
+		Helper.LogInformation("getAlleRelevantenUnterhaltungen - Fertig, " + alleRelevantenUnterhaltungen.size() + " Unterhaltung(en) gefunden.");
 
-		avoidDoubleCall = false;
-		return alleUnterhaltungen;
+		Helper.LogDebug(getVerstricheneZeitAsString(System.currentTimeMillis() - startZeitTotal));
+		return alleRelevantenUnterhaltungen;
 	}
 
 	/**
@@ -1082,11 +1141,20 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 		return erfolgreich;
 	}
+
 	/*
 	 * ***************************************************************************
 	 * ABSCHNITT, Ende: Methoden für Unterhaltung-Objekte
 	 * ***********************
 	 * ****************************************************
 	 */
+
+	private String getVerstricheneZeitAsString(long verstricheneZeit) {
+		String hms = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(verstricheneZeit), TimeUnit.MILLISECONDS.toMinutes(verstricheneZeit)
+				- TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(verstricheneZeit)), TimeUnit.MILLISECONDS.toSeconds(verstricheneZeit)
+				- TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(verstricheneZeit)));
+		return "Benörigte Zeit: " + hms;
+
+	}
 
 }

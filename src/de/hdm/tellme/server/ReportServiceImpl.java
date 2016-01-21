@@ -161,7 +161,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungen = new Vector<Unterhaltung>();
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungenMitSichtbarenNachrichten = new Vector<Unterhaltung>();
 		alleSichtbarenUnterhaltungen = unterhaltungMapper
-				.alleUnterhaltungenOhneNachrichten();
+				.alleUnterhaltungenOhneNachrichtenNachDatumLetzterNachricht();
 
 		// lade Nachrichten und Teilnehmer zu Unterhaltungen
 		for (Unterhaltung unterhaltung : alleSichtbarenUnterhaltungen) {
@@ -209,7 +209,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungen = new Vector<Unterhaltung>();
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungenMitSichtbarenNachrichten = new Vector<Unterhaltung>();
 		alleSichtbarenUnterhaltungen = unterhaltungMapper
-				.alleUnterhaltungenOhneNachrichten();
+				.alleUnterhaltungenOhneNachrichtenNachDatumLetzterNachricht();
 
 		// lade Nachrichten und Teilnehmer zu Unterhaltungen
 		for (Unterhaltung unterhaltung : alleSichtbarenUnterhaltungen) {
