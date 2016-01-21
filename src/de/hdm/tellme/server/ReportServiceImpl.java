@@ -17,9 +17,26 @@ import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Unterhaltung;
 
+/**
+ * 
+ * Die Klasse <class>ReportServiceImpl </class> implementiert das Interface
+ * <code> ReportService </code>. Die Realisierung für ein GWT RPC erfolgt analog
+ * zu @link {EditorServiceImpl}. Für Details muss man es dort überprüfen.
+ * 
+ * 
+ * 
+ * @author denispokorski
+ *
+ */
 @SuppressWarnings("serial")
 public class ReportServiceImpl extends RemoteServiceServlet implements
 		ReportService {
+
+	/**
+	 * Es ist wichtig, dass die <code>ReportServiceImpl</code> einen
+	 * vollständigen Satz an Mappern besitzt, damit sie vollständig mit der
+	 * Datenbank kommunizieren kann.
+	 */
 
 	public void init() throws IllegalArgumentException {
 		this.nutzerMapper = NutzerMapper.nutzerMapper();
@@ -32,20 +49,77 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 
 	}
 
+	// ################### MAPPER #####################
+
+	/**
+	 * Referenz auf den NutzerAbonnementMapper, der NutzeraAbonnementobjekte mit
+	 * der Datenbank abgleicht.
+	 */
 	private NutzerAbonnementMapper nutzeraboMapper = null;
+
+	/**
+	 * Referenz auf den UnterhaltungMapper, der Unterhaltungsobjekte mit der
+	 * Datenbank abgleicht.
+	 */
+
 	private UnterhaltungMapper unterhaltungMapper = null;
+
+	/**
+	 * Referenz auf den NachrichtMapper, der Nachrichtobjekte mit der Datenbank
+	 * abgleicht.
+	 */
+
 	private NachrichtMapper nachrichtMapper = null;
+
+	/**
+	 * Referenz auf den HashtagAbonnementtMapper, der Hashtagabonnementobjekte
+	 * mit der Datenbank abgleicht.
+	 */
+
 	private HashtagAbonnementMapper hashtagAboMapper = null;
+
+	/**
+	 * Referenz auf den HashtagMapper, der Hashtagobjekte mit der Datenbank
+	 * abgleicht.
+	 */
+
 	private HashtagMapper hashtagMapper = null;
+
+	/**
+	 * Ein Vektor namens alleUser wird auf Null gesetzt.
+	 */
+
 	private static Vector<Nutzer> alleUser = null;
+
+	/**
+	 * Referenz auf den NutzerMapper, der Nutzerobjekte mit der Datenbank
+	 * abgleicht.
+	 */
 	private NutzerMapper nutzerMapper = null;
 
+	/**
+	 * Der Report 5 wird generiert
+	 * 
+	 * @param i
+	 *            - Die Nutzer-ID wird übergeben
+	 * 
+	 * @return report5 - Die Liste der aboonierten Nutzer wird zurückgegeben
+	 */
 	@Override
 	public Vector<Nutzer> report5GenerierenListe(int i) {
 		Vector<Nutzer> report5 = nutzeraboMapper.ladeAbonnierendeNutzerListe(i);
 		return report5;
 	}
 
+	/**
+	 * 
+	 * Der Report 6 wird generiert
+	 * 
+	 * @param nutzerId
+	 *            - Die Nutzer-ID wird übergeben
+	 * @return report6 - Die Liste aller abonnierten Hashtag wird zurückgegeben
+	 * 
+	 */
 	@Override
 	public Vector<Hashtag> report6Generieren(int nutzerId) {
 		Vector<Hashtag> report6 = hashtagAboMapper
@@ -53,10 +127,21 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 													// einen Mapper mit ALLEN
 													// Nutzern erstellen,
 													// probeweise aber mit alle
-													// außer ich selber
+													// außer ich selber //TODO
 		return report6;
 	}
 
+	/**
+	 * Der Report 3 zeigt  alle sichtbaren Unterhaltung vom Ersteller 
+	 * 
+	 * @param AutorId
+	 *            - Die jeweilige Autor-ID wird übergeben
+	 * 
+	 * @return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten - Ein Vektor
+	 *         von Unterhaltung der alle sichtbaren Unterhaltung mit sichtbaren
+	 *         Nachrichten zurückgibt
+	 * 
+	 */
 	@Override
 	public Vector<Unterhaltung> alleUnterhaltungenFuerAutor(int AutorId) {
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungen = new Vector<Unterhaltung>();
@@ -106,6 +191,21 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;
 	}
 
+	/**
+	 * Der Report 1 zeigt alle sichtbaren Unterhaltung von einem Autor in einem gewissen
+	 * Zeitraum
+	 * 
+	 * @param AutorId
+	 *            - Die jeweilige Autor-ID wird übergeben
+	 * @param vonDate
+	 *            - Das StartDatum wird übergeben
+	 * @param bisDate
+	 *            - Das Enddatum wird übergeben
+	 * 
+	 * @return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten - Es werden
+	 *         alle sichtbaren Unterhaltungen und Nachrichten von einem Autor in
+	 *         einem bestimmten Zeitraum zurückgegeben
+	 */
 	@Override
 	public Vector<Unterhaltung> alleUnterhaltungenFuerAutorMitZeitraum(
 			int AutorId, Timestamp vonDate, Timestamp bisDate) {
@@ -155,6 +255,20 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;
 	}
 
+	/**
+	 * 
+	 * Report 2 zeigt alle Nachrichten ein einem bestimmten Zeitraum
+	 * 
+	 * @param vonDate
+	 *            - Das StartDatum wird übergeben
+	 * @param bisDate
+	 *            - Das Enddatum wird übergeben
+	 * 
+	 * @return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten - Es werden
+	 *         alle sichtbaren Unterhaltungen und Nachrichten zurückgegeben in
+	 *         einem bestimmten Zeitraum zurückgegeben
+	 * 
+	 */
 	@Override
 	public Vector<Unterhaltung> alleUnterhaltungenMitZeitraum(
 			Timestamp vonDate, Timestamp bisDate) {
@@ -204,6 +318,13 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;
 	}
 
+	/**
+	 * Der Report 4 zeigt alle Nachrichten 
+	 * 
+	 * @return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten - Es werden
+	 *         alle sichtbaren Unterhaltungen und Nachrichten zurückgegeben
+	 */
+
 	@Override
 	public Vector<Unterhaltung> alleUnterhaltungen() {
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungen = new Vector<Unterhaltung>();
@@ -252,6 +373,14 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;
 	}
 
+	/**
+	 * Hole alle Nachrichten einer bestimmten Unterhaltung
+	 * 
+	 * TODO
+	 * @return alleNachrichten - Es werden alle Nachrichtne einer bestimmten
+	 *         Unterhaltung-ID zurückgegeben
+	 */
+
 	@Override
 	public Vector<Nachricht> ladeAlleNachrichtenZuUnterhaltung(
 			int UnterhaltungsID) {
@@ -273,6 +402,22 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 		}
 		return alleNachrichten;
 	}
+
+	/**
+	 * 
+	 * 
+	 * Hole alle Nachrichten einer bestimmten Unterhaltung in einem gewissen
+	 * Zeitraum
+	 * TODO
+	 * @param UnterhaltungsID
+	 *            - Die jeweilige Unterhaltungs-ID wird übergeben
+	 * @param vonDate
+	 *            - Das StartDatum wird übergeben
+	 * @param bisDate
+	 *            - Das Enddatum wird übergeben return alleNachrichten - Es
+	 *            werden alle Nachrichtne einer bestimmten Unterhaltung-ID in
+	 *            einem bestimmten Zeitraum zurückgegeben
+	 */
 
 	@Override
 	public Vector<Nachricht> ladeAlleNachrichtenZuUnterhaltungMitZeitraum(
@@ -297,6 +442,14 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 		return alleNachrichten;
 	}
 
+	/**
+	 * 
+	 * Hole den Nutzer anhand der Nuzter-ID
+	 * 
+	 * @param nutzerID
+	 *            - Die jeweilge Nutzer-ID wird übergeben
+	 * @return gesuchterNutzer - Der gesuchte Nutzer wird zurückgegeben
+	 */
 	public Nutzer getNutzerAnhandID(int nutzerID) {
 
 		Vector<Nutzer> alleNutzer = getAlleNutzer(false);
@@ -325,6 +478,15 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 
 	}
 
+	/**
+	 * Hole alle Nutzer
+	 * 
+	 * @param zwingeNeuladen
+	 * 
+	 * @return alleUser - Es werden alle Nutzer zurückgegeben
+	 * 
+	 */
+
 	@Override
 	public Vector<Nutzer> getAlleNutzer(boolean zwingeNeuladen) {
 		if (alleUser == null || zwingeNeuladen)
@@ -334,6 +496,15 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 
 	}
 
+	/**
+	 * Report 8 generieren
+	 * 
+	 * @param i
+	 *            - Nutzer-ID wird übergeben
+	 * @return alleFollowerEinesHashtagsListe - Eine List aller Follower eines
+	 *         Hashtags werden zurückgegeben
+	 */
+
 	@Override
 	public Vector<Nutzer> report8Generieren(int i) {
 		Vector<Nutzer> alleFollowerEinesHashtagsListe = new Vector<Nutzer>();
@@ -341,6 +512,16 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 				.alleFollowerEinesHashtags(i);
 		return alleFollowerEinesHashtagsListe;
 	}
+
+	/**
+	 * Report 7 generieren
+	 * 
+	 * @param i
+	 *            - Nutzer-ID wird übergeben
+	 * 
+	 * @return alleFollowerEinesNutzersListe - Eine Liste allre Follower eines
+	 *         Nutzer werden zurückgegeben
+	 */
 
 	@Override
 	public Vector<Nutzer> report7Generieren(int i) {
