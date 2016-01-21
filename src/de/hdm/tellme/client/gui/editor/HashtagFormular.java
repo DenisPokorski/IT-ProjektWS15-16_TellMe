@@ -32,7 +32,19 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import de.hdm.tellme.shared.bo.Hashtag;
 
 /**
- * A form used for editing contacts.
+ * Die Klasse <class>NutzerFormular</class> wird aufgerufen, wenn in der
+ * Nutzerabonnementverwaltung auf einen Nutzer geklickt wird. Bei Klick auf
+ * einen Nutzer wird dieses Formular geladen. Es wird eine Beschreibung für
+ * Nutzerabonnements dargestellt. Außerdem erscheinen Buttons um ein Abonnement
+ * hinzuzufügen oder zu löschen. Bei Klick auf die jeweiligen Buttons wird ein
+ * Nutzerabonnement hinzugefügt oder gelöscht.
+ */
+
+/**
+ * Die Klasse <class>HashtagFormular</class> wird aufgerufen, wenn ein Objekt
+ * der HashtagCellList angeklickt wird. Bei einem Klick auf das Hashtag wird das
+ * angeforderte Formular geladen. Durch die unterschiedlichen Methoden, werden
+ * die jeweils benötigten Formulare geladen.
  */
 
 public class HashtagFormular extends Composite {
@@ -46,7 +58,9 @@ public class HashtagFormular extends Composite {
 
 	public HashtagFormular() {
 
-		// Handle events.
+		/**
+		 * Clickhandler um ein Hashtag zu abonnieren.
+		 */
 		btnAbonieren.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				if (hashtag == null) {
@@ -56,7 +70,9 @@ public class HashtagFormular extends Composite {
 			}
 		});
 
-		// Handle events.
+		/**
+		 * Clickhandler um ein Hashtagabonnement zu löschen.
+		 */
 		btnDeabonieren.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				if (hashtag == null) {
@@ -65,7 +81,9 @@ public class HashtagFormular extends Composite {
 				HashtagDataProvider.gib().deabonieren(hashtag);
 			}
 		});
-
+		/**
+		 * Clickhandler um ein Hashtag neu anzulegen.
+		 */
 		htAnlegen.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				htl = HashtagDataProvider.gebeHashtagListe();
@@ -97,11 +115,18 @@ public class HashtagFormular extends Composite {
 		});
 	}
 
-	// Panel Rückgabe
+	/**
+	 * Die Methode <code>gibBearbeitenFormular</code> gibt ein VerticalPanel
+	 * zurück, auf dem man das Hashtag abonnieren oder das Abonnement löschen
+	 * kann.
+	 * 
+	 * @return VerticalPanel, das die Oberfläche zum Bearbeiten eines Hashtags
+	 *         anzeigt.
+	 */
 	public VerticalPanel gibBearbeitenFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
 		HorizontalPanel hP = new HorizontalPanel();
-		Label l = new Label("# "+ hashtag.getSchlagwort());
+		Label l = new Label("# " + hashtag.getSchlagwort());
 		hP.add(btnAbonieren);
 		hP.add(btnDeabonieren);
 
@@ -109,18 +134,22 @@ public class HashtagFormular extends Composite {
 		btnDeabonieren.setStylePrimaryName("btnNegativ");
 		l.setStylePrimaryName("selectionLabel");
 
-
 		vpForm.clear();
 		vpForm.add(l);
-		
+
 		vpForm.add(hP);
-		 
 
 		return vpForm;
 	}
-	
-	
-	public VerticalPanel gibBeschreibungHtAbo(){
+
+	/**
+	 * Die Methode <code>gibBeschreibenHtAbo</code> gibt ein VerticalPanel
+	 * zurück, das eine Beschreibung zum Abonnement der Hashtags beinhaltet.
+	 * 
+	 * @return VerticalPanel, das eine Beschreibung zur
+	 *         Hashtagabonnementverwaltung beinhaltet.
+	 */
+	public VerticalPanel gibBeschreibungHtAbo() {
 		VerticalPanel vpForm = new VerticalPanel();
 
 		HTML headline = new HTML(" <div class='" + "subline"
@@ -130,15 +159,23 @@ public class HashtagFormular extends Composite {
 		HTML subtext = new HTML(
 				" <div class='"
 						+ "subtext"
-						+ "'><h4>Hier kannst du Hashtags abonnieren oder bereits vorhandene Hashtags löschen. Hinweis: Um Hashtags bearbeiten zu können, klickst du im Hauptmenü auf Einstellungen und weiter auf Hashtagverwaltung.  </h4></div> ");
+						+ "'><h4>Hier kannst du Hashtags abonnieren oder bereits vorhandene Hashtagabonnements löschen. Hinweis: Um Hashtags bearbeiten zu können, klickst du im Hauptmenü auf Einstellungen und weiter auf Hashtagverwaltung.  </h4></div> ");
 		vpForm.add(subtext);
 
-//		vpForm.add(gibAnlegenFormular());
-		
+		// vpForm.add(gibAnlegenFormular());
+
 		return vpForm;
 	}
-	
-	public VerticalPanel gibBeschreibungHtVerwaltung(){
+
+	/**
+	 * Die Methode <code>gibBeschreibenHtVerwaltung</code> gibt ein
+	 * VerticalPanel zurück, das eine Beschreibung zur Hashtagverwaltung
+	 * beinhaltet.
+	 * 
+	 * @return VerticalPanel, das eine Beschreibung zur Hashtagverwaltung
+	 *         beinhaltet.
+	 */
+	public VerticalPanel gibBeschreibungHtVerwaltung() {
 		VerticalPanel vpForm = new VerticalPanel();
 
 		HTML headline = new HTML(" <div class='" + "subline"
@@ -151,12 +188,17 @@ public class HashtagFormular extends Composite {
 						+ "'><h4>Hier kannst du neue Hashtags im System anlegen, bearbeiten oder löschen. Bitte gib zum anlegen das entsprechende Hashtag ein und klicke auf Anlegen oder wähle einen Hashtag aus der linken Liste aus, um es dann zu bearbeiten oder zu löschen.  </h4></div> ");
 		vpForm.add(subtext);
 
-		
 		return vpForm;
 	}
-	
-	
 
+	/**
+	 * Die Methode <code>gibInfoFormular</code> gibt ein VerticalPanel zurück,
+	 * das Informationen zur Funktionsweise der Hashtagabonnementverwaltung
+	 * beinhaltet.
+	 * 
+	 * @return VerticalPanel, das Informationen zur Funktionsweise der
+	 *         Hashtagabonnementverwaltung beinhaltet.
+	 */
 	public VerticalPanel gibInfoFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
 		vpForm.clear();
@@ -166,10 +208,17 @@ public class HashtagFormular extends Composite {
 		return vpForm;
 	}
 
+	/**
+	 * Die Methode <code>gibAnlegenFormular</code> gibt ein VerticalPanel
+	 * zurück, das den Inhalt setzt, der benötigt wird um ein Hashtag anzulegen.
+	 * 
+	 * @return VerticalPanel, das den Inhalt setzt, der benötigt wird um ein
+	 *         Hashtag anzulegen.
+	 */
 	public VerticalPanel gibAnlegenFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
-		htAnlegen.setStylePrimaryName("btnSpeichern"); 
-		
+		htAnlegen.setStylePrimaryName("btnSpeichern");
+
 		vpForm.clear();
 		vpForm.add(schlagwortBox);
 		vpForm.add(htAnlegen);
@@ -177,7 +226,10 @@ public class HashtagFormular extends Composite {
 		return vpForm;
 	}
 
-	// Setze Buttons
+	/**
+	 * Die Methode <code>setzeHashtagAbo</code> ruft für das ausgewählte Hashtag
+	 * ein Abonnement hinzu, falls es noch nicht besteht.
+	 */
 	public void setzeHashtagAbo(HashtagZelle.ZellenObjekt ZellenObjekt) {
 		this.hashtag = ZellenObjekt.hashtag;
 
