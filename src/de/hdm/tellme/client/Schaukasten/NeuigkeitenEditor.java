@@ -63,7 +63,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 
 		/*
 		 * Setze Optionenbuttons mit den Werten Null, damit alle Optionen
-		 * ausgegraut sind
+		 * ausgegraut sind 
 		 */
 		setzeOptionenButton(null, null);
 
@@ -77,10 +77,15 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		tree.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.DISABLED);
 
 		ScrollPanel scPanel = new ScrollPanel();
-		// scPanel.setHeight("800px");
-		scPanel.setHeight("100%");
+		 scPanel.setHeight("728px");
+//		scPanel.setHeight("100%");
+		 scPanel.setWidth("99%");
+		 
+		 //Verhindern der vertikalen Scroll-bar
+		 tree.setWidth("99%");
 		scPanel.add(tree);
 
+		NeuigkeitenNachrichtenBaumModel.setzeKeinenFilter();
 		RootPanel.get("content_right").add(scPanel);
 
 	}
