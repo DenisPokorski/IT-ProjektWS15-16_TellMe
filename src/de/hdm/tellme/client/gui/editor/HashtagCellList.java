@@ -128,14 +128,11 @@ public class HashtagCellList {
 					vP.add(rF.gibFormular());
 					RootPanel.get("content_right").clear();
 					RootPanel.get("content_right").add(vP);
-					
-					
-					
 				}
 			});
-
+			break;
 		default:
-		break;
+		
 		}
 
 		/**

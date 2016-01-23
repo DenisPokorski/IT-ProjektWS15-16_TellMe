@@ -290,7 +290,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 * Dem VerticalPanel vpFilterPanel wird die NutzerCelllist und
 		 * HashtagCelllist hinzugefügt
 		 */
-		vpFilterPanel.add(nuCL.generiereCellList(CellListModus.Nachrichtenuebersicht, 0));
+		vpFilterPanel.add(nuCL.generiereCellList(CellListModus.Nachrichtenuebersicht, 1));
 		vpFilterPanel.add(hsCL.generiereCellList(CellListModus.Nachrichtenuebersicht, 0));
 
 		/**

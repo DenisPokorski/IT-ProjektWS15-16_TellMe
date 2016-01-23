@@ -31,9 +31,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import de.hdm.tellme.shared.bo.Hashtag;
 
 /**
- * A form used for editing contacts.
- */
-/**
  * Die Klasse <class>HashtagVerwaltungFormular</class> wird verwendet, falls ein
  * Hashtag in der HashtagCellList aufgerufen wird und man sich im Modus
  * <code>HashtagVerwaltung</code> befindet.

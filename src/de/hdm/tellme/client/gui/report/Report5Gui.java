@@ -46,7 +46,7 @@ public class Report5Gui  extends VerticalPanel {
 	 */
  	public void onLoad()  {
 
- 		final HTML headline = new HTML(" <div class='" + "subline"+ "'><h2>Reportgenerator 5: Alle Nachrichten je Nutzer anzeigen</h2></div> ");
+ 		final HTML headline = new HTML(" <div class='" + "subline"+ "'><h2>Reportgenerator 5: Alle Nutzerabonnements je Nutzer anzeigen</h2></div> ");
  		final HTML subtext = new HTML(" <div class='"+ "subtext"+ "'><h4> Der Report 5 gibt alle Nutzerabonnements aus </h4></div> ");
 
 		vP.add(headline);

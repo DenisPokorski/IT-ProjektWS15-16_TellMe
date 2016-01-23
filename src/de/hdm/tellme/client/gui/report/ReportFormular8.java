@@ -66,7 +66,7 @@ public class ReportFormular8 {
 	public VerticalPanel gibFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
 
-		Label label = new Label("#"+hashtag.getSchlagwort());
+		Label label = new Label("# "+hashtag.getSchlagwort());
 		label.setStylePrimaryName("selectionLabel");
 		vpForm.add(label);
 
