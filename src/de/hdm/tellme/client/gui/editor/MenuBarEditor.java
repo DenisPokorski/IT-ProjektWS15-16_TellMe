@@ -12,15 +12,6 @@ import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.client.Schaukasten.Impressum;
 import de.hdm.tellme.client.Schaukasten.NeuigkeitenEditor;
 import de.hdm.tellme.client.Schaukasten.NutzerBearbeitenEditor;
-import de.hdm.tellme.client.gui.report.Report1Gui;
-import de.hdm.tellme.client.gui.report.Report2Gui;
-import de.hdm.tellme.client.gui.report.Report3Gui;
-import de.hdm.tellme.client.gui.report.Report4Gui;
-import de.hdm.tellme.client.gui.report.Report5Gui;
-import de.hdm.tellme.client.gui.report.Report6Gui;
-import de.hdm.tellme.client.gui.report.Report7Gui;
-import de.hdm.tellme.client.gui.report.Report8Gui;
-import de.hdm.tellme.client.gui.report.ReportWillkommenSeite;
 
 /**
  * Dies ist die Klasse <class>MenuBarEditor</class>, sie wird verwendet um die
@@ -36,9 +27,6 @@ import de.hdm.tellme.client.gui.report.ReportWillkommenSeite;
  */
 
 public class MenuBarEditor extends HorizontalPanel {
-
-
-	
 
 	/**
 	 * Definition von Konstruktor TODO LEERER KONSTRUKTOR BESCHREIBUNG
@@ -75,7 +63,7 @@ public class MenuBarEditor extends HorizontalPanel {
 			@Override
 			public void execute() {
 				NeuigkeitenEditor nE = new NeuigkeitenEditor();
-				MenuBarEditor.setzeInhalt(nE.gibFilterPanel(),nE);
+				MenuBarEditor.setzeInhalt(nE.gibFilterPanel(), nE);
 			}
 		}));
 		/**
@@ -86,7 +74,7 @@ public class MenuBarEditor extends HorizontalPanel {
 			@Override
 			public void execute() {
 				NeuigkeitenEditor nE = new NeuigkeitenEditor();
-				MenuBarEditor.setzeInhalt(nE.gibFilterPanel(),nE);
+				MenuBarEditor.setzeInhalt(nE.gibFilterPanel(), nE);
 			}
 		});
 
@@ -122,7 +110,7 @@ public class MenuBarEditor extends HorizontalPanel {
 			@Override
 			public void execute() {
 				setzeInhalt(new HashtagCellList()
-						.generiereCellList(CellListModus.Einstellungen),
+						.generiereCellList(CellListModus.Einstellungen, 0),
 						new HashtagFormular().gibBeschreibungHtAbo());
 			}
 		});
@@ -135,7 +123,7 @@ public class MenuBarEditor extends HorizontalPanel {
 			@Override
 			public void execute() {
 				setzeInhalt(new HashtagCellList()
-						.generiereCellList(CellListModus.HashtagVerwaltung),
+						.generiereCellList(CellListModus.HashtagVerwaltung, 0),
 						new HashtagFormular().gibBeschreibungHtVerwaltung());
 				RootPanel.get("content_right").add(
 						new HashtagFormular().gibAnlegenFormular());
@@ -149,7 +137,8 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.addItem("Benutzereinstellungen", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(new NutzerBearbeitenEditor().gibNutzerBearbeitenFormular());
+				setzeInhalt(new NutzerBearbeitenEditor()
+						.gibNutzerBearbeitenFormular());
 			}
 		});
 		/**
@@ -172,81 +161,6 @@ public class MenuBarEditor extends HorizontalPanel {
 			public void execute() {
 				Window.Location.assign(TellMe.gibEingeloggterBenutzer()
 						.getLogoutUrl());
-
-			}
-		});
-
-		// TODO: TEMPORÄRES MENÜ LÖSCHEN VOR ABGABE
-		MenuBar tempReports = new MenuBar(true);
-		tempReports.setAnimationEnabled(true);
-		HauptMenue.addItem(new MenuItem("Reports", tempReports));
-
-		tempReports.addItem("Report Startseite", new Command() {
-
-			@Override
-			public void execute() {
-				setzeInhalt(new ReportWillkommenSeite());
-
-			}
-		});
-		tempReports.addItem("Report 1", new Command() {
-			@Override
-			public void execute() {
-				setzeInhalt(new Report1Gui());
-			}
-		});
-
-		tempReports.addItem("Report 2", new Command() {
-			@Override
-			public void execute() {
-				setzeInhalt(new Report2Gui());
-
-			}
-		});
-
-		tempReports.addItem("Report 3", new Command() {
-			@Override
-			public void execute() {
-				setzeInhalt(new Report3Gui());
-			}
-		});
-
-		tempReports.addItem("Report 4", new Command() {
-			@Override
-			public void execute() {
-				setzeInhalt(new Report4Gui());
-
-			}
-		});
-
-		tempReports.addItem("Report 5", new Command() {
-			@Override
-			public void execute() {
-				setzeInhalt(new Report5Gui());
-
-			}
-		});
-
-		tempReports.addItem("Report 6", new Command() {
-			@Override
-			public void execute() {
-				setzeInhalt(new Report6Gui());
-
-			}
-		});
-		
-		tempReports.addItem("Report 7", new Command() {
-			@Override
-			public void execute() {
-				setzeInhalt(new Report7Gui());
-
-			}
-		});
-		
-		tempReports.addItem("Report 8", new Command() {
-			@Override
-			public void execute() {
-				setzeInhalt(new Report8Gui());
 
 			}
 		});

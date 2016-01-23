@@ -133,7 +133,7 @@ public class HTMLReportWriter {
 			Nutzer b) {
 
 		buffer.append("<table class='reportkoerper_vollbild'>");
-		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Teilnehmer der Unterhaltung</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
+		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Teilnehmer</td><td>Unterhaltungstyp</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
 		for (Unterhaltung unterhaltung : result) {
 			for (Nachricht nachricht : unterhaltung.getAlleNachrichten()) {
 				buffer.append("<tr class='reportKoerper'> <td>"
@@ -145,6 +145,12 @@ public class HTMLReportWriter {
 							+ nutzer.getNachname() + "<br />");
 
 				}
+				buffer.append("</td><td>");
+
+				if (unterhaltung.getUnterhaltungstyp().ordinal() == 0)
+					buffer.append("privat");
+				else
+					buffer.append("öffentlich");
 				buffer.append("</td><td>"
 						+ dF.format(nachricht.getErstellungsDatum())
 						+ "</td><td>");
@@ -223,7 +229,7 @@ public class HTMLReportWriter {
 
 	private void erstelleKoerperDatenReport2(Vector<Unterhaltung> result) {
 		buffer.append("<table class='reportkoerper_vollbild'>");
-		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Empfänger</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
+		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Teilnehmer</td><td>Unterhaltungstyp</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
 		for (Unterhaltung unterhaltung : result) {
 			for (Nachricht nachricht : unterhaltung.getAlleNachrichten()) {
 				buffer.append("<tr class='reportKoerper'> <td>"
@@ -236,6 +242,12 @@ public class HTMLReportWriter {
 							+ nutzer.getNachname() + "<br />");
 
 				}
+				buffer.append("</td><td>");
+
+				if (unterhaltung.getUnterhaltungstyp().ordinal() == 0)
+					buffer.append("privat");
+				else
+					buffer.append("öffentlich");
 				buffer.append("</td><td>"
 						+ dF.format(nachricht.getErstellungsDatum())
 						+ "</td><td>");
@@ -252,7 +264,6 @@ public class HTMLReportWriter {
 
 		}
 		buffer.append("</table>");
-
 	}
 
 	/**
@@ -345,7 +356,7 @@ public class HTMLReportWriter {
 	private void erstelleKoerperDatenReport3(Vector<Unterhaltung> result,
 			Nutzer b) {
 		buffer.append("<table class='reportkoerper_vollbild'>");
-		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Empfänger</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
+		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Teilnehmer</td><td>Unterhaltungstyp</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
 		for (Unterhaltung unterhaltung : result) {
 			for (Nachricht nachricht : unterhaltung.getAlleNachrichten()) {
 				buffer.append("<tr class='reportKoerper'> <td>"
@@ -357,6 +368,12 @@ public class HTMLReportWriter {
 							+ nutzer.getNachname() + "<br />");
 
 				}
+				buffer.append("</td><td>");
+
+				if (unterhaltung.getUnterhaltungstyp().ordinal() == 0)
+					buffer.append("privat");
+				else
+					buffer.append("öffentlich");
 				buffer.append("</td><td>"
 						+ dF.format(nachricht.getErstellungsDatum())
 						+ "</td><td>");
@@ -373,7 +390,6 @@ public class HTMLReportWriter {
 
 		}
 		buffer.append("</table>");
-
 	}
 
 	/**
@@ -471,8 +487,8 @@ public class HTMLReportWriter {
 	 */
 	private void erstelleKoerperDatenReport4(Vector<Unterhaltung> result) {
 		buffer.append("<table class='reportkoerper_vollbild'>");
-		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td>"
-				+ "<td>Empfänger</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
+		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Teilnehmer</td><td>Unterhaltungstyp</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
+
 		for (Unterhaltung unterhaltung : result) {
 			for (Nachricht nachricht : unterhaltung.getAlleNachrichten()) {
 				buffer.append("<tr class='reportKoerper'> <td>"
@@ -485,6 +501,12 @@ public class HTMLReportWriter {
 							+ nutzer.getNachname() + "<br />");
 
 				}
+				buffer.append("</td><td>");
+
+				if (unterhaltung.getUnterhaltungstyp().ordinal() == 0)
+					buffer.append("privat");
+				else
+					buffer.append("öffentlich");
 				buffer.append("</td><td>"
 						+ dF.format(nachricht.getErstellungsDatum())
 						+ "</td><td>");
@@ -501,7 +523,6 @@ public class HTMLReportWriter {
 
 		}
 		buffer.append("</table>");
-
 	}
 
 	/**

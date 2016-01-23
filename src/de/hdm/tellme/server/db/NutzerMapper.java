@@ -205,7 +205,6 @@ public class NutzerMapper {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// Ergebnisvektor zurückgeben
 		return alleNutzerAusserMeinNutzerListe;
 	}
 

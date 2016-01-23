@@ -334,38 +334,6 @@ public class UnterhaltungMapper {
 		return uH;
 	}
 
-	/**
-	 * Diese Methode zeigt alle aktiven Nachrichten einer Unterhaltung an.
-	 * 
-	 * @param unterhaltungsId
-	 * @return
-	 */
-	public Unterhaltung gibNachrichtenIdsZuUnterhaltungsId(Integer unterhaltungsId) {
-		Unterhaltung u = new Unterhaltung();
-		Vector<Nachricht> meineNachrichten = new Vector<Nachricht>();
-		Connection con = DatenbankVerbindung.connection();
-		try {
-			Statement state = con.createStatement();
-			String sql = "SELECT * FROM NachrichtUnterhaltung INNER JOIN Unterhaltung ON NachrichtUnterhaltung.UnterhaltungId = Unterhaltung.Id INNER JOIN Nachricht ON NachrichtUnterhaltung.NachrichtId = Nachricht.Id WHERE NachrichtUnterhaltung.UnterhaltungId = '"
-					+ unterhaltungsId + "' AND Unterhaltung.Sichtbarkeit = 1 ORDER BY Nachricht.ErstellungsDatum DESC;";
-			ResultSet rs = state.executeQuery(sql);
-			while (rs.next()) {
-				u.setId(rs.getInt("NachrichtUnterhaltung.UnterhaltungId"));
-				Nachricht nA = new Nachricht();
-				nA.setId(rs.getInt("NachrichtUnterhaltung.NachrichtId"));
-				nA.setSenderId(rs.getInt("Nachricht.AutorId"));
-				nA.setErstellungsDatum(rs.getTimestamp("Nachricht.ErstellungsDatum"));
-				nA.setText(rs.getString("Nachricht.Text"));
-				nA.setSichtbarkeit(1);
-				meineNachrichten.add(nA);
-
-			}
-			u.setAlleNachrichten(meineNachrichten);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return u;
-	}
 
 	/**
 	 * Diese Methode zeigt alle aktiven Teilnehmer einer Unterhaltung an
@@ -446,31 +414,6 @@ public class UnterhaltungMapper {
 		return unterhaltungen;
 	}
 
-	/**
-	 * Diese Methode gibt an, ob ein Nutzer in einer Unterhaltung teilgenommen
-	 * hat oder nicht.
-	 * 
-	 * @param unterhaltungsId
-	 * @param teilnehmerId
-	 * @return
-	 */
-	public boolean ueberpruefeObTeilnehmerInaktivInUnterhaltung(int unterhaltungsId, int teilnehmerId) {
-		boolean vorhanden = false;
-		Connection con = DatenbankVerbindung.connection();
-		try {
-			Statement state = con.createStatement();
-			String sql = "SELECT * FROM NutzerUnterhaltung JOIN Nutzer ON NutzerUnterhaltung.NutzerId = Nutzer.Id WHERE UnterhaltungId = '" + unterhaltungsId
-					+ "' AND NutzerId = '" + teilnehmerId + "' AND Nutzer.Status = '" + eStatus.aktiv.ordinal() + "';";
-
-			int anzahlBetroffenerZeilen = state.executeUpdate(sql);
-			if (anzahlBetroffenerZeilen >= 0)
-				vorhanden = true;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return vorhanden;
-	}
 
 	/**
 	 * Diese Methode gibt an, ob ein Nutzer in einer Unterhaltung teilnimmt oder

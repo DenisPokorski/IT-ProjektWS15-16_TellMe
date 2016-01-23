@@ -50,41 +50,6 @@ public class HashtagAbonnementMapper {
 		return hashtagAbonnementMapper;
 	}
 
-	/**
-	 * Laden der Hashtags, die für einen Nutzer bereits abonniert sind. Hierfür
-	 * wird die NutzerId in der NutzerHashtag-Tabelle mit der HashtagId
-	 * verglichen um zu erkennen, welche Hashtags bereits abonniert sind.
-	 * 
-	 * @param hashtag
-	 * @return Ein Vektor mit Hashtag-Objekten, dass TODO
-	 */
-	public Vector<Hashtag> ladeAbonnierendeHashtagListe(int hashtag) {
-		Connection con = DatenbankVerbindung.connection();
-
-		Vector<Hashtag> HashtagListe = new Vector<Hashtag>();
-
-		try {
-			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT NutzerHashtag.HashtagId, Hashtag.Id, Hashtag.Schlagwort, Hashtag.ErstellungsDatum FROM NutzerHashtag LEFT JOIN Hashtag ON NutzerHashtag.HashtagId = Hashtag.Id Where NutzerHashtag.NutzerId = '"
-							+ hashtag + "';");
-
-			while (rs.next()) {
-				Hashtag ha = new Hashtag();
-				ha.setId(rs.getInt("Id"));
-				ha.setSchlagwort(rs.getString("Schlagwort"));
-				ha.setErstellungsDatum(rs.getTimestamp("ErstellungsDatum"));
-				HashtagListe.add(ha);
-			}
-		}
-
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		System.out.println("hashtag size liste: " + HashtagListe.size());
-		return HashtagListe;
-	}
 
 	/**
 	 * Dieser Mapper wird genutzt, um ein Hashtag-Abonnement in die Datenbank zu
@@ -150,8 +115,6 @@ public class HashtagAbonnementMapper {
 				h.setId(rs.getInt("Id"));
 				h.setErstellungsDatum(rs.getTimestamp("NutzerHashtag.ErstellungsDatum"));
 				h.setSchlagwort(rs.getString("Schlagwort"));
-
-				System.out.println(h.getSchlagwort());
 				alleHashtagsEinesNutzers.add(h);
 			}
 

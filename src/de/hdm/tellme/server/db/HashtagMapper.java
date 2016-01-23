@@ -53,65 +53,6 @@ public class HashtagMapper {
 	}
 
 	/**
-	 * Die Mapper-Methode <code>anlegen</code> wird verwendet, um ein neues
-	 * Hashtag zu erstellen. Hierfür wird die Id das Schlagwort, was das Hashtag
-	 * an sich darstellt, und das Erstellungsdatum in der Hashtag-Tabelle in die
-	 * Datenbank geschrieben.
-	 * 
-	 * @param h
-	 */
-	public void anlegen(Hashtag h) {
-		Connection con = DatenbankVerbindung.connection();
-		try {
-			Statement state = con.createStatement();
-			String sqlquery = " INSERT INTO Hashtag (Id, Schlagwort, Erstellungsdatum) VALUES ("
-					+ "'"
-					+ h.getId()
-					+ "','"
-					+ h.getSchlagwort()
-					+ "','"
-					+ h.getErstellungsDatum() + "';";
-			state.executeUpdate(sqlquery);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Dieser Mapper soll die öffentlichen Nachrichten nach Hashtags ausgeben
-	 * TODO fehlt genauere Beschreibung.
-	 * 
-	 * @param id
-	 * @return Unterhaltung
-	 */
-	public Unterhaltung oeffentlicheNachrichtenNachHashtag(int id) {
-		Connection con = DatenbankVerbindung.connection();
-		Vector<Nachricht> nachrichtenNachHashtag = new Vector<Nachricht>();
-		Unterhaltung u = new Unterhaltung();
-		try {
-			Statement state = con.createStatement();
-			String sqlquery = "SELECT * FROM NachrichtHashtag JOIN Nachricht ON NachrichtHashtag.NachrichtId = Nachricht.Id JOIN NachrichtUnterhaltung ON NachrichtHashtag.NachrichtId = NachrichtUnterhaltung.NachrichtId JOIN Hashtag ON NachrichtHashtag.HashtagId = Hashtag.Id JOIN Unterhaltung ON NachrichtUnterhaltung.UnterhaltungId = Unterhaltung.Id WHERE NachrichtHashtag.HashtagId = '"
-					+ id
-					+ "' AND Nachricht.Sichtbarkeit = 1 AND Unterhaltung.Typ = 1 ORDER BY Nachricht.ErstellungsDatum DESC";
-			ResultSet rs = state.executeQuery(sqlquery);
-			while (rs.next()) {
-				Nachricht nA = new Nachricht();
-				nA.setId(rs.getInt("Nachricht.Id"));
-				nA.setText(rs.getString("Nachricht.Text"));
-				nA.setSenderId(rs.getInt("Nachricht.AutorId"));
-				nA.setErstellungsDatum(rs
-						.getTimestamp("Nachricht.Erstellungsdatum"));
-				nachrichtenNachHashtag.add(nA);
-
-			}
-			u.setAlleNachrichten(nachrichtenNachHashtag);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return u;
-	}
-
-	/**
 	 * 
 	 * Die Mapper-Methode <code>erstellen</code> wird verwendet, um ein neues
 	 * Hashtag zu erstellen. Hierfür wird die Id das Schlagwort, was das Hashtag
@@ -218,38 +159,6 @@ public class HashtagMapper {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * Dieser Mapper gibt alle Hashtags eines ausgewählten Nutzers aus.
-	 * 
-	 * Er wird benötigt um den Report 3 zu befüllen, der alle
-	 * Hashtag-Abonnements eines bestimmten Nutzers anzeigen soll.
-	 * 
-	 * @param nachrichtId
-	 * @return Ein Vektor mit allen Hashtag-Objekten, die ein bestimmter Nutzer
-	 *         abonniert hat.
-	 */
-	public Vector<Hashtag> report6Mapper(int nachrichtId) {
-		Vector<Hashtag> hashtagsAnNachricht = new Vector<Hashtag>();
-		Connection con = DatenbankVerbindung.connection();
-		try {
-			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT * FROM NachrichtHashtag RIGHT JOIN Hashtag ON NachrichtHashtag.HashtagId = Hashtag.Id WHERE NachrichtId ="
-							+ nachrichtId + " ;");
-			while (rs.next()) {
-				Hashtag hT = new Hashtag();
-				hT.setId(rs.getInt("Id"));
-				hT.setSchlagwort(rs.getString("Schlagwort"));
-				hT.setErstellungsDatum(rs.getTimestamp("Erstellungsdatum"));
-				hashtagsAnNachricht.add(hT);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return hashtagsAnNachricht;
 	}
 
 	/**
