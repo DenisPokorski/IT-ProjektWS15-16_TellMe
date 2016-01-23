@@ -1,6 +1,7 @@
 package de.hdm.tellme.client.gui.editor;
 
 import com.google.gwt.user.cellview.client.CellList;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -26,7 +27,7 @@ public class HashtagCellList {
 
 	Hashtag selektiertesHashstag = null;
 
-	public FlowPanel generiereCellList(CellListModus modi) {
+	public FlowPanel generiereCellList(CellListModus modi, int i) {
 		
 		/**
 		 * Um ein bestimmtes Objekt aus der HashtagCellList auszuwählen wird die
@@ -39,7 +40,7 @@ public class HashtagCellList {
 		/**
 		 * Der HashtagDataProvider stellt die HashtagCellList zur Verfügung.
 		 */
-		HashtagDataProvider.gib().addDataDisplay(cellList);
+		HashtagDataProvider.gib(i).addDataDisplay(cellList);
 		
 		/**
 		 * Hier wird ein Selection Model hinzugefügt, damit man Zellen auswählen

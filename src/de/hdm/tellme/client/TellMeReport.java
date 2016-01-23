@@ -4,12 +4,14 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-import de.hdm.tellme.client.Schaukasten.NeuigkeitenEditor;
 import de.hdm.tellme.client.Schaukasten.NutzerBearbeitenEditor;
 import de.hdm.tellme.client.gui.editor.MenuBarEditor;
+import de.hdm.tellme.client.gui.report.MenuBarReport;
+import de.hdm.tellme.client.gui.report.ReportWillkommenSeite;
 import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.LoginService;
 import de.hdm.tellme.shared.LoginServiceAsync;
@@ -21,7 +23,7 @@ import de.hdm.tellme.shared.LoginServiceAsync;
  * @author denispokorski
  *
  */
-public class TellMe implements EntryPoint {
+public class TellMeReport implements EntryPoint {
 
 	/**
 	 * Die Klasse implementiert das Interface <code> EntryPoint</code>. Dafür
@@ -30,7 +32,7 @@ public class TellMe implements EntryPoint {
 	 * 
 	 *
 	 */
-	public TellMe() {
+	public TellMeReport() {
 
 	}
 
@@ -46,42 +48,45 @@ public class TellMe implements EntryPoint {
 	 */
 	LoginServiceAsync loginService = GWT.create(LoginService.class);
 
-	MenuBarEditor menuBar = new MenuBarEditor();
+	MenuBarReport menuBar = new MenuBarReport();
 
 	public static LoginInfo gibEingeloggterBenutzer() {
 		return eingeloggterBenutzer;
 	}
 
-	public Widget ladeTellMe() {
+	public String getLoginUrl() {
+		String a = com.google.gwt.core.client.GWT.getModuleBaseURL();
+		String b;
+		b = a.substring(0, a.length()-1);
+		b += ".html";
+		return b;
+
+	}
+
+	public Widget ladeTellMeReport() {
 
 		if (eingeloggterBenutzer.getUser().getVorname() == "undefined"
 				|| eingeloggterBenutzer.getUser().getNachname() == "undefined") {
 
-			// Startseite anzeigen
-			NutzerBearbeitenEditor.NutzerRuftTellMeErstesMalAuf = true;
-			MenuBarEditor.setzeInhalt(new NutzerBearbeitenEditor()
-					.gibNutzerBearbeitenFormular());
+			MenuBarEditor.setzeInhalt(new Label("Bitte lege deinen Vor- und Nachnamen im Editor fest."));
 
 		} else {
 
 			RootPanel.get("header").add(menuBar);
+			MenuBarReport.setzeInhalt(new ReportWillkommenSeite());
 			// Startseite anzeigen
 
-			NeuigkeitenEditor nE = new NeuigkeitenEditor();
-			MenuBarEditor.setzeInhalt(nE.gibFilterPanel(), nE);
 		}
 		return null;
 	}
 
 	@Override
 	public void onModuleLoad() {
-
 		/**
 		 * Der Login-Status wird durch den LoginService überprüft.
 		 */
-
 		loginService.getNutzerInfo(
-				com.google.gwt.core.client.GWT.getHostPageBaseURL(),
+				getLoginUrl(),
 				new AsyncCallback<LoginInfo>() {
 
 					@Override
@@ -93,7 +98,7 @@ public class TellMe implements EntryPoint {
 						 * TellMe-Applikation angezeigt.
 						 */
 						if (eingeloggterBenutzer.isLoggedIn()) {
-							ladeTellMe();
+							ladeTellMeReport();
 						} else {
 							Window.Location.assign(eingeloggterBenutzer
 									.getLoginUrl());

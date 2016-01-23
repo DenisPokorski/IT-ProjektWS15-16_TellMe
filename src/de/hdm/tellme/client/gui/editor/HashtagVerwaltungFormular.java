@@ -72,7 +72,7 @@ public class HashtagVerwaltungFormular extends Composite {
 				} else {
 
 					hashtag.setSchlagwort(schlagwortBox.getText());
-					HashtagDataProvider.gib().hashtagSpeichern(hashtag);
+					HashtagDataProvider.gib(0).hashtagSpeichern(hashtag);
 
 				}
 			}
@@ -83,7 +83,7 @@ public class HashtagVerwaltungFormular extends Composite {
 		 */
 		htLoeschen.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				HashtagDataProvider.gib().hashtagEntfernen(hashtag);
+				HashtagDataProvider.gib(0).hashtagEntfernen(hashtag);
 
 			}
 		});
@@ -112,7 +112,7 @@ public class HashtagVerwaltungFormular extends Composite {
 						Window.alert("Hashtag existiert bereits");
 					} else {
 						hashtag.setSchlagwort(schlagwortBox.getText());
-						HashtagDataProvider.gib().hashtagErstellen(hashtag);
+						HashtagDataProvider.gib(0).hashtagErstellen(hashtag);
 					}
 
 				}

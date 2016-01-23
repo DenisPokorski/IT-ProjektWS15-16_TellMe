@@ -6,7 +6,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.tellme.client.gui.editor.CellListModus;
 import de.hdm.tellme.client.gui.editor.HashtagCellList;
-import de.hdm.tellme.client.gui.editor.NutzerCellList;
 
 /**
 * Diese Klasse wird durch Klick auf den Button Report 8 auf der
@@ -49,7 +48,7 @@ public class Report8Gui extends VerticalPanel {
 		RootPanel
 				.get("content_left")
 				.add(new HashtagCellList()
-						.generiereCellList(CellListModus.Report8_AlleNutzerDieDemAusgewaehltenHashtagFolgen));
+						.generiereCellList(CellListModus.Report8_AlleNutzerDieDemAusgewaehltenHashtagFolgen, 1));
 
 	}
 

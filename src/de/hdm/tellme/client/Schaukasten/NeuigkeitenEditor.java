@@ -291,7 +291,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 * HashtagCelllist hinzugefügt
 		 */
 		vpFilterPanel.add(nuCL.generiereCellList(CellListModus.Nachrichtenuebersicht, 0));
-		vpFilterPanel.add(hsCL.generiereCellList(CellListModus.Nachrichtenuebersicht));
+		vpFilterPanel.add(hsCL.generiereCellList(CellListModus.Nachrichtenuebersicht, 0));
 
 		/**
 		 * Ein neuer Button mit dem Namen "Filter zurücksetzen" wird erstellt

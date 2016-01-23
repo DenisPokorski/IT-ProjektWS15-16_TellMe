@@ -31,7 +31,7 @@ public class HashtagDataProvider {
 
 	private final EditorServiceAsync _asyncObj = GWT
 			.create(EditorService.class);
-	
+
 	private final ReportServiceAsync _reportAsyncObj = GWT
 			.create(ReportService.class);
 
@@ -42,14 +42,44 @@ public class HashtagDataProvider {
 
 	private static HashtagDataProvider instanz = null;
 
-	public static HashtagDataProvider gib() {
-		if (instanz == null)
-			instanz = new HashtagDataProvider();
+	public static HashtagDataProvider gib(int i) {
+		if (i == 0)
+			instanz = new HashtagDataProvider(0);
+		else
+			instanz = new HashtagDataProvider(1);
 		return instanz;
 	}
 
-	private HashtagDataProvider() {
-		holeHashtagListe();
+	private HashtagDataProvider(int i) {
+		if (i == 0)
+			holeHashtagListe();
+		else
+			holeHashtagListeReport();
+
+	}
+
+	private void holeHashtagListeReport() {
+
+		if (dataList != null) {
+			dataList.clear();
+		}
+		dataList = dataProvider.getList();
+
+		_asyncObj.gibAlleHashtags(new AsyncCallback<Vector<Hashtag>>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO
+			}
+
+			@Override
+			public void onSuccess(Vector<Hashtag> hashTagListe) {
+				for (Hashtag hashtag : hashTagListe) {
+					HashtagZelle.ZellenObjekt nah = new HashtagZelle().new ZellenObjekt();
+					nah.hashtag = hashtag;
+					dataList.add(nah);
+				}
+			}
+		});
 
 	}
 
@@ -76,7 +106,8 @@ public class HashtagDataProvider {
 			public void onSuccess(Vector<Hashtag> hashTagListe) {
 
 				hashTagListeTemp = hashTagListe;
-				int NutzerId = TellMe.gibEingeloggterBenutzer().getUser().getId();
+				int NutzerId = TellMe.gibEingeloggterBenutzer().getUser()
+						.getId();
 
 				_asyncObj.getAlleAbonniertenHashtagsfuerAbonehmer(NutzerId,
 						new AsyncCallback<Vector<Integer>>() {
@@ -309,24 +340,25 @@ public class HashtagDataProvider {
 					}
 				});
 	}
-	
-	public void report8Generieren( Hashtag n){
+
+	public void report8Generieren(Hashtag n) {
 		final Hashtag b = n;
-		_reportAsyncObj.report8Generieren(b.getId(), new AsyncCallback<Vector<Nutzer>>() {
+		_reportAsyncObj.report8Generieren(b.getId(),
+				new AsyncCallback<Vector<Nutzer>>() {
 
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("Fehler bei der Generierung");				
-			}
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert("Fehler bei der Generierung");
+					}
 
-			@Override
-			public void onSuccess(Vector<Nutzer> result) {
-				HTMLReportWriter hRW = new HTMLReportWriter();
+					@Override
+					public void onSuccess(Vector<Nutzer> result) {
+						HTMLReportWriter hRW = new HTMLReportWriter();
 
-				hRW.generateReport8(result, b);		
-			}
-		});
-	
+						hRW.generateReport8(result, b);
+					}
+				});
+
 	}
 
 }

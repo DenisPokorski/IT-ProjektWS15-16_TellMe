@@ -7,7 +7,9 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+
 import de.hdm.tellme.client.TellMe;
+import de.hdm.tellme.client.TellMeReport;
 import de.hdm.tellme.client.gui.editor.NutzerDataProvider;
 import de.hdm.tellme.shared.bo.Nutzer;
 
@@ -95,7 +97,7 @@ public class Report4Gui extends VerticalPanel {
 				
 
  				
-				nutzer = TellMe.gibEingeloggterBenutzer().getUser();
+				nutzer = TellMeReport.gibEingeloggterBenutzer().getUser();
 				NutzerDataProvider.gib(1).report4Generieren(nutzer);
 
 			}

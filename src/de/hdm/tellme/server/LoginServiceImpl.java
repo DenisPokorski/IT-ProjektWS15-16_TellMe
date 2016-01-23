@@ -25,28 +25,6 @@ import de.hdm.tellme.shared.bo.Nutzer.eStatus;
 public class LoginServiceImpl extends RemoteServiceServlet implements
 		LoginService {
 
-	private String uri_;
-
-	public LoginServiceImpl() throws IllegalArgumentException {
-		uri_ = "";
-	}
-
-	private void setURI() {
-		String URIs = "";
-		StringBuffer requestURL = this.perThreadRequest.get().getRequestURL();
-		String queryString = this.perThreadRequest.get().getQueryString();
-		
-		if (queryString == null) {
-			URIs = requestURL.toString();
-			int amountServerletPathChar = this.perThreadRequest.get().getServletPath().length();
-			int amountURISPath = URIs.length();
-			uri_ = URIs.substring(0, amountURISPath - (amountServerletPathChar));
-		} else {
-			uri_ = requestURL.append('?').append(queryString).toString();
-		}
-		
-	}
-
 	private static final long serialVersionUID = -1L;
 
 	/**
@@ -58,7 +36,7 @@ public class LoginServiceImpl extends RemoteServiceServlet implements
 	 * 
 	 */
 	@Override
-	public LoginInfo getNutzerInfo() {
+	public LoginInfo getNutzerInfo(String uri) {
 
 		/**
 		 * Inizialierung von den Google bereitgestellten Klassen(UserService, User und Logininfo) 
@@ -68,14 +46,13 @@ public class LoginServiceImpl extends RemoteServiceServlet implements
 		User nutzer = userService.getCurrentUser();
 		LoginInfo loginInfo = new LoginInfo();
 
-		setURI();
 
 		if (nutzer != null) {
 			NutzerMapper nMapper = NutzerMapper.nutzerMapper();
 
 			loginInfo.setLoggedIn(true);
 			loginInfo.setEmailAddress(nutzer.getEmail());
-			loginInfo.setLogoutUrl(userService.createLogoutURL(uri_));
+			loginInfo.setLogoutUrl(userService.createLogoutURL(uri));
 
 			Nutzer n = nMapper.suchenMitEmailAdresse(loginInfo.getEmailAddress());
 
@@ -97,7 +74,7 @@ public class LoginServiceImpl extends RemoteServiceServlet implements
 
 		} else {
 			loginInfo.setLoggedIn(false);
-			loginInfo.setLoginUrl(userService.createLoginURL(uri_));
+			loginInfo.setLoginUrl(userService.createLoginURL(uri));
 		}
 		return loginInfo;
 	}

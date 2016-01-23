@@ -2,19 +2,14 @@ package de.hdm.tellme.client.gui.report;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import de.hdm.tellme.client.gui.editor.HashtagCellList;
 import de.hdm.tellme.client.gui.editor.HashtagDataProvider;
 import de.hdm.tellme.client.gui.editor.HashtagZelle;
-import de.hdm.tellme.client.gui.editor.NutzerDataProvider;
-import de.hdm.tellme.client.gui.editor.NutzerZelle;
 import de.hdm.tellme.shared.bo.Hashtag;
-import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
  * Die Klasse <class>ReportFormular8</class> beinhaltet den
@@ -44,7 +39,7 @@ public class ReportFormular8 {
 				RootPanel.get("content_left").clear();
 				RootPanel.get("content_right").clear();
 
-				HashtagDataProvider.gib().report8Generieren(hashtag);
+				HashtagDataProvider.gib(1).report8Generieren(hashtag);
 
 			}
 		});
@@ -58,7 +53,7 @@ public class ReportFormular8 {
 	public void zeigeReportFormular() {
 		RootPanel.get("content_right").clear();
 
-		HashtagDataProvider.gib().report8Generieren(hashtag);
+		HashtagDataProvider.gib(1).report8Generieren(hashtag);
 
 	}
 
@@ -71,7 +66,7 @@ public class ReportFormular8 {
 	public VerticalPanel gibFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
 
-		Label label = new Label(hashtag.getSchlagwort());
+		Label label = new Label("#"+hashtag.getSchlagwort());
 		label.setStylePrimaryName("selectionLabel");
 		vpForm.add(label);
 

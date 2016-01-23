@@ -17,7 +17,9 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
+
 import de.hdm.tellme.client.TellMe;
+import de.hdm.tellme.client.TellMeReport;
 import de.hdm.tellme.client.gui.editor.NutzerDataProvider;
 import de.hdm.tellme.shared.bo.Nutzer;
 
@@ -150,7 +152,7 @@ public class Report2Gui extends VerticalPanel {
 					
 					RootPanel.get("content").add(ladenPanel);
 
-					nutzer = TellMe.gibEingeloggterBenutzer().getUser();
+					nutzer = TellMeReport.gibEingeloggterBenutzer().getUser();
 					NutzerDataProvider.gib(1).report2Generieren(nutzer,
 							new Timestamp(vonDateBox.getValue().getTime()),
 							new Timestamp(bisDateBox.getValue().getTime()));

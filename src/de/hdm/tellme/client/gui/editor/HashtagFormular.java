@@ -57,7 +57,7 @@ public class HashtagFormular extends Composite {
 				if (hashtag == null) {
 					return;
 				}
-				HashtagDataProvider.gib().abonieren(hashtag);
+				HashtagDataProvider.gib(0).abonieren(hashtag);
 			}
 		});
 
@@ -69,7 +69,7 @@ public class HashtagFormular extends Composite {
 				if (hashtag == null) {
 					return;
 				}
-				HashtagDataProvider.gib().deabonieren(hashtag);
+				HashtagDataProvider.gib(0).deabonieren(hashtag);
 			}
 		});
 		/**
@@ -96,7 +96,7 @@ public class HashtagFormular extends Composite {
 					} else {
 						Hashtag neuesHashtag = new Hashtag();
 						neuesHashtag.setSchlagwort(schlagwortBox.getText());
-						HashtagDataProvider.gib()
+						HashtagDataProvider.gib(0)
 								.hashtagErstellen(neuesHashtag);
 					}
 
