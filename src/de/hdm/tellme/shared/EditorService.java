@@ -149,7 +149,7 @@ public interface EditorService extends RemoteService {
 	 * hat werden ausgelesen
 	 * 
 	 * @param teilnehmerID
-	 * @return TODO wird noch verwendet???
+	 * @return 
 	 */
 
 	Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(
@@ -160,7 +160,6 @@ public interface EditorService extends RemoteService {
 	 * 
 	 * @param ersteNachricht
 	 * @param teilnehmer
-	 * @return TODO
 	 */
 
 	boolean unterhaltungStarten(Nachricht ersteNachricht,
@@ -197,7 +196,7 @@ public interface EditorService extends RemoteService {
 			int nutzerId);
 
 	/**
-	 * Die Sichtbarkeit der Nachricht wird auf 0 gesetzt. TODO
+	 * Die Sichtbarkeit der Nachricht wird auf 0 gesetzt. 
 	 * 
 	 * @param n
 	 * @return
@@ -244,28 +243,6 @@ public interface EditorService extends RemoteService {
 
 	Vector<Hashtag> getAbonnierteHashtags(int aboNehmerID);
 
-	/**
-	 * 
-	 * Alle Unterhaltungen auslesen für einen Teilnehmer der in den
-	 * Unterhaltungen aktiv ist
-	 * 
-	 * @param aktiverTeilnehmerID
-	 * @return
-	 */
-
-	Vector<Unterhaltung> getAlleSichtbarenUnterhaltungenFuerTeilnehmerOhneNachrichten(
-			int aktiverTeilnehmerID);
-
-	/**
-	 * 
-	 * Sichtbarkeit der aktualisierten Nachricht setzen TODO
-	 * 
-	 * @param original
-	 * @param neu
-	 * @return
-	 */
-
-	boolean NachrichtAktualisieren(Nachricht original, Nachricht neu);
 
 	/**
 	 * Sichtbarkeit der beantworteten Unterhaltungen setzen
@@ -289,8 +266,7 @@ public interface EditorService extends RemoteService {
 	Vector<Nutzer> getAlleNutzer(boolean zwingeNeuladen);
 
 	/**
-	 * Sichtbarkeit einer verlassenen Unterhaltung setzten TODO
-	 * 
+	 * Sichtbarkeit einer verlassenen Unterhaltung setzten  
 	 * @param u
 	 * @param nutzerId
 	 * @return
@@ -299,5 +275,7 @@ public interface EditorService extends RemoteService {
 	boolean UnterhaltungVerlassen(Unterhaltung u, int nutzerId);
 
 	boolean UnterhaltungAktualisieren(Unterhaltung original, Unterhaltung neu);
+
+	boolean NachrichtAktualisieren(Nachricht original, Nachricht neu);
 
 }

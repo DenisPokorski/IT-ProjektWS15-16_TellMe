@@ -108,9 +108,7 @@ public class TellMeReport implements EntryPoint {
 
 					@Override
 					public void onFailure(Throwable caught) {
-						/**
-						 * TODO
-						 */
+						Window.alert("Login fehlgeschlagen");
 					}
 				});
 

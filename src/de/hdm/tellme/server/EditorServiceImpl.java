@@ -93,7 +93,7 @@ import de.hdm.tellme.shared.bo.Unterhaltung.eUnterhaltungsTyp;
  * @see EditorService
  * @see EditorServiceAsync
  * @see RemoteServiceServlet
- * @author Thies, Alex Homann, Denis Pokorski
+ * @author Thies, Alex Homann, Denis Pokorski, Denis Feltrin
  */
 @SuppressWarnings("serial")
 public class EditorServiceImpl extends RemoteServiceServlet implements
@@ -828,7 +828,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 * 
 	 * @return null -
 	 * 
-	 *         TODO ENTFERNEN?
 	 */
 	@Override
 	public Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(
@@ -959,63 +958,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 * 
 	 * TODO
 	 */
-	@Override
-	@Deprecated
-	public Vector<Unterhaltung> getAlleSichtbarenUnterhaltungenFuerTeilnehmerOhneNachrichten(
-			int aktiverTeilnehmerID) {
-		Vector<Unterhaltung> alleSichtbarenUnterhaltungen = new Vector<Unterhaltung>();
-		Vector<Unterhaltung> alleSichtbarenUnterhaltungenMitSichtbarenNachrichten = new Vector<Unterhaltung>();
-
-		alleSichtbarenUnterhaltungen = unterhaltungMapper
-				.alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(aktiverTeilnehmerID);
-
-		// lade Nachrichten und Teilnehmer zu Unterhaltungen
-		for (Unterhaltung unterhaltung : alleSichtbarenUnterhaltungen) {
-
-			// Nachrichten
-			Vector<Nachricht> alleNachrichten = ladeAlleNachrichtenZuUnterhaltung(unterhaltung
-					.getId());
-			unterhaltung.setAlleNachrichten(alleNachrichten);
-
-			// fuege nur Unterhaltungen mit mind. 1 Nachricht hinzu.
-			if (alleNachrichten.isEmpty() == false) {
-				boolean bereitsHinzugefuegt = false;
-				// Pruefe ob Unterhaltung bereits der Listehinzugefügt wurde
-				for (Unterhaltung unterhaltungInEntgueltigerListe : alleSichtbarenUnterhaltungenMitSichtbarenNachrichten) {
-					if (unterhaltungInEntgueltigerListe.getId() == unterhaltung
-							.getId())
-						bereitsHinzugefuegt = true;
-				}
-				// Fuege nur Unterhaltungen hinzu, die nicht bereits zur liste
-				// hinzuegfügt wurden
-				if (bereitsHinzugefuegt == false)
-					alleSichtbarenUnterhaltungenMitSichtbarenNachrichten
-							.add(unterhaltung);
-			} else
-				Helper.LogWarnung("getAlleSichtbarenUnterhaltungenFuerTeilnehmer - sichtbare Unterhaltung ohne Sichtbare Nachricht entdeckt. UnterhaltungsID: "
-						+ unterhaltung.getId());
-
-			// Teilnehmer
-			Vector<Nutzer> alleTeilnehmer = new Vector<Nutzer>();
-			Vector<Integer> alleTeilnehmerIDs = unterhaltungMapper
-					.gibTeilnehmerFuerUnterhaltung(unterhaltung.getId());
-			for (Integer teilnehmerID : alleTeilnehmerIDs) {
-				alleTeilnehmer.add(getNutzerAnhandID(teilnehmerID));
-			}
-
-			unterhaltung.setTeilnehmer(alleTeilnehmer);
-
-			unterhaltung.setAnzeigeHerkunft("Unterhaltungsteilnehmer");
-		}
-
-		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;
-	}
 
 	public Vector<Unterhaltung> getAlleUnterhaltungen() {
 
 		Helper.LogInformation("getAlleUnterhaltungen - Start");
 
-		long startZeit = System.currentTimeMillis();
 
 		// Lade alle Unterhaltungen und Nachrichten
 		Vector<Unterhaltung> alleUnterhaltungen = unterhaltungMapper
@@ -1123,13 +1070,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 						+ unterhaltung.getId());
 		}
 
-		Helper.LogDebug("getAlleUnterhaltungen - Fertig. Alle Nachrichten und Unterhaltungen mit Nachrichten, Hashtag und Teilnehmerauflösung "
-				+ alleUnterhaltungen.size()
-				+ " "
-				+ alleNachrichten.size()
-				+ " "
-				+ getVerstricheneZeitAsString(System.currentTimeMillis()
-						- startZeit));
 
 		return alleUnterhaltungen;
 	}
@@ -1140,7 +1080,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 * Nachrichten bereits befüllt sind
 	 * 
 	 * @param UserID
-	 *            - Die ID des eingeloggten Nutzer wird übergeben TODO
+	 *            - Die ID des eingeloggten Nutzer wird übergeben 
 	 * 
 	 * @return alleRelevantenUnterhaltungen - Ein Vektor von Unterhaltung der
 	 *         alle relevanten Unterhaltungen beinhaltet wird übergeben
@@ -1442,24 +1382,5 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 * ****************************************************
 	 */
 
-	/**
-	 * 
-	 * @param verstricheneZeit
-	 *            - Die verstrichtene Zeit wird als Long-Objekt übergeben TODO
-	 * @return Die benötigite Zeit, um xxx wird zurückgegeben TODO
-	 */
-	private String getVerstricheneZeitAsString(long verstricheneZeit) {
-		String hms = String.format(
-				"%02d:%02d:%02d",
-				TimeUnit.MILLISECONDS.toHours(verstricheneZeit),
-				TimeUnit.MILLISECONDS.toMinutes(verstricheneZeit)
-						- TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS
-								.toHours(verstricheneZeit)),
-				TimeUnit.MILLISECONDS.toSeconds(verstricheneZeit)
-						- TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS
-								.toMinutes(verstricheneZeit)));
-		return "Benötigte Zeit: " + hms;
-
-	}
 
 }

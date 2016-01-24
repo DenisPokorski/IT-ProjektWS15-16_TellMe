@@ -70,7 +70,7 @@ public class NutzerBearbeitenEditor  {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
+				Window.alert("Fehler beim Nutzer aktualisieren");
 
 			}
 
@@ -106,7 +106,7 @@ public class NutzerBearbeitenEditor  {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
+				Window.alert("Fehler beim Nutzer löschen");
 			}
 
 			@Override

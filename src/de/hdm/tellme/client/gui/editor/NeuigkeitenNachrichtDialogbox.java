@@ -511,7 +511,6 @@ public class NeuigkeitenNachrichtDialogbox {
 									}
 								});
 
-						// TODO: do somthng
 					}
 					break;
 

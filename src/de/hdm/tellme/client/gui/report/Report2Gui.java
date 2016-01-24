@@ -112,7 +112,6 @@ public class Report2Gui extends VerticalPanel {
 
 			@Override
 			public void onValueChange(ValueChangeEvent<Date> event) {
-				// TODO Auto-generated method stub
 			}
 		});
 
@@ -120,7 +119,6 @@ public class Report2Gui extends VerticalPanel {
 
 			@Override
 			public void onValueChange(ValueChangeEvent<Date> event) {
-				// TODO Auto-generated method stub
 			}
 
 		});

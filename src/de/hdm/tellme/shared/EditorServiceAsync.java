@@ -68,9 +68,6 @@ public interface EditorServiceAsync {
 	void alleUnterhaltungenVonAbonniertemHashtagUeberNutzerId(int nutzerId,
 			AsyncCallback<Vector<Unterhaltung>> callback);
 
-	void NachrichtAktualisieren(Nachricht original, Nachricht neu,
-			AsyncCallback<Boolean> callback);
-
 	void NachrichtLoeschen(Nachricht n, AsyncCallback<Boolean> callback);
 
 	void UnterhaltungVerlassen(Unterhaltung u, int nutzerId,
@@ -89,9 +86,6 @@ public interface EditorServiceAsync {
 	void getAbonnierteHashtags(int aboNehmerID,
 			AsyncCallback<Vector<Hashtag>> callback);
 
-	void getAlleSichtbarenUnterhaltungenFuerTeilnehmerOhneNachrichten(int aktiverTeilnehmerID,
-			AsyncCallback<Vector<Unterhaltung>> callback);
-
 	void unterhaltungBeantworten(Nachricht antwortNachricht,
 			Unterhaltung unterhaltung, AsyncCallback<Boolean> callback);
 
@@ -99,6 +93,9 @@ public interface EditorServiceAsync {
 			AsyncCallback<Vector<Nutzer>> callback);
 
 	void UnterhaltungAktualisieren(Unterhaltung original, Unterhaltung neu,
+			AsyncCallback<Boolean> callback);
+
+	void NachrichtAktualisieren(Nachricht original, Nachricht neu,
 			AsyncCallback<Boolean> callback);
 
 }

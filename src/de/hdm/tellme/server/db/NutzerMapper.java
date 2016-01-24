@@ -54,7 +54,6 @@ public class NutzerMapper {
 	 * "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
 	 * ausgeführt.
 	 *
-	 * TODO
 	 * 
 	 * @param n
 	 * @return int

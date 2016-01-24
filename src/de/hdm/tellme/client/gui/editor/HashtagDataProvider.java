@@ -68,7 +68,7 @@ public class HashtagDataProvider {
 		_asyncObj.gibAlleHashtags(new AsyncCallback<Vector<Hashtag>>() {
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO
+				Window.alert("Fehler beim Hashtagliste laden");
 			}
 
 			@Override
@@ -87,7 +87,6 @@ public class HashtagDataProvider {
 	 * Die Methode holeHashtagListe() wird benötigt um eine bestimmte Selektion
 	 * von Hashtag-Objekten zu erhalten.
 	 * 
-	 * TODO richtig?
 	 */
 	private void holeHashtagListe() {
 
@@ -99,7 +98,7 @@ public class HashtagDataProvider {
 		_asyncObj.gibAlleHashtags(new AsyncCallback<Vector<Hashtag>>() {
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO
+				Window.alert("Fehler beim Hashtagliste laden");
 			}
 
 			@Override

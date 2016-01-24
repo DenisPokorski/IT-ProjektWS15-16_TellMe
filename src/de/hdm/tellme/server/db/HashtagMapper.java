@@ -59,9 +59,6 @@ public class HashtagMapper {
 	 * an sich darstellt, und das Erstellungsdatum in der Hashtag-Tabelle in die
 	 * Datenbank geschrieben.
 	 * 
-	 * 
-	 * TODO ist das nicht der gleiche Mapper wie anlegen?
-	 * 
 	 * @param hashtag
 	 */
 	public void erstellen(Hashtag hashtag) {
@@ -92,7 +89,6 @@ public class HashtagMapper {
 	 * der "catch-Block" mit einer entsprechenden Fehlermeldung (Exception)
 	 * ausgeführt.
 	 * 
-	 * TODO brauchen wir es so ausführlich?
 	 */
 
 	/**

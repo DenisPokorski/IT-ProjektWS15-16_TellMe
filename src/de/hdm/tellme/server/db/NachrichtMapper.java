@@ -209,7 +209,7 @@ public class NachrichtMapper {
 	}
 
 	/**
-	 * TODO
+	 * Die Nachricht wird einer Unterhaltung zugeordnet
 	 * 
 	 * @param NachrichtenID
 	 * @param UnterhaltungsID
@@ -236,7 +236,7 @@ public class NachrichtMapper {
 	}
 
 	/**
-	 * TODO
+	 * Der Hashtag wird einer NAchricht zugeordnet
 	 * 
 	 * @param HashtagID
 	 * @param NachrichtID
@@ -262,7 +262,7 @@ public class NachrichtMapper {
 	}
 
 	/**
-	 * TODO
+	 * Es werden alle Nachrichten für eine Unterhaltung ausgelesen
 	 * 
 	 * @param unterhaltungsID
 	 * @return
@@ -387,7 +387,7 @@ public class NachrichtMapper {
 	}
 
 	/**
-	 * TODO
+	 * Es werden alle Nachrichten mit einem bestimmten Hashtag asugegeben
 	 * 
 	 * @param integer
 	 * @return
@@ -419,7 +419,7 @@ public class NachrichtMapper {
 	}
 
 	/**
-	 * TODO
+	 * Gibt alle NAchrchten in einem bestimmten Zeitraum eines bestimmten Nutzers aus.
 	 * 
 	 * @param vonDatum
 	 * @param bisDatum

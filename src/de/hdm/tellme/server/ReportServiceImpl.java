@@ -123,11 +123,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public Vector<Hashtag> report6Generieren(int nutzerId) {
 		Vector<Hashtag> report6 = hashtagAboMapper
-				.alleHashtagsEinesNutzers(nutzerId);// Hier müssen wir noch
-													// einen Mapper mit ALLEN
-													// Nutzern erstellen,
-													// probeweise aber mit alle
-													// außer ich selber //TODO
+				.alleHashtagsEinesNutzers(nutzerId);
 		return report6;
 	}
 

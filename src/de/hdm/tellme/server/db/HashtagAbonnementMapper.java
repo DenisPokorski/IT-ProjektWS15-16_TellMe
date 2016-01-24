@@ -196,7 +196,6 @@ public class HashtagAbonnementMapper {
 	 * @return Ein Vektor mit Hashtag-Objekten, die nach einem Abonehmer
 	 *         selektiert wurden
 	 * 
-	 *         TODO funktion sicher so?
 	 */
 	public Vector<Integer> selektiereAlleHashtagsNachAbonehmer(int nutzerId) {
 		Vector<Integer> hashtagIds = new Vector<Integer>();

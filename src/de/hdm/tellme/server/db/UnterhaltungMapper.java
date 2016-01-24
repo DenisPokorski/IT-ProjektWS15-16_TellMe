@@ -84,7 +84,7 @@ public class UnterhaltungMapper {
 	}
 
 	/**
-	 * TODO
+	 * Es wird eine Unterhaltung aus sichtbar oder Unsichtbar gesetzt
 	 * 
 	 * @param u
 	 * @return
@@ -116,7 +116,7 @@ public class UnterhaltungMapper {
 	}
 
 	/**
-	 * TODO
+	 * Es wird eine Unterhaltung über eine ID gelöscht
 	 * 
 	 * @param unterhaltungsID
 	 * @return

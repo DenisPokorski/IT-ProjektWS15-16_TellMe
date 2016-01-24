@@ -16,7 +16,6 @@ import de.hdm.tellme.shared.bo.Unterhaltung;
  * <p>
  * Synchrone Schnittstelle für eine RPC-fähige Klasse zur Ausgabe des Reports.
  * </p>
- * TODO
  * 
  ** <code>@RemoteServiceRelativePath("reportservice")</code> ist bei der
  * Adressierung des aus der zugehörigen Impl-Klasse entstehenden
