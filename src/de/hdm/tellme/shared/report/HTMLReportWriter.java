@@ -28,7 +28,7 @@ import de.hdm.tellme.shared.bo.Unterhaltung;
  *
  */
 
-/*
+/**
  * Da diese Klasse ein gewisse Größe besitzt - dies ist eigentlich ein Hinweise,
  * dass hier eine weitere Gliederung sinnvoll ist - haben wir zur besseren
  * Übersicht Abschnittskomentare eingefügt. Sie leiten ein Cluster in
@@ -133,7 +133,7 @@ public class HTMLReportWriter {
 			Nutzer b) {
 
 		buffer.append("<table class='reportkoerper_vollbild'>");
-		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Teilnehmer</td><td>Unterhaltungstyp</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
+		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Teilnehmer</td><td>Nachrichtentyp</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
 		for (Unterhaltung unterhaltung : result) {
 			for (Nachricht nachricht : unterhaltung.getAlleNachrichten()) {
 				buffer.append("<tr class='reportKoerper'> <td>"
@@ -229,7 +229,7 @@ public class HTMLReportWriter {
 
 	private void erstelleKoerperDatenReport2(Vector<Unterhaltung> result) {
 		buffer.append("<table class='reportkoerper_vollbild'>");
-		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Teilnehmer</td><td>Unterhaltungstyp</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
+		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Teilnehmer</td><td>Nachrichtentyp</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
 		for (Unterhaltung unterhaltung : result) {
 			for (Nachricht nachricht : unterhaltung.getAlleNachrichten()) {
 				buffer.append("<tr class='reportKoerper'> <td>"
@@ -356,7 +356,7 @@ public class HTMLReportWriter {
 	private void erstelleKoerperDatenReport3(Vector<Unterhaltung> result,
 			Nutzer b) {
 		buffer.append("<table class='reportkoerper_vollbild'>");
-		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Teilnehmer</td><td>Unterhaltungstyp</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
+		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Teilnehmer</td><td>Nachrichtentyp</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
 		for (Unterhaltung unterhaltung : result) {
 			for (Nachricht nachricht : unterhaltung.getAlleNachrichten()) {
 				buffer.append("<tr class='reportKoerper'> <td>"
@@ -487,7 +487,7 @@ public class HTMLReportWriter {
 	 */
 	private void erstelleKoerperDatenReport4(Vector<Unterhaltung> result) {
 		buffer.append("<table class='reportkoerper_vollbild'>");
-		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Teilnehmer</td><td>Unterhaltungstyp</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
+		buffer.append("<tr class='kopfZeileKoerper'> <td>Autor</td><td>Nachricht</td><td>Teilnehmer</td><td>Nachrichtentyp</td><td>Erstellungsdatum</td><td>Hashtag</td><td>Sichtbarkeit</td></tr>");
 
 		for (Unterhaltung unterhaltung : result) {
 			for (Nachricht nachricht : unterhaltung.getAlleNachrichten()) {
