@@ -1,7 +1,8 @@
 package de.hdm.tellme.shared.bo;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
+
+import com.google.gwt.user.client.rpc.IsSerializable;
 
 /**
  * Die Klasse BusinessObject ist die Superklasse für alle anderen Businnes
@@ -12,16 +13,12 @@ import java.sql.Timestamp;
  *
  */
 
-public class BusinessObject implements Serializable {
+public class BusinessObject implements IsSerializable {
 
 	public enum eSichtbarkeit {
 		Unsichtbar, Sichtbar;
 	}
 
-	/**
-	 * Die ID ist nötig, damit die Klasse serialisierbar ist
-	 */
-	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Bei der ID handelt es sich um eine Integer-Variable Bei der Sichtbarkeit

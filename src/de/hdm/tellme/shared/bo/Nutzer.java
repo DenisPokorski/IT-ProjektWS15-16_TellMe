@@ -13,11 +13,6 @@ package de.hdm.tellme.shared.bo;
 public class Nutzer extends BusinessObject {
 
 	/**
-	 * Die ID ist nötig, damit die Klasse serialisierbar ist
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * Die Variable Nachname ist vom Typ String Die Variable Vorname ist vom Typ
 	 * String Die Variable Mailadresse ist vom Typ String Die Variable GoogleId
 	 * ist vom Typ Id

@@ -11,11 +11,6 @@ package de.hdm.tellme.shared.bo;
 public class NutzerAbonnement extends Abonnement {
 
 	/**
-	 * Die ID ist nötig, damit die Klasse serialisierbar ist
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * Die Variable aboNutzer ist vom Typ Nutzer
 	 */
 

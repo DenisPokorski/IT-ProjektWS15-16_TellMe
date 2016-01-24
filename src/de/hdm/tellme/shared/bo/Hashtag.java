@@ -11,12 +11,6 @@ package de.hdm.tellme.shared.bo;
 public class Hashtag extends BusinessObject {
 
 	/**
-	 * Die ID ist nötig, damit die Klasse serialisierbar ist
-	 */
-
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * Die Variable hashtagId ist vom Typ Integer Die Variable Schlagwort ist
 	 * vom Typ String
 	 */

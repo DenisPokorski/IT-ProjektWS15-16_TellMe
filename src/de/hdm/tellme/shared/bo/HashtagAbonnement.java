@@ -11,11 +11,6 @@ package de.hdm.tellme.shared.bo;
 public class HashtagAbonnement extends Abonnement {
 
 	/**
-	 * Die ID ist nötig, damit die Klasse serialisierbar ist
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * Die Variable Hashtag ist vom Typ Hashtag
 	 */
 

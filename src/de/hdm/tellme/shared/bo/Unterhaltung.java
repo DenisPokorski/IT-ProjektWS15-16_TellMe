@@ -15,11 +15,6 @@ import java.util.Vector;
 public class Unterhaltung extends BusinessObject implements
 		Comparable<Unterhaltung> {
 
-	/**
-	 * Die ID ist nötig, damit die Klasse serialisierbar ist
-	 */
-
-	private static final long serialVersionUID = 1L;
 	private Vector<Nachricht> alleNachrichten = new Vector<Nachricht>();
 
 	private Vector<Nutzer> teilnehmer = new Vector<Nutzer>();
