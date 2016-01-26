@@ -11,6 +11,10 @@ package de.hdm.tellme.shared.bo;
 public abstract class Abonnement extends BusinessObject {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * Die Variable AbonnementErsteller ist vom Typ Nutzer
 	 */
 

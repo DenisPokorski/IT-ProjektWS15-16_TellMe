@@ -42,14 +42,23 @@ public class HashtagDataProvider {
 
 	private static HashtagDataProvider instanz = null;
 
+private static int lastI;
+	
+	
 	public static HashtagDataProvider gib(int i) {
-		if (i == 0)
-			instanz = new HashtagDataProvider(0);
-		else
-			instanz = new HashtagDataProvider(1);
+		if (i == 0) {
+			if (instanz == null || lastI != 0) {
+				instanz = new HashtagDataProvider(0);
+				lastI = 0;
+			}
+		} else {
+			if (instanz == null || lastI != 1) {
+				instanz = new HashtagDataProvider(1);
+				lastI = 1;
+			}
+		}
 		return instanz;
 	}
-
 	private HashtagDataProvider(int i) {
 		if (i == 0)
 			holeHashtagListe();
@@ -72,8 +81,9 @@ public class HashtagDataProvider {
 			}
 
 			@Override
-			public void onSuccess(Vector<Hashtag> hashTagListe) {
-				for (Hashtag hashtag : hashTagListe) {
+			public void onSuccess(Vector<Hashtag> result) {
+				for (Hashtag hashtag : result) {
+					Window.alert("Hashtags"+ result.size());
 					HashtagZelle.ZellenObjekt nah = new HashtagZelle().new ZellenObjekt();
 					nah.hashtag = hashtag;
 					dataList.add(nah);
@@ -292,9 +302,6 @@ public class HashtagDataProvider {
 					@Override
 					public void onSuccess(Void resultListe) {
 						holeHashtagListe();
-						RootPanel.get("content_right").clear();
-						RootPanel.get("content_right").add(
-								new HashtagFormular().gibBeschreibungHtAbo());
 						Window.alert("Das Abo wurde erfolgreich erstellt.");
 
 					}

@@ -14,6 +14,10 @@ import java.util.Vector;
 public class Nachricht extends BusinessObject {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * Die Variable text ist vom Typ String Die Variable senderId ist vom Typ
 	 * Integer Die Variable senderVorname ist vom Typ String Die Variable
 	 * senderNachname ist vom Typ String Die Variable empfaengerListe ist vom

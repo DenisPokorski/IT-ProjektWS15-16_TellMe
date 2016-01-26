@@ -1,4 +1,4 @@
-package de.hdm.tellme.client.Schaukasten;
+package de.hdm.tellme.client.gui.editor;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -14,7 +14,6 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.tellme.client.TellMe;
-import de.hdm.tellme.client.gui.editor.MenuBarEditor;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Nutzer;
@@ -77,6 +76,7 @@ public class NutzerBearbeitenEditor  {
 			@Override
 			public void onSuccess(Void result) {
 				Window.alert("Profil erfolgreich editiert.");
+				NutzerDataProvider.gib(0).nutzerBearbeitet(); //Aktuallisiert Cell List
 				RootPanel.get("content").clear();
 				if(NutzerRuftTellMeErstesMalAuf == true){
 					NutzerBearbeitenEditor.NutzerRuftTellMeErstesMalAuf = false;

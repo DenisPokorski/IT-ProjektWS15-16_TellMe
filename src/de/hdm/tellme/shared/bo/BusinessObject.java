@@ -1,5 +1,6 @@
 package de.hdm.tellme.shared.bo;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
@@ -13,7 +14,12 @@ import com.google.gwt.user.client.rpc.IsSerializable;
  *
  */
 
-public class BusinessObject implements IsSerializable {
+public class BusinessObject implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public enum eSichtbarkeit {
 		Unsichtbar, Sichtbar;
@@ -26,7 +32,7 @@ public class BusinessObject implements IsSerializable {
 	 * sich um die Veriable vom Typ Timestamp
 	 */
 
-	private int id = 0;
+	private int id;
 	private int sichtbarkeit;
 	private Timestamp erstellungsDatum = new Timestamp(0);
 

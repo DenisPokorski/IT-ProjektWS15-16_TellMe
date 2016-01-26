@@ -37,12 +37,20 @@ public class NutzerDataProvider {
 	private static NutzerDataProvider instanz = null;
 	private static Vector<Nutzer> alleNutzer = null;
 	private static Vector<Integer> alleAbonniertenNutzer = null;
-
+	private static int lastI;
+	
 	public static NutzerDataProvider gib(int i) {
-		if (i == 0)
-			instanz = new NutzerDataProvider(0);
-		else
-			instanz = new NutzerDataProvider(1);
+	if (i == 0) {
+			if (instanz == null || lastI != 0) {
+				instanz = new NutzerDataProvider(0);
+				lastI = 0;
+			}
+		} else {
+			if (instanz == null || lastI != 1) {
+				instanz = new NutzerDataProvider(1);
+				lastI = 1;
+			}
+		}
 		return instanz;
 	}
 
@@ -142,6 +150,18 @@ public class NutzerDataProvider {
 		dataProvider.refresh();
 	}
 
+
+	/**
+	 * Diese Methode sorgt dafür, dass die Nutzerliste aktuallisiert
+	 * wird wenn ein Nutzer seinen Namen ändert.
+	 * 
+	 * @param hashtag
+	 */
+	public void nutzerBearbeitet() {
+		fuelleListe();
+
+	}
+	
 	public void abonieren(Nutzer _nutzer) {
 
 		_editorAsyncObj.nutzerAbonnementErstellen(TellMe.gibEingeloggterBenutzer()

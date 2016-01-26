@@ -9,9 +9,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import de.hdm.tellme.client.TellMe;
-import de.hdm.tellme.client.Schaukasten.Impressum;
-import de.hdm.tellme.client.Schaukasten.NeuigkeitenEditor;
-import de.hdm.tellme.client.Schaukasten.NutzerBearbeitenEditor;
+import de.hdm.tellme.client.gui.report.ImpressumReport;
 
 /**
  * Dies ist die Klasse <class>MenuBarEditor</class>, sie wird verwendet um die
@@ -148,7 +146,7 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.addItem("Impressum", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(new Impressum().getHtmlImpressum());
+				setzeInhalt(new ImpressumEditor().getHtmlImpressum());
 
 			}
 		});

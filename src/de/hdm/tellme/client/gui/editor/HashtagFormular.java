@@ -153,7 +153,6 @@ public class HashtagFormular extends Composite {
 						+ "'><h4>Hier kannst du Hashtags abonnieren oder bereits vorhandene Hashtagabonnements löschen. Hinweis: Um Hashtags bearbeiten zu können, klickst du im Hauptmenü auf Einstellungen und weiter auf Hashtagverwaltung.  </h4></div> ");
 		vpForm.add(subtext);
 
-		// vpForm.add(gibAnlegenFormular());
 
 		return vpForm;
 	}

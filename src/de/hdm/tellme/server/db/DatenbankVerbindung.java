@@ -2,9 +2,6 @@ package de.hdm.tellme.server.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
-
-import com.google.appengine.api.rdbms.AppEngineDriver;
 
 /**
  * Aufbau und Vewarltung einer Datebankverbindung.
@@ -22,7 +19,7 @@ public class DatenbankVerbindung {
 	 * Klasse nur einmal vorhanden ist.
 	 */
 	private static Connection con = null;
-	private static boolean UseLocalCon = true;
+	private static boolean UseLocalCon = false;
 
 	/**
 	 * Durch den Paramater static kann die DBConnection.connection() nur einmal
@@ -39,7 +36,7 @@ public class DatenbankVerbindung {
 		if (con == null) {
 
 			try {
-				DriverManager.registerDriver(new AppEngineDriver());
+
 				/**
 				 * 
 				 * Dem Connection-Objekt con wird, durch die Methode
@@ -47,15 +44,16 @@ public class DatenbankVerbindung {
 				 * Datenbanktreiber, Datenbank-URL und Zugangsdaten übergeben.
 				 */
 				if (UseLocalCon) {
+					Class.forName("com.mysql.jdbc.Driver");
 					con = DriverManager
 							.getConnection(
 									"jdbc:mysql://feltrin-immobilien.de:3306/db_tellme",
 									"tellme", "M22azd0!");
 				} else {
+					Class.forName("com.mysql.jdbc.GoogleDriver");
+
 					con = DriverManager
-							.getConnection(
-									"jdbc:google:rdbms://it-projekt-1168:tell-me/db_tellme",
-									"root", "");
+							.getConnection("jdbc:google:mysql://it-projekt-1168:tell-me/db_tellme?user=root");
 				}
 
 			}
@@ -63,7 +61,7 @@ public class DatenbankVerbindung {
 			 * Bei einer fehlerhaften Verbindungsaufbau wird im "catch-Block"
 			 * eine Exception ausgeführt.
 			 */
-			catch (SQLException e1) {
+			catch (Exception e1) {
 				con = null;
 
 				e1.printStackTrace();

@@ -1,4 +1,4 @@
-package de.hdm.tellme.client.Schaukasten;
+package de.hdm.tellme.client.gui.editor;
 
 import com.google.gwt.user.client.ui.HTML;
 
@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.HTML;
  * @version 1.0
  */
 
-public class Impressum extends HTML {
+public class ImpressumEditor extends HTML {
  
 	/**
 	 * Es wird ein HTML-Fragment erstellt, das die Impressumsdaten statisch ausgibt,

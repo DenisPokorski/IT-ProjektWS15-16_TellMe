@@ -7,9 +7,9 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-import de.hdm.tellme.client.Schaukasten.NeuigkeitenEditor;
-import de.hdm.tellme.client.Schaukasten.NutzerBearbeitenEditor;
 import de.hdm.tellme.client.gui.editor.MenuBarEditor;
+import de.hdm.tellme.client.gui.editor.NeuigkeitenEditor;
+import de.hdm.tellme.client.gui.editor.NutzerBearbeitenEditor;
 import de.hdm.tellme.shared.LoginInfo;
 import de.hdm.tellme.shared.LoginService;
 import de.hdm.tellme.shared.LoginServiceAsync;

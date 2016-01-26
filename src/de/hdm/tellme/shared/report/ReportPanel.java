@@ -1,6 +1,6 @@
 package de.hdm.tellme.shared.report;
 
-import de.hdm.tellme.client.Schaukasten.Impressum;
+import de.hdm.tellme.client.gui.report.ImpressumReport;
 /**
  * Die Klasse <class>ReportPanel</class> zeigt die Kopfdaten jeden Reports an. Dieser besteht aus einer Überschrift, den
  *  Impressums-Daten, den Daten des ausgewählten Nutzers und dem Erstellungsdatum des Reports.
@@ -10,7 +10,7 @@ import de.hdm.tellme.client.Schaukasten.Impressum;
 public class ReportPanel {
 
 	private String ueberschrift;
-	private Impressum impressum;
+	private ImpressumReport impressum;
 	private String kopfDaten;
 	private String reportDatum;
 
@@ -22,11 +22,11 @@ public class ReportPanel {
 		this.ueberschrift = ueberschrift;
 	}
 
-	public Impressum getImpressum() {
+	public ImpressumReport getImpressum() {
 		return impressum;
 	}
 
-	public void setImpressum(Impressum impressum) {
+	public void setImpressum(ImpressumReport impressum) {
 		this.impressum = impressum;
 	}
 

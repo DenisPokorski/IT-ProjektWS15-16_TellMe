@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import de.hdm.tellme.client.TellMe;
-import de.hdm.tellme.client.Schaukasten.Impressum;
+import de.hdm.tellme.client.gui.report.ImpressumReport;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
@@ -112,7 +112,7 @@ public class HTMLReportWriter {
 				+ "</div><div> <br />Datum: "
 				+ Erstellungsdatum
 				+ "</div></td><td class='kopfdatenbox_rechts'>"
-				+ new Impressum().getHtmlImpressum() + "</td></tr>");
+				+ new ImpressumReport().getHtmlImpressum() + "</td></tr>");
 		buffer.append("</table>");
 
 	}
@@ -290,7 +290,7 @@ public class HTMLReportWriter {
 				+ "</div><div> Datum: "
 				+ Erstellungsdatum
 				+ "</div></td><td class='kopfdatenbox_rechts'>"
-				+ new Impressum().getHtmlImpressum() + "</td></tr>");
+				+ new ImpressumReport().getHtmlImpressum() + "</td></tr>");
 		buffer.append("</table>");
 	}
 
@@ -416,7 +416,7 @@ public class HTMLReportWriter {
 				+ "</div><div> Datum: "
 				+ Erstellungsdatum
 				+ "</div></td><td class='kopfdatenbox_rechts'>"
-				+ new Impressum().getHtmlImpressum() + "</td></tr>");
+				+ new ImpressumReport().getHtmlImpressum() + "</td></tr>");
 		buffer.append("</table>");
 	}
 
@@ -549,7 +549,7 @@ public class HTMLReportWriter {
 				+ "</div><div> Datum: "
 				+ Erstellungsdatum
 				+ "</div></td><td class='kopfdatenbox_rechts'>"
-				+ new Impressum().getHtmlImpressum() + "</td></tr>");
+				+ new ImpressumReport().getHtmlImpressum() + "</td></tr>");
 		buffer.append("</table>");
 	}
 
@@ -627,7 +627,7 @@ public class HTMLReportWriter {
 				+ "</div><div> Datum: "
 				+ Erstellungsdatum
 				+ "</div></td><td class='kopfdatenbox_rechts'>"
-				+ new Impressum().getHtmlImpressum() + "</td></tr>");
+				+ new ImpressumReport().getHtmlImpressum() + "</td></tr>");
 		buffer.append("</table>");
 
 	}
@@ -739,7 +739,7 @@ public class HTMLReportWriter {
 				+ "</div><div> <br />Datum: "
 				+ Erstellungsdatum
 				+ "</div></td><td class='kopfdatenbox_rechts'>"
-				+ new Impressum().getHtmlImpressum() + "</td></tr>");
+				+ new ImpressumReport().getHtmlImpressum() + "</td></tr>");
 		buffer.append("</table>");
 	}
 
@@ -848,7 +848,7 @@ public class HTMLReportWriter {
 				+ "</div><div> Datum: "
 				+ Erstellungsdatum
 				+ "</div></td><td class='kopfdatenbox_rechts'>"
-				+ new Impressum().getHtmlImpressum() + "</td></tr>");
+				+ new ImpressumReport().getHtmlImpressum() + "</td></tr>");
 		buffer.append("</table>");
 
 	}
@@ -960,7 +960,7 @@ public class HTMLReportWriter {
 				+ "</div><div> Datum: "
 				+ Erstellungsdatum
 				+ "</div></td><td class='kopfdatenbox_rechts'>"
-				+ new Impressum().getHtmlImpressum() + "</td></tr>");
+				+ new ImpressumReport().getHtmlImpressum() + "</td></tr>");
 		buffer.append("</table>");
 
 	}

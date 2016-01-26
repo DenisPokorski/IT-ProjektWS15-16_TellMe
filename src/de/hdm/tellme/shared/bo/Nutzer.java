@@ -13,15 +13,17 @@ package de.hdm.tellme.shared.bo;
 public class Nutzer extends BusinessObject {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * Die Variable Nachname ist vom Typ String Die Variable Vorname ist vom Typ
-	 * String Die Variable Mailadresse ist vom Typ String Die Variable GoogleId
-	 * ist vom Typ Id
+	 * String Die Variable Mailadresse ist vom Typ String und Variable Statos vom Typ eStatus(enum)
 	 */
 
 	private String Nachname;
 	private String Vorname;
 	private String Mailadresse;
-	private String GoogleId;
 	private eStatus Status;
 
 	public enum eStatus {

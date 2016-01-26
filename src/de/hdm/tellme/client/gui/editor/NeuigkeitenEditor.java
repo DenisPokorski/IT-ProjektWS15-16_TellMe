@@ -1,4 +1,4 @@
-package de.hdm.tellme.client.Schaukasten;
+package de.hdm.tellme.client.gui.editor;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -15,15 +15,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.TreeViewModel;
 
 import de.hdm.tellme.client.TellMe;
-import de.hdm.tellme.client.gui.editor.CellListModus;
-import de.hdm.tellme.client.gui.editor.HashtagCellList;
-import de.hdm.tellme.client.gui.editor.HashtagZelle;
-import de.hdm.tellme.client.gui.editor.NeuigkeitenJaNeinDialogbox;
-import de.hdm.tellme.client.gui.editor.NeuigkeitenNachrichtDialogbox;
-import de.hdm.tellme.client.gui.editor.NeuigkeitenNachrichtenBaumModel;
-import de.hdm.tellme.client.gui.editor.NeuigkeitenTeilnehmerBearbeitenDialogbox;
-import de.hdm.tellme.client.gui.editor.NutzerCellList;
-import de.hdm.tellme.client.gui.editor.NutzerZelle;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Unterhaltung;
