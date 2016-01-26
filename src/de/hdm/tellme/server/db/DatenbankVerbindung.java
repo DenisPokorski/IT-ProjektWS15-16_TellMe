@@ -19,7 +19,7 @@ public class DatenbankVerbindung {
 	 * Klasse nur einmal vorhanden ist.
 	 */
 	private static Connection con = null;
-	private static boolean UseLocalCon = false;
+	private static boolean UseLocalCon = true;
 
 	/**
 	 * Durch den Paramater static kann die DBConnection.connection() nur einmal

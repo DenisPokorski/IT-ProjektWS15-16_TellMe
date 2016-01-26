@@ -303,6 +303,9 @@ private static int lastI;
 					public void onSuccess(Void resultListe) {
 						holeHashtagListe();
 						Window.alert("Das Abo wurde erfolgreich erstellt.");
+						RootPanel.get("content_right").clear();
+						RootPanel.get("content_right").add(
+								new HashtagFormular().gibBeschreibungHtAbo());
 
 					}
 				});
@@ -338,10 +341,10 @@ private static int lastI;
 					@Override
 					public void onSuccess(Void resultListe) {
 						holeHashtagListe();
+						Window.alert("Das Abo wurde erfolgreich entfernt.");
 						RootPanel.get("content_right").clear();
 						RootPanel.get("content_right").add(
 								new HashtagFormular().gibBeschreibungHtAbo());
-						Window.alert("Das Abo wurde erfolgreich entfernt.");
 
 					}
 				});

@@ -1,7 +1,6 @@
 package de.hdm.tellme.client.gui.editor;
 
 import com.google.gwt.user.cellview.client.CellList;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;

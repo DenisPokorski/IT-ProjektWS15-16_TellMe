@@ -23,7 +23,9 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+
 import de.hdm.tellme.shared.bo.Nutzer;
 
 /**
@@ -55,6 +57,8 @@ public class NutzerFormular extends Composite {
 				if (nutzer == null) {
 					return;
 				}
+				RootPanel.get("content_right").clear();
+				RootPanel.get("content_right").add(gibBeschreibung());
 				NutzerDataProvider.gib(0).abonieren(nutzer);
 			}
 		});
@@ -67,6 +71,7 @@ public class NutzerFormular extends Composite {
 				if (nutzer == null) {
 					return;
 				}
+				
 				NutzerDataProvider.gib(0).deabonieren(nutzer);
 			}
 		});
@@ -140,12 +145,10 @@ public class NutzerFormular extends Composite {
 		if (ZellenObjekt.aboniert) {
 			btnAbonieren.setEnabled(false);
 			btnDeabonieren.setEnabled(true);
-			btnAbonieren.setStylePrimaryName("btnPositivBereitsAbooniert");
 
 		} else {
 			btnAbonieren.setEnabled(true);
 			btnDeabonieren.setEnabled(false);
-			btnDeabonieren.setStylePrimaryName("btnPositivBereitsAbooniert");
 
 		}
 

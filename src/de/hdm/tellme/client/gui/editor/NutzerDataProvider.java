@@ -8,6 +8,7 @@ import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.view.client.ListDataProvider;
 
 import de.hdm.tellme.client.TellMe;
@@ -178,6 +179,8 @@ public class NutzerDataProvider {
 
 				fuelleListe();
 				Window.alert("Erfolgreich abonniert");
+				RootPanel.get("content_right").clear();
+				RootPanel.get("content_right").add(new NutzerFormular().gibBeschreibung());
 
 			}
 		});
@@ -198,7 +201,10 @@ public class NutzerDataProvider {
 					public void onSuccess(Void result) {
 
 						fuelleListe();
+						
 						Window.alert("Erfolgreich deabonniert");
+						RootPanel.get("content_right").clear();
+						RootPanel.get("content_right").add(new NutzerFormular().gibBeschreibung());
 
 					}
 				});
