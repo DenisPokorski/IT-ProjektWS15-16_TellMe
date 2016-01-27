@@ -22,7 +22,7 @@ import de.hdm.tellme.shared.report.HTMLReportWriter;
 /**
  * 
  * Die Klasse <class>HashtagDataProvider</class> ist nötig, dass die Daten die
- * für ein Hashtag benötigt wird.
+ * für ein Hashtag benötigt werden zur Verfügung gestellt werden.
  * 
  * @author Alex
  *
@@ -42,9 +42,8 @@ public class HashtagDataProvider {
 
 	private static HashtagDataProvider instanz = null;
 
-private static int lastI;
-	
-	
+	private static int lastI;
+
 	public static HashtagDataProvider gib(int i) {
 		if (i == 0) {
 			if (instanz == null || lastI != 0) {
@@ -59,6 +58,7 @@ private static int lastI;
 		}
 		return instanz;
 	}
+
 	private HashtagDataProvider(int i) {
 		if (i == 0)
 			holeHashtagListe();
@@ -67,6 +67,10 @@ private static int lastI;
 
 	}
 
+	/**
+	 * Eine HashtagListe wird erstellt, die zur Auswahl des Hashtags zu dem ein
+	 * Report erstellt werden soll, dient.
+	 */
 	private void holeHashtagListeReport() {
 
 		if (dataList != null) {
@@ -83,7 +87,7 @@ private static int lastI;
 			@Override
 			public void onSuccess(Vector<Hashtag> result) {
 				for (Hashtag hashtag : result) {
-					Window.alert("Hashtags"+ result.size());
+					Window.alert("Hashtags" + result.size());
 					HashtagZelle.ZellenObjekt nah = new HashtagZelle().new ZellenObjekt();
 					nah.hashtag = hashtag;
 					dataList.add(nah);
@@ -350,6 +354,12 @@ private static int lastI;
 				});
 	}
 
+	/**
+	 * Diese Methode generiert den Report 8
+	 * 
+	 * @param n
+	 *            HashtagObjekt, für das der Report 8 generiert wird.
+	 */
 	public void report8Generieren(Hashtag n) {
 		final Hashtag b = n;
 		_reportAsyncObj.report8Generieren(b.getId(),
