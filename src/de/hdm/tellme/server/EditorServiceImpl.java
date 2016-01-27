@@ -829,12 +829,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 * @return null -
 	 * 
 	 */
-	@Override
-	public Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(
-			int teilnehmerID) {
-		// TODO: REMOVE
-		return null;
-	}
 
 	/**
 	 * Unterhaltung starten.
@@ -954,9 +948,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	}
 
 	/**
-	 * Auslesen aller sichtbaren Unterhaltung für Teilnehmer
+	 * Auslesen aller sichtbaren Unterhaltungen
 	 * 
-	 * TODO
 	 */
 
 	public Vector<Unterhaltung> getAlleUnterhaltungen() {

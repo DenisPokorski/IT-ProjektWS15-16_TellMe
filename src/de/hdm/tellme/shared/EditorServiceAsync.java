@@ -53,9 +53,6 @@ public interface EditorServiceAsync {
 	void unterhaltung_loeschen(int unterhaltungsID,
 			AsyncCallback<Boolean> callback);
 
-	void alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(
-			int teilnehmerID, AsyncCallback<Vector<Unterhaltung>> callback);
-
 	void unterhaltungStarten(Nachricht ersteNachricht,
 			Vector<Nutzer> teilnehmer, AsyncCallback<Boolean> callback);
 

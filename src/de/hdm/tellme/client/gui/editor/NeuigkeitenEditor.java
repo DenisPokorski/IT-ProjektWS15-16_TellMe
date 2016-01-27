@@ -136,7 +136,6 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		/**
 		 * Ein neues HorziontalPanel wird hinzugefügt "hpOptionen" und durch ein
 		 * CSS-Style optisch verändert. Die Position wird auf links verschoben.
-		 * TODO
 		 */
 		HorizontalPanel hpOptionen = new HorizontalPanel();
 		hpOptionen.setStylePrimaryName("hpOptionenButtonbar");
@@ -256,7 +255,7 @@ public class NeuigkeitenEditor extends VerticalPanel {
 
 		/**
 		 * 
-		 * Der ButtonBar wird der hpHeadline und der hpOptionen hinzugefügt TODO
+		 * Der ButtonBar wird der hpHeadline und der hpOptionen hinzugefügt 
 		 */
 		RootPanel.get("ButtonBar").add(hpHeadline);
 		RootPanel.get("ButtonBar").add(hpOptionen);

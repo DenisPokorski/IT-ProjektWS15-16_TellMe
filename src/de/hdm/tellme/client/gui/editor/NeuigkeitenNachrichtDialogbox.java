@@ -113,8 +113,6 @@ public class NeuigkeitenNachrichtDialogbox {
 	 *         zurückgegeben
 	 */
 	public DialogBox getAntwortNachrichtDialogbox(Unterhaltung u) {
-		// TODO: Unterhaltung, der die Nachricht angehängt werden soll. Noch
-		// Implementeiren
 		NachrichtenModus = eNachrichtenmodus.AntwortNachricht;
 		boxTitel = "Antwort verfassen";
 		textFunktionsbutton = "Senden";
@@ -411,7 +409,6 @@ public class NeuigkeitenNachrichtDialogbox {
 		
 			@Override
 			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
 				switch (NachrichtenModus) {
 				
 				/**
@@ -456,7 +453,6 @@ public class NeuigkeitenNachrichtDialogbox {
 
 									@Override
 									public void onSuccess(Boolean result) {
-										// TODO Auto-generated method stub
 										if (result)
 											Window.alert("Nachricht erfolgreich erstellt");
 										else
@@ -465,7 +461,6 @@ public class NeuigkeitenNachrichtDialogbox {
 
 									@Override
 									public void onFailure(Throwable caught) {
-										// TODO Auto-generated method stub
 										Window.alert("Fehler beim erstellen der Nachricht, bitte wende dich an den Administrator.");
 									}
 								});

@@ -372,7 +372,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 	/**
 	 * Hole alle Nachrichten einer bestimmten Unterhaltung
 	 * 
-	 * TODO
 	 * @return alleNachrichten - Es werden alle Nachrichtne einer bestimmten
 	 *         Unterhaltung-ID zurückgegeben
 	 */
@@ -404,7 +403,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 	 * 
 	 * Hole alle Nachrichten einer bestimmten Unterhaltung in einem gewissen
 	 * Zeitraum
-	 * TODO
 	 * @param UnterhaltungsID
 	 *            - Die jeweilige Unterhaltungs-ID wird übergeben
 	 * @param vonDate

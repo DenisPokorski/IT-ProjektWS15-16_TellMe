@@ -27,7 +27,7 @@ import de.hdm.tellme.client.gui.report.ImpressumReport;
 public class MenuBarEditor extends HorizontalPanel {
 
 	/**
-	 * Definition von Konstruktor TODO LEERER KONSTRUKTOR BESCHREIBUNG
+	 * Leerer Konstruktor der Klasse {@link MenuBarEditor}
 	 */
 	public MenuBarEditor() {
 

@@ -129,7 +129,7 @@ public class NutzerFormular extends Composite {
 	}
 
 	/**
-	 * TODO ein button davon sollte immer grau sein sodass nur der farbige
+	 * Ein button davon sollte immer grau sein sodass nur der farbige
 	 * angeklickt wird.
 	 * 
 	 * @param ZellenObjekt

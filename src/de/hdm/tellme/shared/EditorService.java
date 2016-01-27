@@ -144,16 +144,6 @@ public interface EditorService extends RemoteService {
 
 	boolean unterhaltung_loeschen(int unterhaltungsID);
 
-	/**
-	 * Alle Unterhaltungen für einen aktiven Teilnehmer der keine Nachrichten
-	 * hat werden ausgelesen
-	 * 
-	 * @param teilnehmerID
-	 * @return 
-	 */
-
-	Vector<Unterhaltung> alleUnterhaltungenFuerAktivenTeilnehmerOhneNachrichten(
-			int teilnehmerID);
 
 	/**
 	 * Die Sichtbarkeit von einer erstellen Unterhaltung wird auf 1 gesetzt.

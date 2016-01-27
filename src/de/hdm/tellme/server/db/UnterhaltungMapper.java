@@ -295,7 +295,7 @@ public class UnterhaltungMapper {
 	}
 
 	/**
-	 * TODO
+	 * Die Teilnehmer werden für ene Unterhaltung aktualisiert.
 	 * 
 	 * @param UnterhaltungsID
 	 * @param TeilnehmerID

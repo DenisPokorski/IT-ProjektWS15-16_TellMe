@@ -104,7 +104,6 @@ public class NutzerDataProvider {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
 
 			}
 
@@ -117,7 +116,6 @@ public class NutzerDataProvider {
 
 							@Override
 							public void onFailure(Throwable caught) {
-								// TODO Auto-generated method stub
 
 							}
 
@@ -170,7 +168,6 @@ public class NutzerDataProvider {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
 
 			}
 
@@ -193,7 +190,6 @@ public class NutzerDataProvider {
 
 					@Override
 					public void onFailure(Throwable caught) {
-						// TODO Auto-generated method stub
 
 					}
 
