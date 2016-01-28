@@ -90,7 +90,8 @@ public class HashtagCellList {
 				public void onSelectionChange(SelectionChangeEvent event) {
 					
 					NeuigkeitenNachrichtenBaumModel.setzeHashtagFilter(selectionModel.getSelectedObject().hashtag,selectionModel);
-					}
+					
+				}
 			});
 			break;
 
@@ -105,31 +106,34 @@ public class HashtagCellList {
 		 */
 
 		case HashtagVerwaltung:
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-						public void onSelectionChange(SelectionChangeEvent event) {
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+				public void onSelectionChange(SelectionChangeEvent event) {
 							
-							HashtagVerwaltungFormular nvf = new HashtagVerwaltungFormular();
-							nvf.setzeHashtag(selectionModel.getSelectedObject());
-							RootPanel.get("content_right").clear();
-							RootPanel.get("content_right").add(new HashtagFormular().gibBeschreibungHtVerwaltung());
-							RootPanel.get("content_right").add(nvf.gibFormular());
+					HashtagVerwaltungFormular nvf = new HashtagVerwaltungFormular();
+					nvf.setzeHashtag(selectionModel.getSelectedObject());
+					RootPanel.get("content_right").clear();
+					RootPanel.get("content_right").add(new HashtagFormular().gibBeschreibungHtVerwaltung());
+					RootPanel.get("content_right").add(nvf.gibFormular());
+						
 						}
-					});
+			});
 			break;
 			
 		case Report8_AlleNutzerDieDemAusgewaehltenHashtagFolgen:
 			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 				public void onSelectionChange(SelectionChangeEvent event) {
+					
 					VerticalPanel vP = new VerticalPanel();
 					ReportFormular8 rF = new ReportFormular8();
 					rF.report8Generieren(selectionModel.getSelectedObject());
 					vP.add(rF.gibFormular());
 					RootPanel.get("content_right").clear();
 					RootPanel.get("content_right").add(vP);
+					
 				}
 			});
 			break;
+			
 		default:
 		
 		}

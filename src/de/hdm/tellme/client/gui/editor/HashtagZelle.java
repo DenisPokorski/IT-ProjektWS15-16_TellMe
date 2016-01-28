@@ -44,15 +44,12 @@ public class HashtagZelle {
 		@Override
 		public void render(Context context, HashtagZelle.ZellenObjekt value,
 				SafeHtmlBuilder sb) {
-			// Value can be null, so do a null check..
 			if (value == null) {
 				return;
 			}
-
 			sb.appendHtmlConstant("<table><tr><td>");
 			sb.appendEscaped("# " + value.hashtag.getSchlagwort());
 			sb.appendHtmlConstant("</td></tr></table>");
 		}
 	}
-
 }

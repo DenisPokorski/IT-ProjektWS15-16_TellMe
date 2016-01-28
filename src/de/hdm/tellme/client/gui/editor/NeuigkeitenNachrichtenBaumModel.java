@@ -89,24 +89,19 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 		 * die OptionenButtons gesetzt.
 		 */
 		ladeUnterhaltungenAsync();
-		unterhaltungSelectionModel
-				.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+		
+		unterhaltungSelectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 					public void onSelectionChange(SelectionChangeEvent event) {
 						if (selektiereNeuesElement == false) {
 							selektiereNeuesElement = true;
+							
 							if (nachrichtenSelectionModel.getSelectedObject() != null) {
-								nachrichtenSelectionModel.setSelected(
-										nachrichtenSelectionModel
-												.getSelectedObject(), false);
+								nachrichtenSelectionModel.setSelected(nachrichtenSelectionModel.getSelectedObject(), false);
 							} else {
 								selektiereNeuesElement = false;
 							}
 
-							NeuigkeitenEditor.setzeOptionenButton(
-									unterhaltungSelectionModel
-											.getSelectedObject().u,
-									unterhaltungSelectionModel
-											.getSelectedObject().n);
+							NeuigkeitenEditor.setzeOptionenButton(unterhaltungSelectionModel.getSelectedObject().u,unterhaltungSelectionModel.getSelectedObject().n);
 						} else {
 							selektiereNeuesElement = false;
 						}
@@ -116,28 +111,23 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 		 * Wenn eine Nachricht ausgewählt wurde, werden die OptionenButtons
 		 * gesetzt.
 		 */
-		nachrichtenSelectionModel
-				.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+		nachrichtenSelectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 					public void onSelectionChange(SelectionChangeEvent event) {
 						if (selektiereNeuesElement == false) {
 							selektiereNeuesElement = true;
+							
 							if (unterhaltungSelectionModel.getSelectedObject() != null) {
 								unterhaltungSelectionModel.setSelected(
-										unterhaltungSelectionModel
-												.getSelectedObject(), false);
+										unterhaltungSelectionModel.getSelectedObject(), false);
 							} else {
 								selektiereNeuesElement = false;
 							}
-
-							NeuigkeitenEditor.setzeOptionenButton(null,
-									nachrichtenSelectionModel
-											.getSelectedObject());
+							NeuigkeitenEditor.setzeOptionenButton(null,nachrichtenSelectionModel.getSelectedObject());
 						} else {
 							selektiereNeuesElement = false;
 						}
 					}
 				});
-
 	}
 
 	/**
@@ -154,32 +144,30 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 	 */
 	public <T> NodeInfo<?> getNodeInfo(T value) {
 		if (value == null) {
+			//TODO
 			// LEVEL 0.
 			// We passed null as the root value. Return the composers.
 			// Create a data provider that contains the list of composers.
-			dataProvider = new ListDataProvider<UnterhaltungsNachricht>(
-					alleUnterhaltungenGefiltert);
+			dataProvider = new ListDataProvider<UnterhaltungsNachricht>(alleUnterhaltungenGefiltert);
 			// Create a cell to display a composer.
 
 			Cell<UnterhaltungsNachricht> cell = new AbstractCell<UnterhaltungsNachricht>() {
 
 				@Override
-				public void render(Context context,
-						UnterhaltungsNachricht value, SafeHtmlBuilder sb) {
+				public void render(Context context,UnterhaltungsNachricht value, SafeHtmlBuilder sb) {
 					if (value != null) {
-						NeuigkeitenNachrichtenZelle nnz = new NeuigkeitenNachrichtenZelle(
-								value.u);
+						NeuigkeitenNachrichtenZelle nnz = new NeuigkeitenNachrichtenZelle(value.u);
 						nnz.render(context, value.n, sb);
 					}
 				}
 			};
+			//TODO
 
 			// Return a node info that pairs the data provider and the cell.
-			return new DefaultNodeInfo<UnterhaltungsNachricht>(dataProvider,
-					cell, unterhaltungSelectionModel, null);
+			return new DefaultNodeInfo<UnterhaltungsNachricht>(dataProvider,cell, unterhaltungSelectionModel, null);
+			
 		} else if (value instanceof UnterhaltungsNachricht) {
 			// LEVEL 1.
-
 			// Erste Nachricht aus Liste aller Nachrichten entfernen,
 			// da diese schon als Unterhaltungs Rahmen ausgegeben wird
 			if (((UnterhaltungsNachricht) value).u.getAlleNachrichten().size() > 1) {
@@ -187,18 +175,13 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 				Vector<Nachricht> alleNachrichtenAusserErste = new Vector<Nachricht>();
 				for (int i = 1; i < ((UnterhaltungsNachricht) value).u
 						.getAlleNachrichten().size(); i++) {
-					alleNachrichtenAusserErste
-							.add(((UnterhaltungsNachricht) value).u
-									.getAlleNachrichten().get(i));
+					alleNachrichtenAusserErste.add(((UnterhaltungsNachricht) value).u.getAlleNachrichten().get(i));
 				}
 
-				ListDataProvider<Nachricht> dataProvider = new ListDataProvider<Nachricht>(
-						alleNachrichtenAusserErste);
-				Cell<Nachricht> cell = new NeuigkeitenNachrichtenZelle(
-						((UnterhaltungsNachricht) value).u);
+				ListDataProvider<Nachricht> dataProvider = new ListDataProvider<Nachricht>(alleNachrichtenAusserErste);
+				Cell<Nachricht> cell = new NeuigkeitenNachrichtenZelle(((UnterhaltungsNachricht) value).u);
 
-				return new DefaultNodeInfo<Nachricht>(dataProvider, cell,
-						nachrichtenSelectionModel, null);
+				return new DefaultNodeInfo<Nachricht>(dataProvider, cell,nachrichtenSelectionModel, null);
 			}
 			return null;
 		}
@@ -243,8 +226,7 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 	 */
 	public static void ladeUnterhaltungenAsync() {
 
-		asyncObj.getAlleRelevantenUnterhaltungen(TellMe
-				.gibEingeloggterBenutzer().getUser().getId(),
+		asyncObj.getAlleRelevantenUnterhaltungen(TellMe.gibEingeloggterBenutzer().getUser().getId(),
 				new AsyncCallback<Vector<Unterhaltung>>() {
 
 					@Override
@@ -252,24 +234,19 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 						alleUnterhaltungen.clear();
 						for (Unterhaltung unterhaltung : result) {
 							try {
-
-								UnterhaltungsNachricht un = new UnterhaltungsNachricht(
-										unterhaltung);
+								UnterhaltungsNachricht un = new UnterhaltungsNachricht(unterhaltung);
 								alleUnterhaltungen.addElement(un);
 							} catch (Exception ex) {
-								Window.alert("Fehler beim hinzufügen einer Nachricht"
-										+ ex.toString());
+								Window.alert("Fehler beim hinzufügen einer Nachricht"+ ex.toString());
 								ex.printStackTrace();
 							}
 						}
-
 						UnterhaltungsListeErneuern();
 					}
 
 					@Override
 					public void onFailure(Throwable caught) {
 						Window.alert("Fehler beim laden der Nachrichten");
-
 					}
 				});
 
@@ -284,17 +261,14 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 	 * @param selectionModel
 	 *            , das ausgewählte Nutzer-Objekt aus der NutzerCellList.
 	 */
-	public static void setzeNutzerFilter(Nutzer n,
-			SingleSelectionModel<NutzerZelle.ZellenObjekt> selectionModel) {
+	public static void setzeNutzerFilter(Nutzer n,SingleSelectionModel<NutzerZelle.ZellenObjekt> selectionModel) {
 		nutzerFilter = n;
 		selectionModelNutzer = selectionModel;
 
 		if (hashtagFilter != null) {
 			hashtagFilter = null;
-			selectionModelHashtag.setSelected(
-					selectionModelHashtag.getSelectedObject(), false);
+			selectionModelHashtag.setSelected(selectionModelHashtag.getSelectedObject(), false);
 		}
-
 		UnterhaltungsListeErneuern();
 	}
 
@@ -307,14 +281,13 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 	 * @param selectionModel
 	 */
 	public static void setzeHashtagFilter(Hashtag h,
-			SingleSelectionModel<HashtagZelle.ZellenObjekt> selectionModel) {
+		SingleSelectionModel<HashtagZelle.ZellenObjekt> selectionModel) {
 		hashtagFilter = h;
 		selectionModelHashtag = selectionModel;
 
 		if (nutzerFilter != null) {
 			nutzerFilter = null;
-			selectionModelNutzer.setSelected(
-					selectionModelNutzer.getSelectedObject(), false);
+			selectionModelNutzer.setSelected(selectionModelNutzer.getSelectedObject(), false);
 		}
 		UnterhaltungsListeErneuern();
 	}
@@ -327,14 +300,12 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 
 		if (nutzerFilter != null) {
 			nutzerFilter = null;
-			selectionModelNutzer.setSelected(
-					selectionModelNutzer.getSelectedObject(), false);
+			selectionModelNutzer.setSelected(selectionModelNutzer.getSelectedObject(), false);
 		}
 
 		if (hashtagFilter != null) {
 			hashtagFilter = null;
-			selectionModelHashtag.setSelected(
-					selectionModelHashtag.getSelectedObject(), false);
+			selectionModelHashtag.setSelected(selectionModelHashtag.getSelectedObject(), false);
 		}
 
 		selectionModelNutzer = null;
@@ -353,17 +324,6 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 
 		dataProvider.getList().clear();
 
-		// // NutzerFilter
-		// if (nutzerFilter != null)
-		// Window.alert("Wird nach nutzer " + nutzerFilter.getVorname() + " " +
-		// nutzerFilter.getNachname() + " gefiltert");
-		// // HashtagFilter
-		// else if (hashtagFilter != null)
-		// Window.alert("Wird nach hashtag " + hashtagFilter.getSchlagwort() +
-		// " gefiltert");
-		// else
-		// Window.alert("Ungefiltert");
-
 		for (UnterhaltungsNachricht unterhaltungsNachricht : alleUnterhaltungen) {
 			boolean durchFilterAussortiert = false;
 
@@ -371,19 +331,18 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 			if (nutzerFilter != null) {
 				// Prüfe ob Filternutzer teilnehmer ist
 				boolean FilterNutzerIstSenderOderTeilnehmer = false;
-				for (Nutzer teilnehmer : unterhaltungsNachricht.u
-						.getTeilnehmer()) {
+				for (Nutzer teilnehmer : unterhaltungsNachricht.u.getTeilnehmer()) {
+					
 					if (teilnehmer.getId() == nutzerFilter.getId()) {
 						FilterNutzerIstSenderOderTeilnehmer = true;
 						break;
 					}
 				}
-
 				// wenn Filternutzer kein teilnehmer ist,
 				// prüfe ob er sender einer Nachricht ist
 				if (FilterNutzerIstSenderOderTeilnehmer == false) {
-					for (Nachricht nachricht : unterhaltungsNachricht.u
-							.getAlleNachrichten()) {
+					for (Nachricht nachricht : unterhaltungsNachricht.u.getAlleNachrichten()) {
+						
 						if (nachricht.getSenderId() == nutzerFilter.getId()) {
 							FilterNutzerIstSenderOderTeilnehmer = true;
 							break;
@@ -400,8 +359,8 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 			if (hashtagFilter != null) {
 				boolean HashtagVorhanden = false;
 				// Übeprüfe jede Nachricht ob Hashtag vorhanden
-				for (Nachricht nachricht : unterhaltungsNachricht.u
-						.getAlleNachrichten()) {
+				for (Nachricht nachricht : unterhaltungsNachricht.u.getAlleNachrichten()) {
+					
 					for (Hashtag hashtag : nachricht.getVerknuepfteHashtags()) {
 						if (hashtag.getId() == hashtagFilter.getId()) {
 							HashtagVorhanden = true;

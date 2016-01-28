@@ -67,7 +67,6 @@ public class HashtagVerwaltungFormular extends Composite {
 				if (schlagwortBox.getValue() == "") {
 					Window.alert("Bitte gib einen Wert ein");
 				} else {
-
 					hashtag.setSchlagwort(schlagwortBox.getText());
 					HashtagDataProvider.gib(0).hashtagSpeichern(hashtag);
 
@@ -81,7 +80,6 @@ public class HashtagVerwaltungFormular extends Composite {
 		htLoeschen.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				HashtagDataProvider.gib(0).hashtagEntfernen(hashtag);
-
 			}
 		});
 
@@ -95,9 +93,7 @@ public class HashtagVerwaltungFormular extends Composite {
 				if (schlagwortBox.getValue() == "") {
 					Window.alert("Bitte gib einen Wert ein");
 				} else {
-
 					boolean existiertBereits = false;
-
 					for (Hashtag hashtag : htl) {
 						if (schlagwortBox.getValue().toUpperCase()
 								.equals(hashtag.getSchlagwort().toUpperCase())) {
@@ -111,9 +107,7 @@ public class HashtagVerwaltungFormular extends Composite {
 						hashtag.setSchlagwort(schlagwortBox.getText());
 						HashtagDataProvider.gib(0).hashtagErstellen(hashtag);
 					}
-
 				}
-
 			}
 		});
 	}
@@ -145,7 +139,6 @@ public class HashtagVerwaltungFormular extends Composite {
 		htAnlegen.setStylePrimaryName("btnAnlegen");
 
 		vpForm.add(hpButtonBar);
-
 		return vpForm;
 	}
 
@@ -162,9 +155,9 @@ public class HashtagVerwaltungFormular extends Composite {
 		VerticalPanel vpForm = new VerticalPanel();
 
 		vpForm.clear();
-		vpForm.add(new HTML(
-				"Hier kannst du ein <b>Hashtagabonnement</b> erstellen oder löschen. </br>"
-						+ "Wähle dazu das gewünschte Hashtag aus und drücke dann den Button zum <b>abonnieren</b> oder zum <b>deabonnieren</b>."));
+		vpForm.add(new HTML("Hier kannst du ein <b>Hashtagabonnement</b> erstellen oder löschen. </br>"
+						+ "Wähle dazu das gewünschte Hashtag aus und drücke dann den Button zum <b>abonnieren</b> "
+						+ "oder zum <b>deabonnieren</b>."));
 		return vpForm;
 	}
 
@@ -186,8 +179,6 @@ public class HashtagVerwaltungFormular extends Composite {
 		} else {
 			btnAbonieren.setEnabled(true);
 			btnDeabonieren.setEnabled(false);
-
 		}
-
 	}
 }

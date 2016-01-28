@@ -56,7 +56,6 @@ public class NeuigkeitenJaNeinDialogbox {
 	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
 	eDialogModus DialogModus = null;
 
-	// Felder von beiden
 	String textTitel = "";
 	String textFrage = "";
 
@@ -77,7 +76,6 @@ public class NeuigkeitenJaNeinDialogbox {
 		textFrage = "Möchtest du die Nachricht wirklich löschen?";
 
 		zuLoeschendeNachricht = _zuLoeschendeNachricht;
-
 		DialogModus = eDialogModus.NachrichtLoeschen;
 
 		return gibDialogBox();
@@ -98,7 +96,6 @@ public class NeuigkeitenJaNeinDialogbox {
 		textFrage = "Möchtest du die Unterhaltung wirklich verlassen?";
 
 		zuVerlassendeUnterhaltung = _zuVerlassendeUnterhaltung;
-
 		DialogModus = eDialogModus.UnterhaltungVerlassen;
 
 		return gibDialogBox();
@@ -113,7 +110,6 @@ public class NeuigkeitenJaNeinDialogbox {
 	 */
 	private DialogBox gibDialogBox() {
 
-		// Dialog und FlowPanel definition
 		db.setText(textTitel);
 		db.setAnimationEnabled(true);
 		db.setGlassEnabled(true);
@@ -126,7 +122,6 @@ public class NeuigkeitenJaNeinDialogbox {
 		FlowPanel fpDialog = new FlowPanel();
 
 		fpDialog.setWidth("100%");
-		// fpDialog.setWidth("500px");
 		Image btnAbbrechen = new Image("xbtn.png");
 		btnAbbrechen.setStylePrimaryName("xbtn");
 		btnAbbrechen.addClickHandler(new ClickHandler() {
@@ -134,7 +129,6 @@ public class NeuigkeitenJaNeinDialogbox {
 				db.hide();
 			}
 		});
-
 		fpDialog.add(btnAbbrechen);
 
 		/**
@@ -176,27 +170,24 @@ public class NeuigkeitenJaNeinDialogbox {
 				 */
 				case NachrichtLoeschen:
 				default:
-					asyncObj.NachrichtLoeschen(zuLoeschendeNachricht,
-							new AsyncCallback<Boolean>() {
+					asyncObj.NachrichtLoeschen(zuLoeschendeNachricht,new AsyncCallback<Boolean>() {
 
-								/**
-								 * Bei erfolgreichen Ausführen
-								 */
-								@Override
-								public void onSuccess(Boolean result) {
-									if (result)
-										Window.alert("Nachricht erfolgreich gelöscht");
-									else
-										Window.alert("Fehler beim löschen der Nachricht, bitte wende dich an den Administrator");
+						/**
+						 * Bei erfolgreichen Ausführen
+						 */
+						@Override
+						public void onSuccess(Boolean result) {
+							if (result)
+								Window.alert("Nachricht erfolgreich gelöscht");
+							else
+								Window.alert("Fehler beim löschen der Nachricht, bitte wende dich an den Administrator");
+						}
 
-								}
-
-								@Override
-								public void onFailure(Throwable caught) {
-									Window.alert("Fehler beim löschen der Nachricht, bitte wende dich an den Administrator");
-
-								}
-							});
+						@Override
+						public void onFailure(Throwable caught) {
+							Window.alert("Fehler beim löschen der Nachricht, bitte wende dich an den Administrator");
+						}
+					});
 					break;
 
 				/**
@@ -205,25 +196,21 @@ public class NeuigkeitenJaNeinDialogbox {
 				 * verlassen geklickt wurde.
 				 */
 				case UnterhaltungVerlassen:
-					asyncObj.UnterhaltungVerlassen(zuVerlassendeUnterhaltung,
-							TellMe.gibEingeloggterBenutzer().getUser().getId(),
-							new AsyncCallback<Boolean>() {
+					asyncObj.UnterhaltungVerlassen(zuVerlassendeUnterhaltung,TellMe.gibEingeloggterBenutzer().getUser().getId(),new AsyncCallback<Boolean>() {
 
-								@Override
-								public void onSuccess(Boolean result) {
-									if (result)
-										Window.alert("Unterhaltung erfolgreich verlassen");
-									else
-										Window.alert("Fehler beim verlassen der Unterhaltung, bitte wende dich an den Administrator");
+						@Override
+						public void onSuccess(Boolean result) {
+							if (result)
+								Window.alert("Unterhaltung erfolgreich verlassen");
+							else
+								Window.alert("Fehler beim verlassen der Unterhaltung, bitte wende dich an den Administrator");
+						}
 
-								}
-
-								@Override
-								public void onFailure(Throwable caught) {
-									Window.alert("Fehler beim löschen der Nachricht, bitte wende dich an den Administrator");
-
-								}
-							});
+						@Override
+						public void onFailure(Throwable caught) {
+							Window.alert("Fehler beim löschen der Nachricht, bitte wende dich an den Administrator");
+						}
+					});
 					break;
 				}
 				db.hide();
@@ -232,7 +219,6 @@ public class NeuigkeitenJaNeinDialogbox {
 
 		hpButtons.add(btnJa);
 		fpDialog.add(hpButtons);
-
 		db.setWidget(fpDialog);
 
 		return db;

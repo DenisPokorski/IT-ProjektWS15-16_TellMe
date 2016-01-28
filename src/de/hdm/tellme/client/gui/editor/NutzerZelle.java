@@ -28,6 +28,7 @@ public class NutzerZelle  {
 		public Nutzer nutzer;
 		public boolean aboniert;
 	}
+	
 	/**
 	 * Die Klasse <class>ZellenElement</class> ist eine Klasse die durch die
 	 * Klasse <class>Abstract Cell</class> erweitert wird. Sie hat die Aufgabe
@@ -42,17 +43,12 @@ public class NutzerZelle  {
 	public class ZellenElement extends AbstractCell<NutzerZelle.ZellenObjekt> {
 		@Override
 		public void render(Context context, NutzerZelle.ZellenObjekt value, SafeHtmlBuilder sb) {
-			// Value can be null, so do a null check..
 			if (value == null) {
 				return;
 			}
-
 			sb.appendHtmlConstant("<table><tr><td>");
 			sb.appendEscaped(value.nutzer.getVorname() + " " + value.nutzer.getNachname());
 			sb.appendHtmlConstant("</td></tr></table>");
 		}
 	}
-
-	
-
 }

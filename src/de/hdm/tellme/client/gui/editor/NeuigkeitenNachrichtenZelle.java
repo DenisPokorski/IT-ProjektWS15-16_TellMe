@@ -78,8 +78,7 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 		/**
 		 * Der Absender wird als Autor hinzugefügt.
 		 */
-		strAbsender = value.getSender().getVorname() + " "
-				+ value.getSender().getNachname();
+		strAbsender = value.getSender().getVorname() + " "+ value.getSender().getNachname();
 		/**
 		 * Der Text wird aus der Nachricht ausgelesen.
 		 */
@@ -103,8 +102,7 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 		if (u.getTeilnehmer() != null) {
 			if (u.getTeilnehmer().size() != 0) {
 				for (Nutzer teilnehmer : u.getTeilnehmer()) {
-					strTeilnehmer += teilnehmer.getVorname() + " "
-							+ teilnehmer.getNachname() + ", ";
+					strTeilnehmer += teilnehmer.getVorname() + " "+ teilnehmer.getNachname() + ", ";
 				}
 				strTeilnehmer = strTeilnehmer.substring(0,
 						strTeilnehmer.length() - 2);

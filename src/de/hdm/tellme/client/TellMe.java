@@ -57,7 +57,7 @@ public class TellMe implements EntryPoint {
 		if (eingeloggterBenutzer.getUser().getVorname() == "undefined"
 				|| eingeloggterBenutzer.getUser().getNachname() == "undefined") {
 
-			// Startseite anzeigen
+			// Startseite/Neuigkeiten-Seite anzeigen
 			NutzerBearbeitenEditor.NutzerRuftTellMeErstesMalAuf = true;
 			MenuBarEditor.setzeInhalt(new NutzerBearbeitenEditor()
 					.gibNutzerBearbeitenFormular());
@@ -65,8 +65,8 @@ public class TellMe implements EntryPoint {
 		} else {
 
 			RootPanel.get("header").add(menuBar);
-			// Startseite anzeigen
-
+			
+			// Startseite/Neuigkeiten-Seite anzeigen
 			NeuigkeitenEditor nE = new NeuigkeitenEditor();
 			MenuBarEditor.setzeInhalt(nE.gibFilterPanel(), nE);
 		}
@@ -78,6 +78,9 @@ public class TellMe implements EntryPoint {
 
 		/**
 		 * Der Login-Status wird durch den LoginService überprüft.
+		 * Ist der Nutzer korrekt durch den <code>loginService</code> autorisiert so wird die Methode <code>ladeTellMe();</code> getriggert. 
+		 * Falls der Autorisirungsvorgang nicht beendet werden konnte oder bei diesem Fehler aufgetreten sind, 
+		 * wird dem Benutzer dies mit einer Bildschirmmeldung mitgeteilt.
 		 */
 
 		loginService.getNutzerInfo(
@@ -95,8 +98,7 @@ public class TellMe implements EntryPoint {
 						if (eingeloggterBenutzer.isLoggedIn()) {
 							ladeTellMe();
 						} else {
-							Window.Location.assign(eingeloggterBenutzer
-									.getLoginUrl());
+							Window.Location.assign(eingeloggterBenutzer.getLoginUrl());
 						}
 
 					}
@@ -106,7 +108,5 @@ public class TellMe implements EntryPoint {
 					Window.alert("Login fehlgeschlagen");
 					}
 				});
-
 	}
-
 }

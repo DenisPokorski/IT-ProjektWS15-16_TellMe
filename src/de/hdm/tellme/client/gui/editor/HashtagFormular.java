@@ -96,12 +96,9 @@ public class HashtagFormular extends Composite {
 					} else {
 						Hashtag neuesHashtag = new Hashtag();
 						neuesHashtag.setSchlagwort(schlagwortBox.getText());
-						HashtagDataProvider.gib(0)
-								.hashtagErstellen(neuesHashtag);
+						HashtagDataProvider.gib(0).hashtagErstellen(neuesHashtag);
 					}
-
 				}
-
 			}
 		});
 	}
@@ -127,9 +124,7 @@ public class HashtagFormular extends Composite {
 
 		vpForm.clear();
 		vpForm.add(l);
-
 		vpForm.add(hP);
-
 		return vpForm;
 	}
 
@@ -143,17 +138,14 @@ public class HashtagFormular extends Composite {
 	public VerticalPanel gibBeschreibungHtAbo() {
 		VerticalPanel vpForm = new VerticalPanel();
 
-		HTML headline = new HTML(" <div class='" + "subline"
-				+ "'><h2>Hashtagabo(s) verwalten:</h2></div> ");
+		HTML headline = new HTML(" <div class='" + "subline"+ "'><h2>Hashtagabo(s) verwalten:</h2></div> ");
 		vpForm.add(headline);
 
-		HTML subtext = new HTML(
-				" <div class='"
-						+ "subtext"
-						+ "'><h4>Hier kannst du Hashtags abonnieren oder bereits vorhandene Hashtagabonnements löschen. Hinweis: Um Hashtags bearbeiten zu können, klickst du im Hauptmenü auf Einstellungen und weiter auf Hashtagverwaltung.  </h4></div> ");
+		HTML subtext = new HTML(" <div class='" + "subtext"
+		+ "'><h4>Hier kannst du Hashtags abonnieren oder bereits vorhandene Hashtagabonnements löschen. Hinweis: "
+		+ "Um Hashtags bearbeiten zu können, klickst du im Hauptmenü auf Einstellungen und weiter auf Hashtagverwaltung.</h4></div> ");
 		vpForm.add(subtext);
-
-
+		
 		return vpForm;
 	}
 
@@ -172,10 +164,9 @@ public class HashtagFormular extends Composite {
 				+ "'><h2>Hashtag(s) verwalten:</h2></div> ");
 		vpForm.add(headline);
 
-		HTML subtext = new HTML(
-				" <div class='"
-						+ "subtext"
-						+ "'><h4>Hier kannst du neue Hashtags im System anlegen, bearbeiten oder löschen. Bitte gib zum anlegen das entsprechende Hashtag ein und klicke auf Anlegen oder wähle einen Hashtag aus der linken Liste aus, um es dann zu bearbeiten oder zu löschen.  </h4></div> ");
+		HTML subtext = new HTML(" <div class='"+ "subtext"+ "'><h4>Hier kannst du neue Hashtags im System anlegen, bearbeiten oder löschen. "
+		+ "Bitte gib zum anlegen das entsprechende Hashtag ein und klicke auf Anlegen oder wähle einen Hashtag aus der linken Liste aus, "
+		+ "um es dann zu bearbeiten oder zu löschen.  </h4></div> ");
 		vpForm.add(subtext);
 
 		return vpForm;
@@ -192,9 +183,9 @@ public class HashtagFormular extends Composite {
 	public VerticalPanel gibInfoFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
 		vpForm.clear();
-		vpForm.add(new HTML(
-				"Hier kannst du ein <b>Hashtagabonnement</b> erstellen oder löschen. </br>"
-						+ "Wähle dazu das gewünschte Hashtag aus und drücke dann den Button zum <b>abonnieren</b> oder zum <b>deabonnieren</b>."));
+		vpForm.add(new HTML("Hier kannst du ein <b>Hashtagabonnement</b> erstellen oder löschen. </br>"
+					+ "Wähle dazu das gewünschte Hashtag aus und drücke dann den Button zum <b>abonnieren</b> "
+					+ "oder zum <b>deabonnieren</b>."));
 		return vpForm;
 	}
 
@@ -212,7 +203,6 @@ public class HashtagFormular extends Composite {
 		vpForm.clear();
 		vpForm.add(schlagwortBox);
 		vpForm.add(htAnlegen);
-
 		return vpForm;
 	}
 
@@ -230,8 +220,6 @@ public class HashtagFormular extends Composite {
 		} else {
 			btnAbonieren.setEnabled(true);
 			btnDeabonieren.setEnabled(false);
-
 		}
-
 	}
 }

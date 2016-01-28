@@ -93,10 +93,7 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.addItem("Nutzeraboverwaltung", new Command() {
 			@Override
 			public void execute() {
-
-				setzeInhalt(new NutzerCellList().generiereCellList(
-						CellListModus.Einstellungen, 0), new NutzerFormular()
-						.gibBeschreibung());
+				setzeInhalt(new NutzerCellList().generiereCellList(CellListModus.Einstellungen, 0), new NutzerFormular().gibBeschreibung());
 			}
 		});
 
@@ -107,9 +104,7 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.addItem("Hashtagaboverwaltung", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(new HashtagCellList()
-						.generiereCellList(CellListModus.Einstellungen, 0),
-						new HashtagFormular().gibBeschreibungHtAbo());
+				setzeInhalt(new HashtagCellList().generiereCellList(CellListModus.Einstellungen, 0),new HashtagFormular().gibBeschreibungHtAbo());
 			}
 		});
 
@@ -120,12 +115,8 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.addItem("Hashtagverwaltung", new Command() {
 			@Override
 			public void execute() {
-				setzeInhalt(new HashtagCellList()
-						.generiereCellList(CellListModus.HashtagVerwaltung, 0),
-						new HashtagFormular().gibBeschreibungHtVerwaltung());
-				RootPanel.get("content_right").add(
-						new HashtagFormular().gibAnlegenFormular());
-
+				setzeInhalt(new HashtagCellList().generiereCellList(CellListModus.HashtagVerwaltung, 0),new HashtagFormular().gibBeschreibungHtVerwaltung());
+				RootPanel.get("content_right").add(new HashtagFormular().gibAnlegenFormular());
 			}
 		});
 		/**
@@ -134,9 +125,7 @@ public class MenuBarEditor extends HorizontalPanel {
 		 */
 		EinstellungenMenu.addItem("Benutzereinstellungen", new Command() {
 			@Override
-			public void execute() {
-				setzeInhalt(new NutzerBearbeitenEditor()
-						.gibNutzerBearbeitenFormular());
+			public void execute() {setzeInhalt(new NutzerBearbeitenEditor().gibNutzerBearbeitenFormular());
 			}
 		});
 		/**
@@ -147,7 +136,6 @@ public class MenuBarEditor extends HorizontalPanel {
 			@Override
 			public void execute() {
 				setzeInhalt(new ImpressumEditor().getHtmlImpressum());
-
 			}
 		});
 		/**
@@ -157,14 +145,10 @@ public class MenuBarEditor extends HorizontalPanel {
 		EinstellungenMenu.addItem("Log out", new Command() {
 			@Override
 			public void execute() {
-				Window.Location.assign(TellMe.gibEingeloggterBenutzer()
-						.getLogoutUrl());
-
+				Window.Location.assign(TellMe.gibEingeloggterBenutzer().getLogoutUrl());
 			}
 		});
-
 		RootPanel.get("header").add(HauptMenue);
-
 	}
 
 	/**
@@ -185,7 +169,6 @@ public class MenuBarEditor extends HorizontalPanel {
 	 * @param ZuSetzendesPanel
 	 */
 	public static void setzeInhalt(Widget ZuSetzendesPanel) {
-
 		RootPanel.get("ButtonBar").clear();
 		RootPanel.get("content_left").clear();
 		RootPanel.get("content_right").clear();
@@ -203,9 +186,7 @@ public class MenuBarEditor extends HorizontalPanel {
 	 * @param ZuSetzendesPanelLinks
 	 * @param ZuSetzendesPanelRechts
 	 */
-	public static void setzeInhalt(Widget ZuSetzendesPanelLinks,
-			Widget ZuSetzendesPanelRechts) {
-
+	public static void setzeInhalt(Widget ZuSetzendesPanelLinks, Widget ZuSetzendesPanelRechts) {
 		RootPanel.get("ButtonBar").clear();
 		RootPanel.get("content_left").clear();
 		RootPanel.get("content_right").clear();
@@ -213,5 +194,4 @@ public class MenuBarEditor extends HorizontalPanel {
 		RootPanel.get("content_left").add(ZuSetzendesPanelLinks);
 		RootPanel.get("content_right").add(ZuSetzendesPanelRechts);
 	}
-
 }

@@ -32,7 +32,6 @@ public class ImpressumEditor extends HTML {
 			"<td>dt018@hdm-stuttgart.de</td>" +
 			"</tr></table><p></div>");
 	
-
 	/**
 	 * Die Methode soll das Impressum als HTML-Element zurückgeben.
 	 * 
@@ -41,5 +40,4 @@ public class ImpressumEditor extends HTML {
 	public HTML getHtmlImpressum() {
 		return impressumString;
 	}
-
 }

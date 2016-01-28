@@ -73,9 +73,9 @@ public class TellMeReport implements EntryPoint {
 		} else {
 
 			RootPanel.get("header").add(menuBar);
+			
+			// Startseite/Report-Seite anzeigen
 			MenuBarReport.setzeInhalt(new ReportWillkommenSeite());
-			// Startseite anzeigen
-
 		}
 		return null;
 	}
@@ -110,8 +110,7 @@ public class TellMeReport implements EntryPoint {
 					public void onFailure(Throwable caught) {
 						Window.alert("Login fehlgeschlagen");
 					}
-				});
-
+				}
+		);
 	}
-
 }

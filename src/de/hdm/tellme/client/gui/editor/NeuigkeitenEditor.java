@@ -69,12 +69,11 @@ public class NeuigkeitenEditor extends VerticalPanel {
 
 		ScrollPanel scPanel = new ScrollPanel();
 		 scPanel.setHeight("728px");
-//		scPanel.setHeight("100%");
 		 scPanel.setWidth("99%");
 		 
 		 //Verhindern der vertikalen Scroll-bar
 		 tree.setWidth("99%");
-		scPanel.add(tree);
+		 scPanel.add(tree);
 
 		NeuigkeitenNachrichtenBaumModel.setzeKeinenFilter();
 		RootPanel.get("content_right").add(scPanel);

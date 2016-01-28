@@ -71,7 +71,6 @@ public class NutzerFormular extends Composite {
 				if (nutzer == null) {
 					return;
 				}
-				
 				NutzerDataProvider.gib(0).deabonieren(nutzer);
 			}
 		});
@@ -99,7 +98,6 @@ public class NutzerFormular extends Composite {
 
 		hpForm.add(btnAbonieren);
 		hpForm.add(btnDeabonieren);
-
 		vpForm.add(hpForm);
 
 		return vpForm;
@@ -114,17 +112,16 @@ public class NutzerFormular extends Composite {
 	 */
 	public VerticalPanel gibBeschreibung() {
 		VerticalPanel vpForm = new VerticalPanel();
-
+		
 		HTML headline = new HTML(" <div class='" + "subline"
 				+ "'><h2>Nutzerabo(s) verwalten:</h2></div> ");
 		vpForm.add(headline);
-
-		HTML subtext = new HTML(
-				" <div class='"
-						+ "subtext"
-						+ "'><h4>Hier kannst du andere Nutzer abonnieren. Danach werden alle öffentlichen Nachrichten im Menüpunkt Neuigkeiten angezeigt. <br /> Zudem kannst du bereits vorhandene Abonnements löschen. </h4></div> ");
+		
+		HTML subtext = new HTML(" <div class='"+ "subtext"
+						+ "'><h4>Hier kannst du andere Nutzer abonnieren. Danach werden alle öffentlichen Nachrichten im Menüpunkt "
+						+ "Neuigkeiten angezeigt. <br /> Zudem kannst du bereits vorhandene Abonnements löschen. </h4></div> ");
 		vpForm.add(subtext);
-
+		
 		return vpForm;
 	}
 

@@ -38,8 +38,7 @@ public class NutzerCellList {
 		 * der Klasse <class>ZellenObjekt</class>, dass eine Nested-Class in der
 		 * Klasse <class>NutzerZelle</class> darstellt.
 		 */
-		CellList<NutzerZelle.ZellenObjekt> cellList = new CellList<NutzerZelle.ZellenObjekt>(
-				new NutzerZelle().new ZellenElement());
+		CellList<NutzerZelle.ZellenObjekt> cellList = new CellList<NutzerZelle.ZellenObjekt>(new NutzerZelle().new ZellenElement());
 
 		/**
 		 * Der NutzerDataProvider stellt die NutzerCellLists zur Verfügung.
@@ -50,7 +49,6 @@ public class NutzerCellList {
 		 * Hier wird ein Selection Model hinzugefügt, damit man Zellen auswählen
 		 * kann.
 		 */
-		// Add a selection model so we can select cells.
 		final SingleSelectionModel<NutzerZelle.ZellenObjekt> selectionModel = new SingleSelectionModel<NutzerZelle.ZellenObjekt>();
 		cellList.setSelectionModel(selectionModel);
 		switch (modi) {
@@ -63,20 +61,13 @@ public class NutzerCellList {
 		 */
 		case Einstellungen:
 
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
-
 							NutzerFormular nf = new NutzerFormular();
-
-							nf.setzeNutzerAbo(selectionModel
-									.getSelectedObject());
-
+							nf.setzeNutzerAbo(selectionModel.getSelectedObject());
 							RootPanel.get("content_right").clear();
-							RootPanel.get("content_right").add(
-									nf.gibBeschreibung());
-							RootPanel.get("content_right")
-									.add(nf.gibFormular());
+							RootPanel.get("content_right").add(nf.gibBeschreibung());
+							RootPanel.get("content_right").add(nf.gibFormular());
 						}
 					});
 			break;
@@ -89,12 +80,9 @@ public class NutzerCellList {
 		 * NeuigkeitenNachrichtenBaum des jeweiligen Nutzers angezeigt werden.
 		 */
 		case Nachrichtenuebersicht:
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
-							NeuigkeitenNachrichtenBaumModel.setzeNutzerFilter(
-									selectionModel.getSelectedObject().nutzer,
-									selectionModel);
+							NeuigkeitenNachrichtenBaumModel.setzeNutzerFilter(selectionModel.getSelectedObject().nutzer,selectionModel);
 						}
 					});
 			break;
@@ -105,12 +93,10 @@ public class NutzerCellList {
 		 * angeklickt wird, wird das ReportFormular1 angezeigt.
 		 */
 		case Report1_NachrichtNutzerZeitraum:
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
 							Report1Gui rF = new Report1Gui();
-							rF.report1Generieren(selectionModel
-									.getSelectedObject());
+							rF.report1Generieren(selectionModel.getSelectedObject());
 						}
 					});
 			break;
@@ -122,30 +108,23 @@ public class NutzerCellList {
 		 */
 
 		case Report3_NachrichtNutzer:
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
 							VerticalPanel vP = new VerticalPanel();
 							RootPanel.get("content_right").clear();
 
 							ReportFormular3 rF = new ReportFormular3();
-							rF.report3Generieren(selectionModel
-									.getSelectedObject());
+							rF.report3Generieren(selectionModel.getSelectedObject());
 
-							HTML headline = new HTML(
-									" <div class='"
-											+ "subline"
+							HTML headline = new HTML(" <div class='" + "subline"
 											+ "'><h2>Reportgenerator 3: Alle Nachrichten je Nutzer anzeigen </h2></div> ");
 							HTML subtext = new HTML(
-									" <div class='"
-											+ "subtext"
+									" <div class='"+ "subtext"
 											+ "'><h4>Um einen Report auszugeben, der alle Nachrichten von<b> einem bestimmten Nutzer</b>"
 											+ " darstellt, musst du <b>einen Nutzer </b>auswählen und darfst <b>keinen Zeitraum </b> auswählen. </h4></div> ");
-
 							vP.add(headline);
 							vP.add(subtext);
 							vP.add(rF.gibFormular());
-
 							RootPanel.get("content_right").add(vP);
 						}
 					});
@@ -157,25 +136,19 @@ public class NutzerCellList {
 		 * wird das ReportFormular5 angezeigt.
 		 */
 		case Report5_NutzerNutzerAbonnement:
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
+							
 							ReportFormular5 rF = new ReportFormular5();
-							rF.report5Generieren(selectionModel
-									.getSelectedObject());
-
+							rF.report5Generieren(selectionModel.getSelectedObject());
 							VerticalPanel vP = new VerticalPanel();
 							RootPanel.get("content_right").clear();
 
-							HTML headline = new HTML(
-									" <div class='"
-											+ "subline"
+							HTML headline = new HTML(" <div class='"+ "subline"
 											+ "'><h2>Reportgenerator 5: Alle Nachrichten je Nutzer anzeigen</h2></div> ");
 							HTML subtext = new HTML(
-									" <div class='"
-											+ "subtext"
+									" <div class='"+ "subtext"
 											+ "'><h4> Der Report 5 gibt alle Nutzerabonnements aus.   </h4></div> ");
-
 							vP.add(headline);
 							vP.add(subtext);
 							vP.add(rF.gibFormular());
@@ -190,50 +163,40 @@ public class NutzerCellList {
 		 * angeklickt wird, wird das ReportFormular6 angezeigt.
 		 */
 		case Report6_NutzerHashtagAbonnement:
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
 
 							VerticalPanel vP = new VerticalPanel();
 							RootPanel.get("content_right").clear();
 
 							ReportFormular6 rF = new ReportFormular6();
-							rF.report6Generieren(selectionModel
-									.getSelectedObject());
+							rF.report6Generieren(selectionModel.getSelectedObject());
 
-							HTML headline = new HTML(
-									" <div class='"
-											+ "subline"
+							HTML headline = new HTML(" <div class='"+ "subline"
 											+ "'><h2>Reportgenerator 6: Alle Hashtagabos je Nutzer anzeigen</h2></div> ");
-							HTML subtext = new HTML(
-									" <div class='"
-											+ "subtext"
+							HTML subtext = new HTML(" <div class='"+ "subtext"
 											+ "'><h4> Der Report 6 gibt alle Hashtagabonnements eines Nutzers in einem bestimmten Zeitraum zurück.   </h4></div> ");
 
 							vP.add(headline);
 							vP.add(subtext);
 							vP.add(rF.gibFormular());
-
 							RootPanel.get("content_right").add(vP);
 						}
 					});
 			break;
 
 		case Report7_AlleNutzerDieDemAusgewaehltenNutzerFolgen:
-			selectionModel
-					.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+			selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 						public void onSelectionChange(SelectionChangeEvent event) {
+							
 							VerticalPanel vP = new VerticalPanel();
 							RootPanel.get("content_right").clear();
 							ReportFormular7 rF = new ReportFormular7();
 							rF.report7Generieren(selectionModel.getSelectedObject());
 							vP.add(rF.gibFormular());
-
 							RootPanel.get("content_right").add(vP);
-
 						}
 					});
-
 			break;
 		default:
 		}

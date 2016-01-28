@@ -34,11 +34,9 @@ public class NutzerDataProvider {
 
 	private ListDataProvider<NutzerZelle.ZellenObjekt> dataProvider = new ListDataProvider<NutzerZelle.ZellenObjekt>();
 
-	private final EditorServiceAsync _editorAsyncObj = GWT
-			.create(EditorService.class);
+	private final EditorServiceAsync _editorAsyncObj = GWT.create(EditorService.class);
 
-	private final ReportServiceAsync _reportAsyncObj = GWT
-			.create(ReportService.class);
+	private final ReportServiceAsync _reportAsyncObj = GWT.create(ReportService.class);
 
 	private static NutzerDataProvider instanz = null;
 	private static Vector<Nutzer> alleNutzer = null;
@@ -61,14 +59,11 @@ public class NutzerDataProvider {
 	}
 
 	private NutzerDataProvider(int i) {
-
 		if (i == 0)
 			fuelleListe();
 		else
 			fuelleListeReport();
-
 		dataList = dataProvider.getList();
-
 	}
 
 	/**
@@ -81,27 +76,22 @@ public class NutzerDataProvider {
 
 		dataList = dataProvider.getList();
 
-		_editorAsyncObj.getAlleNutzer(true,
-				new AsyncCallback<Vector<Nutzer>>() {
+		_editorAsyncObj.getAlleNutzer(true,new AsyncCallback<Vector<Nutzer>>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fehler bei der Reportgenerierung. Bitte wenden Sie sich an den Administrator des Systems.");
+			}
 
-					@Override
-					public void onFailure(Throwable caught) {
-						Window.alert("Fehler bei der Reportgenerierung. Bitte wenden Sie sich an den Administrator des Systems.");
-					}
-
-					@Override
-					public void onSuccess(Vector<Nutzer> result) {
-						alleNutzer = result;
-						for (int i = 0; i <= alleNutzer.size(); i++) {
-							NutzerZelle.ZellenObjekt nah = new NutzerZelle().new ZellenObjekt();
-							nah.nutzer = alleNutzer.get(i);
-							dataList.add(nah);
-
-						}
-
-					}
-				});
-
+			@Override
+			public void onSuccess(Vector<Nutzer> result) {
+				alleNutzer = result;
+				for (int i = 0; i <= alleNutzer.size(); i++) {
+					NutzerZelle.ZellenObjekt nah = new NutzerZelle().new ZellenObjekt();
+					nah.nutzer = alleNutzer.get(i);
+					dataList.add(nah);
+				}
+			}
+		});
 	}
 
 	/**
@@ -113,8 +103,7 @@ public class NutzerDataProvider {
 			dataList.clear();
 
 		_editorAsyncObj.getAlleNutzerAußerMeineId(TellMe
-				.gibEingeloggterBenutzer().getUser().getId(),
-				new AsyncCallback<Vector<Nutzer>>() {
+				.gibEingeloggterBenutzer().getUser().getId(),new AsyncCallback<Vector<Nutzer>>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
@@ -124,36 +113,28 @@ public class NutzerDataProvider {
 					@Override
 					public void onSuccess(Vector<Nutzer> result) {
 						alleNutzer = result;
-						_editorAsyncObj.holeAlleAbonniertenNutzer(TellMe
-								.gibEingeloggterBenutzer().getUser().getId(),
-								new AsyncCallback<Vector<Integer>>() {
+						_editorAsyncObj.holeAlleAbonniertenNutzer(TellMe.gibEingeloggterBenutzer().getUser().getId(),
+							new AsyncCallback<Vector<Integer>>() {
 
-									@Override
-									public void onFailure(Throwable caught) {
+								@Override
+								public void onFailure(Throwable caught) {
+								}
 
+								@Override
+								public void onSuccess(Vector<Integer> result) {
+									alleAbonniertenNutzer = result;
+									for (int i = 0; i <= alleNutzer.size(); i++) {
+										NutzerZelle.ZellenObjekt nah = new NutzerZelle().new ZellenObjekt();
+										nah.nutzer = alleNutzer.get(i);
+										nah.aboniert = false;
+										if (alleAbonniertenNutzer.contains(nah.nutzer.getId()))
+											nah.aboniert = true;
+										dataList.add(nah);
 									}
-
-									@Override
-									public void onSuccess(Vector<Integer> result) {
-										alleAbonniertenNutzer = result;
-										for (int i = 0; i <= alleNutzer.size(); i++) {
-											NutzerZelle.ZellenObjekt nah = new NutzerZelle().new ZellenObjekt();
-											nah.nutzer = alleNutzer.get(i);
-											nah.aboniert = false;
-											if (alleAbonniertenNutzer
-													.contains(nah.nutzer
-															.getId()))
-												nah.aboniert = true;
-											dataList.add(nah);
-
-										}
-
-									}
-								});
-
+								}
+							});
 					}
 				});
-
 	}
 
 	public void addDataDisplay(CellList<NutzerZelle.ZellenObjekt> cellList) {
@@ -182,8 +163,7 @@ public class NutzerDataProvider {
 	 */
 	public void abonieren(Nutzer _nutzer) {
 
-		_editorAsyncObj.nutzerAbonnementErstellen(TellMe
-				.gibEingeloggterBenutzer().getUser().getId(), _nutzer,
+		_editorAsyncObj.nutzerAbonnementErstellen(TellMe.gibEingeloggterBenutzer().getUser().getId(), _nutzer,
 				new AsyncCallback<Void>() {
 
 					@Override
@@ -197,8 +177,7 @@ public class NutzerDataProvider {
 						fuelleListe();
 						Window.alert("Erfolgreich abonniert");
 						RootPanel.get("content_right").clear();
-						RootPanel.get("content_right").add(
-								new NutzerFormular().gibBeschreibung());
+						RootPanel.get("content_right").add(new NutzerFormular().gibBeschreibung());
 
 					}
 				});
@@ -213,24 +192,19 @@ public class NutzerDataProvider {
 	 *            Nutzerabonnement löschen möchte.
 	 */
 	public void deabonieren(Nutzer _nutzerDeabonieren) {
-		_editorAsyncObj.nutzerAbonnementLoeschen(TellMe
-				.gibEingeloggterBenutzer().getUser().getId(),
+		_editorAsyncObj.nutzerAbonnementLoeschen(TellMe.gibEingeloggterBenutzer().getUser().getId(),
 				_nutzerDeabonieren, new AsyncCallback<Void>() {
-
 					@Override
 					public void onFailure(Throwable caught) {
-
 					}
 
 					@Override
 					public void onSuccess(Void result) {
 
 						fuelleListe();
-
 						Window.alert("Erfolgreich deabonniert");
 						RootPanel.get("content_right").clear();
-						RootPanel.get("content_right").add(
-								new NutzerFormular().gibBeschreibung());
+						RootPanel.get("content_right").add(new NutzerFormular().gibBeschreibung());
 
 					}
 				});
@@ -246,25 +220,19 @@ public class NutzerDataProvider {
 	 */
 	public void report3Generieren(Nutzer n) {
 		final Nutzer b = n;
-		_reportAsyncObj.alleUnterhaltungenFuerAutor(b.getId(),
-				new AsyncCallback<Vector<Unterhaltung>>() {
+		_reportAsyncObj.alleUnterhaltungenFuerAutor(b.getId(),new AsyncCallback<Vector<Unterhaltung>>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
-						Window.alert("Fehler 1_3");
-
+						Window.alert("Fehler");
 					}
 
 					@Override
 					public void onSuccess(Vector<Unterhaltung> result) {
-
 						HTMLReportWriter hRW = new HTMLReportWriter();
-
 						hRW.generateReport3(result, b);
 					}
-
 				});
-
 	}
 
 	/**
@@ -289,10 +257,8 @@ public class NutzerDataProvider {
 					@Override
 					public void onSuccess(Vector<Nutzer> result) {
 						HTMLReportWriter hRW = new HTMLReportWriter();
-
 						hRW.generateReport7(result, b);
 					}
-
 				});
 	}
 
@@ -306,8 +272,7 @@ public class NutzerDataProvider {
 	 */
 	public void report6Generieren(Nutzer n) {
 		final Nutzer b = n;
-		_reportAsyncObj.report6Generieren(b.getId(),
-				new AsyncCallback<Vector<Hashtag>>() {
+		_reportAsyncObj.report6Generieren(b.getId(),new AsyncCallback<Vector<Hashtag>>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
@@ -318,12 +283,10 @@ public class NutzerDataProvider {
 					public void onSuccess(Vector<Hashtag> result) {
 
 						HTMLReportWriter hRW = new HTMLReportWriter();
-
 						hRW.generateReport6(result, b);
 
 					}
 				});
-
 	}
 
 	/**
@@ -336,8 +299,7 @@ public class NutzerDataProvider {
 	 */
 	public void report5Generieren(Nutzer n) {
 		final Nutzer b = n;
-		_reportAsyncObj.report5GenerierenListe(b.getId(),
-				new AsyncCallback<Vector<Nutzer>>() {
+		_reportAsyncObj.report5GenerierenListe(b.getId(),new AsyncCallback<Vector<Nutzer>>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
@@ -348,7 +310,6 @@ public class NutzerDataProvider {
 					public void onSuccess(Vector<Nutzer> result) {
 
 						HTMLReportWriter hRW = new HTMLReportWriter();
-
 						hRW.generateReport5(result, b);
 					}
 				});
@@ -364,8 +325,7 @@ public class NutzerDataProvider {
 	 */
 	public void report4Generieren(Nutzer n) {
 		final Nutzer b = n;
-		_reportAsyncObj
-				.alleUnterhaltungen(new AsyncCallback<Vector<Unterhaltung>>() {
+		_reportAsyncObj.alleUnterhaltungen(new AsyncCallback<Vector<Unterhaltung>>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
@@ -374,7 +334,6 @@ public class NutzerDataProvider {
 
 					public void onSuccess(Vector<Unterhaltung> result) {
 						HTMLReportWriter hRW = new HTMLReportWriter();
-
 						hRW.generateReport4(result, b);
 					}
 				});
@@ -395,8 +354,7 @@ public class NutzerDataProvider {
 		final Nutzer b = n;
 		final Timestamp vD = vonDate;
 		final Timestamp bD = bisDate;
-		_reportAsyncObj.alleUnterhaltungenFuerAutorMitZeitraum(b.getId(), vD,
-				bD, new AsyncCallback<Vector<Unterhaltung>>() {
+		_reportAsyncObj.alleUnterhaltungenFuerAutorMitZeitraum(b.getId(), vD,bD, new AsyncCallback<Vector<Unterhaltung>>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
@@ -406,7 +364,6 @@ public class NutzerDataProvider {
 					@Override
 					public void onSuccess(Vector<Unterhaltung> result) {
 						HTMLReportWriter hRW = new HTMLReportWriter();
-
 						hRW.generateReport1(result, b);
 					}
 				});
@@ -428,19 +385,18 @@ public class NutzerDataProvider {
 		final Timestamp vD = vonDate;
 		final Timestamp bD = bisDate;
 		_reportAsyncObj.alleUnterhaltungenMitZeitraum(vD, bD,
-				new AsyncCallback<Vector<Unterhaltung>>() {
+			new AsyncCallback<Vector<Unterhaltung>>() {
 
-					@Override
-					public void onFailure(Throwable caught) {
-						Window.alert("Fehler");
-					}
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert("Fehler");
+				}
 
-					@Override
-					public void onSuccess(Vector<Unterhaltung> result) {
-						HTMLReportWriter hRW = new HTMLReportWriter();
-
-						hRW.generateReport2(result, b);
-					}
-				});
-	}
+				@Override
+				public void onSuccess(Vector<Unterhaltung> result) {
+					HTMLReportWriter hRW = new HTMLReportWriter();
+					hRW.generateReport2(result, b);
+				}
+			});
+		}
 }

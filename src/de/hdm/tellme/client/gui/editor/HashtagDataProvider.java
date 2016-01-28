@@ -29,19 +29,14 @@ import de.hdm.tellme.shared.report.HTMLReportWriter;
  */
 public class HashtagDataProvider {
 
-	private final EditorServiceAsync _asyncObj = GWT
-			.create(EditorService.class);
-
-	private final ReportServiceAsync _reportAsyncObj = GWT
-			.create(ReportService.class);
-
+	private final EditorServiceAsync _asyncObj = GWT.create(EditorService.class);
+	private final ReportServiceAsync _reportAsyncObj = GWT.create(ReportService.class);
+	
 	private ListDataProvider<HashtagZelle.ZellenObjekt> dataProvider = new ListDataProvider<HashtagZelle.ZellenObjekt>();
-
 	private static Vector<Hashtag> hashTagListeTemp = null;
 	private List<HashtagZelle.ZellenObjekt> dataList = dataProvider.getList();
 
 	private static HashtagDataProvider instanz = null;
-
 	private static int lastI;
 
 	public static HashtagDataProvider gib(int i) {
@@ -94,7 +89,6 @@ public class HashtagDataProvider {
 				}
 			}
 		});
-
 	}
 
 	/**
@@ -107,6 +101,7 @@ public class HashtagDataProvider {
 		if (dataList != null) {
 			dataList.clear();
 		}
+		
 		dataList = dataProvider.getList();
 
 		_asyncObj.gibAlleHashtags(new AsyncCallback<Vector<Hashtag>>() {
@@ -119,31 +114,27 @@ public class HashtagDataProvider {
 			public void onSuccess(Vector<Hashtag> hashTagListe) {
 
 				hashTagListeTemp = hashTagListe;
-				int NutzerId = TellMe.gibEingeloggterBenutzer().getUser()
-						.getId();
+				int NutzerId = TellMe.gibEingeloggterBenutzer().getUser().getId();
 
-				_asyncObj.getAlleAbonniertenHashtagsfuerAbonehmer(NutzerId,
-						new AsyncCallback<Vector<Integer>>() {
+				_asyncObj.getAlleAbonniertenHashtagsfuerAbonehmer(NutzerId,new AsyncCallback<Vector<Integer>>() {
 
-							@Override
-							public void onFailure(Throwable caught) {
-							}
+					@Override
+					public void onFailure(Throwable caught) {
+					}
 
-							@Override
-							public void onSuccess(Vector<Integer> aboListe) {
-								for (int i = 0; i <= hashTagListeTemp.size(); i++) {
-									HashtagZelle.ZellenObjekt nah = new HashtagZelle().new ZellenObjekt();
-									nah.hashtag = hashTagListeTemp.get(i);
-									nah.aboniert = false;
+					@Override
+					public void onSuccess(Vector<Integer> aboListe) {
+						for (int i = 0; i <= hashTagListeTemp.size(); i++) {
+							HashtagZelle.ZellenObjekt nah = new HashtagZelle().new ZellenObjekt();
+							nah.hashtag = hashTagListeTemp.get(i);
+							nah.aboniert = false;
 
-									if (aboListe.contains(nah.hashtag.getId()))
-										nah.aboniert = true;
-									dataList.add(nah);
-								}
-
-							}
-
-						});
+							if (aboListe.contains(nah.hashtag.getId()))
+								nah.aboniert = true;
+							dataList.add(nah);
+						}
+					}
+				});
 			}
 		});
 
@@ -159,7 +150,10 @@ public class HashtagDataProvider {
 	}
 
 	/**
-	 * TODO
+	 * Der Methode <code> addDataDisplay</code> wird bei Ausführung eine Celllist übergeben. 
+	 * Deren Zelleninhalt ist eine Nested-Klasse bestehend aus Hastagelementen. 
+	 * Im Methodenkörper wird die Methode des zuvor initzialisierten Dataproviders <code>addDataDisplay</code> aufgerufen und 
+	 * die übergebene Celllist übergeben. 
 	 * 
 	 * @param cellList
 	 */
@@ -168,7 +162,9 @@ public class HashtagDataProvider {
 	}
 
 	/**
-	 * TODO
+	 * Diese Methode <code> refreshDisplays</code> leert den Dataprovider und die darin befindlichen Elemente. 
+	 * Die Methode wird benötigt, da es an vielen Stellen sinnvoll ist den Dataprovider zu leeren, da sonst die Elemente 
+	 * an die Index-Liste des bestehenden Dataproviders angehängt werden würden.
 	 */
 	public void refreshDisplays() {
 		dataProvider.refresh();
@@ -204,7 +200,6 @@ public class HashtagDataProvider {
 
 			}
 		});
-
 	}
 
 	/**
@@ -237,7 +232,6 @@ public class HashtagDataProvider {
 
 			}
 		});
-
 	}
 
 	/**
@@ -267,14 +261,10 @@ public class HashtagDataProvider {
 				holeHashtagListe();
 				RootPanel.get("content_right").clear();
 				Window.alert("Der Hashtag wurde erfolgreich erstellt.");
-				RootPanel.get("content_right").add(
-						new HashtagFormular().gibBeschreibungHtVerwaltung());
-				RootPanel.get("content_right").add(
-						new HashtagFormular().gibAnlegenFormular());
-
+				RootPanel.get("content_right").add(new HashtagFormular().gibBeschreibungHtVerwaltung());
+				RootPanel.get("content_right").add(new HashtagFormular().gibAnlegenFormular());
 			}
 		});
-
 	}
 
 	/**
@@ -308,12 +298,9 @@ public class HashtagDataProvider {
 						holeHashtagListe();
 						Window.alert("Das Abo wurde erfolgreich erstellt.");
 						RootPanel.get("content_right").clear();
-						RootPanel.get("content_right").add(
-								new HashtagFormular().gibBeschreibungHtAbo());
-
+						RootPanel.get("content_right").add(new HashtagFormular().gibBeschreibungHtAbo());
 					}
 				});
-
 	}
 
 	/**
@@ -347,9 +334,7 @@ public class HashtagDataProvider {
 						holeHashtagListe();
 						Window.alert("Das Abo wurde erfolgreich entfernt.");
 						RootPanel.get("content_right").clear();
-						RootPanel.get("content_right").add(
-								new HashtagFormular().gibBeschreibungHtAbo());
-
+						RootPanel.get("content_right").add(new HashtagFormular().gibBeschreibungHtAbo());
 					}
 				});
 	}
@@ -358,26 +343,22 @@ public class HashtagDataProvider {
 	 * Diese Methode generiert den Report 8
 	 * 
 	 * @param n
-	 *            HashtagObjekt, für das der Report 8 generiert wird.
+	 * HashtagObjekt, für das der Report 8 generiert wird.
 	 */
 	public void report8Generieren(Hashtag n) {
 		final Hashtag b = n;
-		_reportAsyncObj.report8Generieren(b.getId(),
-				new AsyncCallback<Vector<Nutzer>>() {
+		_reportAsyncObj.report8Generieren(b.getId(),new AsyncCallback<Vector<Nutzer>>() {
 
-					@Override
-					public void onFailure(Throwable caught) {
-						Window.alert("Fehler bei der Generierung");
-					}
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fehler bei der Generierung");
+			}
 
-					@Override
-					public void onSuccess(Vector<Nutzer> result) {
-						HTMLReportWriter hRW = new HTMLReportWriter();
-
-						hRW.generateReport8(result, b);
-					}
-				});
-
+			@Override
+			public void onSuccess(Vector<Nutzer> result) {
+				HTMLReportWriter hRW = new HTMLReportWriter();
+				hRW.generateReport8(result, b);
+			}
+		});
 	}
-
 }

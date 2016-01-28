@@ -178,7 +178,6 @@ public class NutzerBearbeitenEditor  {
 				if (vornameTextBox.getValue().isEmpty() || nachnameTextBox.getValue().isEmpty()) {
 					Window.alert("Bitte alle Felder richtig befüllen");
 				} else {
-
 					n.setId(TellMe.gibEingeloggterBenutzer().getUser().getId());
 					n.setMailadresse(emailTextBox.getText());
 					n.setVorname(vornameTextBox.getText());
@@ -186,10 +185,7 @@ public class NutzerBearbeitenEditor  {
 					TellMe.gibEingeloggterBenutzer().getUser().setVorname(n.getVorname());
 					TellMe.gibEingeloggterBenutzer().getUser().setNachname(n.getNachname());
 					nutzerBearbeiten(n);
-					
-
 				}
-
 			}
 		});
 		/**
@@ -197,11 +193,9 @@ public class NutzerBearbeitenEditor  {
 		 * nutzerLoeschen ausgeführt.
 		 */
 		profilloeschenButton.addClickHandler(new ClickHandler() {
-
 			@Override
 			public void onClick(ClickEvent event) {
 				nutzerLoeschen();
-
 			}
 		});
 
@@ -211,10 +205,6 @@ public class NutzerBearbeitenEditor  {
 		vP.add(subtext);
 		vP.add(profilPanel);
 		vP.add(ButtonPanel);
-
-
 		return vP;
 	}
-
-
 }
