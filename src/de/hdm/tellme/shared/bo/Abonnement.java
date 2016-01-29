@@ -14,10 +14,10 @@ public abstract class Abonnement extends BusinessObject {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * Die Variable AbonnementErsteller ist vom Typ Nutzer
 	 */
-
 	protected Nutzer AbonnementErsteller;
 
 	/**
@@ -25,7 +25,6 @@ public abstract class Abonnement extends BusinessObject {
 	 * 
 	 * @return AbonnementErsteller
 	 */
-
 	public Nutzer getAbonnementErsteller() {
 		return AbonnementErsteller;
 	}
@@ -35,9 +34,7 @@ public abstract class Abonnement extends BusinessObject {
 	 * 
 	 * @param abonnementErsteller
 	 */
-
 	public void setAbonnementErsteller(Nutzer abonnementErsteller) {
 		AbonnementErsteller = abonnementErsteller;
 	}
-
 }

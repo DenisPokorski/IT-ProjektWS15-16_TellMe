@@ -15,7 +15,5 @@ import de.hdm.tellme.shared.LoginService;
  */
 
 public interface LoginServiceAsync {
-
 	void getNutzerInfo(String string, AsyncCallback<LoginInfo> callback);
-
 }

@@ -50,7 +50,6 @@ public interface EditorService extends RemoteService {
 	 * 
 	 * @param n
 	 */
-
 	void nutzerAktualisieren(Nutzer n);
 
 	/**
@@ -66,7 +65,6 @@ public interface EditorService extends RemoteService {
 	 * @param meineId
 	 * @return
 	 */
-
 	Vector<Nutzer> getAlleNutzerAußerMeineId(int meineId);
 
 	/**
@@ -75,7 +73,6 @@ public interface EditorService extends RemoteService {
 	 * @param meineId
 	 * @return
 	 */
-
 	Vector<Integer> getAlleAbonniertenHashtagsfuerAbonehmer(int meineId);
 
 	/**
@@ -83,7 +80,6 @@ public interface EditorService extends RemoteService {
 	 * 
 	 * @param n
 	 */
-
 	void hashtagAboErstellen(int nutzerId, int hashtagId);
 
 	/**
@@ -91,7 +87,6 @@ public interface EditorService extends RemoteService {
 	 * 
 	 * @param n
 	 */
-
 	void nutzerAbonnementErstellen(int i, Nutzer _nutzer);
 
 	/**
@@ -100,7 +95,6 @@ public interface EditorService extends RemoteService {
 	 * @param meineId
 	 * @return
 	 */
-
 	Vector<Integer> holeAlleAbonniertenNutzer(int meineId);
 
 	/**
@@ -108,7 +102,6 @@ public interface EditorService extends RemoteService {
 	 * 
 	 * @param n
 	 */
-
 	void nutzerAbonnementLoeschen(int id, Nutzer _nutzerDeabonieren);
 
 	/**
@@ -116,7 +109,6 @@ public interface EditorService extends RemoteService {
 	 * 
 	 * @param n
 	 */
-
 	void hashtagErstellen(Hashtag hashtag);
 
 	/**
@@ -124,7 +116,6 @@ public interface EditorService extends RemoteService {
 	 * 
 	 * @param n
 	 */
-
 	void hashtagEntfernen(Hashtag hashtag);
 
 	/**
@@ -132,7 +123,6 @@ public interface EditorService extends RemoteService {
 	 * 
 	 * @param n
 	 */
-
 	void hashtagAboEntfernen(int nutzerId, int hashtagId);
 
 	/**
@@ -141,7 +131,6 @@ public interface EditorService extends RemoteService {
 	 * @param unterhaltungsID
 	 * @return
 	 */
-
 	boolean unterhaltung_loeschen(int unterhaltungsID);
 
 
@@ -151,7 +140,6 @@ public interface EditorService extends RemoteService {
 	 * @param ersteNachricht
 	 * @param teilnehmer
 	 */
-
 	boolean unterhaltungStarten(Nachricht ersteNachricht,
 			Vector<Nutzer> teilnehmer);
 
@@ -162,7 +150,6 @@ public interface EditorService extends RemoteService {
 	 * @param UnterhaltungsID
 	 * @return
 	 */
-
 	Vector<Nachricht> ladeAlleNachrichtenZuUnterhaltung(int UnterhaltungsID);
 
 	/**
@@ -171,7 +158,6 @@ public interface EditorService extends RemoteService {
 	 * @param meineId
 	 * @return
 	 */
-
 	Vector<Unterhaltung> oeffentlicheUnterhaltungenAbonnierterNutzer(int meineId);
 
 	/**
@@ -181,7 +167,6 @@ public interface EditorService extends RemoteService {
 	 * @param nutzerId
 	 * @return
 	 */
-
 	Vector<Unterhaltung> alleUnterhaltungenVonAbonniertemHashtagUeberNutzerId(
 			int nutzerId);
 
@@ -207,7 +192,6 @@ public interface EditorService extends RemoteService {
 	 * 
 	 * @return
 	 */
-
 	Vector<Hashtag> gibAlleHashtags();
 
 	/**
@@ -215,7 +199,6 @@ public interface EditorService extends RemoteService {
 	 * 
 	 * @param n
 	 */
-
 	void hashtagAktualisieren(Hashtag hashtag);
 
 	/**
@@ -223,14 +206,12 @@ public interface EditorService extends RemoteService {
 	 * 
 	 * @param n
 	 */
-
 	void erstellenHashtagAbo(int NutzerId, int HashtagId);
 
 	/**
 	 * Alle vom Nutzer abnonnierten Hashtags auslesen
 	 * 
 	 */
-
 	Vector<Hashtag> getAbonnierteHashtags(int aboNehmerID);
 
 
@@ -241,9 +222,7 @@ public interface EditorService extends RemoteService {
 	 * @param unterhaltung
 	 * @return
 	 */
-
-	boolean unterhaltungBeantworten(Nachricht antwortNachricht,
-			Unterhaltung unterhaltung);
+	boolean unterhaltungBeantworten(Nachricht antwortNachricht,Unterhaltung unterhaltung);
 
 	/**
 	 * 
@@ -252,7 +231,6 @@ public interface EditorService extends RemoteService {
 	 * @param zwingeNeuladen
 	 * @return
 	 */
-
 	Vector<Nutzer> getAlleNutzer(boolean zwingeNeuladen);
 
 	/**
@@ -261,11 +239,7 @@ public interface EditorService extends RemoteService {
 	 * @param nutzerId
 	 * @return
 	 */
-
 	boolean UnterhaltungVerlassen(Unterhaltung u, int nutzerId);
-
 	boolean UnterhaltungAktualisieren(Unterhaltung original, Unterhaltung neu);
-
 	boolean NachrichtAktualisieren(Nachricht original, Nachricht neu);
-
 }

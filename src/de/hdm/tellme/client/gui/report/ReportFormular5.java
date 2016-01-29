@@ -32,7 +32,6 @@ public class ReportFormular5 extends Composite {
 
 				RootPanel.get("content_left").clear();
 				RootPanel.get("content_right").clear();
-				
 				NutzerDataProvider.gib(1).report5Generieren(nutzer);
 			}
 		});
@@ -59,10 +58,7 @@ public class ReportFormular5 extends Composite {
 	 * 
 	 * @param ZellenObjekt
 	 */
-
 	public void report5Generieren(NutzerZelle.ZellenObjekt ZellenObjekt) {
 		this.nutzer = ZellenObjekt.nutzer;
-
 	}
-
 }

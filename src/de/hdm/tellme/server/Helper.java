@@ -25,7 +25,6 @@ public class Helper {
 	// BEISPIEL:
 	// Helper.LogWarning("getAlleSichtbarenUnterhaltungenFuerTeilnehmer - sichtbare Unterhaltung ohne Sichtbare Nachricht entdeckt. UnterhaltungsID: "
 	// + unterhaltung.getId());
-
 	
 	public static void LogInformation(String _nachricht) {
 		Helper.Log("INFO - " + _nachricht);
@@ -44,7 +43,6 @@ public class Helper {
 
 	public static void LogFehler(String _nachricht) {
 		Helper.Log("FEHLER - " + _nachricht);
-
 	}
 
 	public static void LogAusnahme(Exception ex) {
@@ -56,14 +54,10 @@ public class Helper {
 			for (StackTraceElement stackTraceElement : stackTraceElements) {
 				Helper.Log("\t" + stackTraceElement.toString());
 			}
-
 		}
-
 	}
 
 	private static void Log(String _nachricht) {
 		System.out.println(_nachricht);
-
 	}
-
 }

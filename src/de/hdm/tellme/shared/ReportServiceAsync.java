@@ -29,27 +29,18 @@ public interface ReportServiceAsync {
 	
 	void report7Generieren(int i, AsyncCallback<Vector<Nutzer>> callback);
 
-	void getAlleNutzer(boolean zwingeNeuladen,
-			AsyncCallback<Vector<Nutzer>> callback);
+	void getAlleNutzer(boolean zwingeNeuladen,AsyncCallback<Vector<Nutzer>> callback);
 
-	void ladeAlleNachrichtenZuUnterhaltung(int UnterhaltungsID,
-			AsyncCallback<Vector<Nachricht>> callback);
+	void ladeAlleNachrichtenZuUnterhaltung(int UnterhaltungsID,AsyncCallback<Vector<Nachricht>> callback);
 
-	void alleUnterhaltungenFuerAutor(int aktiverTeilnehmerID,
-			AsyncCallback<Vector<Unterhaltung>> callback);
+	void alleUnterhaltungenFuerAutor(int aktiverTeilnehmerID,AsyncCallback<Vector<Unterhaltung>> callback);
 
-	void alleUnterhaltungenFuerAutorMitZeitraum(int AutorId, Timestamp vonDate,
-			Timestamp bisDate, AsyncCallback<Vector<Unterhaltung>> callback);
+	void alleUnterhaltungenFuerAutorMitZeitraum(int AutorId, Timestamp vonDate,Timestamp bisDate, AsyncCallback<Vector<Unterhaltung>> callback);
 
-	void ladeAlleNachrichtenZuUnterhaltungMitZeitraum(int UnterhaltungsID,
-			Timestamp vonDate, Timestamp bisDate,
-			AsyncCallback<Vector<Nachricht>> callback);
+	void ladeAlleNachrichtenZuUnterhaltungMitZeitraum(int UnterhaltungsID,Timestamp vonDate, Timestamp bisDate,AsyncCallback<Vector<Nachricht>> callback);
 
-	void alleUnterhaltungenMitZeitraum(Timestamp vonDate, Timestamp bisDate,
-			AsyncCallback<Vector<Unterhaltung>> callback);
+	void alleUnterhaltungenMitZeitraum(Timestamp vonDate, Timestamp bisDate,AsyncCallback<Vector<Unterhaltung>> callback);
 
 	void alleUnterhaltungen(AsyncCallback<Vector<Unterhaltung>> asyncCallback);
-
-
 
 }

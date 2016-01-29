@@ -10,5 +10,4 @@ package de.hdm.tellme.shared;
  */
 
 public class CommonSettings {
-
 }

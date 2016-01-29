@@ -25,74 +25,53 @@ public interface EditorServiceAsync {
 
 	void nutzerLoeschen(Nutzer n, AsyncCallback<Void> asyncCallback);
 
-	void getAlleAbonniertenHashtagsfuerAbonehmer(int meineId,
-			AsyncCallback<Vector<Integer>> asyncCallback);
+	void getAlleAbonniertenHashtagsfuerAbonehmer(int meineId,AsyncCallback<Vector<Integer>> asyncCallback);
 
-	void hashtagAboErstellen(int nutzerId, int hashtagId,
-			AsyncCallback<Void> asyncCallback);
+	void hashtagAboErstellen(int nutzerId, int hashtagId,AsyncCallback<Void> asyncCallback);
 
-	void getAlleNutzerAußerMeineId(int meineId,
-			AsyncCallback<Vector<Nutzer>> callback);
+	void getAlleNutzerAußerMeineId(int meineId,AsyncCallback<Vector<Nutzer>> callback);
 
-	void holeAlleAbonniertenNutzer(int meineId,
-			AsyncCallback<Vector<Integer>> callback);
+	void holeAlleAbonniertenNutzer(int meineId,AsyncCallback<Vector<Integer>> callback);
 
-	void nutzerAbonnementErstellen(int i, Nutzer _nutzer,
-			AsyncCallback<Void> callback);
+	void nutzerAbonnementErstellen(int i, Nutzer _nutzer,AsyncCallback<Void> callback);
 
-	void nutzerAbonnementLoeschen(int id, Nutzer _nutzerDeabonieren,
-			AsyncCallback<Void> callback);
+	void nutzerAbonnementLoeschen(int id, Nutzer _nutzerDeabonieren,AsyncCallback<Void> callback);
 
 	void hashtagErstellen(Hashtag hashtag, AsyncCallback<Void> callback);
 
 	void hashtagEntfernen(Hashtag hashtag, AsyncCallback<Void> callback);
 
-	void hashtagAboEntfernen(int nutzerId, int hashtagId,
-			AsyncCallback<Void> asyncCallback);
+	void hashtagAboEntfernen(int nutzerId, int hashtagId,AsyncCallback<Void> asyncCallback);
 
-	void unterhaltung_loeschen(int unterhaltungsID,
-			AsyncCallback<Boolean> callback);
+	void unterhaltung_loeschen(int unterhaltungsID,AsyncCallback<Boolean> callback);
 
-	void unterhaltungStarten(Nachricht ersteNachricht,
-			Vector<Nutzer> teilnehmer, AsyncCallback<Boolean> callback);
+	void unterhaltungStarten(Nachricht ersteNachricht,Vector<Nutzer> teilnehmer, AsyncCallback<Boolean> callback);
 
-	void ladeAlleNachrichtenZuUnterhaltung(int UnterhaltungsID,
-			AsyncCallback<Vector<Nachricht>> callback);
+	void ladeAlleNachrichtenZuUnterhaltung(int UnterhaltungsID,AsyncCallback<Vector<Nachricht>> callback);
 
-	void oeffentlicheUnterhaltungenAbonnierterNutzer(int meineId,
-			AsyncCallback<Vector<Unterhaltung>> callback);
+	void oeffentlicheUnterhaltungenAbonnierterNutzer(int meineId,AsyncCallback<Vector<Unterhaltung>> callback);
 
-	void alleUnterhaltungenVonAbonniertemHashtagUeberNutzerId(int nutzerId,
-			AsyncCallback<Vector<Unterhaltung>> callback);
+	void alleUnterhaltungenVonAbonniertemHashtagUeberNutzerId(int nutzerId,AsyncCallback<Vector<Unterhaltung>> callback);
 
 	void NachrichtLoeschen(Nachricht n, AsyncCallback<Boolean> callback);
 
-	void UnterhaltungVerlassen(Unterhaltung u, int nutzerId,
-			AsyncCallback<Boolean> callback);
+	void UnterhaltungVerlassen(Unterhaltung u, int nutzerId,AsyncCallback<Boolean> callback);
 
-	void getAlleRelevantenUnterhaltungen(int UserID,
-			AsyncCallback<Vector<Unterhaltung>> callback);
+	void getAlleRelevantenUnterhaltungen(int UserID,AsyncCallback<Vector<Unterhaltung>> callback);
 
 	void gibAlleHashtags(AsyncCallback<Vector<Hashtag>> callback);
 
 	void hashtagAktualisieren(Hashtag hashtag, AsyncCallback<Void> callback);
 
-	void erstellenHashtagAbo(int NutzerId, int HashtagId,
-			AsyncCallback<Void> callback);
+	void erstellenHashtagAbo(int NutzerId, int HashtagId,AsyncCallback<Void> callback);
 
-	void getAbonnierteHashtags(int aboNehmerID,
-			AsyncCallback<Vector<Hashtag>> callback);
+	void getAbonnierteHashtags(int aboNehmerID,AsyncCallback<Vector<Hashtag>> callback);
 
-	void unterhaltungBeantworten(Nachricht antwortNachricht,
-			Unterhaltung unterhaltung, AsyncCallback<Boolean> callback);
+	void unterhaltungBeantworten(Nachricht antwortNachricht,Unterhaltung unterhaltung, AsyncCallback<Boolean> callback);
 
-	void getAlleNutzer(boolean zwingeNeuladen,
-			AsyncCallback<Vector<Nutzer>> callback);
+	void getAlleNutzer(boolean zwingeNeuladen,AsyncCallback<Vector<Nutzer>> callback);
 
-	void UnterhaltungAktualisieren(Unterhaltung original, Unterhaltung neu,
-			AsyncCallback<Boolean> callback);
+	void UnterhaltungAktualisieren(Unterhaltung original, Unterhaltung neu,AsyncCallback<Boolean> callback);
 
-	void NachrichtAktualisieren(Nachricht original, Nachricht neu,
-			AsyncCallback<Boolean> callback);
-
+	void NachrichtAktualisieren(Nachricht original, Nachricht neu,AsyncCallback<Boolean> callback);
 }

@@ -50,22 +50,14 @@ public class ReportWillkommenSeite extends VerticalPanel {
 	/*
 	 * Die verschiedenen Reportbeschreibungen werden als Labels erstellt.
 	 */
-	Label report1Beschreibung = new Label(
-			"Report 1 gibt alle Nachrichten eines Nutzers in einen bestimmten Zeitraum aus");
-	Label report2Beschreibung = new Label(
-			"Report 2 gibt alle Nachrichten in einen bestimmten Zeitraum \n");
-	Label report3Beschreibung = new Label(
-			"Report 3 gibt alle Nachrichten eines Nutzers aus");
-	Label report4Beschreibung = new Label(
-			"Report 4 gibt die gesamten Nachrichten des Systems aus");
-	Label report5Beschreibung = new Label(
-			"Report 5 gibt alle Nutzerabonnemonts eines Nutzers aus");
-	Label report6Beschreibung = new Label(
-			"Report 6 gibt alle Hashtagabonnements eines Nutzers aus");
-	Label report7Beschreibung = new Label(
-			"Report 7 gibt alle Follower eines Nutzers aus.");
-	Label report8Beschreibung = new Label(
-			"Report 8 gibt alle Follower eines Hashtags aus.");
+	Label report1Beschreibung = new Label("Report 1 gibt alle Nachrichten eines Nutzers in einen bestimmten Zeitraum aus");
+	Label report2Beschreibung = new Label("Report 2 gibt alle Nachrichten in einen bestimmten Zeitraum \n");
+	Label report3Beschreibung = new Label("Report 3 gibt alle Nachrichten eines Nutzers aus");
+	Label report4Beschreibung = new Label("Report 4 gibt die gesamten Nachrichten des Systems aus");
+	Label report5Beschreibung = new Label("Report 5 gibt alle Nutzerabonnemonts eines Nutzers aus");
+	Label report6Beschreibung = new Label("Report 6 gibt alle Hashtagabonnements eines Nutzers aus");
+	Label report7Beschreibung = new Label("Report 7 gibt alle Follower eines Nutzers aus.");
+	Label report8Beschreibung = new Label("Report 8 gibt alle Follower eines Hashtags aus.");
 
 	/**
 	 * Die onLoad-Methode wird verwendet um in der Seite die verschiedenen
@@ -78,7 +70,6 @@ public class ReportWillkommenSeite extends VerticalPanel {
 		 * Die verschiedene Buttons um auf die Reportseite zu gelangen werden
 		 * erstellt.
 		 */
-
 		Button report1Button = new Button("Zu Report 1");
 		Button report2Button = new Button("Zu Report 2");
 		Button report3Button = new Button("Zu Report 3");
@@ -102,18 +93,17 @@ public class ReportWillkommenSeite extends VerticalPanel {
 
 		HorizontalPanel hpHeadline = new HorizontalPanel();
 		hpHeadline.setStylePrimaryName("hpHeadline");
+		
 		/*
 		 * Die Überschrift wird als HTML-Code deklariert und beschrieben.
 		 */
-		HTML headline = new HTML(" <div class='" + "reportUebersichtPanel"
-				+ "'><h2>Reportgenerator </h2></div> ");
+		HTML headline = new HTML(" <div class='" + "reportUebersichtPanel" + "'><h2>Reportgenerator </h2></div> ");
 
 		/*
 		 * Dem VerticalPanel wird die Überschrift und die beiden
 		 * Anordnungspanels hinzugefügt. CSS-Style wird angebunden.
 		 */
 		willkommenPanel.add(headline);
-
 		willkommenPanel.add(anordnungsPanelOben);
 		willkommenPanel.add(anordnungsPanelUnten);
 		willkommenPanel.setStylePrimaryName("reportUebersichtPanel");
@@ -169,107 +159,86 @@ public class ReportWillkommenSeite extends VerticalPanel {
 		 */
 		RootPanel.get("content").clear();
 		RootPanel.get("content").add(willkommenPanel);
-		/**
-		 * Die ClickHandler die auf die Oberfläche der jeweiligen Reports
-		 * führen.
-		 */
 
 		/**
 		 * Führt zu Report1.
 		 */
 		report1Button.addClickHandler(new ClickHandler() {
-
 			@Override
 			public void onClick(ClickEvent event) {
 				setzeInhalt(new Report1Gui());
-
 			}
-
 		});
+		
 		/**
 		 * Führt zu Report2.
 		 */
 		report2Button.addClickHandler(new ClickHandler() {
-
 			@Override
 			public void onClick(ClickEvent event) {
 				setzeInhalt(new Report2Gui());
-
 			}
-
 		});
+		
 		/**
 		 * Führt zu Report3.
 		 */
 		report3Button.addClickHandler(new ClickHandler() {
-
 			@Override
 			public void onClick(ClickEvent event) {
 				setzeInhalt(new Report3Gui());
-
 			}
-
 		});
+		
 		/**
 		 * Führt zu Report4.
 		 */
 		report4Button.addClickHandler(new ClickHandler() {
-
 			@Override
 			public void onClick(ClickEvent event) {
 				setzeInhalt(new Report4Gui());
-
 			}
-
 		});
+		
 		/**
 		 * Führt zu Report5.
 		 */
 		report5Button.addClickHandler(new ClickHandler() {
-
 			@Override
 			public void onClick(ClickEvent event) {
 				setzeInhalt(new Report5Gui());
-
 			}
-
 		});
+		
 		/**
 		 * Führt zu Report6.
 		 */
 		report6Button.addClickHandler(new ClickHandler() {
-
 			@Override
 			public void onClick(ClickEvent event) {
 				setzeInhalt(new Report6Gui());
-
 			}
-
 		});
+		
 		/**
 		 * Führt zu Report7.
 		 */
 		report7Button.addClickHandler(new ClickHandler() {
-
 			@Override
 			public void onClick(ClickEvent event) {
 				setzeInhalt(new Report7Gui());
-
 			}
-
 		});
+		
 		/**
 		 * Führt zu Report8.
 		 */
 		report8Button.addClickHandler(new ClickHandler() {
-
 			@Override
 			public void onClick(ClickEvent event) {
 				setzeInhalt(new Report8Gui());
-
 			}
 		});
-
 	}
 
 	/**
@@ -279,10 +248,7 @@ public class ReportWillkommenSeite extends VerticalPanel {
 	 * @param ZuSetzendesPanel
 	 */
 	public static void setzeInhalt(Widget ZuSetzendesPanel) {
-
 		RootPanel.get("content").clear();
 		RootPanel.get("content").add(ZuSetzendesPanel);
-
 	}
-
 }

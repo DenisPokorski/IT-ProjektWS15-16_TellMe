@@ -45,7 +45,6 @@ public class HashtagAbonnementMapper {
 	public static HashtagAbonnementMapper hashtagAbonnementMapper() {
 		if (hashtagAbonnementMapper == null) {
 			hashtagAbonnementMapper = new HashtagAbonnementMapper();
-
 		}
 		return hashtagAbonnementMapper;
 	}
@@ -56,7 +55,6 @@ public class HashtagAbonnementMapper {
 	 * schreiben. Hierfür werden sowohl die NutzerId, als auch die HashtagId
 	 * übergeben.
 	 * 
-	 * 
 	 * @param NutzerId
 	 * @param HashtagId
 	 */
@@ -64,8 +62,7 @@ public class HashtagAbonnementMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			state.executeUpdate("INSERT INTO NutzerHashtag(NutzerId, HashtagId) VALUES ('"
-					+ NutzerId + "','" + HashtagId + "');  ");
+			state.executeUpdate("INSERT INTO NutzerHashtag(NutzerId, HashtagId) VALUES ('"+ NutzerId + "','" + HashtagId + "');  ");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -85,8 +82,7 @@ public class HashtagAbonnementMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "DELETE FROM NutzerHashtag WHERE NutzerId='"
-					+ NutzerId + "' AND HashtagId='" + HashtagId + "';";
+			String sqlquery = "DELETE FROM NutzerHashtag WHERE NutzerId='"+ NutzerId + "' AND HashtagId='" + HashtagId + "';";
 			state.executeUpdate(sqlquery);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -107,9 +103,8 @@ public class HashtagAbonnementMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT * FROM NutzerHashtag LEFT JOIN Hashtag ON NutzerHashtag.HashtagId = Hashtag.Id WHERE NutzerId='"
-							+ NutzerId + "' ORDER BY NutzerHashtag.ErstellungsDatum;");
+			ResultSet rs = state.executeQuery("SELECT * FROM NutzerHashtag LEFT JOIN Hashtag ON NutzerHashtag.HashtagId = Hashtag.Id WHERE NutzerId='"
+					  + NutzerId + "' ORDER BY NutzerHashtag.ErstellungsDatum;");
 			while (rs.next()) {
 				Hashtag h = new Hashtag();
 				h.setId(rs.getInt("Id"));
@@ -123,7 +118,6 @@ public class HashtagAbonnementMapper {
 		}
 		// Ergebnisvektor zur�ckgeben
 		return alleHashtagsEinesNutzers;
-
 	}
 
 	/**
@@ -136,15 +130,11 @@ public class HashtagAbonnementMapper {
 	 */
 	public Vector<Integer> ladeAbonnierteHashtagListe(int nutzerId) {
 		Connection con = DatenbankVerbindung.connection();
-
 		Vector<Integer> HashtagListe = new Vector<Integer>();
 
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT * From NutzerHashtag Where NutzerId='"
-							+ nutzerId + "';");
-
+			ResultSet rs = state.executeQuery("SELECT * From NutzerHashtag Where NutzerId='"+ nutzerId + "';");
 			while (rs.next()) {
 				HashtagListe.add(rs.getInt("HashtagId"));
 			}
@@ -153,7 +143,6 @@ public class HashtagAbonnementMapper {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return HashtagListe;
 	}
 
@@ -177,14 +166,11 @@ public class HashtagAbonnementMapper {
 				ha.setSchlagwort(rs.getString("Schlagwort"));
 				ha.setErstellungsDatum(rs.getTimestamp("ErstellungsDatum"));
 				alleHashtagsEinesNutzers.addElement(ha);
-
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// Ergebnisvektor zurückgeben
-
 		return alleHashtagsEinesNutzers;
 	}
 
@@ -209,7 +195,6 @@ public class HashtagAbonnementMapper {
 				hashtagIds.add(rs.getInt("HashtagId"));
 			}
 		} catch (Exception e) {
-
 		}
 		return hashtagIds;
 	}
@@ -219,19 +204,16 @@ public class HashtagAbonnementMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT * FROM NutzerHashtag JOIN Nutzer ON NutzerId = Nutzer.Id WHERE HashtagId = '"
-							+ hashtagId
-							+ "' AND Nutzer.Status = '"
-							+ eStatus.aktiv.ordinal() + "' ORDER BY Nutzer.ErstellungsDatum DESC");
+			ResultSet rs = state.executeQuery("SELECT * FROM NutzerHashtag JOIN Nutzer ON NutzerId = Nutzer.Id WHERE HashtagId = '"
+					+ hashtagId + "' AND Nutzer.Status = '" + eStatus.aktiv.ordinal() + "' ORDER BY Nutzer.ErstellungsDatum DESC");
+			
 			while (rs.next()) {
 				Nutzer n = new Nutzer();
 				n.setId(rs.getInt("NutzerId"));
 				n.setVorname(rs.getString("Nutzer.Vorname"));
 				n.setNachname(rs.getString("Nutzer.Nachname"));
 				n.setMailadresse(rs.getString("Nutzer.Mailadresse"));
-				n.setErstellungsDatum(rs
-						.getTimestamp("NutzerHashtag.ErstellungsDatum"));
+				n.setErstellungsDatum(rs.getTimestamp("NutzerHashtag.ErstellungsDatum"));
 				alleFollowerListe.add(n);
 			}
 		} catch (Exception e) {

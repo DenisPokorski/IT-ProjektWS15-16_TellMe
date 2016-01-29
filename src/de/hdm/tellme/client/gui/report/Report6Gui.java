@@ -51,9 +51,5 @@ public class Report6Gui extends VerticalPanel {
 
 		RootPanel.get("content_right").add(vP);
 		RootPanel.get("content_left").add(new NutzerCellList().generiereCellList(CellListModus.Report6_NutzerHashtagAbonnement, 1));
-		
-		
-		 
 	}
-
 }

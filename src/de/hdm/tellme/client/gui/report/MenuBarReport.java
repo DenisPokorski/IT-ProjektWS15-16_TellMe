@@ -52,84 +52,76 @@ public class MenuBarReport extends HorizontalPanel {
 
 		HauptMenue.addItem("Startseite", new Command() {
 
-			@Override
-			public void execute() {
-				setzeInhalt(new ReportWillkommenSeite());
-
-			}
-		});
-		HauptMenue.addItem("Report 1", new Command() {
-			@Override
-			public void execute() {
-				setzeInhalt(new Report1Gui());
-			}
-		});
-
-		HauptMenue.addItem("Report 2", new Command() {
-			@Override
-			public void execute() {
-				setzeInhalt(new Report2Gui());
-
-			}
-		});
-
-		HauptMenue.addItem("Report 3", new Command() {
-			@Override
-			public void execute() {
-				setzeInhalt(new Report3Gui());
-			}
-		});
-
-		HauptMenue.addItem("Report 4", new Command() {
-			@Override
-			public void execute() {
-				setzeInhalt(new Report4Gui());
-
-			}
-		});
-
-		HauptMenue.addItem("Report 5", new Command() {
-			@Override
-			public void execute() {
-				setzeInhalt(new Report5Gui());
-
-			}
-		});
-
-		HauptMenue.addItem("Report 6", new Command() {
-			@Override
-			public void execute() {
-				setzeInhalt(new Report6Gui());
-
-			}
-		});
-
-		HauptMenue.addItem("Report 7", new Command() {
-			@Override
-			public void execute() {
-				setzeInhalt(new Report7Gui());
-
-			}
-		});
-
-		HauptMenue.addItem("Report 8", new Command() {
-			@Override
-			public void execute() {
-				setzeInhalt(new Report8Gui());
-
-			}
-		});
-		HauptMenue.addItem("Logout", new Command() {
-
-			@Override
-			public void execute() {
-				Window.Location.assign(TellMeReport.gibEingeloggterBenutzer()
-						.getLogoutUrl());
-			}
-		});
+				@Override
+				public void execute() {
+					setzeInhalt(new ReportWillkommenSeite());
+				}
+			});
+			
+			HauptMenue.addItem("Report 1", new Command() {
+				@Override
+				public void execute() {
+					setzeInhalt(new Report1Gui());
+				}
+			});
+	
+			HauptMenue.addItem("Report 2", new Command() {
+				@Override
+				public void execute() {
+					setzeInhalt(new Report2Gui());
+				}
+			});
+	
+			HauptMenue.addItem("Report 3", new Command() {
+				@Override
+				public void execute() {
+					setzeInhalt(new Report3Gui());
+				}
+			});
+	
+			HauptMenue.addItem("Report 4", new Command() {
+				@Override
+				public void execute() {
+					setzeInhalt(new Report4Gui());
+				}
+			});
+	
+			HauptMenue.addItem("Report 5", new Command() {
+				@Override
+				public void execute() {
+					setzeInhalt(new Report5Gui());
+				}
+			});
+	
+			HauptMenue.addItem("Report 6", new Command() {
+				@Override
+				public void execute() {
+					setzeInhalt(new Report6Gui());
+				}
+			});
+	
+			HauptMenue.addItem("Report 7", new Command() {
+				@Override
+				public void execute() {
+					setzeInhalt(new Report7Gui());
+				}
+			});
+	
+			HauptMenue.addItem("Report 8", new Command() {
+				@Override
+				public void execute() {
+					setzeInhalt(new Report8Gui());
+				}
+			});
+			
+			HauptMenue.addItem("Logout", new Command() {
+				@Override
+				public void execute() {
+					Window.Location.assign(TellMeReport.gibEingeloggterBenutzer().getLogoutUrl());
+				}
+			});
 
 		RootPanel.get("header").add(HauptMenue);
-
 	}
 
 	/**
@@ -168,8 +160,7 @@ public class MenuBarReport extends HorizontalPanel {
 	 * @param ZuSetzendesPanelLinks
 	 * @param ZuSetzendesPanelRechts
 	 */
-	public static void setzeInhalt(Widget ZuSetzendesPanelLinks,
-			Widget ZuSetzendesPanelRechts) {
+	public static void setzeInhalt(Widget ZuSetzendesPanelLinks,Widget ZuSetzendesPanelRechts) {
 
 		RootPanel.get("ButtonBar").clear();
 		RootPanel.get("content_left").clear();

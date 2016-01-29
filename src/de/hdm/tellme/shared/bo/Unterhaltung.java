@@ -19,13 +19,9 @@ public class Unterhaltung extends BusinessObject implements
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	private Vector<Nachricht> alleNachrichten = new Vector<Nachricht>();
-
 	private Vector<Nutzer> teilnehmer = new Vector<Nutzer>();
-
 	private eUnterhaltungsTyp Unterhaltungstyp;
-
 	private String anzeigeHerkunft = "";
 
 	/**
@@ -135,12 +131,10 @@ public class Unterhaltung extends BusinessObject implements
 		if (this.getAlleNachrichten() != null) {
 			if (this.getAlleNachrichten().size() > 0) {
 				if (this.getAlleNachrichten().get(0) != null) {
-					rueckgabeWert = this.getAlleNachrichten().get(0)
-							.getErstellungsDatum();
+					rueckgabeWert = this.getAlleNachrichten().get(0).getErstellungsDatum();
 				}
 			}
 		}
-
 		return rueckgabeWert;
 	}
 
@@ -151,13 +145,11 @@ public class Unterhaltung extends BusinessObject implements
 	@Override
 	public int compareTo(Unterhaltung arg0) {
 
-		if (arg0.getVergleichsDatum() == null
-				|| this.getVergleichsDatum() == null)
+		if (arg0.getVergleichsDatum() == null|| this.getVergleichsDatum() == null)
 			return 0;
 		if (arg0.getVergleichsDatum().before(this.getVergleichsDatum()))
 			return -1;
 		else
 			return 1;
 	}
-
 }

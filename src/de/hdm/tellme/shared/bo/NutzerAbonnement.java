@@ -25,7 +25,6 @@ public class NutzerAbonnement extends Abonnement {
 	 * 
 	 * @return aboNutzer
 	 */
-
 	public Nutzer getAboNutzer() {
 		return aboNutzer;
 	}
@@ -35,9 +34,7 @@ public class NutzerAbonnement extends Abonnement {
 	 * 
 	 * @param aboNutzer
 	 */
-
 	public void setAboNutzer(Nutzer aboNutzer) {
 		this.aboNutzer = aboNutzer;
 	}
-
 }

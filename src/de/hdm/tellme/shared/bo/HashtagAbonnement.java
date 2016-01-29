@@ -14,10 +14,10 @@ public class HashtagAbonnement extends Abonnement {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * Die Variable Hashtag ist vom Typ Hashtag
 	 */
-
 	private Hashtag Hashtag;
 
 	/**
@@ -25,7 +25,6 @@ public class HashtagAbonnement extends Abonnement {
 	 * 
 	 * @return Hashtag
 	 */
-
 	public Hashtag getHashtag() {
 		return Hashtag;
 	}
@@ -39,5 +38,4 @@ public class HashtagAbonnement extends Abonnement {
 	public void setHashtag(Hashtag hashtag) {
 		Hashtag = hashtag;
 	}
-
 }

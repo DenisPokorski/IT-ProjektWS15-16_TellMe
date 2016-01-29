@@ -35,16 +35,13 @@ public class ReportFormular7 extends Composite {
 		report7GenerierenButton.addClickHandler(new ClickHandler() {
 
 			public void onClick(ClickEvent event) {
-
 				RootPanel.get("content_left").clear();
 				RootPanel.get("content_right").clear();
-
 				NutzerDataProvider.gib(1).report7Generieren(nutzer);
-
 			}
 		});
-
 	}
+	
 	/**
 	 * 
 	 * Die Methode <code>zeigeReportFormular</code> säubert die rechte Hälfte des rootPanels. 
@@ -52,9 +49,7 @@ public class ReportFormular7 extends Composite {
 	 */
 	public void zeigeReportFormular() {
 		RootPanel.get("content_right").clear();
-
 		NutzerDataProvider.gib(1).report7Generieren(nutzer);
-
 	}
 
 	/**
@@ -65,11 +60,9 @@ public class ReportFormular7 extends Composite {
 	 */
 	public VerticalPanel gibFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
-
 		Label label = new Label(nutzer.getVorname() + nutzer.getNachname());
 		label.setStylePrimaryName("selectionLabel");
 		vpForm.add(label);
-
 		vpForm.add(report7GenerierenButton);
 		return vpForm;
 	}
@@ -82,7 +75,5 @@ public class ReportFormular7 extends Composite {
 	 */
 	public void report7Generieren(NutzerZelle.ZellenObjekt ZellenObjekt) {
 		ReportFormular7.nutzer = ZellenObjekt.nutzer;
-
 	}
-
 }

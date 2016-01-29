@@ -19,8 +19,7 @@ import de.hdm.tellme.client.gui.editor.HashtagCellList;
 */
 public class Report8Gui extends VerticalPanel {
 
-	HTML subline = new HTML("<div class='" + "subline_report"
-			+ "'><b>Bitte wähle ein Hashtag aus: </b></div>");
+	HTML subline = new HTML("<div class='" + "subline_report"+ "'><b>Bitte wähle ein Hashtag aus: </b></div>");
 	VerticalPanel vP = new VerticalPanel();
 
 	/**
@@ -29,27 +28,16 @@ public class Report8Gui extends VerticalPanel {
 	 * Pendant zur <code>main()</code>-Methode einer normalen Java Applikation
 	 * darstellt
 	 */
-
 	public void onLoad() {
 
-		final HTML headline = new HTML(
-				" <div class='"
-						+ "subline"
-						+ "'><h2>Reportgenerator 8: Alle Follower eines Hashtags</h2></div> ");
-		final HTML subtext = new HTML(
-				" <div class='"
-						+ "subtext"
-						+ "'><h4> Der Report 8 gibt alle Follower eines Hashtags zurück.   </h4></div> ");
+		final HTML headline = new HTML(" <div class='"+ "subline" + "'><h2>Reportgenerator 8: Alle Follower eines Hashtags</h2></div> ");
+		final HTML subtext = new HTML(" <div class='"+ "subtext"+ "'><h4> Der Report 8 gibt alle Follower eines Hashtags zurück. </h4></div> ");
 
 		vP.add(headline);
 		vP.add(subtext);
 		
 		RootPanel.get("content_right").add(vP);
-		RootPanel
-				.get("content_left")
-				.add(new HashtagCellList()
-						.generiereCellList(CellListModus.Report8_AlleNutzerDieDemAusgewaehltenHashtagFolgen, 1));
-
+		RootPanel.get("content_left").add(new HashtagCellList()
+			.generiereCellList(CellListModus.Report8_AlleNutzerDieDemAusgewaehltenHashtagFolgen, 1));
 	}
-
 }

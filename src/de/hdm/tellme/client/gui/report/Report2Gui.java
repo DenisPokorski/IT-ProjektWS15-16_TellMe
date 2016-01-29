@@ -43,7 +43,6 @@ public class Report2Gui extends VerticalPanel {
 	 * ein Button der die Funktion ReportGenerieren beinhaltet. Außerdem gibt es
 	 * eine Überschrift und eine Beschreibung für den Report 2.
 	 */
-
 	private static Nutzer nutzer = null;
 
 	private VerticalPanel reportPanel = new VerticalPanel();
@@ -74,9 +73,7 @@ public class Report2Gui extends VerticalPanel {
 		final HTML headline = new HTML(" <div class='"+ "subline"+ "'><h2>Reportgenerator 2: Alle Nachrichten je Zeitraum anzeigen </h2></div> ");
 		final HTML subtext = new HTML(" <div class='"+ "subtext"+ "'><h4> Der Report 2 gibt alle Nachrichten in einen bestimmten Zeitraum aus  </h4></div> ");
 
-		/*
-		 * Die Panels werden anschaulich angeordnet.
-		 */
+		//Die Panels werden anschaulich angeordnet
 
 		reportPanel.add(ueberSchrift2);
 		reportPanel2.add(reportPanel2_left);
@@ -91,14 +88,12 @@ public class Report2Gui extends VerticalPanel {
 		reportPanel2_right.add(subtext);
 
 		reportPanel2_right.add(beschreibung2);
-
 		reportPanel.add(reportPanel2);
 
 		/*
 		 * Das RootPanel wird gesäubert und die verschiedenen Elemente für
 		 * Report 2 zugeordnet.
 		 */
-
 		RootPanel.get("content").clear();
 		RootPanel.get("content_left").clear();
 		RootPanel.get("content_right").clear();
@@ -109,14 +104,12 @@ public class Report2Gui extends VerticalPanel {
 		 * Der jeweilige Zeitraum wird ausgewählt.
 		 */
 		vonDateBox.addValueChangeHandler(new ValueChangeHandler<Date>() {
-
 			@Override
 			public void onValueChange(ValueChangeEvent<Date> event) {
 			}
 		});
 
 		bisDateBox.addValueChangeHandler(new ValueChangeHandler<Date>() {
-
 			@Override
 			public void onValueChange(ValueChangeEvent<Date> event) {
 			}
@@ -127,7 +120,6 @@ public class Report2Gui extends VerticalPanel {
 		 * damit der Report 2 generiert werden kann.
 		 */
 		report2Generieren.addClickHandler(new ClickHandler() {
-
 			@Override
 			public void onClick(ClickEvent event) {
 				if (vonDateBox.getValue() == null
@@ -155,9 +147,7 @@ public class Report2Gui extends VerticalPanel {
 							new Timestamp(vonDateBox.getValue().getTime()),
 							new Timestamp(bisDateBox.getValue().getTime()));
 				}
-
 			}
 		});
 	}
-
 }

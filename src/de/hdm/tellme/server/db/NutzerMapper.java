@@ -62,11 +62,9 @@ public class NutzerMapper {
 		int ergebnis = -1;
 		Connection con = DatenbankVerbindung.connection();
 		try {
-
-			PreparedStatement prepState = con
-					.prepareStatement(
-							"INSERT INTO Nutzer (Vorname, Nachname, Mailadresse, Status, ErstellungsDatum) VALUES (?,?,?,?,'"+DateHelperClass.getCurrentTime()+"') ;",
-							Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement prepState = con.prepareStatement(
+					"INSERT INTO Nutzer (Vorname, Nachname, Mailadresse, Status, ErstellungsDatum) VALUES (?,?,?,?,'"+DateHelperClass.getCurrentTime()+"') ;",
+					Statement.RETURN_GENERATED_KEYS);
 			prepState.setString(1, n.getVorname());
 			prepState.setString(2, n.getNachname());
 			prepState.setString(3, n.getMailadresse());
@@ -105,7 +103,6 @@ public class NutzerMapper {
 				n.setMailadresse(rs.getString("Mailadresse"));
 				int status = rs.getInt("Status");
 				n.setStatus(Nutzer.eStatus.values()[status]);
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -129,7 +126,6 @@ public class NutzerMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-
 			String sqlquery = "UPDATE Nutzer SET Vorname = '" + n.getVorname()
 					+ "', Nachname= '" + n.getNachname() + "', "
 					+ "Mailadresse= '" + n.getMailadresse() + "' "
@@ -182,12 +178,9 @@ public class NutzerMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT * From Nutzer WHERE Status = '"
-							+ eStatus.aktiv.ordinal() + "'");
+			ResultSet rs = state.executeQuery("SELECT * From Nutzer WHERE Status = '"+ eStatus.aktiv.ordinal() + "'");
 
 			while (rs.next()) {
-
 				if ((rs.getInt("Id")) == meineid) {
 				} else {
 					Nutzer n = new Nutzer();
@@ -196,11 +189,8 @@ public class NutzerMapper {
 					n.setNachname(rs.getString("Nachname"));
 					n.setMailadresse(rs.getString("Mailadresse"));
 					alleNutzerAusserMeinNutzerListe.addElement(n);
-
 				}
-
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -218,23 +208,18 @@ public class NutzerMapper {
 	public Vector<Nutzer> alleNutzer(int meineid) {
 
 		Vector<Nutzer> alleNutzerListe = new Vector<Nutzer>();
-
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT * From Nutzer WHERE Status = '"
-							+ eStatus.aktiv.ordinal() + "'");
+			ResultSet rs = state.executeQuery("SELECT * From Nutzer WHERE Status = '"+ eStatus.aktiv.ordinal() + "'");
 
 			while (rs.next()) {
-
 				Nutzer n = new Nutzer();
 				n.setId(rs.getInt("Id"));
 				n.setVorname(rs.getString("Vorname"));
 				n.setNachname(rs.getString("Nachname"));
 				n.setMailadresse(rs.getString("Mailadresse"));
 				alleNutzerListe.addElement(n);
-
 			}
 
 		} catch (Exception e) {
@@ -257,18 +242,15 @@ public class NutzerMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT * FROM AbonnentBenutzer JOIN Nutzer ON AbonnentBenutzer.VonId = Nutzer.Id WHERE VonId = '"
-							+ meineId
-							+ "' AND Nutzer.Status = '"
-							+ eStatus.aktiv.ordinal() + "';");
+			ResultSet rs = state.executeQuery("SELECT * FROM AbonnentBenutzer JOIN Nutzer ON AbonnentBenutzer.VonId = Nutzer.Id WHERE VonId = '"
+					+ meineId + "' AND Nutzer.Status = '" + eStatus.aktiv.ordinal() + "';");
+			
 			while (rs.next()) {
 				alleAbonniertenNutzer.add(rs.getInt("NachId"));
-
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-
 		}
 		return alleAbonniertenNutzer;
 	}
@@ -284,12 +266,10 @@ public class NutzerMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			state.execute("DELETE FROM NutzerHashtag WHERE HashtagId = '"
-					+ hashtag.getId() + "';");
+			state.execute("DELETE FROM NutzerHashtag WHERE HashtagId = '"+ hashtag.getId() + "';");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/**
@@ -301,13 +281,9 @@ public class NutzerMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-
-			state.executeUpdate("UPDATE Nutzer SET Status = '"
-					+ eStatus.aktiv.ordinal() + "' WHERE Id = '" + id + "'");
+			state.executeUpdate("UPDATE Nutzer SET Status = '"+ eStatus.aktiv.ordinal() + "' WHERE Id = '" + id + "'");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
-
 }

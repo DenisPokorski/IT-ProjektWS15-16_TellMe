@@ -25,7 +25,6 @@ public class Nutzer extends BusinessObject {
 	private String Vorname;
 	private String Mailadresse;
 	private eStatus Status;
-
 	public enum eStatus {
 		inaktiv, aktiv;
 	}
@@ -35,7 +34,6 @@ public class Nutzer extends BusinessObject {
 	 * 
 	 * @return Nachname
 	 */
-
 	public String getNachname() {
 		return Nachname;
 	}
@@ -45,7 +43,6 @@ public class Nutzer extends BusinessObject {
 	 * 
 	 * @param nachname
 	 */
-
 	public void setNachname(String nachname) {
 		Nachname = nachname;
 	}
@@ -55,7 +52,6 @@ public class Nutzer extends BusinessObject {
 	 * 
 	 * @return Vorname
 	 */
-
 	public String getVorname() {
 		return Vorname;
 	}
@@ -65,7 +61,6 @@ public class Nutzer extends BusinessObject {
 	 * 
 	 * @param vorname
 	 */
-
 	public void setVorname(String vorname) {
 		Vorname = vorname;
 	}
@@ -75,7 +70,6 @@ public class Nutzer extends BusinessObject {
 	 * 
 	 * @return mailadresse
 	 */
-
 	public String getMailadresse() {
 		return Mailadresse;
 	}
@@ -85,7 +79,6 @@ public class Nutzer extends BusinessObject {
 	 * 
 	 * @param mailadresse
 	 */
-
 	public void setMailadresse(String mailadresse) {
 		Mailadresse = mailadresse;
 	}
@@ -95,7 +88,6 @@ public class Nutzer extends BusinessObject {
 	 * 
 	 * @return Status
 	 */
-
 	public eStatus getStatus() {
 		return Status;
 	}
@@ -108,5 +100,4 @@ public class Nutzer extends BusinessObject {
 	public void setStatus(eStatus status) {
 		Status = status;
 	}
-
 }

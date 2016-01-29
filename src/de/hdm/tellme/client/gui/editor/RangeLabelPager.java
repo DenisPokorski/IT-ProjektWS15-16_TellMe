@@ -24,18 +24,20 @@ import com.google.gwt.view.client.Range;
  * TODO
  */
 /**
- * A pager that displays the current range without any controls to change the
- * range.
+ * 
+ * Der Pager zeigt den aktuellen Zeilenindex unterhalb der Zellliste an. Der Nutzer kann daruch einsehen wie viele 
+ * Elment einer Celllist oder einer Liste hinzugefügt wurden. 
+ 
  */
 public class RangeLabelPager extends AbstractPager {
 
 	/**
-	 * The label that shows the current range.
+	 * Das Label stellt die aktuelle Seite dar. 
 	 */
 	private final HTML label = new HTML();
 
 	/**
-	 * Construct a new {@link RangeLabelPager}.
+	 * Konstrukor {@link RangeLabelPager}.
 	 */
 	public RangeLabelPager() {
 		initWidget(label);

@@ -27,7 +27,6 @@ public class HashtagMapper {
 	 * Programms bestehen kann, muss man sie als Singleton darstellen, dies
 	 * geschieht durch die Referenz <code>static</code>.
 	 */
-
 	private static HashtagMapper hashtagMapper = null;
 
 	/**
@@ -35,16 +34,13 @@ public class HashtagMapper {
 	 * der Klasse erzeugen kann, wird der Konstruktor mit <code>protected</code>
 	 * geschützt.
 	 */
-
 	protected HashtagMapper() {
-
 	}
 
 	/**
 	 * Die statische Methode wird über HashtagMapper hashtagMapper aufgerufen.
 	 * Sie überprüft, dass nur eine Instanz von HashtagMapper besteht.
 	 */
-
 	public static HashtagMapper hashtagMapper() {
 		if (hashtagMapper == null) {
 			hashtagMapper = new HashtagMapper();
@@ -70,12 +66,12 @@ public class HashtagMapper {
 					+ hashtag.getSchlagwort()
 					+ "','"
 					+ DateHelperClass.getCurrentTime() + "') ;";
+			
 			state.executeUpdate(sqlquery);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/**
@@ -90,7 +86,6 @@ public class HashtagMapper {
 	 * ausgeführt.
 	 * 
 	 */
-
 	/**
 	 * Der Mapper <code>entfernen</code> soll ein Hashtag aus der Datenbank
 	 * löschen, hierfür wird der Methode das zu löschende Hashtag übergeben.
@@ -101,22 +96,19 @@ public class HashtagMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			state.execute("DELETE FROM NachrichtHashtag WHERE HashtagId = '"
-					+ hashtag.getId() + "';");
+			state.execute("DELETE FROM NachrichtHashtag WHERE HashtagId = '" + hashtag.getId() + "';");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
 			Statement state = con.createStatement();
-			state.execute("DELETE FROM NutzerHashtag WHERE HashtagId = '"
-					+ hashtag.getId() + "';");
+			state.execute("DELETE FROM NutzerHashtag WHERE HashtagId = '" + hashtag.getId() + "';");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "DELETE FROM Hashtag WHERE Id = '"
-					+ hashtag.getId() + "';";
+			String sqlquery = "DELETE FROM Hashtag WHERE Id = '" + hashtag.getId() + "';";
 			state.executeUpdate(sqlquery);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -136,7 +128,6 @@ public class HashtagMapper {
 	 * ausgeführt.
 	 * 
 	 */
-
 	/**
 	 * Dieser Mapper wird benötigt um ein Hashtag zu aktualisieren, hierfür wird
 	 * das Schlagwort verändert, während die Id des Hashtags gleich bleibt.
@@ -147,10 +138,9 @@ public class HashtagMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			String sqlquery = "UPDATE Hashtag SET Schlagwort='"
-					+ hashtag.getSchlagwort() + "', Erstellungsdatum='"
-					+ DateHelperClass.getCurrentTime() + "' WHERE Id='"
-					+ hashtag.getId() + "';";
+			String sqlquery = "UPDATE Hashtag SET Schlagwort='" + hashtag.getSchlagwort() + "', Erstellungsdatum='"
+				+ DateHelperClass.getCurrentTime() + "' WHERE Id='"
+				+ hashtag.getId() + "';";
 			state.executeUpdate(sqlquery);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -172,11 +162,9 @@ public class HashtagMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT * FROM NachrichtHashtag JOIN Hashtag ON NachrichtHashtag.HashtagId = Hashtag.Id JOIN Nachricht ON NachrichtId = Nachricht.Id JOIN Nutzer ON Nachricht.AutorId = Nutzer.Id WHERE NachrichtId ='"
-							+ nachrichtId
-							+ "' AND Nutzer.Status = '"
-							+ eStatus.aktiv.ordinal() + "';");
+			ResultSet rs = state.executeQuery("SELECT * FROM NachrichtHashtag JOIN Hashtag ON NachrichtHashtag.HashtagId = Hashtag.Id JOIN Nachricht ON NachrichtId = Nachricht.Id JOIN Nutzer ON Nachricht.AutorId = Nutzer.Id WHERE NachrichtId ='"
+					+ nachrichtId + "' AND Nutzer.Status = '"
+					+ eStatus.aktiv.ordinal() + "';");
 
 			while (rs.next()) {
 				Hashtag h = new Hashtag();
@@ -184,12 +172,11 @@ public class HashtagMapper {
 				h.setSchlagwort(rs.getString("Schlagwort"));
 				h.setErstellungsDatum(rs.getTimestamp("ErstellungsDatum"));
 				alleHashtags.add(h);
-
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return alleHashtags;
 	}
 
@@ -199,28 +186,23 @@ public class HashtagMapper {
 		Connection con = DatenbankVerbindung.connection();
 		try {
 			Statement state = con.createStatement();
-			ResultSet rs = state
-					.executeQuery("SELECT * FROM NachrichtHashtag;");
+			ResultSet rs = state.executeQuery("SELECT * FROM NachrichtHashtag;");
 
 			while (rs.next()) {
 				Nachricht n = new Nachricht();
 				n.setId(rs.getInt("NachrichtId"));
 				
 				Vector<Hashtag> hV = new Vector<Hashtag>();
-				
 				Hashtag h = new Hashtag();
 				h.setId(rs.getInt("HashtagId"));
 				
 				hV.add(h);
-
 				n.setVerknuepfteHashtags(hV);
 				alleDummyNachrichten.add(n);
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return alleDummyNachrichten;
 	}
 }

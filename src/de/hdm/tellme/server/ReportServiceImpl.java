@@ -43,8 +43,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 		this.nutzeraboMapper = NutzerAbonnementMapper.nutzerAbonnementMapper();
 		this.nachrichtMapper = NachrichtMapper.nachrichtMapper();
 		this.unterhaltungMapper = UnterhaltungMapper.unterhaltungMapper();
-		this.hashtagAboMapper = HashtagAbonnementMapper
-				.hashtagAbonnementMapper();
+		this.hashtagAboMapper = HashtagAbonnementMapper.hashtagAbonnementMapper();
 		this.hashtagMapper = HashtagMapper.hashtagMapper();
 
 	}
@@ -61,34 +60,29 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 	 * Referenz auf den UnterhaltungMapper, der Unterhaltungsobjekte mit der
 	 * Datenbank abgleicht.
 	 */
-
 	private UnterhaltungMapper unterhaltungMapper = null;
 
 	/**
 	 * Referenz auf den NachrichtMapper, der Nachrichtobjekte mit der Datenbank
 	 * abgleicht.
 	 */
-
 	private NachrichtMapper nachrichtMapper = null;
 
 	/**
 	 * Referenz auf den HashtagAbonnementtMapper, der Hashtagabonnementobjekte
 	 * mit der Datenbank abgleicht.
 	 */
-
 	private HashtagAbonnementMapper hashtagAboMapper = null;
 
 	/**
 	 * Referenz auf den HashtagMapper, der Hashtagobjekte mit der Datenbank
 	 * abgleicht.
 	 */
-
 	private HashtagMapper hashtagMapper = null;
 
 	/**
 	 * Ein Vektor namens alleUser wird auf Null gesetzt.
 	 */
-
 	private static Vector<Nutzer> alleUser = null;
 
 	/**
@@ -122,8 +116,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public Vector<Hashtag> report6Generieren(int nutzerId) {
-		Vector<Hashtag> report6 = hashtagAboMapper
-				.alleHashtagsEinesNutzers(nutzerId);
+		Vector<Hashtag> report6 = hashtagAboMapper.alleHashtagsEinesNutzers(nutzerId);
 		return report6;
 	}
 
@@ -143,15 +136,13 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungen = new Vector<Unterhaltung>();
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungenMitSichtbarenNachrichten = new Vector<Unterhaltung>();
 
-		alleSichtbarenUnterhaltungen = unterhaltungMapper
-				.alleUnterhaltungenFuerAutorOhneNachrichten(AutorId);
+		alleSichtbarenUnterhaltungen = unterhaltungMapper.alleUnterhaltungenFuerAutorOhneNachrichten(AutorId);
 
 		// lade Nachrichten und Teilnehmer zu Unterhaltungen
 		for (Unterhaltung unterhaltung : alleSichtbarenUnterhaltungen) {
 
 			// Nachrichten
-			Vector<Nachricht> alleNachrichten = ladeAlleNachrichtenZuUnterhaltung(unterhaltung
-					.getId());
+			Vector<Nachricht> alleNachrichten = ladeAlleNachrichtenZuUnterhaltung(unterhaltung.getId());
 			unterhaltung.setAlleNachrichten(alleNachrichten);
 
 			// fuege nur Unterhaltungen mit mind. 1 Nachricht hinzu.
@@ -159,31 +150,24 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 				boolean bereitsHinzugefuegt = false;
 				// Pruefe ob Unterhaltung bereits der Listehinzugefügt wurde
 				for (Unterhaltung unterhaltungInEntgueltigerListe : alleSichtbarenUnterhaltungenMitSichtbarenNachrichten) {
-					if (unterhaltungInEntgueltigerListe.getId() == unterhaltung
-							.getId())
+					if (unterhaltungInEntgueltigerListe.getId() == unterhaltung.getId())
 						bereitsHinzugefuegt = true;
 				}
 				// Fuege nur Unterhaltungen hinzu, die nicht bereits zur liste
 				// hinzuegfügt wurden
 				if (bereitsHinzugefuegt == false)
-					alleSichtbarenUnterhaltungenMitSichtbarenNachrichten
-							.add(unterhaltung);
+					alleSichtbarenUnterhaltungenMitSichtbarenNachrichten.add(unterhaltung);
 			} else
-				Helper.LogWarnung("getAlleSichtbarenUnterhaltungenFuerTeilnehmer - sichtbare Unterhaltung ohne Sichtbare Nachricht entdeckt. UnterhaltungsID: "
-						+ unterhaltung.getId());
+				Helper.LogWarnung("getAlleSichtbarenUnterhaltungenFuerTeilnehmer - sichtbare Unterhaltung ohne Sichtbare Nachricht entdeckt. UnterhaltungsID: "+ unterhaltung.getId());
 
 			// Teilnehmer
 			Vector<Nutzer> alleTeilnehmer = new Vector<Nutzer>();
-			Vector<Integer> alleTeilnehmerIDs = unterhaltungMapper
-					.gibTeilnehmerFuerUnterhaltung(unterhaltung.getId());
+			Vector<Integer> alleTeilnehmerIDs = unterhaltungMapper.gibTeilnehmerFuerUnterhaltung(unterhaltung.getId());
 			for (Integer teilnehmerID : alleTeilnehmerIDs) {
 				alleTeilnehmer.add(getNutzerAnhandID(teilnehmerID));
 			}
-
 			unterhaltung.setTeilnehmer(alleTeilnehmer);
-
 		}
-
 		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;
 	}
 
@@ -207,15 +191,13 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 			int AutorId, Timestamp vonDate, Timestamp bisDate) {
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungen = new Vector<Unterhaltung>();
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungenMitSichtbarenNachrichten = new Vector<Unterhaltung>();
-		alleSichtbarenUnterhaltungen = unterhaltungMapper
-				.alleUnterhaltungenFuerAutorOhneNachrichten(AutorId);
+		alleSichtbarenUnterhaltungen = unterhaltungMapper.alleUnterhaltungenFuerAutorOhneNachrichten(AutorId);
 
 		// lade Nachrichten und Teilnehmer zu Unterhaltungen
 		for (Unterhaltung unterhaltung : alleSichtbarenUnterhaltungen) {
 
 			// Nachrichten
-			Vector<Nachricht> alleNachrichten = ladeAlleNachrichtenZuUnterhaltungMitZeitraum(
-					unterhaltung.getId(), vonDate, bisDate);
+			Vector<Nachricht> alleNachrichten = ladeAlleNachrichtenZuUnterhaltungMitZeitraum(unterhaltung.getId(), vonDate, bisDate);
 			unterhaltung.setAlleNachrichten(alleNachrichten);
 
 			// fuege nur Unterhaltungen mit mind. 1 Nachricht hinzu.
@@ -223,31 +205,25 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 				boolean bereitsHinzugefuegt = false;
 				// Pruefe ob Unterhaltung bereits der Listehinzugefügt wurde
 				for (Unterhaltung unterhaltungInEntgueltigerListe : alleSichtbarenUnterhaltungenMitSichtbarenNachrichten) {
-					if (unterhaltungInEntgueltigerListe.getId() == unterhaltung
-							.getId())
+					if (unterhaltungInEntgueltigerListe.getId() == unterhaltung.getId())
 						bereitsHinzugefuegt = true;
 				}
 				// Fuege nur Unterhaltungen hinzu, die nicht bereits zur liste
 				// hinzuegfügt wurden
 				if (bereitsHinzugefuegt == false)
-					alleSichtbarenUnterhaltungenMitSichtbarenNachrichten
-							.add(unterhaltung);
+					alleSichtbarenUnterhaltungenMitSichtbarenNachrichten.add(unterhaltung);
 			} else
-				Helper.LogWarnung("getAlleSichtbarenUnterhaltungenFuerTeilnehmer - sichtbare Unterhaltung ohne Sichtbare Nachricht entdeckt. UnterhaltungsID: "
-						+ unterhaltung.getId());
+				Helper.LogWarnung("getAlleSichtbarenUnterhaltungenFuerTeilnehmer - sichtbare Unterhaltung ohne Sichtbare Nachricht entdeckt. UnterhaltungsID: "+ unterhaltung.getId());
 
 			// Teilnehmer
 			Vector<Nutzer> alleTeilnehmer = new Vector<Nutzer>();
-			Vector<Integer> alleTeilnehmerIDs = unterhaltungMapper
-					.gibTeilnehmerFuerUnterhaltung(unterhaltung.getId());
+			Vector<Integer> alleTeilnehmerIDs = unterhaltungMapper.gibTeilnehmerFuerUnterhaltung(unterhaltung.getId());
+			
 			for (Integer teilnehmerID : alleTeilnehmerIDs) {
 				alleTeilnehmer.add(getNutzerAnhandID(teilnehmerID));
 			}
-
 			unterhaltung.setTeilnehmer(alleTeilnehmer);
-
 		}
-
 		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;
 	}
 
@@ -286,8 +262,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 				boolean bereitsHinzugefuegt = false;
 				// Pruefe ob Unterhaltung bereits der Listehinzugefügt wurde
 				for (Unterhaltung unterhaltungInEntgueltigerListe : alleSichtbarenUnterhaltungenMitSichtbarenNachrichten) {
-					if (unterhaltungInEntgueltigerListe.getId() == unterhaltung
-							.getId())
+					if (unterhaltungInEntgueltigerListe.getId() == unterhaltung.getId())
 						bereitsHinzugefuegt = true;
 				}
 				// Fuege nur Unterhaltungen hinzu, die nicht bereits zur liste
@@ -301,16 +276,12 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 
 			// Teilnehmer
 			Vector<Nutzer> alleTeilnehmer = new Vector<Nutzer>();
-			Vector<Integer> alleTeilnehmerIDs = unterhaltungMapper
-					.gibTeilnehmerFuerUnterhaltung(unterhaltung.getId());
+			Vector<Integer> alleTeilnehmerIDs = unterhaltungMapper.gibTeilnehmerFuerUnterhaltung(unterhaltung.getId());
 			for (Integer teilnehmerID : alleTeilnehmerIDs) {
 				alleTeilnehmer.add(getNutzerAnhandID(teilnehmerID));
 			}
-
 			unterhaltung.setTeilnehmer(alleTeilnehmer);
-
 		}
-
 		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;
 	}
 
@@ -325,15 +296,13 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 	public Vector<Unterhaltung> alleUnterhaltungen() {
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungen = new Vector<Unterhaltung>();
 		Vector<Unterhaltung> alleSichtbarenUnterhaltungenMitSichtbarenNachrichten = new Vector<Unterhaltung>();
-		alleSichtbarenUnterhaltungen = unterhaltungMapper
-				.alleUnterhaltungenOhneNachrichtenNachDatumLetzterNachricht();
+		alleSichtbarenUnterhaltungen = unterhaltungMapper.alleUnterhaltungenOhneNachrichtenNachDatumLetzterNachricht();
 
 		// lade Nachrichten und Teilnehmer zu Unterhaltungen
 		for (Unterhaltung unterhaltung : alleSichtbarenUnterhaltungen) {
 
 			// Nachrichten
-			Vector<Nachricht> alleNachrichten = ladeAlleNachrichtenZuUnterhaltung(unterhaltung
-					.getId());
+			Vector<Nachricht> alleNachrichten = ladeAlleNachrichtenZuUnterhaltung(unterhaltung.getId());
 			unterhaltung.setAlleNachrichten(alleNachrichten);
 
 			// fuege nur Unterhaltungen mit mind. 1 Nachricht hinzu.
@@ -341,31 +310,25 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 				boolean bereitsHinzugefuegt = false;
 				// Pruefe ob Unterhaltung bereits der Listehinzugefügt wurde
 				for (Unterhaltung unterhaltungInEntgueltigerListe : alleSichtbarenUnterhaltungenMitSichtbarenNachrichten) {
-					if (unterhaltungInEntgueltigerListe.getId() == unterhaltung
-							.getId())
+					if (unterhaltungInEntgueltigerListe.getId() == unterhaltung.getId())
 						bereitsHinzugefuegt = true;
 				}
 				// Fuege nur Unterhaltungen hinzu, die nicht bereits zur liste
 				// hinzuegfügt wurden
 				if (bereitsHinzugefuegt == false)
-					alleSichtbarenUnterhaltungenMitSichtbarenNachrichten
-							.add(unterhaltung);
+					alleSichtbarenUnterhaltungenMitSichtbarenNachrichten.add(unterhaltung);
 			} else
 				Helper.LogWarnung("getAlleSichtbarenUnterhaltungenFuerTeilnehmer - sichtbare Unterhaltung ohne Sichtbare Nachricht entdeckt. UnterhaltungsID: "
 						+ unterhaltung.getId());
 
 			// Teilnehmer
 			Vector<Nutzer> alleTeilnehmer = new Vector<Nutzer>();
-			Vector<Integer> alleTeilnehmerIDs = unterhaltungMapper
-					.gibTeilnehmerFuerUnterhaltung(unterhaltung.getId());
+			Vector<Integer> alleTeilnehmerIDs = unterhaltungMapper.gibTeilnehmerFuerUnterhaltung(unterhaltung.getId());
 			for (Integer teilnehmerID : alleTeilnehmerIDs) {
 				alleTeilnehmer.add(getNutzerAnhandID(teilnehmerID));
 			}
-
 			unterhaltung.setTeilnehmer(alleTeilnehmer);
-
 		}
-
 		return alleSichtbarenUnterhaltungenMitSichtbarenNachrichten;
 	}
 
@@ -379,20 +342,17 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public Vector<Nachricht> ladeAlleNachrichtenZuUnterhaltung(
 			int UnterhaltungsID) {
-		Vector<Nachricht> alleNachrichten = nachrichtMapper
-				.gibAlleNachrichtenVonUnterhaltungReport(UnterhaltungsID);
+		Vector<Nachricht> alleNachrichten = nachrichtMapper.gibAlleNachrichtenVonUnterhaltungReport(UnterhaltungsID);
 
 		// lade zu jeder Nachricht den Sender und die Hashtags
 		if (alleNachrichten.size() > 0) {
 			for (Nachricht nachricht : alleNachrichten) {
-				Vector<Hashtag> alleHashtagsZuNachricht = hashtagMapper
-						.alleHashtagsZuNachrichtenID(nachricht.getId());
+				Vector<Hashtag> alleHashtagsZuNachricht = hashtagMapper.alleHashtagsZuNachrichtenID(nachricht.getId());
 				nachricht.setVerknuepfteHashtags(alleHashtagsZuNachricht);
 
 				Nutzer sender = null;
 				sender = getNutzerAnhandID(nachricht.getSenderId());
 				nachricht.setSender(sender);
-
 			}
 		}
 		return alleNachrichten;
@@ -416,21 +376,18 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public Vector<Nachricht> ladeAlleNachrichtenZuUnterhaltungMitZeitraum(
 			int UnterhaltungsID, Timestamp vonDate, Timestamp bisDate) {
-		Vector<Nachricht> alleNachrichten = nachrichtMapper
-				.gibAlleNachrichtenVonUnterhaltungReportMitZeitraum(
+		Vector<Nachricht> alleNachrichten = nachrichtMapper.gibAlleNachrichtenVonUnterhaltungReportMitZeitraum(
 						UnterhaltungsID, vonDate, bisDate);
 
 		// lade zu jeder Nachricht den Sender und die Hashtags
 		if (alleNachrichten.size() > 0) {
 			for (Nachricht nachricht : alleNachrichten) {
-				Vector<Hashtag> alleHashtagsZuNachricht = hashtagMapper
-						.alleHashtagsZuNachrichtenID(nachricht.getId());
+				Vector<Hashtag> alleHashtagsZuNachricht = hashtagMapper.alleHashtagsZuNachrichtenID(nachricht.getId());
 				nachricht.setVerknuepfteHashtags(alleHashtagsZuNachricht);
 
 				Nutzer sender = null;
 				sender = getNutzerAnhandID(nachricht.getSenderId());
 				nachricht.setSender(sender);
-
 			}
 		}
 		return alleNachrichten;
@@ -465,11 +422,8 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 			n.setVorname("Gelöschter");
 			n.setNachname("Nutzer");
 			return n;
-
 		}
-
 		return gesuchterNutzer;
-
 	}
 
 	/**
@@ -480,14 +434,11 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 	 * @return alleUser - Es werden alle Nutzer zurückgegeben
 	 * 
 	 */
-
 	@Override
 	public Vector<Nutzer> getAlleNutzer(boolean zwingeNeuladen) {
 		if (alleUser == null || zwingeNeuladen)
 			alleUser = nutzerMapper.alleNutzer(0);
-
 		return alleUser;
-
 	}
 
 	/**
@@ -502,8 +453,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public Vector<Nutzer> report8Generieren(int i) {
 		Vector<Nutzer> alleFollowerEinesHashtagsListe = new Vector<Nutzer>();
-		alleFollowerEinesHashtagsListe = hashtagAboMapper
-				.alleFollowerEinesHashtags(i);
+		alleFollowerEinesHashtagsListe = hashtagAboMapper.alleFollowerEinesHashtags(i);
 		return alleFollowerEinesHashtagsListe;
 	}
 

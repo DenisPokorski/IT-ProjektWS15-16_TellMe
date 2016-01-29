@@ -27,7 +27,6 @@ public class Nachricht extends BusinessObject {
 	private String text;
 	private Nutzer sender;
 	private int senderId;
-
 	private Vector<Hashtag> verknuepfteHashtags = new Vector<Hashtag>();
 
 	/**
@@ -50,7 +49,6 @@ public class Nachricht extends BusinessObject {
 		// Textbegrenzung auf 255 Zeichen
 		if (text.length() > 255)
 			text = text.substring(0, 254);
-
 		this.text = text;
 	}
 
@@ -59,7 +57,6 @@ public class Nachricht extends BusinessObject {
 	 * 
 	 * @return senderId
 	 */
-
 	public int getSenderId() {
 		return senderId;
 	}
@@ -69,7 +66,6 @@ public class Nachricht extends BusinessObject {
 	 * 
 	 * @param senderId
 	 */
-
 	public void setSenderId(int senderId) {
 		this.senderId = senderId;
 	}
@@ -79,7 +75,6 @@ public class Nachricht extends BusinessObject {
 	 * 
 	 * @return sender
 	 */
-
 	public Nutzer getSender() {
 		return sender;
 	}
@@ -91,7 +86,6 @@ public class Nachricht extends BusinessObject {
 	 * 
 	 * @param senderId
 	 */
-
 	public void setSender(Nutzer nutzer) {
 		this.sender = nutzer;
 		this.senderId = nutzer.getId();
@@ -102,7 +96,6 @@ public class Nachricht extends BusinessObject {
 	 * 
 	 * @return verknuepfteHashtags
 	 */
-
 	public Vector<Hashtag> getVerknuepfteHashtags() {
 		return verknuepfteHashtags;
 	}
@@ -112,9 +105,7 @@ public class Nachricht extends BusinessObject {
 	 * 
 	 * @param verknuepfteHashtags
 	 */
-
 	public void setVerknuepfteHashtags(Vector<Hashtag> verknuepfteHashtags) {
 		this.verknuepfteHashtags = verknuepfteHashtags;
 	}
-
 }

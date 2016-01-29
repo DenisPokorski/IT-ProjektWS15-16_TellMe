@@ -45,5 +45,4 @@ public class ReportPanel {
 	public void setReportDatum(String reportDatum) {
 		this.reportDatum = reportDatum;
 	}
-
 }

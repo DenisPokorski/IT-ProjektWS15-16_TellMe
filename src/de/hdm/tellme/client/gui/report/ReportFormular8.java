@@ -38,13 +38,11 @@ public class ReportFormular8 {
 
 				RootPanel.get("content_left").clear();
 				RootPanel.get("content_right").clear();
-
 				HashtagDataProvider.gib(1).report8Generieren(hashtag);
-
 			}
 		});
-
 	}
+	
 	/**
 	 * 
 	 * Die Methode <code>zeigeReportFormular</code> säubert die rechte Hälfte des rootPanels. 
@@ -52,9 +50,7 @@ public class ReportFormular8 {
 	 */
 	public void zeigeReportFormular() {
 		RootPanel.get("content_right").clear();
-
 		HashtagDataProvider.gib(1).report8Generieren(hashtag);
-
 	}
 
 	/**
@@ -82,7 +78,5 @@ public class ReportFormular8 {
 	 */
 	public void report8Generieren(HashtagZelle.ZellenObjekt ZellenObjekt) {
 		ReportFormular8.hashtag = ZellenObjekt.hashtag;
-
 	}
-
 }

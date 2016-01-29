@@ -26,41 +26,38 @@ import com.google.gwt.view.client.HasRows;
  * TODO
  */
 /**
- * A scrolling pager that automatically increases the range every time the
- * scroll bar reaches the bottom.
+ * 
+ * Diese Klasse ermöglicht das der Inhalt scrollbar dargestellt wird.
+ * Wenn die Bildlaufleiste den Boden erreicht hat werden Elemente nachgeladen und mit einem Label angezeigt. 
  */
 public class ShowMorePagerPanel extends AbstractPager {
 
 	/**
-	 * The default increment size.
+	 * Diese statische Integer Variale definiert die maximale Größe der angezeigten Elemnte. 
 	 */
 	private static final int DEFAULT_INCREMENT = 20;
-
-	/**
-	 * The increment size.
-	 */
 	private int incrementSize = DEFAULT_INCREMENT;
 
 	/**
-	 * The last scroll position.
+	 * In dieser Variable wird der Index der letzten Scrollposition hinterlegt. 
 	 */
 	private int lastScrollPos = 0;
 
 	/**
-	 * The scrollable panel.
+	 * Das  scrollable panel.
 	 */
 	private final ScrollPanel scrollable = new ScrollPanel();
 
 	/**
-	 * Construct a new {@link ShowMorePagerPanel}.
+	 * Konstruktor: {@link ShowMorePagerPanel}.
 	 */
 	public ShowMorePagerPanel() {
 		initWidget(scrollable);
 
-		// Do not let the scrollable take tab focus.
+		// On Fokus: Der Index des Scrollpanels wird um -1 vermindert, minus des ausgewälten Elemntes. 
 		scrollable.getElement().setTabIndex(-1);
 
-		// Handle scroll events.
+		// Eventhandling
 		scrollable.addScrollHandler(new ScrollHandler() {
 			public void onScroll(ScrollEvent event) {
 				// If scrolling up, ignore the event.
@@ -76,7 +73,6 @@ public class ShowMorePagerPanel extends AbstractPager {
 				}
 				int maxScrollTop = scrollable.getWidget().getOffsetHeight() - scrollable.getOffsetHeight();
 				if (lastScrollPos >= maxScrollTop) {
-					// We are near the end, so increase the page size.
 					int newPageSize = Math.min(display.getVisibleRange().getLength() + incrementSize, display.getRowCount());
 					display.setVisibleRange(0, newPageSize);
 				}
@@ -85,8 +81,8 @@ public class ShowMorePagerPanel extends AbstractPager {
 	}
 
 	/**
-	 * Get the number of rows by which the range is increased when the scrollbar
-	 * reaches the bottom.
+	 * 
+	 * Diese Methode gibt die Nummer der Zeilen zurück.
 	 *
 	 * @return the increment size
 	 */
@@ -96,17 +92,14 @@ public class ShowMorePagerPanel extends AbstractPager {
 
 	@Override
 	public void setDisplay(HasRows display) {
-		assert display instanceof Widget : "display must extend Widget";
+		assert display instanceof Widget : "Konnte nicht angezeigt werden.";
 		scrollable.setWidget((Widget) display);
 		super.setDisplay(display);
 	}
 
 	/**
-	 * Set the number of rows by which the range is increased when the scrollbar
-	 * reaches the bottom.
+	 * Diese Methode gibt die Nummer der Zeilen zurück.
 	 *
-	 * @param incrementSize
-	 *            the incremental number of rows
 	 */
 	public void setIncrementSize(int incrementSize) {
 		this.incrementSize = incrementSize;

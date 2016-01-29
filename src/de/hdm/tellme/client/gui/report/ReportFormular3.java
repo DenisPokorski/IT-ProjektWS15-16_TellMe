@@ -26,8 +26,7 @@ public class ReportFormular3 extends Composite {
 	 * Wir benötigen ein Nutzer-Objekt, das anfangs auf null gesetzt wird
 	 */
 	private Nutzer nutzer = null;
-
-	Button report3GenerierenButton = new Button("Report 3 erstellen");
+	private Button report3GenerierenButton = new Button("Report 3 erstellen");
 
 	/**
 	 * Methode ReportFormular3 wird aufgerufen um den CLickhandler in ihr zu
@@ -57,8 +56,6 @@ public class ReportFormular3 extends Composite {
 				ladenPanel.add(ladenLabel);
 				
 				RootPanel.get("content").add(ladenPanel);
-				
-				
 				NutzerDataProvider.gib(1).report3Generieren(nutzer);
 			}
 		});
@@ -70,10 +67,7 @@ public class ReportFormular3 extends Composite {
  */
 	public void zeigeReportFormular() {
 		RootPanel.get("content_right").clear();
-
 		NutzerDataProvider.gib(1).report3Generieren(nutzer); 
-																
-
 	}
 
 	/**
@@ -82,7 +76,6 @@ public class ReportFormular3 extends Composite {
 	 * fügt diesem dem Button hinzu. Als Rückgabe Wert gibt die Methode das
 	 * VerticalPanel zurück.
 	 */
-
 	public VerticalPanel gibFormular() {
 		VerticalPanel vpForm = new VerticalPanel();
 
@@ -93,6 +86,7 @@ public class ReportFormular3 extends Composite {
 		vpForm.add(report3GenerierenButton);
 		return vpForm;
 	}
+	
 	/**
 	 * Die Methode <code>report3Generieren</code> übergibt das Nutzer-Objekt aus
 	 * der NutzerZelle.

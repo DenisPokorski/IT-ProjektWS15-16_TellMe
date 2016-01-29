@@ -22,8 +22,7 @@ import de.hdm.tellme.client.gui.editor.NutzerCellList;
 
 public class Report7Gui extends VerticalPanel {
 
-	HTML subline = new HTML("<div class='" + "subline_report"
-			+ "'><b>Bitte wähle einen Nutzer aus:</b></div>");
+	HTML subline = new HTML("<div class='" + "subline_report"+ "'><b>Bitte wähle einen Nutzer aus:</b></div>");
 	VerticalPanel vP = new VerticalPanel();
 
 	/**
@@ -32,25 +31,16 @@ public class Report7Gui extends VerticalPanel {
 	 * Pendant zur <code>main()</code>-Methode einer normalen Java Applikation
 	 * darstellt
 	 */
-
 	public void onLoad() {
 
-		final HTML headline = new HTML(
-				" <div class='"
-						+ "subline"
-						+ "'><h2>Reportgenerator 7: Alle Follower eines Nutzers</h2></div> ");
-		final HTML subtext = new HTML(
-				" <div class='"
-						+ "subtext"
-						+ "'><h4> Der Report 7 gibt alle Follower eines Nutzers zurück.   </h4></div> ");
+		final HTML headline = new HTML(" <div class='"+ "subline" + "'><h2>Reportgenerator 7: Alle Follower eines Nutzers</h2></div> ");
+		final HTML subtext = new HTML(" <div class='"+ "subtext" + "'><h4> Der Report 7 gibt alle Follower eines Nutzers zurück.   </h4></div> ");
 
 		vP.add(headline);
 		vP.add(subtext);
 
 		RootPanel.get("content_right").add(vP);
-		RootPanel.get("content_left").add(
-				new NutzerCellList().generiereCellList(
-						CellListModus.Report7_AlleNutzerDieDemAusgewaehltenNutzerFolgen, 1));
-
+		RootPanel.get("content_left").add(new NutzerCellList().generiereCellList(
+				CellListModus.Report7_AlleNutzerDieDemAusgewaehltenNutzerFolgen, 1));
 	}
 }

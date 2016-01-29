@@ -107,13 +107,10 @@ public class NutzerAbonnementMapper {
 		Connection con = DatenbankVerbindung.connection();
 
 		try {
-
 			Statement state = con.createStatement();
 			state.executeUpdate("DELETE FROM AbonnentBenutzer WHERE VonId=' "
-					+ _vonId + " ' AND  NachId='" + _nutzerDeabonieren.getId()
-					+ "';");
+			+ _vonId + " ' AND  NachId='" + _nutzerDeabonieren.getId() + "';");
 		}
-
 		catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -142,7 +139,6 @@ public class NutzerAbonnementMapper {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/**
@@ -191,16 +187,12 @@ public class NutzerAbonnementMapper {
 				n.setVorname(rs.getString("Nutzer.Vorname"));
 				n.setNachname(rs.getString("Nutzer.Nachname"));
 				n.setMailadresse(rs.getString("Nutzer.Mailadresse"));
-				n.setErstellungsDatum(rs
-						.getTimestamp("AbonnentBenutzer.ErstellungsDatum"));
+				n.setErstellungsDatum(rs.getTimestamp("AbonnentBenutzer.ErstellungsDatum"));
 				followerEinesNutzersListe.add(n);
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return followerEinesNutzersListe;
-
 	}
-
 }

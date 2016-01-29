@@ -34,9 +34,8 @@ public class DatenbankVerbindung {
 	public static Connection connection() {
 
 		if (con == null) {
-
+			
 			try {
-
 				/**
 				 * 
 				 * Dem Connection-Objekt con wird, durch die Methode
@@ -45,28 +44,23 @@ public class DatenbankVerbindung {
 				 */
 				if (UseLocalCon) {
 					Class.forName("com.mysql.jdbc.Driver");
-					con = DriverManager
-							.getConnection(
-									"jdbc:mysql://feltrin-immobilien.de:3306/db_tellme",
-									"tellme", "M22azd0!");
+					con = DriverManager.getConnection("jdbc:mysql://feltrin-immobilien.de:3306/db_tellme","tellme", "M22azd0!");
 				} else {
 					Class.forName("com.mysql.jdbc.GoogleDriver");
-
-					con = DriverManager
-							.getConnection("jdbc:google:mysql://it-projekt-1168:tell-me/db_tellme?user=root");
+					con = DriverManager.getConnection("jdbc:google:mysql://it-projekt-1168:tell-me/db_tellme?user=root");
 				}
-
 			}
+			
 			/**
 			 * Bei einer fehlerhaften Verbindungsaufbau wird im "catch-Block"
 			 * eine Exception ausgeführt.
 			 */
 			catch (Exception e1) {
 				con = null;
-
 				e1.printStackTrace();
 			}
 		}
+		
 		/**
 		 * Verbindung zurückgeben
 		 */

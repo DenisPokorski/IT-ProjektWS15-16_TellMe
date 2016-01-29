@@ -63,8 +63,6 @@ public class Report4Gui extends VerticalPanel {
 		 * Das RootPanel wird gesäubert und die verschiedenen Elemente für
 		 * Report 4 zugeordnet.
 		 */
-	
-		
 		RootPanel.get("content").clear();
  		RootPanel.get("content_right").clear();
 		RootPanel.get("content_right").add(reportPanel1_right);
@@ -74,14 +72,12 @@ public class Report4Gui extends VerticalPanel {
 		 * Der Button <code>report3Generieren</code> bekommt eine Funktion,
 		 * damit der Report 4 generiert werden kann.
 		 */
-
 		report4Generieren.addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
 				RootPanel.get("content").clear();
  				RootPanel.get("content_right").clear();
- 				
  				
 				VerticalPanel ladenPanel = new VerticalPanel();
 				ladenPanel.setStylePrimaryName("ladenPanel");
@@ -95,13 +91,9 @@ public class Report4Gui extends VerticalPanel {
 				
 				RootPanel.get("content").add(ladenPanel);
 				
-
- 				
 				nutzer = TellMeReport.gibEingeloggterBenutzer().getUser();
 				NutzerDataProvider.gib(1).report4Generieren(nutzer);
-
 			}
 		});
 	}
-
 }

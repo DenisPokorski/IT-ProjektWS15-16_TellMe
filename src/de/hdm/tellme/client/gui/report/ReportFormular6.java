@@ -35,11 +35,8 @@ public class ReportFormular6 extends Composite{
 			public void onClick(ClickEvent event){
 				RootPanel.get("content_left").clear();
 				RootPanel.get("content_right").clear();
-
- 				NutzerDataProvider.gib(1).report6Generieren(nutzer );
-
+ 				NutzerDataProvider.gib(1).report6Generieren(nutzer);
 				}		
-			
 		});
 	}
 	
@@ -50,10 +47,8 @@ public class ReportFormular6 extends Composite{
 	 */	
 	
 	public void zeigeReportFormular () {
-		RootPanel.get("content_right").clear();
-
+			RootPanel.get("content_right").clear();
 			NutzerDataProvider.gib(1).report6Generieren(nutzer );
-		
 	}
 	
 	/**
@@ -81,10 +76,7 @@ public class ReportFormular6 extends Composite{
 	 */
 	public void report6Generieren(NutzerZelle.ZellenObjekt ZellenObjekt){
 		this.nutzer = ZellenObjekt.nutzer;
-
 	}
-
-
 }
 
 

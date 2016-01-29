@@ -14,11 +14,11 @@ public class Hashtag extends BusinessObject {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * Die Variable hashtagId ist vom Typ Integer Die Variable Schlagwort ist
 	 * vom Typ String
 	 */
-
 	private String schlagwort;
 
 	/**
@@ -26,7 +26,6 @@ public class Hashtag extends BusinessObject {
 	 * 
 	 * @return Schlagwort
 	 */
-
 	public String getSchlagwort() {
 		return schlagwort;
 	}
@@ -36,9 +35,7 @@ public class Hashtag extends BusinessObject {
 	 * 
 	 * @param schlagwort
 	 */
-
 	public void setSchlagwort(String schlagwort) {
 		this.schlagwort = schlagwort;
 	}
-
 }

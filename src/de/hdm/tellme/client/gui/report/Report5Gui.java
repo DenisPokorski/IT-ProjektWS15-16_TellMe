@@ -1,6 +1,5 @@
 package de.hdm.tellme.client.gui.report;
 
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -54,8 +53,5 @@ public class Report5Gui  extends VerticalPanel {
  		
 		RootPanel.get("content_right").add(vP);
 		RootPanel.get("content_left").add(new NutzerCellList().generiereCellList(CellListModus.Report5_NutzerNutzerAbonnement, 1));
-		
  	}
-
-
 }

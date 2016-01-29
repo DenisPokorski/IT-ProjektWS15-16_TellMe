@@ -31,7 +31,6 @@ public class BusinessObject implements Serializable {
 	 * handelt es sich um eine Integer-Variable Bei erstellungsDatum handelt es
 	 * sich um die Veriable vom Typ Timestamp
 	 */
-
 	private int id;
 	private int sichtbarkeit;
 	private Timestamp erstellungsDatum = new Timestamp(0);
@@ -41,7 +40,6 @@ public class BusinessObject implements Serializable {
 	 * 
 	 * @return Id
 	 */
-
 	public int getId() {
 		return id;
 	}
@@ -52,7 +50,6 @@ public class BusinessObject implements Serializable {
 	 * @param id
 	 *            die neue ID
 	 */
-
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -62,7 +59,6 @@ public class BusinessObject implements Serializable {
 	 * 
 	 * @return sichtbarkeit
 	 */
-
 	public int getSichtbarkeit() {
 		return sichtbarkeit;
 	}
@@ -72,7 +68,6 @@ public class BusinessObject implements Serializable {
 	 * 
 	 * @param sichtbarkeit
 	 */
-
 	public void setSichtbarkeit(int sichtbarkeit) {
 		this.sichtbarkeit = sichtbarkeit;
 	}
@@ -82,7 +77,6 @@ public class BusinessObject implements Serializable {
 	 * 
 	 * @return erstellungsDatum
 	 */
-
 	public Timestamp getErstellungsDatum() {
 		return erstellungsDatum;
 	}
@@ -103,5 +97,4 @@ public class BusinessObject implements Serializable {
 	/**
 	 * public String toString() { return '#' + this.id; }
 	 */
-
 }
