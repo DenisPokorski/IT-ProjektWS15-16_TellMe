@@ -115,22 +115,22 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 		 * 
 		 */
 		sb.appendHtmlConstant("<div class='neuigkeitenNachrichtInhalt'>");
-		sb.appendHtmlConstant("<table style='width:100%'><tr><td>");
+		sb.appendHtmlConstant("<table style='width:100%'><tr><td class='nachrichten_linie_unten'>");
 
 		sb.appendHtmlConstant(strUnterhaltungsTyp);
 
-		sb.appendHtmlConstant("</td><td>");
+		sb.appendHtmlConstant("</td><td class='nachrichten_linie_unten'>");
 
 		sb.appendEscaped("Absender: " + strAbsender);
-		sb.appendHtmlConstant("</td><td>");
+		sb.appendHtmlConstant("</td><td class='nachrichten_linie_unten'>");
 		sb.appendHtmlConstant(strDatum);
-		sb.appendHtmlConstant("</td></tr><tr><td colspan='3'>");
+		sb.appendHtmlConstant("</td></tr><tr>  <td  class='NachrichtTextMitAbstand'  colspan='3'>");
 		sb.appendHtmlConstant(strText.replace("\n", "<br>"));
 		sb.appendHtmlConstant("</td>");
-		sb.appendHtmlConstant("</tr><tr><td colspan='2'>" + "Teilnehmer: "
-				+ strTeilnehmer + "</td><td>" + "Hashtags: " + strHashtags
+		sb.appendHtmlConstant("</tr><tr><td colspan='2' class='nachrichten_linie_oben'>" + "Teilnehmer: "
+				+ strTeilnehmer + "</td><td class='nachrichten_linie_oben'>" + "Hashtags: " + strHashtags
 				+ "</td></tr>");
-		sb.appendHtmlConstant("<tr><td colspan='3'>");
+		sb.appendHtmlConstant("<tr><td colspan='3'   >");
 		sb.appendHtmlConstant("Herkunft: " + u.getAnzeigeHerkunft());
 		sb.appendHtmlConstant("</td></tr>");
 		sb.appendHtmlConstant("</table>");

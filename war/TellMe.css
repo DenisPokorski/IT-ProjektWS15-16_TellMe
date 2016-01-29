@@ -1,7 +1,4 @@
- 
-
 /** In dieser Datei sind CSS-Eigenschafen für die Appliaktion TellMe-Editor-Client definiert*/
-
 /*
 *-----------------------------------------------------------------------
 * Überschriften Styles
@@ -35,24 +32,24 @@ h3 {
 	padding-bottom: 15px;
 }
 
-.report_inhalt{
-	margin-right:10px;
+.report_inhalt {
+	margin-right: 10px;
 }
 
-.report_inhalt_volle_breite{
+.report_inhalt_volle_breite {
 	padding-right: 10px;
-    padding-left: 10px;
-    padding-bottom: 10px;
-    background: #fff;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	background: #fff;
 }
 
-.report_kein_inhalt{
+.report_kein_inhalt {
 	background: #f3f3f3;
-	color:red; 
+	color: red;
 	border: 1px solid #ccc;
-	font-weight:bold;
-	padding-top:10px;
-	padding-bottom:15px;
+	font-weight: bold;
+	padding-top: 10px;
+	padding-bottom: 15px;
 }
 
 /*
@@ -60,9 +57,8 @@ h3 {
 * Button Styles
 *-----------------------------------------------------------------------
 */
-
-.nutzerButtonPanel{
-	margin-top:10px;
+.nutzerButtonPanel {
+	margin-top: 10px;
 }
 
 .sendButton {
@@ -89,7 +85,8 @@ h3 {
 	background: #628CD5;
 }
 
-.neueNchrichtBtn, .btnUnterhaltungVerlassen, .btnTeilnehmerBearbeiten, .neueNchrichtBtn {
+.neueNchrichtBtn, .btnUnterhaltungVerlassen, .btnTeilnehmerBearbeiten,
+	.neueNchrichtBtn {
 	background: #628cd5;
 	color: #fff;
 	font-size: 12px;
@@ -155,7 +152,7 @@ h3 {
 	margin-right: 15px;
 }
 
-.btnPositivBereitsAbooniert{
+.btnPositivBereitsAbooniert {
 	background: grey;
 	margin-right: 15px;
 }
@@ -164,11 +161,11 @@ h3 {
 	background: red;
 }
 
-.btnSpeichern{
- 	background: #628cd5;
+.btnSpeichern {
+	background: #628cd5;
 }
 
-.btnNegativ, .btnPositiv, .btnSpeichern{
+.btnNegativ, .btnPositiv, .btnSpeichern {
 	height: 30px;
 	width: 100%;
 	border: none;
@@ -176,35 +173,40 @@ h3 {
 }
 
 .btnPositiv:active {
+	
 }
 
 .btnPositiv:hover {
- 	background: #13f5b8;
+	background: #13f5b8;
 }
 
 .btnPositiv[disabled] {
 	background: #f3f3f3;
-    color: #ccc;
- }
+	color: #ccc;
+}
 
 .btnNegativ:hover {
- 	background: #c28090;
+	background: #c28090;
 }
 
 .btnNegativ[disabled] {
-    background: #f3f3f3;
-    color: #ccc;
+	background: #f3f3f3;
+	color: #ccc;
 }
 
-.btnAntworten:active, .neueNchrichtBtn:active, .btnTeilnehmerBearbeiten:active, btnUnterhaltungVerlassen:active {
+.btnAntworten:active, .neueNchrichtBtn:active, .btnTeilnehmerBearbeiten:active,
+	btnUnterhaltungVerlassen:active {
 	border: 1px inset #ccc;
 }
 
-.btnAntworten:hover, neueNchrichtBtn:hover, btnTeilnehmerBearbeiten:hover, btnUnterhaltungVerlassen:hover {
+.btnAntworten:hover, neueNchrichtBtn:hover, btnTeilnehmerBearbeiten:hover,
+	btnUnterhaltungVerlassen:hover {
 	border-color: #939393;
 }
 
-.btnAntworten[disabled], .neueNchrichtBtn[disabled], .btnTeilnehmerBearbeiten[disabled], .btnUnterhaltungVerlassen[disabled] {
+.btnAntworten[disabled], .neueNchrichtBtn[disabled],
+	.btnTeilnehmerBearbeiten[disabled], .btnUnterhaltungVerlassen[disabled]
+	{
 	cursor: default;
 	color: #888;
 	background: #e7dfec;
@@ -247,17 +249,18 @@ h3 {
 
 .ButtonX-Nachrichtenverwaltung {
 	background: #505050;
-	    color: #fff;
-    border: 1px #f1f1f1 solid;
-    line-height: 15px;
-    font-size: 13px;
+	color: #fff;
+	border: 1px #f1f1f1 solid;
+	line-height: 15px;
+	font-size: 13px;
 }
-.ButtonX-Hashtagverwaltung{
+
+.ButtonX-Hashtagverwaltung {
 	background: #628cd5;
-	    color: #fff;
-    border: 1px #f1f1f1 solid;
-    line-height: 15px;
-    font-size: 13px;
+	color: #fff;
+	border: 1px #f1f1f1 solid;
+	line-height: 15px;
+	font-size: 13px;
 }
 
 .NeuigkeitenDialogboxSendenBtn {
@@ -275,36 +278,39 @@ h3 {
 }
 
 .reportBtn {
-    background: #628cd5;
-    color: #fff;
-    font-size: 12px;
-    border: none;
-    height: 22px;
-    min-width: 91px;
-    margin-right: 1px;
-    width: 200px;
+	background: #628cd5;
+	color: #fff;
+	font-size: 12px;
+	border: none;
+	height: 22px;
+	min-width: 91px;
+	margin-right: 1px;
+	width: 200px;
 }
 
 .HashtagPlusBtn {
-    background: #628cd5;
-    color: #fff;
+	background: #628cd5;
+	color: #fff;
 }
-.btnAnlegen{ 
-	background: #000; color: #fff; 
+
+.btnAnlegen {
+	background: #000;
+	color: #fff;
 	height: 30px;
-    width: 100%;
-    border: none;
+	width: 100%;
+	border: none;
 }
-     
-.btnAnlegen:hover{ background: #ccc; color: #000; 
-     }
+
+.btnAnlegen:hover {
+	background: #ccc;
+	color: #000;
+}
 
 /*
 *-----------------------------------------------------------------------
 * Layout-Id's Styles
 *-----------------------------------------------------------------------
 */
-
 #wrap_report {
 	
 }
@@ -346,8 +352,8 @@ html {
 	margin-right: auto;
 	max-width: 960px;
 	width: auto;
-	height:100%;
-	min-height:900px;
+	height: 100%;
+	min-height: 900px;
 	background: #fff;
 	padding-bottom: 30px;
 }
@@ -365,7 +371,6 @@ html {
 .gwt-DialogBox .dialogMiddleCenter {
 	background: #F1F1F1 !Important;
 }
-
 
 .LabelX-Nachrichtenverwaltung {
 	margin-right: 31px;
@@ -390,7 +395,6 @@ html {
 * GWT Dialogbox Styles
 *-----------------------------------------------------------------------
 */
-
 .gwt-DialogBox {
 	width: 400px;
 }
@@ -408,11 +412,7 @@ html {
 }
 
 /*GWT Dialogbox Schließen Button*/
-
-
-
 /*Hauptmenü-Styles*/
-
 .mainmenu {
 	float: right;
 	outline: 0px;
@@ -434,13 +434,10 @@ html {
 	color: white;
 }
 
- 
-
 /*Vordefinierte GWT-Celllist Klasse*/
 .GPBYFDEAG {
 	width: 681px;
 }
-
 
 #ButtonBar table tbody tr td {
 	
@@ -450,8 +447,8 @@ html {
 	background: #f1f1f1;
 	padding: 14px;
 	font-size: 14px;
-    width: 500px;
-   	margin-bottom: 20px;
+	width: 500px;
+	margin-bottom: 20px;
 }
 
 .hpOptionenButtonbar {
@@ -519,38 +516,49 @@ html {
 /*Vordefinierte GWT Klassen von CellList und CellTree*/
 div.GPBYFDEFF.GPBYFDEKF.GPBYFDENF.GPBYFDELF {
 	/*background: #f0f0f0;*/
+	
 }
 
-div.GPBYFDEFF{	 
+.GPBYFDELF{color: black;}
+
+div.GPBYFDEFF {
 	
+}
+
+.nachrichten_linie_unten{
+    padding-bottom: 17px;
+}
+
+.nachrichten_linie_oben{
+    padding-top: 17px;
 }
 
 div.GPBYFDEFF.GPBYFDEHF {
 	border: 1px solid #ccc;
 }
 
-.ladenImg{
-	width: 75px; 
+.ladenImg {
+	width: 75px;
 }
 
-.ladenPanel{
-	width: 400px; 
+.ladenPanel {
+	width: 400px;
 	margin-right: auto;
-    margin-left: auto;
+	margin-left: auto;
 }
 
-.ladenPanel h1,.ladenPanel h2, .ladenPanel h3  {
+.ladenPanel h1, .ladenPanel h2, .ladenPanel h3 {
 	padding-top: 0px;
-    margin-top: -20px;
-    text-align: center;
+	margin-top: -20px;
+	text-align: center;
 }
 
 .ladenPanel td {
-    text-align: center !Important;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 44px;
-    padding-bottom: 0px;
+	text-align: center !Important;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 44px;
+	padding-bottom: 0px;
 }
 
 /*Hover Cellist
@@ -587,6 +595,7 @@ div.GPBYFDEFF.GPBYFDEHF {
 .pagerStyleGrey {
 	background: #d0d7e5;
 }
+
 .pagerStyleBlue {
 	background: #e3e8f4;
 }
@@ -615,85 +624,90 @@ div.GPBYFDEFF.GPBYFDEHF {
 	text-align: left;
 }
 
-.reportkoerper_vollbild{
-    margin: 0px;
-    padding: 0px;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
+.reportkoerper_vollbild {
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	border: 1px solid #ccc;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border-top-right-radius: 0px;
+	border-top-left-radius: 0px;
 }
 
-.reportkoerper_vollbild table{
-    border-collapse: collapse;
-    border-spacing: 0;
-	width:100%;
-	height:100%;
-	margin:0px;padding:0px;
+.reportkoerper_vollbild table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
 }
 
 .reportkoerper_vollbild tr:last-child td:last-child {
-	border-bottom-right-radius:0px;
+	border-bottom-right-radius: 0px;
 }
 
 .reportkoerper_vollbild table tr:first-child td:first-child {
-	border-top-left-radius:0px;
+	border-top-left-radius: 0px;
 }
 
 .reportkoerper_vollbild table tr:first-child td:last-child {
-	border-top-right-radius:0px;
+	border-top-right-radius: 0px;
 }
 
-.reportkoerper_vollbild tr:last-child td:first-child{
-	border-bottom-left-radius:0px;
-} 
-
-.reportkoerper_vollbild tr:nth-child(odd){ background-color:#e5e5e5; }
-
-.reportkoerper_vollbild tr:nth-child(even)    { background-color:#ffffff; }
-
-.reportkoerper_vollbildtd{
-	vertical-align:middle;
-	border:1px solid #000000;
-	border-width:0px 1px 1px 0px;
-	text-align:left;
-	padding:7px;
-	font-size:10px;
-	font-family:Arial;
-	font-weight:normal;
-	color:#000000;
+.reportkoerper_vollbild tr:last-child td:first-child {
+	border-bottom-left-radius: 0px;
 }
 
-.reportkoerper_vollbild tr:last-child td{
-	border-width:0px 1px 0px 0px;
+.reportkoerper_vollbild tr:nth-child(odd) {
+	background-color: #e5e5e5;
 }
 
-.reportkoerper_vollbild tr td:last-child{
-	border-width:0px 0px 1px 0px;
+.reportkoerper_vollbild tr:nth-child(even) {
+	background-color: #ffffff;
 }
 
-.reportkoerper_vollbild tr:last-child td:last-child{
-	border-width:0px 0px 0px 0px;
+.reportkoerper_vollbildtd {
+	vertical-align: middle;
+	border: 1px solid #000000;
+	border-width: 0px 1px 1px 0px;
+	text-align: left;
+	padding: 7px;
+	font-size: 10px;
+	font-family: Arial;
+	font-weight: normal;
+	color: #000000;
 }
 
-.reportkoerper_vollbild tr:first-child td{
-    background: #628cd5;
-    border: 0px solid #000000;
-    text-align: center;
-    border-width: 0px 0px 1px 1px;
-    font-size: 14px;
-    font-family: Arial;
-    color: #fff;
-}
- 
-.reportkoerper_vollbild tr:first-child td:first-child{
-border-width:0px 0px 1px 0px;
+.reportkoerper_vollbild tr:last-child td {
+	border-width: 0px 1px 0px 0px;
 }
 
-.reportkoerper_vollbild tr:first-child td:last-child{
-border-width:0px 0px 1px 1px;
+.reportkoerper_vollbild tr td:last-child {
+	border-width: 0px 0px 1px 0px;
+}
+
+.reportkoerper_vollbild tr:last-child td:last-child {
+	border-width: 0px 0px 0px 0px;
+}
+
+.reportkoerper_vollbild tr:first-child td {
+	background: #628cd5;
+	border: 0px solid #000000;
+	text-align: center;
+	border-width: 0px 0px 1px 1px;
+	font-size: 14px;
+	font-family: Arial;
+	color: #fff;
+}
+
+.reportkoerper_vollbild tr:first-child td:first-child {
+	border-width: 0px 0px 1px 0px;
+}
+
+.reportkoerper_vollbild tr:first-child td:last-child {
+	border-width: 0px 0px 1px 1px;
 }
 
 .ergebnisZeileReport:nth-child(even) {
@@ -723,10 +737,10 @@ border-width:0px 0px 1px 1px;
 
 .reportKopfzeile {
 	background-color: #628cd5;
-    color: white;
-    height: 35px;
-    font-size: 18px;
-    font-weight: bold;
+	color: white;
+	height: 35px;
+	font-size: 18px;
+	font-weight: bold;
 }
 
 .kopfdatenbox_rechts {
@@ -776,20 +790,31 @@ border-width:0px 0px 1px 1px;
 	vertical-align: middle !Important;
 }
 
-.vertical-box{
-	padding:15px;
+.vertical-box {
+	padding: 15px;
 }
 
-.top-margin{margin-top:15px !Important;}
+.top-margin {
+	margin-top: 15px !Important;
+}
 
-.bezeichnungVornameTextBox, .bezeichnungNachnameTextBox{margin-top:10px;}
+.bezeichnungVornameTextBox, .bezeichnungNachnameTextBox {
+	margin-top: 10px;
+}
 
-.Impressum{
-	padding:15px;
+.Impressum {
+	padding: 15px;
 	max-width: 328px;
 }
 
-.nutzerButtonPanel{margin-top:15px;}
+.nutzerButtonPanel {
+	margin-top: 15px;
+}
 
-
+.NachrichtTextMitAbstand {
+	min-height: 41px;
+	height: 100%;
+	padding: 10px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 }
