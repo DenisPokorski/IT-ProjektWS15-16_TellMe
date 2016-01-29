@@ -1,7 +1,6 @@
 package de.hdm.tellme.client.gui.editor;
 
 import java.util.Vector;
-
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -16,7 +15,6 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TextArea;
-
 import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
@@ -54,8 +52,8 @@ public class NeuigkeitenNachrichtDialogbox {
 
 	/**
 	 * 
-	 * Eine neue Dialogbox und Textarea wird erstellt. Es wird ein asyncObj
-	 * ersetllt. Der Modus der Dialogbix wird anfangs auf null gesetzt.
+	 * Eine neue Dialogbox und Textarea wird erstellt. Es wird ein AsyncObj
+	 * erstellt. Der Modus der Dialogbox wird anfangs auf Null gesetzt.
 	 * 
 	 */
 	final DialogBox db = new DialogBox();
@@ -63,11 +61,12 @@ public class NeuigkeitenNachrichtDialogbox {
 	private final EditorServiceAsync asyncObj = GWT.create(EditorService.class);
 	eNachrichtenmodus NachrichtenModus = null;
 
-	// Ausgelagert, da sie durch einen async call gefüllt werden
+	// Ausgelagert, da sie durch einen Asynccall gefüllt werden
 	final MultiWordSuggestOracle suggestOracleEmpfaenger = new MultiWordSuggestOracle();
 	Vector<Nutzer> moeglicheEmpfaenger = new Vector<Nutzer>();
 	Vector<Nutzer> AusgewaehlteEmpfaenger = new Vector<Nutzer>();
 
+	// Ausgelagert, da sie durch einen Asynccall gefüllt werden
 	final MultiWordSuggestOracle suggestOracleHashtags = new MultiWordSuggestOracle();
 	Vector<Hashtag> moeglicheHashtags = new Vector<Hashtag>();
 	Vector<Hashtag> AusgewaehlteHashtags = new Vector<Hashtag>();
@@ -84,12 +83,11 @@ public class NeuigkeitenNachrichtDialogbox {
 	private String boxTitel;
 	private String textAreaInhalt = "";
 	private String textFunktionsbutton = "";
-
 	private Unterhaltung antwortUnterhaltung;
 	private Nachricht originalNachricht;
 
 	/**
-	 * Das Enum NeueNachricht wird ausgewählt. Ein Titel wird ersetllt und der
+	 * Das enum NeueNachricht wird ausgewählt. Ein Titel wird ersetllt und der
 	 * String textFunktionsbutton wird mit Senden gefüllt
 	 * 
 	 * @return gibDialogBox() - Die Dialogbox mit den entsprechenden Werten
@@ -104,11 +102,10 @@ public class NeuigkeitenNachrichtDialogbox {
 	}
 
 	/**
-	 * Das Enum AntwortNachricht wird ausgewählt. Ein Titel wird erstellt und
+	 * Das enum AntwortNachricht wird ausgewählt. Ein Titel wird erstellt und
 	 * der String textFunktionsbutton wird mit Senden gefüllt
 	 * 
-	 * @param u
-	 *            - Unterhaltungs-ID wird übergeben
+	 * @param u - Unterhaltungs -ID wird übergeben
 	 * @return gibDialogBox() - Die Dialogbox wird mit entsprechenden Werten
 	 *         zurückgegeben
 	 */
@@ -122,13 +119,12 @@ public class NeuigkeitenNachrichtDialogbox {
 	}
 
 	/**
-	 * * Das Enum BearbeitenNachricht wird ausgewählt. Ein Titel wird erstellt
+	 * Das enum BearbeitenNachricht wird ausgewählt. Ein Titel wird erstellt
 	 * und der String textFunktionsbutton wird mit Speichern gefüllt. Die zu
 	 * bearbeitende Nachricht wird gezeigt. Das HashtagPanel mit den Funktionen
 	 * (hinzufügen und löschen) wird eingefügt.
 	 * 
-	 * @param _nachrichtZumBearbeiten
-	 *            - ausgewähltes Nachrichtenobjekt wird übergeben
+	 * @param _nachrichtZumBearbeiten - ausgewähltes Nachrichtenobjekt wird übergeben
 	 * 
 	 * 
 	 * @return gibDialogBox() - Die Dialogbox wird zurückgegeben
@@ -141,7 +137,7 @@ public class NeuigkeitenNachrichtDialogbox {
 		originalNachricht = _nachrichtZumBearbeiten;
 		textAreaInhalt = _nachrichtZumBearbeiten.getText();
 
-		// Fuelle HashtagPanel
+		// Das HashtagPanel wird befüllt.
 		for (Hashtag zuHinzuzufuegenderHashtag : _nachrichtZumBearbeiten.getVerknuepfteHashtags()) {
 			AusgewaehlteHashtags.addElement(zuHinzuzufuegenderHashtag);
 			
@@ -150,8 +146,7 @@ public class NeuigkeitenNachrichtDialogbox {
 			btnLoescheHashtag.addClickHandler(new ClickHandler() {
 				public void onClick(ClickEvent event) {
 					for (Hashtag hashtag : AusgewaehlteHashtags) {
-						if (btnLoescheHashtag.getText().equals(
-								"#" + hashtag.getSchlagwort() + "(X)")) {
+						if (btnLoescheHashtag.getText().equals("#" + hashtag.getSchlagwort() + "(X)")) {
 							AusgewaehlteHashtags.remove(hashtag);
 							btnLoescheHashtag.removeFromParent();
 							continue;
@@ -159,7 +154,6 @@ public class NeuigkeitenNachrichtDialogbox {
 					}
 				}
 			});
-
 			fpAusgewaehlteHashtags.add(btnLoescheHashtag);
 		}
 		return gibDialogBox();
@@ -179,10 +173,9 @@ public class NeuigkeitenNachrichtDialogbox {
 		db.setGlassEnabled(true);
 
 		FlowPanel fpDialog = new FlowPanel();
-
 		fpDialog.setWidth("100%");
-
 		Image btnAbbrechen = new Image("xbtn.png");
+		
 		btnAbbrechen.setStylePrimaryName("xbtn");
 		btnAbbrechen.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -191,12 +184,11 @@ public class NeuigkeitenNachrichtDialogbox {
 		});
 		fpDialog.add(btnAbbrechen);
 
-		// ############################################## Empfaenger Panele
-		// ##############################################
+		// ############################################## Empfaenger: Panel  ##############################################
+		
 		if (NachrichtenModus == eNachrichtenmodus.NeueNachricht) {
 
-			final SuggestBox EmpfaengerHinzufuegenSug = new SuggestBox(
-					suggestOracleEmpfaenger);
+			final SuggestBox EmpfaengerHinzufuegenSug = new SuggestBox(suggestOracleEmpfaenger);
 			hpEmpfaenger.add(EmpfaengerHinzufuegenSug);
 
 			final Button btnEmpfaengerHinzufuegen = new Button("+ Empfänger");
@@ -210,27 +202,28 @@ public class NeuigkeitenNachrichtDialogbox {
 					Nutzer zuHinzuzufuegenderBenutzer = null;
 					boolean bereitsHinzugefuegt = false;
 
-					// Überprüfe, ob Text in Suggestionbox mit Text (Vorname
-					// Nachname (Email)) eines Vorhandenen Benutzers
-					// übereinstimmt. Falls ja setzte speichere Nutzerobjekt in
-					// zuHinzuzufuegenderBenutzer
+					/**
+					*   Überprüfe, ob Text in Suggestionbox mit Text (Vorname
+				 	*	Nachname (Email)) eines Vorhandenen Benutzers
+					*	übereinstimmt. Falls ja setzte speichere Nutzerobjekt in
+					*	zuHinzuzufuegenderBenutzer
+					*
+					*/
 					for (Nutzer einzelnerNutzer : moeglicheEmpfaenger) {
-						if (EmpfaengerHinzufuegenSug.getText().equals(
-								gibVorschlageTextFuerNutzer(einzelnerNutzer))) {
+						if (EmpfaengerHinzufuegenSug.getText().equals(gibVorschlageTextFuerNutzer(einzelnerNutzer))) {
 							zuHinzuzufuegenderBenutzer = einzelnerNutzer;
 							continue;
 						}
 					}
 
-					// überprüfe, ob Empfänger schon vorhanden
+					// Prüfung, ob Empfänger schon vorhanden ist
 					for (Nutzer nutzer : AusgewaehlteEmpfaenger) {
 						if (zuHinzuzufuegenderBenutzer == nutzer)
 							bereitsHinzugefuegt = true;
 					}
 
-					// Wenn Text Valide ist, füge einen Button zum Entfernen
-					// hinzu.
-					// Ansonsten Fehlermeldung ausgeben
+					// Wenn Text Valide ist, wird ein Button zum Entfernen hinzgefügt.
+					// Ansonsten wird eine Fehlermeldung ausgeben.
 					if (bereitsHinzugefuegt) {
 						Window.alert("Der Empfänger kann nicht hinzugefügt werden, da dieser bereits hinzugefügt wurde.");
 					} else if (zuHinzuzufuegenderBenutzer == null) {
@@ -242,14 +235,11 @@ public class NeuigkeitenNachrichtDialogbox {
 						btnLoescheEmpfaenger.setStylePrimaryName("ButtonX-Nachrichtenverwaltung");
 						btnLoescheEmpfaenger.addClickHandler(new ClickHandler() {
 									public void onClick(ClickEvent event) {
-										// Wenn ein Benutzer in der
-										// AusgewaehlteEmpfaenger
-										// Liste mit Vorschlagtext des
-										// Entfernenbutton,
-										// entferne button von Panel und Nutzer
-										// von
-										// Liste
-										// der Ausgewählten Empfänger
+										 /**
+										  * Jedem Emfpänger, der über ein Suggest-Box-Element ausgewählt wurde,
+										  * wird ein Entfernen-Button hinzugefügt, sodass das zuvor hinzugefügt
+										  * Element aus der Auswahl gelöscht werden kann.
+										  */
 										for (Nutzer nutzer : AusgewaehlteEmpfaenger) {
 											if (btnLoescheEmpfaenger.getText().equals(gibVorschlageTextFuerNutzer(nutzer)+ "(X)")) {
 												AusgewaehlteEmpfaenger.remove(nutzer);
@@ -268,8 +258,7 @@ public class NeuigkeitenNachrichtDialogbox {
 			fpDialog.add(fpAusgewaehlteEmpfanger);
 		}
 
-		// ############################################## Textarea
-		// ##############################################
+		// ############################################## Textarea ##############################################
 		textArea.setWidth("98.4%");
 		textArea.setVisibleLines(10);
 		textArea.setText(textAreaInhalt);
@@ -278,8 +267,7 @@ public class NeuigkeitenNachrichtDialogbox {
 
 		fpDialog.add(textArea);
 
-		// ############################################## Hashtag Panele
-		// ##############################################
+		// ############################################## Hashtag Panel  ##############################################
 		final SuggestBox HastagHinzufuegenSug = new SuggestBox(suggestOracleHashtags);
 		hpHashtags.add(HastagHinzufuegenSug);
 
@@ -291,10 +279,11 @@ public class NeuigkeitenNachrichtDialogbox {
 			public void onClick(ClickEvent event) {
 				Hashtag zuHinzuzufuegenderHashtag = null;
 				boolean bereitsHinzugefuegt = false;
-				// Überprüfe, ob Text in Suggestionbox mit Text eines
-				// Vorhandenen Hashtags
-				// übereinstimmt. Falls ja setzte speichere Hastag in
-				// zuHinzuzufuegenderHashtag
+				 /**
+				  * Jedem Emfpänger, der über ein Suggest-Box-Element ausgewählt wurde,
+				  * wird ein Entfernen-Button hinzugefügt, sodass das zuvor hinzugefügt
+				  * Element aus der Auswahl gelöscht werden kann.
+				  */
 				for (Hashtag hashtag : moeglicheHashtags) {
 					if (HastagHinzufuegenSug.getText().equals("#" + hashtag.getSchlagwort())) {
 						zuHinzuzufuegenderHashtag = hashtag;
@@ -308,8 +297,9 @@ public class NeuigkeitenNachrichtDialogbox {
 						bereitsHinzugefuegt = true;
 				}
 
-				// Wenn Text Valide ist, füge einen Button zum Entfernen hinzu.
-				// Ansonsten Fehlermeldung ausgeben
+				/**
+				 *  Falls das hinzugefügte Suggest-Box-Element bereits hinzugefügt wurde, wird dies mit einer Fehlermeldung ausgegeben. 
+				 */
 				if (bereitsHinzugefuegt) {
 					Window.alert("Der Hashtag kann nicht hinzugefügt werden, da dieser bereits hinzugefügt wurde.");
 				} else if (zuHinzuzufuegenderHashtag == null) {
@@ -321,10 +311,11 @@ public class NeuigkeitenNachrichtDialogbox {
 
 					btnLoescheHashtag.addClickHandler(new ClickHandler() {
 						public void onClick(ClickEvent event) {
-							// Wenn ein Hashtag in der AusgewaehlteHashtag
-							// Liste mit Text des Entfernenbutton,
-							// entferne button von Panel und Hashtag von Liste
-							// der Ausgewählten Hastags
+							 /**
+							  * Jedem Emfpänger, der über ein Suggest-Box-Element ausgewählt wurde,
+							  * wird ein Entfernen-Button hinzugefügt, sodass das zuvor hinzugefügt
+							  * Element aus der Auswahl gelöscht werden kann.
+							  */
 							for (Hashtag hashtag : AusgewaehlteHashtags) {
 								if (btnLoescheHashtag.getText().equals("#" + hashtag.getSchlagwort() + "(X)")) {
 									AusgewaehlteHashtags.remove(hashtag);
@@ -342,13 +333,11 @@ public class NeuigkeitenNachrichtDialogbox {
 		/**
 		 * Dem FlowPanel fpDialog wird das HorizontalPanel hpHashtags und ein
 		 * weiteres FlowPanel fpAusgewaehlteHashtags hinzugefügt
-		 * 
 		 */
 		fpDialog.add(hpHashtags);
 		fpDialog.add(fpAusgewaehlteHashtags);
 
 		/**
-		 * 
 		 * Ein Horizontal hpButtons wird erstellt, auf 100% Breit gesetzt und
 		 * auf die rechte Seite gelegt.
 		 */
@@ -378,8 +367,6 @@ public class NeuigkeitenNachrichtDialogbox {
 				 * Der Case NeueNachricht ersetllt eine neue Nachricht und wird mit
 				 * den Daten des eingeloggten Nutzers versehen. Der Text, die
 				 * Sichtbarkeit und die ausgewählten Hashtags werden ebenfalls eingefügt.
-				 * 
-				 * 
 				 */
 				case NeueNachricht:
 				default:
@@ -387,13 +374,13 @@ public class NeuigkeitenNachrichtDialogbox {
 						Window.alert("Bitte gib einen Text ein, um die Nachricht versenden zu können.");
 
 					} else {
+						/**
+						 * Ein neues Nachrichten-Objekt wird erstellt. In diesem wird das Objekt
+						 * des eingeloggten Nutzers übergeben. Zudem die ID des eingeloggten Nutzer.
+						 * Die Sichtbarkeit der zu erstellenden Nachricht. Danach wird die Methode
+						 * <code>unterhaltungStarten</code> ausgeführt.
+						 */
 						Nachricht neueNachricht = new Nachricht();
-						// neueNachricht.setErstellungsDatum(erstellungsDatum);
-						// wird
-						// im
-						// Mapper direkt gesetzt
-						// neueNachricht.setId(id); wird für anlegen nicht
-						// benötigt
 						neueNachricht.setSender(TellMe.gibEingeloggterBenutzer().getUser());
 						neueNachricht.setSenderId(TellMe.gibEingeloggterBenutzer().getUser().getId());
 						neueNachricht.setSichtbarkeit(eSichtbarkeit.Sichtbar.ordinal());
@@ -401,7 +388,6 @@ public class NeuigkeitenNachrichtDialogbox {
 						neueNachricht.setText(textArea.getText());
 						neueNachricht.setVerknuepfteHashtags(AusgewaehlteHashtags);
 
-						// Füge eigene ID als Teilnehmer hinzu
 						AusgewaehlteEmpfaenger.addElement(TellMe.gibEingeloggterBenutzer().getUser());
 
 						asyncObj.unterhaltungStarten(neueNachricht,AusgewaehlteEmpfaenger, new AsyncCallback<Boolean>() {
@@ -412,7 +398,6 @@ public class NeuigkeitenNachrichtDialogbox {
 										else
 											Window.alert("Fehler beim erstellen der Nachricht, bitte wende dich an den Administrator.");
 									}
-
 									@Override
 									public void onFailure(Throwable caught) {
 										Window.alert("Fehler beim erstellen der Nachricht, bitte wende dich an den Administrator.");
@@ -439,7 +424,6 @@ public class NeuigkeitenNachrichtDialogbox {
 
 						asyncObj.unterhaltungBeantworten(antwortNachricht,antwortUnterhaltung,
 								new AsyncCallback<Boolean>() {
-
 									@Override
 									public void onSuccess(Boolean result) {
 										if (result)
@@ -447,7 +431,6 @@ public class NeuigkeitenNachrichtDialogbox {
 										else
 											Window.alert("Fehler beim erstellen der Nachricht, bitte wende dich an den Administrator.");
 									}
-
 									@Override
 									public void onFailure(Throwable caught) {
 										Window.alert("Fehler beim erstellen der Nachricht, bitte wende dich an den Administrator.");
@@ -462,7 +445,6 @@ public class NeuigkeitenNachrichtDialogbox {
 				 * versehen
 				 * 
 				 */
-
 				case BearbeitenNachricht:
 					if (textArea.getValue() == "") {
 						Window.alert("Bitte gib einen Text ein um die Nachricht speichern zu können.");
@@ -478,17 +460,17 @@ public class NeuigkeitenNachrichtDialogbox {
 						
 						asyncObj.NachrichtAktualisieren(originalNachricht,bearbeiteteNachricht,new AsyncCallback<Boolean>() {
 
-									@Override
-									public void onSuccess(Boolean result) {
-										if (result)
-											Window.alert("Nachricht erfolgreich aktualisiert");
-										else
-											Window.alert("Fehler beim bearbeiten der Nachricht, bitte wende dich an den Administrator.");
-									}
-									@Override
-									public void onFailure(Throwable caught) {
+								@Override
+								public void onSuccess(Boolean result) {
+									if (result)
+										Window.alert("Nachricht erfolgreich aktualisiert");
+									else
 										Window.alert("Fehler beim bearbeiten der Nachricht, bitte wende dich an den Administrator.");
-									}
+								}
+								@Override
+								public void onFailure(Throwable caught) {
+									Window.alert("Fehler beim bearbeiten der Nachricht, bitte wende dich an den Administrator.");
+								}
 						});
 					}
 					break;
@@ -504,7 +486,7 @@ public class NeuigkeitenNachrichtDialogbox {
 	}
 
 	/**
-	 * Eine Liste von vorhanden Nutzern und Hashtags werden geladen.
+	 * Eine Liste von vorhanden Nutzern und Hashtags wird geladen.
 	 * 
 	 */
 
@@ -527,7 +509,6 @@ public class NeuigkeitenNachrichtDialogbox {
 			@Override
 			public void onFailure(Throwable caught) {
 			}
-
 			@Override
 			public void onSuccess(Vector<Hashtag> resultListe) {
 				moeglicheHashtags = resultListe;
@@ -548,5 +529,4 @@ public class NeuigkeitenNachrichtDialogbox {
 		return _nutzer.getVorname() + " " + _nutzer.getNachname() + " ("
 				+ _nutzer.getMailadresse() + ")";
 	}
-
 }

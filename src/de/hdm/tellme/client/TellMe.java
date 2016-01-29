@@ -15,7 +15,7 @@ import de.hdm.tellme.shared.LoginService;
 import de.hdm.tellme.shared.LoginServiceAsync;
 
 /**
- * Das ist der Eingangspunkt-Klasse des Projekts <b>TellMe</b> In dieser Klasse
+ * Das ist die Eingangspunkt-Klasse des Projekts <b>TellMe</b> In dieser Klasse
  * wird der Login und die MenuBar erstellt.
  * 
  * @author denispokorski

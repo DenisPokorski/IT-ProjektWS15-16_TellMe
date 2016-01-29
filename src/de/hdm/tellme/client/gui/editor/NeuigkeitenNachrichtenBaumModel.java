@@ -25,7 +25,7 @@ import de.hdm.tellme.shared.bo.Unterhaltung;
  * Die Klasse <class>NeuigkeitenNachrichtenBaumModel</code> zeigt die
  * Unterhaltungen und die dazugehörigen Nachrichten als Neuigkeiten-Feed an.
  * 
- * @author Denis Feltrin, Alex Homann
+ * @author Denis Feltrin, Alex Homann, Google GWT
  *
  */
 public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
@@ -61,8 +61,7 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 	 * RPC Methode, die auf Client in einer bestimmten Runtime ausgeführt wird
 	 * um Daten mit dem Server auszutauschen
 	 */
-	private final static EditorServiceAsync asyncObj = GWT
-			.create(EditorService.class);
+	private final static EditorServiceAsync asyncObj = GWT.create(EditorService.class);
 	/**
 	 * Um eine Unterhaltung oder eine Nachricht der Unterhaltungen auszuwählen
 	 * wird auch hier ein <code>SingleSelectionModel</code> benötigt.
@@ -77,10 +76,13 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 	private static boolean selektiereNeuesElement = false;
 
 	/**
+	 * 
 	 * This selection model is shared across all leaf nodes. A selection model
 	 * can also be shared across all nodes in the tree, or each set of child
 	 * nodes can have its own instance. This gives you flexibility to determine
 	 * how nodes are selected.
+	 * 
+	 * Copyright Google GWT
 	 */
 
 	public NeuigkeitenNachrichtenBaumModel() {
@@ -108,7 +110,7 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 					}
 				});
 		/**
-		 * Wenn eine Nachricht ausgewählt wurde, werden die OptionenButtons
+		 * Wenn eine Nachricht ausgewählt wurde, werden die Optionen-Buttons
 		 * gesetzt.
 		 */
 		nachrichtenSelectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
@@ -133,6 +135,7 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 	/**
 	 * Get the {@link NodeInfo} that provides the children of the specified
 	 * value.
+	 * 
 	 */
 	/**
 	 * Beim erstellen des Baums wird jedes Objekt des DataProviders darauf

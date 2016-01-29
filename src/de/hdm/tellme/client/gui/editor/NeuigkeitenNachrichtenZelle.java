@@ -38,12 +38,9 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 	 * Die Methode <code>render()</code> fügt ein Objekt zusammen zu einem plain
 	 * text.
 	 * 
-	 * @param context
-	 *            , der Context der NachrichtenZelle
-	 * @param value
-	 *            , die eigentliche Nachricht
-	 * @param sb
-	 *            , der SafeHtmlBuilder, der die benötigten Elemente
+	 * @param context, der Context der NachrichtenZelle
+	 * @param value  , die eigentliche Nachricht
+	 * @param sb  , der SafeHtmlBuilder, der die benötigten Elemente
 	 *            zusammenfügt.
 	 * 
 	 */
@@ -116,11 +113,8 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 		 */
 		sb.appendHtmlConstant("<div class='neuigkeitenNachrichtInhalt'>");
 		sb.appendHtmlConstant("<table style='width:100%'><tr><td class='nachrichten_linie_unten'>");
-
 		sb.appendHtmlConstant(strUnterhaltungsTyp);
-
 		sb.appendHtmlConstant("</td><td class='nachrichten_linie_unten'>");
-
 		sb.appendEscaped("Absender: " + strAbsender);
 		sb.appendHtmlConstant("</td><td class='nachrichten_linie_unten'>");
 		sb.appendHtmlConstant(strDatum);
@@ -137,5 +131,4 @@ public class NeuigkeitenNachrichtenZelle extends AbstractCell<Nachricht> {
 		sb.appendHtmlConstant("</div>");
 
 	}
-
 }

@@ -12,7 +12,6 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
-
 import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
@@ -47,7 +46,7 @@ public class NeuigkeitenJaNeinDialogbox {
 
 	/**
 	 * Eine neue Dialogbox "db" wird erstellt. Außerdem wird ein asyncObject
-	 * erstellt. Der Modus der Dialogbix wird anfangs auf null gesetzt. Es wird
+	 * erstellt. Der Modus der Dialogbox wird anfangs auf null gesetzt. Es wird
 	 * eine Nachricht übergeben, die gelöscht werden soll, oder eine
 	 * Unterhaltung die verlassen werden soll.
 	 * 
@@ -67,14 +66,12 @@ public class NeuigkeitenJaNeinDialogbox {
 	 * "NachrichtLoeschen" aus. Der Titel und der Text werden entsprechend
 	 * angepasst.
 	 * 
-	 * @param _zuLoeschendeNachricht
-	 * @return gibDialogBox()
+	 * @param _zuLoeschendeNachricht, das ausgewählte zu löschende Nachrichten-Objekt wird übergeben
+	 * @return gibDialogBox(), die Dialogbox wird auf dem Bildschirm-Fenster ausgegeben
 	 */
-	public DialogBox getNachrichtLoeschenDialogBox(
-			Nachricht _zuLoeschendeNachricht) {
+	public DialogBox getNachrichtLoeschenDialogBox(Nachricht _zuLoeschendeNachricht) {
 		textTitel = "Nachricht löschen";
 		textFrage = "Möchtest du die Nachricht wirklich löschen?";
-
 		zuLoeschendeNachricht = _zuLoeschendeNachricht;
 		DialogModus = eDialogModus.NachrichtLoeschen;
 
@@ -90,8 +87,7 @@ public class NeuigkeitenJaNeinDialogbox {
 	 * @param _zuVerlassendeUnterhaltung
 	 * @return gibDialogBox()
 	 */
-	public DialogBox getUnterhaltungVerlassenDialogBox(
-			Unterhaltung _zuVerlassendeUnterhaltung) {
+	public DialogBox getUnterhaltungVerlassenDialogBox(Unterhaltung _zuVerlassendeUnterhaltung) {
 		textTitel = "Unterhaltung verlassen";
 		textFrage = "Möchtest du die Unterhaltung wirklich verlassen?";
 
@@ -123,6 +119,7 @@ public class NeuigkeitenJaNeinDialogbox {
 
 		fpDialog.setWidth("100%");
 		Image btnAbbrechen = new Image("xbtn.png");
+		
 		btnAbbrechen.setStylePrimaryName("xbtn");
 		btnAbbrechen.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -182,7 +179,6 @@ public class NeuigkeitenJaNeinDialogbox {
 							else
 								Window.alert("Fehler beim löschen der Nachricht, bitte wende dich an den Administrator");
 						}
-
 						@Override
 						public void onFailure(Throwable caught) {
 							Window.alert("Fehler beim löschen der Nachricht, bitte wende dich an den Administrator");
@@ -205,7 +201,6 @@ public class NeuigkeitenJaNeinDialogbox {
 							else
 								Window.alert("Fehler beim verlassen der Unterhaltung, bitte wende dich an den Administrator");
 						}
-
 						@Override
 						public void onFailure(Throwable caught) {
 							Window.alert("Fehler beim löschen der Nachricht, bitte wende dich an den Administrator");
@@ -223,5 +218,4 @@ public class NeuigkeitenJaNeinDialogbox {
 
 		return db;
 	}
-
 }

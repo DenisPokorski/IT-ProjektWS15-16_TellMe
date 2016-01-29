@@ -60,9 +60,13 @@ public class NeuigkeitenEditor extends VerticalPanel {
 
 		TreeViewModel model = new NeuigkeitenNachrichtenBaumModel();
 		/*
-		 * Create the tree using the model. We use <code>null</code> as the
-		 * default value of the root node. The default value will be passed to
-		 * CustomTreeModel#getNodeInfo();
+		 * Bei der Generierung des Baumes wird ein Modell verwendet, dass in der Klasse 
+		 * <class> NeuigkeitenNachrichtenBaumModel </class> hinterlegt ist. Sollten dem 
+		 * Baum keine Elemente zugeordnet sein, so wird dies mit dem Label 'Empty' 
+		 * gekennzeichnet.
+		 * Die Methode <code> getNodeInfo() </code> speichert die Anzahl der enthaltenen Knoten
+		 * des Baumes, die weitere Elemente besitzen.
+		 * 
 		 */
 		CellTree tree = new CellTree(model, null);
 		tree.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.DISABLED);
@@ -80,7 +84,13 @@ public class NeuigkeitenEditor extends VerticalPanel {
 
 	}
 
-	// Statisch, damit auch andere
+	/**
+	 * Statisch, damit es einmal während der Laufzeit instanziiert werden kann.
+	 * Die Dialogbox kann verschiedene Formen darstellen.
+	 * Die Dialogbox wird in der Mitte des Fenster gesetzt und angezeigt. 
+	 * 
+	 * @param anzuzeigendeBox, Die Dialogbox dies angezeigt werden soll
+	 */
 	public static void showDialogBox(DialogBox anzuzeigendeBox) {
 		anzuzeigendeBox.center();
 		anzuzeigendeBox.show();
@@ -91,8 +101,8 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	 * Die Methode <code>setzeOptionenButton </code> gibt die Auswahlbuttons
 	 * frei wenn eine Unterhaltung/Nachricht angeklickt worden ist
 	 * 
-	 * @param _ausgewaehlteUnterhaltung
-	 * @param _ausgewaehlteNachricht
+	 * @param _ausgewaehlteUnterhaltung, das ausgewählte Unterhaltungen-Objekt wird übergeben
+	 * @param _ausgewaehlteNachricht, das ausgewählte Nachrichten-Objekt wird übergeben
 	 */
 	public static void setzeOptionenButton(Unterhaltung _ausgewaehlteUnterhaltung, Nachricht _ausgewaehlteNachricht) {
 		RootPanel.get("ButtonBar").clear();
@@ -100,12 +110,17 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		// ###################### Nachrichtenoptionen
 
 		/**
-		 * Es wird ein neues Horizontal Panel erstellt und
+		 * Es wird ein neues Horizontal Panel erstellt, mittels CSS-Style optisch verändert und der linken
+		 * Seite angebracht.
 		 */
 		HorizontalPanel hpHeadline = new HorizontalPanel();
 		hpHeadline.setStylePrimaryName("hpHeadline");
 		hpHeadline.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 
+		/**
+		 * Es wird ein neues Horizontal Panel erstellt. Es wird eine neue Überschrift als HTML-Code erstellt
+		 * und dem Panel hinzugefügt.
+		 */
 		HorizontalPanel hpUnterhaltungsOptionen = new HorizontalPanel();
 
 		HTML headline = new HTML(" <h2>Alle Neuigkeiten</h2> ");
@@ -116,7 +131,6 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 * CSS-Style hinzugefügt. Ein ClickHandler wird hinzugefügt und der
 		 * Button wird dem HorizontalPanel hpHeadline hinzugefügt.
 		 */
-
 		Button btnNeueNachricht = new Button("Neue Nachricht");
 		btnNeueNachricht.setStylePrimaryName("neueNchrichtBtn");
 		btnNeueNachricht.addClickHandler(btnNeueNachrichtClickHandler);
@@ -145,7 +159,6 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 * und ein CSS-Style hinzugefügt. Ein ClickHandler wird hinzugefügt und
 		 * der Button wird dem HorizontalPanel hpOptionen hinzugefügt.
 		 */
-
 		Button btnAntworten = new Button("Unterhaltung beantworten");
 		btnAntworten.setEnabled(false);
 		btnAntworten.setStylePrimaryName("btnUnterhaltungVerlassen");
@@ -158,7 +171,6 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 * der Button wird den beiden HorizontalPanel hpUnterhaltungsOptionen
 		 * und hpOptionen hinzugefügt.
 		 */
-
 		Button btnTeilnehmerBearbeiten = new Button("Teilnehmer bearbeiten");
 		btnTeilnehmerBearbeiten.setStylePrimaryName("btnTeilnehmerBearbeiten");
 		btnTeilnehmerBearbeiten.addClickHandler(btnTeilnehmerBearbeitenClickHandler);
@@ -170,7 +182,6 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 * und ein CSS-Style hinzugefügt. Ein ClickHandler wird hinzugefügt und
 		 * der Button wird dem HorizontalPanel hpOptionen hinzugefügt.
 		 */
-
 		Button btnUnterhaltungVerlassen = new Button("Unterhaltung verlassen");
 		btnUnterhaltungVerlassen.setStylePrimaryName("btnUnterhaltungVerlassen");
 		btnUnterhaltungVerlassen.addClickHandler(btnUnterhaltungVerlassenClickHandler);
@@ -182,7 +193,6 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 * hinzugefügt und der Button wird dem HorizontalPanel hpOptionen
 		 * hinzugefügt.
 		 */
-
 		Button btnNachrichtBearbeiten = new Button("Nachricht bearbeiten");
 		btnNachrichtBearbeiten.addClickHandler(btnNachrichtBearbeitenClickHandler);
 		btnNachrichtBearbeiten.setStylePrimaryName("btnUnterhaltungVerlassen");
@@ -193,7 +203,6 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 * und ein CSS-Style hinzugefügt. Ein ClickHandler wird hinzugefügt und
 		 * der Button wird dem HorizontalPanel hpOptionen hinzugefügt.
 		 */
-
 		Button btnNachrichtLoeaschen = new Button("Nachricht löschen");
 		btnNachrichtLoeaschen.setStylePrimaryName("btnUnterhaltungVerlassen");
 		btnNachrichtLoeaschen.addClickHandler(btnNachrichtLoeschenClickHandler);
@@ -267,7 +276,6 @@ public class NeuigkeitenEditor extends VerticalPanel {
 	 * 
 	 * @return vpFilterPanel
 	 */
-
 	public VerticalPanel gibFilterPanel() {
 
 		/**
@@ -287,7 +295,6 @@ public class NeuigkeitenEditor extends VerticalPanel {
 		 * und ein CSS-Style hinzugefügt. Ein ClickHandler wird hinzugefügt und
 		 * der Button wird dem VerticalPanel vpFilterPanel hinzugefügt.
 		 */
-
 		Button btnFilterZuruecksetzen = new Button("Filter zurücksetzen");
 		btnFilterZuruecksetzen.setStylePrimaryName("filterBtn");
 		btnFilterZuruecksetzen.addClickHandler(new ClickHandler() {

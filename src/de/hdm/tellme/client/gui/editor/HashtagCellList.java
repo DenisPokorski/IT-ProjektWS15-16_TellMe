@@ -50,9 +50,9 @@ public class HashtagCellList {
 		
 		/**
 		 * Das Switch-Case Konstrukt nimmt einen in der Enumklasse: CellListModus vordefinierten entgegen.
-		 * Anschließend wird der übergebene Fall abgearbeitet. Ziel dieses Konstrukts ist verschiedene SelektionsModele von in den
-		 * GUI verwendendeten Celllist Komponenten zu bestimmen. Dies ist notwenig da bei Interaktion mit einer Celllist Komponente, diese oftmals  da diese an vielen Stellen des Programm
-		 * verschieden Reagieren müssen
+		 * Anschließend wird der übergebene Fall abgearbeitet. Ziel dieses Konstrukts ist verschiedene SelektionsModels von in den
+		 * GUI verwendendeten CellList Komponenten zu bestimmen. Dies ist notwendig, da die CellList-Komponente an vielen Stellen des Programms unterschiedlich
+		 * verwendet wird.
 		 */
 		switch (modi) {
 
@@ -72,7 +72,6 @@ public class HashtagCellList {
 					RootPanel.get("content_right").clear();
 					RootPanel.get("content_right").add(nf.gibBeschreibungHtAbo());
 					RootPanel.get("content_right").add(nf.gibBearbeitenFormular());
-					
 				}
 			});
 			break;
@@ -90,7 +89,6 @@ public class HashtagCellList {
 				public void onSelectionChange(SelectionChangeEvent event) {
 					
 					NeuigkeitenNachrichtenBaumModel.setzeHashtagFilter(selectionModel.getSelectedObject().hashtag,selectionModel);
-					
 				}
 			});
 			break;
@@ -98,9 +96,9 @@ public class HashtagCellList {
 		/**
 		 * Der Fall HashtagVerwaltung wird genutzt, falls ein Hashtag in der
 		 * HashtagVerwaltung ausgewählt wird. Wenn ein Hashtag angeklickt
-		 * wird,wird ein neues Objekt des HashtagVerwaltungFomular erstellt und
+		 * wird, wird ein neues Objekt des HashtagVerwaltungFomular's und
 		 * für das aktuell ausgewählte Hashtag erstellt. Danach wird auf der
-		 * rechten Seite der Content gecleart, also gelöscht und es werden die
+		 * rechten Seite der Content geleert, also gelöscht und es werden die
 		 * Formulare gibBeschreibungHtVerwaltung() und gibFormular() für das
 		 * vorher erstellte HashtagVerwaltungsFomular geladen.
 		 */
@@ -114,8 +112,7 @@ public class HashtagCellList {
 					RootPanel.get("content_right").clear();
 					RootPanel.get("content_right").add(new HashtagFormular().gibBeschreibungHtVerwaltung());
 					RootPanel.get("content_right").add(nvf.gibFormular());
-						
-						}
+				}
 			});
 			break;
 			
@@ -129,13 +126,11 @@ public class HashtagCellList {
 					vP.add(rF.gibFormular());
 					RootPanel.get("content_right").clear();
 					RootPanel.get("content_right").add(vP);
-					
 				}
 			});
 			break;
 			
 		default:
-		
 		}
 
 		/**

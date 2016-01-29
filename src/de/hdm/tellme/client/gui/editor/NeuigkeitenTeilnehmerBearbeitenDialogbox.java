@@ -57,7 +57,7 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 	Vector<Nutzer> AusgewaehlteEmpfaenger = new Vector<Nutzer>();
 
 	/**
-	 * Panel für Nachricht Empfänger Dialog Box
+	 * Das Panel für Nachricht Empfänger Dialog Box
 	 */
 	final FlowPanel fpAusgewaehlteEmpfanger = new FlowPanel();
 	HorizontalPanel hpEmpfaenger = new HorizontalPanel();
@@ -87,7 +87,6 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 		zuBearbeitendeUnterhaltung = _unterhaltungZumBearbeiten;
 		// Fuelle TeilehmerPanel
 		for (Nutzer zuHinzuzufuegenderBenutzer : _unterhaltungZumBearbeiten.getTeilnehmer()) {
-
 			/**
 			 * Ausgewählte Teilnehmer werden der Unterhaltung/Nachricht
 			 * hinzugefügt. Die bereits hinzugefügten Teilnehmer sind als Button
@@ -95,7 +94,6 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 			 * Dieser Button wird mittels CSS-Style optisch verändert.
 			 *
 			 */
-
 			AusgewaehlteEmpfaenger.addElement(zuHinzuzufuegenderBenutzer);
 			final Button btnLoescheEmpfaenger = new Button(gibVorschlageTextFuerNutzer(zuHinzuzufuegenderBenutzer)+ "(X)");
 			btnLoescheEmpfaenger.setStylePrimaryName("ButtonX-Nachrichtenverwaltung");
@@ -105,12 +103,11 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 			 */
 			btnLoescheEmpfaenger.addClickHandler(new ClickHandler() {
 				public void onClick(ClickEvent event) {
-					// Wenn ein Benutzer in der
-					// AusgewaehlteEmpfaenger
-					// Liste mit Vorschlagtext des Entfernenbutton,
-					// entferne button von Panel und Nutzer von
-					// Liste
-					// der Ausgewählten Empfänger
+					 /**
+					  * Jedem Emfpänger, der über ein Suggest-Box-Element ausgewählt wurde,
+					  * wird ein Entfernen-Button hinzugefügt, sodass das zuvor hinzugefügt
+					  * Element aus der Auswahl gelöscht werden kann.
+					  */
 					for (Nutzer nutzer : AusgewaehlteEmpfaenger) {
 						if (btnLoescheEmpfaenger.getText().equals(gibVorschlageTextFuerNutzer(nutzer) + "(X)")) {
 							AusgewaehlteEmpfaenger.remove(nutzer);
@@ -124,13 +121,11 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 			if (zuHinzuzufuegenderBenutzer.getId() != TellMe.gibEingeloggterBenutzer().getUser().getId())
 				fpAusgewaehlteEmpfanger.add(btnLoescheEmpfaenger);
 		}
-
 		return gibDialogBox();
 	}
 
 	private DialogBox gibDialogBox() {
 		ladVorschlagListen();
-
 		/**
 		 * Dialog und FlowPanel werden definiert
 		 */
@@ -142,7 +137,6 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 		 * Ein neues FlowPanel wird erstellt mit der Breite 100%
 		 */
 		FlowPanel fpDialog = new FlowPanel();
-
 		fpDialog.setWidth("100%");
 
 		/**
@@ -150,19 +144,15 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 		 * ClickHandler um die Dialogbox zu schließen wird aufgerufen.
 		 */
 		Image btnAbbrechen = new Image("xbtn.png");
-
 		btnAbbrechen.setStylePrimaryName("xbtn");
-
 		btnAbbrechen.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				db.hide();
 			}
 		});
-
 		fpDialog.add(btnAbbrechen);
 
-		// ############################################## Empfaenger Panele
-		// ##############################################
+		// ############################################## Empfaenger Panel ##############################################
 
 		/**
 		 * Eine neue SuggestBox wird hinzugefügt die eine Auswahl an
@@ -192,11 +182,11 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 			public void onClick(ClickEvent event) {
 				Nutzer zuHinzuzufuegenderBenutzer = null;
 				boolean bereitsHinzugefuegt = false;
-
-				// Überprüfe, ob Text in Suggestionbox mit Text (Vorname
-				// Nachname (Email)) eines Vorhandenen Benutzers
-				// übereinstimmt. Falls ja setzte speichere Nutzerobjekt in
-				// zuHinzuzufuegenderBenutzer
+				 /**
+				  * Jedem Emfpänger, der über ein Suggest-Box-Element ausgewählt wurde,
+				  * wird ein Entfernen-Button hinzugefügt, sodass das zuvor hinzugefügt
+				  * Element aus der Auswahl gelöscht werden kann.
+				  */
 				for (Nutzer einzelnerNutzer : moeglicheEmpfaenger) {
 					if (EmpfaengerHinzufuegenSug.getText().equals(
 							gibVorschlageTextFuerNutzer(einzelnerNutzer))) {
@@ -204,17 +194,14 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 						continue;
 					}
 				}
-
 				// überprüfe, ob Empfänger schon vorhanden
 				for (Nutzer nutzer : AusgewaehlteEmpfaenger) {
 					if (zuHinzuzufuegenderBenutzer == nutzer)
 						bereitsHinzugefuegt = true;
-
 				}
 
-				// Wenn Text Valide ist, füge einen Button zum Entfernen
-				// hinzu.
-				// Ansonsten Fehlermeldung ausgeben
+				// Wenn Text Valide ist, wird ein Button zum Entfernen hinzgefügt.
+				// Ansonsten wird eine Fehlermeldung ausgeben.
 				if (bereitsHinzugefuegt) {
 					Window.alert("Der Empfänger kann nicht hinzugefügt werden, da dieser bereits hinzugefügt wurde.");
 
@@ -228,12 +215,11 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 
 					btnLoescheEmpfaenger.addClickHandler(new ClickHandler() {
 						public void onClick(ClickEvent event) {
-							// Wenn ein Benutzer in der
-							// AusgewaehlteEmpfaenger
-							// Liste mit Vorschlagtext des Entfernenbutton,
-							// entferne button von Panel und Nutzer von
-							// Liste
-							// der Ausgewählten Empfänger
+							 /**
+							  * Jedem Emfpänger, der über ein Suggest-Box-Element ausgewählt wurde,
+							  * wird ein Entfernen-Button hinzugefügt, sodass das zuvor hinzugefügt
+							  * Element aus der Auswahl gelöscht werden kann.
+							  */
 							for (Nutzer nutzer : AusgewaehlteEmpfaenger) {
 								if (btnLoescheEmpfaenger.getText().equals(gibVorschlageTextFuerNutzer(nutzer)+ "(X)")) {
 									AusgewaehlteEmpfaenger.remove(nutzer);
@@ -291,7 +277,6 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 					public void onFailure(Throwable caught) {
 						Window.alert("Fehler beim bearbeiten der Teilnehmer. Bitte wenden Sie sich an den Systemadministrator.");
 					}
-
 					@Override
 					public void onSuccess(Boolean result) {
 						Window.alert("Teilnehmer bearbeitet!");
@@ -316,14 +301,12 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 	 * die einen Vector vom Nutzer-Objekten zurückgibt.
 	 * 
 	 */
-
 	private void ladVorschlagListen() {
 
 		asyncObj.getAlleNutzer(false, new AsyncCallback<Vector<Nutzer>>() {
 			@Override
 			public void onFailure(Throwable caught) {
 			}
-
 			/**
 			 * 
 			 * Bei Erfolg werden durch Multi-Word-Vorschläge die potenziellen
@@ -340,14 +323,13 @@ public class NeuigkeitenTeilnehmerBearbeitenDialogbox {
 			}
 		});
 	}
-
 	/**
 	 * 
 	 * Die Methode <code> gibVorschlageTextFuerNutzer </code> liefert vom Nutzer
 	 * den Vornamen, Nachnamen und die E-Mail-Adresse zurück, um Vorschläge von
 	 * Nutzern bei der Eingabe von einzelnen Buchstaben zurückzugeben.
 	 * 
-	 * @param _nutzer
+	 * @param _nutzer, das ausgewählte Nutzer-Objekt wird übergeben
 	 * @return _nutzer.getVorname(); _nutzer.getNachname();
 	 *         _nutzer.getMailadresse()
 	 */

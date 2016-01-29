@@ -22,7 +22,7 @@ import de.hdm.tellme.shared.report.HTMLReportWriter;
 /**
  * 
  * Die Klasse <class>HashtagDataProvider</class> ist nötig, dass die Daten die
- * für ein Hashtag benötigt werden zur Verfügung gestellt werden.
+ * für ein Hashtag benötigt werden zur Verfügung stellt.
  * 
  * @author Alex
  *
@@ -59,7 +59,6 @@ public class HashtagDataProvider {
 			holeHashtagListe();
 		else
 			holeHashtagListeReport();
-
 	}
 
 	/**
@@ -137,7 +136,6 @@ public class HashtagDataProvider {
 				});
 			}
 		});
-
 	}
 
 	/**
@@ -151,7 +149,7 @@ public class HashtagDataProvider {
 
 	/**
 	 * Der Methode <code> addDataDisplay</code> wird bei Ausführung eine Celllist übergeben. 
-	 * Deren Zelleninhalt ist eine Nested-Klasse bestehend aus Hastagelementen. 
+	 * Deren Zelleninhalt ist eine Nested-Klasse bestehend aus Hashtag-Elementen. 
 	 * Im Methodenkörper wird die Methode des zuvor initzialisierten Dataproviders <code>addDataDisplay</code> aufgerufen und 
 	 * die übergebene Celllist übergeben. 
 	 * 
@@ -191,13 +189,11 @@ public class HashtagDataProvider {
 			 * Nach erfolgreichem RPC wird das folgende Code-Fragment
 			 * ausgeführt.
 			 */
-
 			@Override
 			public void onSuccess(Void resultListe) {
 				holeHashtagListe();
 				RootPanel.get("content_right").clear();
 				Window.alert("Der Hashtag wurde erfolgreich angelegt.");
-
 			}
 		});
 	}
