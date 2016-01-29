@@ -21,9 +21,6 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.view.client.HasRows;
 import com.google.gwt.view.client.Range;
 /**
- * TODO
- */
-/**
  * 
  * Der Pager zeigt den aktuellen Zeilenindex unterhalb der Zellliste an. Der Nutzer kann daruch einsehen wie viele 
  * Elment einer Celllist oder einer Liste hinzugefügt wurden. 

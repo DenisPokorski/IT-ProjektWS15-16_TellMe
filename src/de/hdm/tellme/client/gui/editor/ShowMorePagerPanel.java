@@ -23,9 +23,6 @@ import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.HasRows;
 /**
- * TODO
- */
-/**
  * 
  * Diese Klasse ermöglicht das der Inhalt scrollbar dargestellt wird.
  * Wenn die Bildlaufleiste den Boden erreicht hat werden Elemente nachgeladen und mit einem Label angezeigt. 

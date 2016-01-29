@@ -212,7 +212,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	/**
 	 * Anlegen eines Nutzes.
 	 * 
-	 * @param nutzer
+	 * @param nutzer  ,Nutzer-Objekt das angelegt wird.
 	 * @return int Wert, der die Id von angelegtem Nutzer darstellt.
 	 */
 	public int nutzerAnlegen(Nutzer nutzer) {
@@ -223,7 +223,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	/**
 	 * Der Nutzer wird aktualisiert
 	 * 
-	 * @param nutzer
+	 * @param nutzer  ,Nutzer-Objekt das aktualisiert wird.
 	 * 
 	 */
 	public void nutzerAktualisieren(Nutzer nutzer) {
@@ -231,9 +231,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	}
 
 	/**
-	 * Der Nutzer wird aktualisiert
+	 * Der Nutzer wird gelöscht
 	 * 
-	 * @param nutzer
+	 * @param nutzer  ,Nutzer-Objekt das gelöscht wird.
 	 * 
 	 */
 	public void nutzerLoeschen(Nutzer nutzer) {
@@ -243,7 +243,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	/**
 	 * Den Nutzer anhand der ID ausfindig machen
 	 * 
-	 * @param nutzerID
+	 * @param nutzerID ,NutzerId die gesucht wird.
 	 * @return gesuchterNutzer Nutzer-Objekt, dass durch die Id gefunden wurde.
 	 */
 	public Nutzer getNutzerAnhandID(int nutzerID) {
@@ -275,7 +275,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	/**
 	 * Den Nutzer anhand der ID ausfindig machen
 	 * 
-	 * @param meineId
+	 * @param meineId, NutzerId des eingeloggten Nutzers.
 	 * @return Vektor mit Nutzer-Objekten, der alle Nutzer außer den
 	 *         eingeloggten Nutzer zurück gibt.
 	 */
@@ -294,7 +294,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	/**
 	 * Auslesen aller Nutzer
 	 * 
-	 * @param zwingeNeuladen
+	 * @param zwingeNeuladen, boolean ob neu geladen wurde.
 	 * @return nutzerMapper.alleNutzer() Alle Nutzer werden zurückgegeben.
 	 */
 
@@ -661,7 +661,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	/**
 	 * Eine neue Nachricht wird erstellt
 	 * 
-	 * @param n
+	 * @param n,
 	 *            - Ein Nachrichten-Objekt wird übergeben
 	 * @return int Wert mit mit NachrichtId
 	 */
@@ -745,8 +745,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public boolean NachrichtLoeschen(Nachricht n) {
-		// TODO: Check ob Nachricht letzte der Unterhaltung, wenn ja ->
-		// unterhaltung deaktivieren!
+
 		boolean erfolgreich = true;
 		erfolgreich = nachrichtMapper.entfernen(n.getId());
 		return erfolgreich;

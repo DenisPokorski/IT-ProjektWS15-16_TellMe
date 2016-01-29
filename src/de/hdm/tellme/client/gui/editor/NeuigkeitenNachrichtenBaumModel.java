@@ -144,7 +144,6 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 	 */
 	public <T> NodeInfo<?> getNodeInfo(T value) {
 		if (value == null) {
-			//TODO
 			// LEVEL 0.
 			// We passed null as the root value. Return the composers.
 			// Create a data provider that contains the list of composers.
@@ -161,7 +160,6 @@ public class NeuigkeitenNachrichtenBaumModel implements TreeViewModel {
 					}
 				}
 			};
-			//TODO
 
 			// Return a node info that pairs the data provider and the cell.
 			return new DefaultNodeInfo<UnterhaltungsNachricht>(dataProvider,cell, unterhaltungSelectionModel, null);
