@@ -71,7 +71,7 @@ public class Report2Gui extends VerticalPanel {
 		vonDateBox.setFormat(new DateBox.DefaultFormat(dF));
 		bisDateBox.setFormat(new DateBox.DefaultFormat(dF));
 		final HTML headline = new HTML(" <div class='"+ "subline"+ "'><h2>Reportgenerator 2: Alle Nachrichten je Zeitraum anzeigen </h2></div> ");
-		final HTML subtext = new HTML(" <div class='"+ "subtext"+ "'><h4> Der Report 2 gibt alle Nachrichten in einen bestimmten Zeitraum aus  </h4></div> ");
+		//final HTML subtext = new HTML(" <div class='"+ "subtext"+ "'><h4> Der Report 2 gibt alle Nachrichten in einen bestimmten Zeitraum aus  </h4></div> ");
 
 		//Die Panels werden anschaulich angeordnet
 
@@ -85,7 +85,7 @@ public class Report2Gui extends VerticalPanel {
 		report2Generieren.setStylePrimaryName("neueNchrichtBtn");
 
 		reportPanel2_right.add(headline);
-		reportPanel2_right.add(subtext);
+	//	reportPanel2_right.add(subtext);
 
 		reportPanel2_right.add(beschreibung2);
 		reportPanel.add(reportPanel2);
