@@ -22,7 +22,7 @@ import de.hdm.tellme.shared.bo.Nutzer;
  */
 public class ReportFormular6 extends Composite{
 	private Nutzer nutzer = null;
-	private Button report6GenerierenButton = new Button("Report 6 erstellen");
+	private Button report6GenerierenButton = new Button("Report 6 generieren");
 	/**
 	 * 
 	 * Im Konstruktor der Klasse werden als erstes die beiden Bereiche des Root-Panels "content-left", "content-right" gesäubert.

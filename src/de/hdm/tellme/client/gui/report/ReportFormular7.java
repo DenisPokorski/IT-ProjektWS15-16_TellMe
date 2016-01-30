@@ -22,7 +22,7 @@ import de.hdm.tellme.shared.bo.Nutzer;
  */
 public class ReportFormular7 extends Composite {
 	private static Nutzer nutzer = null;
-	private Button report7GenerierenButton = new Button("Report 7 erstellen");
+	private Button report7GenerierenButton = new Button("Report 7 generieren");
 
 	/**
 	 * Im Konstruktor der Klasse werden die beiden Root-Panels gesäubert. Zudem

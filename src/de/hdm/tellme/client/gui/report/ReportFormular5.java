@@ -22,7 +22,7 @@ import de.hdm.tellme.shared.bo.Nutzer;
  */
 public class ReportFormular5 extends Composite {
 	private Nutzer nutzer = null;
-	Button report5GenerierenButton = new Button("Report 5 erstellen");
+	Button report5GenerierenButton = new Button("Report 5 generieren");
 
 	public ReportFormular5() {
 		

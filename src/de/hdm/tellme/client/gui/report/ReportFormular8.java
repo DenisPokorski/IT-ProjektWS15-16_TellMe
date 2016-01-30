@@ -22,7 +22,7 @@ import de.hdm.tellme.shared.bo.Hashtag;
 public class ReportFormular8 {
 	
 	private static Hashtag hashtag = null;
-	private Button report8GenerierenButton = new Button("Report 8 erstellen");
+	private Button report8GenerierenButton = new Button("Report 8 generieren");
 
 	/**
 	 * Im Konstruktor der Klasse werden die beiden Root-Panels gesäubert. Zudem

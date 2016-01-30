@@ -26,7 +26,7 @@ public class ReportFormular3 extends Composite {
 	 * Wir benötigen ein Nutzer-Objekt, das anfangs auf null gesetzt wird
 	 */
 	private Nutzer nutzer = null;
-	private Button report3GenerierenButton = new Button("Report 3 erstellen");
+	private Button report3GenerierenButton = new Button("Report 3 generieren");
 
 	/**
 	 * Methode ReportFormular3 wird aufgerufen um den CLickhandler in ihr zu
