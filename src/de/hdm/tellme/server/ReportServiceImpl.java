@@ -157,8 +157,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 				// hinzuegfügt wurden
 				if (bereitsHinzugefuegt == false)
 					alleSichtbarenUnterhaltungenMitSichtbarenNachrichten.add(unterhaltung);
-			} else
-				Helper.LogWarnung("getAlleSichtbarenUnterhaltungenFuerTeilnehmer - sichtbare Unterhaltung ohne Sichtbare Nachricht entdeckt. UnterhaltungsID: "+ unterhaltung.getId());
+			}
 
 			// Teilnehmer
 			Vector<Nutzer> alleTeilnehmer = new Vector<Nutzer>();
@@ -212,8 +211,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 				// hinzuegfügt wurden
 				if (bereitsHinzugefuegt == false)
 					alleSichtbarenUnterhaltungenMitSichtbarenNachrichten.add(unterhaltung);
-			} else
-				Helper.LogWarnung("getAlleSichtbarenUnterhaltungenFuerTeilnehmer - sichtbare Unterhaltung ohne Sichtbare Nachricht entdeckt. UnterhaltungsID: "+ unterhaltung.getId());
+			}
 
 			// Teilnehmer
 			Vector<Nutzer> alleTeilnehmer = new Vector<Nutzer>();
@@ -270,9 +268,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 				if (bereitsHinzugefuegt == false)
 					alleSichtbarenUnterhaltungenMitSichtbarenNachrichten
 							.add(unterhaltung);
-			} else
-				Helper.LogWarnung("getAlleSichtbarenUnterhaltungenFuerTeilnehmer - sichtbare Unterhaltung ohne Sichtbare Nachricht entdeckt. UnterhaltungsID: "
-						+ unterhaltung.getId());
+			}
 
 			// Teilnehmer
 			Vector<Nutzer> alleTeilnehmer = new Vector<Nutzer>();
@@ -317,9 +313,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements
 				// hinzuegfügt wurden
 				if (bereitsHinzugefuegt == false)
 					alleSichtbarenUnterhaltungenMitSichtbarenNachrichten.add(unterhaltung);
-			} else
-				Helper.LogWarnung("getAlleSichtbarenUnterhaltungenFuerTeilnehmer - sichtbare Unterhaltung ohne Sichtbare Nachricht entdeckt. UnterhaltungsID: "
-						+ unterhaltung.getId());
+			}
 
 			// Teilnehmer
 			Vector<Nutzer> alleTeilnehmer = new Vector<Nutzer>();

@@ -178,8 +178,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	}
 
 	public void init() throws IllegalArgumentException {
-		if (Helper.debugModus)
-			Helper.LogDebug("HELLO TELLME! - DEBUG MODE ON");
 
 		/**
 		 * Es ist wichtig, dass die <code>EditorServiceImpl</code> einen
@@ -566,7 +564,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 		for (Integer abonierteHashtagID : abonierteHashtagIDs) {
 
-			Helper.LogDebug("Abonierte HastagID: " + abonierteHashtagID);
 			Vector<Nachricht> NachrichtenMitAboniertemHashtag = new Vector<Nachricht>();
 
 			// Lade alle Nachrichten zu dem abonierten Hashtag
@@ -906,7 +903,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 
 	public Vector<Unterhaltung> getAlleUnterhaltungen() {
 
-		Helper.LogInformation("getAlleUnterhaltungen - Start");
 
 		// Lade alle Unterhaltungen und Nachrichten
 		Vector<Unterhaltung> alleUnterhaltungen = unterhaltungMapper.alleUnterhaltungenOhneNachrichten();
@@ -1003,8 +999,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 		for (Unterhaltung unterhaltung : alleUnterhaltungenVorAussortierung) {
 			if (unterhaltung.getAlleNachrichten().size() > 0)
 				alleUnterhaltungen.add(unterhaltung);
-			else
-				Helper.LogWarnung("Unterhaltung ohne Nachricht gefunden! UnterhaltungsID:"+ unterhaltung.getId());
 		}
 		return alleUnterhaltungen;
 	}
@@ -1024,7 +1018,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	public Vector<Unterhaltung> getAlleRelevantenUnterhaltungen(int UserID) {
 		Vector<Unterhaltung> alleRelevantenUnterhaltungen = new Vector<Unterhaltung>();
 
-		Helper.LogInformation("getAlleRelevantenUnterhaltungen - Start");
 
 		Vector<Unterhaltung> alleUnterhaltungen = getAlleUnterhaltungen();
 
@@ -1206,7 +1199,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 				}
 			}
 		}
-		Helper.LogInformation("getAlleRelevantenUnterhaltungen - Fertig, "+ alleRelevantenUnterhaltungen.size()+ " Unterhaltung(en) gefunden.");
 		return alleRelevantenUnterhaltungen;
 	}
 

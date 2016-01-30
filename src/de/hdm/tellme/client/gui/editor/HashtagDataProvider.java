@@ -192,8 +192,10 @@ public class HashtagDataProvider {
 			@Override
 			public void onSuccess(Void resultListe) {
 				holeHashtagListe();
+				Window.alert("Der Hashtag wurde erfolgreich gespeichert.");
 				RootPanel.get("content_right").clear();
-				Window.alert("Der Hashtag wurde erfolgreich angelegt.");
+				RootPanel.get("content_right").add(new HashtagFormular().gibBeschreibungHtVerwaltung());
+				RootPanel.get("content_right").add(new HashtagVerwaltungFormular().gibFormular());
 			}
 		});
 	}
