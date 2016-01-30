@@ -81,7 +81,6 @@ public class HashtagDataProvider {
 			@Override
 			public void onSuccess(Vector<Hashtag> result) {
 				for (Hashtag hashtag : result) {
-					Window.alert("Hashtags" + result.size());
 					HashtagZelle.ZellenObjekt nah = new HashtagZelle().new ZellenObjekt();
 					nah.hashtag = hashtag;
 					dataList.add(nah);
