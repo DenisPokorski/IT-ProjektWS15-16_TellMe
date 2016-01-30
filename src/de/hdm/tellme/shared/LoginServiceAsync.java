@@ -2,8 +2,6 @@ package de.hdm.tellme.shared;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import de.hdm.tellme.shared.LoginService;
-
 
 /**
  * Das asynchrone Gegenstück des Interface {@link LoginService}. Es wird

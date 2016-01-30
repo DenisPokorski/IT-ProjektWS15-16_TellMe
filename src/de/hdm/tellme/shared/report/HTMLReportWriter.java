@@ -4,15 +4,11 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Vector;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
-
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 
-import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.client.gui.report.ImpressumReport;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;

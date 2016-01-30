@@ -3,8 +3,6 @@ package de.hdm.tellme.shared.bo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
-
 /**
  * Die Klasse BusinessObject ist die Superklasse für alle anderen Businnes
  * Objekte. Sie vererbt die ID, Sichtbarkeit und ErstellungsDatum sowie die get-

@@ -18,7 +18,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 
-import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.client.TellMeReport;
 import de.hdm.tellme.client.gui.editor.NutzerDataProvider;
 import de.hdm.tellme.shared.bo.Nutzer;

@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+
 import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;

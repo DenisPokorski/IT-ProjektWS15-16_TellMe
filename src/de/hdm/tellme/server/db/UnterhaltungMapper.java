@@ -7,9 +7,9 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.tellme.shared.bo.BusinessObject.eSichtbarkeit;
+import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
 import de.hdm.tellme.shared.bo.Nutzer.eStatus;
-import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Unterhaltung;
 
 /**

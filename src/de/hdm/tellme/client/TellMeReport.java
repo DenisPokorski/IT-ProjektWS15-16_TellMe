@@ -9,7 +9,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import de.hdm.tellme.client.gui.editor.MenuBarEditor;
-import de.hdm.tellme.client.gui.editor.NutzerBearbeitenEditor;
 import de.hdm.tellme.client.gui.report.MenuBarReport;
 import de.hdm.tellme.client.gui.report.ReportWillkommenSeite;
 import de.hdm.tellme.shared.LoginInfo;

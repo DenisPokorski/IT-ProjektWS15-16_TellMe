@@ -9,7 +9,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import de.hdm.tellme.client.TellMe;
-import de.hdm.tellme.client.gui.report.ImpressumReport;
 
 /**
  * Dies ist die Klasse <class>MenuBarEditor</class>, sie wird verwendet um die

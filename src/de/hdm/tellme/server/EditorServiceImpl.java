@@ -2,10 +2,7 @@ package de.hdm.tellme.server;
 
 import java.util.Collections;
 import java.util.Vector;
-import java.util.concurrent.TimeUnit;
-
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-
 import de.hdm.tellme.server.db.HashtagAbonnementMapper;
 import de.hdm.tellme.server.db.HashtagMapper;
 import de.hdm.tellme.server.db.NachrichtMapper;
@@ -13,6 +10,7 @@ import de.hdm.tellme.server.db.NutzerAbonnementMapper;
 import de.hdm.tellme.server.db.NutzerMapper;
 import de.hdm.tellme.server.db.UnterhaltungMapper;
 import de.hdm.tellme.shared.EditorService;
+import de.hdm.tellme.shared.EditorServiceAsync;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer;
@@ -441,8 +439,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 *         zurückgegeben
 	 */
 	@Override
-	public Vector<Integer> getAlleAbonniertenHashtagsfuerAbonehmer(
-		int aboNehmerId) {
+	public Vector<Integer> getAlleAbonniertenHashtagsfuerAbonehmer(int aboNehmerId) {
 			Vector<Integer> alleAbboniertenNutzer = hashtagAboMapper.ladeAbonnierteHashtagListe(aboNehmerId);
 			return alleAbboniertenNutzer;
 	}
@@ -453,7 +450,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 * @param NutzerId
 	 *            - Eine Nutzer-ID wird übergeben
 	 * @param HashtagId
-	 *            - Eine Hashtag-ID wird übergebe
+	 *            - Eine Hashtag-ID wird übergeben
 	 */
 	@Override
 	public void erstellenHashtagAbo(int NutzerId, int HashtagId) {
@@ -525,8 +522,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 	 *         zurückgegeben
 	 */
 	@Override
-	public Vector<Nachricht> ladeAlleNachrichtenZuUnterhaltung(
-			int UnterhaltungsID) {
+	public Vector<Nachricht> ladeAlleNachrichtenZuUnterhaltung(int UnterhaltungsID) {
 		Vector<Nachricht> alleNachrichten = nachrichtMapper.gibAlleNachrichtenVonUnterhaltung(UnterhaltungsID);
 
 		// lade zu jeder Nachricht den Sender und die Hashtags
@@ -778,16 +774,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements
 				.loescheUnterhaltungAnhandID(unterhaltungsID);
 		return ergebnis;
 	}
-
-	/**
-	 * Auslesen aller Unterhaltungen für einen Teilnehmer, der noch keine
-	 * Nachrichten besitzt.
-	 * 
-	 * @param teilnehmer
-	 *            ID
-	 * @return null -
-	 * 
-	 */
 
 	/**
 	 * Unterhaltung starten.

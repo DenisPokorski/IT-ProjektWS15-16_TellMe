@@ -4,21 +4,10 @@ import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.MenuBar;
-import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.client.TellMeReport;
-import de.hdm.tellme.client.gui.report.Report1Gui;
-import de.hdm.tellme.client.gui.report.Report2Gui;
-import de.hdm.tellme.client.gui.report.Report3Gui;
-import de.hdm.tellme.client.gui.report.Report4Gui;
-import de.hdm.tellme.client.gui.report.Report5Gui;
-import de.hdm.tellme.client.gui.report.Report6Gui;
-import de.hdm.tellme.client.gui.report.Report7Gui;
-import de.hdm.tellme.client.gui.report.Report8Gui;
-import de.hdm.tellme.client.gui.report.ReportWillkommenSeite;
 
 /**
  * Dies ist die Klasse <class>MenuBarEditor</class>, sie wird verwendet um die

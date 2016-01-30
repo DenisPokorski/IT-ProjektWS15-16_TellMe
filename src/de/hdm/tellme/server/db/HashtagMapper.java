@@ -8,7 +8,6 @@ import java.util.Vector;
 import de.hdm.tellme.shared.bo.Hashtag;
 import de.hdm.tellme.shared.bo.Nachricht;
 import de.hdm.tellme.shared.bo.Nutzer.eStatus;
-import de.hdm.tellme.shared.bo.Unterhaltung;
 
 /**
  * Mapper-Klasse, die Hashtag-Objekte in der Datenbank abbildet. Diese enthält

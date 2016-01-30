@@ -1,6 +1,7 @@
 package de.hdm.tellme.client.gui.editor;
 
 import java.util.Vector;
+
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -15,6 +16,7 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TextArea;
+
 import de.hdm.tellme.client.TellMe;
 import de.hdm.tellme.shared.EditorService;
 import de.hdm.tellme.shared.EditorServiceAsync;
